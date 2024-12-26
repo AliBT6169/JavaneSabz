@@ -7,10 +7,10 @@
         <div class="w-full flex justify-between items-center">
 <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
-                <img src="{{URL('ShahanPhotos/logo.png')}}" class="w-24 h10" alt="">
+                <img src="../../../../public/logo/logo1.jpg" class="w-24 h10" alt="">
                 <div class="w-2 h-8 border-gray-300 border-r-2"></div>
                 <div class="flex gap-1 flex-col">
-                    <div class="font-[1000] text-[1rem] vazir-bold ">فروشگاه آنلاین شاهان</div>
+                    <div class="font-[1000] text-[1rem] ">فروشگاه آنلاین شاهان</div>
                     <div class=" text-slate-500 text-xs">فروشگاهی برای همه سلیقه ها</div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
             <div class="w-[30rem] -mt-10">
                 <div class="absolute">
                     <input type="text"
-                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-Shahan-Purple text-[0.65rem] w-[30rem] h-10 rounded-2xl bg-gray-50 border-gray-200 "
+                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor text-[0.65rem] w-[30rem] h-10 rounded-2xl bg-gray-50 border-gray-200 "
                            placeholder="جستجوی محصول">
                     <div class=" relative -top-[29px] right-[93%] cursor-pointer">
                         <svg fill="#000000" viewBox="0 0 56 56" class=" size-5">
@@ -34,7 +34,7 @@
             </div>
 <!--                        buy cart-->
             <div
-                class="w-36 mr-6 shine_animation h-[2.2rem] rounded-bl-sm rounded-3xl bg-Shahan-Purple flex shadow-sm gap-2 justify-center items-center">
+                class="w-36 mr-6 shine_animation h-[2.2rem] rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
                 <svg viewBox="0 0 16 16" class="fill-white stroke-white stroke-[0.75] size-4    ">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -50,9 +50,9 @@
             </div>
 <!--            login and register-->
             <div
-               class="-mr-4 hover:bg-Shahan-Purple group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
+               class="-mr-4 hover:bg-defaultColor group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
                 <svg viewBox="0 0 56 56"
-                     class=" group-hover:fill-white transition-colors duration-300 size-5 fill-Shahan-Purple">
+                     class=" group-hover:fill-white transition-colors duration-300 size-5 fill-defaultColor">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">

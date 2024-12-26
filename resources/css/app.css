@@ -13,5 +13,35 @@
     font-weight: 300;
     src: url(Fonts/YekanBakh/YekanBakhFaNum-Light.ttf) format("truetype");
 }
-
+@font-face {
+    font-family: "YekanBakh";
+    font-style: normal;
+    font-weight: 500;
+    src: url(Fonts/YekanBakh/YekanBakhFaNum-Regular.ttf) format("truetype");
+}
+@font-face {
+    font-family: "YekanBakh";
+    font-style: normal;
+    font-weight: bold;
+    src: url(Fonts/YekanBakh/YekanBakhFaNum-Bold.ttf) format("truetype");
+}
+@font-face {
+    font-family: "YekanBakh";
+    font-style: normal;
+    font-weight: 900;
+    src: url(Fonts/YekanBakh/YekanBakhFaNum-Black.ttf) format("truetype");
+}
+@font-face {
+    font-family: "YekanBakh";
+    font-style: normal;
+    font-weight: 900;
+    src: url(Fonts/YekanBakh/YekanBakhFaNum-ExtraBlack.ttf) format("truetype");
+}
+*{
+    direction: rtl;
+    font-family: "YekanBakh";
+}
 @tailwind utilities;
+.shine_animation{
+    @apply inline-flex justify-center focus:outline-none focus-visible:outline-none relative before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(90deg,transparent_25%,theme(colors.white/.75)_50%,transparent_75%,transparent_100%)] before:bg-[length:250%_250%,100%_100%] before:bg-[position:-100%_0,0_0] before:bg-no-repeat before:[transition:background-position_0s_ease] hover:before:bg-[position:200%_0,0_0] cursor-pointer hover:before:duration-[1400ms];
+}
