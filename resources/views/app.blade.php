@@ -16,6 +16,13 @@
         @inertiaHead
     </head>
     <body dir="rtl" class="font-sans antialiased">
-        @inertia
+    @include('icons-svg')
+    @inertia
     </body>
+    <script setup>
+        import { ref } from 'vue';
+        import sprite from './path/to/sprite.svg';
+
+        const sprite = ref(sprite);
+    </script>
 </html>

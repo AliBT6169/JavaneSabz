@@ -1,9 +1,10 @@
 <script setup>
 
+import SvgComponent from "@/Components/svg-component.vue";
 </script>
 
 <template>
-    <header class="">
+    <header class="w-[80rem] px-10 mx-auto">
         <div class="w-full flex justify-between items-center">
 <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
@@ -45,7 +46,7 @@
                 </svg>
                 <div class="text-xs text-white">سبد خرید</div>
                 <div class="size-4 vazir-Light flex items-center justify-center bg-white rounded-2xl">
-                    <div class="">0</div>
+                    <div class="flex items-center h-full mt-1">0</div>
                 </div>
             </div>
 <!--            login and register-->
@@ -73,5 +74,5 @@
             </div>
         </div>
     </header>
-
+    <svg-component name="moon" class="size-10" title="svg"></svg-component>
 </template>

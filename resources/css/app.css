@@ -39,7 +39,7 @@
 }
 *{
     direction: rtl;
-    font-family: "YekanBakh";
+    font-family: "YekanBakh" , Serif;
 }
 @tailwind utilities;
 .shine_animation{
