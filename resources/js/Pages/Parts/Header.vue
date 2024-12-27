@@ -76,8 +76,8 @@ import SvgComponent from "@/Components/svg-component.vue";
                     </svg>
                 </div>
                 <!--            dark and light mode-->
-                <div class="p-1 rounded-xl bg-slate-200 border-slate-800 shine_animation cursor-pointer">
-                    <svg-component name="moon2" class="size-7" title="دارک مود"></svg-component>
+                <div class="size-9 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer">
+                    <svg-component name="moon2" class="size-6" title="دارک مود"></svg-component>
                 </div>
             </div>
         </div>
@@ -127,7 +127,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-72 h-full overflow-hidden">
-                                        <img src="../../../../public/images/tootfarangi.jpg" class="size-full" alt="">
+                                        <img src="../../../../public/images/fertilizer.jpg" class="size-full" alt="">
                                     </div>
                                 </div>
                             </div>
