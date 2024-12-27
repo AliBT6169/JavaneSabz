@@ -93,14 +93,62 @@ import SvgComponent from "@/Components/svg-component.vue";
                     <!--                    products-list-->
                     <div class="header-item-lists">
                         <!--                        buds-->
-                        <div class="cursor-pointer w-60 bg-amber-50 p-4 border-b-2 border-dashed border-slate-400">
-                            <div class="relative">
+                        <div class="mega-tab-items">
+                            <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
                                     <svg-component name="bud" class="size-6"></svg-component>
                                     <h2 class="">بوته ها</h2>
                                 </div>
-                                <div class="absolute h-[30rem] right-[224px] p-6 text-xs -top-4 bg-slate-50 flex flex-col flex-wrap gap-2">
-                                    <p class="border-r-4 pr-1 text-nowrap border-blue-600">بوته های تابستانه</p>
+                                <div class="mega-tab-menu-list top-0">
+                                    <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
+                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">بوته های تابستانه</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 15">توت فرنگی</p>
+                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">بوته های زمستانه</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 5">توت فرنگی</p>
+                                    </div>
+                                    <div class="w-72 h-full overflow-hidden">
+                                        <img src="../../../../public/images/tootfarangi.jpg" class="size-full" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!--                        Fertilizers-->
+                        <div class="mega-tab-items">
+                            <div class="relative overflow-hidden p-4 hover:overflow-visible">
+                                <div class="mega-tab-menu-items">
+                                    <svg-component name="fertilizer" class="size-6"></svg-component>
+                                    <h2 class="">کود ها</h2>
+                                </div>
+                                <div class="mega-tab-menu-list -top-[58px]">
+                                    <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
+                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">شیمیایی</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 7">کود سفید</p>
+                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">ارگانیک</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
+                                    </div>
+                                    <div class="w-72 h-full overflow-hidden">
+                                        <img src="../../../../public/images/tootfarangi.jpg" class="size-full" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!--                        more...-->
+                        <div class="cursor-pointer w-60 bg-amber-50 border-b-2 border-dashed border-slate-400">
+                            <div class="relative overflow-hidden p-4 hover:overflow-visible">
+                                <div class="mega-tab-menu-items">
+                                    <svg-component name="bud" class="size-6"></svg-component>
+                                    <h2 class="">بوته ها</h2>
+                                </div>
+                                <div class="absolute invisible group-hover:visible h-[15rem] w-[60rem] right-[224px] text-xs -top-[116px] bg-slate-50 flex justify-between">
+                                    <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
+                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">بوته های تابستانه</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 15">توت فرنگی</p>
+                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">بوته های زمستانه</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 5">توت فرنگی</p>
+                                    </div>
+                                    <div class="w-72 h-full overflow-hidden">
+                                        <img src="../../../../public/images/tootfarangi.jpg" class="size-full" alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
