@@ -3,5 +3,4 @@
 </script>
 
 <template>
-salam man footeram
 </template>

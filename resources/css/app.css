@@ -41,7 +41,18 @@
     direction: rtl;
     font-family: "YekanBakh" , Serif;
 }
-@tailwind utilities;
+
+.header-items{
+    @apply flex gap-1 text-slate-100 fill-slate-100 cursor-pointer hover:text-red-500 transition-all duration-300 hover:fill-red-500;
+}
 .shine_animation{
     @apply inline-flex justify-center focus:outline-none focus-visible:outline-none relative before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(90deg,transparent_25%,theme(colors.white/.75)_50%,transparent_75%,transparent_100%)] before:bg-[length:250%_250%,100%_100%] before:bg-[position:-100%_0,0_0] before:bg-no-repeat before:[transition:background-position_0s_ease] hover:before:bg-[position:200%_0,0_0] cursor-pointer hover:before:duration-[1400ms];
 }
+.mega-tab-menu-items{
+    @apply  transition-transform w-full items-center gap-1 flex duration-300 hover:-translate-y-1;
+}
+.header-item-lists{
+    @apply invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute bg-slate-50 flex-col;
+}
+@tailwind utilities;
+

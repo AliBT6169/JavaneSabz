@@ -1,21 +1,22 @@
 <script setup>
 
 import SvgComponent from "@/Components/svg-component.vue";
+
 </script>
 
 <template>
-    <header class="w-[80rem] px-10 mx-auto">
+    <header class="px-20 mx-auto">
         <div class="w-full flex justify-between items-center">
-<!--            icon-->
+            <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
-                <img src="../../../../public/logo/logo1.jpg" class="w-24 h10" alt="">
+                <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
                 <div class="w-2 h-8 border-gray-300 border-r-2"></div>
                 <div class="flex gap-1 flex-col">
                     <div class="font-[1000] text-[1rem] ">فروشگاه آنلاین شاهان</div>
                     <div class=" text-slate-500 text-xs">فروشگاهی برای همه سلیقه ها</div>
                 </div>
             </div>
-<!--            search box-->
+            <!--            search box-->
             <div class="w-[30rem] -mt-10">
                 <div class="absolute">
                     <input type="text"
@@ -33,7 +34,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                     </div>
                 </div>
             </div>
-<!--                        buy cart-->
+            <!--                        buy cart-->
             <div
                 class="w-36 mr-6 shine_animation h-[2.2rem] rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
                 <svg viewBox="0 0 16 16" class="fill-white stroke-white stroke-[0.75] size-4    ">
@@ -49,9 +50,9 @@ import SvgComponent from "@/Components/svg-component.vue";
                     <div class="flex items-center h-full mt-1">0</div>
                 </div>
             </div>
-<!--            login and register-->
+            <!--            login and register-->
             <div
-               class="-mr-4 hover:bg-defaultColor group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
+                class="-mr-4 hover:bg-defaultColor group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
                 <svg viewBox="0 0 56 56"
                      class=" group-hover:fill-white transition-colors duration-300 size-5 fill-defaultColor">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -63,16 +64,49 @@ import SvgComponent from "@/Components/svg-component.vue";
                 </svg>
                 <div class="">ورود / ثبت نام</div>
             </div>
-<!--            like-->
-            <div
-                class=" size-9 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl ">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f54f19"
-                     class=" size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
-                </svg>
+            <div class="flex gap-2 items-center">
+                <!--            like-->
+                <div
+                    class=" size-9 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl ">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="#f54f19"
+                         class=" size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
+                    </svg>
+                </div>
+                <!--            dark and light mode-->
+                <div class="p-1 rounded-xl bg-slate-200 border-slate-800 shine_animation cursor-pointer">
+                    <svg-component name="moon2" class="size-7" title="دارک مود"></svg-component>
+                </div>
+            </div>
+        </div>
+        <!--        navigation-->
+        <div class="w-full px-6 flex justify-between rounded-full rounded-tl-md bg-defaultColor h-14">
+            <div class="flex items-center gap-4">
+                <!--                products-->
+                <div class="relative group">
+                    <div class="header-items">
+                        <svg-component name="strawberry" class="size-5"></svg-component>
+                        <h1 class="">محصولات</h1>
+                    </div>
+                    <!--                    products-list-->
+                    <div class="header-item-lists">
+                        <!--                        buds-->
+                        <div class="cursor-pointer w-60 bg-amber-50 p-4 border-b-2 border-dashed border-slate-400">
+                            <div class="relative">
+                                <div class="mega-tab-menu-items">
+                                    <svg-component name="bud" class="size-6"></svg-component>
+                                    <h2 class="">بوته ها</h2>
+                                </div>
+                                <div class="absolute h-[30rem] right-[224px] p-6 text-xs -top-4 bg-slate-50 flex flex-col flex-wrap gap-2">
+                                    <p class="border-r-4 pr-1 text-nowrap border-blue-600">بوته های تابستانه</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
-    <svg-component name="moon" class="size-10" title="svg"></svg-component>
 </template>
