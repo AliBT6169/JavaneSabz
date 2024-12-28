@@ -10,12 +10,13 @@ const slider_show = (movement) => {
     }else {
         slide.value>0?slide.value--:slide.value=2;
     }
-    translation.value=slide.value*60;
+    translation.value=slide.value*80;
 }
+setInterval(slider_show,5000)
 </script>
 
 <template class="w-full">
-    <div class="mx-auto relative mt-10 w-[60rem] overflow-hidden">
+    <div class="mx-auto relative mt-1 rounded-2xl w-[80rem] overflow-hidden">
         <div class="flex w-fit h-96 transition-all duration-500" :class="`translate-x-[${translation}rem]`">
             <span class="slider-pages">
                 <img class="size-full" src="../../../../public/images/slider/strawberry-farm.jpg" alt="">
@@ -31,7 +32,7 @@ const slider_show = (movement) => {
             <div class="slider-button" @click="slider_show('backward')">
                 <svg-component name="chev-right" class="size-6"></svg-component>
             </div>
-            <div class=" slider-button" @click="slider_show('forward')">
+            <div class="slider-button" @click="slider_show('forward')">
                 <svg-component name="chev-left" class="size-6"></svg-component>
             </div>
         </div>

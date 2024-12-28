@@ -82,7 +82,7 @@ import SvgComponent from "@/Components/svg-component.vue";
             </div>
         </div>
         <!--        navigation-->
-        <div class="w-full px-6 flex justify-between rounded-full rounded-tl-md bg-defaultColor h-14">
+        <div class="w-full px-6 flex justify-between rounded-full relative z-10 rounded-tl-md bg-defaultColor h-14">
             <div class="flex items-center gap-4">
                 <!--                products-->
                 <div class="relative group">
