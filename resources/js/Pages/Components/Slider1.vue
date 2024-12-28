@@ -30,7 +30,7 @@ const mouse_moved = (event) => {
 <template class="w-full">
     <div class="mx-auto relative mt-1 rounded-2xl w-[80rem] overflow-hidden">
         <div class=" flex w-fit h-96 transition-all duration-500" @mousedown="mouse_downed"
-             :class="`translate-x-[${translation}rem]`">
+             :style="`transform: translateX(${translation}rem)`">
             <span class="slider-pages">
                 <img class="size-full select-none" src="../../../../public/images/slider/strawberry-farm.jpg" alt="" @dragstart.prevent>
             </span>
