@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import SvgComponent from "@/Components/svg-component.vue";
 
 const X = ref(0);
@@ -15,12 +15,14 @@ const slider_show = (movement) => {
 }
 const mouse_downed = (event) => {
     X.value = event.clientX;
+    // console.log(X.value)
 }
 const mouse_moved = (event) => {
-    if (X.value > event.clientX)
-        translation.value -= X.value - event.clientX;
-    else
-        translation.value += event.clientX - X.value;
+    console.log(event.clientX - X.value)
+    // if (X.value > event.clientX)
+    //     translation.value -= X.value - event.clientX;
+    // else
+    //     translation.value += event.clientX - X.value;
 }
 // setInterval(slider_show, 5000)
 </script>
@@ -30,13 +32,13 @@ const mouse_moved = (event) => {
         <div class=" flex w-fit h-96 transition-all duration-500" @mousedown="mouse_downed"
              :class="`translate-x-[${translation}rem]`">
             <span class="slider-pages">
-                <img class="size-full" src="../../../../public/images/slider/strawberry-farm.jpg" alt="">
+                <img class="size-full select-none" src="../../../../public/images/slider/strawberry-farm.jpg" alt="" @dragstart.prevent>
             </span>
             <span class="slider-pages">
-                <img class="size-full" src="../../../../public/images/slider/fertilizer-in-farm.jpg" alt="">
+                <img class="size-full select-none" src="../../../../public/images/slider/fertilizer-in-farm.jpg" alt="" @dragstart.prevent>
             </span>
             <span class="slider-pages">
-                <img class="size-full" src="../../../../public/images/slider/pesticide-1.webp" alt="">
+                <img class="size-full select-none" src="../../../../public/images/slider/pesticide-1.webp" alt="" @dragstart.prevent>
             </span>
         </div>
         <div class="flex justify-between items-center w-full px-10 absolute top-40">
