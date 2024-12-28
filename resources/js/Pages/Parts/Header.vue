@@ -133,21 +133,21 @@ import SvgComponent from "@/Components/svg-component.vue";
                             </div>
                         </div>
 <!--                        more...-->
-                        <div class="cursor-pointer w-60 bg-amber-50 border-b-2 border-dashed border-slate-400">
+                        <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
-                                    <svg-component name="bud" class="size-6"></svg-component>
-                                    <h2 class="">بوته ها</h2>
+                                    <svg-component name="fertilizer" class="size-6"></svg-component>
+                                    <h2 class="">کود ها</h2>
                                 </div>
-                                <div class="absolute invisible group-hover:visible h-[15rem] w-[60rem] right-[224px] text-xs -top-[116px] bg-slate-50 flex justify-between">
+                                <div class="mega-tab-menu-list -top-[115px]">
                                     <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
-                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">بوته های تابستانه</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 15">توت فرنگی</p>
-                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">بوته های زمستانه</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 5">توت فرنگی</p>
+                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">شیمیایی</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 7">کود سفید</p>
+                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">ارگانیک</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-72 h-full overflow-hidden">
-                                        <img src="../../../../public/images/tootfarangi.jpg" class="size-full" alt="">
+                                        <img src="../../../../public/images/fertilizer.jpg" class="size-full" alt="">
                                     </div>
                                 </div>
                             </div>
