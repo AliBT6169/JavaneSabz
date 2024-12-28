@@ -31,7 +31,7 @@ const slider_show = (movement) => {
             <div class="slider-button" @click="slider_show('backward')">
                 <svg-component name="chev-right" class="size-6"></svg-component>
             </div>
-            <div class="slider-button" @click="slider_show('forward')">
+            <div class=" slider-button" @click="slider_show('forward')">
                 <svg-component name="chev-left" class="size-6"></svg-component>
             </div>
         </div>
