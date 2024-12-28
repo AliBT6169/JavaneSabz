@@ -1,11 +1,39 @@
 <script setup>
+import {ref} from "vue";
+import SvgComponent from "@/Components/svg-component.vue";
 
+const slide = ref(0);
+const translation = ref(0);
+const slider_show = (movement) => {
+    if(movement==="forward"){
+        slide.value<3?slide.value++:slide.value=1;
+    }else {
+        slide.value>0?slide.value--:slide.value=2;
+    }
+    translation.value=slide.value*60;
+}
 </script>
 
-<template>
-    <div class="flex w-full h-96 overflow-hidden">
-<!--        <div class="size-full bg-red-500"></div>-->
-<!--        <div class="size-full bg-blue-500"></div>-->
-<!--        <div class="size-full bg-green-500"></div>-->
+<template class="w-full">
+    <div class="mx-auto relative mt-10 w-[60rem] overflow-hidden">
+        <div class="flex w-fit h-96 transition-all duration-500" :class="`translate-x-[${translation}rem]`">
+            <span class="slider-pages">
+                <img class="size-full" src="../../../../public/images/slider/strawberry-farm.jpg" alt="">
+            </span>
+            <span class="slider-pages">
+                <img class="size-full" src="../../../../public/images/slider/fertilizer-in-farm.jpg" alt="">
+            </span>
+            <span class="slider-pages">
+                <img class="size-full" src="../../../../public/images/slider/pesticide-1.webp" alt="">
+            </span>
+        </div>
+        <div class="flex justify-between items-center w-full px-10 absolute top-40">
+            <div class="slider-button" @click="slider_show('backward')">
+                <svg-component name="chev-right" class="size-6"></svg-component>
+            </div>
+            <div class="slider-button" @click="slider_show('forward')">
+                <svg-component name="chev-left" class="size-6"></svg-component>
+            </div>
+        </div>
     </div>
 </template>

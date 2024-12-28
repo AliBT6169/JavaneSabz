@@ -63,5 +63,11 @@
 .mega-tab-items{
     @apply cursor-pointer w-60 bg-defaultColor6 border-b-2 border-dashed border-slate-400;
 }
+.slider-pages{
+    @apply w-[60rem] h-96 overflow-clip;
+}
+.slider-button{
+    @apply flex p-4 rounded-full bg-defaultColor2 bg-opacity-50 cursor-pointer hover:bg-opacity-100 transition-all duration-300;
+}
 @tailwind utilities;
 

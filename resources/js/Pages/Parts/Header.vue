@@ -146,8 +146,8 @@ import SvgComponent from "@/Components/svg-component.vue";
                                         <p class=" border-r-4 pr-1 border-blue-600 font-bold">ارگانیک</p>
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
-                                    <div class="w-72 h-full overflow-hidden">
-                                        <img src="../../../../public/images/fertilizer.jpg" class="size-full" alt="">
+                                    <div class="w-96 h-full overflow-hidden">
+                                        <img src="../../../../public/images/farm.jpg" class="size-full" alt="">
                                     </div>
                                 </div>
                             </div>
