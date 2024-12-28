@@ -2,9 +2,11 @@
 import {onMounted, ref} from "vue";
 import SvgComponent from "@/Components/svg-component.vue";
 
+const slider=ref(document.getElementById("slider"));
 const X = ref(0);
 const slide = ref(0);
 const translation = ref(0);
+const drag=ref(false);
 const slider_show = (movement) => {
     if (movement === "forward") {
         slide.value < 2 ? slide.value++ : slide.value = 0;
@@ -14,22 +16,29 @@ const slider_show = (movement) => {
     translation.value = slide.value * 80;
 }
 const mouse_downed = (event) => {
-    X.value = event.clientX;
+    X.value = event.offsetX;
+    drag.value=true;
     // console.log(X.value)
 }
 const mouse_moved = (event) => {
-    console.log(event.clientX - X.value)
-    // if (X.value > event.clientX)
-    //     translation.value -= X.value - event.clientX;
-    // else
-    //     translation.value += event.clientX - X.value;
+    // if (drag.value) {
+    //
+    // }
+    // console.log(event.offsetX);
 }
-// setInterval(slider_show, 5000)
+const mouse_upd = (event) => {
+  drag.value=false;
+  if (X.value < event.offsetX)
+      slider_show('forward');
+  else slider_show('backward');
+
+}
+// setInterval(slider_show, 5000);
 </script>
 
 <template class="w-full">
     <div class="mx-auto relative mt-1 rounded-2xl w-[80rem] overflow-hidden">
-        <div class=" flex w-fit h-96 transition-all duration-500" @mousedown="mouse_downed"
+        <div id="slider" class=" flex w-fit h-96 transition-all duration-500" @mouseup="mouse_upd" @mousemove="mouse_moved" @mousedown="mouse_downed"
              :style="`transform: translateX(${translation}rem)`">
             <span class="slider-pages">
                 <img class="size-full select-none" src="../../../../public/images/slider/strawberry-farm.jpg" alt="" @dragstart.prevent>
