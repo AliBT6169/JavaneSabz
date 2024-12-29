@@ -87,7 +87,7 @@ import SvgComponent from "@/Components/svg-component.vue";
             <div class="flex items-center h-full gap-4">
 <!--                home-->
                 <div class="header-items">
-                    <svg-component name="home" class="size-7"></svg-component>
+                    <svg-component name="home" title="صفحه اصلی جوانه سبز" class="size-7"></svg-component>
                     <h1 class="">خانه</h1>
                 </div>
                 <div class="separate"></div>
@@ -160,6 +160,24 @@ import SvgComponent from "@/Components/svg-component.vue";
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="separate"></div>
+<!--                Lesson-->
+                <div class="header-items">
+                    <svg-component name="book" title="آموزش" class="size-6"></svg-component>
+                    <h1 class="">آموزش ها</h1>
+                </div>
+                <div class="separate"></div>
+                <!--                about us-->
+                <div class="header-items">
+                    <svg-component name="about" title="درباره جوانه سبز" class="size-6"></svg-component>
+                    <h1 class="">درباره ما</h1>
+                </div>
+                <div class="separate"></div>
+                <!--                connect with us-->
+                <div class="header-items">
+                    <svg-component name="tell" title="تماس با جوانه سبز" class="size-6"></svg-component>
+                    <h1 class="">تماس با ما</h1>
                 </div>
             </div>
         </div>
