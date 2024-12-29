@@ -184,9 +184,9 @@ import SvgComponent from "@/Components/svg-component.vue";
                 </div>
             </div>
 <!--            connection svgs-->
-            <div class="flex gap-4 items-center">
+            <div class="flex gap-4 items-center ">
                 <h2 class="">
-                    <svg-component name="telegram" title="جوانه سبز در تلگرام" class="size-6"></svg-component>
+                    <svg-component name="telegram" title="جوانه سبز در تلگرام" class="size-8"></svg-component>
                 </h2>
             </div>
         </div>
