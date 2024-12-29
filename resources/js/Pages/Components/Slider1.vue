@@ -2,7 +2,6 @@
 import {onMounted, ref} from "vue";
 import SvgComponent from "@/Components/svg-component.vue";
 
-const slider = ref(document.getElementById("slider"));
 const X = ref(0);
 const slide = ref(0);
 const translation = ref(0);
@@ -10,7 +9,7 @@ const drag = ref(false);
 const slider_show = (movement) => {
     if (movement === "forward") {
         slide.value < 2 ? slide.value++ : slide.value = 0;
-    } else {
+    } else if (movement === "backward") {
         slide.value > 0 ? slide.value-- : slide.value = 2;
     }
     translation.value = slide.value * 80;
@@ -23,9 +22,9 @@ const mouse_downed = (event) => {
 }
 const mouse_moved = (event) => {
     // if (drag.value) {
-    //
+    //     translation.value +=(event.offsetX-X.value)/16 ;
+    //     console.log(translation.value)
     // }
-    // console.log(event.offsetX);
 }
 const mouse_upd = (event) => {
     drag.value = false;
@@ -56,9 +55,9 @@ const mouse_upd = (event) => {
                      @dragstart.prevent>
             </span>
         </div>
-<!--        slider controllers-->
+        <!--        slider controllers-->
         <div class="flex justify-between items-center w-full px-10 absolute top-40" @mouseup="mouse_upd"
-             @mousemove="mouse_moved" @mousedown="mouse_downed">
+             @mousemove.prevent @mousedown="mouse_downed">
             <div class="slider-button" @click="slider_show('backward')">
                 <svg-component name="chev-right" class="size-6"></svg-component>
             </div>
