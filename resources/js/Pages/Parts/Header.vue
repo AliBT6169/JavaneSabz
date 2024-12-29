@@ -12,8 +12,8 @@ import SvgComponent from "@/Components/svg-component.vue";
                 <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
                 <div class="w-2 h-8 border-gray-300 border-r-2"></div>
                 <div class="flex gap-1 flex-col">
-                    <div class="font-[1000] text-[1rem] ">فروشگاه آنلاین شاهان</div>
-                    <div class=" text-slate-500 text-xs">فروشگاهی برای همه سلیقه ها</div>
+                    <div class="font-[1000] text-[1rem] ">فروشگاه محصولات کشاورزی جوانه سبز</div>
+                    <div class=" text-slate-500 text-xs">دوست مهربان کشاورز ها</div>
                 </div>
             </div>
             <!--            search box-->
