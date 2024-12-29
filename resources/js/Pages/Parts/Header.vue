@@ -82,8 +82,15 @@ import SvgComponent from "@/Components/svg-component.vue";
             </div>
         </div>
         <!--        navigation-->
-        <div class="w-full px-6 flex justify-between rounded-full relative z-10 rounded-tl-md bg-defaultColor h-14">
-            <div class="flex items-center gap-4">
+        <div class="w-full px-6 flex justify-between items-center rounded-full relative z-10 rounded-tl-md bg-defaultColor h-14">
+
+            <div class="flex items-center h-full gap-4">
+<!--                home-->
+                <div class="header-items">
+                    <svg-component name="home" class="size-7"></svg-component>
+                    <h1 class="">خانه</h1>
+                </div>
+                <div class="separate"></div>
                 <!--                products-->
                 <div class="relative group">
                     <div class="header-items">
@@ -101,9 +108,9 @@ import SvgComponent from "@/Components/svg-component.vue";
                                 </div>
                                 <div class="mega-tab-menu-list top-0">
                                     <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
-                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">بوته های تابستانه</p>
+                                        <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های تابستانه</p>
                                         <p class="mega-tab-menu-list-items" v-for="index in 15">توت فرنگی</p>
-                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">بوته های زمستانه</p>
+                                        <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های زمستانه</p>
                                         <p class="mega-tab-menu-list-items" v-for="index in 5">توت فرنگی</p>
                                     </div>
                                     <div class="w-72 h-full overflow-hidden">
