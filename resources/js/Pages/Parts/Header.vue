@@ -36,7 +36,7 @@ import SvgComponent from "@/Components/svg-component.vue";
             </div>
             <!--                        buy cart-->
             <div
-                class="w-36 mr-6 shine_animation h-[2.2rem] rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
+                class="w-36 shine_animation h-[2.2rem] rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
                 <svg viewBox="0 0 16 16" class="fill-white stroke-white stroke-[0.75] size-4    ">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -46,13 +46,13 @@ import SvgComponent from "@/Components/svg-component.vue";
                     </g>
                 </svg>
                 <div class="text-xs text-white">سبد خرید</div>
-                <div class="size-4 vazir-Light flex items-center justify-center bg-white rounded-2xl">
+                <div class="size-4 flex items-center justify-center bg-white rounded-2xl">
                     <div class="flex items-center h-full mt-1">0</div>
                 </div>
             </div>
             <!--            login and register-->
             <div
-                class="-mr-4 hover:bg-defaultColor group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
+                class=" hover:bg-defaultColor group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
                 <svg viewBox="0 0 56 56"
                      class=" group-hover:fill-white transition-colors duration-300 size-5 fill-defaultColor">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
