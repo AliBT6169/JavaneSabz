@@ -6,6 +6,7 @@ import SvgComponent from "@/Components/svg-component.vue";
 
 <template>
     <header class="px-20 mx-auto">
+        <!--        header-->
         <div class="w-full flex justify-between items-center">
             <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
@@ -76,16 +77,18 @@ import SvgComponent from "@/Components/svg-component.vue";
                     </svg>
                 </div>
                 <!--            dark and light mode-->
-                <div class="size-9 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer">
+                <div
+                    class="size-9 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer">
                     <svg-component name="moon2" class="size-6" title="دارک مود"></svg-component>
                 </div>
             </div>
         </div>
         <!--        navigation-->
-        <div class="w-full px-6 flex justify-between items-center rounded-full relative z-10 rounded-tl-md bg-defaultColor h-14">
+        <div
+            class="w-full px-6 flex justify-between items-center rounded-full relative z-10 rounded-tl-md bg-defaultColor h-14">
 
             <div class="flex items-center h-full gap-4">
-<!--                home-->
+                <!--                home-->
                 <div class="header-items">
                     <svg-component name="home" title="صفحه اصلی جوانه سبز" class="size-7"></svg-component>
                     <h1 class="">خانه</h1>
@@ -119,7 +122,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                                 </div>
                             </div>
                         </div>
-<!--                        Fertilizers-->
+                        <!--                        Fertilizers-->
                         <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
@@ -139,7 +142,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                                 </div>
                             </div>
                         </div>
-<!--                        more...-->
+                        <!--                        more...-->
                         <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
@@ -162,7 +165,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                     </div>
                 </div>
                 <div class="separate"></div>
-<!--                Lesson-->
+                <!--                Lesson-->
                 <div class="header-items">
                     <svg-component name="book" title="آموزش" class="size-6"></svg-component>
                     <h1 class="">آموزش ها</h1>
