@@ -56,7 +56,9 @@ const mouse_upd = (event) => {
                      @dragstart.prevent>
             </span>
         </div>
-        <div class="flex justify-between items-center w-full px-10 absolute top-40">
+<!--        slider controllers-->
+        <div class="flex justify-between items-center w-full px-10 absolute top-40" @mouseup="mouse_upd"
+             @mousemove="mouse_moved" @mousedown="mouse_downed">
             <div class="slider-button" @click="slider_show('backward')">
                 <svg-component name="chev-right" class="size-6"></svg-component>
             </div>
