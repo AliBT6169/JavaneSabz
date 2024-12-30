@@ -15,26 +15,27 @@ const slider_show = (movement) => {
     translation.value = slide.value * 80;
 }
 const mouse_downed = (event) => {
-    console.log('اولی' + event.offsetX)
-    X.value = event.offsetX;
+    console.log('اولی' + event.clientX)
+    X.value = event.clientX;
     drag.value = true;
     // console.log(X.value)
 }
 const mouse_moved = (event) => {
     // if (drag.value) {
-    //     translation.value +=(event.offsetX-X.value)/16 ;
-    //     console.log(translation.value)
+    //     translation.value +=(event.clientX-X.value)/16 ;
+    //     console.log(translation.value+(event.clientX-X.value)/16)
+    //     console.log(event.clientX)
     // }
 }
 const mouse_upd = (event) => {
     drag.value = false;
-    console.log('دومی' + event.offsetX)
-    if (X.value + 200 < event.offsetX)
+    console.log('دومی' + event.clientX)
+    if (X.value + 200 < event.clientX)
         slider_show('forward');
-    else if (event.offsetX + 200 < X.value)
+    else if (event.clientX + 200 < X.value)
         slider_show('backward');
 }
-// setInterval(slider_show, 5000);
+setInterval(slider_show, 3000);
 </script>
 
 <template class="w-full">
