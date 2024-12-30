@@ -11,3 +11,6 @@ import Slider1 from "@/Pages/Components/Slider1.vue";
 
     <Footer></Footer>
 </template>
+<style>
+
+</style>
