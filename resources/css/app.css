@@ -72,5 +72,9 @@
 .separate{
     @apply w-0.5 h-1/3 rounded-full bg-defaultColor5;
 }
+.header-connection-svg{
+    @apply cursor-pointer duration-500 hover:-translate-y-1 hover:text-defaultColor5 flex items-center h-full
+}
+
 @tailwind utilities;
 
