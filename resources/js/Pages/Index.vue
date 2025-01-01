@@ -3,12 +3,13 @@
 import Header from "@/Pages/Parts/Header.vue";
 import Footer from "@/Pages/Parts/Footer.vue";
 import Slider1 from "@/Pages/Components/Slider1.vue";
+import Brands from "@/Pages/Components/Brands.vue";
 </script>
 
 <template class="">
     <Header></Header>
     <slider1></slider1>
-
+    <Brands class="mb-96"></Brands>
     <Footer></Footer>
 </template>
 <style>
