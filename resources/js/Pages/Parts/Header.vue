@@ -184,18 +184,18 @@ import SvgComponent from "@/Components/svg-component.vue";
                 </div>
             </div>
 <!--            connection svgs-->
-            <div class="flex gap-4 text-defaultColor4 items-center ">
+            <div class="flex gap-4 text-defaultColor4 items-center">
 <!--                telegram-->
-                <h2 class="header-connection-svg">
+                <h2 class="header-connection-svg after:left-[-14px] hover:after:content-['تلگرام']">
                     <svg-component name="telegram" title="جوانه سبز در تلگرام" class="size-8"></svg-component>
                 </h2>
-<!--                whatsapp-->
-                <h2 class="header-connection-svg">
-                    <svg-component name="whatsapp" title="جوانه سبز در واتساپ" class="size-7"></svg-component>
-                </h2>
-<!--                instagram-->
-                <h2 class="header-connection-svg">
+                <!--                instagram-->
+                <h2 class="header-connection-svg after:left-[-29px] hover:after:content-['اینستاگرام']">
                     <svg-component name="instagram" title="جوانه سبز در اینستاگرام" class="size-8"></svg-component>
+                </h2>
+<!--                whatsapp-->
+                <h2 class="header-connection-svg after:left-[-19px] hover:after:content-['واتساپ']">
+                    <svg-component name="whatsapp" title="جوانه سبز در واتساپ" class="size-7"></svg-component>
                 </h2>
             </div>
         </div>
