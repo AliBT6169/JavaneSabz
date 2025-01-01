@@ -6,13 +6,15 @@ const X = ref(0);
 const slide = ref(0);
 const translation = ref(0);
 const drag = ref(false);
-
-const slider_show = (movement) => {
+const timer = ref();
+const interval = ref(5000);
+const slider_show = (movement = "no") => {
     if (movement === "forward") {
         slide.value < 2 ? slide.value++ : slide.value = 0;
     } else if (movement === "backward") {
         slide.value > 0 ? slide.value-- : slide.value = 2;
     }
+    document.getElementById('slider').style.transform = "translateX(0)";
     translation.value = slide.value * 80;
 }
 document.addEventListener('mouseup', function () {
@@ -22,12 +24,13 @@ const mouse_downed = (event) => {
     X.value = event.pageX;
     drag.value = true;
     document.getElementById("slider").style.transitionProperty = "none";
+    clearInterval(timer.value);
 }
 const mouse_moved = (event) => {
     if (drag.value) {
         let slider = document.getElementById("slider");
         let trans = translation.value + (event.pageX - X.value) / 16;
-        if (trans > 0 && trans * 16 + 1400 < slider.clientWidth) {
+        if (trans > -10 && trans * 16 + 1100 < slider.clientWidth) {
             slider.style.transform = "translateX(" + trans + "rem)";
         }
     }
@@ -35,12 +38,15 @@ const mouse_moved = (event) => {
 const mouse_upd = (event) => {
     document.getElementById("slider").style.transitionProperty = "all";
     drag.value = false;
+    let slider_direction = "";
     if (X.value + 200 < event.pageX)
-        slider_show('forward');
+        slider_direction = "forward";
     else if (event.pageX + 200 < X.value)
-        slider_show('backward');
+        slider_direction = "backward";
+    slider_show(slider_direction);
+    timer.value=setInterval(slider_show, interval.value, 'forward');
 }
-setInterval(slider_show, 3000);
+timer.value = setInterval(slider_show, interval.value, 'forward');
 </script>
 
 <template class="w-full">
