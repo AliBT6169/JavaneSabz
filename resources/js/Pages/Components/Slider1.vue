@@ -14,25 +14,28 @@ const slider_show = (movement) => {
     }
     translation.value = slide.value * 80;
 }
+document.addEventListener('mouseup',function(){
+    drag.value = false;
+});
 const mouse_downed = (event) => {
-    console.log('اولی' + event.clientX)
-    X.value = event.clientX;
+    console.log('اولی' + event.pageX)
+    X.value = event.pageX;
     drag.value = true;
     // console.log(X.value)
 }
 const mouse_moved = (event) => {
     // if (drag.value) {
-    //     translation.value +=(event.clientX-X.value)/16 ;
-    //     console.log(translation.value+(event.clientX-X.value)/16)
-    //     console.log(event.clientX)
+    //     translation.value +=(event.pageX-X.value)/16 ;
+    //     console.log(translation.value+(event.pageX-X.value)/16)
+    //     console.log(event.pageX)
     // }
 }
 const mouse_upd = (event) => {
     drag.value = false;
-    console.log('دومی' + event.clientX)
-    if (X.value + 200 < event.clientX)
+    console.log('دومی' + event.pageX)
+    if (X.value + 200 < event.pageX)
         slider_show('forward');
-    else if (event.clientX + 200 < X.value)
+    else if (event.pageX + 200 < X.value)
         slider_show('backward');
 }
 setInterval(slider_show, 3000);
