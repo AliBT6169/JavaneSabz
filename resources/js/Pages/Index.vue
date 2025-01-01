@@ -16,7 +16,7 @@ const brandsData=ref([
     "../../../../images/brands/barenbrug.webp",
     "../../../../images/brands/behcam.webp",
     "../../../../images/brands/biobizz.webp",
-    "../../../../images/brands/continental-semences.webp.webp",
+    "../../../../images/brands/continental-semences.webp",
 ]);
 </script>
 

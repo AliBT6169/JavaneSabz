@@ -1,10 +1,10 @@
 <script setup>
-    import {onMounted} from "vue";
+import {onMounted} from "vue";
 
-    const props = defineProps(["brandsData"]);
-    onMounted(()=>{
-        console.log(props.brandsData);
-    });
+const props = defineProps(["brandsData"]);
+onMounted(() => {
+    console.log(props.brandsData);
+});
 </script>
 
 <template>
@@ -14,45 +14,6 @@
                 <img :src="item" alt="" class="brands-image"
                      @dragstart.prevent>
             </div>
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/agro-zold.webp" alt="" class="brands-image"-->
-<!--                     @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/ardin.webp" alt="" class="brands-image" @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/argeto.webp" alt="" class="brands-image" @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/ariashimi.webp" alt="" class="brands-image"-->
-<!--                     @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/asia-seed.webp" alt="" class="brands-image"-->
-<!--                     @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/baghbantak.webp" alt="" class="brands-image"-->
-<!--                     @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/barenbrug.webp" alt="" class="brands-image"-->
-<!--                     @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/behcam.webp" alt="" class="brands-image" @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/behco.webp" alt="" class="brands-image" @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/biobizz.webp" alt="" class="brands-image" @dragstart.prevent>-->
-<!--            </div>-->
-<!--            <div class="brand-list">-->
-<!--                <img src="../../../../public/images/brands/continental-semences.webp" alt="" class="brands-image"-->
-<!--                     @dragstart.prevent>-->
-<!--            </div>-->
         </div>
     </div>
 </template>
