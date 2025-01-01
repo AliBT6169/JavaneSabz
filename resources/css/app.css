@@ -97,5 +97,7 @@
 .brands-image{
     @apply size-full select-none grayscale hover:grayscale-0 hover:scale-105 duration-300;
 }
+
+
 @tailwind utilities;
 
