@@ -17,8 +17,10 @@ const mousedowned = (e) => {
 }
 const mousmoving = (e) => {
     if (dragging.value) {
-        slider.value.scrollLeft += (startX.value - e.pageX) / 20;
-    }
+        slider.value.style.cursor = "grab";
+        slider.value.scrollLeft += (startX.value - e.pageX) / 30;
+    } else
+        slider.value.style.cursor = "pointer";
 }
 const mouseupd = (e) => {
     dragging.value = false;
