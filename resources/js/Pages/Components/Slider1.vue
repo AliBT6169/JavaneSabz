@@ -2,6 +2,7 @@
 import {onMounted, ref} from "vue";
 import SvgComponent from "@/Components/svg-component.vue";
 
+const props = defineProps(["slider1Data"]);
 const X = ref(0);
 const slide = ref(0);
 const translation = ref(0);
@@ -10,9 +11,9 @@ const timer = ref();
 const interval = ref(5000);
 const slider_show = (movement = "no") => {
     if (movement === "forward") {
-        slide.value < 2 ? slide.value++ : slide.value = 0;
+        slide.value < props.slider1Data.length - 1 ? slide.value++ : slide.value = 0;
     } else if (movement === "backward") {
-        slide.value > 0 ? slide.value-- : slide.value = 2;
+        slide.value > 0 ? slide.value-- : slide.value = props.slider1Data.length - 1;
     }
     document.getElementById('slider').style.transform = "translateX(0)";
     translation.value = slide.value * 80;
@@ -44,7 +45,7 @@ const mouse_upd = (event) => {
     else if (event.pageX + 200 < X.value)
         slider_direction = "backward";
     slider_show(slider_direction);
-    timer.value=setInterval(slider_show, interval.value, 'forward');
+    timer.value = setInterval(slider_show, interval.value, 'forward');
 }
 timer.value = setInterval(slider_show, interval.value, 'forward');
 </script>
@@ -54,16 +55,8 @@ timer.value = setInterval(slider_show, interval.value, 'forward');
         <div id="slider" class=" flex w-fit h-96 duration-500" @mouseup="mouse_upd"
              @mousemove="mouse_moved" @mousedown="mouse_downed"
              :style="`transform: translateX(${translation}rem)`">
-            <span class="slider-pages">
-                <img class="size-full select-none" src="../../../../public/images/slider/strawberry-farm.jpg" alt=""
-                     @dragstart.prevent>
-            </span>
-            <span class="slider-pages">
-                <img class="size-full select-none" src="../../../../public/images/slider/fertilizer-in-farm.jpg" alt=""
-                     @dragstart.prevent>
-            </span>
-            <span class="slider-pages">
-                <img class="size-full select-none" src="../../../../public/images/slider/pesticide-1.webp" alt=""
+            <span class="slider-pages" v-for="item in props.slider1Data">
+                <img class="size-full select-none" :src="item" alt=""
                      @dragstart.prevent>
             </span>
         </div>

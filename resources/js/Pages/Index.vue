@@ -6,7 +6,15 @@ import Slider1 from "@/Pages/Components/Slider1.vue";
 import Brands from "@/Pages/Components/Brands.vue";
 import {ref} from "vue";
 
-const brandsData=ref([
+const slider1Data = ref([
+    "../../../../images/slider/fertilizer-in-farm.jpg",
+    "../../../../images/slider/pesticide-1.webp",
+    "../../../../images/slider/strawberry-farm.jpg",
+    "../../../../images/farm.jpg",
+    "../../../../images/fertilizer.jpg",
+    "../../../../images/tootfarangi.jpg",
+]);
+const brandsData = ref([
     "../../../../images/brands/advanced-nutrients.webp",
     "../../../../images/brands/ardin.webp",
     "../../../../images/brands/argeto.webp",
@@ -22,7 +30,7 @@ const brandsData=ref([
 
 <template class="">
     <Header></Header>
-    <slider1></slider1>
+    <slider1 :slider1-data="slider1Data"></slider1>
     <Brands class="mb-96" :brands-data="brandsData"></Brands>
     <Footer></Footer>
 </template>
