@@ -32,8 +32,6 @@ const brandsData = ref([
     <Header></Header>
     <slider1 :slider1-data="slider1Data"></slider1>
     <Brands class="mb-96" :brands-data="brandsData"></Brands>
+
     <Footer></Footer>
 </template>
-<style>
-
-</style>
