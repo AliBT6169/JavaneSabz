@@ -15,7 +15,7 @@
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
-    <body dir="rtl" class="font-sans antialiased bg-slate-200 w-[90rem] mx-auto">
+    <body dir="rtl" class="font-sans antialiased bg-slate-200 w-screen mx-auto">
     @include('icons-svg')
     @inertia
     </body>

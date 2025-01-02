@@ -15,7 +15,6 @@ const slider_show = (movement = "no") => {
     } else if (movement === "backward") {
         slide.value > 0 ? slide.value-- : slide.value = props.slider1Data.length - 1;
     }
-    document.getElementById('slider').style.transform = "translateX(0)";
     translation.value = slide.value * 80;
 }
 document.addEventListener('mouseup', function () {
@@ -41,10 +40,10 @@ const mouse_upd = (event) => {
     drag.value = false;
     let slider_direction = "";
     if (X.value + 200 < event.pageX)
-        slider_direction = "forward";
+        slider_show("forward");
     else if (event.pageX + 200 < X.value)
-        slider_direction = "backward";
-    slider_show(slider_direction);
+        slider_show("backward");
+    document.getElementById('slider').style.transform = "translateX(" + slide.value * 80 + "rem)";
     timer.value = setInterval(slider_show, interval.value, 'forward');
 }
 timer.value = setInterval(slider_show, interval.value, 'forward');
