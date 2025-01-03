@@ -7,6 +7,7 @@ import Brands from "@/Pages/Components/Brands.vue";
 import {ref} from "vue";
 import Product from "@/Pages/Components/Product.vue";
 import ProductSlider1 from "@/Pages/Components/product-slider1.vue";
+import Navigation from "@/Pages/Components/navigation.vue";
 
 const slider1Data = ref([
     "../../../../images/slider/fertilizer-in-farm.jpg",
@@ -32,7 +33,8 @@ const productData = ref("../../../../images/products/Emamectin.jpg")
 </script>
 
 <template class="">
-    <Header></Header>
+    <Header class="w-[80rem]"></Header>
+    <navigation class="w-[80rem]"></navigation>
     <slider1 :slider1-data="slider1Data"></slider1>
     <Brands class="w-[80rem]" :brands-data="brandsData"></Brands>
     <product-slider1 class="w-[80rem]"></product-slider1>
