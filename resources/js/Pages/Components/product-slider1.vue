@@ -1,7 +1,8 @@
 <script setup>
+
+import Product from "@/Pages/Components/Product.vue";
 import {onMounted, ref} from "vue";
 
-const props = defineProps(["brandsData"]);
 const dragging = ref(false);
 const slider = ref();
 const startX = ref();
@@ -9,7 +10,7 @@ document.addEventListener("mouseup", function (e) {
     dragging.value = false;
 });
 onMounted(() => {
-    slider.value = document.querySelector("#brands");
+    slider.value = document.querySelector("#product-slider");
 });
 const mousedowned = (e) => {
     dragging.value = true;
@@ -29,13 +30,12 @@ const mouseupd = (e) => {
 </script>
 
 <template>
-    <div id="brands" class="mx-auto overflow-x-scroll" @mousedown="mousedowned" @mousemove="mousmoving"
+    <div id="product-slider" class="overflow-scroll py-4 mx-auto select-none" @mousedown="mousedowned"
+         @mousemove="mousmoving"
          @mouseup="mouseupd">
-        <div class="flex w-fit text-xs gap-4 mt-4 py-5">
-            <div class="brand-list" v-for="item in props.brandsData">
-                <img :src="item" alt="" class="brands-image"
-                     @dragstart.prevent>
-            </div>
+        <div class=" text-nowrap w-fit gap-2 flex">
+            <Product v-for="item in 10"></Product>
         </div>
     </div>
+
 </template>

@@ -6,6 +6,7 @@ import Slider1 from "@/Pages/Components/Slider1.vue";
 import Brands from "@/Pages/Components/Brands.vue";
 import {ref} from "vue";
 import Product from "@/Pages/Components/Product.vue";
+import ProductSlider1 from "@/Pages/Components/product-slider1.vue";
 
 const slider1Data = ref([
     "../../../../images/slider/fertilizer-in-farm.jpg",
@@ -32,9 +33,7 @@ const brandsData = ref([
 <template class="">
     <Header></Header>
     <slider1 :slider1-data="slider1Data"></slider1>
-    <Brands class="" :brands-data="brandsData"></Brands>
-    <div class="w-[80rem] mx-auto">
-        <Product></Product>
-    </div>
+    <Brands class="w-[80rem]" :brands-data="brandsData"></Brands>
+    <product-slider1 class="w-[80rem]"></product-slider1>
     <Footer class="mt-10"></Footer>
 </template>

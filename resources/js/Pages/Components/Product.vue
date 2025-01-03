@@ -7,7 +7,7 @@ import SvgComponent from "@/Components/svg-component.vue";
     <div class="relative group overflow-hidden flex w-fit rounded-lg shadow-sm hover:shadow-lg hover:shadow-slate-500 duration-300 cursor-pointer px-4 bg-defaultColor6 py-6 flex-col items-center gap-4">
 <!--        image-->
         <div class="size-40 rounded-lg overflow-hidden">
-            <img src="../../../../public/images/products/Emamectin.jpg" alt="" class="size-full">
+            <img src="../../../../public/images/products/Emamectin.jpg" alt="" @dragstart.prevent class="size-full">
         </div>
 <!--        name-->
         <div class="flex justify-center w-40 items-center">
