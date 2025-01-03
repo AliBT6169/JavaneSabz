@@ -28,6 +28,7 @@ const brandsData = ref([
     "../../../../images/brands/biobizz.webp",
     "../../../../images/brands/continental-semences.webp",
 ]);
+const productData = ref("../../../../images/products/Emamectin.jpg")
 </script>
 
 <template class="">
@@ -35,5 +36,21 @@ const brandsData = ref([
     <slider1 :slider1-data="slider1Data"></slider1>
     <Brands class="w-[80rem]" :brands-data="brandsData"></Brands>
     <product-slider1 class="w-[80rem]"></product-slider1>
+<!--    product list-->
+    <div class="w-[80rem] mx-auto gap-4 mt-10 flex flex-col">
+        <div class="w-fit text-4xl">
+            <div class="flex gap-2">
+                <span class="">محصولات</span>
+                <span class="font-black text-defaultColor5">ویژه</span>
+            </div>
+            <div class="flex gap-2 h-2">
+                <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+            </div>
+        </div>
+        <div class="flex flex-wrap gap-4 items-center">
+            <product :image="productData" name="امامکتین بنزوات" v-for="item in 15"></product>
+        </div>
+    </div>
     <Footer class="mt-10"></Footer>
 </template>
