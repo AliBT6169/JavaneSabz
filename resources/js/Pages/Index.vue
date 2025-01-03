@@ -36,7 +36,7 @@ const productData = ref("../../../../images/products/Emamectin.jpg")
     <slider1 :slider1-data="slider1Data"></slider1>
     <Brands class="w-[80rem]" :brands-data="brandsData"></Brands>
     <product-slider1 class="w-[80rem]"></product-slider1>
-<!--    product list-->
+<!--   special product list-->
     <div class="w-[80rem] mx-auto gap-4 mt-10 flex flex-col">
         <div class="w-fit text-4xl">
             <div class="flex gap-2">
@@ -49,7 +49,7 @@ const productData = ref("../../../../images/products/Emamectin.jpg")
             </div>
         </div>
         <div class="flex flex-wrap gap-4 items-center">
-            <product :image="productData" name="امامکتین بنزوات" v-for="item in 15"></product>
+            <product :image="productData" name="امامکتین بنزوات" :special="true" v-for="item in 15"></product>
         </div>
     </div>
     <Footer class="mt-10"></Footer>

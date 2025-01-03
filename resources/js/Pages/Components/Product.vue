@@ -2,7 +2,7 @@
 
 import SvgComponent from "@/Components/svg-component.vue";
 
-const props = defineProps(["image", "name"]);
+const props = defineProps(["image", "name" ,"special"]);
 </script>
 
 <template>
@@ -25,7 +25,10 @@ const props = defineProps(["image", "name"]);
 <!--        like & show-->
         <div class="absolute top-0 bg-defaultColor4 p-2 -left-10 flex flex-col duration-500 items-center group-hover:left-0 rounded-lg">
             <svg-component title="افزودن به علاقه مندی" name="like" class="size-6 hover:fill-red-500 fill-white text-red-500 duration-500"></svg-component>
-            <svg-component title="نمایش" name="show" class="size-6 hover:text-defaultColor duration-500"></svg-component>
+            <svg-component title="مشاهده محصول" name="show" class="size-6 hover:text-defaultColor duration-500"></svg-component>
+        </div>
+        <div class="absolute top-0 right-0 py-5 rounded-b-full bg-red-600 text-slate-200" v-if="props.special===true">
+            <p class="-rotate-90 mr-0.5">ویژه</p>
         </div>
     </div>
 </template>
