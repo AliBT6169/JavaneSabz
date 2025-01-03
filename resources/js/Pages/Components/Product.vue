@@ -20,5 +20,9 @@ import SvgComponent from "@/Components/svg-component.vue";
                 <svg-component name="cart" class="size-6"></svg-component>
             </span>
         </div>
+<!--        like & show-->
+        <div class="relative flex flex-col items-center bg-defaultColor4 rounded-sm ">
+            <svg-component name="like" size="6"></svg-component>
+        </div>
     </div>
 </template>
