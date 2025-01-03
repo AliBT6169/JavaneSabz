@@ -4,7 +4,7 @@ import SvgComponent from "@/Components/svg-component.vue";
 </script>
 
 <template>
-    <div class="flex w-fit rounded-lg shadow-sm hover:shadow-lg hover:shadow-slate-500 duration-300 cursor-pointer px-4 bg-defaultColor6 py-6 flex-col items-center gap-4">
+    <div class="relative group overflow-hidden flex w-fit rounded-lg shadow-sm hover:shadow-lg hover:shadow-slate-500 duration-300 cursor-pointer px-4 bg-defaultColor6 py-6 flex-col items-center gap-4">
 <!--        image-->
         <div class="size-40 rounded-lg overflow-hidden">
             <img src="../../../../public/images/products/Emamectin.jpg" alt="" class="size-full">
@@ -21,8 +21,9 @@ import SvgComponent from "@/Components/svg-component.vue";
             </span>
         </div>
 <!--        like & show-->
-        <div class="relative flex flex-col items-center bg-defaultColor4 rounded-sm ">
-            <svg-component name="like" size="6"></svg-component>
+        <div class="absolute top-0 bg-defaultColor4 p-2 -left-10 flex flex-col duration-500 items-center group-hover:left-0 rounded-lg">
+            <svg-component title="افزودن به علاقه مندی" name="like" class="size-6 hover:fill-red-500 fill-white text-red-500 duration-500"></svg-component>
+            <svg-component title="نمایش" name="show" class="size-6 hover:text-defaultColor duration-500"></svg-component>
         </div>
     </div>
 </template>

@@ -49,7 +49,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                 <!--            like-->
                 <div
                     class=" size-9 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl ">
-                    <div class="text-[#f54f19]">
+                    <div class="fill-none text-[#f54f19]">
                         <svg-component name="like" class="size-6"></svg-component>
                     </div>
                 </div>
