@@ -4,7 +4,7 @@ import SvgComponent from "@/Components/svg-component.vue";
 </script>
 
 <template>
-    <div class="mx-auto sticky top-0 z-10">
+    <div class="mx-auto sticky top-2 z-10">
         <div
             class=" w-full px-6 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14">
 

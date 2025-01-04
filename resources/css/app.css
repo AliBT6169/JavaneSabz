@@ -88,7 +88,7 @@
 }
 
 .header-connection-svg {
-    @apply cursor-pointer duration-500 hover:-translate-y-1 hover:text-defaultColor5 flex items-center h-full relative after:absolute after:px-2 after:rounded-full justify-center after:top-10 hover:after:-top-6 after:-left-1/2 after:duration-500 after:invisible hover:after:visible after:bg-defaultColor5 after:text-defaultColor4 after:animate-bounce
+    @apply cursor-pointer duration-500 hover:-translate-y-1 hover:text-defaultColor5 flex items-center h-full relative after:absolute after:px-2 after:rounded-full justify-center after:top-10 hover:after:-top-3 after:-left-1/2 after:duration-500 after:invisible hover:after:visible after:bg-defaultColor5 after:text-defaultColor4 after:animate-bounce
 }
 
 .brand-list{
