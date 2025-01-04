@@ -8,6 +8,7 @@ import {ref} from "vue";
 import Product from "@/Pages/Components/Product.vue";
 import ProductSlider1 from "@/Pages/Components/product-slider1.vue";
 import Navigation from "@/Pages/Components/navigation.vue";
+import LiveCards from "@/Pages/Components/live-cards.vue";
 
 const slider1Data = ref([
     "../../../../images/slider/fertilizer-in-farm.jpg",
@@ -29,7 +30,12 @@ const brandsData = ref([
     "../../../../images/brands/biobizz.webp",
     "../../../../images/brands/continental-semences.webp",
 ]);
-const productData = ref("../../../../images/products/Emamectin.jpg")
+const productData = ref("../../../../images/products/Emamectin.jpg");
+const liveCardData = ref([
+    "../../../../images/farm.jpg",
+    "../../../../images/fertilizer.jpg",
+    "../../../../images/slider/pesticide-1.webp",
+]);
 </script>
 
 <template class="">
@@ -38,7 +44,13 @@ const productData = ref("../../../../images/products/Emamectin.jpg")
     <slider1 :slider1-data="slider1Data"></slider1>
     <Brands class="w-[80rem]" :brands-data="brandsData"></Brands>
     <product-slider1 class="w-[80rem]"></product-slider1>
-<!--   special product list-->
+<!--    liveCards-->
+    <div class="mt-6 flex justify-center gap-2 mx-auto w-[80rem] h-[15rem]">
+        <live-cards :image-u-r-l="liveCardData[0]" title="مزرعه"></live-cards>
+        <live-cards :image-u-r-l="liveCardData[1]" title="مزرعه"></live-cards>
+        <live-cards :image-u-r-l="liveCardData[2]" title="مزرعه"></live-cards>
+    </div>
+    <!--   special product list-->
     <div class="w-[80rem] mx-auto gap-4 mt-10 flex flex-col">
         <div class="w-fit text-4xl">
             <div class="flex gap-2">
