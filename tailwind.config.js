@@ -22,6 +22,7 @@ export default {
               defaultColor4: "#F5EFE6",
               defaultColor5: "#85A947",
               defaultColor6: "#EFE3C2",
+              defaultColor7: "#1c240f",
             },
         },
     },
