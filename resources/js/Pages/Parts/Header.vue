@@ -18,17 +18,17 @@ const darkModeToggle = () => {
                 <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
                 <div class="w-2 h-8 border-gray-300 border-r-2"></div>
                 <div class="flex gap-1 flex-col">
-                    <div class="font-[1000] text-[1rem] ">فروشگاه محصولات کشاورزی جوانه سبز</div>
-                    <div class=" text-slate-500 text-xs">دوست مهربان کشاورز ها</div>
+                    <div class="font-[1000] text-[1rem] dark:text-slate-100">فروشگاه محصولات کشاورزی جوانه سبز</div>
+                    <div class=" text-slate-500 text-xs dark:text-slate-300">دوست مهربان کشاورز ها</div>
                 </div>
             </div>
             <!--            search box-->
             <div class="w-[30rem] -mt-10">
                 <div class="absolute">
                     <input type="text"
-                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor text-[0.65rem] w-[30rem] h-10 rounded-2xl bg-gray-50 border-gray-200 "
+                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor text-[0.65rem] w-[30rem] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5"
                            placeholder="جستجوی محصول">
-                    <div class=" relative -top-[29px] right-[93%] cursor-pointer">
+                    <div class="relative -top-[29px] right-[93%] cursor-pointer text-slate-200">
                         <svg-component name="search" class="size-5"></svg-component>
                     </div>
                 </div>
