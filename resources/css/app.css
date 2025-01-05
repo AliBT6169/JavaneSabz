@@ -98,6 +98,9 @@
     @apply size-full select-none grayscale hover:grayscale-0 hover:scale-105 duration-300;
 }
 
+.footer-connection-svg{
+    @apply  cursor-pointer hover:-translate-y-1 duration-300 hover:text-defaultColor5;
+}
 
 @tailwind utilities;
 
