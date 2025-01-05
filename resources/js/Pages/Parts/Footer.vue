@@ -54,7 +54,20 @@ import SvgComponent from "@/Components/svg-component.vue";
                     </div>
                 </div>
             </div>
-            <div class=""></div>
+            <div class="flex flex-col gap-2 h-full">
+                <div class="flex border-b-2 border-defaultColor5 justify-center items-center">
+                    <div class="size-20 flex items-center">
+                        <svg-component name="location" class="size-8"></svg-component>
+                    </div>
+                    <p class="text-xl translate-x-10 font-black">موقعیت مکانی</p>
+                </div>
+                <div class="">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d205.92511102483456!2d52.77588788202066!3d36.650352865990975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f857d39956460cb%3A0xd35d50893e1ab96f!2z2LPZhdmI2YUg2qnYtNin2YjYsdiy24wg2KzZiNin2YbZhyDYs9io2LIg2LTZhdin2YQ!5e0!3m2!1sen!2s!4v1736097896290!5m2!1sen!2s"
+                        width="200" height="150" style="border: none" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </template>
