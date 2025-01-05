@@ -2,6 +2,12 @@
 
 import SvgComponent from "@/Components/svg-component.vue";
 
+const darkModeToggle = () => {
+    if (document.getElementsByTagName('html')[0].classList.contains('dark'))
+        document.getElementsByTagName('html')[0].classList.remove("dark");
+    else
+        document.getElementsByTagName('html')[0].classList.add("dark");
+}
 </script>
 
 <template>
@@ -54,7 +60,8 @@ import SvgComponent from "@/Components/svg-component.vue";
                 </div>
                 <!--            dark and light mode-->
                 <div
-                    class="size-9 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer">
+                    class="size-9 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer"
+                    @click="darkModeToggle">
                     <svg-component name="moon2" class="size-6" title="دارک مود"></svg-component>
                 </div>
             </div>
