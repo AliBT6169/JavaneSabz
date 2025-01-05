@@ -42,13 +42,49 @@ const liveCardData = ref([
     <Header class="w-[80rem]"></Header>
     <navigation class="w-[80rem]"></navigation>
     <slider1 :slider1-data="slider1Data"></slider1>
-    <Brands class="w-[80rem]" :brands-data="brandsData"></Brands>
-    <product-slider1 class="w-[80rem]"></product-slider1>
-<!--    liveCards-->
-    <div class="mt-6 flex justify-center gap-2 mx-auto w-[80rem] h-[15rem]">
-        <live-cards :image-u-r-l="liveCardData[0]" title="مزرعه"></live-cards>
-        <live-cards :image-u-r-l="liveCardData[1]" title="مزرعه"></live-cards>
-        <live-cards :image-u-r-l="liveCardData[2]" title="مزرعه"></live-cards>
+    <div class="w-[80rem] mx-auto mt-6">
+        <div class="w-fit text-4xl">
+            <div class="flex gap-2">
+                <span class="">برندهای</span>
+                <span class="font-black text-defaultColor5">برتر</span>
+            </div>
+            <div class="flex gap-2 h-2">
+                <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+            </div>
+        </div>
+        <Brands class="w-full" :brands-data="brandsData"></Brands>
+    </div>
+    <div class="w-[80rem] mx-auto mt-6">
+        <div class="w-fit text-4xl">
+            <div class="flex gap-2">
+                <span class="">کود های</span>
+                <span class="font-black text-defaultColor5">تقویتی</span>
+            </div>
+            <div class="flex gap-2 h-2">
+                <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+            </div>
+        </div>
+        <product-slider1 class="w-full"></product-slider1>
+    </div>
+    <!--    liveCards-->
+    <div class="w-[80rem] mx-auto mt-6">
+        <div class="w-fit text-4xl">
+            <div class="flex gap-2">
+                <span class="font-black text-defaultColor5">ایونت های</span>
+                <span class="">جدید</span>
+            </div>
+            <div class="flex gap-2 h-2">
+                <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+            </div>
+        </div>
+        <div class="mt-6 flex justify-center gap-2 mx-auto w-[80rem] h-[15rem]">
+            <live-cards :image-u-r-l="liveCardData[0]" title="مزرعه"></live-cards>
+            <live-cards :image-u-r-l="liveCardData[1]" title="مزرعه"></live-cards>
+            <live-cards :image-u-r-l="liveCardData[2]" title="مزرعه"></live-cards>
+        </div>
     </div>
     <!--   special product list-->
     <div class="w-[80rem] mx-auto gap-4 mt-10 flex flex-col">
