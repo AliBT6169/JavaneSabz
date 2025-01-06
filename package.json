@@ -18,5 +18,8 @@
         "vite": "^6.0",
         "vue": "^3.4.0",
         "vue-svg-loader": "^0.16.0"
+    },
+    "dependencies": {
+        "@vueuse/core": "^12.3.0"
     }
 }
