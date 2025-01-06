@@ -39,10 +39,10 @@ const liveCardData = ref([
 </script>
 
 <template class="">
-    <Header class="w-[80rem]"></Header>
-    <navigation class="w-[80rem]"></navigation>
+    <Header class="w-[90%]"></Header>
+    <navigation class="w-[90%]"></navigation>
     <slider1 :slider1-data="slider1Data"></slider1>
-    <div class="w-[80rem] mx-auto mt-6">
+    <div class="w-[90%] mx-auto mt-6">
         <div class="w-fit text-4xl">
             <div class="flex gap-2">
                 <span class="">برندهای</span>
@@ -55,7 +55,7 @@ const liveCardData = ref([
         </div>
         <Brands class="w-full" :brands-data="brandsData"></Brands>
     </div>
-    <div class="w-[80rem] mx-auto mt-6">
+    <div class="w-[90%] mx-auto mt-6">
         <div class="w-fit text-4xl">
             <div class="flex gap-2">
                 <span class="">کود های</span>
@@ -69,7 +69,7 @@ const liveCardData = ref([
         <product-slider1 class="w-full"></product-slider1>
     </div>
     <!--    liveCards-->
-    <div class="w-[80rem] mx-auto mt-6">
+    <div class="w-[90%] mx-auto mt-6">
         <div class="w-fit text-4xl">
             <div class="flex gap-2">
                 <span class="font-black text-defaultColor5">ایونت های</span>
@@ -80,14 +80,14 @@ const liveCardData = ref([
                 <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
             </div>
         </div>
-        <div class="mt-6 flex justify-center gap-2 mx-auto w-[80rem] h-[15rem]">
+        <div class="mt-6 flex justify-center gap-2 mx-auto w-[90%] h-[15rem]">
             <live-cards :image-u-r-l="liveCardData[0]" title="مزرعه"></live-cards>
             <live-cards :image-u-r-l="liveCardData[1]" title="مزرعه"></live-cards>
             <live-cards :image-u-r-l="liveCardData[2]" title="مزرعه"></live-cards>
         </div>
     </div>
     <!--   special product list-->
-    <div class="w-[80rem] mx-auto gap-4 mt-10 flex flex-col">
+    <div class="w-[90%] mx-auto gap-4 mt-10 flex flex-col">
         <div class="w-fit text-4xl">
             <div class="flex gap-2">
                 <span class="">محصولات</span>
