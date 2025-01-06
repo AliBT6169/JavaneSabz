@@ -43,7 +43,7 @@ const toggleDark=useToggle(isDark);
             </div>
             <!--            login and register-->
             <div
-                class=" hover:bg-defaultColor group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
+                class=" hover:bg-defaultColor dark:bg-slate-600 dark:text-white group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
                 <svg-component name="person" class="size-5"></svg-component>
                 <div class="">ورود / ثبت نام</div>
             </div>
@@ -57,7 +57,7 @@ const toggleDark=useToggle(isDark);
                 </div>
                 <!--            dark and light mode-->
                 <div
-                    class="size-9 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer"
+                    class="size-9 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
                     @click="toggleDark()">
                     <svg-component name="moon2" class="size-6" title="دارک مود"></svg-component>
                 </div>
