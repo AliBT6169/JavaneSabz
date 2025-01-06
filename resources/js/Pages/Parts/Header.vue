@@ -9,7 +9,7 @@ const toggleDark = useToggle(isDark);
 
 <template>
     <header class="mx-auto w-full">
-        <div class="w-full flex justify-between items-center">
+        <div class="w-full flex md:justify-between items-center justify-center">
             <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
                 <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
@@ -22,10 +22,10 @@ const toggleDark = useToggle(isDark);
                 </div>
             </div>
             <!--            search box-->
-            <div class="relative w-[20%] -mt-10 hidden xl:w-[30%] md:block">
+            <div class="relative -mt-10 xl:w-[30%] w-[300px] hidden md:block">
                 <div class="absolute">
                     <input type="text"
-                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
+                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                     <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
                         <svg-component name="search" class="size-5"></svg-component>
@@ -49,7 +49,7 @@ const toggleDark = useToggle(isDark);
                     <div class="text-nowrap">ورود / ثبت نام</div>
                 </div>
             </div>
-            <div class="flex gap-2 items-center">
+            <div class="gap-2 items-center hidden md:flex">
                 <!--            like-->
                 <div
                     class=" size-10 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl dark:bg-opacity-50">
