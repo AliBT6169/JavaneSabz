@@ -23,7 +23,7 @@ const toggleDark=useToggle(isDark);
             <div class="w-[30rem] -mt-10">
                 <div class="absolute">
                     <input type="text"
-                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor text-[0.65rem] w-[30rem] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5"
+                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor w-[30rem] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100"
                            placeholder="جستجوی محصول">
                     <div class="relative -top-[29px] right-[93%] cursor-pointer text-slate-200">
                         <svg-component name="search" class="size-5"></svg-component>
@@ -37,13 +37,11 @@ const toggleDark=useToggle(isDark);
                     <svg-component name="cart" class="size-5"></svg-component>
                 </div>
                 <div class="text-xs text-white">سبد خرید</div>
-                <div class="size-4 flex items-center justify-center bg-white rounded-2xl">
-                    <div class="flex items-center h-full mt-1">0</div>
-                </div>
+                <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
             </div>
             <!--            login and register-->
             <div
-                class=" hover:bg-defaultColor dark:bg-slate-600 dark:text-white group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
+                class="dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
                 <svg-component name="person" class="size-5"></svg-component>
                 <div class="">ورود / ثبت نام</div>
             </div>

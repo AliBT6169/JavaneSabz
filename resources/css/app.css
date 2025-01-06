@@ -48,7 +48,7 @@
 }
 
 .header-items {
-    @apply flex gap-1 relative text-slate-100 fill-slate-100 cursor-pointer hover:text-defaultColor6 transition-all duration-300 hover:fill-defaultColor6 items-center after:w-0 hover:after:w-full after:transition-all after:duration-500 after:h-1 after:rounded-full after:bg-defaultColor2 after:absolute after:top-7;
+    @apply flex gap-1 relative fill-slate-100 cursor-pointer transition-all duration-300 items-center after:w-0 hover:after:w-full after:transition-all after:duration-500 after:h-1 after:rounded-full after:bg-defaultColor2 after:absolute after:top-7 hover:text-defaultColor6 hover:fill-defaultColor6 ;
 }
 
 .shine_animation {
@@ -56,11 +56,11 @@
 }
 
 .mega-tab-menu-items {
-    @apply transition-all text-slate-700 w-full items-center gap-1 flex duration-300 hover:-translate-y-1 hover:text-slate-950;
+    @apply transition-all text-slate-700 w-full items-center gap-1 flex duration-300 hover:-translate-y-1 dark:text-slate-100;
 }
 
 .header-item-lists {
-    @apply invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-10 bg-defaultColor4 flex-col;
+    @apply invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-10 bg-defaultColor4 flex-col dark:bg-defaultColor7;
 }
 
 .mega-tab-menu-list-items {
@@ -68,11 +68,11 @@
 }
 
 .mega-tab-menu-list {
-    @apply absolute invisible group-hover:visible h-[15rem] w-[60rem] right-[224px] text-xs bg-defaultColor6 flex justify-between;
+    @apply absolute invisible group-hover:visible h-[15rem] w-[60rem] right-[224px] text-xs bg-defaultColor6 flex justify-between text-slate-800 dark:text-slate-100 dark:bg-defaultColor7;
 }
 
 .mega-tab-items {
-    @apply cursor-pointer w-60 bg-defaultColor6 border-b-2 border-dashed border-slate-400;
+    @apply cursor-pointer w-60 bg-defaultColor6 border-b-2 border-dashed border-slate-400 dark:bg-defaultColor7 dark:text-slate-100;
 }
 
 .slider-pages {

@@ -6,7 +6,7 @@ import SvgComponent from "@/Components/svg-component.vue";
 <template>
     <div class="mx-auto sticky top-2 z-10">
         <div
-            class=" w-full px-6 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14">
+            class=" w-full px-6 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100">
 
             <div class="flex items-center h-full gap-4">
                 <!--                home-->
