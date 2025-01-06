@@ -22,20 +22,20 @@ const toggleDark = useToggle(isDark);
                 </div>
             </div>
             <!--            search box-->
-            <div class="relative w-[20%] -mt-10">
+            <div class="relative w-[20%] -mt-10 hidden xl:w-[30%] md:block">
                 <div class="absolute">
                     <input type="text"
-                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
+                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                     <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
                         <svg-component name="search" class="size-5"></svg-component>
                     </div>
                 </div>
             </div>
-            <div class="flex gap-2">
+            <div class="gap-2 hidden md:flex">
                 <!--                        buy cart-->
                 <div
-                    class="w-fit px-4 shine_animation h-[2.2rem] rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
+                    class="w-fit px-4 shine_animation h-10 rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
                     <div class="text-defaultColor4">
                         <svg-component name="cart" class="size-5"></svg-component>
                     </div>
@@ -44,7 +44,7 @@ const toggleDark = useToggle(isDark);
                 </div>
                 <!--            login and register-->
                 <div
-                    class="dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
+                    class="dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-10 border-slate-300 px-4 shine_animation">
                     <svg-component name="person" class="size-5"></svg-component>
                     <div class="text-nowrap">ورود / ثبت نام</div>
                 </div>
@@ -52,14 +52,14 @@ const toggleDark = useToggle(isDark);
             <div class="flex gap-2 items-center">
                 <!--            like-->
                 <div
-                    class=" size-9 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl dark:bg-opacity-50">
+                    class=" size-10 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl dark:bg-opacity-50">
                     <div class="fill-none text-[#f54f19]">
                         <svg-component name="like" class="size-6"></svg-component>
                     </div>
                 </div>
                 <!--            dark and light mode-->
                 <div
-                    class="size-9 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
+                    class="size-10 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
                     @click="toggleDark()">
                     <svg-component name="moon2" class="size-6" title="دارک مود"></svg-component>
                 </div>
