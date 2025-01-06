@@ -3,8 +3,8 @@
 import SvgComponent from "@/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
 
-const isDark=useDark();
-const toggleDark=useToggle(isDark);
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 </script>
 
 <template>
@@ -15,35 +15,39 @@ const toggleDark=useToggle(isDark);
                 <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
                 <div class="w-2 h-8 border-gray-300 border-r-2"></div>
                 <div class="flex gap-1 flex-col">
-                    <div class="font-[1000] text-[1rem] dark:text-slate-100">فروشگاه محصولات کشاورزی جوانه سبز</div>
+                    <div class="font-[1000] text-[1rem] dark:text-slate-100"><span class="hidden lg:inline-block">فروشگاه </span>
+                        محصولات کشاورزی جوانه سبز
+                    </div>
                     <div class=" text-slate-500 text-xs dark:text-slate-300">دوست مهربان کشاورز ها</div>
                 </div>
             </div>
             <!--            search box-->
-            <div class="relative w-[30%] -mt-10">
+            <div class="relative w-[20%] -mt-10">
                 <div class="absolute">
                     <input type="text"
-                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100"
-                           placeholder="جستجوی محصول">
+                           class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
+                                 text-xs lg:text-sm" placeholder="جستجوی محصول">
                     <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
                         <svg-component name="search" class="size-5"></svg-component>
                     </div>
                 </div>
             </div>
-            <!--                        buy cart-->
-            <div
-                class="w-36 shine_animation h-[2.2rem] rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
-                <div class="text-defaultColor4">
-                    <svg-component name="cart" class="size-5"></svg-component>
+            <div class="flex gap-2">
+                <!--                        buy cart-->
+                <div
+                    class="w-fit px-4 shine_animation h-[2.2rem] rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
+                    <div class="text-defaultColor4">
+                        <svg-component name="cart" class="size-5"></svg-component>
+                    </div>
+                    <div class="text-xs text-white hidden lg:block">سبد خرید</div>
+                    <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
                 </div>
-                <div class="text-xs text-white">سبد خرید</div>
-                <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
-            </div>
-            <!--            login and register-->
-            <div
-                class="dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
-                <svg-component name="person" class="size-5"></svg-component>
-                <div class="">ورود / ثبت نام</div>
+                <!--            login and register-->
+                <div
+                    class="dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-9 border-slate-300 px-4 shine_animation">
+                    <svg-component name="person" class="size-5"></svg-component>
+                    <div class="text-nowrap">ورود / ثبت نام</div>
+                </div>
             </div>
             <div class="flex gap-2 items-center">
                 <!--            like-->
