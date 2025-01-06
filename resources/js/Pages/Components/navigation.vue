@@ -67,8 +67,8 @@ import SvgComponent from "@/Components/svg-component.vue";
                         <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
-                                    <svg-component name="fertilizer" class="size-6"></svg-component>
-                                    <h2 class="">کود ها</h2>
+                                    <svg-component name="up " class="size-6"></svg-component>
+                                    <h2 class="">تقویتی</h2>
                                 </div>
                                 <div class="mega-tab-menu-list -top-[115px]">
                                     <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">

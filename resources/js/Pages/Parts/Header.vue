@@ -48,7 +48,7 @@ const toggleDark=useToggle(isDark);
             <div class="flex gap-2 items-center">
                 <!--            like-->
                 <div
-                    class=" size-9 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl ">
+                    class=" size-9 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl dark:bg-opacity-50">
                     <div class="fill-none text-[#f54f19]">
                         <svg-component name="like" class="size-6"></svg-component>
                     </div>
