@@ -9,7 +9,7 @@ const toggleDark = useToggle(isDark);
 
 <template>
     <header class="mx-auto w-full">
-        <div class="w-full flex md:justify-between items-center justify-center">
+        <div class="w-full flex z-20 flex-col md:justify-between items-center justify-center md:flex-row">
             <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
                 <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
@@ -62,6 +62,23 @@ const toggleDark = useToggle(isDark);
                     class="size-10 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
                     @click="toggleDark()">
                     <svg-component name="moon2" class="size-6" title="دارک مود"></svg-component>
+                </div>
+            </div>
+            <div class="flex justify-center gap-4 w-full md:hidden">
+                <!--            mobile search box-->
+                <div class=" z-10 w-60 sm:w-72">
+                    <div class="relative">
+                        <input type="text"
+                               class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
+                                 text-xs lg:text-sm" placeholder="جستجوی محصول">
+                        <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
+                            <svg-component name="search" class="size-5"></svg-component>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="size-10 flex items-center justify-center hover:bg-blue-400 transition-all rounded-xl bg-blue-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50" title="ورود/ثبت نام">
+                    <svg-component name="person" class="size-6" title="ورود/ثبت نام"></svg-component>
                 </div>
             </div>
         </div>
