@@ -31,13 +31,17 @@ import SvgComponent from "@/Components/svg-component.vue";
                                     <h2 class="">بوته ها</h2>
                                 </div>
                                 <div class="mega-tab-menu-list top-0">
-                                    <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
+                                    <div class="text-nowrap w-fit flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
                                         <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های تابستانه</p>
                                         <p class="mega-tab-menu-list-items" v-for="index in 15">توت فرنگی</p>
                                         <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های زمستانه</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 5">توت فرنگی</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 21">انگور تابستونی</p>
+                                        <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های بهاره</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 3">انجیر سیاه </p>
+                                        <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های پاییزه</p>
+                                        <p class="mega-tab-menu-list-items" v-for="index in 11">شاه توت</p>
                                     </div>
-                                    <div class="w-72 h-full overflow-hidden">
+                                    <div class="w-52 h-full overflow-hidden">
                                         <img src="../../../../public/images/tootfarangi.jpg" class="size-full" alt="">
                                     </div>
                                 </div>
