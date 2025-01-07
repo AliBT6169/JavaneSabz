@@ -4,7 +4,7 @@ import SvgComponent from "@/Components/svg-component.vue";
 </script>
 
 <template>
-    <div class="mx-auto w-[80rem] sticky top-2 z-10 hidden md:block">
+    <div class="mx-auto sticky top-2 z-10 hidden md:block xl:w-[80rem] lg:w-[60rem] md:w-[50rem]">
         <div
             class=" w-full px-6 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100">
 
@@ -42,7 +42,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                                         <p class="mega-tab-menu-list-items" v-for="index in 11">شاه توت</p>
                                     </div>
                                     <div class="w-52 h-full overflow-hidden">
-                                        <img src="../../../../public/images/tootfarangi.jpg" class="size-full" alt="">
+                                        <img src="../../../../public/images/tootfarangi.jpg" class="size-full hidden lg:block" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-72 h-full overflow-hidden">
-                                        <img src="../../../../public/images/fertilizer.jpg" class="size-full" alt="">
+                                        <img src="../../../../public/images/fertilizer.jpg" class="size-full hidden lg:block" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                         <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
-                                    <svg-component name="up " class="size-6"></svg-component>
+                                    <svg-component name="up" class="size-6"></svg-component>
                                     <h2 class="">تقویتی</h2>
                                 </div>
                                 <div class="mega-tab-menu-list -top-[115px]">
@@ -82,7 +82,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-96 h-full overflow-hidden">
-                                        <img src="../../../../public/images/farm.jpg" class="size-full" alt="">
+                                        <img src="../../../../public/images/farm.jpg" class="size-full hidden lg:block" alt="">
                                     </div>
                                 </div>
                             </div>
