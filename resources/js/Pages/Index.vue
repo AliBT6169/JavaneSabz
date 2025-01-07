@@ -44,7 +44,7 @@ const liveCardData = ref([
     <Header></Header>
     <navigation></navigation>
     <slider1 :slider1-data="slider1Data"></slider1>
-    <div class="w-[80rem] mx-auto mt-6">
+    <div class="w-[80rem] mx-auto">
         <div class="w-fit text-4xl">
             <div class="flex gap-2">
                 <span class="">برندهای</span>

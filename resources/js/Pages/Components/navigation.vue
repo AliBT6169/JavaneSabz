@@ -42,7 +42,8 @@ import SvgComponent from "@/Components/svg-component.vue";
                                         <p class="mega-tab-menu-list-items" v-for="index in 11">شاه توت</p>
                                     </div>
                                     <div class="w-52 h-full overflow-hidden">
-                                        <img src="../../../../public/images/tootfarangi.jpg" class="size-full hidden lg:block" alt="">
+                                        <img src="../../../../public/images/tootfarangi.jpg"
+                                             class="size-full hidden lg:block" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +63,8 @@ import SvgComponent from "@/Components/svg-component.vue";
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-72 h-full overflow-hidden">
-                                        <img src="../../../../public/images/fertilizer.jpg" class="size-full hidden lg:block" alt="">
+                                        <img src="../../../../public/images/fertilizer.jpg"
+                                             class="size-full hidden lg:block" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +84,8 @@ import SvgComponent from "@/Components/svg-component.vue";
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-96 h-full overflow-hidden">
-                                        <img src="../../../../public/images/farm.jpg" class="size-full hidden lg:block" alt="">
+                                        <img src="../../../../public/images/farm.jpg" class="size-full hidden lg:block"
+                                             alt="">
                                     </div>
                                 </div>
                             </div>
@@ -125,6 +128,17 @@ import SvgComponent from "@/Components/svg-component.vue";
             </div>
         </div>
     </div>
-    <div class=""></div>
+    <div class="md:hidden w-full mx-auto fixed bottom-0 px-10 items-center z-20 h-24 text-defaultColor
+     rounded-t-full bg-defaultColor flex justify-between">
+        <div class="home_mobile_navigation_items">
+            <svg-component name="magic" class="size-full"></svg-component>
+        </div>
+        <div class="home_mobile_navigation_items">
+            <svg-component name="about" class="size-[70%]"></svg-component>
+        </div>
+        <div class="home_mobile_navigation_items -mt-10"></div>
+        <div class="home_mobile_navigation_items"></div>
+        <div class="home_mobile_navigation_items"></div>
+    </div>
 </template>
 
