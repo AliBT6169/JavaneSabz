@@ -40,7 +40,7 @@ const liveCardData = ref([
 
 <template class="">
     <Header class="w-[98%] lg:w-[90%]"></Header>
-    <navigation class="w-[98%] lg:w-[90%] "></navigation>
+    <navigation></navigation>
     <slider1 :slider1-data="slider1Data"></slider1>
     <div class="w-[90%] mx-auto mt-6">
         <div class="w-fit text-4xl">
