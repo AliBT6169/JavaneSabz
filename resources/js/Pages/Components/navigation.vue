@@ -140,15 +140,15 @@ import SvgComponent from "@/Components/svg-component.vue";
         </div>
 <!--        home-->
         <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
-            <img src="../../../../public/logo/logo1.png" class="size-20" alt="">
+            <img src="../../../../public/logo/logo1.png" title="خانه" class="size-20" alt="">
         </div>
 <!--        products-->
         <div class="home_mobile_navigation_items">
-            <svg-component name="strawberry" class="size-[70%]"></svg-component>
+            <svg-component name="strawberry" title="محصولات" class="size-[70%]"></svg-component>
         </div>
 <!--        buyCart-->
         <div class="home_mobile_navigation_items">
-            <svg-component name="cart" class="size-[70%]"></svg-component>
+            <svg-component name="cart" title="سبد خرید" class="size-[70%]"></svg-component>
         </div>
     </div>
 </template>
