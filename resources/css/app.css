@@ -102,5 +102,10 @@
     @apply  cursor-pointer hover:-translate-y-1 duration-300 hover:text-defaultColor5;
 }
 
+@keyframes introOut {
+    90%{
+        display: none;
+    }
+}
 @tailwind utilities;
 

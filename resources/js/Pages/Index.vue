@@ -9,6 +9,7 @@ import Product from "@/Pages/Components/Product.vue";
 import ProductSlider1 from "@/Pages/Components/product-slider1.vue";
 import Navigation from "@/Pages/Components/navigation.vue";
 import LiveCards from "@/Pages/Components/live-cards.vue";
+import Intro from "@/Pages/Components/intro.vue";
 
 const slider1Data = ref([
     "../../../../images/slider/fertilizer-in-farm.jpg",
@@ -38,7 +39,8 @@ const liveCardData = ref([
 ]);
 </script>
 
-<template >
+<template>
+    <intro></intro>
     <Header></Header>
     <navigation></navigation>
     <slider1 :slider1-data="slider1Data"></slider1>
