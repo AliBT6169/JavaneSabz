@@ -3,23 +3,18 @@
 import SvgComponent from "@/Components/svg-component.vue";
 import {onMounted, ref} from "vue";
 
-const intro_view = ref(true);
-const intro_animation = ref(false);
-onMounted(() => {
-    setTimeout(() => {
-        intro_animation.value = true;
-    }, 1600)
-    setTimeout(() => {
-        intro_view.value = false;
-    }, 3000);
+const isVisible=ref(true);
+onMounted(()=>{
+    setTimeout(()=>{
+        isVisible.value=false
+    },3000)
 });
 
 </script>
 
 <template>
-    <div id="intro"
-         class="top-0 left-0 bg-slate-800 bg-opacity-80 z-50 w-screen h-full absolute flex items-center duration-1000 ease-in justify-center"
-         :class="{'!top-[-5000px]':!intro_view ,'top-[40px]':intro_animation}">
+    <div v-if="isVisible" class="top-0 bg-slate-800 bg-opacity-80 z-50 w-screen h-full absolute flex items-center duration-1000 ease-in justify-center introView"
+         >
         <div class="flex items-center gap-2 justify-center text-white">
             <img src="../../../../public/logo/logo1.png" class="size-52" alt="">
             <div class="w-2 h-24 bg-white rounded-full"></div>
@@ -33,3 +28,21 @@ onMounted(() => {
         </div>
     </div>
 </template>
+<style>
+
+.introView {
+    animation: introOut 5s;
+}
+
+@keyframes introOut {
+    30%{
+        top: 0;
+    }
+    50%{
+        top: 100px;
+    }
+    100%{
+        top: -5000px;
+    }
+}
+</style>
