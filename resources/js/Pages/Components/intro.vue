@@ -7,23 +7,23 @@ const isVisible=ref(true);
 onMounted(()=>{
     setTimeout(()=>{
         isVisible.value=false
-    },5000)
+    },3000)
 });
 
 </script>
 
 <template>
-    <div v-if="isVisible" class="top-0 bg-slate-800 bg-opacity-80 z-50 w-screen h-full absolute flex items-center duration-1000 ease-in justify-center introView"
+    <div v-if="isVisible" class="top-0 bg-slate-800 bg-opacity-80 z-50 w-screen h-full absolute flex items-center duration-1000 ease-in introView sm:justify-center "
          >
-        <div class="flex items-center gap-2 justify-center text-white">
-            <img src="../../../../public/logo/logo1.png" class="size-52" alt="">
-            <div class="w-2 h-24 bg-white rounded-full"></div>
-            <div class="flex gap-2 flex-col">
-                <div class="font-[1000] text-2xl dark:text-slate-100 flex items-center justify-center gap-2">
+        <div class="flex items-center gap-1 justify-center text-white">
+            <img src="../../../../public/logo/logo1.png" class="size-28 sm:size-52" alt="">
+            <div class="w-0.5 h-10 bg-white rounded-full sm:w-2 sm:h-24"></div>
+            <div class="flex gap-1 flex-col">
+                <div class="font-[1000] text-lg dark:text-slate-100 flex items-center justify-center sm:text-2xl">
                     به فروشگاه جوانه سبز خوش آمدید
-                    <svg-component name="like" class="size-12 fill-none text-red-500"></svg-component>
+                    <svg-component name="like" class="fill-none text-red-500 size-12"></svg-component>
                 </div>
-                <div class=" text-slate-500 text-xl dark:text-slate-200">دوست مهربان کشاورز ها</div>
+                <div class=" text-slate-500 text-sm dark:text-slate-200 sm:text-xl">دوست مهربان کشاورز ها</div>
             </div>
         </div>
     </div>
@@ -31,18 +31,18 @@ onMounted(()=>{
 <style>
 
 .introView {
-    animation: introOut 5s;
+    animation: introOut 3s;
 }
 
 @keyframes introOut {
-    30%{
+    40%{
         top: 0;
     }
-    50%{
+    60%{
         top: 100px;
     }
     100%{
-        top: -5000px;
+        top: -2000px;
     }
 }
 </style>
