@@ -8,8 +8,9 @@ const toggleDark = useToggle(isDark);
 </script>
 
 <template>
-    <header class="mx-auto">
-        <div class="w-full flex z-20 flex-col md:justify-between items-center justify-center md:flex-row">
+    <header>
+
+        <div class="w-fit md:w-[80rem] flex z-20 flex-col mx-auto md:justify-between items-center justify-center md:flex-row">
             <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
                 <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">

@@ -49,7 +49,7 @@ const mouse_upd = (event) => {
 timer.value = setInterval(slider_show, interval.value, 'forward');
 </script>
 
-<template class="w-full">
+<template class="">
     <div class="mx-auto relative mt-1 rounded-2xl w-[80rem] overflow-hidden cursor-pointer">
         <div id="slider" class=" flex w-fit h-96 duration-500" @mouseup="mouse_upd"
              @mousemove="mouse_moved" @mousedown="mouse_downed"

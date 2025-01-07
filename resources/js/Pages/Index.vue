@@ -38,8 +38,8 @@ const liveCardData = ref([
 ]);
 </script>
 
-<template class="">
-    <Header class="w-[80rem]"></Header>
+<template >
+    <Header></Header>
     <navigation></navigation>
     <slider1 :slider1-data="slider1Data"></slider1>
     <div class="w-[80rem] mx-auto mt-6">
