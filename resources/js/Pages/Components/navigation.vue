@@ -130,15 +130,26 @@ import SvgComponent from "@/Components/svg-component.vue";
     </div>
     <div class="md:hidden w-full mx-auto fixed bottom-0 px-10 items-center z-20 h-24 text-defaultColor
      rounded-t-full bg-defaultColor flex justify-between">
+<!--        darkMode & like & lessons-->
         <div class="home_mobile_navigation_items">
-            <svg-component name="magic" class="size-full"></svg-component>
+            <svg-component name="magic" class="size-[80%]"></svg-component>
         </div>
+<!--        aboutUs & connectWithUs-->
         <div class="home_mobile_navigation_items">
             <svg-component name="about" class="size-[70%]"></svg-component>
         </div>
-        <div class="home_mobile_navigation_items -mt-10"></div>
-        <div class="home_mobile_navigation_items"></div>
-        <div class="home_mobile_navigation_items"></div>
+<!--        home-->
+        <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
+            <img src="../../../../public/logo/logo1.png" class="size-20" alt="">
+        </div>
+<!--        products-->
+        <div class="home_mobile_navigation_items">
+            <svg-component name="strawberry" class="size-[70%]"></svg-component>
+        </div>
+<!--        buyCart-->
+        <div class="home_mobile_navigation_items">
+            <svg-component name="cart" class="size-[70%]"></svg-component>
+        </div>
     </div>
 </template>
 
