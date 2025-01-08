@@ -139,14 +139,15 @@ const toggleDark = useToggle(isDark);
 <!--        darkMode & like & lessons-->
         <div class="home_mobile_navigation_items relative group">
             <svg-component name="magic" class="size-[80%]"></svg-component>
-            <div class="absolute w-fit flex gap-3 items-center right-0 top-10 duration-500 ease-out opacity-0 text-black group-hover:opacity-100 group-hover:-top-16">
-                <div class="bg-slate-700 bg-opacity-50 p-1 rounded-lg" @click="toggleDark()">
-                    <svg-component name="moon" class="size-10"></svg-component>
+            <div class="absolute w-fit flex gap-3 p-4 items-center right-0 top-10 duration-500 ease-out
+            opacity-0 text-black group-hover:opacity-100 group-hover:-top-20">
+                <div class="bg-slate-700 text-black bg-opacity-50 p-1 rounded-lg" @click="toggleDark()">
+                    <svg-component name="moon2" class="size-10"></svg-component>
                 </div>
-                <div class="bg-slate-700 bg-opacity-50 p-1 rounded-lg -mt-10">
+                <div class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
                     <svg-component name="like" class="size-10"></svg-component>
                 </div>
-                <div class="bg-slate-700 bg-opacity-50 p-1 rounded-lg">
+                <div class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
                     <svg-component name="book" class="size-10"></svg-component>
                 </div>
             </div>
