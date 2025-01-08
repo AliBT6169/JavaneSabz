@@ -8,7 +8,7 @@ const magic_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
-document.addEventListener('touchend',()=>{
+document.addEventListener('click',()=>{
     magic_mobile_nav.value = false;
 });
 </script>
@@ -143,7 +143,7 @@ document.addEventListener('touchend',()=>{
     <div class="md:hidden w-full mx-auto fixed bottom-0 px-10 items-center z-20 h-24 text-defaultColor
      rounded-t-full bg-defaultColor flex justify-between">
         <!--        darkMode & like & lessons-->
-        <div class="home_mobile_navigation_items relative" @click="magic_mobile_nav= !magic_mobile_nav">
+        <div class="home_mobile_navigation_items relative" @click.stop="magic_mobile_nav = !magic_mobile_nav">
             <svg-component name="magic" class="size-[80%]"></svg-component>
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center right-0 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
