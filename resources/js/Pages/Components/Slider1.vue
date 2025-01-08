@@ -7,7 +7,6 @@ const X = ref(0);
 const slide = ref(0);
 const translation = ref(0);
 const drag = ref(false);
-const timer = ref();
 const interval = ref(5000);
 const slider_show = (movement = "no") => {
     if (movement === "forward") {
@@ -17,8 +16,10 @@ const slider_show = (movement = "no") => {
     }
     translation.value = slide.value * 80;
 }
-document.addEventListener('mouseup', function () {
+document.addEventListener('mouseup', function (event) {
     drag.value = false;
+    if (!(event.target.classList.contains("slider1")))
+        mouse_upd(event);
 });
 const mouse_downed = (event) => {
     X.value = event.pageX;
@@ -35,6 +36,7 @@ const mouse_moved = (event) => {
         }
     }
 }
+
 const mouse_upd = (event) => {
     document.getElementById("slider").style.transitionProperty = "all";
     drag.value = false;
@@ -46,21 +48,21 @@ const mouse_upd = (event) => {
     document.getElementById('slider').style.transform = "translateX(" + slide.value * 80 + "rem)";
     timer.value = setInterval(slider_show, interval.value, 'forward');
 }
-timer.value = setInterval(slider_show, interval.value, 'forward');
+const timer = ref(setInterval(slider_show, interval.value, 'forward'));
 </script>
 
-<template class="">
-    <div class="mx-auto relative mt-1 rounded-2xl w-[80rem] overflow-hidden cursor-pointer">
+<template>
+    <div class="slider1 mx-auto relative mt-1 rounded-2xl w-[80rem] overflow-hidden cursor-pointer">
         <div id="slider" class=" flex w-fit h-96 duration-500" @mouseup="mouse_upd"
              @mousemove="mouse_moved" @mousedown="mouse_downed"
              :style="`transform: translateX(${translation}rem)`">
             <span class="slider-pages" v-for="item in props.slider1Data">
-                <img class="size-full select-none" :src="item" alt=""
+                <img class="slider1 size-full select-none" :src="item" alt=""
                      @dragstart.prevent>
             </span>
         </div>
         <!--        slider controllers-->
-        <div class="flex justify-between items-center w-full px-10 absolute top-40" @mousemove="mouse_moved"
+        <div class="slider1 flex justify-between items-center w-full px-10 absolute top-40" @mousemove="mouse_moved"
              @mouseup="mouse_upd"
              @mousemove.prevent @mousedown="mouse_downed">
             <div class="slider-button" @click="slider_show('backward')">
