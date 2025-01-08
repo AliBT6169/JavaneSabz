@@ -2,13 +2,19 @@
 
 import SvgComponent from "@/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
+import {ref} from "vue";
 
+const magic_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+
+document.addEventListener('touchend',()=>{
+    magic_mobile_nav.value = false;
+});
 </script>
 
 <template>
-<!--    desktop-->
+    <!--    desktop-->
     <div class="mx-auto sticky top-2 z-10 hidden md:block xl:w-[80rem] lg:w-[60rem] md:w-[50rem]">
         <div
             class=" w-full px-6 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100">
@@ -133,14 +139,14 @@ const toggleDark = useToggle(isDark);
             </div>
         </div>
     </div>
-<!--    mobile-->
+    <!--    mobile-->
     <div class="md:hidden w-full mx-auto fixed bottom-0 px-10 items-center z-20 h-24 text-defaultColor
      rounded-t-full bg-defaultColor flex justify-between">
-<!--        darkMode & like & lessons-->
-        <div class="home_mobile_navigation_items relative group">
+        <!--        darkMode & like & lessons-->
+        <div class="home_mobile_navigation_items relative group" @click="magic_mobile_nav= !magic_mobile_nav">
             <svg-component name="magic" class="size-[80%]"></svg-component>
-            <div class="absolute w-fit flex gap-3 p-4 items-center right-0 top-10 duration-500 ease-out
-            opacity-0 text-black group-hover:opacity-100 group-hover:-top-20">
+            <div
+                :class="['absolute w-fit flex gap-3 p-4 items-center right-0 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
                 <div class="bg-slate-700 text-black bg-opacity-50 p-1 rounded-lg" @click="toggleDark()">
                     <svg-component name="moon2" class="size-10"></svg-component>
                 </div>
@@ -152,19 +158,19 @@ const toggleDark = useToggle(isDark);
                 </div>
             </div>
         </div>
-<!--        aboutUs & connectWithUs-->
+        <!--        aboutUs & connectWithUs-->
         <div class="home_mobile_navigation_items">
             <svg-component name="about" class="size-[70%]"></svg-component>
         </div>
-<!--        home-->
+        <!--        home-->
         <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
             <img src="../../../../public/logo/logo1.png" title="خانه" class="size-20" alt="">
         </div>
-<!--        products-->
+        <!--        products-->
         <div class="home_mobile_navigation_items">
             <svg-component name="strawberry" title="محصولات" class="size-[70%]"></svg-component>
         </div>
-<!--        buyCart-->
+        <!--        buyCart-->
         <div class="home_mobile_navigation_items">
             <svg-component name="cart" title="سبد خرید" class="size-[70%]"></svg-component>
         </div>
