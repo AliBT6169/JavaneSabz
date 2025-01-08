@@ -1,9 +1,14 @@
 <script setup>
 
 import SvgComponent from "@/Components/svg-component.vue";
+import {useDark, useToggle} from "@vueuse/core";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 </script>
 
 <template>
+<!--    desktop-->
     <div class="mx-auto sticky top-2 z-10 hidden md:block xl:w-[80rem] lg:w-[60rem] md:w-[50rem]">
         <div
             class=" w-full px-6 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100">
@@ -128,11 +133,23 @@ import SvgComponent from "@/Components/svg-component.vue";
             </div>
         </div>
     </div>
+<!--    mobile-->
     <div class="md:hidden w-full mx-auto fixed bottom-0 px-10 items-center z-20 h-24 text-defaultColor
      rounded-t-full bg-defaultColor flex justify-between">
 <!--        darkMode & like & lessons-->
-        <div class="home_mobile_navigation_items">
+        <div class="home_mobile_navigation_items relative group">
             <svg-component name="magic" class="size-[80%]"></svg-component>
+            <div class="absolute w-fit flex gap-3 items-center right-0 top-10 duration-500 ease-out opacity-0 text-black group-hover:opacity-100 group-hover:-top-16">
+                <div class="bg-slate-700 bg-opacity-50 p-1 rounded-lg" @click="toggleDark()">
+                    <svg-component name="moon" class="size-10"></svg-component>
+                </div>
+                <div class="bg-slate-700 bg-opacity-50 p-1 rounded-lg -mt-10">
+                    <svg-component name="like" class="size-10"></svg-component>
+                </div>
+                <div class="bg-slate-700 bg-opacity-50 p-1 rounded-lg">
+                    <svg-component name="book" class="size-10"></svg-component>
+                </div>
+            </div>
         </div>
 <!--        aboutUs & connectWithUs-->
         <div class="home_mobile_navigation_items">
