@@ -5,11 +5,13 @@ import {useDark, useToggle} from "@vueuse/core";
 import {ref} from "vue";
 
 const magic_mobile_nav = ref(false);
+const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
 document.addEventListener('click',()=>{
     magic_mobile_nav.value = false;
+    info_mobile_nav.value = false;
 });
 </script>
 
@@ -146,7 +148,7 @@ document.addEventListener('click',()=>{
         <div class="home_mobile_navigation_items relative" @click.stop="magic_mobile_nav = !magic_mobile_nav">
             <svg-component name="magic" class="size-[80%]"></svg-component>
             <div
-                :class="['absolute w-fit flex gap-3 p-4 items-center right-0 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
+                :class="['absolute w-fit flex gap-3 p-4 items-center -right-12 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
                 <div class="bg-slate-700 text-black bg-opacity-50 p-1 rounded-lg" @click="toggleDark()">
                     <svg-component name="moon2" class="size-10"></svg-component>
                 </div>
@@ -158,9 +160,9 @@ document.addEventListener('click',()=>{
                 </div>
             </div>
         </div>
-        <!--        aboutUs & connectWithUs-->
+        <!--        buyCart-->
         <div class="home_mobile_navigation_items">
-            <svg-component name="about" class="size-[70%]"></svg-component>
+            <svg-component name="cart" title="سبد خرید" class="size-[70%]"></svg-component>
         </div>
         <!--        home-->
         <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
@@ -170,9 +172,18 @@ document.addEventListener('click',()=>{
         <div class="home_mobile_navigation_items">
             <svg-component name="strawberry" title="محصولات" class="size-[70%]"></svg-component>
         </div>
-        <!--        buyCart-->
-        <div class="home_mobile_navigation_items">
-            <svg-component name="cart" title="سبد خرید" class="size-[70%]"></svg-component>
+        <!--        aboutUs & connectWithUs-->
+        <div class="home_mobile_navigation_items relative" @click.stop="info_mobile_nav=!info_mobile_nav">
+            <svg-component name="about" class="size-[70%]"></svg-component>
+            <div
+                :class="['absolute w-fit flex gap-3 p-4 items-center -right-11 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': info_mobile_nav}]">
+                <div class="bg-slate-700 bg-opacity-50 p-1 text-gray-200 rounded-lg fill-none hover:fill-red-900">
+                    <svg-component name="about" class="size-10"></svg-component>
+                </div>
+                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg">
+                    <svg-component name="tell" class="size-10"></svg-component>
+                </div>
+            </div>
         </div>
     </div>
 </template>
