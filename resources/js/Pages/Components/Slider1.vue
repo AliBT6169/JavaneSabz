@@ -8,13 +8,18 @@ const slide = ref(0);
 const translation = ref(0);
 const drag = ref(false);
 const interval = ref(5000);
+const sliderWith = ref();
+onMounted(() => {
+    sliderWith.value = document.getElementById('bt_slider_parent').clientWidth / 16;
+    console.log(sliderWith.value);
+})
 const slider_show = (movement = "no") => {
     if (movement === "forward") {
         slide.value < props.slider1Data.length - 1 ? slide.value++ : slide.value = 0;
     } else if (movement === "backward") {
         slide.value > 0 ? slide.value-- : slide.value = props.slider1Data.length - 1;
     }
-    translation.value = slide.value * 80;
+    translation.value = slide.value * sliderWith.value;
 }
 document.addEventListener('mouseup', function (event) {
     drag.value = false;
@@ -34,7 +39,7 @@ const mouse_moved = (event) => {
     if (drag.value) {
         let slider = document.getElementById("slider");
         let trans = translation.value + (event.pageX - X.value) / 16;
-        if (trans > -10 && trans * 16 + 1100 < slider.clientWidth) {
+        if (trans > -10 && trans * 16 + sliderWith * 16 - 100 < slider.clientWidth) {
             slider.style.transform = "translateX(" + trans + "rem)";
         }
     }
@@ -43,12 +48,12 @@ const mouse_moved = (event) => {
 const mouse_upd = (event) => {
     document.getElementById("slider").style.transitionProperty = "all";
     let slider_direction = "";
-    if(drag.value) {
+    if (drag.value) {
         if (X.value + 200 < event.pageX)
             slider_show("forward");
         else if (event.pageX + 200 < X.value)
             slider_show("backward");
-        document.getElementById('slider').style.transform = "translateX(" + slide.value * 80 + "rem)";
+        document.getElementById('slider').style.transform = "translateX(" + slide.value * sliderWith.value + "rem)";
         timer.value = setInterval(slider_show, interval.value, 'forward');
         drag.value = false;
     }
@@ -57,8 +62,9 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
 </script>
 
 <template>
-    <div class="slider1 mx-auto relative mt-1 rounded-2xl w-[80rem] overflow-hidden cursor-pointer">
-        <div id="slider" class=" flex w-fit h-96 duration-500" @mouseup="mouse_upd"
+    <div id="bt_slider_parent"
+         class="slider1 mx-auto relative mt-1 rounded-2xl w-[40rem] overflow-hidden cursor-pointer">
+        <div id="slider" class="flex w-fit h-96 duration-500" @mouseup="mouse_upd"
              @mousemove="mouse_moved" @mousedown="mouse_downed"
              :style="`transform: translateX(${translation}rem)`">
             <span class="slider-pages" v-for="item in props.slider1Data">

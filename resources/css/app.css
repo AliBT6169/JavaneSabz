@@ -76,7 +76,7 @@
 }
 
 .slider-pages {
-    @apply w-[80rem] h-96 overflow-clip;
+    @apply w-[40rem] h-96 overflow-clip;
 }
 
 .slider-button {
