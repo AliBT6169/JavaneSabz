@@ -39,70 +39,73 @@ const liveCardData = ref([
 ]);
 </script>
 
-<template class="">
-    <intro></intro>
-    <Header></Header>
-    <navigation></navigation>
-    <slider1 :slider1-data="slider1Data"></slider1>
-    <div class="w-[80rem] mx-auto">
-        <div class="w-fit text-4xl">
-            <div class="flex gap-2">
-                <span class="">برندهای</span>
-                <span class="font-black text-defaultColor5">برتر</span>
+<template>
+    <div class="flex flex-col gap-10 items-center">
+        <intro></intro>
+        <Header></Header>
+        <navigation></navigation>
+        <slider1 :slider1-data="slider1Data"></slider1>
+        <div class="w-[80rem] mx-auto">
+            <div class="w-fit text-4xl">
+                <div class="flex gap-2">
+                    <span class="">برندهای</span>
+                    <span class="font-black text-defaultColor5">برتر</span>
+                </div>
+                <div class="flex gap-2 h-2">
+                    <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                    <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+                </div>
             </div>
-            <div class="flex gap-2 h-2">
-                <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
-                <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+            <Brands class="w-full" :brands-data="brandsData"></Brands>
+        </div>
+        <div class="w-[80rem] mx-auto mt-6">
+            <div class="w-fit text-4xl">
+                <div class="flex gap-2">
+                    <span class="">کود های</span>
+                    <span class="font-black text-defaultColor5">تقویتی</span>
+                </div>
+                <div class="flex gap-2 h-2">
+                    <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                    <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+                </div>
+            </div>
+            <product-slider1 class="w-full"></product-slider1>
+        </div>
+        <!--    liveCards-->
+        <div class="w-[80rem] mx-auto mt-6">
+            <div class="w-fit text-4xl">
+                <div class="flex gap-2">
+                    <span class="font-black text-defaultColor5">ایونت های</span>
+                    <span class="">جدید</span>
+                </div>
+                <div class="flex gap-2 h-2">
+                    <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                    <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-center gap-2 mx-auto w-[90%] h-[15rem]">
+                <live-cards :image-u-r-l="liveCardData[0]" title="مزرعه"></live-cards>
+                <live-cards :image-u-r-l="liveCardData[1]" title="مزرعه"></live-cards>
+                <live-cards :image-u-r-l="liveCardData[2]" title="مزرعه"></live-cards>
             </div>
         </div>
-        <Brands class="w-full" :brands-data="brandsData"></Brands>
+        <!--   special product list-->
+        <div class="w-[80rem] mx-auto gap-4 mt-10 flex flex-col">
+            <div class="w-fit text-4xl">
+                <div class="flex gap-2">
+                    <span class="">محصولات</span>
+                    <span class="font-black text-defaultColor5">ویژه</span>
+                </div>
+                <div class="flex gap-2 h-2">
+                    <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                    <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-4 items-center">
+                <product :image="productData" name="امامکتین بنزوات" :special="true" v-for="item in 15"></product>
+            </div>
+        </div>
+        <Footer class="mt-10"></Footer>
     </div>
-    <div class="w-[80rem] mx-auto mt-6">
-        <div class="w-fit text-4xl">
-            <div class="flex gap-2">
-                <span class="">کود های</span>
-                <span class="font-black text-defaultColor5">تقویتی</span>
-            </div>
-            <div class="flex gap-2 h-2">
-                <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
-                <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
-            </div>
-        </div>
-        <product-slider1 class="w-full"></product-slider1>
-    </div>
-    <!--    liveCards-->
-    <div class="w-[80rem] mx-auto mt-6">
-        <div class="w-fit text-4xl">
-            <div class="flex gap-2">
-                <span class="font-black text-defaultColor5">ایونت های</span>
-                <span class="">جدید</span>
-            </div>
-            <div class="flex gap-2 h-2">
-                <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
-                <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
-            </div>
-        </div>
-        <div class="mt-6 flex justify-center gap-2 mx-auto w-[90%] h-[15rem]">
-            <live-cards :image-u-r-l="liveCardData[0]" title="مزرعه"></live-cards>
-            <live-cards :image-u-r-l="liveCardData[1]" title="مزرعه"></live-cards>
-            <live-cards :image-u-r-l="liveCardData[2]" title="مزرعه"></live-cards>
-        </div>
-    </div>
-    <!--   special product list-->
-    <div class="w-[80rem] mx-auto gap-4 mt-10 flex flex-col">
-        <div class="w-fit text-4xl">
-            <div class="flex gap-2">
-                <span class="">محصولات</span>
-                <span class="font-black text-defaultColor5">ویژه</span>
-            </div>
-            <div class="flex gap-2 h-2">
-                <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
-                <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
-            </div>
-        </div>
-        <div class="flex flex-wrap gap-4 items-center">
-            <product :image="productData" name="امامکتین بنزوات" :special="true" v-for="item in 15"></product>
-        </div>
-    </div>
-    <Footer class="mt-10"></Footer>
+
 </template>
