@@ -150,13 +150,13 @@ document.addEventListener('click',()=>{
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-12 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
                 <div class="bg-slate-700 text-black bg-opacity-50 p-1 rounded-lg" @click="toggleDark()">
-                    <svg-component name="moon2" class="size-10"></svg-component>
+                    <svg-component name="moon2" class="size-7"></svg-component>
                 </div>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
-                    <svg-component name="like" class="size-10"></svg-component>
+                    <svg-component name="like" class="size-7"></svg-component>
                 </div>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
-                    <svg-component name="book" class="size-10"></svg-component>
+                    <svg-component name="book" class="size-7"></svg-component>
                 </div>
             </div>
         </div>
@@ -178,10 +178,10 @@ document.addEventListener('click',()=>{
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-11 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': info_mobile_nav}]">
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-gray-200 rounded-lg fill-none hover:fill-red-900">
-                    <svg-component name="about" class="size-10"></svg-component>
+                    <svg-component name="about" class="size-7"></svg-component>
                 </div>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg">
-                    <svg-component name="tell" class="size-10"></svg-component>
+                    <svg-component name="tell" class="size-7"></svg-component>
                 </div>
             </div>
         </div>

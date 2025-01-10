@@ -103,7 +103,7 @@
 }
 
 .home_mobile_navigation_items{
-    @apply rounded-xl size-12 bg-defaultColor5 cursor-pointer duration-500 hover:-translate-y-2 flex justify-center items-center;
+    @apply rounded-xl size-9 bg-defaultColor5 cursor-pointer duration-500 hover:-translate-y-2 flex justify-center items-center;
 }
 @tailwind utilities;
 

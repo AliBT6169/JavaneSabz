@@ -4,7 +4,7 @@ import SvgComponent from "@/Components/svg-component.vue";
 </script>
 
 <template>
-    <div class="w-screen bg-defaultColor7 flex justify-center items-center rounded-t-full overflow-hidden">
+    <div class="w-screen bg-defaultColor7 flex justify-center items-center rounded-t-[8rem] overflow-hidden">
         <div class="w-[80rem] justify-around flex text-white">
             <div class="flex flex-col gap-2 h-full">
                 <div
@@ -16,9 +16,9 @@ import SvgComponent from "@/Components/svg-component.vue";
                     فروشگاه جوانه سبز در تلاش است تا بهترین خود را برای کشاورزان محترم بگذارد تا
                     همیشه بتوانند سود خوبی از زمین های زراعی و باغ های خود داشته باشند
                     خاک پای کشاورزان
-                    <p class="text-defaultColor5">
+                    <span class="text-defaultColor5">
                         (علیرضا باباتبار)
-                    </p>
+                    </span>
                 </p>
             </div>
             <div class="flex flex-col gap-2 h-full">

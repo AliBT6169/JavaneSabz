@@ -40,12 +40,13 @@ const liveCardData = ref([
 </script>
 
 <template>
-    <div class="flex flex-col gap-10 items-center">
+    <div class="mx-auto flex flex-col gap-10 items-center w-[20rem]
+        sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
         <intro></intro>
         <Header></Header>
         <navigation></navigation>
         <slider1 :slider1-data="slider1Data"></slider1>
-        <div class="w-[80rem] mx-auto">
+        <div class="w-full mx-auto px-4">
             <div class="w-fit text-4xl">
                 <div class="flex gap-2">
                     <span class="">برندهای</span>
@@ -58,7 +59,7 @@ const liveCardData = ref([
             </div>
             <Brands class="w-full" :brands-data="brandsData"></Brands>
         </div>
-        <div class="w-[80rem] mx-auto mt-6">
+        <div class="w-full mx-auto mt-6">
             <div class="w-fit text-4xl">
                 <div class="flex gap-2">
                     <span class="">کود های</span>
@@ -72,7 +73,7 @@ const liveCardData = ref([
             <product-slider1 class="w-full"></product-slider1>
         </div>
         <!--    liveCards-->
-        <div class="w-[80rem] mx-auto mt-6">
+        <div class="w-full mx-auto mt-6">
             <div class="w-fit text-4xl">
                 <div class="flex gap-2">
                     <span class="font-black text-defaultColor5">ایونت های</span>
@@ -90,7 +91,7 @@ const liveCardData = ref([
             </div>
         </div>
         <!--   special product list-->
-        <div class="w-[80rem] mx-auto gap-4 mt-10 flex flex-col">
+        <div class="w-full mx-auto gap-4 mt-10 flex flex-col">
             <div class="w-fit text-4xl">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>
@@ -105,7 +106,7 @@ const liveCardData = ref([
                 <product :image="productData" name="امامکتین بنزوات" :special="true" v-for="item in 15"></product>
             </div>
         </div>
-        <Footer class="mt-10"></Footer>
+        <Footer class="mt-10 hidden"></Footer>
     </div>
 
 </template>
