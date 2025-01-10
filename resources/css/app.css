@@ -92,7 +92,8 @@
 }
 
 .brand-list{
-    @apply size-40 select-none rounded-2xl flex justify-center items-center overflow-hidden;
+    @apply size-16 select-none rounded-lg flex justify-center items-center overflow-hidden
+    sm:size-24 md:size-32 xl:size-40 xl:rounded-2xl;
 }
 .brands-image{
     @apply size-full select-none grayscale hover:grayscale-0 hover:scale-105 duration-300;
