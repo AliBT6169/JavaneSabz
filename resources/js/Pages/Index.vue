@@ -39,7 +39,7 @@ const liveCardData = ref([
 ]);
 </script>
 
-<template>
+<template class="">
     <intro></intro>
     <Header></Header>
     <navigation></navigation>
