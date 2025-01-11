@@ -46,6 +46,7 @@ const liveCardData = ref([
         <Header></Header>
         <navigation></navigation>
         <slider1 :slider1-data="slider1Data"></slider1>
+<!--        brands-->
         <div class="w-full mx-auto px-4">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
@@ -59,8 +60,9 @@ const liveCardData = ref([
             </div>
             <Brands class="w-full" :brands-data="brandsData"></Brands>
         </div>
-        <div class="w-full mx-auto mt-6">
-            <div class="w-fit text-4xl">
+<!--        product show-1-->
+        <div class="w-full mx-auto">
+            <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">کود های</span>
                     <span class="font-black text-defaultColor5">تقویتی</span>
