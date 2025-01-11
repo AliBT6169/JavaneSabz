@@ -93,18 +93,18 @@ const liveCardData = ref([
             </div>
         </div>
         <!--   special product list-->
-        <div class="w-full mx-auto gap-4 mt-10 flex flex-col">
-            <div class="w-fit text-4xl">
+        <div class="w-full mx-auto gap-4 flex flex-col">
+            <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>
-                    <span class="font-black text-defaultColor5">ویژه</span>
+                    <span class="font-black text-defaultColor5">برتر</span>
                 </div>
                 <div class="flex gap-2 h-2">
                     <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
                     <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <div class="flex flex-wrap gap-4 items-center">
+            <div class="grid grid-cols-minmaxfill gap-4 justify-center mx-auto w-full">
                 <product :image="productData" name="امامکتین بنزوات" :special="true" v-for="item in 15"></product>
             </div>
         </div>
