@@ -15,9 +15,9 @@ document.addEventListener('click',()=>{
 });
 </script>
 
-<template>
+<template class="w-full">
     <!--    desktop-->
-    <div class="mx-auto sticky top-2 z-10 hidden md:block xl:w-[80rem] lg:w-[60rem] md:w-[50rem]">
+    <div class="mx-auto sticky top-2 z-10 hidden lg:block lg:w-full ">
         <div
             class=" w-full px-6 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100">
 
@@ -142,7 +142,7 @@ document.addEventListener('click',()=>{
         </div>
     </div>
     <!--    mobile-->
-    <div class="md:hidden w-full mx-auto fixed bottom-0 px-10 items-center z-20 h-24 text-defaultColor
+    <div class="lg:hidden w-full mx-auto fixed bottom-0 px-10 items-center z-20 h-24 text-defaultColor
      rounded-t-full bg-defaultColor flex justify-between">
         <!--        darkMode & like & lessons-->
         <div class="home_mobile_navigation_items relative" @click.stop="magic_mobile_nav = !magic_mobile_nav">
