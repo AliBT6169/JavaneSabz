@@ -75,18 +75,18 @@ const liveCardData = ref([
             <product-slider1 class="w-full"></product-slider1>
         </div>
         <!--    liveCards-->
-        <div class="w-full mx-auto mt-6">
-            <div class="w-fit text-4xl">
+        <div class="w-full mx-auto">
+            <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
-                    <span class="font-black text-defaultColor5">ایونت های</span>
-                    <span class="">جدید</span>
+                    <span class="">اتفاقات</span>
+                    <span class="font-black text-defaultColor5">خوب</span>
                 </div>
                 <div class="flex gap-2 h-2">
-                    <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
-                    <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+                    <span class="w-7/12 rounded-full bg-defaultColor5 h-full"></span>
+                    <span class="w-4/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <div class="mt-6 flex justify-center gap-2 mx-auto w-[90%] h-[15rem]">
+            <div class="mt-6 flex justify-center flex-col items-center gap-2 mx-auto w-full lg:flex-row lg:h-[15rem]">
                 <live-cards :image-u-r-l="liveCardData[0]" title="مزرعه"></live-cards>
                 <live-cards :image-u-r-l="liveCardData[1]" title="مزرعه"></live-cards>
                 <live-cards :image-u-r-l="liveCardData[2]" title="مزرعه"></live-cards>
