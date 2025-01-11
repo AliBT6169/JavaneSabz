@@ -60,7 +60,7 @@
 }
 
 .header-item-lists {
-    @apply invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-10 bg-defaultColor4 flex-col dark:bg-defaultColor7;
+    @apply invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-10 left-0 bg-defaultColor4 flex-col dark:bg-defaultColor7;
 }
 
 .mega-tab-menu-list-items {
@@ -68,11 +68,11 @@
 }
 
 .mega-tab-menu-list {
-    @apply absolute invisible group-hover:visible h-[19rem] w-[50rem] right-[224px] text-xs bg-defaultColor6 flex justify-between text-slate-800 dark:text-slate-100 dark:bg-defaultColor7;
+    @apply absolute invisible group-hover:visible h-[19rem] w-[50rem] right-[160px] lg:right-[217px] text-xs bg-defaultColor6 flex justify-between text-slate-800 dark:text-slate-100 dark:bg-defaultColor7;
 }
 
 .mega-tab-items {
-    @apply cursor-pointer w-60 bg-defaultColor6 border-b-2 border-dashed border-slate-400 dark:bg-defaultColor7 dark:text-slate-100;
+    @apply cursor-pointer w-40 bg-defaultColor6 border-b-2 border-dashed border-slate-400 dark:bg-defaultColor7 dark:text-slate-100 lg:w-60;
 }
 
 .slider-pages {
@@ -104,7 +104,8 @@
 }
 
 .home_mobile_navigation_items{
-    @apply rounded-xl size-9 bg-defaultColor5 cursor-pointer duration-500 hover:-translate-y-2 flex justify-center items-center;
+    @apply rounded-xl size-9 bg-defaultColor5 cursor-pointer duration-500 hover:-translate-y-2 flex justify-center items-center
+    sm:size-fit sm:p-2;
 }
 @tailwind utilities;
 

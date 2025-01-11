@@ -10,7 +10,7 @@ const toggleDark = useToggle(isDark);
 <template>
     <header class="w-full">
         <div class="w-fit flex z-20 flex-col mx-auto items-center justify-center
-         md:flex-row lg:w-full md:justify-between">
+         md:flex-row lg:w-full md:gap-2">
             <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
                 <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
@@ -23,8 +23,8 @@ const toggleDark = useToggle(isDark);
                 </div>
             </div>
             <!--            search box-->
-            <div class="relative -mt-10 xl:w-[20rem] w-[300px] md:w-[200px] hidden md:block">
-                <div class="absolute">
+            <div class="xl:w-[20rem] hidden lg:block">
+                <div class="relative w-fit">
                     <input type="text"
                            class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] md:w-[150px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
@@ -40,14 +40,16 @@ const toggleDark = useToggle(isDark);
                     <div class="text-defaultColor4">
                         <svg-component name="cart" class="size-5"></svg-component>
                     </div>
-                    <div class="text-xs text-white hidden lg:block">سبد خرید</div>
+                    <div class="text-xs text-nowrap text-white hidden lg:block">سبد خرید</div>
                     <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
                 </div>
                 <!--            login and register-->
                 <div
-                    class="dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white group hover:text-white transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg items-center justify-center border shadow-lg h-10 border-slate-300 px-4 shine_animation">
+                    class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
+                    items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation
+                    hover:text-white dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white  lg:px-4">
                     <svg-component name="person" class="size-5"></svg-component>
-                    <div class="text-nowrap">ورود / ثبت نام</div>
+                    <div class="text-nowrap hidden lg:block">ورود / ثبت نام</div>
                 </div>
             </div>
             <div class="gap-2 items-center hidden md:flex">
@@ -78,8 +80,21 @@ const toggleDark = useToggle(isDark);
                     </div>
                 </div>
                 <div
-                    class="size-10 flex items-center justify-center hover:bg-blue-400 transition-all rounded-xl bg-blue-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50" title="ورود/ثبت نام">
+                    class="size-10 flex items-center justify-center hover:bg-blue-400 transition-all rounded-xl bg-blue-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
+                    title="ورود/ثبت نام">
                     <svg-component name="person" class="size-6" title="ورود/ثبت نام"></svg-component>
+                </div>
+            </div>
+        </div>
+        <div class="w-full hidden md:block lg:hidden">
+            <div class="relative w-fit mx-auto">
+                <input type="text"
+                       class="focus:outline-none focus:ring-transparent transition-colors duration-300
+                        focus:border-defaultColor w-[20rem] h-10 rounded-2xl
+                         bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
+                                 text-xs lg:text-sm" placeholder="جستجوی محصول">
+                <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
+                    <svg-component name="search" class="size-5"></svg-component>
                 </div>
             </div>
         </div>
