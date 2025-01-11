@@ -5,7 +5,7 @@ import SvgComponent from "@/Components/svg-component.vue";
 
 <template>
     <div class="w-screen bg-defaultColor7 flex justify-center items-center rounded-t-[8rem] overflow-hidden">
-        <div class="w-[80rem] justify-around flex text-white">
+        <div class="w-[80rem] items-center md:items-start md:justify-around flex flex-col text-white md:flex-row">
             <div class="flex flex-col gap-2 h-full">
                 <div
                     class="flex duration-300 items-center cursor-pointer gap-2 border-b-2 border-defaultColor5">
@@ -68,6 +68,7 @@ import SvgComponent from "@/Components/svg-component.vue";
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
+            <div class="h-28 md:hidden"></div>
         </div>
     </div>
 </template>
