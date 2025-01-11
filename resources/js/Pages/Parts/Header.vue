@@ -10,7 +10,7 @@ const toggleDark = useToggle(isDark);
 <template>
     <header class="w-full">
         <div class="w-fit flex z-20 flex-col mx-auto items-center justify-center
-         md:flex-row lg:w-full md:gap-2">
+         md:flex-row md:w-full md:justify-between">
             <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
                 <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
@@ -40,7 +40,7 @@ const toggleDark = useToggle(isDark);
                     <div class="text-defaultColor4">
                         <svg-component name="cart" class="size-5"></svg-component>
                     </div>
-                    <div class="text-xs text-nowrap text-white hidden lg:block">سبد خرید</div>
+                    <div class="text-xs text-nowrap text-white block">سبد خرید</div>
                     <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
                 </div>
                 <!--            login and register-->
