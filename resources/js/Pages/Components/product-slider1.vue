@@ -20,7 +20,7 @@ const mousedowned = (e) => {
 const mousmoving = (e) => {
     if (dragging.value) {
         slider.value.style.cursor = "grab";
-        slider.value.scrollLeft += (startX.value - e.pageX) / 2;
+        slider.value.scrollLeft += (startX.value - e.pageX);
         startX.value = e.pageX;
     } else
         slider.value.style.cursor = "pointer";
@@ -31,7 +31,7 @@ const mouseupd = (e) => {
 </script>
 
 <template>
-    <div id="product-slider" class="overflow-scroll py-4 mx-auto select-none" @mousedown="mousedowned"
+    <div id="product-slider" class="overflow-scroll w-full py-4 mx-auto select-none" @mousedown="mousedowned"
          @mousemove="mousmoving"
          @mouseup="mouseupd">
         <div class=" text-nowrap w-fit gap-2 flex">

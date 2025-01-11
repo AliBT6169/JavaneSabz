@@ -21,11 +21,11 @@ const props = defineProps(["image", "name", "special"]);
             <span class="text-defaultColor dark:text-defaultColor5">800,000 تومان</span>
             <span
                 class="flex justify-between w-full lg:w-fit lg:block">
-                <svg-component name="cart" class="size-6 duration-500 hover:translate-x-2 hover:text-defaultColor dark:hover:text-defaultColor5"></svg-component>
+                <svg-component name="cart" class="size-7 duration-500 hover:translate-x-2 hover:text-defaultColor dark:hover:text-defaultColor5"></svg-component>
                 <svg-component title="افزودن به علاقه مندی" name="like"
-                               class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7 dark:hover:fill-red-900 dark:text-red-900 lg:hidden"></svg-component>
+                               class="size-7 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7 dark:hover:fill-red-900 dark:text-red-900 lg:hidden"></svg-component>
             <svg-component title="مشاهده محصول" name="show"
-                           class="size-6 hover:text-defaultColor duration-500 lg:hidden"></svg-component>
+                           class="size-7 hover:text-defaultColor duration-500 lg:hidden"></svg-component>
             </span>
         </div>
         <!--        like & show-->
