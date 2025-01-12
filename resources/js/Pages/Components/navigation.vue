@@ -116,10 +116,12 @@ document.addEventListener('click', () => {
                 </div>
                 <div class="separate"></div>
                 <!--                about us-->
-                <div class="header-items">
-                    <svg-component name="about" title="درباره جوانه سبز" class="size-5 lg:size-6"></svg-component>
-                    <h1 class="">درباره ما</h1>
-                </div>
+                <Link href="/درباره ما">
+                    <div class="header-items">
+                        <svg-component name="about" title="درباره جوانه سبز" class="size-5 lg:size-6"></svg-component>
+                        <h1 class="">درباره ما</h1>
+                    </div>
+                </Link>
                 <div class="separate"></div>
                 <!--                connect with us-->
                 <div class="header-items">
@@ -182,9 +184,11 @@ document.addEventListener('click', () => {
             <svg-component name="about" class="size-[70%] sm:size-10"></svg-component>
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-11 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': info_mobile_nav}]">
-                <div class="bg-slate-700 bg-opacity-50 p-1 text-gray-200 rounded-lg fill-none hover:fill-red-900">
-                    <svg-component name="about" class="size-7"></svg-component>
-                </div>
+                <Link href="/درباره ما">
+                    <div class="bg-slate-700 bg-opacity-50 p-1 text-gray-200 rounded-lg fill-none hover:fill-red-900">
+                        <svg-component name="about" class="size-7"></svg-component>
+                    </div>
+                </Link>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg">
                     <svg-component name="tell" class="size-7"></svg-component>
                 </div>
