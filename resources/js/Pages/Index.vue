@@ -12,12 +12,14 @@ import LiveCards from "@/Pages/Components/live-cards.vue";
 import Intro from "@/Pages/Components/intro.vue";
 
 const slider1Data = ref([
-    "../../../../images/slider/fertilizer-in-farm.jpg",
-    "../../../../images/slider/pesticide-1.webp",
-    "../../../../images/slider/strawberry-farm.jpg",
-    "../../../../images/farm.jpg",
-    "../../../../images/fertilizer.jpg",
-    "../../../../images/tootfarangi.jpg",
+    "../../../../images/slider/slider%20(1).jpeg",
+    "../../../../images/slider/slider%20(2).jpeg",
+    "../../../../images/slider/slider%20(3).jpeg",
+    "../../../../images/slider/slider%20(4).jpeg",
+    "../../../../images/slider/slider%20(5).jpeg",
+    "../../../../images/slider/slider%20(6).jpeg",
+    "../../../../images/slider/slider%20(7).jpeg",
+    "../../../../images/slider/slider%20(8).jpeg",
 ]);
 const brandsData = ref([
     "../../../../images/brands/advanced-nutrients.webp",
@@ -31,11 +33,11 @@ const brandsData = ref([
     "../../../../images/brands/biobizz.webp",
     "../../../../images/brands/continental-semences.webp",
 ]);
-const productData = ref("../../../../images/products/Emamectin.jpg");
+const productData = ref("../../../../images/products/10640410.webp");
 const liveCardData = ref([
     "../../../../images/farm.jpg",
     "../../../../images/fertilizer.jpg",
-    "../../../../images/slider/pesticide-1.webp",
+    "../../../../images/slider/slider%20(7).jpeg",
 ]);
 </script>
 
@@ -46,7 +48,7 @@ const liveCardData = ref([
         <Header></Header>
         <navigation></navigation>
         <slider1 :slider1-data="slider1Data"></slider1>
-<!--        brands-->
+        <!--        brands-->
         <div class="w-full mx-auto px-4">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
@@ -60,7 +62,7 @@ const liveCardData = ref([
             </div>
             <Brands class="w-full" :brands-data="brandsData"></Brands>
         </div>
-<!--        product show-1-->
+        <!--        product show-1-->
         <div class="w-full mx-auto">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
