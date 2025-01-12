@@ -7,7 +7,6 @@ const pointer_Y = ref(0);
 const mouse_Moving = (e) => {
     pointer_X.value = (e.offsetX - e.target.width / 2)/40;
     pointer_Y.value = (e.offsetY - e.target.height / 2)/20;
-    console.log(pointer_X.value +'....'+pointer_Y.value);
 }
 const mouse_Leaving = () => {
   pointer_X.value = 0;

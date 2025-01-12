@@ -7,7 +7,7 @@ const isVisible=ref(true);
 onMounted(()=>{
     setTimeout(()=>{
         isVisible.value=false
-    },3000)
+    },2700)
 });
 
 </script>

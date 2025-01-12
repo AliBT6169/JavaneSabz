@@ -3,13 +3,14 @@
 import SvgComponent from "@/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
 import {ref} from "vue";
+import {Link} from '@inertiajs/vue3';
 
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
-document.addEventListener('click',()=>{
+document.addEventListener('click', () => {
     magic_mobile_nav.value = false;
     info_mobile_nav.value = false;
 });
@@ -23,10 +24,12 @@ document.addEventListener('click',()=>{
 
             <div class="flex items-center h-full gap-2 lg:gap-4">
                 <!--                home-->
-                <div class="header-items">
-                    <svg-component name="home" title="صفحه اصلی جوانه سبز" class="size-7"></svg-component>
-                    <h1 class="">خانه</h1>
-                </div>
+                <Link href="/">
+                    <div class="header-items">
+                        <svg-component name="home" title="صفحه اصلی جوانه سبز" class="size-7"></svg-component>
+                        <h1 class="">خانه</h1>
+                    </div>
+                </Link>
                 <div class="separate"></div>
                 <!--                products-->
                 <div class="relative group">
@@ -165,9 +168,11 @@ document.addEventListener('click',()=>{
             <svg-component name="cart" title="سبد خرید" class="size-[70%] sm:size-10"></svg-component>
         </div>
         <!--        home-->
-        <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
-            <img src="../../../../public/logo/logo1.png" title="خانه" class="size-20 sm:size-32" alt="">
-        </div>
+        <Link href="/">
+            <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
+                <img src="../../../../public/logo/logo1.png" title="خانه" class="size-20 sm:size-32" alt="">
+            </div>
+        </Link>
         <!--        products-->
         <div class="home_mobile_navigation_items">
             <svg-component name="strawberry" title="محصولات" class="size-[70%] sm:size-10"></svg-component>

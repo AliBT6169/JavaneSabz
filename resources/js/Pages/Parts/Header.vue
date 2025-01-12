@@ -2,6 +2,7 @@
 
 import SvgComponent from "@/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
+import {Link} from '@inertiajs/vue3'
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
@@ -13,7 +14,9 @@ const toggleDark = useToggle(isDark);
          md:flex-row md:w-full md:justify-between">
             <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
-                <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
+                <Link href="/" class="">
+                    <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
+                </Link>
                 <div class="w-2 h-8 border-gray-300 border-r-2"></div>
                 <div class="flex gap-1 flex-col">
                     <div class="font-[1000] text-[1rem] dark:text-slate-100"><span class="hidden lg:inline-block">فروشگاه </span>
@@ -44,13 +47,15 @@ const toggleDark = useToggle(isDark);
                     <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
                 </div>
                 <!--            login and register-->
-                <div
-                    class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
+                <Link href="/dashboard">
+                    <div
+                        class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
                     items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation
                     hover:text-white dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white  lg:px-4">
-                    <svg-component name="person" class="size-5"></svg-component>
-                    <div class="text-nowrap hidden lg:block">ورود / ثبت نام</div>
-                </div>
+                        <svg-component name="person" class="size-5"></svg-component>
+                        <div class="text-nowrap hidden lg:block">ورود / ثبت نام</div>
+                    </div>
+                </Link>
             </div>
             <div class="gap-2 items-center hidden md:flex">
                 <!--            like-->
@@ -79,11 +84,14 @@ const toggleDark = useToggle(isDark);
                         </div>
                     </div>
                 </div>
-                <div
-                    class="size-10 flex items-center justify-center hover:bg-blue-400 transition-all rounded-xl bg-blue-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
-                    title="ورود/ثبت نام">
-                    <svg-component name="person" class="size-6" title="ورود/ثبت نام"></svg-component>
-                </div>
+                <!--                mobile login register-->
+                <Link href="/dashboard">
+                    <div
+                        class="size-10 flex items-center justify-center hover:bg-blue-400 transition-all rounded-xl bg-blue-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
+                        title="ورود/ثبت نام">
+                        <svg-component name="person" class="size-6" title="ورود/ثبت نام"></svg-component>
+                    </div>
+                </Link>
             </div>
         </div>
         <div class="w-full hidden md:block lg:hidden">
