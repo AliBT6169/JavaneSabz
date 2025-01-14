@@ -4,6 +4,7 @@ import Navigation from "@/Pages/Components/navigation.vue";
 import Header from "@/Pages/Parts/Header.vue";
 import Footer from "@/Pages/Parts/Footer.vue";
 import SvgComponent from "@/Components/svg-component.vue";
+import {Link} from '@inertiajs/vue3'
 </script>
 
 <template>
@@ -14,13 +15,17 @@ import SvgComponent from "@/Components/svg-component.vue";
         <!--        page location-->
         <div class="w-full flex">
             <div class="flex items-center w-fit gap-2 px-4">
-                <span class="hover:text-defaultColor5 duration-500 cursor-pointer border-b-2 border-defaultColor">خانه </span>
+                <Link href="/">
+                <span
+                    class="hover:text-defaultColor5 duration-500 cursor-pointer border-b-2 border-defaultColor">خانه </span>
+                </Link>
                 <svg-component name="next" class="size-3"></svg-component>
                 <span class="hover:text-defaultColor5 duration-500 cursor-pointer border-b-2 border-defaultColor">درباره ما</span>
             </div>
         </div>
         <div class="flex flex-col mx-auto items-center w-full gap-5 p-6 rounded-xl border-2 border-defaultColor">
-            <span class="w-full p-5 rounded-2xl bg-gradient-to-b from-defaultColor2 to-defaultColor5 2xl:p-10 dark:from-50%">
+            <span
+                class="w-full p-5 rounded-2xl bg-gradient-to-b from-defaultColor2 to-defaultColor5 2xl:p-10 dark:from-50%">
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و
                 متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
                 کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده،
@@ -28,30 +33,47 @@ import SvgComponent from "@/Components/svg-component.vue";
                 الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
             </span>
             <div class="flex w-full justify-center gap-4 mt-4 flex-col md:flex-row">
-                <div class="relative w-full h-96 flex justify-center items-center rounded-xl p-5 bg-defaultColor5 mx-auto overflow-hidden dark:bg-defaultColor7">
+                <div
+                    class="relative w-full h-96 flex justify-center items-center rounded-xl p-5 bg-defaultColor5 mx-auto overflow-hidden dark:bg-defaultColor7">
                     <img src="../../../public/images/about-us/mojtaba.jpg" alt="" class="size-full rounded-2xl">
-                    <div class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">فروشگاه جوانه سبز از نمای نزدیک</div>
+                    <div
+                        class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">
+                        فروشگاه جوانه سبز از نمای نزدیک
+                    </div>
                 </div>
-                <div class="relative w-full h-96 flex justify-center items-center rounded-xl p-5 bg-defaultColor5 mx-auto overflow-hidden dark:bg-defaultColor7">
+                <div
+                    class="relative w-full h-96 flex justify-center items-center rounded-xl p-5 bg-defaultColor5 mx-auto overflow-hidden dark:bg-defaultColor7">
                     <img src="../../../public/images/about-us/owner.jpg" alt="" class="size-full rounded-2xl">
-                    <div class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">مدیریت : مجتبی میرقربانی</div>
+                    <div
+                        class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">
+                        مدیریت : مجتبی میرقربانی
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-col w-full items-start gap-10 justify-between mt-6 rounded-xl border-2 border-defaultColor border-b-0 py-4 lg:flex-row">
+            <div
+                class="flex flex-col w-full items-start gap-10 justify-between mt-6 rounded-xl border-2 border-defaultColor border-b-0 py-4 lg:flex-row">
                 <div class="flex w-full flex-col items-center gap-2 ">
                     <div class="text-xl font-black">پل های ارتباطی:</div>
                     <div class="flex justify-center gap-2">
-                        <a href="#" class=""><svg-component name="telegram" class="size-11"></svg-component></a>
-                        <a href="#" class=""><svg-component name="whatsapp" class="size-10"></svg-component></a>
-                        <a href="#" class=""><svg-component name="instagram" class="size-10"></svg-component></a>
-                        <a href="#" class=""><svg-component name="tell" class="size-[38px]"></svg-component></a>
+                        <a href="#" class="">
+                            <svg-component name="telegram" class="size-11 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
+                        </a>
+                        <a href="#" class="">
+                            <svg-component name="whatsapp" class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
+                        </a>
+                        <a href="#" class="">
+                            <svg-component name="instagram" class="size-11 cursor-pointer duration-300 hover:-translate-y-1 -mt-0.5"></svg-component>
+                        </a>
+                        <a href="#" class="">
+                            <svg-component name="tell" class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
+                        </a>
                     </div>
                 </div>
                 <div class="flex w-full flex-col justify-center items-center">
                     <span class="font-black text-xl">نشانی:</span>
                     <span class="w-60">مازندران-بابلسر-بهنمیر-کیلومتر4بلوار درزیان-ابتدای ورودی روستای پارومحله</span>
                 </div>
-                    <div class="flex flex-col w-full items-center justify-center gap2">
+                <div class="flex flex-col w-full items-center justify-center gap2">
                     <div class="font-bold text-xl">موقعیت نقشه:</div>
                     <div class="size-fit overflow-hidden rounded-lg border-2 border-defaultColor5">
                         <iframe
