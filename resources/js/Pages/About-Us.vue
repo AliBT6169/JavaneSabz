@@ -3,7 +3,7 @@
 import Navigation from "@/Pages/Components/navigation.vue";
 import Header from "@/Pages/Parts/Header.vue";
 import Footer from "@/Pages/Parts/Footer.vue";
-import SvgComponent from "@/Components/svg-component.vue";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 </script>
 

@@ -1,6 +1,6 @@
 <script setup>
 import {onMounted, ref} from "vue";
-import SvgComponent from "@/Components/svg-component.vue";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const props = defineProps(["slider1Data"]);
 const X = ref(0);

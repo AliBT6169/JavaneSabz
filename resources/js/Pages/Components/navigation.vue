@@ -1,10 +1,10 @@
 <script setup>
 
-import SvgComponent from "@/Components/svg-component.vue";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
 import {ref} from "vue";
 import {Link} from '@inertiajs/vue3';
-import ConnectModal from "@/Components/connect-modal.vue";
+import ConnectModal from "@/Pages/Components/connect-modal.vue";
 
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);

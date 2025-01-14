@@ -1,6 +1,6 @@
 <script setup>
 
-import SvgComponent from "@/Components/svg-component.vue";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const props = defineProps(["image", "name", "special"]);
 </script>
