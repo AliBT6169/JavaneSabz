@@ -4,16 +4,23 @@ import SvgComponent from "@/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
 import {ref} from "vue";
 import {Link} from '@inertiajs/vue3';
+import ConnectModal from "@/Components/connect-modal.vue";
 
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+const connect_modal_visibility = ref(false);
 
 document.addEventListener('click', () => {
     magic_mobile_nav.value = false;
     info_mobile_nav.value = false;
+    connect_modal_visibility.value = false;
 });
+
+const showConnectModal = () => {
+    connect_modal_visibility.value = !connect_modal_visibility.value;
+}
 </script>
 
 <template class="w-full">
@@ -124,9 +131,10 @@ document.addEventListener('click', () => {
                 </Link>
                 <div class="separate"></div>
                 <!--                connect with us-->
-                <div class="header-items">
+                <div class="header-items" @click.stop="connect_modal_visibility=!connect_modal_visibility">
                     <svg-component name="tell" title="تماس با جوانه سبز" class="size-5 lg:size-6"></svg-component>
                     <h1 class="">تماس با ما</h1>
+                    <connect-modal @click.stop v-if="connect_modal_visibility"></connect-modal>
                 </div>
             </div>
             <!--            connection svgs-->
