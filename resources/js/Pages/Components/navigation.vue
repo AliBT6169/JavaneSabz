@@ -134,7 +134,6 @@ const showConnectModal = () => {
                 <div class="header-items" @click.stop="connect_modal_visibility=!connect_modal_visibility">
                     <svg-component name="tell" title="تماس با جوانه سبز" class="size-5 lg:size-6"></svg-component>
                     <h1 class="">تماس با ما</h1>
-                    <connect-modal @click.stop v-if="connect_modal_visibility"></connect-modal>
                 </div>
             </div>
             <!--            connection svgs-->
@@ -197,11 +196,12 @@ const showConnectModal = () => {
                         <svg-component name="about" class="size-7"></svg-component>
                     </div>
                 </Link>
-                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg">
+                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg" @click.stop="connect_modal_visibility=!connect_modal_visibility">
                     <svg-component name="tell" class="size-7"></svg-component>
                 </div>
             </div>
         </div>
     </div>
+<!--    <connect-modal @click.stop v-if="connect_modal_visibility"></connect-modal>-->
 </template>
 
