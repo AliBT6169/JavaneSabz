@@ -29,20 +29,4 @@ onMounted(()=>{
     </div>
 </template>
 <style>
-
-.introView {
-    animation: introOut 3s;
-}
-
-@keyframes introOut {
-    40%{
-        top: 0;
-    }
-    60%{
-        top: 100px;
-    }
-    100%{
-        top: -2000px;
-    }
-}
 </style>

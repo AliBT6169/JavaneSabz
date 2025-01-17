@@ -5,21 +5,21 @@ import {useDark, useToggle} from "@vueuse/core";
 import {ref} from "vue";
 import {Link} from '@inertiajs/vue3';
 import ConnectModal from "@/Pages/Components/connect-modal.vue";
-
+import {connectUsModalVisibility} from "@/Pages/Components/Helper/Helper.js";
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const connect_modal_visibility = ref(false);
+
 
 document.addEventListener('click', () => {
     magic_mobile_nav.value = false;
     info_mobile_nav.value = false;
-    connect_modal_visibility.value = false;
+    connectUsModalVisibility.value = false;
 });
 
 const showConnectModal = () => {
-    connect_modal_visibility.value = !connect_modal_visibility.value;
+    connectUsModalVisibility.value = !connectUsModalVisibility.value;
 }
 </script>
 
@@ -131,7 +131,7 @@ const showConnectModal = () => {
                 </Link>
                 <div class="separate"></div>
                 <!--                connect with us-->
-                <div class="header-items" @click.stop="connect_modal_visibility=!connect_modal_visibility">
+                <div class="header-items" @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
                     <svg-component name="tell" title="تماس با جوانه سبز" class="size-5 lg:size-6"></svg-component>
                     <h1 class="">تماس با ما</h1>
                 </div>
@@ -196,12 +196,12 @@ const showConnectModal = () => {
                         <svg-component name="about" class="size-7"></svg-component>
                     </div>
                 </Link>
-                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg" @click.stop="connect_modal_visibility=!connect_modal_visibility">
+                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg" @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
                     <svg-component name="tell" class="size-7"></svg-component>
                 </div>
             </div>
         </div>
     </div>
-    <connect-modal v-if="connect_modal_visibility"></connect-modal>
+    <connect-modal v-if="connectUsModalVisibility"></connect-modal>
 </template>
 

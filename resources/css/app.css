@@ -107,5 +107,21 @@
     @apply rounded-xl size-9 bg-defaultColor5 cursor-pointer duration-500 hover:-translate-y-2 flex justify-center items-center
     sm:size-fit sm:p-2;
 }
+
+.introView {
+    animation: introOut 3s;
+}
+
+@keyframes introOut {
+    40%{
+        top: 0;
+    }
+    60%{
+        top: 100px;
+    }
+    100%{
+        top: -2000px;
+    }
+}
 @tailwind utilities;
 
