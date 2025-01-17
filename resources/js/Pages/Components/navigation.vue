@@ -202,6 +202,6 @@ const showConnectModal = () => {
             </div>
         </div>
     </div>
-<!--    <connect-modal @click.stop v-if="connect_modal_visibility"></connect-modal>-->
+    <connect-modal v-if="connect_modal_visibility"></connect-modal>
 </template>
 
