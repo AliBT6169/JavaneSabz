@@ -46,7 +46,7 @@ const submit = () => {
                 {{ status }}
             </div>
             <div class="flex justify-center items-center">
-                <div class="flex flex-col justify-between p-4 size-96 rounded-l-2xl border-8 border-white">
+                <div class="flex flex-col justify-between size-96 rounded-l-2xl py-8 border-8 border-white">
                     <div class="text-lg w-full flex justify-center gap-6 items-center font-black">
                         <div class="w-1/4 grid grid-cols-4">
                             <div
@@ -54,16 +54,18 @@ const submit = () => {
                                 v-for="item in 4">15K
                             </div>
                         </div>
-                        <span class="text-defaultColor7">به خانواده بزرگ جوانه سبز بپیوندید...</span>
+                        <span class="text-defaultColor7 text-nowrap">به خانواده بزرگ جوانه سبز بپیوندید...</span>
                     </div>
-                    <div class="flex items-center text-3xl text-defaultColor7 font-black w-full">
-                        <img src="../../../../public/logo/logo1.png" class="size-24 rounded-full" alt="">
-                        <span class="">ورود به جوانه سبز</span>
+                    <div class="flex items-center justify-center text-3xl text-defaultColor7 font-black w-full">
+                        <span class="">دوست مهربان کشاورزان ایران</span>
                     </div>
                 </div>
                 <form @submit.prevent="submit">
-                    <div class="flex flex-col items-center bg-white size-96 gap-5 rounded-r-lg justify-center">
-                        <div class="w-5/6">
+                    <div class="flex flex-col items-center size-96 rounded-r-lg overflow-hidden justify-center">
+                        <div class="w-full flex bg-white justify-center rounded-tl-full">
+                            <img src="../../../../public/logo/logo1.png" class="size-24" alt="">
+                        </div>
+                        <div class="w-full p-5 bg-white">
                             <input-BT2
                                 Label="ایمیل:"
                                 type="email"
@@ -71,7 +73,7 @@ const submit = () => {
                                 required
                             ></input-BT2>
                         </div>
-                        <div class="w-5/6">
+                        <div class="w-full p-5 bg-white">
                             <input-BT2
                                 Label="رمز عبور:"
                                 type="password"
@@ -79,14 +81,15 @@ const submit = () => {
                                 required
                             ></input-BT2>
                         </div>
-                        <div class="">
+                        <div class="w-full px-10 py-5 bg-white">
                             <label class="flex items-center gap-2">
-                                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">من را به یاد داشته باش</span>
+                                <span
+                                    class="ms-2 text-sm text-gray-600 dark:text-gray-400">من را به یاد داشته باش</span>
                                 <CheckBoxBT name="remember" v-model:checked="form.remember"/>
                             </label>
                         </div>
 
-                        <div class="mt-4 flex items-center justify-end">
+                        <div class="w-full px-20 py-5 bg-white flex items-center justify-end">
                             <Link
                                 v-if="canResetPassword"
                                 :href="route('password.request')"
