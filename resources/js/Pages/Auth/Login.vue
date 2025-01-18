@@ -5,7 +5,10 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import {Head, Link, useForm} from '@inertiajs/vue3';
+import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
+import CheckBoxBT from "@/Pages/Components/Form/CheckBoxBT.vue";
+import ButtonBT2 from "@/Pages/Components/Form/ButtonBT2.vue";
 
 defineProps({
     canResetPassword: {
@@ -30,71 +33,81 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Log in" />
+    <div class="w-screen h-screen bg-transparent">
+        <div class="relative  mx-auto flex flex-col gap-10 h-full justify-center items-center w-[20rem]
+        sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
+            <video class="w-screen h-screen z-[-1] absolute top-0 left-0" autoplay loop>
+                <source src="/videos/login.mp4">
+            </video>
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
-            {{ status }}
+            <Head title="Log in"/>
+
+            <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
+                {{ status }}
+            </div>
+            <div class="flex justify-center items-center">
+                <div class="flex flex-col justify-between p-4 size-96 rounded-l-2xl border-8 border-white">
+                    <div class="text-lg w-full flex justify-center gap-6 items-center font-black">
+                        <div class="w-1/4 grid grid-cols-4">
+                            <div
+                                class="size-10 rounded-full bg-defaultColor5 border-2 py-1.5 font-bold border-defaultColor text-defaultColor text-center"
+                                v-for="item in 4">15K
+                            </div>
+                        </div>
+                        <span class="text-defaultColor7">به خانواده بزرگ جوانه سبز بپیوندید...</span>
+                    </div>
+                    <div class="flex items-center text-3xl text-defaultColor7 font-black w-full">
+                        <img src="../../../../public/logo/logo1.png" class="size-24 rounded-full" alt="">
+                        <span class="">ورود به جوانه سبز</span>
+                    </div>
+                </div>
+                <form @submit.prevent="submit">
+                    <div class="flex flex-col items-center bg-white size-96 gap-5 rounded-r-lg justify-center">
+                        <div class="w-5/6">
+                            <input-BT2
+                                Label="ایمیل:"
+                                type="email"
+                                v-model="form.email"
+                                required
+                            ></input-BT2>
+                        </div>
+                        <div class="w-5/6">
+                            <input-BT2
+                                Label="رمز عبور:"
+                                type="password"
+                                v-model="form.password"
+                                required
+                            ></input-BT2>
+                        </div>
+                        <div class="">
+                            <label class="flex items-center gap-2">
+                                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">من را به یاد داشته باش</span>
+                                <CheckBoxBT name="remember" v-model:checked="form.remember"/>
+                            </label>
+                        </div>
+
+                        <div class="mt-4 flex items-center justify-end">
+                            <Link
+                                v-if="canResetPassword"
+                                :href="route('password.request')"
+                                class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-defaultColor focus:ring-offset-2 dark:text-gray-400 dark:hover:text-defaultColor dark:focus:ring-offset-defaultColor"
+                            >
+                                فراموشی رمز عبور
+                            </Link>
+
+                            <ButtonBT2
+                                class="ms-4"
+                                :class="{ 'opacity-25': form.processing }"
+                                :disabled="form.processing"
+                            >
+                                ورود
+                            </ButtonBT2>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4 block">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400"
-                        >Remember me</span
-                    >
-                </label>
-            </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
-                >
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+    </div>
 </template>
