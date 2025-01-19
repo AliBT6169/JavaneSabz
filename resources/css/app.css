@@ -113,7 +113,7 @@
 }
 
 .upComingAnimation{
-    animation: upComing 3s;
+    animation: upComing 1s ease-in-out;
 }
 
 @keyframes introOut {
@@ -129,26 +129,22 @@
 }
 @keyframes upComing {
     0%{
-        position: relative;
-        top: -1000px;
+        transform: translateY(-500px);
     }
-    50%{
-        top: 10px;
+    30%{
+        transform: translateY(0px);
     }
-    60%{
-        top: 0;
+    45%{
+        transform: translateY(-40px);
     }
-    70%{
-        top: 10px;
+    65%{
+        transform: translateY(0px);
     }
     80%{
-        top: 0;
-    }
-    90%{
-        top: 10px;
+        transform: translateY(-10px);
     }
     100%{
-        top: 0;
+        transform: translateY(0);
     }
 }
 @tailwind utilities;

@@ -5,8 +5,8 @@ export default {
 </script>
 
 <template>
-    <button class="bg-defaultColor5 dark:bg-defaultColor rounded-lg px-5 py-1 focus:outline-2 text-sm font-bold ">
-
+    <button class="bg-defaultColor dark:bg-defaultColor rounded-lg px-8 py-2 focus:outline-2
+     text-sm font-bold">
         <slot/>
     </button>
 </template>
