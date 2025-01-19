@@ -112,6 +112,10 @@
     animation: introOut 3s;
 }
 
+.upComingAnimation{
+    animation: upComing 3s;
+}
+
 @keyframes introOut {
     40%{
         top: 0;
@@ -121,6 +125,30 @@
     }
     100%{
         top: -2000px;
+    }
+}
+@keyframes upComing {
+    0%{
+        position: relative;
+        top: -1000px;
+    }
+    50%{
+        top: 10px;
+    }
+    60%{
+        top: 0;
+    }
+    70%{
+        top: 10px;
+    }
+    80%{
+        top: 0;
+    }
+    90%{
+        top: 10px;
+    }
+    100%{
+        top: 0;
     }
 }
 @tailwind utilities;

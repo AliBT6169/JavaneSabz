@@ -61,11 +61,11 @@ const submit = () => {
                     </div>
                 </div>
                 <form @submit.prevent="submit">
-                    <div class="flex flex-col items-center size-96 rounded-r-lg overflow-hidden justify-center">
-                        <div class="w-full flex bg-white justify-center rounded-tl-full">
+                    <div class="flex flex-col size-96 rounded-r-lg overflow-hidden justify-center">
+                        <div class="w-5/6 flex bg-white justify-center rounded-tl-full h-fit upComingAnimation">
                             <img src="../../../../public/logo/logo1.png" class="size-24" alt="">
                         </div>
-                        <div class="w-full p-5 bg-white">
+                        <div class="w-full p-5 bg-white rounded-[40px] rounded-tr-none rounded-bl-none">
                             <input-BT2
                                 Label="ایمیل:"
                                 type="email"
@@ -73,7 +73,7 @@ const submit = () => {
                                 required
                             ></input-BT2>
                         </div>
-                        <div class="w-full p-5 bg-white">
+                        <div class="w-full p-5 bg-white rounded-tr-[40px]">
                             <input-BT2
                                 Label="رمز عبور:"
                                 type="password"
@@ -81,7 +81,7 @@ const submit = () => {
                                 required
                             ></input-BT2>
                         </div>
-                        <div class="w-full px-10 py-5 bg-white">
+                        <div class="w-full px-10 py-5 bg-white rounded-bl-[50px]">
                             <label class="flex items-center gap-2">
                                 <span
                                     class="ms-2 text-sm text-gray-600 dark:text-gray-400">من را به یاد داشته باش</span>
@@ -89,11 +89,13 @@ const submit = () => {
                             </label>
                         </div>
 
-                        <div class="w-full px-20 py-5 bg-white flex items-center justify-end">
+                        <div class="w-5/6 px-10 py-5 bg-white flex items-center justify-end rounded-bl-full">
                             <Link
                                 v-if="canResetPassword"
                                 :href="route('password.request')"
-                                class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-defaultColor focus:ring-offset-2 dark:text-gray-400 dark:hover:text-defaultColor dark:focus:ring-offset-defaultColor"
+                                class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none
+                                 focus:ring-2 focus:ring-defaultColor focus:ring-offset-2 dark:text-gray-400
+                                  dark:hover:text-defaultColor dark:focus:ring-offset-defaultColor"
                             >
                                 فراموشی رمز عبور
                             </Link>
