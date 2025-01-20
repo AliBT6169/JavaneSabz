@@ -43,7 +43,7 @@ const submit = () => {
                     <div class="flex flex-col items-center border-b-2 border-defaultColor">
                         <div class=" upComingAnimation">
                             <img src="../../../../public/logo/logo1.png"
-                                           class="w-8 md:w-12 lg:w-20 xl:w-24 scale-125" alt="">
+                                 class="w-8 md:w-12 lg:w-20 xl:w-24 scale-125" alt="">
                         </div>
 
                         <span class="text-2xl font-black">ورود به حساب کاربری</span>
@@ -78,7 +78,16 @@ const submit = () => {
                                 فراموشی رمز عبور
                             </Link>
                         </div>
-                        <div class="px-2">
+                        <div class="md:flex">
+                            <Link href="/register">
+                                <div
+                                    class="ms-4 text-defaultColor7 duration-500 bg-blue-500 cursor-pointer shadow shadow-slate-800 rounded-lg px-5 py-2
+                                           hover:saturate-200"
+                                    :class="{ 'opacity-25': form.processing }"
+                                >
+                                    ثبت نام
+                                </div>
+                            </Link>
                             <ButtonBT2
                                 class="ms-4 text-defaultColor7"
                                 :class="{ 'opacity-25': form.processing }"
