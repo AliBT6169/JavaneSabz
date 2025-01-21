@@ -38,8 +38,8 @@ const submit = () => {
         <div class="mx-auto flex flex-col gap-10 h-full justify-center items-center w-[20rem]
         sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
             <Head title="Log in"/>
-            <form class="w-1/2" @submit.prevent="submit">
-                <div class="w-full bg-defaultColor5 bg-opacity-70 rounded-3xl text-defaultColor7">
+            <form class="w-full lg:w-1/2" @submit.prevent="submit">
+                <div class="w-full bg-defaultColor5 bg-opacity-70 rounded-3xl text-defaultColor7 pb-6">
                     <div class="flex flex-col items-center border-b-2 border-defaultColor">
                         <div class=" upComingAnimation">
                             <img src="../../../../public/logo/logo1.png"
@@ -48,7 +48,7 @@ const submit = () => {
 
                         <span class="text-2xl font-black">ورود به حساب کاربری</span>
                     </div>
-                    <div class="placeholder-defaultColor p-5">
+                    <div class="p-5">
                         <input-BT2
                             Label="ایمیل:"
                             type="email"
@@ -64,7 +64,7 @@ const submit = () => {
                             required
                         ></input-BT2>
                     </div>
-                    <div class="p-5 flex justify-between w-full items-center">
+                    <div class="px-5 lg:flex gap-5 justify-between w-full items-center">
                         <div class="grid">
                             <label class="*:pl-2">
                                 <span class="duration-300 hover:text-defaultColor">من را به یاد داشته باش</span>
@@ -78,10 +78,11 @@ const submit = () => {
                                 فراموشی رمز عبور
                             </Link>
                         </div>
-                        <div class="md:flex">
+                        <div class="flex justify-center lg:justify-start">
                             <Link href="/register">
                                 <div
-                                    class="ms-4 text-defaultColor7 duration-500 bg-blue-500 cursor-pointer shadow shadow-slate-800 rounded-lg px-5 py-2
+                                    class="ms-4 text-defaultColor7 duration-500 bg-blue-500 flex justify-center items-center
+                                     w-20 h-10 cursor-pointer shadow shadow-slate-800 rounded-lg
                                            hover:saturate-200"
                                     :class="{ 'opacity-25': form.processing }"
                                 >
