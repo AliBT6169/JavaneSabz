@@ -39,33 +39,28 @@ const submit = () => {
         sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
             <Head title="Log in"/>
             <form class="w-full lg:w-1/2" @submit.prevent="submit">
-                <div class="w-full bg-defaultColor5 bg-opacity-70 rounded-3xl text-defaultColor7 pb-6">
+                <div class="w-full bg-defaultColor5 bg-opacity-70 rounded-3xl text-defaultColor7 grid gap-5 pb-6">
                     <div class="flex flex-col items-center border-b-2 border-defaultColor">
                         <div class=" upComingAnimation">
                             <img src="../../../../public/logo/logo1.png"
-                                 class="w-8 md:w-12 lg:w-20 xl:w-24 scale-125" alt="">
+                                 class="w-28 scale-125" alt="">
                         </div>
-
                         <span class="text-2xl font-black">ورود به حساب کاربری</span>
                     </div>
-                    <div class="p-5">
-                        <input-BT2
-                            Label="ایمیل:"
-                            type="email"
-                            v-model="form.email"
-                            required
-                        ></input-BT2>
-                    </div>
-                    <div class="placeholder-defaultColor p-5">
-                        <input-BT2
-                            Label="رمز عبور:"
-                            type="password"
-                            v-model="form.password"
-                            required
-                        ></input-BT2>
-                    </div>
-                    <div class="px-5 lg:flex gap-5 justify-between w-full items-center">
-                        <div class="grid">
+                    <input-BT2
+                        Label="ایمیل:"
+                        type="email"
+                        v-model="form.email"
+                        required
+                    ></input-BT2>
+                    <input-BT2
+                        Label="رمز عبور:"
+                        type="password"
+                        v-model="form.password"
+                        required
+                    ></input-BT2>
+                    <div class="px-5 lg:flex gap-5 lg:justify-between lg:items-center">
+                        <div class="grid gap-2">
                             <label class="*:pl-2">
                                 <span class="duration-300 hover:text-defaultColor">من را به یاد داشته باش</span>
                                 <CheckBoxBT name="remember" v-model:checked="form.remember"/>
@@ -78,7 +73,7 @@ const submit = () => {
                                 فراموشی رمز عبور
                             </Link>
                         </div>
-                        <div class="flex justify-center lg:justify-start">
+                        <div class="flex justify-center pt-5 lg:justify-start">
                             <Link href="/register">
                                 <div
                                     class="ms-4 text-defaultColor7 duration-500 bg-blue-500 flex justify-center items-center
@@ -98,7 +93,6 @@ const submit = () => {
                             </ButtonBT2>
                         </div>
                     </div>
-
                 </div>
             </form>
         </div>
