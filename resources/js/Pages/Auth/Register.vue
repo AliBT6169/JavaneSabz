@@ -37,38 +37,30 @@ const submit = () => {
                         <span class="text-2xl font-black">به خانواده جوانه سبز  بپیوندید <svg-component name="like"
                                                                                                         class="size-5 inline"></svg-component></span>
                     </div>
-                    <div class="">
-                        <input-BT2
-                            Label="نام کاربری:"
-                            type="text"
-                            v-model="form.name"
-                            required
-                        ></input-BT2>
-                    </div>
-                    <div class="">
-                        <input-BT2
-                            Label="ایمیل:"
-                            type="email"
-                            v-model="form.email"
-                            required
-                        ></input-BT2>
-                    </div>
-                    <div class="">
-                        <input-BT2
-                            Label="رمز عبور:"
-                            type="password"
-                            v-model="form.password"
-                            required
-                        ></input-BT2>
-                    </div>
-                    <div class="">
-                        <input-BT2
-                            Label="تائید رمز عبور:"
-                            type="password_confirmation"
-                            v-model="form.password_confirmation"
-                            required
-                        ></input-BT2>
-                    </div>
+                    <input-BT2
+                        Label="نام کاربری:"
+                        type="text"
+                        v-model="form.name"
+                        required
+                    ></input-BT2>
+                    <input-BT2
+                        Label="ایمیل:"
+                        type="email"
+                        v-model="form.email"
+                        required
+                    ></input-BT2>
+                    <input-BT2
+                        Label="رمز عبور:"
+                        type="password"
+                        v-model="form.password"
+                        required
+                    ></input-BT2>
+                    <input-BT2
+                        Label="تائید رمز عبور:"
+                        type="password_confirmation"
+                        v-model="form.password_confirmation"
+                        required
+                    ></input-BT2>
                     <label class="*:pl-2 mx-auto lg:hidden">
                         <span class="duration-300 hover:text-defaultColor">من را به یاد داشته باش</span>
                         <CheckBoxBT name="remember" v-model:checked="form.remember"/>
