@@ -81,7 +81,7 @@ const submit = () => {
                             </label>
                             <Link href="/login">
                                 <div
-                                    class="text-defaultColor7 duration-500 cursor-pointer hover:text-neutral-600 underline"
+                                    class="text-defaultColor7 duration-300 cursor-pointer hover:text-defaultColor underline"
                                     :class="{ 'opacity-25': form.processing }"
                                 >
                                     حساب کاربری دارید؟
