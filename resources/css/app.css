@@ -107,6 +107,9 @@
     @apply rounded-xl size-9 bg-defaultColor5 cursor-pointer duration-500 hover:-translate-y-2 flex justify-center items-center
     sm:size-fit sm:p-2;
 }
+.no-scroll{
+    @apply [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none];
+}
 
 .introView {
     animation: introOut 3s;
