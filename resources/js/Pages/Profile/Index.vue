@@ -35,6 +35,14 @@ import {profileSidebar} from "@/Pages/Components/Helper/Helper.js";
                         <span class="pl-2 text-black">آدرس :</span>
                         <span>ایران - مازندران - بهنمیر - بلوار درزیان - کیلومتر 4 - روستای گالشکلا</span>
                     </div>
+                    <div class="border-b border-gray-700 dark:border-gray-300">
+                        <span class="pl-2 text-black">کد پستی :</span>
+                        <span>111-111-1111</span>
+                    </div>
+                    <div class="border-b border-gray-700 dark:border-gray-300">
+                        <span class="pl-2 text-black">تاریخ ساخت :</span>
+                        <span>1403/01/01</span>
+                    </div>
                 </div>
             </div>
         </div>
