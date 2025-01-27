@@ -1,7 +1,15 @@
 <script setup>
 
+import PanelCartItems from "@/Pages/Components/Panel/PanelCartItems.vue";
 </script>
 
 <template>
-    <span class="text-3xl">سبد خرید</span>
+    <div class="grid gap-4">
+        <PanelCartItems></PanelCartItems>
+        <PanelCartItems></PanelCartItems>
+        <PanelCartItems></PanelCartItems>
+        <PanelCartItems></PanelCartItems>
+        <PanelCartItems></PanelCartItems>
+        <PanelCartItems></PanelCartItems>
+    </div>
 </template>
