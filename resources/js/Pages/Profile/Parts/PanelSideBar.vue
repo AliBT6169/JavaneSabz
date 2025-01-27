@@ -6,10 +6,21 @@ import SidebarItem from "@/Pages/Components/Panel/SidebarItem.vue";
 import ShowProfile from "@/Pages/Profile/Pages/ShowProfile.vue";
 import BuyCart from "@/Pages/Profile/Pages/BuyCart.vue";
 import {markRaw} from "vue";
+import Transaction from "@/Pages/Profile/Pages/Transaction.vue";
+import Payment from "@/Pages/Profile/Pages/Payment.vue";
+import Favorite from "@/Pages/Profile/Pages/Favorite.vue";
+import Comments from "@/Pages/Profile/Pages/Comments.vue";
+import InformationEdit from "@/Pages/Profile/Pages/InformationEdit.vue";
 
 const showProfile = markRaw(ShowProfile);
-
 const buyCart = markRaw(BuyCart);
+const transaction = markRaw(Transaction);
+const payment = markRaw(Payment);
+const favorite = markRaw(Favorite);
+const comment = markRaw(Comments);
+const information_edit = markRaw(InformationEdit);
+
+
 </script>
 
 <template class="select-none">
@@ -21,10 +32,10 @@ const buyCart = markRaw(BuyCart);
         </SidebarItem>
         <SidebarItem @click="profileComponent=buyCart" :chosen="profileComponent===buyCart" svg="cart">سبد خرید
         </SidebarItem>
-        <SidebarItem svg="card">تراکنش ها</SidebarItem>
-        <SidebarItem svg="list">پیگیری خرید</SidebarItem>
-        <SidebarItem svg="like" class="fill-transparent">علاقه مندی ها</SidebarItem>
-        <SidebarItem svg="comment">نظرات</SidebarItem>
-        <SidebarItem svg="edit">تکمیل اطلاعات</SidebarItem>
+        <SidebarItem @click="profileComponent=transaction" :chosen="profileComponent===Transaction" svg="card" >تراکنش ها</SidebarItem>
+        <SidebarItem @click="profileComponent=payment" :chosen="profileComponent===Payment" svg="list">پیگیری خرید</SidebarItem>
+        <SidebarItem @click="profileComponent=favorite" :chosen="profileComponent===Favorite" svg="like" class="fill-transparent">علاقه مندی ها</SidebarItem>
+        <SidebarItem @click="profileComponent=comment" :chosen="profileComponent===Comments" svg="comment">نظرات</SidebarItem>
+        <SidebarItem @click="profileComponent=information_edit" :chosen="profileComponent===InformationEdit" svg="edit">تکمیل اطلاعات</SidebarItem>
     </div>
 </template>
