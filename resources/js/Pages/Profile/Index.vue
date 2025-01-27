@@ -7,11 +7,13 @@ import {profileSidebar} from "@/Pages/Components/Helper/Helper.js";
 
 <template>
     <PanelHeader></PanelHeader>
-    <div class="mb-20"></div>
-    <div class="mx-auto flex gap-10 items-center w-[20rem]
-        sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
+    <div class="mb-24"></div>
+    <div class="px-5 sm:pr-28">
         <PanelSideBar></PanelSideBar>
-<!--        index pages-->
-        <div class="w-full h-96 bg-defaultColor5 m-auto dark:bg-defaultColor lg:mr-20"></div>
+        <!--        index pages-->
+        <div class="w-full h-96 duration-300 bg-defaultColor5 dark:bg-defaultColor"
+             :class="{'lg:mr-60 lg:w-[calc(100%-15rem)]':profileSidebar}">
+            <div class=""></div>
+        </div>
     </div>
 </template>
