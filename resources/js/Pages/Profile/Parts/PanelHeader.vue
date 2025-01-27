@@ -7,7 +7,7 @@ import {profileSidebar} from "@/Pages/Components/Helper/Helper.js";
 </script>
 
 <template>
-    <div class="select-none fixed top-0 right-0 w-full py-2 bg-defaultColor5 rounded-full px-10 flex items-center
+    <div class="select-none fixed z-10 top-0 right-0 w-full py-2 bg-defaultColor5 rounded-full px-10 flex items-center
      justify-between dark:bg-defaultColor">
         <svg-component name="dashboard" class="size-9 cursor-pointer" @click="profileSidebar=!profileSidebar"></svg-component>
         <a href="/" class="">
