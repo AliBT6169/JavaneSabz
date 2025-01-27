@@ -3,7 +3,6 @@
 import PanelSideBar from "@/Pages/Profile/Parts/PanelSideBar.vue";
 import PanelHeader from "@/Pages/Profile/Parts/PanelHeader.vue";
 import {profileComponent, profileSidebar} from "@/Pages/Components/Helper/Helper.js";
-import ShowProfile from "@/Pages/Profile/Pages/ShowProfile.vue";
 </script>
 
 <template>
