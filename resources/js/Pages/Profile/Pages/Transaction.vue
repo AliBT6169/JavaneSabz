@@ -3,5 +3,5 @@
 </script>
 
 <template>
-تراکنش ها
+    <div class="text-center text-2xl ">تراکنشی موجود نیست...</div>
 </template>
