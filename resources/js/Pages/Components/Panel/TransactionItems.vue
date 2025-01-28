@@ -7,7 +7,7 @@ const description = ref(false);
 </script>
 
 <template>
-    <div class="w-full p-2 rounded-lg border border-gray-500 bg-defaultColor text-xs">
+    <div class="w-full p-2 rounded-lg border border-gray-500 bg-defaultColor3 text-xs">
         <div class="flex items-center justify-between">
             <!--            success-->
             <div class="bg-defaultColor5 bg-opacity-70 p-2 rounded-full">موفق</div>
@@ -22,7 +22,7 @@ const description = ref(false);
             <!--            show more button-->
             <svg-component @click="description=!description" name="arrow-left"
                            :class="{'-rotate-90': description}"
-                           class="size-5 duration-300 text-defaultColor2 cursor-pointer"></svg-component>
+                           class="size-5 duration-300 text-defaultColor4 cursor-pointer"></svg-component>
         </div>
         <div class="grid duration-300 h-0 overflow-hidden" :class="{'h-48 overflow-y-scroll pt-2':description}">
             <div class="flex gap-1 flex-wrap ">
