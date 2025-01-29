@@ -13,8 +13,8 @@ const productCount = ref(props.product.count)
         <div class="w-40 rounded-lg cursor-pointer overflow-hidden">
             <img :src="product.picture" alt="Emamectin" class="duration-300 hover:scale-110">
         </div>
-        <span class="">{{product.name}}</span>
-        <p class="">{{ product.description }}</p>
+        <span class="w-20">{{product.name.length>25?product.name.substring(0,25)+'...':product.name}}</span>
+        <p class="w-32">{{product.description.length>50?product.description.substring(0,50)+'...':product.description}}</p>
         <div class="flex items-center gap-1">تعداد:
             <div
                 class="mr-4 !overflow-hidden *:px-2 border-black text-lg font-bold border rounded-xl dark:border-white">

@@ -2,7 +2,7 @@ import {ref} from "vue";
 
 const Products = ref([
     {
-        name: "امامکتین",
+        name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
         price: "200,000",
         count: "2",
         description: "این حشره کشه",
@@ -10,9 +10,9 @@ const Products = ref([
     },
     {
         name: "علیرضا",
-        price: "100,000,000,000,000",
+        price: "100,000,000",
         count: "1",
-        description: "آق مهندس علیرضا هستم نویسنده این پروژه",
+        description: "آق مهندس علیرضا هستم نویسنده این پروژهآق مهندس علیرضا هستم نویسنده این پروژه",
         picture: "images/products/10640410.webp",
     },
     {
