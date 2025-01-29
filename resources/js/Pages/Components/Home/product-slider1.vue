@@ -1,6 +1,6 @@
 <script setup>
 
-import Product from "@/Pages/Components/Product.vue";
+import Product from "@/Pages/Components/Home/Product.vue";
 import {onMounted, ref} from "vue";
 
 const productData = ref("../../../../images/products/Emamectin.jpg");

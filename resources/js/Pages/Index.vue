@@ -2,14 +2,14 @@
 
 import Header from "@/Pages/Parts/Header.vue";
 import Footer from "@/Pages/Parts/Footer.vue";
-import Slider1 from "@/Pages/Components/Slider1.vue";
-import Brands from "@/Pages/Components/Brands.vue";
+import Slider1 from "@/Pages/Components/Home/Slider1.vue";
+import Brands from "@/Pages/Components/Home/Brands.vue";
 import {ref} from "vue";
-import Product from "@/Pages/Components/Product.vue";
-import ProductSlider1 from "@/Pages/Components/product-slider1.vue";
-import Navigation from "@/Pages/Components/navigation.vue";
-import LiveCards from "@/Pages/Components/live-cards.vue";
-import Intro from "@/Pages/Components/intro.vue";
+import Product from "@/Pages/Components/Home/Product.vue";
+import ProductSlider1 from "@/Pages/Components/Home/product-slider1.vue";
+import Navigation from "@/Pages/Components/Home/navigation.vue";
+import LiveCards from "@/Pages/Components/Home/live-cards.vue";
+import Intro from "@/Pages/Components/Home/intro.vue";
 
 const slider1Data = ref([
     "../../../../images/slider/slider%20(1).jpeg",

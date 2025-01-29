@@ -1,6 +1,6 @@
 <script setup>
 
-import DarkLight from "@/Pages/Components/DarkLight.vue";
+import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 import {Link} from '@inertiajs/vue3'
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {profileSidebar} from "@/Pages/Components/Helper/Helper.js";

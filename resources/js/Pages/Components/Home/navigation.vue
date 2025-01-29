@@ -4,7 +4,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
 import {ref} from "vue";
 import {Link} from '@inertiajs/vue3';
-import ConnectModal from "@/Pages/Components/connect-modal.vue";
+import ConnectModal from "@/Pages/Components/Home/connect-modal.vue";
 import {connectUsModalVisibility} from "@/Pages/Components/Helper/Helper.js";
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
@@ -65,7 +65,7 @@ const showConnectModal = () => {
                                         <p class="mega-tab-menu-list-items" v-for="index in 11">شاه توت</p>
                                     </div>
                                     <div class="w-52 h-full overflow-hidden">
-                                        <img src="../../../../public/images/tootfarangi.jpg"
+                                        <img src="../../../../../public/images/tootfarangi.jpg"
                                              class="size-full hidden lg:block" alt="">
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@ const showConnectModal = () => {
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-72 h-full overflow-hidden">
-                                        <img src="../../../../public/images/fertilizer.jpg"
+                                        <img src="../../../../../public/images/fertilizer.jpg"
                                              class="size-full hidden lg:block" alt="">
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@ const showConnectModal = () => {
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-96 h-full overflow-hidden">
-                                        <img src="../../../../public/images/farm.jpg" class="size-full hidden lg:block"
+                                        <img src="../../../../../public/images/farm.jpg" class="size-full hidden lg:block"
                                              alt="">
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@ const showConnectModal = () => {
         <!--        home-->
         <Link href="/">
             <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
-                <img src="../../../../public/logo/logo1.png" title="خانه" class="size-20 sm:size-32" alt="">
+                <img src="../../../../../public/logo/logo1.png" title="خانه" class="size-20 sm:size-32" alt="">
             </div>
         </Link>
         <!--        products-->
