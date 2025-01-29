@@ -11,7 +11,7 @@ const productCount = ref(props.product.count)
         py-2 px-4 rounded-xl border-2 border-defaultColor dark:border-defaultColor5 hover:shadow-lg hover:shadow-slate-600
         sm:flex xl:w-full xl:justify-between">
         <div class="w-40 rounded-lg cursor-pointer overflow-hidden">
-            <img src="/images/products/Emamectin.jpg" alt="Emamectin" class="duration-300 hover:scale-110">
+            <img :src="product.picture" alt="Emamectin" class="duration-300 hover:scale-110">
         </div>
         <span class="">{{product.name}}</span>
         <p class="">{{ product.description }}</p>
