@@ -27,10 +27,10 @@ const information_edit = markRaw(InformationEdit);
     <div class="invisible overflow-scroll shadow no-scroll opacity-0 grid fixed z-10 duration-300 top-20 w-20 h-[calc(100vh-5.4rem)] rounded-[40px] bg-defaultColor5
     shadow-slate-600 dark:shadow-slate-500 dark:bg-defaultColor right-2 py-10 sm:visible sm:opacity-100 sm:gap-6"
          :class="{'w-52 sm:w-80 !opacity-100 !visible':profileSidebar}">
-        <SidebarItem @click="profileComponent=showProfile" svg="eye" :chosen="profileComponent===showProfile">مشاهده
+        <SidebarItem @click="profileComponent=showProfile" svg="eye" :chosen="profileComponent===ShowProfile">مشاهده
             پروفایل
         </SidebarItem>
-        <SidebarItem @click="profileComponent=buyCart" :chosen="profileComponent===buyCart" svg="cart">سبد خرید
+        <SidebarItem @click="profileComponent=buyCart" :chosen="profileComponent===BuyCart" svg="cart">سبد خرید
         </SidebarItem>
         <SidebarItem @click="profileComponent=transaction" :chosen="profileComponent===Transaction" svg="card" >تراکنش ها</SidebarItem>
         <SidebarItem @click="profileComponent=payment" :chosen="profileComponent===Payment" svg="list">پیگیری خرید</SidebarItem>
