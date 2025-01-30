@@ -80,7 +80,7 @@
 }
 
 .slider-button {
-    @apply flex p-1 rounded-full bg-defaultColor2 bg-opacity-50 duration-300 cursor-pointer hover:bg-opacity-100 sm:p-2 lg:p-4;
+    @apply flex p-2 rounded-full bg-defaultColor2 bg-opacity-50 duration-300 cursor-pointer hover:bg-opacity-100 lg:p-4;
 }
 
 .separate {

@@ -12,7 +12,7 @@ const toggleDark = useToggle(isDark);
 <template>
     <div
         class="size-10 flex items-center justify-center hover:bg-slate-400 transition-all rounded-xl bg-slate-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
-        @click="[toggleDark() , name=isDark ? 'sun' : 'moon2']">
-        <svg-component :name="name" class="size-6" title="دارک مود"></svg-component>
+        @click="toggleDark()">
+        <svg-component :name="isDark===true ? 'sun' : 'moon2'" class="size-6" title="دارک مود"></svg-component>
     </div>
 </template>

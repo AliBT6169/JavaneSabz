@@ -6,6 +6,7 @@ import {ref} from "vue";
 import {Link} from '@inertiajs/vue3';
 import ConnectModal from "@/Pages/Components/Home/connect-modal.vue";
 import {connectUsModalVisibility} from "@/Pages/Components/Helper/Helper.js";
+import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
 const isDark = useDark();
@@ -161,9 +162,7 @@ const showConnectModal = () => {
             <svg-component name="magic" class="size-[80%] sm:size-10"></svg-component>
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-12 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
-                <div class="bg-slate-700 text-black bg-opacity-50 p-1 rounded-lg" @click="toggleDark()">
-                    <svg-component name="moon2" class="size-7"></svg-component>
-                </div>
+                <DarkLight></DarkLight>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
                     <svg-component name="like" class="size-7"></svg-component>
                 </div>

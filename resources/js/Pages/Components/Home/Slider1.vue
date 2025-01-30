@@ -46,7 +46,6 @@ const mouse_moved = (event) => {
 
 const mouse_upd = (event) => {
     document.getElementById("slider").style.transitionProperty = "all";
-    let slider_direction = "";
     if (drag.value) {
         if (X.value + sliderWith.value * 16 / 10 < event.pageX)
             slider_show("forward");
@@ -80,10 +79,10 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
              @mouseup="mouse_upd"
              @mousemove.prevent @mousedown="mouse_downed">
             <div class="slider-button" @click="slider_show('backward')">
-                <svg-component name="chev-right" class="size-4 sm:size-5 lg:size-8 xl:size-10"></svg-component>
+                <svg-component name="chev-right" class="size-6 lg:size-8 xl:size-10"></svg-component>
             </div>
             <div class="slider-button" @click="slider_show('forward')">
-                <svg-component name="chev-left" class="size-4 sm:size-5 lg:size-8 xl:size-10"></svg-component>
+                <svg-component name="chev-left" class="size-6 lg:size-8 xl:size-10"></svg-component>
             </div>
         </div>
     </div>
