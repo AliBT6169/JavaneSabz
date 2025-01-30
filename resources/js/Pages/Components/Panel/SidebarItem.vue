@@ -1,8 +1,9 @@
 <script setup>
 import {profileSidebar} from "@/Pages/Components/Helper/Helper.js";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const props = defineProps(["svg" , "chosen"]);
-import SvgComponent from "@/Pages/Components/svg-component.vue";
+
 </script>
 
 <template>

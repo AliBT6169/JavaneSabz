@@ -2,13 +2,13 @@
 
 import PanelSideBar from "@/Pages/Profile/Parts/PanelSideBar.vue";
 import PanelHeader from "@/Pages/Profile/Parts/PanelHeader.vue";
-import {profileComponent, profileSidebar} from "@/Pages/Components/Helper/Helper.js";
+import {profileComponent, profileSidebar, profileSidebarCloser} from "@/Pages/Components/Helper/Helper.js";
 </script>
 
 <template>
     <PanelHeader></PanelHeader>
     <div class="mb-24"></div>
-    <div class="px-5 sm:pr-28">
+    <div class="px-5 sm:pr-28" @click="profileSidebarCloser">
         <PanelSideBar></PanelSideBar>
         <!--        index pages-->
         <div class="w-full duration-300 bg-defaultColor5 dark:bg-defaultColor p-5 rounded-2xl"
