@@ -7,8 +7,7 @@ import {profileComponent, profileSidebar, profileSidebarCloser} from "@/Pages/Co
 
 <template>
     <PanelHeader></PanelHeader>
-    <div class="mb-24"></div>
-    <div class="px-5 sm:pr-28" @click="profileSidebarCloser">
+    <div class="mt-24 px-5 sm:pr-28" @click="profileSidebarCloser">
         <PanelSideBar></PanelSideBar>
         <!--        index pages-->
         <div class="w-full duration-300 bg-defaultColor5 dark:bg-defaultColor p-5 rounded-2xl"
