@@ -12,6 +12,10 @@ const description = ref(false);
             <!--            success-->
             <div class="bg-defaultColor5 bg-opacity-70 p-2 rounded-full">موفق</div>
             <span class="h-8 bg-slate-400 rounded-full w-0.5"></span>
+            <p class="w-32 hidden overflow-hidden lg:w-60 md:block">
+                <strong class="">محصولات:</strong>
+                ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار
+            </p>
             <!--            date & time-->
             <div class="p-2 rounded-full border">1403/03/03</div>
             <!--            price-->
@@ -21,22 +25,14 @@ const description = ref(false);
             </div>
             <!--            show more button-->
             <svg-component @click="description=!description" name="arrow-left"
-                           :class="{'-rotate-90': description}"
+                           :class="{'rotate-[270deg]': description}"
                            class="size-5 duration-300 text-defaultColor4 cursor-pointer"></svg-component>
         </div>
-        <div class="grid duration-300 h-0 overflow-hidden" :class="{'h-48 overflow-y-scroll pt-2':description}">
-            <div class="flex gap-1 flex-wrap ">
-                <div class="">محصولات:</div>
-                <span>علف کش(x5)</span>
-                ,
-                <span>امامکتین (x5)</span>
-                ,
-                <span>Mega Seo (x5)</span>
-                ,
-                <span>Aminon (x5)</span>
-                ,
-                <span>بذر توت فرنگی (x5)</span>
-            </div>
+        <div class="grid duration-300 h-0 overflow-hidden" :class="{'h-32 overflow-y-scroll pt-2':description}">
+            <p class="">
+                <strong class="">محصولات:</strong>
+                علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,
+            </p>
             <div class="flex"></div>
             <div class="flex"></div>
         </div>
