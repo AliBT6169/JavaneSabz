@@ -78,9 +78,6 @@ const Transaction = ref([
 ]);
 
 
-
-
-
 const productCountIncrement = (index) => {
     Products.value[index].count++;
 }
