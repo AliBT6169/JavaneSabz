@@ -3,7 +3,7 @@ import {rand} from "@vueuse/core";
 
 const Products = ref([
     {
-        name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+        name: "امامکتین امامکتیناما مکتینامامکتینام امکتین",
         price: 200000,
         count: 1,
         description: "این حشره کشه",
@@ -83,14 +83,14 @@ const Payments = ref(
             level: rand(0, 3),
             product: [
                 {
-                    name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                    name: "امامکتین امامکتینامام کتینام امکتینا مامکتین",
                     price: 200000,
                     count: 1,
                     description: "این حشره کشه",
                     picture: "/images/products/Emamectin.jpg",
                 },
                 {
-                    name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                    name: "امامکتین امامکتی نامامک تینامامکتین امامکتین",
                     price: 200000,
                     count: 1,
                     description: "این حشره کشه",
@@ -106,7 +106,7 @@ const Payments = ref(
             level: rand(1, 3),
             product: [{
 
-                name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                name: "امامکتین امامکتی نامامکتینامامکت یناما مکتین",
                 price: 200000,
                 count: 1,
                 description: "این حشره کشه",
@@ -117,7 +117,7 @@ const Payments = ref(
             level: rand(1, 3),
             product: [{
 
-                name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                name: "امامکتین امامکتینا مامکتینام امکتیناما مکتین",
                 price: 200000,
                 count: 1,
                 description: "این حشره کشه",
@@ -128,7 +128,7 @@ const Payments = ref(
             level: rand(1, 3),
             product: [{
 
-                name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                name: "امامکتین امامک تینامام کتینامامکت ینامامکتین",
                 price: 200000,
                 count: 1,
                 description: "این حشره کشه",
@@ -139,7 +139,7 @@ const Payments = ref(
             level: rand(1, 3),
             product: [{
 
-                name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                name: "امامکتین امامکتی نامامکتینام امکتینام امکتین",
                 price: 200000,
                 count: 1,
                 description: "این حشره کشه",

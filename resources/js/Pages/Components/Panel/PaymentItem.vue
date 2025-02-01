@@ -6,9 +6,9 @@ const props = defineProps(["payment"])
 </script>
 
 <template>
-    <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 border-defaultColor h-96 overflow-scroll
+    <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 border-defaultColor h-96 overflow-y-scroll
       dark:border-darkColor1 sm:w-96 hover3D-animation hover:shadow-red-500 dark:bg-defaultColor7">
-        <div class="space-y-4 sticky bg-defaultColor5 top-0 dark:bg-defaultColor7">
+        <div class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
             <div class="flex gap-6 text-[8px] text-nowrap sm:text-sm">
                 <div class="">در حال تائید</div>
                 <div class="">در حال آماده سازی</div>
@@ -33,7 +33,7 @@ const props = defineProps(["payment"])
                 <img :src="item.picture" alt=""
                      class="w-14 border-red-500 border-2 rounded-full sm:w-16 md:!w-20">
                 <div class="grid gap-1 text-xs sm:text-sm">
-                    <strong class="">{{ item.name }}</strong>
+                    <p class="w-32 text-wrap">{{ item.name }}</p>
                     <div class="">تعداد: <span>{{ item.count }}</span></div>
                     <div class="">قیمت: <span>{{ (item.price).toLocaleString('fa-IR') }}</span></div>
                 </div>
