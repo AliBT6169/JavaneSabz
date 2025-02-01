@@ -24,7 +24,7 @@ const description = ref(false);
             <!--            price-->
             <div
                 class="rounded-full border border-amber-300 p-2 text-yellow-500 bg-amber-400 bg-opacity-50 *:pl-1 dark:bg-opacity-50 dark:text-white">
-                <span>{{transactionData.price}}</span>تومان
+                <span>{{transactionData.price.toLocaleString('fa-IR')}}</span>تومان
             </div>
             <!--            show more button-->
             <svg-component @click="description=!description" name="arrow-left"
@@ -37,8 +37,6 @@ const description = ref(false);
                 علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر
                 خیار,علف کش , بوته توت فرنگی ,بذر خیار,
             </p>
-            <div class="flex"></div>
-            <div class="flex"></div>
         </div>
     </div>
 </template>
