@@ -76,78 +76,76 @@ const Transaction = ref([
         price: rand(10, 1000000),
     },
 ]);
-
-const Payments = ref(
-    [
-        {
-            level: rand(0, 3),
-            product: [
-                {
-                    name: "امامکتین امامکتینامام کتینام امکتینا مامکتین",
-                    price: 200000,
-                    count: 1,
-                    description: "این حشره کشه",
-                    picture: "/images/products/Emamectin.jpg",
-                },
-                {
-                    name: "امامکتین امامکتی نامامک تینامامکتین امامکتین",
-                    price: 200000,
-                    count: 1,
-                    description: "این حشره کشه",
-                    picture: "/images/products/Emamectin.jpg",
-                },
-            ],
-        },
-        {
-            level: rand(1, 3),
-            product: Products
-        },
-        {
-            level: rand(1, 3),
-            product: [{
-
-                name: "امامکتین امامکتی نامامکتینامامکت یناما مکتین",
+const Payments = ref([
+    {
+        level: rand(0, 3),
+        product: [
+            {
+                name: "امامکتین امامکتینامام کتینام امکتینا مامکتین",
                 price: 200000,
                 count: 1,
                 description: "این حشره کشه",
                 picture: "/images/products/Emamectin.jpg",
-            }],
-        },
-        {
-            level: rand(1, 3),
-            product: [{
-
-                name: "امامکتین امامکتینا مامکتینام امکتیناما مکتین",
+            },
+            {
+                name: "امامکتین امامکتی نامامک تینامامکتین امامکتین",
                 price: 200000,
                 count: 1,
                 description: "این حشره کشه",
                 picture: "/images/products/Emamectin.jpg",
-            }],
-        },
-        {
-            level: rand(1, 3),
-            product: [{
+            },
+        ],
+    },
+    {
+        level: rand(1, 3),
+        product: Products
+    },
+    {
+        level: rand(1, 3),
+        product: [{
 
-                name: "امامکتین امامک تینامام کتینامامکت ینامامکتین",
-                price: 200000,
-                count: 1,
-                description: "این حشره کشه",
-                picture: "/images/products/Emamectin.jpg",
-            }],
-        },
-        {
-            level: rand(1, 3),
-            product: [{
+            name: "امامکتین امامکتی نامامکتینامامکت یناما مکتین",
+            price: 200000,
+            count: 1,
+            description: "این حشره کشه",
+            picture: "/images/products/Emamectin.jpg",
+        }],
+    },
+    {
+        level: rand(1, 3),
+        product: [{
 
-                name: "امامکتین امامکتی نامامکتینام امکتینام امکتین",
-                price: 200000,
-                count: 1,
-                description: "این حشره کشه",
-                picture: "/images/products/Emamectin.jpg",
-            }],
-        },
-    ]);
+            name: "امامکتین امامکتینا مامکتینام امکتیناما مکتین",
+            price: 200000,
+            count: 1,
+            description: "این حشره کشه",
+            picture: "/images/products/Emamectin.jpg",
+        }],
+    },
+    {
+        level: rand(1, 3),
+        product: [{
 
+            name: "امامکتین امامک تینامام کتینامامکت ینامامکتین",
+            price: 200000,
+            count: 1,
+            description: "این حشره کشه",
+            picture: "/images/products/Emamectin.jpg",
+        }],
+    },
+    {
+        level: rand(1, 3),
+        product: [{
+
+            name: "امامکتین امامکتی نامامکتینام امکتینام امکتین",
+            price: 200000,
+            count: 1,
+            description: "این حشره کشه",
+            picture: "/images/products/Emamectin.jpg",
+        }],
+    },
+]);
+const LikedProducts = ref(Products);
 const productCountIncrement = (index) => {
     Products.value[index].count++;
 }
@@ -160,4 +158,5 @@ export {
     productCountDecrement,
     Transaction,
     Payments,
+    LikedProducts,
 }
