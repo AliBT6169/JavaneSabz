@@ -7,14 +7,14 @@ const description = ref(false);
 </script>
 
 <template>
-    <div class="w-full p-2 rounded-lg border border-gray-500 bg-defaultColor3 text-xs">
+    <div class="w-full p-2 rounded-lg border border-gray-500 bg-defaultColor3 text-xs lg:text-base">
         <div class="flex items-center justify-between">
             <!--            success-->
             <div class="bg-defaultColor5 bg-opacity-70 p-2 rounded-full">موفق</div>
             <span class="h-8 bg-slate-400 rounded-full w-0.5"></span>
-            <p class="w-32 hidden overflow-hidden lg:w-60 md:block">
+            <p class="w-32 hidden overflow-hidden text-ellipsis text-nowrap md:block lg:w-80 xl:!w-[40rem]">
                 <strong class="">محصولات:</strong>
-                ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار
+                علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,
             </p>
             <!--            date & time-->
             <div class="p-2 rounded-full border">1403/03/03</div>
