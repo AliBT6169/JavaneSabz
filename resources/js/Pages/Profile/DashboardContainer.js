@@ -77,6 +77,76 @@ const Transaction = ref([
     },
 ]);
 
+const Payments = ref(
+    [
+        {
+            level: rand(0, 3),
+            product: [
+                {
+                    name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                    price: 200000,
+                    count: 1,
+                    description: "این حشره کشه",
+                    picture: "/images/products/Emamectin.jpg",
+                },
+                {
+                    name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                    price: 200000,
+                    count: 1,
+                    description: "این حشره کشه",
+                    picture: "/images/products/Emamectin.jpg",
+                },
+            ],
+        },
+        {
+            level: rand(1, 3),
+            product: Products
+        },
+        {
+            level: rand(1, 3),
+            product: [{
+
+                name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                price: 200000,
+                count: 1,
+                description: "این حشره کشه",
+                picture: "/images/products/Emamectin.jpg",
+            }],
+        },
+        {
+            level: rand(1, 3),
+            product: [{
+
+                name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                price: 200000,
+                count: 1,
+                description: "این حشره کشه",
+                picture: "/images/products/Emamectin.jpg",
+            }],
+        },
+        {
+            level: rand(1, 3),
+            product: [{
+
+                name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                price: 200000,
+                count: 1,
+                description: "این حشره کشه",
+                picture: "/images/products/Emamectin.jpg",
+            }],
+        },
+        {
+            level: rand(1, 3),
+            product: [{
+
+                name: "امامکتین امامکتینامامکتینامامکتینامامکتین",
+                price: 200000,
+                count: 1,
+                description: "این حشره کشه",
+                picture: "/images/products/Emamectin.jpg",
+            }],
+        },
+    ]);
 
 const productCountIncrement = (index) => {
     Products.value[index].count++;
@@ -89,4 +159,5 @@ export {
     productCountIncrement,
     productCountDecrement,
     Transaction,
+    Payments,
 }
