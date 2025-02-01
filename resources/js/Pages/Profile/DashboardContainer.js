@@ -1,4 +1,5 @@
 import {ref} from "vue";
+import {rand} from "@vueuse/core";
 
 const Products = ref([
     {
@@ -37,6 +38,48 @@ const Products = ref([
         picture: "images/products/10640410.webp",
     },
 ]);
+const Transaction = ref([
+    {
+        status: "موفق",
+        description: "این حشره کشه",
+        date: '1404/11/10',
+        price: rand(10, 1000000),
+    },
+    {
+        status: "ناموفق",
+        description: "علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ",
+        date: '1402/08/09',
+        price: rand(10, 1000000),
+    },
+    {
+        status: "ناموفق",
+        description: "این حشره کشه",
+        date: '1402/08/09',
+        price: rand(10, 1000000),
+    },
+    {
+        status: "ناموفق",
+        description: ",بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,علف کش , بوته توت فرنگی ",
+        date: '1404/11/10',
+        price: rand(10, 1000000),
+    },
+    {
+        status: "موفق",
+        description: ",بذر خیار,علف کش , بوته توت فرنگی ,بذر خیار,علف کش ",
+        date: '1402/01/05',
+        price: rand(10, 1000000),
+    },
+    {
+        status: "موفق",
+        description: ", بوته توت فرنگی ",
+        date: '1402/11/01',
+        price: rand(10, 1000000),
+    },
+]);
+
+
+
+
 
 const productCountIncrement = (index) => {
     Products.value[index].count++;
@@ -48,4 +91,5 @@ export {
     Products,
     productCountIncrement,
     productCountDecrement,
+    Transaction,
 }
