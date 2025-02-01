@@ -10,7 +10,7 @@ import {profileSidebar, profileSidebarCloser} from "@/Pages/Components/Helper/He
     <div class="select-none fixed z-10 top-0 right-0 border border-slate-500 w-full py-2 bg-defaultColor5 rounded-full px-10 flex items-center
      justify-between dark:bg-defaultColor" @click="profileSidebarCloser">
         <svg-component name="dashboard" class="size-9 Sidebar cursor-pointer dark:text-white"
-                       @click="profileSidebar=!profileSidebar"></svg-component>
+                       @click.stop="profileSidebar=!profileSidebar"></svg-component>
         <a href="/" class="">
             <img src="../../../../../public/logo/logo1.png" class="w-14 scale-[1.5]" alt="">
         </a>
