@@ -4,7 +4,8 @@ import {rand} from "@vueuse/core";
 </script>
 
 <template>
-    <div class="space-y-2 w-60 p-4 rounded-xl border-2 border-defaultColor h-96 overflow-scroll dark:bg-defaultColor5 dark:border-darkColor1 sm:w-96">
+    <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 border-defaultColor h-96 overflow-scroll
+     dark:bg-defaultColor5 dark:border-darkColor1 sm:w-96 hover3D-animation hover:shadow-red-500">
         <div class="flex gap-6 text-[8px] text-nowrap sm:text-sm">
             <div class="">در حال تائید</div>
             <div class="">در حال آماده سازی</div>
