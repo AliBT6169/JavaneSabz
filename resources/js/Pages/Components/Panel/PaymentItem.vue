@@ -14,17 +14,17 @@ const props = defineProps(["payment"])
                 <div class="">در حال آماده سازی</div>
                 <div class="">کالا ارسال شده</div>
             </div>
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center"   >
                 <div class="size-5 p-1 rounded-full bg-defaultColor" :class="{'!bg-blue-500':payment.level>=1}">
                     <svg-component v-if="payment.level>=1" name="check" class="-mt-2 -mr-2 size-5"></svg-component>
                 </div>
-                <div class="w-16 h-0.5 rounded-full bg-black sm:w-32"></div>
+                <div class="w-16 h-0.5 rounded-full bg-black sm:w-32" :class="{'!bg-blue-500':payment.level>=1}"></div>
                 <div class="size-5 rounded-full bg-defaultColor" :class="{'!bg-blue-500':payment.level>=2}">
-                    <svg-component v-if="payment.level>=2" name="check" class="-mt-2 -mr-2 size-5"></svg-component>
+                    <svg-component v-if="payment.level>=2" name="check" class="-mt-1 -mr-1 size-5"></svg-component>
                 </div>
-                <div class="w-16 h-0.5 rounded-full bg-black sm:w-32"></div>
+                <div class="w-16 h-0.5 rounded-full bg-black sm:w-32" :class="{'!bg-blue-500':payment.level>=2}"></div>
                 <div class="size-5 rounded-full bg-defaultColor" :class="{'!bg-blue-500':payment.level===3}">
-                    <svg-component v-if="payment.level===3" name="check" class="-mt-2 -mr-2 size-5"></svg-component>
+                    <svg-component v-if="payment.level===3" name="check" class="-mt-1 -mr-1 size-5"></svg-component>
                 </div>
             </div>
         </div>
