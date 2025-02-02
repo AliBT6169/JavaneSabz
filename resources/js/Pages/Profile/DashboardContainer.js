@@ -152,6 +152,9 @@ const productCountIncrement = (index) => {
 const productCountDecrement = (index) => {
     Products.value[index].count > 0 ? Products.value[index].count-- : Products.value[index].count;
 }
+
+
+
 export {
     Products,
     productCountIncrement,
