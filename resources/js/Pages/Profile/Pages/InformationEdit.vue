@@ -7,13 +7,15 @@ import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
     <div class="Sidebar p-4">
         <form action="" class="">
             <div class="*:mb-5">
-                <label for="profile-picture" class="!size-60 overflow-clip">
-                    <input type="file" class="invisible" id="profile-picture" src="../../../../../public/images/about-us/owner.jpg">
-                    <img src="../../../../../public/images/about-us/owner.jpg"
-                         class="ring-2 mx-auto rounded-full w-32 ring-offset-8 ring-offset-defaultColor5
-                     ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor"
-                         alt="profile-picture">
-                </label>
+                <div class="m-auto w-60">
+                    <label for="profile-picture" class="size-60 overflow-clip">
+                        <input type="file" name="profile-picture" class="invisible" id="profile-picture" src="../../../../../public/images/about-us/owner.jpg">
+                        <img src="../../../../../public/images/about-us/owner.jpg"
+                             class="ring-2 mx-auto cursor-pointer rounded-full duration-300 w-32 ring-offset-8 ring-offset-defaultColor5
+                     ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor hover:scale-95"
+                             alt="profile-picture">
+                    </label>
+                </div>
                 <div class="grid gap-8 place-content-center text-gray-700 dark:text-gray-300 lg:grid-cols-2 lg:text-lg">
                     <panel-input label="نام کاربری :" value="mojtaba_123" placeholder-text="نام کاربری خود را وارد کنید:" />
                     <panel-input label="نام و نام خانوادگی :" value="مجتبی قربانی" placeholder-text="نام و نام خانوادگی خود را وارد کنید:" />
