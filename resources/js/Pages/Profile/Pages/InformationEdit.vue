@@ -7,7 +7,7 @@ import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
     <div class="Sidebar p-4">
         <form action="" class="">
             <div class="*:mb-5">
-                <div class="m-auto w-60">
+                <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">
                         <input type="file" name="profile-picture" class="invisible" id="profile-picture" src="../../../../../public/images/about-us/owner.jpg">
                         <img src="../../../../../public/images/about-us/owner.jpg"
