@@ -15,10 +15,8 @@ return new class extends Migration {
             $table->string('name');
 
 
-            $table->foreignId('brand_id');
             $table->foreignId('brand_id')->references('id')->on('brands')->onDelete('cascade');
 
-            $table->foreignId('category_id');
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->string('slug')->unique();
