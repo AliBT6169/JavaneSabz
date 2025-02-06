@@ -12,15 +12,9 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-
-
             $table->foreignId('address_id')->references('id')->on('user_addresses')->onDelete('cascade');
-
-
             $table->foreignId('coupon_id')->references('id')->on('coupons')->onDelete('cascade');
-
             $table->tinyInteger('status')->default(0);
             $table->unsignedInteger('total_amount');
             $table->unsignedInteger('delivery_amount')->default(0);
@@ -29,7 +23,6 @@ return new class extends Migration {
             $table->enum('payment_type', ['pos', 'cash', 'shabaNumber', 'online']);
             $table->tinyInteger('payment_status')->default(0);
             $table->text('description')->nullable();
-
             $table->timestamps();
         });
     }

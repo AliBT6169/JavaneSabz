@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,19 +12,12 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-
-
             $table->foreignId('order_id')->references('id')->on('orders')->onDelete('cascade');
-
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
-
             $table->foreignId('product-variation_id')->references('id')->on('product_variations')->onDelete('cascade');
-
             $table->unsignedInteger('price');
             $table->unsignedTinyInteger('quantity');
             $table->unsignedTinyInteger('subtotal');
-
-
             $table->timestamps();
         });
     }

@@ -12,15 +12,10 @@ return new class extends Migration {
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-
-
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
-
             $table->boolean('approved')->default(false);
             $table->text('comment');
-
             $table->softDeletes();
             $table->timestamps();
         });
