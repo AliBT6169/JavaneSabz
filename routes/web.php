@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,6 +16,10 @@ Route::get('/درباره ما', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Profile/Index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/auth-check', function () {
+    return Auth::user();
+});
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {

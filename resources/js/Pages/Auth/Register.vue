@@ -7,6 +7,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const form = useForm({
     name: '',
+    cellphone: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -44,6 +45,12 @@ const submit = () => {
                         required
                     ></input-BT2>
                     <input-BT2
+                        Label="شماره همراه:"
+                        type="text"
+                        v-model="form.cellphone"
+                        required
+                    ></input-BT2>
+                    <input-BT2
                         Label="ایمیل:"
                         type="email"
                         v-model="form.email"
@@ -57,20 +64,12 @@ const submit = () => {
                     ></input-BT2>
                     <input-BT2
                         Label="تائید رمز عبور:"
-                        type="password_confirmation"
+                        type="password"
                         v-model="form.password_confirmation"
                         required
                     ></input-BT2>
-                    <label class="*:pl-2 mx-auto lg:hidden">
-                        <span class="duration-300 hover:text-defaultColor">من را به یاد داشته باش</span>
-                        <CheckBoxBT name="remember" v-model:checked="form.remember"/>
-                    </label>
                     <div class="px-5 lg:flex gap-5 justify-between w-full items-center">
                         <div class="grid gap-2">
-                            <label class="*:pl-2 hidden lg:block">
-                                <span class="duration-300 hover:text-defaultColor">من را به یاد داشته باش</span>
-                                <CheckBoxBT name="remember" v-model:checked="form.remember"/>
-                            </label>
                             <Link href="/login">
                                 <div
                                     class="text-defaultColor7 duration-300 cursor-pointer hover:text-defaultColor underline"
@@ -86,7 +85,7 @@ const submit = () => {
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
                             >
-                                ورود
+                                ثبت نام
                             </ButtonBT2>
                         </div>
                     </div>

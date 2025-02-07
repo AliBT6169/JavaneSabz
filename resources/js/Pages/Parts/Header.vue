@@ -3,7 +3,15 @@
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
+import {onMounted, ref} from "vue";
+import axios from "axios";
 
+const auth_check = ref();
+onMounted(() => {
+    axios.get('/auth-check').then(response => {
+        auth_check.value = response.data;
+    })
+});
 </script>
 
 <template>
@@ -51,7 +59,7 @@ import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
                     items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation
                     hover:text-white dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white  lg:px-4">
                         <svg-component name="person" class="size-5"></svg-component>
-                        <div class="text-nowrap hidden lg:block">ورود / ثبت نام</div>
+                        <div class="text-nowrap hidden lg:block">{{auth_check!=""?'داشبورد':'ورود/ثبت نام'}}</div>
                     </div>
                 </Link>
             </div>
