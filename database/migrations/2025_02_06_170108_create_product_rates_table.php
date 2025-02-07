@@ -12,14 +12,9 @@ return new class extends Migration {
     {
         Schema::create('product_rates', function (Blueprint $table) {
             $table->id();
-
-
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
-
             $table->tinyInteger('rate');
-
             $table->timestamps();
         });
     }

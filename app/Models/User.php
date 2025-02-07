@@ -24,9 +24,11 @@ class User extends Authenticatable
         'cellphone',
         'status',
         'avatar',
-        'is_admin',
-        'provider',
+        'email_verified_at',
         'password',
+        'provider',
+        'is_admin',
+        'created_at',
     ];
 
     /**
