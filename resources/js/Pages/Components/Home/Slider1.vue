@@ -65,8 +65,7 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
          class="slider1 mx-auto relative mt-1 rounded-2xl w-[20rem] h-40 overflow-hidden cursor-pointer
           sm:w-[30rem] sm:h-48 md:w-[40rem] md:h-52 lg:w-[60rem] lg:h-80 xl:w-[80rem] xl:h-96">
         <div id="slider" class="flex w-fit h-96 duration-500" @mouseup="mouse_upd"
-             @mousemove="mouse_moved" @mousedown="mouse_downed" @touchstart="mouse_downed" @touchmove="mouse_moved"
-             @touchend="mouse_upd"
+             @mousemove="mouse_moved" @mousedown="mouse_downed"
              :style="`transform: translateX(${translation}rem)`">
             <span class="slider-pages" v-for="item in props.slider1Data">
                 <img class="slider1 size-full select-none" :src="item" alt=""

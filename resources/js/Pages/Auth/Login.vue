@@ -23,7 +23,6 @@ const submit = () => {
     form.post(route('login'), {
         onFinish: () => form.reset('password'),
     });
-    console.log(form.errors)
 };
 </script>
 

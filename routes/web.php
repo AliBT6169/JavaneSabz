@@ -9,12 +9,14 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Index');
 });
+
 Route::get('/درباره ما', function () {
     return Inertia::render('About-Us');
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Profile/Index');
+    $User = Auth::user();
+    return Inertia::render('Profile/Index', ['User'=>$User]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/auth-check', function () {
