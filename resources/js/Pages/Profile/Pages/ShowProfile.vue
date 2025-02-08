@@ -1,5 +1,6 @@
 <script setup>
 
+import {userData} from "../DashboardContainer.js";
 </script>
 
 <template>
@@ -11,7 +12,7 @@
         <div class="grid gap-8 place-content-center text-gray-700 dark:text-gray-300 lg:grid-cols-2 lg:text-lg">
             <div class="border-b border-gray-700 dark:border-gray-300">
                 <span class="pl-2 text-black">نام کاربری :</span>
-                <span>mojtaba-ghorbani</span>
+                <span>{{userData.name}}</span>
             </div>
             <div class="border-b border-gray-700 dark:border-gray-300">
                 <span class="pl-2 text-black">نام و نام خانوادگی :</span>

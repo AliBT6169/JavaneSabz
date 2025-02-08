@@ -19,10 +19,6 @@ Route::get('/dashboard', function () {
     return Inertia::render('Profile/Index', ['User'=>$User]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/auth-check', function () {
-    return Auth::user();
-});
-
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile/show', 'show')->name('profile.show');

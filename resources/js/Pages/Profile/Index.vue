@@ -4,10 +4,12 @@ import PanelSideBar from "@/Pages/Profile/Parts/PanelSideBar.vue";
 import PanelHeader from "@/Pages/Profile/Parts/PanelHeader.vue";
 import {profileComponent, profileSidebar, profileSidebarCloser} from "@/Pages/Components/Helper/Helper.js";
 import {onMounted} from "vue";
+
 import {userData} from "@/Pages/Profile/DashboardContainer.js";
-const props = defineProps(["User",]);
-onMounted(()=>{
+const props = defineProps(["User"]);
+onMounted(() => {
     userData.value=props.User;
+    console.log(userData.value);
 });
 </script>
 

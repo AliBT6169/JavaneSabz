@@ -4,7 +4,14 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 import {userData} from "@/Pages/Profile/DashboardContainer.js";
+import {onMounted} from "vue";
+import axios from "axios";
 
+onMounted(()=>{
+    axios.get('/auth-check').then((response) => {
+        userData.value=response.data===''?-1:response.data;
+    })
+});
 </script>
 
 <template>
@@ -37,7 +44,7 @@ import {userData} from "@/Pages/Profile/DashboardContainer.js";
             </div>
             <div class="gap-2 hidden md:flex">
                 <!--                        buy cart-->
-                <div
+                <div  @click="console.log(userData)"
                     class="w-fit px-4 shine_animation h-10 rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
                     <div class="text-defaultColor4">
                         <svg-component name="cart" class="size-5"></svg-component>
@@ -52,7 +59,7 @@ import {userData} from "@/Pages/Profile/DashboardContainer.js";
                     items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation
                     hover:text-white dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white  lg:px-4">
                         <svg-component name="person" class="size-5"></svg-component>
-                        <div class="text-nowrap hidden lg:block">{{ userData == null ? 'داشبورد' : 'ورود/ثبت نام' }}
+                        <div class="text-nowrap hidden lg:block">{{ userData === -1 ? 'ورود/ثبت نام' : 'داشبورد' }}
                         </div>
                     </div>
                 </Link>
