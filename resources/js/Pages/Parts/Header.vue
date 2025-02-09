@@ -53,7 +53,7 @@ onMounted(()=>{
                     <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
                 </div>
                 <!--            login and register-->
-                <Link :href="route('dashboard')">
+                <Link :href="route(userData === -1 ?'login':'dashboard')">
                     <div
                         class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
                     items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation

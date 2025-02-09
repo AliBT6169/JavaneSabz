@@ -6,10 +6,10 @@ import {profileComponent, profileSidebar, profileSidebarCloser} from "@/Pages/Co
 import {onMounted} from "vue";
 
 import {userData} from "@/Pages/Profile/DashboardContainer.js";
+
 const props = defineProps(["User"]);
 onMounted(() => {
-    userData.value=props.User;
-    console.log(userData.value);
+    userData.value = props.User;
 });
 </script>
 

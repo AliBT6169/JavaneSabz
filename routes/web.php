@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +15,9 @@ Route::get('/درباره ما', function () {
     return Inertia::render('About-Us');
 });
 
-Route::get('/dashboard', function () {
-    $User = Auth::user();
-    return Inertia::render('Profile/Index', ['User'=>$User]);
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/dashboard' , 'index')->name('dashboard');
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
