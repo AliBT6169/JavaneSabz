@@ -1,8 +1,6 @@
 import {ref} from "vue";
 import {rand} from "@vueuse/core";
-import axios from "axios";
 
-const userData = ref(-1);
 const Products = ref([
     {
         name: "امامکتین امامکتیناما مکتینامامکتینام امکتین",
@@ -154,18 +152,11 @@ const productCountIncrement = (index) => {
 const productCountDecrement = (index) => {
     Products.value[index].count > 0 ? Products.value[index].count-- : Products.value[index].count;
 }
-
-const deleteUserData = () => {
-    userData.value = -1;
-}
-
 export {
-    userData,
     Products,
     Transaction,
     Payments,
     LikedProducts,
     productCountIncrement,
     productCountDecrement,
-    deleteUserData,
 }

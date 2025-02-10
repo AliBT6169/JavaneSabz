@@ -3,14 +3,11 @@
 import PanelSideBar from "@/Pages/Profile/Parts/PanelSideBar.vue";
 import PanelHeader from "@/Pages/Profile/Parts/PanelHeader.vue";
 import {profileComponent, profileSidebar, profileSidebarCloser} from "@/Pages/Components/Helper/Helper.js";
-import {onMounted} from "vue";
-
-import {userData} from "@/Pages/Profile/DashboardContainer.js";
+import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["User"]);
-onMounted(() => {
-    userData.value = props.User;
-});
+const authStore = useAuthStore();
+authStore.setUser(props.User);
 </script>
 
 <template>

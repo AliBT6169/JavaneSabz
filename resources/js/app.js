@@ -6,9 +6,10 @@ import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 import {createApp, h} from 'vue';
 import {createPinia} from "pinia";
 import {ZiggyVue} from '../../vendor/tightenco/ziggy';
-
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) =>

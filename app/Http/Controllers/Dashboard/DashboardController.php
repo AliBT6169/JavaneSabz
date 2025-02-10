@@ -14,10 +14,10 @@ class DashboardController extends Controller
     public function index()
     {
         $User = Auth::user();
-        $UserAdress = UserAddress::get()->where('user_id', $User->id);
+        $UserAddress = UserAddress::get()->where('user_id', $User->id);
         $data = [
             'user' => $User,
-            'user_address' => $UserAdress
+            'user_address' => $UserAddress
         ];
         return Inertia::render('Profile/Index', ['User' => $data]);
     }

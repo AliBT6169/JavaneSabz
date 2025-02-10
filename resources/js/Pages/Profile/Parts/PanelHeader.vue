@@ -4,7 +4,10 @@ import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 import {Link} from '@inertiajs/vue3'
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {profileSidebar, profileSidebarCloser} from "@/Pages/Components/Helper/Helper.js";
-import {deleteUserData} from "@/Pages/Profile/DashboardContainer.js";
+import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+
+const authUser = useAuthStore();
+
 </script>
 
 <template>
@@ -36,7 +39,7 @@ import {deleteUserData} from "@/Pages/Profile/DashboardContainer.js";
                             <div class="flex justify-between py-2 cursor-pointer duration-500 items-center
                              border-b hover:text-slate-600 dark:hover:text-gray-300 hover:px-1">
                                 <svg-component name="logout" class="size-6"></svg-component>
-                                <div class="" @click="deleteUserData()">خروج از حساب</div>
+                                <div class="" @click="authUser.logout()">خروج از حساب</div>
                             </div>
                         </Link>
                     </div>
