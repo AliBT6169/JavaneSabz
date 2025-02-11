@@ -21,20 +21,28 @@ console.log(authUser.user)
                 <span>{{ authUser.user.full_name ?? 'وارد نشده' }}</span>
             </div>
             <div class="border-b border-gray-700 dark:border-gray-300">
+                <span class="pl-2 text-black">شماره همراه :</span>
+                <span>{{ authUser.user.cellphone ?? 'وارد نشده' }}</span>
+            </div>
+            <div class="border-b border-gray-700 dark:border-gray-300">
+                <span class="pl-2 text-black">ایمیل :</span>
+                <span>{{ authUser.user.email ?? 'وارد نشده' }}</span>
+            </div>
+            <div class="border-b border-gray-700 dark:border-gray-300">
                 <span class="pl-2 text-black">جنسیت :</span>
                 <span>{{ authUser.user.gender === 0 ? 'خانم' : 'آقا' }}</span>
             </div>
             <div class="border-b border-gray-700 dark:border-gray-300">
                 <span class="pl-2 text-black">آدرس :</span>
-                <span>ایران - مازندران - بهنمیر - بلوار درزیان - کیلومتر 4 - روستای گالشکلا</span>
+                <span>{{authUser.user.user_address??'وارد نشده'}}</span>
             </div>
             <div class="border-b border-gray-700 dark:border-gray-300">
                 <span class="pl-2 text-black">کد پستی :</span>
-                <span>111-111-1111</span>
+                <span>{{ authUser.user.user_post_code??'وارد نشده' }}</span>
             </div>
             <div class="border-b border-gray-700 dark:border-gray-300">
                 <span class="pl-2 text-black">تاریخ ساخت :</span>
-                <span>1403/01/01</span>
+                <span>{{authUser.user.created_at}}</span>
             </div>
         </div>
     </div>

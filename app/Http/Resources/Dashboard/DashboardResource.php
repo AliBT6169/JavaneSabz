@@ -15,15 +15,15 @@ class DashboardResource extends JsonResource
     public function toArray(Request $request)
     {
         return [
-            'id' => $this['user']->id,
-            'is_admin' => $this['user']->is_admin,
-            'name' => $this['user']->name,
-            'full-name' => $this['user']->full_name,
-            'gender' => $this['user']->gender,
-            'email' => $this['user']->email,
-            'created_at' => $this['user']->created_at,
-            'user_address' => $this['user_address']->address,
-            'user_post_code' => $this['user_address']->postcode,
+            'id' => $this->id,
+            'is_admin' => $this->is_admin,
+            'name' => $this->name,
+            'full-name' => $this->full_name,
+            'gender' => $this->gender,
+            'email' => $this->email,
+            'created_at' => $this->created_at,
+            'user_address' => $this->address->address,
+            'user_post_code' => $this->address->postcode,
 
         ];
     }
