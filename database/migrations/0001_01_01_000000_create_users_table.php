@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('full_name')->nullable()->default('علی محمودی');
-            $table->boolean('gender')->default(0);
+            $table->boolean('gender')->default(1);
             $table->string('email')->unique();
             $table->string('cellphone')->unique();
             $table->integer('status')->default(1);
