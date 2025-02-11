@@ -1,8 +1,9 @@
 <?php
 
-namespace Database\Factories\Category;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Ybazli\Faker\Facades\Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
@@ -17,7 +18,11 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => Faker::firstName(),
+            'slug' => fake()->unique()->slug(),
+            'description' => Faker::sentence(),
+            'is_active' => rand(0, 1),
+            'icon' => fake()->imageUrl(),
         ];
     }
 }
