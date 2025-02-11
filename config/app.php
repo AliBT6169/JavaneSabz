@@ -1,7 +1,9 @@
 <?php
 
-return [
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\ServiceProvider;
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -122,5 +124,11 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        Ybazli\Faker\FakerServiceProvider::class,
+    ])->toArray(),
+    'aliases' => Facade::defaultAliases()->merge([
+        'Faker' => Ybazli\Faker\Facades\Faker::class,
+    ])->toArray(),
 
 ];

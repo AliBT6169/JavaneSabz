@@ -15,18 +15,7 @@ class DashboardController extends Controller
     public function index()
     {
         $User = Auth::user();
-        $userData = [
-            'id' => $User->id,
-            'is_admin' => $User->is_admin,
-            'name' => $User->name,
-            'full_name' => $User->full_name,
-            'gender' => $User->gender,
-            'email' => $User->email,
-            'cellphone' => $User->cellphone,
-            'created_at' => jalalian::fromDateTime($User->created_at)->format('l, d F Y'),
-            'user_address' => $User->address->address??null,
-            'user_post_code' => $User->address->postcode??null,
-        ];
+        $userData = DashboardResource::make($User);
         return Inertia::render('Profile/Index', ['User' => $userData]);
     }
 }
