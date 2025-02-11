@@ -23,7 +23,7 @@ class DashboardController extends Controller
             'gender' => $User->gender,
             'email' => $User->email,
             'cellphone' => $User->cellphone,
-            'created_at' => jalalian::fromDateTime($User->created_at)->format('d-m-Y H:i:s'),
+            'created_at' => jalalian::fromDateTime($User->created_at)->format('l, d F Y'),
             'user_address' => $User->address->address??null,
             'user_post_code' => $User->address->postcode??null,
         ];
