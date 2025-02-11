@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\BuyCart\BuyCart;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ProductVariation extends Model
 {
@@ -16,8 +19,11 @@ class ProductVariation extends Model
         'quantity',
         'sku',
         'sale_price',
-        'date_on_sale_from',
-        'date_on_sale_to',
         'created_at',
     ];
+
+    public function buy_carts():BelongsToMany
+    {
+        return $this->belongsToMany(BuyCart::class);
+    }
 }

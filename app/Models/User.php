@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\BuyCart\BuyCart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -34,10 +36,16 @@ class User extends Authenticatable
         'created_at',
     ];
 
-    public function address() : HasOne
+    public function address(): HasOne
     {
         return $this->hasOne(UserAddress::class);
     }
+
+    public function buy_carts(): HasMany
+    {
+        return $this->hasMany(BuyCart::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
