@@ -2,7 +2,6 @@
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const authUser = useAuthStore();
-console.log(authUser.user)
 </script>
 
 <template>

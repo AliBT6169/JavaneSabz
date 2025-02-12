@@ -22,9 +22,9 @@ class BuyCart extends Model
         'quantity',
     ];
 
-    public function product_variation(): HasOne
+    public function product_variation(): BelongsTo
     {
-        return $this->HasOne(ProductVariation::class);
+        return $this->belongsTo(ProductVariation::class);
     }
 
     public function user(): BelongsTo

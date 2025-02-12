@@ -6,6 +6,7 @@ use App\Models\BuyCart\BuyCart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProductVariation extends Model
 {
@@ -26,9 +27,9 @@ class ProductVariation extends Model
     ];
 
 
-    public function buy_cart(): BelongsToMany
+    public function buy_cart(): HasOne
     {
-        return $this->belongsToMany(BuyCart::class);
+        return $this->hasOne(BuyCart::class);
     }
 
     public function Product(): BelongsToMany

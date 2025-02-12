@@ -4,10 +4,14 @@ import PanelSideBar from "@/Pages/Profile/Parts/PanelSideBar.vue";
 import PanelHeader from "@/Pages/Profile/Parts/PanelHeader.vue";
 import {profileComponent, profileSidebar, profileSidebarCloser} from "@/Pages/Components/Helper/Helper.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import {onMounted} from "vue";
 
 const props = defineProps(["User"]);
 const authStore = useAuthStore();
 authStore.setUser(props.User.data);
+onMounted(() => {
+    console.log(authStore.user.user_buy_cart[1]);
+});
 </script>
 
 <template>
