@@ -19,7 +19,7 @@ class DashboardResource extends JsonResource
         foreach ($this->buy_carts as $buy_cart_item) {
             $buy_cart[]= (object)[
                 "product_size"=>$buy_cart_item->product_variation->value,
-                "product_quantity"=> $buy_cart_item->product_variation->quantity,
+                "product_quantity"=> $buy_cart_item->quantity,
                 "product_price" => $buy_cart_item->product_variation->sale_price,
             ];
         }

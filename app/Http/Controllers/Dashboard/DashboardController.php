@@ -15,7 +15,6 @@ class DashboardController extends Controller
     public function index()
     {
         $User = Auth::user();
-//        return $User->buy_carts[0]->product_variation;
         $userData = DashboardResource::make($User);
         return Inertia::render('Profile/Index', ['User' => $userData]);
     }
