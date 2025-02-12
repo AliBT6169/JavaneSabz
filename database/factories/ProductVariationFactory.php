@@ -21,9 +21,9 @@ class ProductVariationFactory extends Factory
             "product_id" => rand(1, 100),
             "attribute_id" => rand(1, 2),
             "value" => Faker::firstName(),
-            "price" => rand(10000,1000000),
+            "price" => rand(10000, 1000000),
             "quantity" => rand(0, 100),
-            "sale_price" => rand(50000,5000000),
+            "sale_price" => rand(50000, 5000000),
 
         ];
     }

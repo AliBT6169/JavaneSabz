@@ -11,6 +11,7 @@ class ProductVariation extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductVariationFactory> */
     use HasFactory;
+
     protected $table = 'product_variations';
     protected $fillable = [
         'id',
@@ -25,17 +26,17 @@ class ProductVariation extends Model
     ];
 
 
-    public function buy_cart():BelongsToMany
+    public function buy_cart(): BelongsToMany
     {
         return $this->belongsToMany(BuyCart::class);
     }
 
-    public function Product():BelongsToMany
+    public function Product(): BelongsToMany
     {
         return $this->belongsToMany(BuyCart::class);
     }
 
-    public function attribute():BelongsToMany
+    public function attribute(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class);
     }

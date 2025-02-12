@@ -20,6 +20,7 @@ class Brand extends Model
         'icon',
         'created_at',
     ];
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);

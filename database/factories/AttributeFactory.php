@@ -17,7 +17,7 @@ class AttributeFactory extends Factory
      */
     public function definition(): array
     {
-        $arrayValue=["liquid","solid"];
+        $arrayValue = ["liquid", "solid"];
         return [
             "name" => $arrayValue[array_rand($arrayValue)],
             "slug" => Faker::firstName(),

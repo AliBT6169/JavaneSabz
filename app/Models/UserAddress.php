@@ -23,7 +23,7 @@ class UserAddress extends Model
         'created_at',
     ];
 
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

@@ -20,7 +20,7 @@ class BrandFactory extends Factory
         return [
             'name' => Faker::firstName(),
             'slug' => fake()->unique()->slug(),
-            'is_active' => rand(0,1),
+            'is_active' => rand(0, 1),
             'icon' => fake()->imageUrl(),
         ];
     }
