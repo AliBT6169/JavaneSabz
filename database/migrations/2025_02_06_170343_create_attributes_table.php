@@ -12,7 +12,8 @@ return new class extends Migration {
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->enum('name',["liquid","solid"])->default("solid");
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

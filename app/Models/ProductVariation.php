@@ -22,8 +22,19 @@ class ProductVariation extends Model
         'created_at',
     ];
 
+
     public function buy_carts():BelongsToMany
     {
         return $this->belongsToMany(BuyCart::class);
+    }
+
+    public function Product():BelongsToMany
+    {
+        return $this->belongsToMany(BuyCart::class);
+    }
+
+    public function attribute():BelongsTo
+    {
+        return $this->belongsTo(Attribute::class);
     }
 }

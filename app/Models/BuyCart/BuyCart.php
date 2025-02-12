@@ -16,6 +16,7 @@ class BuyCart extends Model
     use HasFactory;
 
     protected $table = 'buy_carts';
+
     protected $fillable = [
         'user_id',
         'product_variation_id',
