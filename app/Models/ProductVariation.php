@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Models\BuyCart\BuyCart;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ProductVariation extends Model
 {
+    /** @use HasFactory<\Database\Factories\ProductVariationFactory> */
+    use HasFactory;
     protected $table = 'product_variations';
     protected $fillable = [
         'id',
@@ -23,7 +25,7 @@ class ProductVariation extends Model
     ];
 
 
-    public function buy_carts():BelongsToMany
+    public function buy_cart():BelongsToMany
     {
         return $this->belongsToMany(BuyCart::class);
     }
@@ -33,8 +35,8 @@ class ProductVariation extends Model
         return $this->belongsToMany(BuyCart::class);
     }
 
-    public function attribute():BelongsTo
+    public function attribute():BelongsToMany
     {
-        return $this->belongsTo(Attribute::class);
+        return $this->belongsToMany(Attribute::class);
     }
 }

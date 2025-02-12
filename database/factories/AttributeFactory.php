@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Attribute;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Ybazli\Faker\Facades\Faker;
@@ -17,8 +17,9 @@ class AttributeFactory extends Factory
      */
     public function definition(): array
     {
+        $arrayValue=["liquid","solid"];
         return [
-            "name" => rand(0,1),
+            "name" => $arrayValue[array_rand($arrayValue)],
             "slug" => Faker::firstName(),
         ];
     }
