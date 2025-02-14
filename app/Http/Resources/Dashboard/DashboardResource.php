@@ -55,11 +55,28 @@ class DashboardResource extends JsonResource
             $orders[] = (object)[
                 "id" => $order->id,
                 "status" => $order->status,
+                "items" => $this->getOrderItems($order),
                 "created_at" => $order->created_at,
             ];
         }
         return $orders;
     }
 
+    public function getOrderItems($request)
+    {
+        $order_items = [];
+        foreach ($request->orderItems as $item) {
+            $order_items[] = (object)[
+                "id" => $item->id,
+                "name" => $item->productVariation->product->name,
+                "image" => $item->productVariation->product->primary_image,
+                "quantity" => $item->quantity,
+                "created_at" => $item->created_at,
+                "price" => $item->productVariation->sale_price,
+            ];
+        }
+        return $order_items;
+
+    }
 
 }
