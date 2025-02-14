@@ -15,18 +15,6 @@ class DashboardResource extends JsonResource
      */
     public function toArray(Request $request)
     {
-        $buy_cart = [];
-        foreach ($this->buy_carts as $buy_cart_item) {
-            $buy_cart[]= (object)[
-                "id" => $buy_cart_item->id,
-                "name" => $buy_cart_item->product_variation->product->name,
-                "image" => $buy_cart_item->product_variation->product->primary_image,
-                "description" => $buy_cart_item->product_variation->product->description,
-                "size"=>$buy_cart_item->product_variation->value,
-                "quantity"=> $buy_cart_item->quantity,
-                "price" => $buy_cart_item->product_variation->sale_price,
-            ];
-        }
         return [
             'id' => $this->id,
             'is_admin' => $this->is_admin,
@@ -38,7 +26,40 @@ class DashboardResource extends JsonResource
             'created_at' => jalalian::fromDateTime($this->created_at)->format('l, d F Y'),
             'user_address' => $this->address->address ?? null,
             'user_post_code' => $this->address->postcode ?? null,
-            'user_buy_cart' => $buy_cart,
+            'user_buy_cart' => $this->getBuyCartItems($this),
+            'user_orders' => $this->getOrder($this),
         ];
     }
+
+    public function getBuyCartItems($BuyCart)
+    {
+        $BuyCartItems = [];
+        foreach ($BuyCart->buy_carts as $buy_cart_item) {
+            $BuyCartItems[] = (object)[
+                "id" => $buy_cart_item->id,
+                "name" => $buy_cart_item->product_variation->product->name,
+                "image" => $buy_cart_item->product_variation->product->primary_image,
+                "description" => $buy_cart_item->product_variation->product->description,
+                "size" => $buy_cart_item->product_variation->value,
+                "quantity" => $buy_cart_item->quantity,
+                "price" => $buy_cart_item->product_variation->sale_price,
+            ];
+        }
+        return $BuyCartItems;
+    }
+
+    public function getOrder($request)
+    {
+        $orders = [];
+        foreach ($request->orders as $order) {
+            $orders[] = (object)[
+                "id" => $order->id,
+                "status" => $order->status,
+                "created_at" => $order->created_at,
+            ];
+        }
+        return $orders;
+    }
+
+
 }

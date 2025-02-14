@@ -20,7 +20,7 @@ class OrderFactory extends Factory
         $delivery_amount = rand(1000, 100000);
         $coupon_amount = rand(1000, 100000);
         return [
-            "user_id" => rand(1, 100),
+            "user_id" => 1,
             "status" => rand(0, 2),
             "total_amount" => $total_amount,
             "delivery_amount" => $delivery_amount,
