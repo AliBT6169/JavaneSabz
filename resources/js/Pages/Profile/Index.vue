@@ -7,6 +7,7 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {onMounted} from "vue";
 
 const props = defineProps(["User"]);
+console.log(props.User)
 const authStore = useAuthStore();
 authStore.setUser(props.User.data);
 </script>

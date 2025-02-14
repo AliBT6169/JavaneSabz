@@ -23,10 +23,10 @@ const productCount = ref(props.product.count)
         <div class="flex items-center gap-1">تعداد:
             <div
                 class="mr-4 !overflow-hidden *:px-2 border-black text-lg font-bold border rounded-xl dark:border-white">
-                <span @click="dashboard.productIncrement(index)"
+                <span @click="dashboard.productIncrement(index ,product.id)"
                       class=" cursor-pointer bg-defaultColor dark:bg-defaultColor5 bg-opacity-80">+</span>
                 <span>{{ product.quantity }}</span>
-                <span @click="product.quantity>0?dashboard.productDecrement(index):product.quantity"
+                <span @click="product.quantity>0?dashboard.productDecrement(index ,product.id):product.quantity"
                       class="cursor-pointer bg-red-600 bg-opacity-80">-</span>
             </div>
         </div>

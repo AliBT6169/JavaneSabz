@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia';
+import axios from "axios";
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -12,13 +13,15 @@ export const useAuthStore = defineStore('auth', {
             this.Products = user.user_buy_cart;
             this.isAuthenticated = !!user;
         },
-        productIncrement(index) {
+        productIncrement(index, id) {
             this.Products[index].quantity++;
-            console.log(this.Products[index].quantity);
+            axios.post(route('BuyCart.CartItemIncrement', id));
         },
-        productDecrement(index) {
-            this.Products[index].quantity > 0 ? this.Products[index].quantity-- : this.Products[index].quantity;
-            console.log(this.Products[index].quantity);
+        productDecrement(index, id) {
+            if (this.Products[index].quantity > 0) {
+                this.Products[index].quantity--;
+                axios.post(route('BuyCart.CartItemDecrement', id));
+            }
         },
         logout() {
             this.user = null;

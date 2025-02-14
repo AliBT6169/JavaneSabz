@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Dashboard\BuyCart\BuyCartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -61,4 +62,11 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/auth-check', function () {
     return Auth::user();
+});
+
+Route::controller(BuyCartController::class)->group(function () {
+    Route::post('/IncrementBuyCart/{id}', 'CartItemIncrement')->name('BuyCart.CartItemIncrement');
+});
+Route::controller(BuyCartController::class)->group(function () {
+    Route::post('/DecrementBuyCart/{id}', 'CartItemDecrement')->name('BuyCart.CartItemDecrement');
 });
