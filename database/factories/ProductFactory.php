@@ -27,7 +27,7 @@ class ProductFactory extends Factory
             'status' => rand(0, 1),
             'is_active' => rand(0, 1),
             'delivery_amount' => rand(1000, 100000),
-            'delivery_amount_per_product' => rand(1000, 100000),
+            'delivery_amount_per_product' => rand(500, 50000),
 
         ];
     }

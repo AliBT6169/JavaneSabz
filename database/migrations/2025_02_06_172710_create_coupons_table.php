@@ -14,12 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('code');
-            $table->enum('type', ['amount', 'percentage']);
-            $table->unsignedInteger('amount')->nullable();
-            $table->unsignedInteger('percentage')->nullable();
-            $table->unsignedInteger('max_percentage_amount')->nullable();
+            $table->unsignedInteger('status')->default(1);
+            $table->unsignedInteger('percentage');
+            $table->unsignedInteger('max_percentage_amount');
             $table->timestamp('expired_at');
             $table->text('description')->nullable();
+            $table->unsignedInteger('couponable_id');
+            $table->string('couponable_type');
             $table->timestamps();
         });
     }

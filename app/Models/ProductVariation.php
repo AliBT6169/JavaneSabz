@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class ProductVariation extends Model
 {
@@ -41,5 +42,10 @@ class ProductVariation extends Model
     public function attribute(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class);
+    }
+
+    public function coupons(): MorphToMany
+    {
+        return $this->morphToMany(Coupon::class, 'couponable');
     }
 }

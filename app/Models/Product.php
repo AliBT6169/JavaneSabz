@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Product extends Model
 {
@@ -40,5 +41,10 @@ class Product extends Model
     public function product_variation(): HasMany
     {
         return $this->hasMany(ProductVariation::class, 'product_id');
+    }
+
+    public function coupons(): MorphToMany
+    {
+        return $this->morphToMany(Coupon::class, 'couponable');
     }
 }
