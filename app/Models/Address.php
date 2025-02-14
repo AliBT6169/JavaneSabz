@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class UserAddress extends Model
+class Address extends Model
 {
     use HasFactory;
 
@@ -16,15 +17,16 @@ class UserAddress extends Model
         'title',
         'address',
         'postcode',
-        'user_id',
+        'addressable_id',
+        'addressable_type',
         'city_id',
         'longitude',
         'latitude',
         'created_at',
     ];
 
-    public function user(): BelongsTo
+    public function addressable(): morphTo
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo();
     }
 }

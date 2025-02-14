@@ -6,6 +6,7 @@ use App\Models\BuyCart\BuyCart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -35,9 +36,9 @@ class User extends Authenticatable
         'created_at',
     ];
 
-    public function address(): HasOne
+    public function address(): MorphOne
     {
-        return $this->hasOne(UserAddress::class);
+        return $this->morphOne(Address::class, 'addressable');
     }
 
     public function buy_carts(): HasMany

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\BuyCart\BuyCart;
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
         Attribute::factory(2)->create()->unique();
         ProductVariation::factory(100)->create()->unique;
         BuyCart::factory(100)->create();
+        Address::factory(1)->create();
     }
 }

@@ -15,10 +15,11 @@ return new class extends Migration {
             $table->string('title');
             $table->string('address');
             $table->string('postcode');
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('city_id');
-            $table->string('longitude');
-            $table->string('latitude');
+            $table->bigInteger('city_id')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->unsignedInteger('addressable_id');
+            $table->string('addressable_type');
             $table->timestamps();
         });
     }
