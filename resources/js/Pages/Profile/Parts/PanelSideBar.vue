@@ -7,7 +7,7 @@ import ShowProfile from "@/Pages/Profile/Pages/ShowProfile.vue";
 import BuyCart from "@/Pages/Profile/Pages/BuyCart.vue";
 import {markRaw} from "vue";
 import Transaction from "@/Pages/Profile/Pages/Transaction.vue";
-import Payment from "@/Pages/Profile/Pages/Payment.vue";
+import Payment from "@/Pages/Profile/Pages/Order.vue";
 import Favorite from "@/Pages/Profile/Pages/Favorite.vue";
 import Comments from "@/Pages/Profile/Pages/Comments.vue";
 import InformationEdit from "@/Pages/Profile/Pages/InformationEdit.vue";
