@@ -21,7 +21,7 @@ class Order extends Model
         'delivery_amount',
         'coupon_amount',
         'paying_amount',
-        'paying_status',
+        'payment_status',
         'created_at',
     ];
 

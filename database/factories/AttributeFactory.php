@@ -20,7 +20,7 @@ class AttributeFactory extends Factory
         $arrayValue = ["liquid", "solid"];
         return [
             "name" => $arrayValue[array_rand($arrayValue)],
-            "slug" => Faker::firstName(),
+            "slug" => fake()->slug,
         ];
     }
 }

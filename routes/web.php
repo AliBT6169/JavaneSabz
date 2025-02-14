@@ -15,10 +15,6 @@ Route::get('/درباره ما', function () {
     return Inertia::render('About-Us');
 });
 
-Route::controller(DashboardController::class)->group(function () {
-    Route::get('/dashboard' , 'index')->name('dashboard');
-
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
