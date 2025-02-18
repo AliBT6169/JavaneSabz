@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OrderItem>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Transaction>
  */
-class OrderItemFactory extends Factory
+class TransactionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,10 @@ class OrderItemFactory extends Factory
     public function definition(): array
     {
         return [
+            "user_id" => 1,
             "order_id" => rand(1, 10),
-            "product_variation_id" => rand(1, 100),
-            "quantity" => rand(1, 100),
-            "coupon_amount" => rand(1000, 100000),
+            "gateway_name" => 1,
+            "status" => rand(0, 2),
         ];
     }
 }
