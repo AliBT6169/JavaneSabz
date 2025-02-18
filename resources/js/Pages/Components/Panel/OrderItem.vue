@@ -18,7 +18,7 @@ const props = defineProps(["Order"])
                 <div class="size-5 p-1 rounded-full bg-defaultColor" :class="{'!bg-blue-500':Order.status>=0}">
                     <svg-component v-if="Order.status>=0" name="check" class="-mt-2 -mr-2 size-5"></svg-component>
                 </div>
-                <div class="w-16 h-0.5 relative rounded-full bg-black sm:w-32" :class="{'before:absolute before:w-1/2 before:h-full before:bg-blue-500':Order.status>=0}"></div>
+                <div class="w-16 h-0.5 relative rounded-full bg-black sm:w-32" :class="{'bg-blue-500':Order.status>=0}"></div>
                 <div class="size-5 rounded-full bg-defaultColor" :class="{'!bg-blue-500':Order.status>=1}">
                     <svg-component v-if="Order.status>=1" name="check" class="-mt-1 -mr-1 size-5"></svg-component>
                 </div>
