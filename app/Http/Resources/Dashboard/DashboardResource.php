@@ -26,15 +26,16 @@ class DashboardResource extends JsonResource
             'created_at' => jalalian::fromDateTime($this->created_at)->format('l, d F Y'),
             'user_address' => $this->address->address ?? null,
             'user_post_code' => $this->address->postcode ?? null,
-            'user_buy_cart' => $this->getBuyCartItems($this),
-            'user_orders' => $this->getOrder($this),
+            'user_buy_cart' => $this->getBuyCartItems($this->buy_carts),
+            'user_orders' => $this->getOrder($this->orders),
+            'user_transactions' => (object)$this->getTransactions($this->transactions),
         ];
     }
 
-    public function getBuyCartItems($BuyCart)
+    public function getBuyCartItems($request)
     {
         $BuyCartItems = [];
-        foreach ($BuyCart->buy_carts as $buy_cart_item) {
+        foreach ($request as $buy_cart_item) {
             $BuyCartItems[] = (object)[
                 "id" => $buy_cart_item->id,
                 "name" => $buy_cart_item->product_variation->product->name,
@@ -51,11 +52,11 @@ class DashboardResource extends JsonResource
     public function getOrder($request)
     {
         $orders = [];
-        foreach ($request->orders as $order) {
+        foreach ($request as $order) {
             $orders[] = (object)[
                 "id" => $order->id,
                 "status" => $order->status,
-                "items" => $this->getOrderItems($order),
+                "items" => $this->getOrderItems($order->orderItems),
                 "created_at" => $order->created_at,
             ];
         }
@@ -65,7 +66,7 @@ class DashboardResource extends JsonResource
     public function getOrderItems($request)
     {
         $order_items = [];
-        foreach ($request->orderItems as $item) {
+        foreach ($request as $item) {
             $order_items[] = (object)[
                 "id" => $item->id,
                 "name" => $item->productVariation->product->name,
@@ -76,6 +77,22 @@ class DashboardResource extends JsonResource
             ];
         }
         return $order_items;
+
+    }
+
+    public function getTransactions($request)
+    {
+        $transaction_items = [];
+        foreach ($request as $item) {
+            $transaction_items[] = (object)[
+                "id" => $item->id,
+                "price" => $item->order->paying_amount,
+                "status" => $item->status,
+                "date" => jalalian::fromDateTime($item->created_at)->format('l, d F Y'),
+                "products" => $this->getOrderItems($item->order->orderItems),
+            ];
+        }
+        return $transaction_items;
 
     }
 

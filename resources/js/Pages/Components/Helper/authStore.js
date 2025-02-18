@@ -12,6 +12,7 @@ export const useAuthStore = defineStore('auth', {
             this.user = user;
             this.Products = user.user_buy_cart;
             this.Orders = user.user_orders;
+            this.Transactions = user.user_transactions;
             this.isAuthenticated = !!user;
         },
         productIncrement(index, id) {
