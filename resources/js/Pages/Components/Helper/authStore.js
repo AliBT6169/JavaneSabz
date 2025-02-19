@@ -13,6 +13,7 @@ export const useAuthStore = defineStore('auth', {
             this.Products = user.user_buy_cart;
             this.Orders = user.user_orders;
             this.Transactions = user.user_transactions;
+            this.WishList = user.user_wish_list;
             this.isAuthenticated = !!user;
         },
         productIncrement(index, id) {

@@ -29,6 +29,7 @@ class DashboardResource extends JsonResource
             'user_buy_cart' => $this->getBuyCartItems($this->buy_carts),
             'user_orders' => $this->getOrder($this->orders),
             'user_transactions' => (object)$this->getTransactions($this->transactions),
+            'user_wish_list' => $this->wish_lists,
         ];
     }
 
