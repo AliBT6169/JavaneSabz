@@ -29,7 +29,7 @@ class DashboardResource extends JsonResource
             'user_buy_cart' => $this->getBuyCartItems($this->buy_carts),
             'user_orders' => $this->getOrder($this->orders),
             'user_transactions' => (object)$this->getTransactions($this->transactions),
-            'user_wish_list' => $this->wish_lists,
+            'user_wish_list' => (object)$this->getWishLists($this->wish_lists),
         ];
     }
 
@@ -96,5 +96,18 @@ class DashboardResource extends JsonResource
         return $transaction_items;
 
     }
+
+    public function getWishLists($request)
+    {
+        $wish_list_items = [];
+        foreach ($request as $item) {
+            $wish_list_items [] = (object)[
+                "product" => $item->product,
+            ];
+        }
+        return $wish_list_items;
+
+    }
+
 
 }

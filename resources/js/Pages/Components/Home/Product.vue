@@ -2,7 +2,8 @@
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 
-const props = defineProps(["image", "name", "special" ,"liked"]);
+const props = defineProps(["image", "name", "special", "liked", "price"]);
+console.log(props.name)
 </script>
 
 <template>
@@ -20,10 +21,15 @@ const props = defineProps(["image", "name", "special" ,"liked"]);
         </div>
         <!--        price & buy cart-->
         <div class="w-full px-4 flex lg:justify-between items-center flex-col gap-2 lg:flex-row">
-            <span class="text-defaultColor dark:text-defaultColor5">800,000 تومان</span>
+            <span v-if="price" class="text-defaultColor dark:text-defaultColor5">{{ price + 'تومان' }} </span>
+            <span v-else class="bg-defaultColor5 text-defaultColor7 rounded-full flex items-center p-1
+             dark:bg-defaultColor dark:text-defaultColor5 hover:bg-opacity-50 hover:-translate-y-1 duration-500">مشاهده
+                <svg-component name="show" class="size-5"></svg-component>
+            </span>
             <span
                 class="flex justify-between w-full lg:w-fit lg:block">
-                <svg-component name="cart" class="size-7 duration-500 hover:translate-x-2 hover:text-defaultColor dark:hover:text-defaultColor5"></svg-component>
+                <svg-component name="cart"
+                               class="size-7 duration-500 hover:translate-x-2 hover:text-defaultColor dark:hover:text-defaultColor5"></svg-component>
                 <svg-component title="افزودن به علاقه مندی" name="like"
                                class="size-7 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7 dark:hover:fill-red-900 dark:text-red-900 lg:hidden"></svg-component>
             <svg-component title="مشاهده محصول" name="show"
@@ -37,7 +43,7 @@ const props = defineProps(["image", "name", "special" ,"liked"]);
             <svg-component title="افزودن به علاقه مندی" name="like"
                            class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500
                            dark:fill-defaultColor7 dark:hover:fill-red-900 dark:text-red-900"
-                            :class="{'!fill-red-500':liked}"></svg-component>
+                           :class="{'!fill-red-500':liked}"></svg-component>
             <svg-component title="مشاهده محصول" name="show"
                            class="size-6 hover:text-defaultColor duration-500"></svg-component>
         </div>
