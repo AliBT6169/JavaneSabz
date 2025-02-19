@@ -5,7 +5,6 @@ import {LikedProducts} from "@/Pages/Profile/DashboardContainer.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const wishList = useAuthStore().WishList
-console.log(wishList[1].product)
 </script>
 
 <template>
@@ -21,7 +20,8 @@ console.log(wishList[1].product)
             </div>
         </div>
         <div class="Sidebar flex justify-center gap-10 flex-wrap">
-            <Product v-for="item in wishList" :name="item.product.name" :image="item.product.primary_image" :liked="true"/>
+            <Product v-for="item in wishList" :name="item.product.name" :image="item.product.primary_image"
+                     :liked="true"/>
         </div>
     </div>
 </template>
