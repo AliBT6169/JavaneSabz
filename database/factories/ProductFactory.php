@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             'brand_id' => rand(1, 10),
             'category_id' => rand(1, 10),
             'slug' => fake()->unique()->slug(),
-            'primary_image' => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
+            'primary_image' => 'https://picsum.photos/480/480',
             'description' => Faker::sentence(),
             'status' => rand(0, 1),
             'is_active' => rand(0, 1),
