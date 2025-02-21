@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->primary(['user_id', 'product_id']);
+            $table->foreignId('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
+            $table->primary(['user_id', 'product_variation_id']);
             $table->timestamps();
         });
     }

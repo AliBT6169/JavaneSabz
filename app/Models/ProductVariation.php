@@ -54,4 +54,28 @@ class ProductVariation extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    public function wish_lists(): HasMany
+    {
+        return $this->hasMany(WishList::class, 'product_variation_id');
+    }
+
+
+    //دریافت تعدادی اختیاری از محصولات
+    public static function getSomeProduct(int $count = 10)
+    {
+        $products = self::latest()->take($count)->get();
+        $product = [];
+        foreach ($products as $item) {
+            $product[] = [
+                "id" => $item->id,
+                "product_id" => $item->product_id,
+                "name" => $item->product->name,
+                "quantity" => $item->quantity,
+                "price" => $item->sale_price,
+                "image" => $item->product->primary_image,
+            ];
+        }
+        return $product;
+    }
 }

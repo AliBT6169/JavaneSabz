@@ -41,7 +41,7 @@ export const useAuthStore = defineStore('auth', {
                     return;
                 }
             } else
-                axios.get(route('/login'));
+                window.location.href = '/login';
         },
         logout() {
             this.user = null;

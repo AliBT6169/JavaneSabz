@@ -13,7 +13,7 @@ const props = defineProps(["product", "liked", "special"]);
          items-center gap-4 dark:bg-defaultColor7 dark:shadow-defaultColor">
         <!--        image-->
         <div class="w-60">
-            <img :src="product.primary_image" alt="" @dragstart.prevent class="size-full">
+            <img :src="product.image" alt="" @dragstart.prevent class="size-full">
         </div>
         <!--        name-->
         <div class="flex px-4 justify-center w-full items-center">

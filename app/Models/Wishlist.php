@@ -15,7 +15,7 @@ class Wishlist extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'product_id',
+        'product_variation_id',
         'created_at',
     ];
 
@@ -24,8 +24,8 @@ class Wishlist extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function product(): BelongsTo
+    public function productVariation(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(ProductVariation::class);
     }
 }

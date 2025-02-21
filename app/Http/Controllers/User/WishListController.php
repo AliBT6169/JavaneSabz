@@ -10,6 +10,6 @@ class WishListController extends Controller
 {
     public function destroy($product_id, $user_id)
     {
-        return WishList::where('product_id', $product_id)->where('user_id', $user_id)->delete();
+        return WishList::where('product_variation_id', $product_id)->where('user_id', $user_id)->delete();
     }
 }

@@ -28,7 +28,7 @@ export default {
                 darkColor2: "#303632",
             },
             gridTemplateColumns: {
-                'minmaxfill': 'repeat(auto-fill,minmax(12rem,0.5fr))'
+                'minmaxfill': 'repeat(auto-fill,minmax(18%,2fr))'
             },
         },
     },

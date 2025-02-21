@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\WishListController;
+use App\Models\ProductVariation;
 use App\Models\Wishlist;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Index');
+    $indexData = (object)[
+        "products"=> ProductVariation::getSomeProduct(20),
+    ];
+    return Inertia::render('Index', ["indexData" => $indexData]);
 });
 
 Route::get('/درباره ما', function () {

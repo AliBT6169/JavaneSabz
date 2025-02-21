@@ -11,6 +11,9 @@ import Navigation from "@/Pages/Components/Home/navigation.vue";
 import LiveCards from "@/Pages/Components/Home/live-cards.vue";
 import Intro from "@/Pages/Components/Home/intro.vue";
 
+const props = defineProps(["indexData"]);
+const products = ref(props.indexData.products);
+console.log(products.value);
 const slider1Data = ref([
     "../../../../images/slider/slider%20(1).jpeg",
     "../../../../images/slider/slider%20(2).jpeg",
@@ -74,7 +77,7 @@ const liveCardData = ref([
                     <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <product-slider1 class="w-full"></product-slider1>
+            <!--            <product-slider1 class="w-full"></product-slider1>-->
         </div>
         <!--    liveCards-->
         <div class="w-full mx-auto">
@@ -107,7 +110,7 @@ const liveCardData = ref([
                 </div>
             </div>
             <div class="grid grid-cols-minmaxfill gap-4 justify-center mx-auto w-full">
-<!--                <product :image="productData" name="امامکتین بنزوات" :special="true" v-for="item in 15"></product>-->
+                <product v-for="item in products" :product="item" :special="true"/>
             </div>
         </div>
         <Footer class="mt-10"></Footer>

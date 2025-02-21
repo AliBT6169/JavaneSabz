@@ -18,7 +18,7 @@ class WishListFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'product_id' => rand(1, 100),
+            'product_variation_id' => rand(1, 100),
         ];
     }
 }

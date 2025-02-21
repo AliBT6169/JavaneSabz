@@ -47,9 +47,4 @@ class Product extends Model
     {
         return $this->morphToMany(Coupon::class, 'couponable');
     }
-
-    public function wish_lists(): HasMany
-    {
-        return $this->hasMany(WishList::class, 'product_id');
-    }
 }
