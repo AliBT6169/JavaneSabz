@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(WishListController::class)->group(function () {
         Route::delete('/wishlist/delete/{product_id}/{user_id}', 'destroy')->name('wishlist.destroy');
+        Route::post('/wishlist/{product_id}/{user_id}', 'store')->name('wishlist.store');
     });
 });
 

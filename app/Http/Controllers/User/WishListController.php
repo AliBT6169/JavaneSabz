@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class WishListController extends Controller
 {
+    public function store(Request $request)
+    {
+        return $request;
+    }
     public function destroy($product_id, $user_id)
     {
         return WishList::where('product_variation_id', $product_id)->where('user_id', $user_id)->delete();

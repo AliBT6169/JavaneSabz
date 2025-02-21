@@ -13,7 +13,9 @@ import Intro from "@/Pages/Components/Home/intro.vue";
 
 const props = defineProps(["indexData"]);
 const products = ref(props.indexData.products);
-console.log(products.value);
+const pro = products.value.map(function (item){
+    console.log(item.is_liked);
+})
 const slider1Data = ref([
     "../../../../images/slider/slider%20(1).jpeg",
     "../../../../images/slider/slider%20(2).jpeg",
@@ -36,7 +38,6 @@ const brandsData = ref([
     "../../../../images/brands/biobizz.webp",
     "../../../../images/brands/continental-semences.webp",
 ]);
-const productData = ref("../../../../images/products/10640410.webp");
 const liveCardData = ref([
     "../../../../images/farm.jpg",
     "../../../../images/fertilizer.jpg",
@@ -110,7 +111,7 @@ const liveCardData = ref([
                 </div>
             </div>
             <div class="grid grid-cols-minmaxfill gap-4 justify-center mx-auto w-full">
-                <product v-for="item in products" :product="item" :special="true"/>
+                <product v-for="item in products" :product="item" :liked="item.is_liked" :special="true"/>
             </div>
         </div>
         <Footer class="mt-10"></Footer>

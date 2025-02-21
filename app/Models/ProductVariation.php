@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Facades\Auth;
 
 class ProductVariation extends Model
 {
@@ -66,15 +67,18 @@ class ProductVariation extends Model
     {
         $products = self::latest()->take($count)->get();
         $product = [];
-        foreach ($products as $item) {
-            $product[] = [
-                "id" => $item->id,
-                "product_id" => $item->product_id,
-                "name" => $item->product->name,
-                "quantity" => $item->quantity,
-                "price" => $item->sale_price,
-                "image" => $item->product->primary_image,
-            ];
+        if (Auth::check()) {
+            foreach ($products as $item) {
+                $product[] = [
+                    "id" => $item->id,
+                    "product_id" => $item->product_id,
+                    "name" => $item->product->name,
+                    "quantity" => $item->quantity,
+                    "price" => $item->sale_price,
+                    "image" => $item->product->primary_image,
+                    "is_liked" => Wishlist::is_exist(Auth::user()->id, $item->id),
+                ];
+            }
         }
         return $product;
     }

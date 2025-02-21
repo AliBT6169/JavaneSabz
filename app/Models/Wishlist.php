@@ -28,4 +28,9 @@ class Wishlist extends Model
     {
         return $this->belongsTo(ProductVariation::class);
     }
+
+    public static function is_exist($user_id, $product_variation_id): bool
+    {
+        return self::where('user_id', $user_id)->where('product_variation_id', $product_variation_id)->exists();
+    }
 }
