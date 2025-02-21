@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
     Route::controller(WishListController::class)->group(function () {
-        Route::delete('/wishlist/{id}', 'delete')->name('wishlist.delete');
+        Route::delete('/wishlist/delete/{product_id}/{user_id}', 'destroy')->name('wishlist.destroy');
     });
 });
 

@@ -4,7 +4,6 @@ import Product from "@/Pages/Components/Home/Product.vue";
 import {LikedProducts} from "@/Pages/Profile/DashboardContainer.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
-const wishList = useAuthStore().WishList
 </script>
 
 <template>
@@ -13,14 +12,14 @@ const wishList = useAuthStore().WishList
          sm:rounded-full sm:w-full">
             <div class="flex justify-center">
                 <span> محصولات مورد علاقه : </span><span>{{
-                    wishList.reduce((accumulator, item) => accumulator + 1, 0)
+                    useAuthStore().WishList.length
                 }}</span>
             </div>
             <div class="flex justify-between">
             </div>
         </div>
         <div class="Sidebar flex justify-center gap-10 flex-wrap">
-            <Product v-for="item in wishList" :product="item.product" :liked="true"/>
+            <Product v-for="item in useAuthStore().WishList" :product="item.product" :liked="true"/>
         </div>
     </div>
 </template>

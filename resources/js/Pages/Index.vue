@@ -107,7 +107,7 @@ const liveCardData = ref([
                 </div>
             </div>
             <div class="grid grid-cols-minmaxfill gap-4 justify-center mx-auto w-full">
-                <product :image="productData" name="امامکتین بنزوات" :special="true" v-for="item in 15"></product>
+<!--                <product :image="productData" name="امامکتین بنزوات" :special="true" v-for="item in 15"></product>-->
             </div>
         </div>
         <Footer class="mt-10"></Footer>

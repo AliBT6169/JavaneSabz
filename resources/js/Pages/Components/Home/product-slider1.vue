@@ -35,7 +35,7 @@ const mouseupd = (e) => {
          @mousemove="mousmoving"
          @mouseup="mouseupd">
         <div class=" text-nowrap w-fit gap-2 flex">
-            <Product :image="productData" name="امامکتین بنزوات" v-for="item in 10"></Product>
+<!--            <Product :image="productData" name="امامکتین بنزوات" v-for="item in 10"></Product>-->
         </div>
     </div>
 

@@ -5,6 +5,9 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         user: null,
         Products: null,
+        Orders: null,
+        Transactions: null,
+        WishList: null,
         isAuthenticated: false,
     }),
     actions: {
@@ -29,12 +32,8 @@ export const useAuthStore = defineStore('auth', {
         likeOrUnLike(product_id, status) {
             if (this.user != null) {
                 if (status) {
-                    const form = {
-                        product_id: product_id,
-                        user_id: this.user.id,
-                    }
-                    axios.delete(route('wishlist.delete', {"id": product_id})).then(response => {
-                        console.log(response.data);
+                    axios.delete(route('wishlist.destroy', [product_id, this.user.id])).then(response => {
+                        this.WishList = response.data === 1 ? this.WishList.filter(wishList => wishList.product.id !== product_id) : this.WishList;
                     }).catch(error => {
                         console.log(error);
                     })
