@@ -45,7 +45,7 @@ const like = ref(props.liked);
             class="absolute hidden top-0 bg-defaultColor4/50 p-2 -left-10 flex-col duration-500 items-center
              group-hover:left-0 rounded-lg dark:bg-defaultColor7/50 lg:flex">
             <svg-component :title="like?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
-                           @click="[useAuthStore().likeOrUnLike(product.id , liked),like=!like]"
+                           @click="[useAuthStore().likeOrUnLike(product.id , like),like=!like]"
                            class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500
                            dark:fill-transparent dark:hover:fill-red-900 dark:text-red-900"
                            :class="{'!fill-red-500':like}"></svg-component>
