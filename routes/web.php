@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\WishListController;
+use App\Models\Wishlist;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
+    });
+    Route::controller(WishListController::class)->group(function () {
+        Route::delete('/wishlist/{id}', 'delete')->name('wishlist.delete');
     });
 });
 

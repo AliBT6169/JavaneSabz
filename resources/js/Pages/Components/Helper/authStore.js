@@ -26,6 +26,24 @@ export const useAuthStore = defineStore('auth', {
                 axios.post(route('BuyCart.CartItemDecrement', id));
             }
         },
+        likeOrUnLike(product_id, status) {
+            if (this.user != null) {
+                if (status) {
+                    const form = {
+                        product_id: product_id,
+                        user_id: this.user.id,
+                    }
+                    axios.delete(route('wishlist.delete', {"id": product_id})).then(response => {
+                        console.log(response.data);
+                    }).catch(error => {
+                        console.log(error);
+                    })
+                } else {
+                    return;
+                }
+            } else
+                axios.get(route('/login'));
+        },
         logout() {
             this.user = null;
             this.isAuthenticated = false;

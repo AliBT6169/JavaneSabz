@@ -13,6 +13,7 @@ class Wishlist extends Model
     protected $table = 'wishlists';
 
     protected $fillable = [
+        'id',
         'user_id',
         'product_id',
         'created_at',

@@ -20,8 +20,7 @@ const wishList = useAuthStore().WishList
             </div>
         </div>
         <div class="Sidebar flex justify-center gap-10 flex-wrap">
-            <Product v-for="item in wishList" :name="item.product.name" :image="item.product.primary_image"
-                     :liked="true"/>
+            <Product v-for="item in wishList" :product="item.product" :liked="true"/>
         </div>
     </div>
 </template>
