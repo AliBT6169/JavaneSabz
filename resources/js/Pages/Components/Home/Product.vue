@@ -2,10 +2,8 @@
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
-import {ref} from "vue";
 
 const props = defineProps(["product", "liked", "special"]);
-const status = ref(true);
 </script>
 
 <template>

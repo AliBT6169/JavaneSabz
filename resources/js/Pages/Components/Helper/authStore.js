@@ -29,10 +29,10 @@ export const useAuthStore = defineStore('auth', {
                 axios.post(route('BuyCart.CartItemDecrement', id));
             }
         },
-        likeOrUnLike(product_id, status) {
+        async likeOrUnLike(product_id, status) {
             if (this.user != null) {
                 if (status) {
-                    axios.delete(route('wishlist.destroy', [product_id, this.user.id])).then(response => {
+                    await axios.delete(route('wishlist.destroy', [product_id, this.user.id])).then(response => {
                         this.WishList = response.data === 1 ? this.WishList.filter(wishList => wishList.product.id !== product_id) : this.WishList;
                     }).catch(error => {
                         console.log(error);

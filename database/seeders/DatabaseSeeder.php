@@ -34,6 +34,6 @@ class DatabaseSeeder extends Seeder
 //        Order::factory(10)->create();
 //        OrderItem::factory(100)->create();
 //        Transaction::factory(10)->create();
-        Wishlist::factory(20)->create();
+        Wishlist::factory(50)->create();
     }
 }
