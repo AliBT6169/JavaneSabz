@@ -122,6 +122,7 @@ class DashboardResource extends JsonResource
                     "name" => $item->productVariation->product->name,
                     "image" => $item->productVariation->product->primary_image,
                     "price" => $item->productVariation->sale_price,
+                    "is_liked" => true,
                 ],
             ];
         }

@@ -4,8 +4,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";
 
-const props = defineProps(["product", "liked", "special"]);
-const like = ref(props.liked);
+const props = defineProps(["product", "special"]);
 </script>
 
 <template>
@@ -44,11 +43,11 @@ const like = ref(props.liked);
         <div
             class="absolute hidden top-0 bg-defaultColor4/50 p-2 -left-10 flex-col duration-500 items-center
              group-hover:left-0 rounded-lg dark:bg-defaultColor7/50 lg:flex">
-            <svg-component :title="like?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
-                           @click="[useAuthStore().likeOrUnLike(product.id , like),like=!like]"
+            <svg-component :title="product.is_liked?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
+                           @click="[useAuthStore().likeOrUnLike(product.id , product.is_liked),product.is_liked=!product.is_liked]"
                            class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500
                            dark:fill-transparent dark:hover:fill-red-900 dark:text-red-900"
-                           :class="{'!fill-red-500':like}"></svg-component>
+                           :class="{'!fill-red-500':product.is_liked}"></svg-component>
             <svg-component title="مشاهده محصول" name="show"
                            class="size-6 hover:text-defaultColor duration-500"></svg-component>
         </div>

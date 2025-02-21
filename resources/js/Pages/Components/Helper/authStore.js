@@ -40,7 +40,6 @@ export const useAuthStore = defineStore('auth', {
                 } else {
                     await axios.post(route('wishlist.store', [product_id, this.user.id])).then(response => {
                         this.WishList.push({product: response.data});
-                        console.log(this.WishList);
                     }).catch(error => {
                         console.log(error);
                     });
