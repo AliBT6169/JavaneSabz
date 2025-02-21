@@ -18,7 +18,7 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
             <div class="flex justify-between">
             </div>
         </div>
-        <div class="Sidebar flex justify-center gap-10 flex-wrap">
+        <div class="Sidebar grid grid-cols-minmaxfill gap-4 justify-center mx-auto w-full">
             <Product v-for="item in useAuthStore().WishList" :product="item.product" :liked="true"/>
         </div>
     </div>

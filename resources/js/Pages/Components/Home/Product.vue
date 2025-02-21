@@ -8,11 +8,11 @@ const props = defineProps(["product", "liked", "special"]);
 
 <template>
     <div
-         class="relative group overflow-hidden flex w-fit rounded-lg shadow-sm hover:shadow-md
-        hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 py-6 flex-col hover3D-animation
-         items-center gap-4 dark:bg-defaultColor7 dark:shadow-defaultColor">
+         class="relative group overflow-hidden flex border border-white rounded-lg shadow-sm hover:shadow-md
+        hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 pb-6 flex-col hover3D-animation
+         items-center gap-4 dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700">
         <!--        image-->
-        <div class="w-60">
+        <div class="w-full">
             <img :src="product.image" alt="" @dragstart.prevent class="size-full">
         </div>
         <!--        name-->
@@ -40,12 +40,12 @@ const props = defineProps(["product", "liked", "special"]);
         </div>
         <!--        like & show-->
         <div
-            class="absolute hidden top-0 bg-defaultColor4 p-2 -left-10 flex-col duration-500 items-center
-             group-hover:left-0 rounded-lg dark:bg-defaultColor7 dark:bg-opacity-50 lg:flex">
+            class="absolute hidden top-0 bg-defaultColor4/50 p-2 -left-10 flex-col duration-500 items-center
+             group-hover:left-0 rounded-lg dark:bg-defaultColor7/50 lg:flex">
             <svg-component title="افزودن به علاقه مندی" name="like"
                            @click="useAuthStore().likeOrUnLike(product.id , liked)"
                            class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500
-                           dark:fill-defaultColor7 dark:hover:fill-red-900 dark:text-red-900"
+                           dark:fill-transparent dark:hover:fill-red-900 dark:text-red-900"
                            :class="{'!fill-red-500':liked}"></svg-component>
             <svg-component title="مشاهده محصول" name="show"
                            class="size-6 hover:text-defaultColor duration-500"></svg-component>
