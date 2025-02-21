@@ -13,9 +13,6 @@ import Intro from "@/Pages/Components/Home/intro.vue";
 
 const props = defineProps(["indexData"]);
 const products = ref(props.indexData.products);
-const pro = products.value.map(function (item){
-    console.log(item.is_liked);
-})
 const slider1Data = ref([
     "../../../../images/slider/slider%20(1).jpeg",
     "../../../../images/slider/slider%20(2).jpeg",

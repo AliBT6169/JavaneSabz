@@ -112,7 +112,7 @@ class DashboardResource extends JsonResource
         return $data;
     }
 
-    public function getWishLists($request)
+    public static function getWishLists($request)
     {
         $wish_list_items = [];
         foreach ($request as $item) {
