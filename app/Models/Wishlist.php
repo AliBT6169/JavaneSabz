@@ -31,6 +31,8 @@ class Wishlist extends Model
 
     public static function is_exist($user_id, $product_variation_id): bool
     {
+        if ($user_id === null)
+            return false;
         return self::where('user_id', $user_id)->where('product_variation_id', $product_variation_id)->exists();
     }
 }

@@ -67,18 +67,16 @@ class ProductVariation extends Model
     {
         $products = self::latest()->take($count)->get();
         $product = [];
-        if (Auth::check()) {
-            foreach ($products as $item) {
-                $product[] = [
-                    "id" => $item->id,
-                    "product_id" => $item->product_id,
-                    "name" => $item->product->name,
-                    "quantity" => $item->quantity,
-                    "price" => $item->sale_price,
-                    "image" => $item->product->primary_image,
-                    "is_liked" => Wishlist::is_exist(Auth::user()->id, $item->id),
-                ];
-            }
+        foreach ($products as $item) {
+            $product[] = [
+                "id" => $item->id,
+                "product_id" => $item->product_id,
+                "name" => $item->product->name,
+                "quantity" => $item->quantity,
+                "price" => $item->sale_price,
+                "image" => $item->product->primary_image,
+                "is_liked" => Wishlist::is_exist(Auth::user()->id??null, $item->id),
+            ];
         }
         return $product;
     }
