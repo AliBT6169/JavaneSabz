@@ -11,7 +11,8 @@ const props = defineProps(["product", "special"]);
     <div
         class="relative group overflow-hidden flex border border-white rounded-lg shadow-sm hover:shadow-md
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 pb-6 flex-col hover3D-animation
-         items-center gap-4 dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700">
+         items-center gap-4 dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700"
+        :class="{'shadow-xl !shadow-red-500  ':product.is_liked}">
         <!--        image-->
         <div class="w-full">
             <img :src="product.image" alt="" @dragstart.prevent class="size-full">
@@ -33,8 +34,11 @@ const props = defineProps(["product", "special"]);
                 class="flex justify-between w-full lg:w-fit lg:block">
                 <svg-component name="cart"
                                class="size-7 duration-500 hover:translate-x-2 hover:text-defaultColor dark:hover:text-defaultColor5"></svg-component>
-                <svg-component title="افزودن به علاقه مندی" name="like"
-                               class="size-7 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7 dark:hover:fill-red-900 dark:text-red-900 lg:hidden"></svg-component>
+                <svg-component :title="product.is_liked?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
+                               @click="[useAuthStore().likeOrUnLike(product.id , product.is_liked),product.is_liked=!product.is_liked]"
+                               class="size-7 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7
+                               dark:hover:fill-red-900 dark:text-red-900 lg:hidden"
+                               :class="{'!fill-red-500':product.is_liked}"></svg-component>
             <svg-component title="مشاهده محصول" name="show"
                            class="size-7 hover:text-defaultColor duration-500 lg:hidden"></svg-component>
             </span>
