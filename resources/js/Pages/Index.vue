@@ -75,7 +75,7 @@ const liveCardData = ref([
                     <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-                        <product-slider1 :products="products" class="w-full"></product-slider1>
+            <product-slider1 :products="products" class="w-full"></product-slider1>
         </div>
         <!--    liveCards-->
         <div class="w-full mx-auto">

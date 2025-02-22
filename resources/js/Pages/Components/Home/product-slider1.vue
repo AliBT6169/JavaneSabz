@@ -30,10 +30,10 @@ const mouseupd = (e) => {
 </script>
 
 <template>
-    <div id="product-slider" class="overflow-scroll w-full py-4 mx-auto select-none" @mousedown="mousedowned"
+    <div id="product-slider" class="overflow-x-scroll w-full p-10 mx-auto select-none" @mousedown="mousedowned"
          @mousemove="mousmoving"
          @mouseup="mouseupd">
-        <div class=" text-nowrap w-fit gap-2 flex">
+        <div class="text-nowrap w-fit gap-2 flex">
             <Product :product="item" v-for="item in products"></Product>
         </div>
     </div>
