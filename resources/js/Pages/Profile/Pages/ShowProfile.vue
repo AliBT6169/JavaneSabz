@@ -6,7 +6,7 @@ const authUser = useAuthStore();
 
 <template>
     <div class="*:mb-5">
-        <img src="../../../../../public/images/about-us/owner.jpg"
+        <img :src="authUser.user.image"
              class="ring-2 mx-auto rounded-full w-32 ring-offset-8 ring-offset-defaultColor5
                      ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor"
              alt="profile-picture">
