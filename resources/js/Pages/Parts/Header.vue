@@ -47,13 +47,13 @@ const authUser = useAuthStore()
                     <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
                 </div>
                 <!--            login and register-->
-                <Link :href="route(authUser.user === null ?'login':'dashboard')">
+                <Link :href="route(useAuthStore().user === null ?'login':'dashboard')">
                     <div
                         class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
                     items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation
                     hover:text-white dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white  lg:px-4">
                         <svg-component name="person" class="size-5"></svg-component>
-                        <div class="text-nowrap hidden lg:block">{{ authUser.user === null ? 'ورود/ثبت نام' : 'داشبورد' }}
+                        <div class="text-nowrap hidden lg:block">{{ useAuthStore().user === null ? 'ورود/ثبت نام' : 'داشبورد' }}
                         </div>
                     </div>
                 </Link>

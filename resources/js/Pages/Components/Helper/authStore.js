@@ -50,6 +50,10 @@ export const useAuthStore = defineStore('auth', {
         },
         logout() {
             this.user = null;
+            this.Products = null;
+            this.Orders = null;
+            this.Transactions = null;
+            this.WishList = null;
             this.isAuthenticated = false;
         },
     },

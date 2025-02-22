@@ -98,19 +98,19 @@ class DashboardResource extends JsonResource
     }
 
 
-    public function getWishListProductData($request)
-    {
-        $data = [];
-        foreach ($request as $item) {
-            $data[] = (object)[
-                "id" => $item->id,
-                "name" => $item->product->name,
-                "image" => $item->product->primary_image,
-                "price" => $item->sale_price,
-            ];
-        }
-        return $data;
-    }
+//    public function getWishListProductData($request)
+//    {
+//        $data = [];
+//        foreach ($request as $item) {
+//            $data[] = (object)[
+//                "id" => $item->id,
+//                "name" => $item->product->name,
+//                "image" => $item->product->primary_image,
+//                "price" => $item->sale_price,
+//            ];
+//        }
+//        return $data;
+//    }
 
     public static function getWishLists($request)
     {
