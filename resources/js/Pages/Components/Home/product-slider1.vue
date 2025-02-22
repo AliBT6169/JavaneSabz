@@ -2,8 +2,7 @@
 
 import Product from "@/Pages/Components/Home/Product.vue";
 import {onMounted, ref} from "vue";
-
-const productData = ref("../../../../images/products/Emamectin.jpg");
+const props = defineProps(["products"]);
 const dragging = ref(false);
 const slider = ref();
 const startX = ref();
@@ -35,7 +34,7 @@ const mouseupd = (e) => {
          @mousemove="mousmoving"
          @mouseup="mouseupd">
         <div class=" text-nowrap w-fit gap-2 flex">
-<!--            <Product :image="productData" name="امامکتین بنزوات" v-for="item in 10"></Product>-->
+            <Product :product="item" v-for="item in products"></Product>
         </div>
     </div>
 
