@@ -3,17 +3,33 @@
 import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
 import {ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import {useForm} from "@inertiajs/vue3";
 
-const userInfo =ref(useAuthStore().user);
+const userInfo = ref(useAuthStore().user);
+const form = useForm({
+    image: '',
+    name: '',
+    full_name: '',
+    gender: '',
+    cellphone: '',
+    email: '',
+    address: '',
+    post_code: '',
+});
+
+const submit = () => {
+    console.log(form.data());
+}
 </script>
 
 <template>
     <div class="Sidebar p-4">
-        <form action="" class="">
+        <form action="" @submit.prevent="submit" class="">
             <div class="*:mb-5">
                 <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">
-                        <input type="file" name="profile-picture" class="invisible" id="profile-picture" src="../../../../../public/images/about-us/owner.jpg">
+                        <input type="file" name="profile-picture" class="invisible" id="profile-picture"
+                               :src="userInfo.image">
                         <img :src="userInfo.image"
                              class="ring-2 mx-auto cursor-pointer rounded-full duration-300 w-32 ring-offset-8 ring-offset-defaultColor5
                      ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor hover:scale-95"
@@ -21,21 +37,31 @@ const userInfo =ref(useAuthStore().user);
                     </label>
                 </div>
                 <div class="grid gap-8 place-content-center text-gray-700 dark:text-gray-300 lg:grid-cols-2 lg:text-lg">
-                    <panel-input label="نام کاربری :" :value="userInfo.name" placeholder-text="نام کاربری خود را وارد کنید:" />
-                    <panel-input label="نام و نام خانوادگی :" :value="userInfo.full_name" placeholder-text="نام و نام خانوادگی خود را وارد کنید:" />
+                    <panel-input label="نام کاربری :" v-model="form.name" :value="userInfo.name"
+                                 placeholder-text="نام کاربری خود را وارد کنید:"/>
+                    <panel-input label="نام و نام خانوادگی :" v-model="form.full_name" :value="userInfo.full_name"
+                                 placeholder-text="نام و نام خانوادگی خود را وارد کنید:"/>
                     <div class="space-y-2">
                         <span class="pl-4 text-black dark:text-white">جنسیت :</span>
-                        <div class="border *:cursor-pointer rounded-tr-2xl rounded-bl-2xl flex px-2 py-1.5 items-center gap-4 border-defaultColor dark:border-defaultColor5">
+                        <div
+                            class="border *:cursor-pointer rounded-tr-2xl rounded-bl-2xl flex px-2 py-1.5 items-center gap-4
+                             border-defaultColor dark:border-defaultColor5">
                             <label for="woman">خانم</label>
-                            <input type="radio" :checked="!userInfo.gender" id="woman" name="sex" class="text-defaultColor7 focus:ring-0 focus:ring-offset-0">
+                            <input type="radio" value="0" :checked="!userInfo.gender" id="woman" name="gender"
+                                   class="text-defaultColor7 focus:ring-0 focus:ring-offset-0">
                             <label for="man">آقا</label>
-                            <input type="radio" :checked="userInfo.gender" id="man" name="sex" class="text-defaultColor7 focus:ring-0 focus:ring-offset-0">
+                            <input type="radio" value="1" v-model="form.gender" :checked="userInfo.gender" id="man" name="gender"
+                                   class="text-defaultColor7 focus:ring-0 focus:ring-offset-0">
                         </div>
                     </div>
-                    <panel-input label="شماره تماس :" :value="userInfo.cellphone" placeholder-text="شماره تلفن خود را وارد کنید:" />
-                    <panel-input label="آدرس ایمیل :" type="email" :value="userInfo.email" placeholder-text="آدرس ایمیل خود را وارد کنید:" />
-                    <panel-input label="آدرس :" :value="userInfo.user_address" placeholder-text="آدرس خود را وارد کنید:" />
-                    <panel-input label="کد پستی :" :value="userInfo.user_post_code" placeholder-text="کد پستی خود را وارد کنید:" />
+                    <panel-input label="شماره تماس :" v-model="form.cellphone" :value="userInfo.cellphone"
+                                 placeholder-text="شماره تلفن خود را وارد کنید:"/>
+                    <panel-input label="آدرس ایمیل :" type="email" v-model="form.email" :value="userInfo.email"
+                                 placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
+                    <panel-input label="آدرس :" v-model="form.address" :value="userInfo.user_address"
+                                 placeholder-text="آدرس خود را وارد کنید:"/>
+                    <panel-input label="کد پستی :" v-model="form.post_code" :value="userInfo.user_post_code"
+                                 placeholder-text="کد پستی خود را وارد کنید:"/>
                     <div class="grid items-center grid-cols-1 justify-center gap-4 *:px-6 *:py-2 *:h-fit *:rounded-xl *:shadow-md *:shadow-gray-600
                      *:text-white *:duration-300 hover:*:-translate-y-1 dark:*:shadow-gray-800 md:grid-cols-2 md:mt-8">
                         <button type="submit" class="bg-defaultColor dark:bg-defaultColor5">ثبت اطلاعات</button>
