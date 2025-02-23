@@ -17,7 +17,6 @@ const form = useForm({
     address: userInfo.value.user_address,
     post_code: userInfo.value.user_post_code,
 });
-console.log(form.data().gender)
 const submit = () => {
     form.post('/user/update', {
         onSuccess: (response) => {
@@ -28,6 +27,22 @@ const submit = () => {
         }
     });
 }
+
+const imagePreview = ref(null);
+
+const onFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onloadend = (e) => {
+            imagePreview.value = e.target.result;
+        };
+        reader.readAsDataURL(file);
+
+    } else {
+        imagePreview.value = null;
+    }
+}
 </script>
 
 <template>
@@ -37,8 +52,8 @@ const submit = () => {
                 <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">
                         <input type="file" name="profile_picture" class="invisible" id="profile-picture"
-                               @input="(e)=>form.image = e.target.files[0]">
-                        <img :src="form.image"
+                               @input="(e)=>form.image = e.target.files[0]" @change="onFileChange" accept="*image/*">
+                        <img :src="imagePreview"
                              class="ring-2 mx-auto cursor-pointer rounded-full duration-300 w-32 ring-offset-8 ring-offset-defaultColor5
                      ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor hover:scale-95"
                              alt="profile-picture">

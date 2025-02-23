@@ -47,12 +47,13 @@ class UserController extends Controller
             'post_code' => 'required',
         ]);
         $image = $request->image;
+        $URL = 'images/users/' . $request->name . '/' . $image->getClientOriginalName();
         $path = $image->move(public_path('images/users/' . $request->name . '/'), $image->getClientOriginalName());
         User::whereId(Auth::id())->update([
             'name' => $validatedData['name'],
             'full_name' => $validatedData['full_name'],
             'email' => $validatedData['email'],
-            'avatar' => $path,
+            'avatar' => $URL,
             'cellphone' => $validatedData['cellphone'],
             'gender' => $validatedData['gender'],
         ]);
