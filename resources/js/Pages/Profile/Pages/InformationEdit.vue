@@ -7,16 +7,15 @@ import {useForm} from "@inertiajs/vue3";
 
 const userInfo = ref(useAuthStore().user);
 const form = useForm({
-    image: '',
-    name: '',
-    full_name: '',
-    gender: '',
-    cellphone: '',
-    email: '',
-    address: '',
-    post_code: '',
+    image: userInfo.value.image,
+    name: userInfo.value.name,
+    full_name: userInfo.value.full_name,
+    gender: userInfo.value.full_name,
+    cellphone: userInfo.value.cellphone,
+    email: userInfo.value.email,
+    address: userInfo.value.user_address,
+    post_code: userInfo.value.user_post_code,
 });
-
 const submit = () => {
     console.log(form.data());
 }
@@ -24,22 +23,22 @@ const submit = () => {
 
 <template>
     <div class="Sidebar p-4">
-        <form action="" @submit.prevent="submit" class="">
+        <form action="" @submit.prevent="console.log(form.data())" class="">
             <div class="*:mb-5">
                 <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">
                         <input type="file" name="profile-picture" class="invisible" id="profile-picture"
-                               :src="userInfo.image">
-                        <img :src="userInfo.image"
+                               :src="form.image">
+                        <img :src="form.image"
                              class="ring-2 mx-auto cursor-pointer rounded-full duration-300 w-32 ring-offset-8 ring-offset-defaultColor5
                      ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor hover:scale-95"
                              alt="profile-picture">
                     </label>
                 </div>
                 <div class="grid gap-8 place-content-center text-gray-700 dark:text-gray-300 lg:grid-cols-2 lg:text-lg">
-                    <panel-input label="نام کاربری :" v-model="form.name" :value="userInfo.name"
+                    <panel-input label="نام کاربری :" v-model="form.name" :value="form.name"
                                  placeholder-text="نام کاربری خود را وارد کنید:"/>
-                    <panel-input label="نام و نام خانوادگی :" v-model="form.full_name" :value="userInfo.full_name"
+                    <panel-input label="نام و نام خانوادگی :" v-model="form.full_name" :value="form.full_name"
                                  placeholder-text="نام و نام خانوادگی خود را وارد کنید:"/>
                     <div class="space-y-2">
                         <span class="pl-4 text-black dark:text-white">جنسیت :</span>
@@ -47,20 +46,25 @@ const submit = () => {
                             class="border *:cursor-pointer rounded-tr-2xl rounded-bl-2xl flex px-2 py-1.5 items-center gap-4
                              border-defaultColor dark:border-defaultColor5">
                             <label for="woman">خانم</label>
-                            <input type="radio" value="0" :checked="!userInfo.gender" id="woman" name="gender"
+                            <input type="radio" value="0" v-model="form.gender" :checked="!form.gender" id="woman" name="gender"
                                    class="text-defaultColor7 focus:ring-0 focus:ring-offset-0">
                             <label for="man">آقا</label>
-                            <input type="radio" value="1" v-model="form.gender" :checked="userInfo.gender" id="man" name="gender"
+                            <input type="radio" value="1" v-model="form.gender" :checked="form.gender" id="man"
+                                   name="gender"
                                    class="text-defaultColor7 focus:ring-0 focus:ring-offset-0">
                         </div>
                     </div>
-                    <panel-input label="شماره تماس :" v-model="form.cellphone" :value="userInfo.cellphone"
+                    <panel-input label="شماره تماس :" :value="form.cellphone"
+                                 @updatevalue="(item)=>form.cellphone=item"
                                  placeholder-text="شماره تلفن خود را وارد کنید:"/>
-                    <panel-input label="آدرس ایمیل :" type="email" v-model="form.email" :value="userInfo.email"
+                    <panel-input label="آدرس ایمیل :" type="email" :value="form.email"
+                                 @updatevalue="(item)=>form.email=item"
                                  placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
-                    <panel-input label="آدرس :" v-model="form.address" :value="userInfo.user_address"
+                    <panel-input label="آدرس :" :value="form.address"
+                                 @updatevalue="(item)=>form.address=item"
                                  placeholder-text="آدرس خود را وارد کنید:"/>
-                    <panel-input label="کد پستی :" v-model="form.post_code" :value="userInfo.user_post_code"
+                    <panel-input label="کد پستی :" :value="form.post_code"
+                                 @updatevalue="(item)=>form.post_code=item"
                                  placeholder-text="کد پستی خود را وارد کنید:"/>
                     <div class="grid items-center grid-cols-1 justify-center gap-4 *:px-6 *:py-2 *:h-fit *:rounded-xl *:shadow-md *:shadow-gray-600
                      *:text-white *:duration-300 hover:*:-translate-y-1 dark:*:shadow-gray-800 md:grid-cols-2 md:mt-8">
