@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -28,7 +32,42 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'full_name' => 'required',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(Auth::id()),
+            ],
+            'image' => 'required|image|max:2048',
+            'address' => 'required',
+            'cellphone' => 'required',
+            'gender' => 'required|in:0,1',
+            'post_code' => 'required',
+        ]);
+        $image = $request->image;
+        $path = $image->move(public_path('images/users/' . $request->name . '/'), $image->getClientOriginalName());
+        User::whereId(Auth::id())->update([
+            'name' => $validatedData['name'],
+            'full_name' => $validatedData['full_name'],
+            'email' => $validatedData['email'],
+            'avatar' => $path,
+            'cellphone' => $validatedData['cellphone'],
+            'gender' => $validatedData['gender'],
+        ]);
+        if (Address::where('addressable_id', Auth::id())->exists())
+            Address::where('addressable_id', Auth::id())->update([
+                'address' => $validatedData['address'],
+                'postcode' => $validatedData['post_code'],
+            ]);
+        else
+            Address::create([
+                'addressable_id' => Auth::id(),
+                'address' => $validatedData['address'],
+                'postcode' => $validatedData['post_code'],
+            ]);
+        return;
     }
 
     /**

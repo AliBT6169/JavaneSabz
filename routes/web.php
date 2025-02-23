@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\WishListController;
 use App\Models\ProductVariation;
 use App\Models\Wishlist;
@@ -12,7 +13,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     $indexData = (object)[
-        "products"=> ProductVariation::getSomeProduct(20),
+        "products" => ProductVariation::getSomeProduct(20),
     ];
     return Inertia::render('Index', ["indexData" => $indexData]);
 });
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(WishListController::class)->group(function () {
         Route::delete('/wishlist/delete/{product_id}/{user_id}', 'destroy')->name('wishlist.destroy');
         Route::post('/wishlist/{product_id}/{user_id}', 'store')->name('wishlist.store');
+    });
+    Route::controller(UserController::class)->group(function () {
+        Route::post('/user/update', 'store')->name('user.update');
     });
 });
 

@@ -7,28 +7,37 @@ import {useForm} from "@inertiajs/vue3";
 
 const userInfo = ref(useAuthStore().user);
 const form = useForm({
+    id: userInfo.value.id,
     image: userInfo.value.image,
     name: userInfo.value.name,
     full_name: userInfo.value.full_name,
-    gender: userInfo.value.full_name,
+    gender: userInfo.value.gender,
     cellphone: userInfo.value.cellphone,
     email: userInfo.value.email,
     address: userInfo.value.user_address,
     post_code: userInfo.value.user_post_code,
 });
+console.log(form.data().gender)
 const submit = () => {
-    console.log(form.data());
+    form.post('/user/update', {
+        onSuccess: (response) => {
+            console.log(response);
+        },
+        onError: (error) => {
+            console.log(error);
+        }
+    });
 }
 </script>
 
 <template>
     <div class="Sidebar p-4">
-        <form action="" @submit.prevent="console.log(form.data())" class="">
+        <form action="" @submit.prevent="submit" class="">
             <div class="*:mb-5">
                 <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">
-                        <input type="file" name="profile-picture" class="invisible" id="profile-picture"
-                               :src="form.image">
+                        <input type="file" name="profile_picture" class="invisible" id="profile-picture"
+                               @input="(e)=>form.image = e.target.files[0]">
                         <img :src="form.image"
                              class="ring-2 mx-auto cursor-pointer rounded-full duration-300 w-32 ring-offset-8 ring-offset-defaultColor5
                      ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor hover:scale-95"
