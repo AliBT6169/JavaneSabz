@@ -36,9 +36,11 @@ const submit = () => {
                     </label>
                 </div>
                 <div class="grid gap-8 place-content-center text-gray-700 dark:text-gray-300 lg:grid-cols-2 lg:text-lg">
-                    <panel-input label="نام کاربری :" v-model="form.name" :value="form.name"
+                    <panel-input label="نام کاربری :" :value="form.name"
+                                 @updateValue="(item)=>form.name=item"
                                  placeholder-text="نام کاربری خود را وارد کنید:"/>
-                    <panel-input label="نام و نام خانوادگی :" v-model="form.full_name" :value="form.full_name"
+                    <panel-input label="نام و نام خانوادگی :" :value="form.full_name"
+                                 @updateValue="(item)=>form.full_name=item"
                                  placeholder-text="نام و نام خانوادگی خود را وارد کنید:"/>
                     <div class="space-y-2">
                         <span class="pl-4 text-black dark:text-white">جنسیت :</span>
@@ -46,7 +48,8 @@ const submit = () => {
                             class="border *:cursor-pointer rounded-tr-2xl rounded-bl-2xl flex px-2 py-1.5 items-center gap-4
                              border-defaultColor dark:border-defaultColor5">
                             <label for="woman">خانم</label>
-                            <input type="radio" value="0" v-model="form.gender" :checked="!form.gender" id="woman" name="gender"
+                            <input type="radio" value="0" v-model="form.gender" :checked="!form.gender" id="woman"
+                                   name="gender"
                                    class="text-defaultColor7 focus:ring-0 focus:ring-offset-0">
                             <label for="man">آقا</label>
                             <input type="radio" value="1" v-model="form.gender" :checked="form.gender" id="man"
@@ -55,16 +58,16 @@ const submit = () => {
                         </div>
                     </div>
                     <panel-input label="شماره تماس :" :value="form.cellphone"
-                                 @updatevalue="(item)=>form.cellphone=item"
+                                 @updateValue="(item)=>form.cellphone=item"
                                  placeholder-text="شماره تلفن خود را وارد کنید:"/>
                     <panel-input label="آدرس ایمیل :" type="email" :value="form.email"
-                                 @updatevalue="(item)=>form.email=item"
+                                 @updateValue="(item)=>form.email=item"
                                  placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
                     <panel-input label="آدرس :" :value="form.address"
-                                 @updatevalue="(item)=>form.address=item"
+                                 @updateValue="(item)=>form.address=item"
                                  placeholder-text="آدرس خود را وارد کنید:"/>
                     <panel-input label="کد پستی :" :value="form.post_code"
-                                 @updatevalue="(item)=>form.post_code=item"
+                                 @updateValue="(item)=>form.post_code=item"
                                  placeholder-text="کد پستی خود را وارد کنید:"/>
                     <div class="grid items-center grid-cols-1 justify-center gap-4 *:px-6 *:py-2 *:h-fit *:rounded-xl *:shadow-md *:shadow-gray-600
                      *:text-white *:duration-300 hover:*:-translate-y-1 dark:*:shadow-gray-800 md:grid-cols-2 md:mt-8">
