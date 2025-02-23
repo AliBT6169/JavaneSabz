@@ -20,7 +20,7 @@ const form = useForm({
 const submit = () => {
     form.post('/user/update', {
         onSuccess: (response) => {
-            console.log(response);
+            useAuthStore().setUser(response);
         },
         onError: (error) => {
             console.log(error);
