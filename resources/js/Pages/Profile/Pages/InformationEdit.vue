@@ -4,8 +4,10 @@ import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
 import {ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {useForm} from "@inertiajs/vue3";
+import axios from "axios";
 
 const userInfo = ref(useAuthStore().user);
+
 const form = useForm({
     id: userInfo.value.id,
     image: userInfo.value.image,
@@ -18,14 +20,11 @@ const form = useForm({
     post_code: userInfo.value.user_post_code,
 });
 const submit = () => {
-    form.post('/user/update', {
-        onSuccess: (response) => {
-            useAuthStore().setUser(response);
-        },
-        onError: (error) => {
-            console.log(error);
-        }
-    });
+    axios.post('/user/update', form.data()).then((response) => {
+        console.log(response);
+    }).catch((error) => {
+        console.log(error);
+    })
 }
 
 const imagePreview = ref(null);
