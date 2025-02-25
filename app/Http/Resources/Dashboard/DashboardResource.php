@@ -38,7 +38,7 @@ class DashboardResource extends JsonResource
     {
         $BuyCartItems = [];
         foreach ($request as $buy_cart_item) {
-            $BuyCartItems[] = (object)[
+            $BuyCartItems[] = [
                 "id" => $buy_cart_item->id,
                 "name" => $buy_cart_item->product_variation->product->name,
                 "image" => $buy_cart_item->product_variation->product->primary_image,
@@ -55,7 +55,7 @@ class DashboardResource extends JsonResource
     {
         $orders = [];
         foreach ($request as $order) {
-            $orders[] = (object)[
+            $orders[] = [
                 "id" => $order->id,
                 "status" => $order->status,
                 "items" => $this->getOrderItems($order->orderItems),
@@ -69,7 +69,7 @@ class DashboardResource extends JsonResource
     {
         $order_items = [];
         foreach ($request as $item) {
-            $order_items[] = (object)[
+            $order_items[] = [
                 "id" => $item->id,
                 "name" => $item->productVariation->product->name,
                 "image" => $item->productVariation->product->primary_image,
@@ -86,7 +86,7 @@ class DashboardResource extends JsonResource
     {
         $transaction_items = [];
         foreach ($request as $item) {
-            $transaction_items[] = (object)[
+            $transaction_items[] = [
                 "id" => $item->id,
                 "price" => $item->order->paying_amount,
                 "status" => $item->status,
@@ -98,27 +98,12 @@ class DashboardResource extends JsonResource
 
     }
 
-
-//    public function getWishListProductData($request)
-//    {
-//        $data = [];
-//        foreach ($request as $item) {
-//            $data[] = (object)[
-//                "id" => $item->id,
-//                "name" => $item->product->name,
-//                "image" => $item->product->primary_image,
-//                "price" => $item->sale_price,
-//            ];
-//        }
-//        return $data;
-//    }
-
     public static function getWishLists($request)
     {
         $wish_list_items = [];
         foreach ($request as $item) {
-            $wish_list_items [] = (object)[
-                "product" => (object)[
+            $wish_list_items [] = [
+                "product" => [
                     "id" => $item->productVariation->id,
                     "name" => $item->productVariation->product->name,
                     "image" => $item->productVariation->product->primary_image,

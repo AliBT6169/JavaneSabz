@@ -1,7 +1,10 @@
 <script setup>
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import {ref} from "vue";
 
-const authUser = useAuthStore();
+const authUser = ref(useAuthStore());
+
+
 </script>
 
 <template>
@@ -12,7 +15,7 @@ const authUser = useAuthStore();
              alt="profile-picture">
         <div class="grid gap-8 place-content-center text-gray-700 dark:text-gray-300 lg:grid-cols-2 lg:text-lg">
             <div class="border-b border-gray-700 dark:border-gray-300">
-                <span class="pl-2 text-black">نام کاربری :</span>
+                <span class="pl-2 text-black" @click="useAuthStore()">نام کاربری :</span>
                 <span>{{ authUser.user.name }}</span>
             </div>
             <div class="border-b border-gray-700 dark:border-gray-300">

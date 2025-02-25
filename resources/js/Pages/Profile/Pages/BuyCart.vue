@@ -2,9 +2,9 @@
 
 import PanelCartItems from "@/Pages/Components/Panel/PanelCartItems.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import {ref} from "vue";
 
-const authStore = useAuthStore();
-const Products = authStore.Products;
+const Products = ref(useAuthStore().Products);
 </script>
 
 <template>

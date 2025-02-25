@@ -3,8 +3,9 @@
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import TransactionItems from "@/Pages/Components/Panel/TransactionItems.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import {ref} from "vue";
 
-const Transactions = useAuthStore().Transactions;
+const Transactions = ref(useAuthStore().Transactions);
 
 </script>
 
@@ -15,13 +16,11 @@ const Transactions = useAuthStore().Transactions;
          sm:items-center sm:justify-between sm:rounded-full sm:w-full">
             <div class="flex justify-between">
                 <span> تعداد تراکنش ها : </span><span>{{
-                    Transactions.reduce((accumulator, item) => accumulator + 1, 0)
+                    Transactions.length
                 }}</span>
             </div>
             <div class="flex justify-between">
-                <span>جمع مبلغ :</span><span>{{
-                    (Transactions.reduce((accumulator, item) => accumulator + item.price, 0)).toLocaleString('fa-IR')
-                }}</span>
+                <span>جمع مبلغ :</span><span></span>
             </div>
         </div>
         <!--        item-->
