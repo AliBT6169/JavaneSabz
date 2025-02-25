@@ -9,6 +9,7 @@ import {onMounted} from "vue";
 const props = defineProps(["User"]);
 const authStore = useAuthStore();
 authStore.setUser(props.User.data);
+console.log(props.User.data);
 </script>
 
 <template>

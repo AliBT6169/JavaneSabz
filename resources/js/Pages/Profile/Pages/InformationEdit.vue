@@ -3,12 +3,12 @@
 import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
 import {ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
-import {useForm} from "@inertiajs/vue3";
 import axios from "axios";
 
 const userInfo = ref(useAuthStore().user);
+const formData = new FormData();
 
-const form = useForm({
+const form = {
     id: userInfo.value.id,
     image: userInfo.value.image,
     name: userInfo.value.name,
@@ -18,14 +18,7 @@ const form = useForm({
     email: userInfo.value.email,
     address: userInfo.value.user_address,
     post_code: userInfo.value.user_post_code,
-});
-const submit = () => {
-    axios.post('/user/update', form.data()).then((response) => {
-        console.log(response);
-    }).catch((error) => {
-        console.log(error);
-    })
-}
+};
 
 const imagePreview = ref(null);
 
@@ -46,7 +39,7 @@ const onFileChange = (event) => {
 
 <template>
     <div class="Sidebar p-4">
-        <form action="" @submit.prevent="submit" class="">
+        <form action="" @submit.prevent=" useAuthStore().informationUpdate(form)" class="">
             <div class="*:mb-5">
                 <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">

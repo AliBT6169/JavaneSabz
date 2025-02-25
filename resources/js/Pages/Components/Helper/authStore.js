@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia';
 import axios from "axios";
+import {ref} from "vue";
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -47,6 +48,24 @@ export const useAuthStore = defineStore('auth', {
                 }
             } else
                 window.location.href = '/login';
+        },
+        async informationUpdate(form) {
+            const formData = new FormData();
+            formData.append("id", form.id);
+            formData.append("image", form.image);
+            formData.append("name", form.name);
+            formData.append("full_name", form.full_name);
+            formData.append("gender", form.gender);
+            formData.append("cellphone", form.cellphone);
+            formData.append("email", form.email);
+            formData.append("address", form.address);
+            formData.append("post_code", form.post_code);
+            await axios.post('/user/update', formData).then((response) => {
+                const res = ref(response.data.data);
+                this.setUser(res.value);
+            }).catch((error) => {
+                console.log(error);
+            })
         },
         logout() {
             this.user = null;
