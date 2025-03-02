@@ -25,7 +25,7 @@ const authUser = useAuthStore();
                     <img :src="useAuthStore().user.image" class="size-12 rounded-xl" alt="">
                 </div>
                 <div class="invisible opacity-0 absolute duration-300 pt-4 top-28 left-0
-                group-hover:visible group-hover:opacity-100 group-hover:top-14">
+                group-hover:visible group-hover:opacity-100 group-hover:top-10">
                     <div class="rounded-lg w-48 border-2 bg-defaultColor5 p-4 grid gap-4 dark:bg-defaultColor">
                         <!--                        items-->
                         <a href="/" class="">

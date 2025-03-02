@@ -5,6 +5,7 @@ import {ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import axios from "axios";
 
+const store = useAuthStore();
 const userInfo = ref(useAuthStore().user);
 const formData = new FormData();
 
@@ -20,6 +21,9 @@ const form = {
     post_code: userInfo.value.user_post_code,
 };
 
+const submitForm = async (form) => {
+    await store.informationUpdate(form);
+}
 const imagePreview = ref(form.image);
 
 const onFileChange = (event) => {
@@ -39,7 +43,7 @@ const onFileChange = (event) => {
 
 <template>
     <div class="Sidebar p-4">
-        <form action="" @submit.prevent=" useAuthStore().informationUpdate(form)" class="">
+        <form action="" @submit.prevent=" submitForm(form)" class="">
             <div class="*:mb-5">
                 <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">

@@ -61,8 +61,8 @@ export const useAuthStore = defineStore('auth', {
             formData.append("address", form.address);
             formData.append("post_code", form.post_code);
             await axios.post('/user/update', formData).then((response) => {
-                this.setUser(response.data);
-                console.log(response.data);
+                this.user = response.data;
+
             }).catch((error) => {
                 console.log(error);
             })
