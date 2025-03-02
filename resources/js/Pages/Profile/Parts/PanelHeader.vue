@@ -22,7 +22,7 @@ const authUser = useAuthStore();
             <DarkLight></DarkLight>
             <div class="relative group">
                 <div class="rounded-xl bg-defaultColor overflow-hidden">
-                    <img :src="useAuthStore().user.image" class="w-14 rounded-xl" alt="">
+                    <img :src="useAuthStore().user.image" class="size-12 rounded-xl" alt="">
                 </div>
                 <div class="invisible opacity-0 absolute duration-300 pt-4 top-28 left-0
                 group-hover:visible group-hover:opacity-100 group-hover:top-14">

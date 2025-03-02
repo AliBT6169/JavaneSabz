@@ -46,7 +46,7 @@ const onFileChange = (event) => {
                         <input type="file" name="profile_picture" class="invisible" id="profile-picture"
                                @input="(e)=>form.image = e.target.files[0]" @change="onFileChange" accept="*image/*">
                         <img :src="imagePreview"
-                             class="ring-2 mx-auto cursor-pointer rounded-full duration-300 w-32 ring-offset-8 ring-offset-defaultColor5
+                             class="ring-2 mx-auto cursor-pointer rounded-full duration-300 size-32 ring-offset-8 ring-offset-defaultColor5
                      ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor hover:scale-95"
                              alt="profile-picture">
                     </label>

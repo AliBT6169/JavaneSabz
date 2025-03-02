@@ -10,7 +10,7 @@ const authUser = ref(useAuthStore());
 <template>
     <div class="*:mb-5">
         <img :src="authUser.user.image"
-             class="ring-2 mx-auto rounded-full w-32 ring-offset-8 ring-offset-defaultColor5
+             class="ring-2 mx-auto rounded-full size-32 ring-offset-8 ring-offset-defaultColor5
                      ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor"
              alt="profile-picture">
         <div class="grid gap-8 place-content-center text-gray-700 dark:text-gray-300 lg:grid-cols-2 lg:text-lg">
