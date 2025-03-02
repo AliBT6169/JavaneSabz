@@ -69,7 +69,7 @@ class UserController extends Controller
                 'address' => $validatedData['address'],
                 'postcode' => $validatedData['post_code'],
             ]);
-        return json_encode(DashboardResource::make(Auth::user()));
+        return DashboardResource::make(User::whereId(Auth::id())->first());
     }
 
     /**
