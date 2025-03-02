@@ -20,7 +20,7 @@ const form = {
     post_code: userInfo.value.user_post_code,
 };
 
-const imagePreview = ref(null);
+const imagePreview = ref(form.image);
 
 const onFileChange = (event) => {
     const file = event.target.files[0];
