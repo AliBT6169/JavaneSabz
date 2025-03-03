@@ -47,6 +47,8 @@ class UserController extends Controller
             'gender' => 'required|in:0,1',
             'post_code' => 'required',
         ]);
+        if (file_exists(Auth::user()->avatar))
+            unlink(Auth::user()->avatar);
         $image = $request->image;
         $URL = 'images/users/' . $request->id . '/' . $image->getClientOriginalName();
         $path = $image->move(public_path('images/users/' . $request->id . '/'), $image->getClientOriginalName());
