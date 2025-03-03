@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\BuyCart;
+namespace App\Http\Controllers\User\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\BuyCart\BuyCart;
-use Illuminate\Http\Request;
 
 class BuyCartController extends Controller
 {

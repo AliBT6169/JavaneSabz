@@ -9,9 +9,8 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\Dashboard\BuyCart\BuyCartController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\User\Dashboard\BuyCartController;
+use App\Http\Controllers\User\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {

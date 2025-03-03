@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\User\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\DashboardResource;
-use App\Models\Address;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use Morilog\Jalali\Jalalian;
 
 class DashboardController extends Controller
 {

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Wishlist;
-use Illuminate\Http\Request;
 
 class WishListController extends Controller
 {

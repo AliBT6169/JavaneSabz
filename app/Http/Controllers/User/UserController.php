@@ -33,6 +33,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+//        validation section
         $validatedData = $request->validate([
             'name' => 'required',
             'full_name' => 'required',
@@ -47,11 +48,13 @@ class UserController extends Controller
             'gender' => 'required|in:0,1',
             'post_code' => 'required',
         ]);
+//        image section
         if (file_exists(Auth::user()->avatar))
             unlink(Auth::user()->avatar);
         $image = $request->image;
         $URL = 'images/users/' . $request->id . '/' . $image->getClientOriginalName();
         $path = $image->move(public_path('images/users/' . $request->id . '/'), $image->getClientOriginalName());
+//        user update section
         User::whereId(Auth::id())->update([
             'name' => $validatedData['name'],
             'full_name' => $validatedData['full_name'],
@@ -60,17 +63,8 @@ class UserController extends Controller
             'cellphone' => $validatedData['cellphone'],
             'gender' => $validatedData['gender'],
         ]);
-        if (Address::where('addressable_id', Auth::id())->exists())
-            Address::where('addressable_id', Auth::id())->update([
-                'address' => $validatedData['address'],
-                'postcode' => $validatedData['post_code'],
-            ]);
-        else
-            Address::create([
-                'addressable_id' => Auth::id(),
-                'address' => $validatedData['address'],
-                'postcode' => $validatedData['post_code'],
-            ]);
+//        address update or create section
+        Address::addressStore($request->id , $validatedData['address'] , $validatedData['post_code']);
         return DashboardResource::make(User::whereId(Auth::id())->first());
     }
 
