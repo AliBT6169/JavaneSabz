@@ -1,6 +1,8 @@
 import {defineStore} from 'pinia';
 import axios from "axios";
 import {ref} from "vue";
+import Toast from "@/Pages/Components/Panel/Toast.vue";
+import {toArray} from "@vueuse/core";
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -10,6 +12,8 @@ export const useAuthStore = defineStore('auth', {
         Transactions: null,
         WishList: null,
         isAuthenticated: false,
+        Toast: null,
+        toastTimer: null,
     }),
     actions: {
         setUser(user) {
@@ -62,10 +66,15 @@ export const useAuthStore = defineStore('auth', {
             formData.append("post_code", form.post_code);
             await axios.post('/user/update', formData).then((response) => {
                 this.user = response.data.data;
-                console.log(response.data.data);
             }).catch((error) => {
-                console.log(error.response.data.message);
+                this.Toast = error.response.data.errors;
+                this.toastTimer = 3000;
             })
+        },
+        toastCleaner() {
+            // if (this.Toast!=null)
+            // delete this.Toast[this.Toast.length-1];
+            console.log(this.Toast.keys(0));
         },
         logout() {
             this.user = null;

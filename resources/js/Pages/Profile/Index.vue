@@ -5,6 +5,7 @@ import PanelHeader from "@/Pages/Profile/Parts/PanelHeader.vue";
 import {profileComponent, profileSidebar, profileSidebarCloser} from "@/Pages/Components/Helper/Helper.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {onMounted} from "vue";
+import Toast from "@/Pages/Components/Panel/Toast.vue";
 
 const props = defineProps(["User"]);
 const authStore = useAuthStore();
@@ -12,6 +13,7 @@ authStore.setUser(props.User.data);
 </script>
 
 <template>
+    <Toast class="" :timer="2" sign="close"></Toast>
     <PanelHeader></PanelHeader>
     <div class="mt-24 px-5 sm:pr-28" @click="profileSidebarCloser">
         <PanelSideBar></PanelSideBar>
