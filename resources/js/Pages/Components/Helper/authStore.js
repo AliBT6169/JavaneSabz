@@ -65,6 +65,7 @@ export const useAuthStore = defineStore('auth', {
             formData.append("email", form.email);
             formData.append("address", form.address);
             formData.append("post_code", form.post_code);
+            console.log(formData);
             await axios.post('/user/update', formData).then((response) => {
                 this.user = response.data.data;
                 toast.success('تغییرات با موفقیت ذخیره شدند')

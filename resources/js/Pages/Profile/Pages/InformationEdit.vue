@@ -1,7 +1,7 @@
 <script setup>
 
 import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import axios from "axios";
 
@@ -39,6 +39,12 @@ const onFileChange = (event) => {
         imagePreview.value = null;
     }
 }
+
+onMounted(async() => {
+    const response =await fetch(form.image)
+    const blob = await response.blob();
+    form.image = new File([blob], 'defaultImage', { type: blob.type});
+});
 </script>
 
 <template>
