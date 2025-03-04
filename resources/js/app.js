@@ -1,6 +1,7 @@
 import '../css/app.css';
 import './bootstrap';
-
+import Toast, {POSITION} from "vue-toastification";
+import "vue-toastification/dist/index.css";
 import {createInertiaApp} from '@inertiajs/vue3';
 import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 import {createApp, h} from 'vue';
@@ -9,6 +10,7 @@ import {ZiggyVue} from '../../vendor/tightenco/ziggy';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const pinia = createPinia();
+
 pinia.use(piniaPluginPersistedstate);
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -22,6 +24,27 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(pinia)
+            .use(Toast,{
+                position: POSITION.TOP_CENTER,
+                timeout: 3000,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: false,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                closeButton: "button",
+                icon: true,
+                rtl: true,
+                filterBeforeCreate: (toast, toasts) => {
+                    if (toasts.filter(
+                        t => t.type === toast.type
+                    ).length !== 0) {
+                        return false;
+                    }
+                    return toast;
+                }
+            })
             .mount(el);
     },
     progress: {

@@ -1,9 +1,10 @@
 import {defineStore} from 'pinia';
 import axios from "axios";
 import {ref} from "vue";
-import Toast from "@/Pages/Components/Panel/Toast.vue";
 import {toArray} from "@vueuse/core";
+import {useToast} from "vue-toastification";
 
+const toast = useToast();
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         user: null,
@@ -66,15 +67,10 @@ export const useAuthStore = defineStore('auth', {
             formData.append("post_code", form.post_code);
             await axios.post('/user/update', formData).then((response) => {
                 this.user = response.data.data;
+                toast.success('تغییرات با موفقیت ذخیره شدند')
             }).catch((error) => {
-                this.Toast = error.response.data.errors;
-                this.toastTimer = 3000;
+                toast.error(error.response.data.message);
             })
-        },
-        toastCleaner() {
-            // if (this.Toast!=null)
-            // delete this.Toast[this.Toast.length-1];
-            console.log(this.Toast.keys(0));
         },
         logout() {
             this.user = null;
