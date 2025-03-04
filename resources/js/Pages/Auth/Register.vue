@@ -4,6 +4,7 @@ import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
 import ButtonBT2 from "@/Pages/Components/Form/ButtonBT2.vue";
 import CheckBoxBT from "@/Pages/Components/Form/CheckBoxBT.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import {useToast} from "vue-toastification";
 
 const form = useForm({
     name: '',
@@ -16,6 +17,10 @@ const form = useForm({
 const submit = () => {
     form.post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
+        onError: (err) =>{
+            const toast = useToast();
+            toast.error(Object.values(err)[0]);
+        },
     });
 };
 </script>

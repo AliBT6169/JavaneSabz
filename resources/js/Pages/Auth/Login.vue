@@ -3,6 +3,7 @@ import {Head, Link, useForm} from '@inertiajs/vue3';
 import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
 import CheckBoxBT from "@/Pages/Components/Form/CheckBoxBT.vue";
 import ButtonBT2 from "@/Pages/Components/Form/ButtonBT2.vue";
+import {useToast} from "vue-toastification";
 
 defineProps({
     canResetPassword: {
@@ -22,6 +23,10 @@ const form = useForm({
 const submit = () => {
     form.post(route('login'), {
         onFinish: () => form.reset('password'),
+        onError: (err) =>{
+            const toast = useToast();
+            toast.error(Object.values(err)[0]);
+        },
     });
 };
 </script>
