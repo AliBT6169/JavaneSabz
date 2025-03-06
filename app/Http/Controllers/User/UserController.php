@@ -49,8 +49,8 @@ class UserController extends Controller
             'post_code' => 'required',
         ]);
 //        image section
-        if (file_exists(Auth::user()->avatar))
-            unlink(Auth::user()->avatar);
+        if (file_exists(Auth::user()->gallery->media))
+            unlink(Auth::user()->gallery->media);
         $image = $request->image;
         $URL = 'images/users/' . $request->id . '/' . $image->getClientOriginalName();
         $path = $image->move(public_path('images/users/' . $request->id . '/'), $image->getClientOriginalName());
@@ -64,7 +64,7 @@ class UserController extends Controller
             'gender' => $validatedData['gender'],
         ]);
 //        address update or create section
-        Address::addressStore($request->id , $validatedData['address'] , $validatedData['post_code']);
+        Address::addressStore($request->id, $validatedData['address'], $validatedData['post_code']);
         return DashboardResource::make(User::whereId(Auth::id())->first());
     }
 

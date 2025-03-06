@@ -7,6 +7,7 @@ use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\BuyCart\BuyCart;
 use App\Models\Category;
+use App\Models\Gallery;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(1)->create()->unique;
+        Gallery::factory(1)->create();
         Brand::factory(20)->create()->unique;
         Category::factory(20)->create()->unique();
         Product::factory(200)->create()->unique();
@@ -35,5 +37,6 @@ class DatabaseSeeder extends Seeder
         OrderItem::factory(100)->create();
         Transaction::factory(10)->create();
         Wishlist::factory(50)->create();
+
     }
 }
