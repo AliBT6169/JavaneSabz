@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\DashboardResource;
 use App\Models\Address;
+use App\Models\Gallery;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,20 +50,17 @@ class UserController extends Controller
             'post_code' => 'required',
         ]);
 //        image section
-        if (file_exists(Auth::user()->gallery->media))
-            unlink(Auth::user()->gallery->media);
-        $image = $request->image;
-        $URL = 'images/users/' . $request->id . '/' . $image->getClientOriginalName();
-        $path = $image->move(public_path('images/users/' . $request->id . '/'), $image->getClientOriginalName());
+        Gallery::updateImage('user', $validatedData['image']);
 //        user update section
         User::whereId(Auth::id())->update([
             'name' => $validatedData['name'],
             'full_name' => $validatedData['full_name'],
             'email' => $validatedData['email'],
-            'avatar' => $URL,
             'cellphone' => $validatedData['cellphone'],
             'gender' => $validatedData['gender'],
         ]);
+//        gallery update section
+
 //        address update or create section
         Address::addressStore($request->id, $validatedData['address'], $validatedData['post_code']);
         return DashboardResource::make(User::whereId(Auth::id())->first());

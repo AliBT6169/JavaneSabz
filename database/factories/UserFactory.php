@@ -31,7 +31,6 @@ class UserFactory extends Factory
             'gender' => 1,
             'cellphone' => '09012553051',
             'status' => rand(0, 1),
-            'avatar' => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
             'remember_token' => Str::random(10),

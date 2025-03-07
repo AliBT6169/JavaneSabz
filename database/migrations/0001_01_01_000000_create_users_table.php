@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('cellphone')->unique();
             $table->integer('status')->default(1);
-            $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('provider', ['form', 'google', 'facebook'])->default('form');

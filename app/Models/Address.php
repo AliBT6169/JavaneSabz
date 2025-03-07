@@ -34,14 +34,15 @@ class Address extends Model
     public static function addressStore(int $id, string $address, string $postcode)
     {
 
-        if (Address::where('addressable_id', $id)->exists())
-            Address::where('addressable_id', $id)->update([
+        if (self::where('addressable_id', $id)->exists())
+            self::where('addressable_id', $id)->update([
                 'address' => $address,
                 'postcode' => $postcode,
             ]);
         else
-            Address::create([
+            self::create([
                 'addressable_id' => $id,
+                'addressable_type' => User::class,
                 'address' => $address,
                 'postcode' => $postcode,
             ]);
