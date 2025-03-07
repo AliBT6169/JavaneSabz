@@ -24,7 +24,8 @@ document.addEventListener('mouseup', function (event) {
     drag.value = false;
     if (!(event.target.classList.contains("slider1"))) {
         mouse_upd(event);
-        document.getElementById('slider').style.transform = "translateX(" + slide.value * sliderWith.value + "rem)";
+        if (document.getElementById('slider'))
+            document.getElementById('slider').style.transform = "translateX(" + slide.value * sliderWith.value + "rem)";
     }
 
 });
@@ -45,7 +46,8 @@ const mouse_moved = (event) => {
 }
 
 const mouse_upd = (event) => {
-    document.getElementById("slider").style.transitionProperty = "all";
+    if (document.getElementById("slider"))
+        document.getElementById("slider").style.transitionProperty = "all";
     if (drag.value) {
         if (X.value + sliderWith.value * 16 / 10 < event.pageX)
             slider_show("forward");
