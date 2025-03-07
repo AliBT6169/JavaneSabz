@@ -1,7 +1,6 @@
 <script setup>
 
 import PaymentItem from "@/Pages/Components/Panel/OrderItem.vue";
-import {Payments} from "@/Pages/Profile/DashboardContainer.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";
 

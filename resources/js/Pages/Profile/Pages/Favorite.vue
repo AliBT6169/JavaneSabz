@@ -1,7 +1,6 @@
 <script setup>
 
 import Product from "@/Pages/Components/Home/Product.vue";
-import {LikedProducts} from "@/Pages/Profile/DashboardContainer.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 </script>

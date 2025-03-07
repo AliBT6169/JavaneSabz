@@ -4,12 +4,17 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
-
-const authUser = useAuthStore()
+import {ref} from "vue";
+import {Modal, ModalComponent, modalSet} from "@/Pages/Components/Helper/Helper.js";
+const authUser = useAuthStore();
 </script>
-
 <template>
     <header class="w-full">
+        <div @click.self="Modal = false" class="absolute z-20 top-0 right-0 p-20 w-screen h-screen bg-gray-700/30" v-if="Modal">
+            <div class="w-2-3 p-6 h-full overflow-y-auto bg-defaultColor5 rounded-xl modal">
+                <component class="modal" :is="ModalComponent"></component>
+            </div>
+        </div>
         <div class="w-fit flex z-20 flex-col mx-auto items-center justify-center
          md:flex-row md:w-full md:justify-between">
             <!--            icon-->
@@ -38,8 +43,9 @@ const authUser = useAuthStore()
             </div>
             <div class="gap-2 hidden md:flex">
                 <!--                        buy cart-->
-                <div
-                     class="w-fit px-4 shine_animation h-10 rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm gap-2 justify-center items-center">
+                <div @click="modalSet('BuyCart')"
+                     class="modal w-fit px-4 shine_animation h-10 rounded-bl-sm rounded-3xl bg-defaultColor flex shadow-sm
+                    gap-2 justify-center items-center">
                     <div class="text-defaultColor4">
                         <svg-component name="cart" class="size-5"></svg-component>
                     </div>
@@ -53,15 +59,16 @@ const authUser = useAuthStore()
                     items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation
                     hover:text-white dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white  lg:px-4">
                         <svg-component name="person" class="size-5"></svg-component>
-                        <div class="text-nowrap hidden lg:block">{{ useAuthStore().user === null ? 'ورود/ثبت نام' : 'داشبورد' }}
+                        <div class="text-nowrap hidden lg:block">
+                            {{ useAuthStore().user === null ? 'ورود/ثبت نام' : 'داشبورد' }}
                         </div>
                     </div>
                 </Link>
             </div>
             <div class="gap-2 items-center hidden md:flex">
                 <!--            like-->
-                <div
-                    class=" size-10 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl dark:bg-opacity-50">
+                <div @click="modalSet('Favorite')"
+                     class="modal size-10 hover:bg-[#FF8A665E] transition-colors duration-[400ms] shine_animation bg-[#f6dfda] flex justify-center items-center rounded-xl dark:bg-opacity-50">
                     <div class="fill-none text-[#f54f19]">
                         <svg-component name="like" class="size-6"></svg-component>
                     </div>
