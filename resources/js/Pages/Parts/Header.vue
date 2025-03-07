@@ -11,9 +11,9 @@ const authUser = useAuthStore();
 <template>
     <header class="w-full">
         <div @click.self="Modal = false"
-             class="fixed invisible opacity-0 duration-300 z-50 -top-96 right-0 p-8 w-screen h-screen bg-gray-700/30 md:p-20"
-            :class="{'!top-0 !visible !opacity-100':Modal}">
-            <div class="w-2-3 p-6 h-full overflow-y-auto bg-defaultColor5 rounded-xl modal">
+             class="fixed invisible opacity-0 duration-500 z-50 top-0 left-0 p-8 w-screen h-screen bg-gray-700/30 md:p-20"
+            :class="{'!visible !opacity-100':Modal}">
+            <div :class="{'!translate-x-0':Modal}" class="translate-x-[100vw] duration-500 w-2-3 p-6 h-full overflow-y-auto bg-defaultColor5 rounded-xl modal">
                 <component class="modal" :is="ModalComponent"></component>
             </div>
         </div>
