@@ -5,7 +5,7 @@ import {useDark, useToggle} from "@vueuse/core";
 import {ref} from "vue";
 import {Link} from '@inertiajs/vue3';
 import ConnectModal from "@/Pages/Components/Home/connect-modal.vue";
-import {connectUsModalVisibility} from "@/Pages/Components/Helper/Helper.js";
+import {connectUsModalVisibility, modalSet} from "@/Pages/Components/Helper/Helper.js";
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
@@ -163,7 +163,7 @@ const showConnectModal = () => {
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-12 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
                 <DarkLight></DarkLight>
-                <div class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
+                <div @click="modalSet('Favorite')" class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
                     <svg-component name="like" class="size-7"></svg-component>
                 </div>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
@@ -172,7 +172,7 @@ const showConnectModal = () => {
             </div>
         </div>
         <!--        buyCart-->
-        <div class="home_mobile_navigation_items">
+        <div @click="'BuyCart'" class="home_mobile_navigation_items">
             <svg-component name="cart" title="سبد خرید" class="size-[70%] sm:size-10"></svg-component>
         </div>
         <!--        home-->

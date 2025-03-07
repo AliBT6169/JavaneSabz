@@ -10,7 +10,9 @@ const authUser = useAuthStore();
 </script>
 <template>
     <header class="w-full">
-        <div @click.self="Modal = false" class="absolute z-20 top-0 right-0 p-20 w-screen h-screen bg-gray-700/30" v-if="Modal">
+        <div @click.self="Modal = false"
+             class="fixed invisible opacity-0 duration-300 z-50 -top-96 right-0 p-8 w-screen h-screen bg-gray-700/30 md:p-20"
+            :class="{'!top-0 !visible !opacity-100':Modal}">
             <div class="w-2-3 p-6 h-full overflow-y-auto bg-defaultColor5 rounded-xl modal">
                 <component class="modal" :is="ModalComponent"></component>
             </div>

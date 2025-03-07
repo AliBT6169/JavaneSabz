@@ -9,7 +9,7 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
     <div class="">
         <div class="mb-4 p-2 rounded-lg bg-defaultColor2 border grid gap-2 text-white
          sm:rounded-full sm:w-full">
-            <div class="flex justify-center">
+            <div class="flex justify-center flex-wrap">
                 <span> محصولات مورد علاقه : </span><span>{{
                     useAuthStore().WishList.length
                 }}</span>
