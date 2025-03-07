@@ -4,7 +4,6 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
-import {ref} from "vue";
 import {Modal, ModalComponent, modalSet} from "@/Pages/Components/Helper/Helper.js";
 const authUser = useAuthStore();
 </script>
@@ -13,7 +12,7 @@ const authUser = useAuthStore();
         <div @click.self="Modal = false"
              class="fixed invisible opacity-0 duration-500 z-50 top-0 left-0 p-8 w-screen h-screen bg-gray-700/30 md:p-20"
             :class="{'!visible !opacity-100':Modal}">
-            <div :class="{'!translate-x-0':Modal}" class="translate-x-[100vw] duration-500 w-2-3 p-6 h-full overflow-y-auto bg-defaultColor5 rounded-xl modal">
+            <div :class="{'!translate-x-0':Modal}" class="translate-x-[100vw] duration-500 w-2-3 p-6 h-full overflow-y-auto bg-defaultColor5 rounded-xl modal dark:bg-defaultColor">
                 <component class="modal" :is="ModalComponent"></component>
             </div>
         </div>
