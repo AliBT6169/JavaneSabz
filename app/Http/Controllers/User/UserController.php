@@ -52,15 +52,7 @@ class UserController extends Controller
 //        image section
         Gallery::updateImage('user', $validatedData['image']);
 //        user update section
-        User::whereId(Auth::id())->update([
-            'name' => $validatedData['name'],
-            'full_name' => $validatedData['full_name'],
-            'email' => $validatedData['email'],
-            'cellphone' => $validatedData['cellphone'],
-            'gender' => $validatedData['gender'],
-        ]);
-//        gallery update section
-
+        User::updateUser($validatedData);
 //        address update or create section
         Address::addressStore($request->id, $validatedData['address'], $validatedData['post_code']);
         return DashboardResource::make(User::whereId(Auth::id())->first());

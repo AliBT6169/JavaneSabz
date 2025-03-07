@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -92,5 +94,17 @@ class User extends Authenticatable
     public function wish_lists(): HasMany
     {
         return $this->hasMany(WishList::class);
+    }
+
+    public static function updateUser($data)
+    {
+        self::whereId(Auth::id())->update([
+            'name' => $data['name'],
+            'full_name' => $data['full_name'],
+            'email' => $data['email'],
+            'cellphone' => $data['cellphone'],
+            'gender' => $data['gender'],
+        ]);
+
     }
 }
