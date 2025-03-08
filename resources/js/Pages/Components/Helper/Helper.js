@@ -4,10 +4,12 @@ import {useToast} from "vue-toastification";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import Favorite from "@/Pages/Profile/Pages/Favorite.vue";
 import BuyCart from "@/Pages/Profile/Pages/BuyCart.vue";
+import ProductShow from "@/Pages/ProductShow.vue";
 
 const show_profile = markRaw(showProfile);
 const buyCart = markRaw(BuyCart);
 const favorite = markRaw(Favorite);
+const productShow = markRaw(ProductShow);
 
 const connectUsModalVisibility = ref(false);
 const profileSidebar = ref(false);
@@ -15,7 +17,10 @@ const profileComponent = ref(showProfile);
 const Modal = ref(false);
 const ModalComponent = ref();
 const modalSet = (modal) => {
-    if (useAuthStore().isAuthenticated) {
+    if (modal === 'ProductShow') {
+        Modal.value = !Modal.value;
+        ModalComponent.value = productShow;
+    } else if (useAuthStore().isAuthenticated) {
         Modal.value = !Modal.value;
         if (modal === 'Favorite')
             ModalComponent.value = favorite;
