@@ -35,6 +35,16 @@ export const useAuthStore = defineStore('auth', {
                 axios.post(route('BuyCart.CartItemDecrement', id));
             }
         },
+        async addToCart(id) {
+            if (this.isAuthenticated) {
+                await axios.post(route('BuyCart.adToBuyCart', id)).then(response => {
+                    console.log(response.data);
+                    toast.success(response.data==='incremented'?'مجودی محصول در سبد اضافه شد':'محصول به سبد اضافه شد');
+                }).catch(error => {
+                    console.log(error.response.data);
+                });
+            } else toast.warning('لطفا اول وارد حساب کاربری خود شوید')
+        },
         async likeOrUnLike(product_id, like) {
             if (this.user != null) {
                 if (like) {

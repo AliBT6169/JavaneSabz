@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(BuyCartController::class)->group(function () {
     Route::post('/IncrementBuyCart/{id}', 'CartItemIncrement')->name('BuyCart.CartItemIncrement');
+    Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
 });
 Route::controller(BuyCartController::class)->group(function () {
     Route::post('/DecrementBuyCart/{id}', 'CartItemDecrement')->name('BuyCart.CartItemDecrement');

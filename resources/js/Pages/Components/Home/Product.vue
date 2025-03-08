@@ -32,7 +32,7 @@ const props = defineProps(["product", "special"]);
             </span>
             <span
                 class="flex justify-between w-full lg:w-fit lg:block">
-                <svg-component name="cart"
+                <svg-component name="cart" @click="useAuthStore().addToCart(product.id)"
                                class="size-7 duration-500 hover:translate-x-2 hover:text-defaultColor dark:hover:text-defaultColor5"></svg-component>
                 <svg-component :title="product.is_liked?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
                                @click="[useAuthStore().likeOrUnLike(product.id , product.is_liked),product.is_liked=!product.is_liked]"
