@@ -34,7 +34,7 @@ class DashboardResource extends JsonResource
         ];
     }
 
-    public function getBuyCartItems($request)
+    public static function getBuyCartItems($request)
     {
         $BuyCartItems = [];
         foreach ($request as $buy_cart_item) {

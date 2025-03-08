@@ -2,6 +2,7 @@
 
 namespace App\Models\BuyCart;
 
+use App\Http\Resources\Dashboard\DashboardResource;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Auth;
+use Psy\Util\Json;
 
 class BuyCart extends Model
 {
@@ -34,18 +36,25 @@ class BuyCart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function addToCart(int $ProductId): string
+    public static function addToCart(int $ProductId)
     {
-        if (self::where('product_variation_id', $ProductId)->where('user_id', Auth::id())->exists()) {
-            self::CartItemIncrement($ProductId);
-            return 'incremented';
+        $self = self::where('product_variation_id', $ProductId)->where('user_id', Auth::id())->first() ?? '';
+        if ($self != '') {
+            self::CartItemIncrement($self->id);
+            return response([
+                'data' => $self->id,
+                'method' => 'increment'
+            ]);
         } else {
-            self::create([
+            $newCartItem[] = self::create([
                 'user_id' => Auth::id(),
                 'product_variation_id' => $ProductId,
                 'quantity' => 1,
             ]);
-            return 'added';
+            return response()->json([
+                'data' => DashboardResource::getBuyCartItems($newCartItem),
+                'method' => 'create',
+            ]);
         }
     }
 
@@ -56,6 +65,8 @@ class BuyCart extends Model
 
     public static function CartItemDecrement(int $id): void
     {
-        self::whereId($id)->decrement('quantity');
+        if (self::whereId($id)->decrement('quantity') > 1)
+            self::whereId($id)->decrement('quantity');
+        else self::whereId($id)->delete();
     }
 }
