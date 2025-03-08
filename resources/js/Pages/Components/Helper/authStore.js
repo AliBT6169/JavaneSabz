@@ -38,15 +38,13 @@ export const useAuthStore = defineStore('auth', {
         async addToCart(id) {
             if (this.isAuthenticated) {
                 await axios.post(route('BuyCart.adToBuyCart', id)).then(response => {
-                    console.log(this.Products[0])
                     if (response.data.method === 'increment') {
                         this.Products.map((item) => {
                             if (item.id === response.data.data)
                                 item.quantity++;
                         });
-                    }else if(response.data.method === 'create') {
+                    } else if (response.data.method === 'create') {
                         this.Products.push(response.data.data[0]);
-                        console.log(response.data.data[0]);
                     }
                     toast.success(response.data.method === 'increment' ? 'مجودی محصول در سبد اضافه شد' : 'محصول به سبد اضافه شد');
                 }).catch(error => {

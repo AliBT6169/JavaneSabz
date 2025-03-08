@@ -172,7 +172,7 @@ const showConnectModal = () => {
             </div>
         </div>
         <!--        buyCart-->
-        <div @click="'BuyCart'" class="home_mobile_navigation_items">
+        <div @click="modalSet('BuyCart')" class="home_mobile_navigation_items">
             <svg-component name="cart" title="سبد خرید" class="size-[70%] sm:size-10"></svg-component>
         </div>
         <!--        home-->
