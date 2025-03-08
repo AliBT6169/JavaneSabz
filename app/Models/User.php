@@ -99,10 +99,10 @@ class User extends Authenticatable
     public static function updateUser($data)
     {
         self::whereId(Auth::id())->update([
-            'name' => $data['name'],
+            'name' => $data['username'],
             'full_name' => $data['full_name'],
             'email' => $data['email'],
-            'cellphone' => $data['cellphone'],
+            'cellphone' => $data['mobile'],
             'gender' => $data['gender'],
         ]);
 

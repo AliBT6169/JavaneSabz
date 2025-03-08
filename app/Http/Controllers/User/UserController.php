@@ -36,7 +36,7 @@ class UserController extends Controller
     {
 //        validation section
         $validatedData = $request->validate([
-            'name' => 'required',
+            'username' => 'required',
             'full_name' => 'required',
             'email' => [
                 'required',
@@ -45,7 +45,7 @@ class UserController extends Controller
             ],
             'image' => 'required|image|max:2048',
             'address' => 'required',
-            'cellphone' => 'required',
+            'mobile' => 'required',
             'gender' => 'required|in:0,1',
             'post_code' => 'required',
         ]);

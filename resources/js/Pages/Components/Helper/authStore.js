@@ -58,19 +58,21 @@ export const useAuthStore = defineStore('auth', {
             const formData = new FormData();
             formData.append("id", form.id);
             formData.append("image", form.image);
-            formData.append("name", form.name);
+            formData.append("username", form.name);
             formData.append("full_name", form.full_name);
             formData.append("gender", form.gender);
-            formData.append("cellphone", form.cellphone);
+            formData.append("mobile", form.cellphone);
             formData.append("email", form.email);
             formData.append("address", form.address);
             formData.append("post_code", form.post_code);
-            console.log(formData);
             await axios.post('/user/update', formData).then((response) => {
                 this.user = response.data.data;
                 toast.success('تغییرات با موفقیت ذخیره شدند')
             }).catch((error) => {
-                toast.error(error.response.data.message);
+                const values = Object.values(error.response.data.errors);
+                values.map((item) => {
+                    toast.error(item[0]);
+                });
             })
         },
         logout() {

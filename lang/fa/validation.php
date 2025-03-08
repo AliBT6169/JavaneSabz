@@ -153,6 +153,7 @@ return [
     'attributes' => [
         "name" => "نام",
         "username" => "نام کاربری",
+        "full_name" => "نام و نام خانوادگی",
         "email" => "پست الکترونیکی",
         "first_name" => "نام",
         "last_name" => "نام خانوادگی",
@@ -183,7 +184,6 @@ return [
         "available" => "موجود",
         "size" => "اندازه",
         "file" => "فایل",
-        "fullname" => "نام و نام خانوادگی",
         "price" => "قیمت",
         "slug" => "پیوند یکتا",
         "body" => "توضیحات",
@@ -210,6 +210,7 @@ return [
         "firstname" => "نام",
         "lastname" => "نام خانوادگی",
         "national_code" => "کد ملی",
+        "post_code" => "کد پستی",
         "standard_group_id" => "دسته بندی",
         "learnstandard_id" => "مهارت",
 
