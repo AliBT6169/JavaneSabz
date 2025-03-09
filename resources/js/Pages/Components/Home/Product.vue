@@ -3,6 +3,7 @@
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";
+import {Link} from '@inertiajs/vue3'
 import {modalSet} from "@/Pages/Components/Helper/Helper.js";
 import ProductShow from "@/Pages/ProductShow.vue";
 
@@ -15,10 +16,12 @@ const props = defineProps(["product", "special"]);
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 pb-6 flex-col hover3D-animation
          items-center gap-4 dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700"
         :class="{'shadow-xl !shadow-red-500  ':product.is_liked}">
-        <!--        image-->
-        <div class="w-full">
-            <img :src="product.image" alt="" @dragstart.prevent class="size-full">
-        </div>
+        <Link href="/ProductShow">
+            <!--        image-->
+            <div class="w-full">
+                <img :src="product.image" alt="" @dragstart.prevent class="size-full">
+            </div>
+        </Link>
         <!--        name-->
         <div class="flex px-4 justify-center w-full items-center">
             <h3 class="w-28 text-center">{{ product.name }}</h3>
@@ -54,7 +57,7 @@ const props = defineProps(["product", "special"]);
                            class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500
                            dark:fill-transparent dark:hover:fill-red-900 dark:text-red-900"
                            :class="{'!fill-red-500':product.is_liked}"></svg-component>
-            <svg-component title="مشاهده محصول" name="show" @click="modalSet('ProductShow')"
+            <svg-component title="مشاهده محصول" name="show"
                            class="size-6 hover:text-defaultColor duration-500"></svg-component>
         </div>
         <div class="absolute top-0 right-0 py-5 rounded-b-full bg-red-600 text-slate-200 dark:bg-red-900"

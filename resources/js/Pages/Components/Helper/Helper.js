@@ -9,7 +9,7 @@ import ProductShow from "@/Pages/ProductShow.vue";
 const show_profile = markRaw(showProfile);
 const buyCart = markRaw(BuyCart);
 const favorite = markRaw(Favorite);
-const productShow = markRaw(ProductShow);
+// const productShow = markRaw(ProductShow);
 
 const connectUsModalVisibility = ref(false);
 const profileSidebar = ref(false);

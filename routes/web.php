@@ -17,7 +17,9 @@ Route::get('/', function () {
 Route::get('/درباره ما', function () {
     return Inertia::render('About-Us');
 });
-
+Route::get('ProductShow', function () {
+    return Inertia::render('ProductShow');
+});
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
