@@ -17,8 +17,9 @@ Route::get('/', function () {
 Route::get('/درباره ما', function () {
     return Inertia::render('About-Us');
 });
-Route::get('ProductShow', function () {
-    return Inertia::render('ProductShow');
+Route::get('ProductShow/{id}', function ($id) {
+    $product = ProductVariation::where("product_id",$id)->first();
+    return Inertia::render('ProductShow', ["product" => $product]);
 });
 
 Route::middleware('auth')->group(function () {

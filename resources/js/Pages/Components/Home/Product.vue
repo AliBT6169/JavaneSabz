@@ -16,7 +16,7 @@ const props = defineProps(["product", "special"]);
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 pb-6 flex-col hover3D-animation
          items-center gap-4 dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700"
         :class="{'shadow-xl !shadow-red-500  ':product.is_liked}">
-        <Link href="/ProductShow">
+        <Link :href="'/ProductShow/'+product.id">
             <!--        image-->
             <div class="w-full">
                 <img :src="product.image" alt="" @dragstart.prevent class="size-full">
