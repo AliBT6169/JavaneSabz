@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Home\ProductResource;
 use App\Models\Product;
+use App\Models\ProductVariation;
+use http\Client\Response;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
@@ -34,9 +38,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(int $id)
     {
-        //
+        $product = ProductResource::make(ProductVariation::where("id", $id)->first());
+        return Inertia::render('ProductShow', ["product" => $product]);
     }
 
     /**

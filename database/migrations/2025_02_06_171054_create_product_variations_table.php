@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('value');
             $table->unsignedInteger('price')->default(0);
             $table->unsignedInteger('quantity')->default(0);
+            $table->unsignedInteger('off_sale')->default(0);
             $table->string('sku')->nullable();
             $table->unsignedInteger('sale_price')->nullable();
             $table->timestamps();

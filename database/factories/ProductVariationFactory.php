@@ -17,13 +17,17 @@ class ProductVariationFactory extends Factory
      */
     public function definition(): array
     {
+        $off_sale = rand(0, 50);
+        $price = rand(10000, 10000000);
+        $sale_price = $price - $off_sale * ($price / 100);
         return [
             "product_id" => rand(1, 100),
             "attribute_id" => rand(1, 2),
             "value" => Faker::firstName(),
-            "price" => rand(10000, 1000000),
+            "price" => $price,
             "quantity" => rand(0, 100),
-            "sale_price" => rand(50000, 5000000),
+            "off_sale" => $off_sale,
+            "sale_price" => $sale_price,
 
         ];
     }

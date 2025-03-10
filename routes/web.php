@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\Dashboard\WishListController;
 use App\Http\Controllers\User\UserController;
@@ -17,10 +18,9 @@ Route::get('/', function () {
 Route::get('/درباره ما', function () {
     return Inertia::render('About-Us');
 });
-Route::get('ProductShow/{id}', function ($id) {
-    $product = ProductVariation::where("id", $id)->first();
-    return Inertia::render('ProductShow', ["product" => $product]);
-})->name('ProductShow');
+Route::controller(ProductController::class)->group(function () {
+    Route::get('ProductShow/{id}', 'show')->name('ProductShow');
+});
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
