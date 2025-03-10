@@ -14,8 +14,15 @@ class GalleryFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition(string $type = "product"): array
     {
+        if ($type == "product") {
+            return [
+                "media" => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
+                "mediable_id" => 1,
+                "mediable_type" => "App\Models\ProductVariation",
+            ];
+        }
         return [
             "media" => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
             "mediable_id" => 1,
