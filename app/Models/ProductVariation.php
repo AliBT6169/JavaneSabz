@@ -75,7 +75,7 @@ class ProductVariation extends Model
                 "quantity" => $item->quantity,
                 "price" => $item->sale_price,
                 "image" => $item->product->primary_image,
-                "is_liked" => Wishlist::is_exist(Auth::user()->id??null, $item->id),
+                "is_liked" => Wishlist::is_exist(Auth::user()->id ?? null, $item->id),
             ];
         }
         return $product;

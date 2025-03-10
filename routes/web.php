@@ -18,7 +18,7 @@ Route::get('/درباره ما', function () {
     return Inertia::render('About-Us');
 });
 Route::get('ProductShow/{id}', function ($id) {
-    $product = ProductVariation::where("product_id",$id)->first();
+    $product = ProductVariation::where("id", $id)->first();
     return Inertia::render('ProductShow', ["product" => $product]);
 });
 
