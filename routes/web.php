@@ -20,7 +20,7 @@ Route::get('/درباره ما', function () {
 Route::get('ProductShow/{id}', function ($id) {
     $product = ProductVariation::where("id", $id)->first();
     return Inertia::render('ProductShow', ["product" => $product]);
-});
+})->name('ProductShow');
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
