@@ -69,7 +69,7 @@ export const useAuthStore = defineStore('auth', {
 
                 }
             } else
-                window.location.href = '/login';
+                toast.warning('لطفا اول ئارد حساب کاربری خود شوید')
         },
         async informationUpdate(form) {
             const formData = new FormData();

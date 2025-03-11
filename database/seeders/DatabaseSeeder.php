@@ -24,19 +24,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(1)->create()->unique;
-        Gallery::factory(1)->create();
-        Brand::factory(20)->create()->unique;
-        Category::factory(20)->create()->unique();
-        Product::factory(200)->create()->unique();
-        Attribute::factory(2)->create()->unique();
-        ProductVariation::factory(100)->create()->unique;
+//        User::factory(1)->create()->unique;
+//        User Gallery
+//        Gallery::factory(1)->create();
+//        Product Gallery
+        Gallery::factory(1000)->create();
+//        Brand::factory(20)->create()->unique;
+//        Category::factory(20)->create()->unique();
+//        Product::factory(200)->create()->unique();
+//        Attribute::factory(2)->create()->unique();
+//        ProductVariation::factory(100)->create()->unique;
 //        BuyCart::factory(10)->create();
-        Address::factory(1)->create();
-        Order::factory(10)->create();
-        OrderItem::factory(100)->create();
-        Transaction::factory(10)->create();
-        Wishlist::factory(50)->create();
+//        Address::factory(1)->create();
+//        Order::factory(10)->create();
+//        OrderItem::factory(100)->create();
+//        Transaction::factory(10)->create();
+//        Wishlist::factory(50)->create();
 
     }
 }

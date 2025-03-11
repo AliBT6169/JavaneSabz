@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function gallery(): MorphOne
     {
-        return $this->morphOne(Gallery::class, 'mediable');
+        return $this->morphOne(Gallery::class, 'gallery');
     }
 
     public function buy_carts(): HasMany

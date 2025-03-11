@@ -19,6 +19,7 @@ class WishListController extends Controller
                 "name" => $product->productVariation->product->name,
                 "image" => $product->productVariation->product->primary_image,
                 "price" => $product->productVariation->sale_price,
+                "is_liked" => true,
             ];
             return $product;
         }

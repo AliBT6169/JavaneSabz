@@ -16,17 +16,18 @@ class GalleryFactory extends Factory
      */
     public function definition(string $type = "product"): array
     {
-        if ($type == "product") {
-            return [
-                "media" => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
-                "mediable_id" => 1,
-                "mediable_type" => "App\Models\ProductVariation",
-            ];
-        }
+//        for product
         return [
             "media" => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
-            "mediable_id" => 1,
-            "mediable_type" => "App\Models\User",
+            "gallery_id" => rand(1, 200),
+            "gallery_type" => "App\Models\ProductVariation",
         ];
+
+//        for user
+//        return [
+//            "media" => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
+//            "gallery_id" => 1,
+//            "gallery_type" => "App\Models\User",
+//        ];
     }
 }

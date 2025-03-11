@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('gallery', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('mediable_id');
-            $table->string('mediable_type');
+            $table->unsignedInteger('gallery_id');
+            $table->string('gallery_type');
             $table->string('media');
             $table->timestamps();
         });

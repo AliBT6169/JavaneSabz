@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,11 @@ class ProductVariation extends Model
         'created_at',
     ];
 
-    public function gallery(): MorphOne
+    public function gallery(): MorphMany
     {
-        return $this->morphOne(Gallery::class, 'mediable');
+        return $this->morphMany(Gallery::class, 'gallery');
     }
+
     public function buy_cart(): HasOne
     {
         return $this->hasOne(BuyCart::class);
