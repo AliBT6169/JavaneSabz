@@ -28,13 +28,13 @@ const authUser = useAuthStore();
                 group-hover:visible group-hover:opacity-100 group-hover:top-10">
                     <div class="rounded-lg w-48 border-2 bg-defaultColor5 p-4 grid gap-4 dark:bg-defaultColor">
                         <!--                        items-->
-                        <a href="/" class="">
+                        <Link href="/" class="">
                             <div class="flex justify-between py-2 cursor-pointer duration-500 items-center
                             border-b hover:text-slate-600 dark:hover:text-gray-300 hover:px-1">
                                 <svg-component name="home" class="size-7"></svg-component>
                                 <div class="">صفحه اصلی</div>
                             </div>
-                        </a>
+                        </Link>
                         <Link :href="route('logout')" method="post" class="">
                             <div class="flex justify-between py-2 cursor-pointer duration-500 items-center
                              border-b hover:text-slate-600 dark:hover:text-gray-300 hover:px-1">
