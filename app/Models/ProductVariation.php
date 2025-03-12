@@ -70,21 +70,33 @@ class ProductVariation extends Model
 
 
     //دریافت تعدادی اختیاری از محصولات
-    public static function getSomeProduct(int $count = 10)
+    public static function getSomeProduct(int $count = 10, int $categoryId = null)
     {
-        $products = self::latest()->take($count)->get();
-        $product = [];
-        foreach ($products as $item) {
-            $product[] = [
+        $productVariations = [];
+        $productData = [];
+        if ($categoryId != null) {
+            $products = Product::where('category_id', $categoryId)->get();
+            foreach ($products as $product) {
+                foreach ($product->product_variations as $variation) {
+                    $productVariations[] = $variation;
+                }
+            }
+        } else {
+            $productVariations = self::latest()->take($count)->get();
+        }
+        foreach ($productVariations as $item) {
+            $productData[] = [
                 "id" => $item->id,
                 "product_id" => $item->product_id,
+                "category_id" => $item->product->category_id,
+                "brand_id" => $item->product->brand_id,
                 "name" => $item->product->name,
                 "quantity" => $item->quantity,
                 "price" => $item->sale_price,
                 "image" => $item->product->primary_image,
-                "is_liked" => Wishlist::is_exist(Auth::user()->id ?? null, $item->id),
+                "is_liked" => Auth::check() ? Wishlist::is_exist(Auth::user()->id, $item->id) : false,
             ];
         }
-        return $product;
+        return $productData;
     }
 }

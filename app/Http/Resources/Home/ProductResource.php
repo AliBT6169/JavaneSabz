@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Home;
 
+use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -26,7 +27,7 @@ class ProductResource extends JsonResource
                 'name' => $this->product->brand->name,
                 'id' => $this->product->brand->id,
             ],
-            'images' => $this->gallery,
+            'images' => $this->imageHandler($this->gallery),
             'description' => $this->product->description,
             'quantity' => $this->quantity,
             'price' => $this->price,
@@ -34,6 +35,23 @@ class ProductResource extends JsonResource
             'sale_price' => $this->sale_price,
             'comments' => '',
             'rate' => '',
+            'sameProducts' => ProductVariation::getSomeProduct(10, $this->product->category->id),
         ];
+    }
+
+    public function getSomeSameProduct(int $categoryId)
+    {
+
+    }
+
+    public function imageHandler($images): array
+    {
+        $result = [];
+        foreach ($images as $image) {
+            $result[] = [
+                'image' => $image->media,
+            ];
+        }
+        return $result;
     }
 }
