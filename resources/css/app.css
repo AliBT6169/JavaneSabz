@@ -111,6 +111,10 @@
     @apply [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none];
 }
 
+.productShowItems{
+    @apply p-1 rounded-xl bg-defaultColor5/50 border border-defaultColor/50 flex items-center dark:bg-defaultColor/50;
+}
+
 .introView {
     animation: introOut 3s;
 }
