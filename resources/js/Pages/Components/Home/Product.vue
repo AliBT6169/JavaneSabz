@@ -24,7 +24,7 @@ const props = defineProps(["product", "special"]);
         </Link>
         <!--        name-->
         <div class="flex px-4 justify-center w-full items-center">
-            <h3 class="w-28 text-center" @click="(e)=>console.log(product)">{{ product.name }}</h3>
+            <h3 class="w-28 text-center">{{ product.name }}</h3>
         </div>
         <!--        price & buy cart-->
         <div class="w-full px-4 flex lg:justify-between items-center flex-col gap-2 lg:flex-row">

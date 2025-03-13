@@ -13,7 +13,7 @@ onMounted(()=>{
 </script>
 
 <template>
-    <div v-if="isVisible" class="top-0 bg-slate-800 bg-opacity-80 z-50 w-screen h-full absolute flex items-center duration-1000 ease-in introView sm:justify-center "
+    <div v-if="isVisible" class="top-0 bg-slate-800 bg-opacity-80 z-50 w-screen h-full fixed flex items-center duration-1000 ease-in introView sm:justify-center "
          >
         <div class="flex items-center gap-1 justify-center text-white">
             <img src="../../../../../public/logo/logo1.png" class="size-28 sm:size-52" alt="">
