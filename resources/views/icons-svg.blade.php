@@ -253,4 +253,28 @@
               d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/>
     </symbol>
 
+    <symbol viewBox="0 0 20 20" fill="#000000" id="esalat">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+            <g id="quality-5" transform="translate(-2 -2)">
+                <circle id="secondary" fill="currentColor" cx="7" cy="7" r="7" transform="translate(5 3)"></circle>
+                <path id="primary" d="M10,10l1.33,1.5L14,8.5" fill="none" stroke="#000000" stroke-linecap="round"
+                      stroke-linejoin="round" stroke-width="2"></path>
+                <path id="primary-2" data-name="primary" d="M5.79,13.57,3,17.56l3.03.9L7.91,21l2.88-4.11" fill="none"
+                      stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                <path id="primary-3" data-name="primary" d="M18.21,13.57,21,17.56l-3.03.9L16.09,21l-2.88-4.11"
+                      fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"></path>
+                <circle id="primary-4" data-name="primary" cx="7" cy="7" r="7" transform="translate(5 3)" fill="none"
+                        stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
+            </g>
+        </g>
+    </symbol>
+
+    <svg id="garantie" viewBox="0 0 24 24">
+        <path fill="currentColor"
+              d="M19 13c.34 0 .67.04 1 .09V8H4v13h9.35c-.22-.63-.35-1.3-.35-2c0-3.31 2.69-6 6-6M9 13v-1.5c0-.28.22-.5.5-.5h5c.28 0 .5.22.5.5V13zm12-6H3V3h18zm1.5 10.25L17.75 22L15 19l1.16-1.16l1.59 1.59l3.59-3.59z"/>
+    </svg>
+
 </svg>

@@ -51,8 +51,10 @@ console.log(props.product.data);
                                  dark:bg-defaultColor/50 dark:hover:bg-defaultColor">
                                 <svg-component name="cart" class="size-6 md:size-8"></svg-component>
                             </div>
-                            <div class="p-1.5 rounded-full bg-red-600/30 border border-red-600 duration-500 hover:bg-red-600/60">
-                                <svg-component name="like" class="size-6 md:size-8 text-red-600 fill-none"></svg-component>
+                            <div
+                                class="p-1.5 rounded-full bg-red-600/30 border border-red-600 duration-500 hover:bg-red-600/60">
+                                <svg-component name="like"
+                                               class="size-6 md:size-8 text-red-600 fill-none"></svg-component>
                             </div>
                         </div>
                     </div>
@@ -127,8 +129,24 @@ console.log(props.product.data);
                 </div>
                 <!--                leftSide-->
                 <div class="space-y-6">
-                    <div class="">
-                        {{product.data.description}}
+                    <div class="rounded-xl border border-defaultColor lg:mt-[4.5rem]">
+                        <div class="productShowItems justify-center rounded-b-none py-2">
+                            اطلاعات محصول
+                        </div>
+                        <div class="p-4">
+                            {{ product.data.description }}
+                        </div>
+                    </div>
+                    <div class="productShowItems flex gap-6 justify-between py-4 *:w-full">
+                        <h3 class="">
+                            <svg-component name="esalat" class="size-8 inline text-defaultColor/70 dark:text-defaultColor5"></svg-component>
+                            تضمین اصالت کالا
+                        </h3>
+                        <h3 class="">
+                            <svg-component name="garantie"
+                                           class="size-8 inline text-defaultColor/70 stroke-1 stroke-black dark:text-defaultColor5"></svg-component>
+                            گارانتی 7 روز بازگشت کالا
+                        </h3>
                     </div>
                 </div>
             </div>
