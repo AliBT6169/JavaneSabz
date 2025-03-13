@@ -41,9 +41,21 @@ console.log(props.product.data);
                 <!--                rightSide-->
                 <div class="space-y-6">
                     <!--                    name-->
-                    <h1 class="text-2xl font-black">
-                        {{ product.data.name }}
-                    </h1>
+                    <div class="flex justify-between items-center">
+                        <h1 class="text-2xl font-black">
+                            {{ product.data.name }}
+                        </h1>
+                        <div class="flex gap-2 items-center *:cursor-pointer">
+                            <div
+                                class="p-1.5 rounded-full bg-defaultColor5/40 border border-current duration-500 hover:bg-defaultColor5/70
+                                 dark:bg-defaultColor/50 dark:hover:bg-defaultColor">
+                                <svg-component name="cart" class="size-6 md:size-8"></svg-component>
+                            </div>
+                            <div class="p-1.5 rounded-full bg-red-600/30 border border-red-600 duration-500 hover:bg-red-600/60">
+                                <svg-component name="like" class="size-6 md:size-8 text-red-600 fill-none"></svg-component>
+                            </div>
+                        </div>
+                    </div>
                     <!--            slider-->
                     <div class="w-full h-60 lg:h-96">
                         <Carousel v-bind="carouselConfig" class="!size-full">
@@ -114,7 +126,11 @@ console.log(props.product.data);
                     </div>
                 </div>
                 <!--                leftSide-->
-                <div class=""></div>
+                <div class="space-y-6">
+                    <div class="">
+                        {{product.data.description}}
+                    </div>
+                </div>
             </div>
 
         </div>

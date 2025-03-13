@@ -23,7 +23,7 @@ class ProductFactory extends Factory
             'category_id' => rand(1, 10),
             'slug' => fake()->unique()->slug(),
             'primary_image' => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
-            'description' => Faker::sentence(),
+            'description' => Faker::paragraph(),
             'status' => rand(0, 1),
             'is_active' => rand(0, 1),
             'delivery_amount' => rand(1000, 100000),
