@@ -7,6 +7,7 @@ import {Link} from "@inertiajs/vue3";
 import 'vue3-carousel/carousel.css'
 import {Carousel, Slide, Pagination} from 'vue3-carousel';
 import Navigation from "@/Pages/Components/Home/navigation.vue";
+import Product from "@/Pages/Components/Home/Product.vue";
 
 const carouselConfig = {
     itemsToShow: 1,
@@ -25,7 +26,7 @@ console.log(props.product.data);
         sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
         <Header/>
         <Navigation/>
-        <div class="w-full space-y-6 pb-96 text-defaultColor dark:text-defaultColor5 md:text-xl">
+        <div class="w-full space-y-6 text-defaultColor dark:text-defaultColor5 md:text-xl">
             <!--        page location-->
             <div class="w-full flex">
                 <div class="flex items-center w-fit gap-2">
@@ -139,7 +140,8 @@ console.log(props.product.data);
                     </div>
                     <div class="productShowItems flex gap-6 justify-between py-4 *:w-full">
                         <h3 class="">
-                            <svg-component name="esalat" class="size-8 inline text-defaultColor/70 dark:text-defaultColor5"></svg-component>
+                            <svg-component name="esalat"
+                                           class="size-8 inline text-defaultColor/70 dark:text-defaultColor5"></svg-component>
                             تضمین اصالت کالا
                         </h3>
                         <h3 class="">
@@ -151,6 +153,15 @@ console.log(props.product.data);
                 </div>
             </div>
 
+            <!--                    same Products-->
+            <div class="rounded-t-xl border border-current">
+                <div class="w-full text-center py-2 bg-defaultColor/80 text-defaultColor5 rounded-t-xl">محصولات مشابه:</div>
+                <div class="py-5 overflow-x-scroll">
+                    <div class="w-fit flex gap-8 items-center">
+                        <product v-for="item in product.data.sameProducts" :product="item"></product>
+                    </div>
+                </div>
+            </div>
         </div>
         <Footer/>
     </div>

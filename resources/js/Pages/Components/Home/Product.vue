@@ -2,10 +2,7 @@
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
-import {ref} from "vue";
 import {Link} from '@inertiajs/vue3'
-import {modalSet} from "@/Pages/Components/Helper/Helper.js";
-import ProductShow from "@/Pages/ProductShow.vue";
 
 const props = defineProps(["product", "special"]);
 </script>
@@ -24,7 +21,7 @@ const props = defineProps(["product", "special"]);
         </Link>
         <!--        name-->
         <div class="flex px-4 justify-center w-full items-center">
-            <h3 class="w-28 text-center">{{ product.name }}</h3>
+            <h3 class="w-28 text-center">{{ product.name + (product.value === undefined ? '' : ' : ' + product.value) }}</h3>
         </div>
         <!--        price & buy cart-->
         <div class="w-full px-4 flex lg:justify-between items-center flex-col gap-2 lg:flex-row">
@@ -40,7 +37,7 @@ const props = defineProps(["product", "special"]);
                 <svg-component name="cart" @click="useAuthStore().addToCart(product.id)"
                                class="size-7 duration-500 hover:translate-x-2 hover:text-defaultColor dark:hover:text-defaultColor5"></svg-component>
                 <svg-component :title="product.is_liked?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
-                               @click="[useAuthStore().likeOrUnLike(product.id , product.is_liked),product.is_liked=!product.is_liked]"
+                               @click="[useAuthStore().likeOrUnLike(product.id , product.is_liked),useAuthStore().isAuthenticated?product.is_liked=!product.is_liked:useAuthStore().toastMessage('warning', 'لطفا اول ئارد حساب کاربری خود شوید')]"
                                class="size-7 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7
                                dark:hover:fill-red-900 dark:text-red-900 lg:hidden"
                                :class="{'!fill-red-500':product.is_liked}"></svg-component>
@@ -53,7 +50,7 @@ const props = defineProps(["product", "special"]);
             class="absolute hidden top-0 bg-defaultColor4/50 p-2 -left-10 flex-col duration-500 items-center
              group-hover:left-0 rounded-lg dark:bg-defaultColor7/50 lg:flex">
             <svg-component :title="product.is_liked?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
-                           @click="[useAuthStore().likeOrUnLike(product.id , product.is_liked),product.is_liked=!product.is_liked]"
+                           @click="[useAuthStore().likeOrUnLike(product.id , product.is_liked),useAuthStore().isAuthenticated?product.is_liked=!product.is_liked:useAuthStore().toastMessage('warning', 'لطفا اول ئارد حساب کاربری خود شوید')]"
                            class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500
                            dark:fill-transparent dark:hover:fill-red-900 dark:text-red-900"
                            :class="{'!fill-red-500':product.is_liked}"></svg-component>

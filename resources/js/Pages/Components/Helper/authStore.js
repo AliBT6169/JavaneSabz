@@ -69,7 +69,7 @@ export const useAuthStore = defineStore('auth', {
 
                 }
             } else
-                toast.warning('لطفا اول ئارد حساب کاربری خود شوید')
+                toast.warning('لطفا اول وارد حساب کاربری خود شوید')
         },
         async informationUpdate(form) {
             const formData = new FormData();
@@ -91,6 +91,22 @@ export const useAuthStore = defineStore('auth', {
                     toast.error(item[0]);
                 });
             })
+        },
+        toastMessage(methode = '', message = '') {
+            switch (method) {
+                case 'error':
+                    toast.error(message);
+                    break;
+                case 'success':
+                    toast.success(message);
+                    break;
+                case 'warning':
+                    toast.warning(message);
+                    break;
+                default:
+                    toast(message);
+                    break;
+            }
         },
         logout() {
             this.user = null;

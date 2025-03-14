@@ -91,6 +91,7 @@ class ProductVariation extends Model
                 "category_id" => $item->product->category_id,
                 "brand_id" => $item->product->brand_id,
                 "name" => $item->product->name,
+                "value" => $item->value,
                 "quantity" => $item->quantity,
                 "price" => $item->sale_price,
                 "image" => $item->product->primary_image,
