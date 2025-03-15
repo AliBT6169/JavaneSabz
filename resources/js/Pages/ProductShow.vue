@@ -8,6 +8,8 @@ import 'vue3-carousel/carousel.css'
 import {Carousel, Slide, Pagination} from 'vue3-carousel';
 import Navigation from "@/Pages/Components/Home/navigation.vue";
 import Product from "@/Pages/Components/Home/Product.vue";
+import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import {ref} from "vue";
 
 const carouselConfig = {
     itemsToShow: 1,
@@ -19,6 +21,11 @@ const carouselConfig = {
 }
 const props = defineProps(["product"]);
 console.log(props.product.data);
+const likeUnLike = async () => {
+    const res = await ref(useAuthStore().likeOrUnLike(props.product.data.id, props.product.data.is_liked));
+    props.product.data.is_liked = res.value;
+
+}
 </script>
 
 <template>
@@ -35,7 +42,13 @@ console.log(props.product.data);
                     class="hover:text-defaultColor5 duration-500 cursor-pointer border-b-2 border-defaultColor">خانه </span>
                     </Link>
                     <svg-component name="next" class="size-3"></svg-component>
-                    <span class="hover:text-defaultColor5 duration-500 cursor-pointer border-b-2 border-defaultColor">درباره ما</span>
+                    <Link href="#">
+                        <span
+                            class="hover:text-defaultColor5 duration-500 cursor-pointer border-b-2 border-defaultColor">{{
+                                product.data.name
+                            }}</span>
+
+                    </Link>
                 </div>
             </div>
             <div class="space-y-6 lg:flex lg:space-y-0 gap-4 *:w-full">
@@ -50,12 +63,14 @@ console.log(props.product.data);
                             <div
                                 class="p-1.5 rounded-full bg-defaultColor5/40 border border-current duration-500 hover:bg-defaultColor5/70
                                  dark:bg-defaultColor/50 dark:hover:bg-defaultColor">
-                                <svg-component name="cart" class="size-6 md:size-8"></svg-component>
+                                <svg-component name="cart" class="size-6 md:size-8"
+                                               @click="useAuthStore().addToCart(product.data.id)"></svg-component>
                             </div>
                             <div
                                 class="p-1.5 rounded-full bg-red-600/30 border border-red-600 duration-500 hover:bg-red-600/60">
-                                <svg-component name="like"
-                                               class="size-6 md:size-8 text-red-600 fill-none"></svg-component>
+                                <svg-component name="like" @click="likeUnLike()"
+                                               class="size-6 md:size-8 text-red-600 fill-none"
+                                               :class="{'fill-red-600':product.data.is_liked}"></svg-component>
                             </div>
                         </div>
                     </div>
@@ -155,7 +170,8 @@ console.log(props.product.data);
 
             <!--                    same Products-->
             <div class="rounded-t-xl border border-current">
-                <div class="w-full text-center py-2 bg-defaultColor/80 text-defaultColor5 rounded-t-xl">محصولات مشابه:</div>
+                <div class="w-full text-center py-2 bg-defaultColor/80 text-defaultColor5 rounded-t-xl">محصولات مشابه:
+                </div>
                 <div class="py-5 overflow-x-scroll">
                     <div class="w-fit flex gap-8 items-center">
                         <product v-for="item in product.data.sameProducts" :product="item"></product>
