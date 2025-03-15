@@ -53,7 +53,7 @@ const authUser = useAuthStore();
                         <svg-component name="cart" class="size-5"></svg-component>
                     </div>
                     <div class="text-xs text-nowrap text-white block">سبد خرید</div>
-                    <div class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">0</div>
+                    <div v-if="authUser.isAuthenticated" class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">{{authUser.Products.length}}</div>
                 </div>
                 <!--            login and register-->
                 <Link :href="route(useAuthStore().user === null ?'login':'dashboard')">
