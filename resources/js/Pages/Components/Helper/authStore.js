@@ -53,27 +53,27 @@ export const useAuthStore = defineStore('auth', {
             } else toast.warning('لطفا اول وارد حساب کاربری خود شوید')
         },
         async likeOrUnLike(product_id, like) {
-            let res = '';
+            const res = ref(like);
             if (this.isAuthenticated) {
                 if (like) {
                     await axios.delete(route('wishlist.destroy', [product_id, this.user.id])).then(response => {
                         this.WishList = response.data === 1 ? this.WishList.filter(wishList => wishList.product.id !== product_id) : this.WishList;
-                        res = true;
+                        res.value = false;
                     }).catch(error => {
                         console.log(error.response.data.message);
                     })
                 } else {
                     await axios.post(route('wishlist.store', [product_id, this.user.id])).then(response => {
                         this.WishList.push({product: response.data});
-                        res = false;
+                        res.value = true;
                     }).catch(error => {
-                        console.log(error);
+                        console.log(error.response.data.message);
                     });
 
                 }
             } else
                 toast.warning('لطفا اول وارد حساب کاربری خود شوید');
-            return res;
+            return res.value;
         },
         async informationUpdate(form) {
             const formData = new FormData();

@@ -20,11 +20,9 @@ const carouselConfig = {
     breakpointMode: 'carousel',
 }
 const props = defineProps(["product"]);
-console.log(props.product.data);
 const likeUnLike = async () => {
     const res = await ref(useAuthStore().likeOrUnLike(props.product.data.id, props.product.data.is_liked));
-    props.product.data.is_liked = res.value;
-
+    props.product.data.is_liked = await res.value;
 }
 </script>
 
