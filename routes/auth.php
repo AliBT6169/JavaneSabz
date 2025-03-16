@@ -9,8 +9,11 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\Dashboard\BuyCartController;
 use App\Http\Controllers\User\Dashboard\DashboardController;
+use App\Http\Controllers\User\Dashboard\WishListController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -63,12 +66,23 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
 
     })->name('dashboard');
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile/show', 'show')->name('profile.show');
+        Route::get('/profile', 'edit')->name('profile.edit');
+        Route::patch('/profile', 'update')->name('profile.update');
+        Route::delete('/profile', 'destroy')->name('profile.destroy');
+    });
+    Route::controller(WishListController::class)->group(function () {
+        Route::delete('/wishlist/delete/{product_id}/{user_id}', 'destroy')->name('wishlist.destroy');
+        Route::post('/wishlist/{product_id}/{user_id}', 'store')->name('wishlist.store');
+    });
+    Route::controller(UserController::class)->group(function () {
+        Route::post('/user/update', 'store')->name('user.update');
+    });
+    Route::controller(BuyCartController::class)->group(function () {
+        Route::post('/IncrementBuyCart/{id}', 'CartItemIncrement')->name('BuyCart.CartItemIncrement');
+        Route::post('/DecrementBuyCart/{id}', 'CartItemDecrement')->name('BuyCart.CartItemDecrement');
+        Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
+    });
 });
 
-Route::controller(BuyCartController::class)->group(function () {
-    Route::post('/IncrementBuyCart/{id}', 'CartItemIncrement')->name('BuyCart.CartItemIncrement');
-    Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
-});
-Route::controller(BuyCartController::class)->group(function () {
-    Route::post('/DecrementBuyCart/{id}', 'CartItemDecrement')->name('BuyCart.CartItemDecrement');
-});

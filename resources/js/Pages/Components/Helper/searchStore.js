@@ -2,8 +2,15 @@ import {defineStore} from "pinia";
 
 export const useSearchStore = defineStore('search', {
     state: () => ({
-
+        Products: null,
+        categories: null,
+        brands: null,
+        attributes: null,
     }),
-    actions: {},
+    actions: {
+        async setData() {
+
+        }
+    },
     persist: true,
 })
