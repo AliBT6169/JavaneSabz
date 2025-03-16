@@ -63,9 +63,9 @@ class BuyCart extends Model
         self::whereId($id)->increment('quantity');
     }
 
-    public static function CartItemDecrement(int $id)
+    public static function CartItemDecrement(int $id): string
     {
-        if (self::whereId($id)->decrement('quantity') > 1) {
+        if (self::whereId($id)->first()->quantity > 1) {
             self::whereId($id)->decrement('quantity');
             return 'decrement';
         } else {

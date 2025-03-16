@@ -15,9 +15,9 @@ const authUser = useAuthStore();
      justify-between dark:bg-defaultColor" @click="profileSidebarCloser">
         <svg-component name="dashboard" class="size-9 Sidebar cursor-pointer dark:text-white"
                        @click.stop="profileSidebar=!profileSidebar"></svg-component>
-        <a href="/" class="">
+        <Link href="/" class="">
             <img src="../../../../../public/logo/logo1.png" class="w-14 scale-[1.5]" alt="">
-        </a>
+        </Link>
         <div class="flex gap-2 items-center">
             <DarkLight></DarkLight>
             <div class="relative group">
