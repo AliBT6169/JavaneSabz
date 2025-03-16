@@ -36,7 +36,7 @@ const authUser = useAuthStore();
             <!--            search box-->
             <div class="xl:w-[20rem] hidden lg:block">
                 <div class="relative w-fit">
-                    <input type="text"
+                    <input type="text" @input="(e)=>console.log(e.target.value)"
                            class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] md:w-[150px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                     <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">

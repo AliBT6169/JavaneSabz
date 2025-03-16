@@ -15,9 +15,10 @@ class BuyCartController extends Controller
     }
 
 //    decrementing custom cart item quantities
-    public function CartItemDecrement(int $id): void
+    public function CartItemDecrement(int $id)
     {
-        BuyCart::CartItemDecrement($id);
+
+        return BuyCart::CartItemDecrement($id);
     }
 
     public function addToBuyCart(int $ProductId)

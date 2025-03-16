@@ -170,7 +170,7 @@ const likeUnLike = async () => {
             <div class="rounded-t-xl border border-current">
                 <div class="w-full text-center py-2 bg-defaultColor/80 text-defaultColor5 rounded-t-xl">محصولات مشابه:
                 </div>
-                <div class="py-5 overflow-x-scroll">
+                <div class="p-5 overflow-x-scroll">
                     <div class="w-fit flex gap-8 items-center">
                         <product v-for="item in product.data.sameProducts" :product="item"></product>
                     </div>

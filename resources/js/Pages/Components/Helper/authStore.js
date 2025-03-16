@@ -32,7 +32,11 @@ export const useAuthStore = defineStore('auth', {
         productDecrement(index, id) {
             if (this.Products[index].quantity > 0) {
                 this.Products[index].quantity--;
-                axios.post(route('BuyCart.CartItemDecrement', id));
+                axios.post(route('BuyCart.CartItemDecrement', id)).then((response) => {
+                    if (response.data === 'deleted') {
+                        this.Products.splice(index, 1);
+                    }
+                });
             }
         },
         async addToCart(id) {
