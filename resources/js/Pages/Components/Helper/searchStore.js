@@ -8,8 +8,12 @@ export const useSearchStore = defineStore('search', {
         attributes: null,
     }),
     actions: {
-        async setData() {
-
+        async setData(input) {
+            await axios(route('ProductSearch',input)).then((response) => {
+                console.log(response.data);
+            }).catch((error)=>{
+                console.log(error.response.data)
+            });
         }
     },
     persist: true,

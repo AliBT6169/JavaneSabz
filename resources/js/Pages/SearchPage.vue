@@ -16,6 +16,7 @@ import {Carousel, Slide} from "vue3-carousel";
 <!--                    -->
 <!--                </Slide>-->
 <!--            </Carousel>-->
+            slm
         </div>
     </div>
 </template>

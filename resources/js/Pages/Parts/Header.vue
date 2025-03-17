@@ -5,6 +5,7 @@ import {Link} from '@inertiajs/vue3'
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {Modal, ModalComponent, modalSet} from "@/Pages/Components/Helper/Helper.js";
+import {useSearchStore} from "@/Pages/Components/Helper/searchStore.js";
 
 const authUser = useAuthStore();
 </script>
@@ -36,11 +37,11 @@ const authUser = useAuthStore();
             <!--            search box-->
             <div class="xl:w-[20rem] hidden lg:block">
                 <div class="relative w-fit">
-                    <input type="text" @input="(e)=>console.log(e.target.value)"
+                    <input type="text" @input="(e)=>useSearchStore().setData(e.target.value)"
                            class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] md:w-[150px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                     <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
-                        <Link :href="route('SearchPage')">
+                        <Link :href="route('searchPage')">
                             <svg-component name="search" class="size-5"></svg-component>
 
                         </Link>
