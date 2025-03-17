@@ -38,35 +38,20 @@ const authUser = useAuthStore();
             </div>
             <!--            search box-->
             <div class="flex gap-4 items-center justify-center">
-                <div class="xl:w-[20rem]">
-                    <div class="relative w-fit">
-                        <input type="text" @input="(e)=>useSearchStore().setData(e.target.value)"
-                               class="peer focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] md:w-[150px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
+                <div class="relative w-fit">
+                    <input type="text" @input="(e)=>useSearchStore().setData(e.target.value)"
+                           class="peer focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] md:w-[150px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
-                        <!--                    searchResultBox-->
-                        <search-result-box/>
-                        <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
-                            <Link :href="route('searchPage')">
-                                <svg-component name="search" class="size-5"></svg-component>
+                    <!--                    searchResultBox-->
+                    <search-result-box/>
+                    <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
+                        <Link :href="route('searchPage')">
+                            <svg-component name="search" class="size-5"></svg-component>
 
-                            </Link>
-                        </div>
+                        </Link>
                     </div>
                 </div>
                 <div class="flex justify-center gap-4 w-full md:hidden">
-                    <!--            mobile search box-->
-                    <!--                <div class=" z-10 w-60 sm:w-72">-->
-                    <!--                    <div class="relative">-->
-                    <!--                        <input type="text" @input="(e)=>useSearchStore().setData(e.target.value)"-->
-                    <!--                               class="peer focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100-->
-                    <!--                                 text-xs lg:text-sm" placeholder="جستجوی محصول">-->
-                    <!--                        <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">-->
-                    <!--                            <svg-component name="search" class="size-5"></svg-component>-->
-                    <!--                        </div>-->
-                    <!--                        <search-result-box/>-->
-                    <!--                    </div>-->
-                    <!--                </div>-->
-                    <!--                mobile login register-->
                     <Link href="/login">
                         <div
                             class="size-10 flex items-center justify-center hover:bg-blue-400 transition-all rounded-xl bg-blue-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
