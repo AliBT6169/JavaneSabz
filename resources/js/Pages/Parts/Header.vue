@@ -7,6 +7,7 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {Modal, ModalComponent, modalSet} from "@/Pages/Components/Helper/Helper.js";
 import {useSearchStore} from "@/Pages/Components/Helper/searchStore.js";
 import Product from "@/Pages/Components/Home/Product.vue";
+import SearchResultBox from "@/Pages/Components/searchResultBox.vue";
 
 const authUser = useAuthStore();
 </script>
@@ -42,13 +43,7 @@ const authUser = useAuthStore();
                            class="peer focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] md:w-[150px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                     <!--                    searchResultBox-->
-                    <div class="w-[80vw] py-20 absolute top-60 opacity-0 -left-[calc(40vw-50%)] duration-300 z-20 border border-defaultColor/50
-                     bg-defaultColor5/80 rounded-xl invisible peer-focus:block peer-focus:opacity-100 peer-focus:top-12 peer-focus:visible
-                    dark:bg-defaultColor/80 dark:hover:bg-defaultColor hover:bg-defaultColor5 dark:border-defaultColor5/50">
-                        <div v-if="useSearchStore().Products!=null" class="flex gap-10 flex-wrap justify-center p-5">
-                            <Product v-for="item in useSearchStore().Products" :product="item"></Product>
-                        </div>
-                    </div>
+                    <search-result-box/>
                     <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
                         <Link :href="route('searchPage')">
                             <svg-component name="search" class="size-5"></svg-component>
@@ -99,12 +94,13 @@ const authUser = useAuthStore();
                 <!--            mobile search box-->
                 <div class=" z-10 w-60 sm:w-72">
                     <div class="relative">
-                        <input type="text"
-                               class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
+                        <input type="text" @input="(e)=>useSearchStore().setData(e.target.value)"
+                               class="peer focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor w-full h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                         <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
                             <svg-component name="search" class="size-5"></svg-component>
                         </div>
+                        <search-result-box/>
                     </div>
                 </div>
                 <!--                mobile login register-->
@@ -119,14 +115,15 @@ const authUser = useAuthStore();
         </div>
         <div class="w-full hidden md:block lg:hidden">
             <div class="relative w-fit mx-auto">
-                <input type="text"
-                       class="focus:outline-none focus:ring-transparent transition-colors duration-300
+                <input type="text" @input="(e)=>useSearchStore().setData(e.target.value)"
+                       class="peer focus:outline-none focus:ring-transparent transition-colors duration-300
                         focus:border-defaultColor w-[20rem] h-10 rounded-2xl
                          bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                 <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
                     <svg-component name="search" class="size-5"></svg-component>
                 </div>
+                <search-result-box/>
             </div>
         </div>
     </header>
