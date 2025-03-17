@@ -18,7 +18,6 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
-            "title" => Faker::firstName(),
             "address" => Faker::address(),
             "postcode" => Faker::melliCode(),
             "addressable_id" => 1,

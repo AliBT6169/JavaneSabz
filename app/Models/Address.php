@@ -15,7 +15,6 @@ class Address extends Model
     protected $table = 'user_addresses';
     protected $fillable = [
         'id',
-        'title',
         'address',
         'postcode',
         'addressable_id',
@@ -31,18 +30,18 @@ class Address extends Model
         return $this->morphTo();
     }
 
-    public static function addressStore(int $id, string $address, string $postcode)
+    public static function addressStore(int $id, string $address, string $postcode, $type)
     {
 
-        if (self::where('addressable_id', $id)->exists())
-            self::where('addressable_id', $id)->update([
+        if (self::where('addressable_id', $id)->where('addressable_type', $type)->exists())
+            self::where('addressable_id', $id)->where('addressable_type', $type)->update([
                 'address' => $address,
                 'postcode' => $postcode,
             ]);
         else
             self::create([
                 'addressable_id' => $id,
-                'addressable_type' => User::class,
+                'addressable_type' => $type,
                 'address' => $address,
                 'postcode' => $postcode,
             ]);

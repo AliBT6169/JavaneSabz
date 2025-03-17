@@ -12,8 +12,10 @@ return new class extends Migration {
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->enum('name',["liquid","solid"])->default("solid");
+            $table->string('name');
             $table->string('slug')->unique();
+            $table->unsignedInteger('attributable_id');
+            $table->string('attributable_type');
             $table->timestamps();
         });
     }

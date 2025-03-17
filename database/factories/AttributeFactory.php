@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\ProductVariation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Ybazli\Faker\Facades\Faker;
 
@@ -17,10 +21,23 @@ class AttributeFactory extends Factory
      */
     public function definition(): array
     {
-        $arrayValue = ["liquid", "solid"];
+        $attributes = [
+            Brand::class,
+            Category::class,
+            Product::class,
+            ProductVariation::class,
+        ];
+        $attributeType = $attributes[rand(0, count($attributes) - 1)];
+        $attributeId = 1;
+        if ($attributeType == 'App\Models\Brand' || $attributeType == 'App\Models\Category')
+            $attributeId = rand(1, 50);
+        else if ($attributeType == 'App\Models\Product' || $attributeType == 'App\Models\ProductVariation')
+            $attributeId = rand(1, 200);
         return [
-            "name" => $arrayValue[array_rand($arrayValue)],
+            "name" => Faker::jobTitle(),
             "slug" => fake()->slug,
+            "attributable_id" => $attributeId,
+            "attributable_type" => $attributeType,
         ];
     }
 }

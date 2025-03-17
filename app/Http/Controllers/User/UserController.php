@@ -50,11 +50,11 @@ class UserController extends Controller
             'post_code' => 'required',
         ]);
 //        image section
-        Gallery::updateImage('user', $validatedData['image']);
+        Gallery::updateImage(User::class, $validatedData['image']);
 //        user update section
         User::updateUser($validatedData);
 //        address update or create section
-        Address::addressStore($request->id, $validatedData['address'], $validatedData['post_code']);
+        Address::addressStore($request->id, $validatedData['address'], $validatedData['post_code'],User::class);
         return DashboardResource::make(User::whereId(Auth::id())->first());
     }
 

@@ -16,6 +16,8 @@ class Attribute extends Model
         'id',
         'name',
         'slug',
+        'attributable_id',
+        'attributable_type',
         'created_at',
     ];
 

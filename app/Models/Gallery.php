@@ -29,12 +29,12 @@ class Gallery extends Model
 
     public static function updateImage($type, $image, $id = 0)
     {
-        if ($type == 'user') {
-            if (file_exists(Auth::user()->gallery->media))
-                unlink(Auth::user()->gallery->media);
+        if ($type == User::class) {
+            if (file_exists((Auth::user()->gallery->media)??''))
+                unlink((Auth::user()->gallery->media)??'');
             $URL = 'images/users/' . Auth::id() . '/' . $image->getClientOriginalName();
             $path = $image->move(public_path('images/users/' . Auth::id() . '/'), $image->getClientOriginalName());
-            if (self::where('gallery_id', Auth::id())->exists())
+            if (self::where('gallery_id', Auth::id())->where('gallery_type', User::class)->exists())
                 self::where('gallery_id', Auth::id())->update(['media' => $URL]);
             else
                 self::create([
