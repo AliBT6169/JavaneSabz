@@ -42,9 +42,30 @@ class ProductResource extends JsonResource
         ];
     }
 
-    public function getSomeSameProduct(int $categoryId)
+    public static function handleProduct($data): array
     {
-
+        $productVariations = [];
+        foreach ($data as $product) {
+            foreach ($product->product_variations as $variation) {
+                $productVariations[] = $variation;
+            }
+        }
+        $result = [];
+        foreach ($productVariations as $item) {
+            $result[] = [
+                "id" => $item->id,
+                "product_id" => $item->product_id,
+                "category_id" => $item->product->category_id,
+                "brand_id" => $item->product->brand_id,
+                "name" => $item->product->name,
+                "value" => $item->value,
+                "quantity" => $item->quantity,
+                "price" => $item->sale_price,
+                "image" => $item->product->primary_image,
+                "is_liked" => Auth::check() ? Wishlist::is_exist(Auth::user()->id, $item->id) : false,
+            ];
+        }
+        return $result;
     }
 
     public function imageHandler($images): array

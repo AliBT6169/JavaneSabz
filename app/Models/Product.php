@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Resources\Home\ProductResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -46,5 +47,15 @@ class Product extends Model
     public function coupons(): MorphToMany
     {
         return $this->morphToMany(Coupon::class, 'couponable');
+    }
+
+    public static function search(string $search)
+    {
+        $productVariations = null;
+        if ($search != '') {
+            $productVariations = ProductResource::handleProduct(self::where('name', 'like', "%{$search}%")->get());
+
+        }
+        return $productVariations;
     }
 }
