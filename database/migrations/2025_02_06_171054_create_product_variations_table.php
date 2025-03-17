@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('value');
             $table->unsignedInteger('price')->default(0);

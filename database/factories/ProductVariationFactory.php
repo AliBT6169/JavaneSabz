@@ -22,7 +22,6 @@ class ProductVariationFactory extends Factory
         $sale_price = $price - $off_sale * ($price / 100);
         return [
             "product_id" => rand(1, 100),
-            "attribute_id" => rand(1, 2),
             "value" => Faker::firstName(),
             "price" => $price,
             "quantity" => rand(0, 100),
