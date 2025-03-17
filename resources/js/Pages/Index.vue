@@ -44,7 +44,7 @@ const liveCardData = ref([
 
 <template>
     <div class="mx-auto flex flex-col gap-10 items-center w-[20rem]
-        sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
+        sm:w-[30rem] md:w-[48rem] lg:w-[60rem] xl:w-[80rem]">
         <intro></intro>
         <Header></Header>
         <navigation></navigation>
