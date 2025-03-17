@@ -40,7 +40,10 @@ const authUser = useAuthStore();
                            class="focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] md:w-[150px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                     <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
-                        <svg-component name="search" class="size-5"></svg-component>
+                        <Link :href="route('SearchPage')">
+                            <svg-component name="search" class="size-5"></svg-component>
+
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -53,7 +56,10 @@ const authUser = useAuthStore();
                         <svg-component name="cart" class="size-5"></svg-component>
                     </div>
                     <div class="text-xs text-nowrap text-white block">سبد خرید</div>
-                    <div v-if="authUser.isAuthenticated" class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">{{authUser.Products.length}}</div>
+                    <div v-if="authUser.isAuthenticated"
+                         class="px-2 py-1 mt-0.5 bg-slate-300 rounded-full dark:text-slate-800 text-xs">
+                        {{ authUser.Products.length }}
+                    </div>
                 </div>
                 <!--            login and register-->
                 <Link :href="route(useAuthStore().user === null ?'login':'dashboard')">

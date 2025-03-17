@@ -22,4 +22,8 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('ProductShow/{id}', 'show')->name('ProductShow');
 });
 
+Route::get('/search', function () {
+    return Inertia::render('SearchPage');
+})->name('SearchPage');
+
 require __DIR__ . '/auth.php';
