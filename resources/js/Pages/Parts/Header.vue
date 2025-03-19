@@ -6,7 +6,6 @@ import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {Modal, ModalComponent, modalSet} from "@/Pages/Components/Helper/Helper.js";
 import {useSearchStore} from "@/Pages/Components/Helper/searchStore.js";
-import Product from "@/Pages/Components/Home/Product.vue";
 import SearchResultBox from "@/Pages/Components/searchResultBox.vue";
 
 const authUser = useAuthStore();

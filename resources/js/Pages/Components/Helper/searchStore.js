@@ -20,4 +20,5 @@ export const useSearchStore = defineStore('search', {
             await console.log(this.Products)
         }
     },
+    persist: true,
 })
