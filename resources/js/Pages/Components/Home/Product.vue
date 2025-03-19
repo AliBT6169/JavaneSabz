@@ -14,9 +14,9 @@ const likeUnLike = async () => {
 
 <template>
     <div
-        class="relative group overflow-hidden flex border border-white rounded-lg shadow-sm hover:shadow-md
-        hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 pb-6 flex-col hover3D-animation
-         items-center gap-4 dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700"
+        class="relative group overflow-hidden border border-white rounded-lg shadow-sm text-xs hover:shadow-md
+        hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 space-y-2 pb-6 hover3D-animation
+         items-center dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700 md:text-base"
         :class="{'shadow-xl !shadow-red-500  ':product.is_liked}">
         <Link :href="'/ProductShow/'+product.id">
             <!--        image-->
@@ -42,14 +42,14 @@ const likeUnLike = async () => {
             <span
                 class="flex justify-between w-full lg:w-fit lg:block">
                 <svg-component name="cart" @click="useAuthStore().addToCart(product.id)"
-                               class="size-7 duration-500 hover:translate-x-2 hover:text-defaultColor dark:hover:text-defaultColor5"></svg-component>
+                               class="size-5 duration-500 hover:translate-x-2 hover:text-defaultColor md:size-7 dark:hover:text-defaultColor5"></svg-component>
                 <svg-component :title="product.is_liked?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
                                @click="likeUnLike"
-                               class="size-7 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7
-                               dark:hover:fill-red-900 dark:text-red-900 lg:hidden"
+                               class="size-5 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7
+                               dark:hover:fill-red-900 dark:text-red-900 lg:hidden md:size-7"
                                :class="{'!fill-red-500':product.is_liked}"></svg-component>
             <svg-component title="مشاهده محصول" name="show"
-                           class="size-7 hover:text-defaultColor duration-500 lg:hidden"></svg-component>
+                           class="size-5 hover:text-defaultColor duration-500 lg:hidden md:size-7"></svg-component>
             </span>
         </div>
         <!--        like & show-->
@@ -64,7 +64,7 @@ const likeUnLike = async () => {
             <svg-component title="مشاهده محصول" name="show"
                            class="size-6 hover:text-defaultColor duration-500"></svg-component>
         </div>
-        <div class="absolute top-0 right-0 py-5 rounded-b-full bg-red-600 text-slate-200 dark:bg-red-900"
+        <div class="absolute -top-3 right-0 py-5 rounded-b-full bg-red-600 text-slate-200 dark:bg-red-900"
              v-if="props.special===true">
             <p class="-rotate-90 mr-0.5">ویژه</p>
         </div>

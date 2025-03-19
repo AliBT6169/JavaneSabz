@@ -10,17 +10,27 @@ const searchData = ref(useSearchStore());
 </script>
 
 <template>
-    <div tabindex="0" class="w-[80vw] py-20 absolute top-60 opacity-0 -left-[calc(40vw-50%)] duration-300 z-20 border border-defaultColor/50
+    <div tabindex="0" class="w-[80vw] p-2 absolute top-60 opacity-0 -left-[calc(40vw-50%)] duration-300 z-30 border border-defaultColor/50
                      bg-defaultColor5/80 rounded-xl invisible peer-focus:block peer-focus:opacity-100 peer-focus:top-12 peer-focus:visible
                       focus:opacity-100 focus:top-12 focus:visible
-                     dark:bg-defaultColor/80 dark:hover:bg-defaultColor hover:bg-defaultColor5 dark:border-defaultColor5/50">
-        <div v-if="searchData.ProductsToShow!=null" class="flex gap-10 flex-wrap justify-center items-center p-5">
-            <Product class="w-32 md:w-40" v-for="item in searchData.ProductsToShow" :product="item"></Product>
+                     dark:bg-defaultColor/80 dark:hover:bg-defaultColor hover:bg-defaultColor5 dark:border-defaultColor5/50 md:py-20">
+        <div v-if="searchData.ProductsToShow!=null"
+             class="flex gap-10 flex-wrap justify-center items-center px-1 md:px-5">
+            <Product class="w-32 md:w-40 hidden sm:block" v-for="item in searchData.ProductsToShow"
+                     :product="item"></Product>
             <Link :href="route('searchPage')" @mousedown="(e)=>e.target.click()">
-                <div v-if="searchData.allProducts.length !== searchData.ProductsToShow.length" class="flex gap-1 items-center justify-center h-fit w-48 text-xs p-4 rounded-lg border border-white/50 bg-defaultColor/50 duration-300 cursor-pointer
-                hover:scale-95 hover:shadow-sm hover:shadow-gray-600 dark:bg-defaultColor5/50">
-                    <strong>
-                        مشاهده {{ searchData.allProducts.length - searchData.ProductsToShow.length }} محصول دیگر
+                <div v-if="searchData.allProducts.length !== searchData.ProductsToShow.length"
+                     class="flex gap-1 items-center justify-center h-fit w-full md:w-48 text-xs p-4 rounded-lg border border-white/50 bg-defaultColor/50
+                      duration-300 cursor-pointer hover:scale-95 hover:shadow-sm hover:shadow-gray-600 dark:bg-defaultColor5/50">
+                    <strong class="hidden sm:block">
+                        مشاهده
+                        {{ searchData.allProducts.length - searchData.ProductsToShow.length }} محصول
+                        دیگر
+                    </strong>
+                    <strong class="sm:hidden">
+                        مشاهده همه
+                        {{ searchData.allProducts.length }}
+                        محصول
                     </strong>
                     <svg-component name="next" class="size-4"></svg-component>
                 </div>
