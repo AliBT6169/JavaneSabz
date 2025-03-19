@@ -21,7 +21,7 @@ const likeUnLike = async () => {
         <Link :href="'/ProductShow/'+product.id">
             <!--        image-->
             <div class="w-full">
-                <img :src="product.image" alt="" @dragstart.prevent class="size-full">
+                <img loading="lazy" :src="product.image" alt="" @dragstart.prevent class="size-full">
             </div>
         </Link>
         <!--        name-->

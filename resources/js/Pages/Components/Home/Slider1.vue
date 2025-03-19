@@ -70,7 +70,7 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
              @mousemove="mouse_moved" @mousedown="mouse_downed"
              :style="`transform: translateX(${translation}rem)`">
             <span class="slider-pages" v-for="item in props.slider1Data">
-                <img class="slider1 size-full select-none" :src="item" alt=""
+                <img loading="lazy" class="slider1 size-full select-none" :src="item" alt=""
                      @dragstart.prevent>
             </span>
         </div>
