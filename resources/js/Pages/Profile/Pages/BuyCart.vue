@@ -16,7 +16,7 @@ const Products = ref(useAuthStore().Products);
         <div class="flex justify-between">
             <span>جمع مبلغ :</span><span>{{ Products.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0) }}</span>
         </div>
-        <button class="p-2 rounded-full text-center duration-300 border-2 bg-defaultColor
+        <button @click="useAuthStore().CartCompleter()" class="p-2 rounded-full text-center duration-300 border-2 bg-defaultColor
             hover:!bg-opacity-70 dark:bg-defaultColor5">تکمیل پرداخت
         </button>
     </div>

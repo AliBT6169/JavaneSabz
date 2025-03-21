@@ -24,4 +24,27 @@ class BuyCartController extends Controller
     {
         return BuyCart::addToCart($ProductId);
     }
+
+    public function UserCartChecker()
+    {
+        $cartItems = BuyCart::where('user_id', Auth::id())->get();
+        if ($cartItems->isEmpty()) {
+
+            return response([
+                'message' => 'is empty',
+                'data' => [],
+                'status' => 200
+            ]);
+        }
+        else {
+            //here is where payment done
+            foreach ($cartItems as $cartItem) {
+                BuyCart::destroy($cartItem->id);
+            }
+            return response([
+                'message' => 'payment is successful',
+                'status' => 200
+            ]);
+        }
+    }
 }

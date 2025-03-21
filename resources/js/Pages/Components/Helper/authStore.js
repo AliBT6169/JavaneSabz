@@ -56,8 +56,21 @@ export const useAuthStore = defineStore('auth', {
                 });
             } else toast.warning('لطفا اول وارد حساب کاربری خود شوید')
         },
-        async CartCompleter(){
-
+        async CartCompleter() {
+            if (this.user.full_name === null || this.user.cellphone === null || this.user.user_address === null || this.user.user_post_code === null)
+                toast.error('اطلاعات خود را در پروفایل کامل کنید');
+            else {
+                await axios.get(route('BuyCart.UserCartChecker')).then((res) => {
+                    if (res.data.message === 'is empty')
+                        toast.warning('سبد خرید شما خالی است.')
+                    else {
+                        this.Products = [];
+                        toast.success('پرداخت موفقیت آمیز بود')
+                    }
+                }).catch((err) => {
+                    console.log(er.response.data);
+                });
+            }
         },
         async likeOrUnLike(product_id, like) {
             const res = ref(like);
