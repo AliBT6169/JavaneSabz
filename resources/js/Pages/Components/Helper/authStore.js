@@ -65,6 +65,7 @@ export const useAuthStore = defineStore('auth', {
                         toast.warning('سبد خرید شما خالی است.')
                     else {
                         this.Products = [];
+                        this.user.user_buy_cart = [];
                         toast.success('پرداخت موفقیت آمیز بود')
                     }
                 }).catch((err) => {

@@ -4,7 +4,10 @@ namespace App\Http\Controllers\User\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\BuyCart\BuyCart;
+use App\Models\Order;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Morilog\Jalali\Jalalian;
 
 class BuyCartController extends Controller
 {
@@ -35,13 +38,14 @@ class BuyCartController extends Controller
                 'data' => [],
                 'status' => 200
             ]);
-        }
-        else {
+        } else {
             //here is where payment done
+
             foreach ($cartItems as $cartItem) {
                 BuyCart::destroy($cartItem->id);
             }
             return response([
+                'data' => '',
                 'message' => 'payment is successful',
                 'status' => 200
             ]);
