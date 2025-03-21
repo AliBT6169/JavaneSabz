@@ -56,6 +56,9 @@ export const useAuthStore = defineStore('auth', {
                 });
             } else toast.warning('لطفا اول وارد حساب کاربری خود شوید')
         },
+        async CartCompleter(){
+
+        },
         async likeOrUnLike(product_id, like) {
             const res = ref(like);
             if (this.isAuthenticated) {

@@ -13,7 +13,7 @@ const likeUnLike = async () => {
 </script>
 
 <template>
-    <div
+    <div data-aos="fade-up"
         class="relative group overflow-hidden border border-white rounded-lg shadow-sm text-xs hover:shadow-md
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 space-y-2 pb-6 hover3D-animation
          items-center dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700 md:text-base"
