@@ -8,6 +8,9 @@ import {createApp, h} from 'vue';
 import {createPinia} from "pinia";
 import {ZiggyVue} from '../../vendor/tightenco/ziggy';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const pinia = createPinia();
 
@@ -51,3 +54,12 @@ createInertiaApp({
         color: 'greenyellow',
     },
 });
+
+AOS.init({
+    duration: 2000,
+    easing: "ease-in-out",
+    offset: 120,
+    delay: 200,
+    once: true
+});
+

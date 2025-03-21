@@ -48,9 +48,9 @@ const liveCardData = ref([
         <intro></intro>
         <Header></Header>
         <navigation></navigation>
-        <slider1 :slider1-data="slider1Data"></slider1>
+        <slider1 data-aos="fade-up" data-aos-delay="1000" :slider1-data="slider1Data"></slider1>
         <!--        brands-->
-        <div class="w-full mx-auto px-4">
+        <div data-aos="fade-up" class="w-full mx-auto px-4">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">برندهای</span>
@@ -64,7 +64,7 @@ const liveCardData = ref([
             <Brands class="w-full" :brands-data="brandsData"></Brands>
         </div>
         <!--        product show-1-->
-        <div class="w-full mx-auto">
+        <div data-aos="fade-up" class="w-full mx-auto">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">کود های</span>
@@ -78,7 +78,7 @@ const liveCardData = ref([
             <product-slider1 :products="products" class="w-full"></product-slider1>
         </div>
         <!--    liveCards-->
-        <div class="w-full mx-auto">
+        <div data-aos="fade-up" class="w-full mx-auto">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">اتفاقات</span>
@@ -96,7 +96,7 @@ const liveCardData = ref([
             </div>
         </div>
         <!--   special product list-->
-        <div class="w-full mx-auto gap-4 flex flex-col">
+        <div data-aos="fade-up" class="w-full mx-auto gap-4 flex flex-col">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>
