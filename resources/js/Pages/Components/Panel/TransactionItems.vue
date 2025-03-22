@@ -34,7 +34,7 @@ const descriptionStatus = ref(false);
         <div class="grid duration-300 h-0 overflow-hidden" :class="{'h-32 overflow-y-scroll pt-2':descriptionStatus}">
             <p class="">
                 <strong class="">محصولات:</strong>
-                <span v-for="item in transactionData.products" class="">{{ item.name + ' , ' }}</span>
+                <span v-for="item in transactionData.products" class="">{{ item.name + ' : ' + item.quantity + ' , ' }}</span>
             </p>
         </div>
     </div>
