@@ -45,8 +45,12 @@ class BuyCartController extends Controller
                 foreach ($cartItems as $cartItem) {
                     BuyCart::destroy($cartItem->id);
                 }
+                $data = [
+                    'Orders' => DashboardResource::getOrder(Order::where('user_id', Auth::id())->get()),
+                    'Transactions' => DashboardResource::getTransactions(Transaction::Where('user_id', Auth::id())->get()),
+                ];
                 return response([
-                    'data' => DashboardResource::getOrder(Order::where('user_id', Auth::id())->get()),
+                    'data' => $data,
                     'message' => 'payment is successful',
                     'status' => 200
                 ]);

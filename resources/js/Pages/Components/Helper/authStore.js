@@ -66,12 +66,13 @@ export const useAuthStore = defineStore('auth', {
                     else {
                         this.Products = [];
                         this.user.user_buy_cart = [];
-                        this.Orders = res.data.data;
+                        this.Orders = res.data.data.Orders;
+                        this.Transactions = res.data.data.Transactions;
                         console.log(res.data.data);
                         toast.success('پرداخت موفقیت آمیز بود')
                     }
                 }).catch((err) => {
-                    console.log(er.response.data);
+                    console.log(err.response.data);
                 });
             }
         },

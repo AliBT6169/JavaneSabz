@@ -50,6 +50,7 @@ class Order extends Model
             'payment_status' => $payment_status,
         ]);
         OrderItem::Creator($cartItems, $Order->id);
+        Transaction::Creator($Order->id);
         return 'OK';
     }
 

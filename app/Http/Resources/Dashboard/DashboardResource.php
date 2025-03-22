@@ -82,7 +82,7 @@ class DashboardResource extends JsonResource
 
     }
 
-    public function getTransactions($request)
+    public static function getTransactions($request)
     {
         $transaction_items = [];
         foreach ($request as $item) {
@@ -91,7 +91,7 @@ class DashboardResource extends JsonResource
                 "price" => $item->order->paying_amount,
                 "status" => $item->status,
                 "date" => jalalian::fromDateTime($item->created_at)->format('l, d F Y'),
-                "products" => $this->getOrderItems($item->order->orderItems),
+                "products" => DashboardResource::getOrderItems($item->order->orderItems),
             ];
         }
         return $transaction_items;
