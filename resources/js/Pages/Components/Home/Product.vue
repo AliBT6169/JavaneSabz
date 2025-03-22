@@ -13,11 +13,11 @@ const likeUnLike = async () => {
 </script>
 
 <template>
-    <div data-aos="fade-up"
+    <div
         class="relative group overflow-hidden border border-white rounded-lg shadow-sm text-xs hover:shadow-md
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 space-y-2 pb-6 hover3D-animation
          items-center dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700 md:text-base"
-        :class="{'shadow-xl !shadow-red-500  ':product.is_liked}">
+        :class="{'shadow-xl !shadow-red-500':product.is_liked}">
         <Link :href="'/ProductShow/'+product.id">
             <!--        image-->
             <div class="w-full">
