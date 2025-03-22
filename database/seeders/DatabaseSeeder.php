@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
         Attribute::factory(50)->create()->unique();
         ProductVariation::factory(200)->create()->unique;
         Address::factory(1)->create();
-        Order::factory(10)->create();
-        OrderItem::factory(100)->create();
-        Transaction::factory(10)->create();
+//        Order::factory(10)->create();
+//        OrderItem::factory(100)->create();
+//        Transaction::factory(10)->create();
     }
 }

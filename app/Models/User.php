@@ -50,17 +50,17 @@ class User extends Authenticatable
 
     public function buy_carts(): HasMany
     {
-        return $this->hasMany(BuyCart::class);
+        return $this->hasMany(BuyCart::class)->latest();
     }
 
     public function coupons(): MorphToMany
     {
-        return $this->morphToMany(Coupon::class, 'couponable');
+        return $this->morphToMany(Coupon::class, 'couponable')->latest();
     }
 
     public function orders(): HasMany
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class)->latest();
     }
 
     /**
@@ -88,12 +88,12 @@ class User extends Authenticatable
 
     public function transactions(): HasMany
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class)->latest();
     }
 
     public function wish_lists(): HasMany
     {
-        return $this->hasMany(WishList::class);
+        return $this->hasMany(WishList::class)->latest();
     }
 
     public static function updateUser($data)

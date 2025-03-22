@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Dashboard\DashboardResource;
 use App\Models\BuyCart\BuyCart;
 use App\Models\Order;
 use App\Models\Transaction;
@@ -40,15 +41,17 @@ class BuyCartController extends Controller
             ]);
         } else {
             //here is where payment done
+            if (Order::Creator($cartItems) == 'OK') {
+                foreach ($cartItems as $cartItem) {
+                    BuyCart::destroy($cartItem->id);
+                }
+                return response([
+                    'data' => DashboardResource::getOrder(Order::where('user_id', Auth::id())->get()),
+                    'message' => 'payment is successful',
+                    'status' => 200
+                ]);
 
-            foreach ($cartItems as $cartItem) {
-                BuyCart::destroy($cartItem->id);
             }
-            return response([
-                'data' => '',
-                'message' => 'payment is successful',
-                'status' => 200
-            ]);
         }
     }
 }

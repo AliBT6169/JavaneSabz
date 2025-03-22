@@ -51,21 +51,21 @@ class DashboardResource extends JsonResource
         return $BuyCartItems;
     }
 
-    public function getOrder($request)
+    public static function getOrder($request)
     {
         $orders = [];
         foreach ($request as $order) {
             $orders[] = [
                 "id" => $order->id,
                 "status" => $order->status,
-                "items" => $this->getOrderItems($order->orderItems),
+                "items" => DashboardResource::getOrderItems($order->orderItems),
                 "created_at" => $order->created_at,
             ];
         }
         return $orders;
     }
 
-    public function getOrderItems($request)
+    public static function getOrderItems($request)
     {
         $order_items = [];
         foreach ($request as $item) {

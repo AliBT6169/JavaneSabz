@@ -66,6 +66,8 @@ export const useAuthStore = defineStore('auth', {
                     else {
                         this.Products = [];
                         this.user.user_buy_cart = [];
+                        this.Orders = res.data.data;
+                        console.log(res.data.data);
                         toast.success('پرداخت موفقیت آمیز بود')
                     }
                 }).catch((err) => {

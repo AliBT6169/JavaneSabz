@@ -34,22 +34,23 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function OrderCreate(BuyCart $cartItems, $status, $payment_status, $coupon_amount = 0, $paying_amount = 0)
+    public static function Creator($cartItems, $status = 0, $payment_status = 0, $coupon_amount = 0, $paying_amount = 0, $delivery_amount = 0)
     {
         $total_amount = 0;
         foreach ($cartItems as $cartItem) {
             $total_amount += $cartItem->price * $cartItem->quantity;
         }
-            self::create([
-                'user_id' => Auth::id(),
-                'status' => $status,
-                'total_amount' => '',
-                'delivery_amount' => 0,
-                'coupon_amount' => $coupon_amount,
-                'paying_amount' => $paying_amount,
-                'payment_status' => $payment_status,
-            ]);
-//        return DashboardResource::
+        $Order = self::create([
+            'user_id' => Auth::id(),
+            'status' => $status,
+            'total_amount' => $total_amount,
+            'delivery_amount' => $delivery_amount,
+            'coupon_amount' => $coupon_amount,
+            'paying_amount' => $paying_amount,
+            'payment_status' => $payment_status,
+        ]);
+        OrderItem::Creator($cartItems, $Order->id);
+        return 'OK';
     }
 
     public function orderItems(): HasMany
