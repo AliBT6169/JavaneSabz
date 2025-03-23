@@ -68,8 +68,7 @@ export const useAuthStore = defineStore('auth', {
                         this.user.user_buy_cart = [];
                         this.Orders = res.data.data.Orders;
                         this.Transactions = res.data.data.Transactions;
-                        console.log(res.data.data);
-                        toast.success('پرداخت موفقیت آمیز بود')
+                        toast.success('پرداخت موفقیت آمیز بود');
                     }
                 }).catch((err) => {
                     console.log(err.response.data);

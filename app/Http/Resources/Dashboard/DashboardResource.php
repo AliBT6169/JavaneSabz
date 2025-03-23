@@ -58,6 +58,7 @@ class DashboardResource extends JsonResource
             $orders[] = [
                 "id" => $order->id,
                 "status" => $order->status,
+                "price" => $order->paying_amount,
                 "items" => DashboardResource::getOrderItems($order->orderItems),
                 "created_at" => $order->created_at,
             ];

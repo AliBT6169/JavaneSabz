@@ -38,7 +38,7 @@ class Order extends Model
     {
         $total_amount = 0;
         foreach ($cartItems as $cartItem) {
-            $total_amount += $cartItem->price * $cartItem->quantity;
+            $total_amount += $cartItem->product_variation->price * $cartItem->quantity;
         }
         $paying_amount = $total_amount - $coupon_amount + $delivery_amount;
         $Order = self::create([
@@ -46,7 +46,7 @@ class Order extends Model
             'status' => $status,
             'total_amount' => $total_amount,
             'delivery_amount' => $delivery_amount,
-            'coupon_amount' => $total_amount,
+            'coupon_amount' => $coupon_amount,
             'paying_amount' => $paying_amount,
             'payment_status' => $payment_status,
         ]);
