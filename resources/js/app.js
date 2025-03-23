@@ -56,10 +56,10 @@ createInertiaApp({
 });
 
 AOS.init({
-    duration: 1000,
+    duration: 700,
     easing: "ease-in-out",
     offset: 200,
-    delay: 300,
+    delay: 200,
     once: true
 });
 

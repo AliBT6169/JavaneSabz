@@ -44,7 +44,7 @@ const descriptionStatus = ref(false);
                     </tr>
                     <tr class="*:text-center">
                         <td class="">جمع کل:</td>
-                        <td>{{transactionData.products.reduce((accumulator , products)=> accumulator + transactionData.products.quantity, 0)}}</td>
+                        <td>{{transactionData.products.reduce((accumulator , products)=> accumulator + products.quantity, 0)}}</td>
                     </tr>
                 </table>
             </div>
