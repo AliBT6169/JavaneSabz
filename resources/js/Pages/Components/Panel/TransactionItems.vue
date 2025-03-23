@@ -31,11 +31,23 @@ const descriptionStatus = ref(false);
                            :class="{'rotate-[270deg]': descriptionStatus}"
                            class="size-5 duration-300 text-defaultColor4 cursor-pointer"></svg-component>
         </div>
-        <div class="grid duration-300 h-0 overflow-hidden" :class="{'h-32 overflow-y-scroll pt-2':descriptionStatus}">
-            <p class="">
-                <strong class="">محصولات:</strong>
-                <span v-for="item in transactionData.products" class="">{{ item.name + ' : ' + item.quantity + ' , ' }}</span>
-            </p>
+        <div class="grid duration-300 h-0 overflow-hidden" :class="{'h-fit overflow-y-scroll pt-2':descriptionStatus}">
+            <div class="w-60 border-defaultColor overflow-hidden border-2 rounded-2xl">
+                <table class="w-full rounded-3xl overflow-hidden *:border-t *:border-defaultColor ">
+                    <tr class="*:text-center">
+                        <td class="">نام محصول</td>
+                        <td class="">تعداد</td>
+                    </tr>
+                    <tr class="*:text-center" v-for="item in transactionData.products">
+                        <td class="">{{item.name}}</td>
+                        <td>{{item.quantity}}</td>
+                    </tr>
+                    <tr class="*:text-center">
+                        <td class="">جمع کل:</td>
+                        <td>{{transactionData.products.reduce((accumulator , products)=> accumulator + transactionData.products.quantity, 0)}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </template>
