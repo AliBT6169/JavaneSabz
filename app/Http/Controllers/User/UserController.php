@@ -36,18 +36,20 @@ class UserController extends Controller
     {
 //        validation section
         $validatedData = $request->validate([
-            'username' => 'required',
-            'full_name' => 'required',
+            'name' => ['required','max:30','regex:/^[a-zA-Z0-9-_]+$/',
+                Rule::unique('users')->ignore(Auth::id()),],
+            'full_name' => 'required|max:30',
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users')->ignore(Auth::id()),
             ],
             'image' => 'required|image|max:2048',
-            'address' => 'required',
-            'mobile' => 'required',
+            'address' => 'required|string|max:500',
+            'cellphone' => ['required','numeric','digits:11','regex:/^(\+98|0)?9\d{9}$/',
+                Rule::unique('users')->ignore(Auth::id()),],
             'gender' => 'required|in:0,1',
-            'post_code' => 'required',
+            'post_code' => 'required|numeric|digits:10',
         ]);
 //        image section
         Gallery::updateImage(User::class, $validatedData['image']);

@@ -102,10 +102,10 @@ export const useAuthStore = defineStore('auth', {
             const formData = new FormData();
             formData.append("id", form.id);
             formData.append("image", form.image);
-            formData.append("username", form.name);
+            formData.append("name", form.name);
             formData.append("full_name", form.full_name);
             formData.append("gender", form.gender);
-            formData.append("mobile", form.cellphone);
+            formData.append("cellphone", form.cellphone);
             formData.append("email", form.email);
             formData.append("address", form.address);
             formData.append("post_code", form.post_code);

@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required','alpha_num','max:30','unique:users','regex:/^[a-zA-Z0-9-_]+$/'],
+            'name' => ['required','max:30','unique:users','regex:/^[a-zA-Z0-9-_]+$/'],
             'email' => 'required|string|email|max:255|unique:users',
             'cellphone' => ['required','numeric','digits:11','unique:users','regex:/^(\+98|0)?9\d{9}$/'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
