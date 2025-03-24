@@ -75,7 +75,7 @@ const authUser = useAuthStore();
                     </div>
                 </div>
                 <!--            login and register-->
-                <Link :href="route(useAuthStore().user === null ?'login':'dashboard')">
+                <Link :href="route(useAuthStore().isAuthenticated ?'login':'dashboard')">
                     <div
                         class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
                     items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation
