@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gallery;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -31,17 +32,23 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'cellphone' => 'required|string|max:11|unique:'.User::class,
+            'cellphone' => 'required|numeric|digits:11|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $request->validate([ 'cellphone' => ['required', 'regex:/^(\+98|0)?9\d{9}$/'], ]);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'cellphone' => $request->cellphone,
             'password' => Hash::make($request->password),
+        ]);
+
+        Gallery::create([
+            'gallery_id' => $user->id,
+            'gallery_type' => 'App\Models\User',
+            'media' => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480'
         ]);
 
         event(new Registered($user));
