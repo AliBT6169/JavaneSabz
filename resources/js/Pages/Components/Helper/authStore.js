@@ -61,14 +61,14 @@ export const useAuthStore = defineStore('auth', {
                 toast.error('اطلاعات خود را در پروفایل کامل کنید');
             else {
                 await axios.get(route('BuyCart.UserCartChecker')).then((res) => {
-                    if (res.data.message === 'is empty')
-                        toast.warning('سبد خرید شما خالی است.')
-                    else {
+                    if (res.data.status === 201) {
+                        toast.error(res.data.message);
+                    } else {
                         this.Products = [];
                         this.user.user_buy_cart = [];
                         this.Orders = res.data.data.Orders;
                         this.Transactions = res.data.data.Transactions;
-                        toast.success('پرداخت موفقیت آمیز بود');
+                        toast.success(res.data.message);
                     }
                 }).catch((err) => {
                     console.log(err.response.data);
