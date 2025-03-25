@@ -3,6 +3,7 @@ import axios from "axios";
 import {ref} from "vue";
 import {toArray} from "@vueuse/core";
 import {useToast} from "vue-toastification";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 const toast = useToast();
 export const useAuthStore = defineStore('auth', {
@@ -68,6 +69,7 @@ export const useAuthStore = defineStore('auth', {
                         this.user.user_buy_cart = [];
                         this.Orders = res.data.data.Orders;
                         this.Transactions = res.data.data.Transactions;
+                        useIndexStore().updateProductData();
                         toast.success(res.data.message);
                     }
                 }).catch((err) => {

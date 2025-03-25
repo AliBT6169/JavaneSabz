@@ -10,6 +10,7 @@ import Navigation from "@/Pages/Components/Home/navigation.vue";
 import Product from "@/Pages/Components/Home/Product.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 const carouselConfig = {
     itemsToShow: 1,
@@ -19,10 +20,12 @@ const carouselConfig = {
     wrapAround: true,
     breakpointMode: 'carousel',
 }
-const props = defineProps(["product"]);
+const props = defineProps(["productData"]);
+useIndexStore().setProductData(props.productData);
+const product = ref(useIndexStore().ProductShowData);
 const likeUnLike = async () => {
-    const res = await ref(useAuthStore().likeOrUnLike(props.product.data.id, props.product.data.is_liked));
-    props.product.data.is_liked = await res.value;
+    const res = await ref(useAuthStore().likeOrUnLike(product.value.data.id, product.value.data.is_liked));
+    product.value.data.is_liked = await res.value;
 }
 </script>
 

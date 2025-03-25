@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\DashboardResource;
+use App\Http\Resources\Home\ProductResource;
 use App\Models\BuyCart\BuyCart;
 use App\Models\Order;
 use App\Models\ProductVariation;

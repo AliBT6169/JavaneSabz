@@ -22,6 +22,7 @@ Route::get('/درباره ما', function () {
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('ProductShow/{id}', 'show')->name('ProductShow');
+    Route::get('updateProductShow/{id}', 'getData')->name('getProductData');
 });
 
 Route::controller(SearchController::class)->group(function () {

@@ -27,6 +27,15 @@ class ProductController extends Controller
         //
     }
 
+    public function getData($id)
+    {
+        return response([
+            'data' => ProductResource::make(ProductVariation::whereId($id)->first()),
+            'status' => 200,
+            'message' => 'success',
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -41,7 +50,7 @@ class ProductController extends Controller
     public function show(int $id)
     {
         $product = ProductResource::make(ProductVariation::where("id", $id)->first());
-        return Inertia::render('ProductShow', ["product" => $product]);
+        return Inertia::render('ProductShow', ["productData" => $product]);
     }
 
     /**
