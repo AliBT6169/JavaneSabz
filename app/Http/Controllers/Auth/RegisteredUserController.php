@@ -44,12 +44,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Gallery::create([
-            'gallery_id' => $user->id,
-            'gallery_type' => 'App\Models\User',
-            'media' => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480'
-        ]);
-
         event(new Registered($user));
 
         Auth::login($user);

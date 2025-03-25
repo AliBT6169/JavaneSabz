@@ -18,7 +18,7 @@ class DashboardResource extends JsonResource
         return [
             'id' => $this->id,
             'is_admin' => $this->is_admin,
-            'image' => $this->gallery->media??'',
+            'image' => $this->gallery->media??'images/default/default.jpg',
             'name' => $this->name,
             'full_name' => $this->full_name,
             'gender' => $this->gender,
