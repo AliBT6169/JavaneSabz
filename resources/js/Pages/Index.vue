@@ -10,9 +10,11 @@ import ProductSlider1 from "@/Pages/Components/Home/product-slider1.vue";
 import Navigation from "@/Pages/Components/Home/navigation.vue";
 import LiveCards from "@/Pages/Components/Home/live-cards.vue";
 import Intro from "@/Pages/Components/Home/intro.vue";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 const props = defineProps(["indexData"]);
-const products = ref(props.indexData.products);
+useIndexStore().setData(props.indexData.products);
+const products = ref(useIndexStore().Products);
 const slider1Data = ref([
     "../../../../images/slider/slider%20(1).jpeg",
     "../../../../images/slider/slider%20(2).jpeg",
