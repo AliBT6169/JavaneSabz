@@ -27,7 +27,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(pinia)
-            .use(Toast,{
+            .use(Toast, {
                 position: POSITION.TOP_CENTER,
                 timeout: 3000,
                 closeOnClick: true,
@@ -42,7 +42,7 @@ createInertiaApp({
                 filterBeforeCreate: (toast, toasts) => {
                     if (toasts.filter(
                         t => t.type === toast.type
-                    ).length !== 0) {
+                    ).length >= 3) {
                         return false;
                     }
                     return toast;
@@ -52,6 +52,7 @@ createInertiaApp({
     },
     progress: {
         color: 'greenyellow',
+        delay: 250,
     },
 });
 
