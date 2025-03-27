@@ -27,6 +27,7 @@ class UserFactory extends Factory
         return [
             'name' => 'aliBt',
             'full_name' => 'علیرضا باباتبار',
+            'is_admin' => 1,
             'email' => 'alibt@gmail.com',
             'gender' => 1,
             'cellphone' => '09012553051',

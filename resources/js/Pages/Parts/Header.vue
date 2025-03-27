@@ -75,17 +75,26 @@ const authUser = useAuthStore();
                     </div>
                 </div>
                 <!--            login and register-->
-                <Link :href="route(useAuthStore().isAuthenticated ?'login':'dashboard')">
-                    <div
-                        class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
+
+                <div class="relative">
+                    <Link :href="route(useAuthStore().isAuthenticated ?'login':'dashboard')">
+                        <div
+                            class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
                     items-center justify-center border shadow-lg border-slate-300 p-2 shine_animation
                     hover:text-white dark:hover:bg-defaultColor hover:bg-defaultColor dark:bg-slate-600 dark:text-white  lg:px-4">
-                        <svg-component name="person" class="size-5"></svg-component>
-                        <div class="text-nowrap hidden lg:block">
-                            {{ useAuthStore().user === null ? 'ورود/ثبت نام' : 'داشبورد' }}
+                            <svg-component name="person" class="size-5"></svg-component>
+                            <div class="text-nowrap hidden lg:block">
+                                {{ useAuthStore().isAuthenticated ? 'داشبورد' : 'ورود/ثبت نام' }}
+                            </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                    <Link :href="route('AdminDashboard')">
+                        <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute top-10 rounded-xl border py-3 text-nowrap px-5 bg-defaultColor5
+                            cursor-pointer dark:bg-defaultColor">
+                            داشبورد مدیریت
+                        </div>
+                    </Link>
+                </div>
             </div>
             <div class="gap-2 items-center hidden md:flex">
                 <!--            like-->

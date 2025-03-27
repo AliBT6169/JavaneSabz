@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -84,6 +85,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/DecrementBuyCart/{id}', 'CartItemDecrement')->name('BuyCart.CartItemDecrement');
         Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
         Route::get('/Payment', 'UserCartChecker')->name('BuyCart.UserCartChecker');
+    });
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/AdminDashboard', 'index')->name('AdminDashboard');
     });
 });
 
