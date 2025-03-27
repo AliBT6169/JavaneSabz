@@ -30,6 +30,9 @@ export default {
             gridTemplateColumns: {
                 'minmaxfill': 'repeat(auto-fill,minmax(14rem,2fr))'
             },
+            boxShadow: {
+                'inner-2': 'inset -3px 0px 4px 0'
+            },
         },
     },
 
