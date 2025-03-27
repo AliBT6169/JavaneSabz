@@ -46,7 +46,7 @@ import {Link} from '@inertiajs/vue3'
                     <img src="../../../public/images/about-us/owner.jpg" alt="" class="size-full rounded-2xl">
                     <div
                         class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">
-                        مدیریت : مجتبی میرقربانی
+                        مدیریت : مجتبی قربانی
                     </div>
                 </div>
             </div>
