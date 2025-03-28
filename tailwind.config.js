@@ -26,6 +26,10 @@ export default {
                 defaultColor7: "#1c240f",
                 darkColor1: "#333333",
                 darkColor2: "#303632",
+                adminColor1: "#b2d5e6",
+                adminColor2: "#3e95c1",
+                adminColor3: "#1f4b60",
+                adminColor4: "#132d3a",
             },
             gridTemplateColumns: {
                 'minmaxfill': 'repeat(auto-fill,minmax(14rem,2fr))'

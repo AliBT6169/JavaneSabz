@@ -76,7 +76,7 @@ const authUser = useAuthStore();
                 </div>
                 <!--            login and register-->
 
-                <div class="relative">
+                <div class="relative group">
                     <Link :href="route(useAuthStore().isAuthenticated ?'login':'dashboard')">
                         <div
                             class="group transition-colors duration-[400ms] text-sm flex gap-2 bg-white rounded-lg
@@ -88,9 +88,10 @@ const authUser = useAuthStore();
                             </div>
                         </div>
                     </Link>
+<!--                    is_Admin-->
                     <Link :href="route('AdminDashboard')">
-                        <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute top-10 rounded-xl border py-3 text-nowrap px-5 bg-defaultColor5
-                            cursor-pointer dark:bg-defaultColor">
+                        <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute invisible opacity-0 top-20 duration-300 rounded-xl border py-3 text-nowrap px-5 bg-defaultColor5
+                            cursor-pointer dark:bg-defaultColor group-hover:top-10 group-hover:visible group-hover:opacity-100">
                             داشبورد مدیریت
                         </div>
                     </Link>
