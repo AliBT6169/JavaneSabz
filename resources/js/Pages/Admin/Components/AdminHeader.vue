@@ -5,10 +5,11 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import {useAdminStore} from "@/Pages/Components/Helper/AdminStore.js";
+import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
 </script>
 
 <template>
-    <div class="fixed top-0 right-0 px-5 bg-adminColor1 w-screen h-16 border-b border-b-gray-700/50 flex items-center justify-between
+    <div class="fixed top-0 right-0 px-5 bg-adminColor1 w-screen h-16 border-b border-b-gray-700/50 flex items-center justify-between gap-4
                 after:shadow-inner after:shadow-gray-500/40 after:absolute after:top-16 after:w-screen after:-mr-5 after:h-2 dark:bg-adminColor3/60">
         <!--        rightSide-->
         <div class="">
@@ -18,14 +19,12 @@ import {useAdminStore} from "@/Pages/Components/Helper/AdminStore.js";
         </div>
         <!--        middleSide-->
         <div class="">
-            <Link href="/">
-                <div class="size-20 rounded-full overflow-hidden">
-                    <img src="../../../../../public/logo/logo1.png" alt="" class="">
-                </div>
-            </Link>
         </div>
         <!--        leftSide-->
         <div class="flex gap-2 items-center">
+            <!--            search-->
+            <AdminSearch/>
+            <!--            darkMode lightMode-->
             <DarkLight/>
             <!--            profile picture-->
             <div class="relative group">
