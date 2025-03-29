@@ -10,7 +10,7 @@ import {useWindowSize} from "@vueuse/core";
     <AdminHeader/>
     <AdminSideBar/>
     <!--    Layout-->
-    <div class="px-5 pt-20 lg:pr-52" @click="useAdminStore().SideBar = useWindowSize().width < 700 ?false:useAdminStore().SideBar">
+    <div class="px-5 pt-20 lg:pr-52" @click="useAdminStore().SideBar = useWindowSize().width.value < 700 ?false:useAdminStore().SideBar">
         <div class="w-fit m-auto p-20 bg-green-500">
             content
         </div>
