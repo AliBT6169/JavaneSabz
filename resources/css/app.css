@@ -47,6 +47,11 @@
     font-family: "YekanBakh", Serif;
 }
 
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .header-items {
     @apply flex gap-1 relative fill-slate-100 cursor-pointer transition-all duration-300 items-center after:w-0 hover:after:w-full after:transition-all after:duration-500 after:h-1 after:rounded-full after:bg-defaultColor2 after:absolute after:top-7 hover:text-defaultColor6 hover:fill-defaultColor6 ;
 }

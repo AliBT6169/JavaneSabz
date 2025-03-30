@@ -3,8 +3,8 @@ import {defineStore} from "pinia";
 export const useAdminStore = defineStore('admin', {
     state: () => ({
         SideBar: true,
-        Page: 'ss',
-        PageIndexTop: 0,
+        Page: 'dashboard',
+        PageIndexTop: 16,
     }),
     actions: {
         sideBarSelector(name, index) {

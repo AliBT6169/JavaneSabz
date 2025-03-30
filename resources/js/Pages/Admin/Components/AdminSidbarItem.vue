@@ -8,15 +8,20 @@ const props = defineProps({
     icon: '',
     href: null,
     name: 'dashboard',
+    methode: null,
 })
 </script>
 
 <template>
-    <Link :href="props.href??'#'">
-        <div class="flex items-center gap-4 pl-4 pr-2 h-14 duration-300 hover:text-adminColor2 hover:bg-white/20"
-             :class="{'relative bg-white/20':useAdminStore().Page===props.name}">
-            <svg-component :name="props.icon" class="size-7"/>
-            <strong class=""><slot/></strong>
-        </div>
-    </Link>
+    <div
+        class="h-14 duration-300 hover:text-adminColor2 hover:bg-white/20"
+        :class="{'bg-white/20':useAdminStore().Page===name}">
+        <Link :href="href??'#'" :method="methode??'get'" class="flex justify-center items-center gap-4 size-full"
+                :class="{'pl-4 pr-2 !justify-start':useAdminStore().SideBar}">
+            <svg-component :name="icon" class="size-7"/>
+            <strong v-if="useAdminStore().SideBar" class="">
+                <slot/>
+            </strong>
+        </Link>
+    </div>
 </template>
