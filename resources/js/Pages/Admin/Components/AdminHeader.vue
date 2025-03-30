@@ -18,7 +18,6 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
             </div>
             <svg-component name="mail" class="size-10"/>
             <svg-component name="bell" class="size-10"/>
-
         </div>
         <!--        middleSide-->
         <div class="">
