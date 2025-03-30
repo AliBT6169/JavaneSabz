@@ -9,15 +9,15 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
 </script>
 
 <template>
-    <div class="fixed top-0 right-0 px-5 bg-adminColor1 w-screen h-16 border-b border-b-gray-700/50 flex items-center justify-between gap-4
+    <div class="fixed top-0 right-0 px-1 sm:px-5 bg-adminColor1 w-screen h-16 border-b border-b-gray-700/50 flex items-center justify-between
                 after:shadow-inner after:shadow-gray-500/40 after:absolute after:top-16 after:w-screen after:-mr-5 after:h-2 dark:bg-adminColor3/60">
         <!--        rightSide-->
-        <div class="flex gap-5 items-center *:select-none *:cursor-pointer">
+        <div class="flex gap-2 sm:gap-5 items-center *:select-none *:cursor-pointer text-adminColor3 dark:text-adminColor2">
             <div @click="useAdminStore().SideBar = !useAdminStore().SideBar">
-                <svg-component name="admin-menu" class="size-10"/>
+                <svg-component name="admin-menu" class="size-7 sm:size-10"/>
             </div>
-            <svg-component name="mail" class="size-10"/>
-            <svg-component name="bell" class="size-10"/>
+            <svg-component name="mail" class="size-7 sm:size-10"/>
+            <svg-component name="bell" class="size-7 sm:size-10"/>
         </div>
         <!--        middleSide-->
         <div class="">
@@ -30,10 +30,10 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
             <DarkLight/>
             <!--            profile picture-->
             <div class="relative group">
-                <div class="rounded-full bg-defaultColor overflow-hidden">
-                    <img :src="useAuthStore().user.image" class="size-12 scale-105" alt="">
+                <div class="rounded-full bg-defaultColor size-12 overflow-hidden">
+                    <img :src="useAuthStore().user.image" class="scale-105" alt="">
                 </div>
-                <div class="invisible opacity-0 absolute duration-300 pt-4 top-28 left-0
+                <div class="invisible z-10 opacity-0 absolute duration-300 pt-4 top-28 left-0
                 group-hover:visible group-hover:opacity-100 group-hover:top-10">
                     <div class="rounded-lg w-48 border-2 bg-adminColor1 p-4 grid gap-4 dark:bg-adminColor3">
                         <!--                        items-->
@@ -45,7 +45,7 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
                             </div>
                         </Link>
                         <Link :href="route('logout')" method="post" class="">
-                            <div @click="authUser.logout()" class="flex justify-between py-2 cursor-pointer duration-500 items-center
+                            <div @click="useAuthStore().logout()" class="flex justify-between py-2 cursor-pointer duration-500 items-center
                              border-b hover:text-slate-600 dark:hover:text-gray-300 hover:px-1">
                                 <svg-component name="logout" class="size-6"></svg-component>
                                 <div class="">خروج از حساب</div>
