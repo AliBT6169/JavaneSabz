@@ -12,16 +12,19 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
     <div class="fixed top-0 right-0 px-5 bg-adminColor1 w-screen h-16 border-b border-b-gray-700/50 flex items-center justify-between gap-4
                 after:shadow-inner after:shadow-gray-500/40 after:absolute after:top-16 after:w-screen after:-mr-5 after:h-2 dark:bg-adminColor3/60">
         <!--        rightSide-->
-        <div class="">
-            <div class="cursor-pointer select-none" @click="useAdminStore().SideBar = !useAdminStore().SideBar">
+        <div class="flex gap-5 items-center *:select-none *:cursor-pointer">
+            <div @click="useAdminStore().SideBar = !useAdminStore().SideBar">
                 <svg-component name="admin-menu" class="size-10"/>
             </div>
+            <svg-component name="mail" class="size-10"/>
+            <svg-component name="bell" class="size-10"/>
+
         </div>
         <!--        middleSide-->
         <div class="">
         </div>
         <!--        leftSide-->
-        <div class="flex gap-2 items-center">
+        <div class="flex items-center gap-2">
             <!--            search-->
             <AdminSearch/>
             <!--            darkMode lightMode-->
