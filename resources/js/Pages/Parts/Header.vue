@@ -20,7 +20,7 @@ const authUser = useAuthStore();
                 <component class="modal" :is="ModalComponent"></component>
             </div>
         </div>
-        <div class="w-fit flex z-20 flex-col mx-auto items-center justify-center
+        <div class="flex z-20 flex-col mx-auto items-center justify-center
          md:flex-row md:w-full md:justify-between">
             <!--            icon-->
             <div class="flex items-center gap-1 justify-center">
@@ -37,9 +37,9 @@ const authUser = useAuthStore();
             </div>
             <!--            search box-->
             <div class="flex gap-4 items-center justify-center">
-                <div class="relative w-fit">
+                <div class="relative w-[70%]">
                     <input type="text" @input="(e)=>useSearchStore().setData(e.target.value)"
-                           class="peer focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor xl:w-[20rem] sm:[200px] w-[250px] md:w-[150px] h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
+                           class="peer w-full focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
                     <!--                    searchResultBox-->
                     <search-result-box/>
@@ -50,7 +50,7 @@ const authUser = useAuthStore();
                         </Link>
                     </div>
                 </div>
-                <div class="flex justify-center gap-4 w-full md:hidden">
+                <div class="flex justify-center gap-4 w-[15%] md:hidden">
                     <Link href="/login">
                         <div
                             class="size-10 flex items-center justify-center hover:bg-blue-400 transition-all rounded-xl bg-blue-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
@@ -59,6 +59,13 @@ const authUser = useAuthStore();
                         </div>
                     </Link>
                 </div>
+                <Link v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin" :href="route('AdminDashboard')">
+                    <div
+                        class="size-10 flex items-center justify-center hover:bg-red-400 transition-all rounded-xl bg-red-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
+                        title="پنل مدیریت">
+                        <svg-component name="admin" class="size-6" title="پنل مدیریت"></svg-component>
+                    </div>
+                </Link>
             </div>
             <div class="gap-2 hidden md:flex">
                 <!--                        buy cart-->
