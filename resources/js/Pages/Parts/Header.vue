@@ -12,7 +12,7 @@ const authUser = useAuthStore();
 </script>
 <template>
     <header class="w-full">
-        <div @click.self="()=>{Modal = false, ModalComponent=null}"
+        <div @click.self="Modal = false, ModalComponent=null"
              class="fixed invisible opacity-0 duration-500 z-50 top-0 left-0 p-8 w-screen h-screen bg-gray-700/30 md:p-20"
              :class="{'!visible !opacity-100':Modal}">
             <div :class="{'!translate-x-0':Modal}"
@@ -20,10 +20,10 @@ const authUser = useAuthStore();
                 <component class="modal" :is="ModalComponent"></component>
             </div>
         </div>
-        <div class="flex z-20 flex-col mx-auto items-center justify-center
-         md:flex-row md:w-full md:justify-between">
+        <div class="flex gap-2 z-20 flex-col mx-auto items-center justify-center
+         md:flex-row md:justify-between">
             <!--            icon-->
-            <div class="flex items-center gap-1 justify-center">
+            <div class="flex w-full items-center gap-1 justify-center">
                 <Link href="/" class="">
                     <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
                 </Link>
@@ -36,8 +36,8 @@ const authUser = useAuthStore();
                 </div>
             </div>
             <!--            search box-->
-            <div class="flex gap-4 items-center justify-center">
-                <div class="relative w-[70%]">
+            <div class="flex w-full gap-4 items-center justify-center">
+                <div class="relative w-full">
                     <input type="text" @input="(e)=>useSearchStore().setData(e.target.value)"
                            class="peer w-full focus:outline-none focus:ring-transparent transition-colors duration-300 focus:border-defaultColor h-10 rounded-2xl bg-gray-50 border-gray-200 dark:bg-gray-600 dark:focus:border-defaultColor5 dark:text-gray-100
                                  text-xs lg:text-sm" placeholder="جستجوی محصول">
@@ -59,7 +59,7 @@ const authUser = useAuthStore();
                         </div>
                     </Link>
                 </div>
-                <Link v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin" :href="route('AdminDashboard')">
+                <Link class="md:hidden" v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin" :href="route('AdminDashboard')">
                     <div
                         class="size-10 flex items-center justify-center hover:bg-red-400 transition-all rounded-xl bg-red-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
                         title="پنل مدیریت">
@@ -97,8 +97,9 @@ const authUser = useAuthStore();
                     </Link>
 <!--                    is_Admin-->
                     <Link :href="route('AdminDashboard')">
-                        <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute invisible opacity-0 top-20 duration-300 rounded-xl border py-3 text-nowrap px-5 bg-defaultColor5
-                            cursor-pointer dark:bg-defaultColor group-hover:top-10 group-hover:visible group-hover:opacity-100">
+                        <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute invisible opacity-0 top-20 duration-300 rounded-xl
+                         border py-3 -left-12 text-sm text-nowrap px-5 bg-defaultColor5 cursor-pointer dark:bg-defaultColor group-hover:top-10 group-hover:visible
+                          group-hover:opacity-100">
                             داشبورد مدیریت
                         </div>
                     </Link>
