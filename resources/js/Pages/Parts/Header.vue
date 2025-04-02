@@ -98,9 +98,10 @@ const authUser = useAuthStore();
 <!--                    is_Admin-->
                     <Link :href="route('AdminDashboard')">
                         <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute invisible opacity-0 top-20 duration-300 rounded-xl
-                         border py-3 -left-12 text-sm text-nowrap px-5 bg-defaultColor5 cursor-pointer dark:bg-defaultColor group-hover:top-10 group-hover:visible
+                         border py-3 -left-12 flex gap-2 text-sm text-nowrap px-5 bg-defaultColor5 cursor-pointer dark:bg-defaultColor group-hover:top-10 group-hover:visible
                           group-hover:opacity-100">
-                            داشبورد مدیریت
+                            <svg-component name="admin" class="size-4"/>
+                            <div class="">داشبورد مدیریت</div>
                         </div>
                     </Link>
                 </div>

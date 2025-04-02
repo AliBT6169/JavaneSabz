@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
 
-    })->name('dashboard');
+    });
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile/show', 'show')->name('profile.show');
         Route::get('/profile', 'edit')->name('profile.edit');
