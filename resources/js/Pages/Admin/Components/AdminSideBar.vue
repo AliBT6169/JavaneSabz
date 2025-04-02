@@ -1,6 +1,6 @@
 <script setup>
 
-import {useAdminStore} from "@/Pages/Components/Helper/AdminStore.js";
+import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import AdminSidbarItem from "@/Pages/Admin/Components/AdminSidbarItem.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";

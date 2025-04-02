@@ -1,6 +1,6 @@
 <script setup>
 
-import {useAdminStore} from "@/Pages/Components/Helper/AdminStore.js";
+import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 import {useWindowSize} from "@vueuse/core";
 </script>
 

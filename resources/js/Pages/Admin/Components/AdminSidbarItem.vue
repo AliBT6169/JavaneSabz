@@ -2,7 +2,7 @@
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
-import {useAdminStore} from "@/Pages/Components/Helper/AdminStore.js";
+import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 
 const props = defineProps({
     icon: '',
