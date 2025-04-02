@@ -31,7 +31,7 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
             <!--            profile picture-->
             <div class="relative group">
                 <div class="rounded-full bg-defaultColor size-12 overflow-hidden">
-                    <img :src="useAuthStore().user.image" class="scale-105" alt="">
+                    <img :src="'/'+useAuthStore().user.image" class="scale-105" alt="">
                 </div>
                 <div class="invisible z-10 opacity-0 absolute duration-300 pt-4 top-28 left-0
                 group-hover:visible group-hover:opacity-100 group-hover:top-10">

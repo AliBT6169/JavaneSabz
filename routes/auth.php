@@ -86,8 +86,5 @@ Route::middleware('auth')->group(function () {
         Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
         Route::get('/Payment', 'UserCartChecker')->name('BuyCart.UserCartChecker');
     });
-    Route::controller(AdminController::class)->group(function () {
-        Route::get('/AdminDashboard', 'index')->name('AdminDashboard');
-    });
 });
 

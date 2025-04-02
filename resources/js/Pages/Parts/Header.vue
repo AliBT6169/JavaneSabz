@@ -59,7 +59,7 @@ const authUser = useAuthStore();
                         </div>
                     </Link>
                 </div>
-                <Link class="md:hidden" v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin" :href="route('AdminDashboard')">
+                <Link class="md:hidden" v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin" :href="route('admin.AdminDashboard')">
                     <div
                         class="size-10 flex items-center justify-center hover:bg-red-400 transition-all rounded-xl bg-red-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
                         title="پنل مدیریت">
@@ -96,7 +96,7 @@ const authUser = useAuthStore();
                         </div>
                     </Link>
 <!--                    is_Admin-->
-                    <Link :href="route('AdminDashboard')">
+                    <Link :href="route('admin.AdminDashboard')">
                         <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute invisible opacity-0 top-20 duration-300 rounded-xl
                          border py-3 -left-12 flex gap-2 text-sm text-nowrap px-5 bg-defaultColor5 cursor-pointer dark:bg-defaultColor group-hover:top-10 group-hover:visible
                           group-hover:opacity-100">

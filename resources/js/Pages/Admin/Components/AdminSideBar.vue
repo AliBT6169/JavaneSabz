@@ -14,7 +14,7 @@ import {router} from "@inertiajs/vue3";
         <div class="absolute duration-300 h-14 w-2 rounded-r-xl left-0 bg-adminColor3 dark:bg-adminColor2"
              :style="{top:useAdminStore().PageIndexTop + 'px'}"></div>
         <div class="space-y-6 pt-4">
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('dashboard',1)" icon="home2" name="dashboard">
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('dashboard',1)" :href="route('admin.AdminDashboard')" icon="home2" name="dashboard">
                 داشبورد
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('users',2)" :href="route('admin.users.index')" icon="users" name="users">کاربران
