@@ -26,12 +26,14 @@ console.log(props.userData.data)
                     <td>کد پستی</td>
                 </tr>
                 <tr v-for="user in userData.data" class="h-12 cursor-pointer hover:!bg-adminColor2 duration-500">
-                    <td class="">{{user.full_name===''?'خالی':user.full_name}}</td>
-                    <td class="">{{user.gender===1?'آقا':'خانم'}}</td>
-                    <td class="">{{user.cellphone}}</td>
-                    <td class="">{{user.email}}</td>
-                    <td class="">{{ user.address === '' ? 'خالی' : (user.address.length > 25 ? user.address.slice(0, 25) + '...' : user.address)}}</td>
-                    <td class="">{{user.postal_code===''?'خالی':user.postal_code}}</td>
+                    <td class="">{{ user.full_name === '' ? 'خالی' : user.full_name }}</td>
+                    <td class="">{{ user.gender === 1 ? 'آقا' : 'خانم' }}</td>
+                    <td class="">{{ user.cellphone }}</td>
+                    <td class="">{{ user.email }}</td>
+                    <td class="">
+                        {{ user.address === '' ? 'خالی' : (user.address.length > 25 ? user.address.slice(0, 25) + '...' : user.address) }}
+                    </td>
+                    <td class="">{{ user.postal_code === '' ? 'خالی' : user.postal_code }}</td>
                 </tr>
             </table>
         </div>

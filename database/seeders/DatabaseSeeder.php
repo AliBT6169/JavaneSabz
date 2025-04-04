@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(1)->create()->unique;
+        User::factory(100)->create()->unique;
+        $this->call(adminSeeder::class);
 //        User Gallery
 //        Gallery::factory(1)->create();
 //        Product Gallery

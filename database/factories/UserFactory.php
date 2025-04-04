@@ -25,12 +25,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'aliBt',
-            'full_name' => 'علیرضا باباتبار',
-            'is_admin' => 1,
-            'email' => 'alibt@gmail.com',
-            'gender' => 1,
-            'cellphone' => '09012553051',
+            'name' => $this->faker->name(),
+            'full_name' => Faker::fullName(),
+            'is_admin' => 0,
+            'email' => $this->faker->unique()->safeEmail(),
+            'gender' => rand(0, 1),
+            'cellphone' => Faker::mobile(),
             'status' => rand(0, 1),
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
