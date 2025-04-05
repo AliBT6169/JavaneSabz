@@ -93,7 +93,7 @@ class User extends Authenticatable
 
     public function wish_lists(): HasMany
     {
-        return $this->hasMany(WishList::class)->latest();
+        return $this->hasMany(Wishlist::class)->latest();
     }
 
     public static function updateUser($data)
