@@ -349,4 +349,14 @@
               d="M24 4.5s-11.26 2-15.25 2v20a11.2 11.2 0 0 0 .8 4.1a15 15 0 0 0 2 3.61a22 22 0 0 0 2.81 3.07a35 35 0 0 0 3 2.48a34 34 0 0 0 2.89 1.86c1 .59 1.71 1 2.13 1.19l1 .49a1.44 1.44 0 0 0 1.24 0l1-.49c.42-.2 1.13-.6 2.13-1.19a34 34 0 0 0 2.89-1.86a35 35 0 0 0 3-2.48a22 22 0 0 0 2.81-3.07a15 15 0 0 0 2-3.61a11.2 11.2 0 0 0 .8-4.1v-20c-3.99.03-15.25-2-15.25-2"
               stroke-width="2.5"/>
     </symbol>
+
+    <symbol id="arrow-left" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 6s-6 4.419-6 6s6 6 6 6" color="currentColor" />
+    </symbol>
+
+    <symbol id="d-arrow-left" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M11.5 18s-6-4.419-6-6s6-6 6-6m7 12s-6-4.419-6-6s6-6 6-6" color="currentColor"/>
+    </symbol>
+
 </svg>
