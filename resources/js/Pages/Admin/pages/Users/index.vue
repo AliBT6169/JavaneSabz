@@ -4,6 +4,7 @@ import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import {Link} from "@inertiajs/vue3";
+import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 
 const props = defineProps(["userData"]);
 console.log(props.userData)
@@ -32,7 +33,7 @@ console.log(props.userData)
                     <td class="w-[5%]">{{ user.id }}</td>
                     <td class="">{{ user.full_name === '' ? 'خالی' : user.full_name }}</td>
                     <td class="truncate">{{ user.user_name === '' ? 'خالی' : user.user_name }}</td>
-                    <td class="w-[7%]">{{ user.is_admin?'مدیر':'کاربر' }}</td>
+                    <td class="w-[7%]">{{ user.is_admin ? 'مدیر' : 'کاربر' }}</td>
                     <td class="w-[7%]">{{ user.gender === 1 ? 'آقا' : 'خانم' }}</td>
                     <td class="">{{ user.cellphone }}</td>
                     <td class="truncate">{{ user.email }}</td>
@@ -40,13 +41,7 @@ console.log(props.userData)
                     <td class="">{{ user.postal_code === '' ? 'خالی' : user.postal_code }}</td>
                 </tr>
             </table>
-            <div class="flex items-center justify-center gap-5 py-5
-                *:rounded-xl *:border *:border-gray-700/50 *:bg-adminColor1 *:dark:bg-adminColor3 *:px-10 *:py-4">
-                <Link :href="userData.links.first">اولین</Link>
-                <Link :class="{'!bg-opacity-50':userData.links.prev===null}" :href="userData.links.prev">قبلی</Link>
-                <Link :class="{'!bg-opacity-50':userData.links.next===null}" :href="userData.links.next">بعدی</Link>
-                <Link :href="userData.links.last">آخرین</Link>
-            </div>
+            <Pagination :links="userData.links" :meta="userData.meta"/>
         </div>
     </Layout>
 </template>
