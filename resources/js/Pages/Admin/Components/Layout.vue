@@ -6,7 +6,7 @@ import {useWindowSize} from "@vueuse/core";
 
 <template>
 
-    <div class="px-5 pt-20 lg:pr-52"
+    <div class="pr-20 pl-4  pt-20 lg:pr-52"
          @click="useAdminStore().SideBar = useWindowSize().width.value < 700 ?false:useAdminStore().SideBar">
         <slot/>
     </div>
