@@ -31,14 +31,14 @@ const likeUnLike = async () => {
                 }}</h3>
         </div>
         <!--        price & buy cart-->
-        <div class="w-full px-4 flex lg:justify-between items-center flex-col gap-2 lg:flex-row">
-            <span v-if="product.price" class="text-defaultColor dark:text-defaultColor5">{{
+        <div class="w-full px-4 flex lg:justify-between items-center flex-col gap-2">
+            <div v-if="product.price" class="text-defaultColor dark:text-defaultColor5">{{
                     product.price + 'تومان'
-                }} </span>
-            <span v-else class="bg-defaultColor5 text-defaultColor7 rounded-full flex items-center p-1
+                }} </div>
+            <div v-else class="bg-defaultColor5 text-defaultColor7 rounded-full flex items-center p-1
              dark:bg-defaultColor dark:text-defaultColor5 hover:bg-opacity-50 hover:-translate-y-1 duration-500">مشاهده
                 <svg-component name="show" class="size-5"></svg-component>
-            </span>
+            </div>
             <span
                 class="flex justify-between w-full lg:w-fit lg:block">
                 <svg-component name="cart" @click="useAuthStore().addToCart(product.id)"
