@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Ybazli\Faker\Facades\Faker;
 
@@ -20,7 +21,7 @@ class AddressFactory extends Factory
         return [
             "address" => Faker::address(),
             "postcode" => Faker::melliCode(),
-            "addressable_id" => 1,
+            "addressable_id" =>rand(2,100),
             "addressable_type" => 'App\Models\User',
         ];
     }
