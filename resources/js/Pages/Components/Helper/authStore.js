@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('auth', {
             } else toast.warning('لطفا اول وارد حساب کاربری خود شوید')
         },
         async CartCompleter() {
-            if (this.user.full_name === null || this.user.cellphone === null || this.user.user_address === null || this.user.user_post_code === null)
+            if (this.user.full_name === '' || this.user.cellphone === '' || this.user.user_address === '' || this.user.user_post_code === '')
                 toast.error('اطلاعات خود را در پروفایل کامل کنید');
             else {
                 await axios.get(route('BuyCart.UserCartChecker')).then((res) => {
