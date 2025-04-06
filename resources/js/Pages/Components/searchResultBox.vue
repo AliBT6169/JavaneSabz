@@ -10,7 +10,7 @@ const searchData = ref(useSearchStore());
 </script>
 
 <template>
-    <div tabindex="0" class="w-[155%] p-2 absolute top-60 opacity-0 duration-300 z-30 border border-defaultColor/50
+    <div tabindex="0" class="w-full p-2 absolute top-60 opacity-0 duration-300 z-30 border border-defaultColor/50
                      bg-defaultColor5/80 rounded-xl invisible peer-focus:opacity-100 peer-focus:top-12 peer-focus:visible
                       focus:opacity-100 focus:top-12 focus:visible dark:bg-defaultColor/80 dark:hover:bg-defaultColor
                        hover:bg-defaultColor5 dark:border-defaultColor5/50 md:py-20 sm:w-[135%] md:w-[80vw] xl:w-[150%]
