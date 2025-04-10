@@ -13,13 +13,19 @@ const authUser = useAuthStore();
 <template>
     <div class="select-none fixed z-10 top-0 right-0 border border-slate-500 w-full py-2 bg-defaultColor5 rounded-full px-10 flex items-center
      justify-between dark:bg-defaultColor" @click="profileSidebarCloser">
-        <svg-component name="dashboard" class="size-9 Sidebar cursor-pointer dark:text-white"
-                       @click.stop="profileSidebar=!profileSidebar"></svg-component>
+        <div class="flex md:gap-1 items-center">
+            <svg-component name="dashboard" class="size-9 Sidebar cursor-pointer dark:text-white"
+                           @click.stop="profileSidebar = !profileSidebar"/>
+            <Link href="/" class="flex items-center">
+                <svg-component name="home" class="size-12"/>
+                <p class="hidden md:block">بازگشت به خانه</p>
+            </Link>
+        </div>
         <Link href="/" class="">
             <img src="../../../../../public/logo/logo1.png" class="w-14 scale-[1.5]" alt="">
         </Link>
         <div class="flex gap-2 items-center">
-            <DarkLight></DarkLight>
+            <DarkLight/>
             <div class="relative group">
                 <div class="rounded-xl bg-defaultColor overflow-hidden">
                     <img :src="authUser.user.image" class="size-12 rounded-xl" alt="">
