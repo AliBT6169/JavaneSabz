@@ -4,6 +4,7 @@ import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
 import {onMounted, ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import axios from "axios";
+import SelectOptinsBT from "@/Pages/Components/Form/selectOptinsBT.vue";
 
 const store = useAuthStore();
 const userInfo = ref(useAuthStore().user);
@@ -89,9 +90,11 @@ onMounted(async() => {
                     <panel-input label="آدرس ایمیل :" type="email" :value="form.email"
                                  @updateValue="(item)=>form.email=item"
                                  placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
-                    <panel-input label="آدرس :" :value="form.address"
-                                 @updateValue="(item)=>form.address=item"
-                                 placeholder-text="آدرس خود را وارد کنید:"/>
+                    <div class="mt-9 text-black flex gap-2 items-center *:rounded-tr-full *:rounded-bl-full *:border-defaultColor *:w-full *:bg-transparent
+                    *:h-full focus:*:ring-0 focus:*:border-defaultColor3 dark:focus:*:border-defaultColor3 *:dark:border-defaultColor5">
+                        <select-optins-b-t label="شهر"/>
+                        <select-optins-b-t label="استان"/>
+                    </div>
                     <panel-input label="کد پستی :" :value="form.post_code"
                                  @updateValue="(item)=>form.post_code=item"
                                  placeholder-text="کد پستی خود را وارد کنید:"/>

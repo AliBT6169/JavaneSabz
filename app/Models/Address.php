@@ -36,12 +36,13 @@ class Address extends Model
         return $this->belongsTo(City::class);
     }
 
-    public static function addressStore(int $id, string $address, string $postcode, $type)
+    public static function addressStore(int $id, string $address, int $city_id, string $postcode, $type)
     {
 
         if (self::where('addressable_id', $id)->where('addressable_type', $type)->exists())
             self::where('addressable_id', $id)->where('addressable_type', $type)->update([
                 'address' => $address,
+                'city_id' => $city_id,
                 'postcode' => $postcode,
             ]);
         else
@@ -49,6 +50,7 @@ class Address extends Model
                 'addressable_id' => $id,
                 'addressable_type' => $type,
                 'address' => $address,
+                'city_id' => $city_id,
                 'postcode' => $postcode,
             ]);
     }
