@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4adfd00792a6daabc73bad296247ee14",
+    "content-hash": "7edc46606ddb71c74b119f3c5f7a59d3",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -3892,6 +3892,66 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "shimadotdev/iran-regions",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shimadotdev/iran-regions.git",
+                "reference": "5400431ca93e065abf3a8ed0bf1f005ebbb1fcf6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shimadotdev/iran-regions/zipball/5400431ca93e065abf3a8ed0bf1f005ebbb1fcf6",
+                "reference": "5400431ca93e065abf3a8ed0bf1f005ebbb1fcf6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^11.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^9.1",
+                "phpunit/phpunit": "^10.5"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Shimadotdev\\IranRegions\\IranRegionsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Shimadotdev\\IranRegions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shima .dev",
+                    "email": "hi@shima.dev"
+                }
+            ],
+            "description": "A Laravel package containing province and city data of Iran, including calling codes, along with geolocation functionality. Ideal for managing location-based information within Laravel apps.",
+            "keywords": [
+                "iran",
+                "iran-cities",
+                "iran-geo-coordinates",
+                "iran-regions",
+                "laravel",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/shimadotdev/iran-regions/issues",
+                "source": "https://github.com/shimadotdev/iran-regions/tree/1.2.1"
+            },
+            "time": "2024-07-17T14:13:29+00:00"
         },
         {
             "name": "symfony/clock",

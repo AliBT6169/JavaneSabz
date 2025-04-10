@@ -21,7 +21,8 @@ class AddressFactory extends Factory
         return [
             "address" => Faker::address(),
             "postcode" => Faker::melliCode(),
-            "addressable_id" =>rand(2,100),
+            "addressable_id" => rand(2, 100),
+            "city_id" => rand(1, 176),
             "addressable_type" => 'App\Models\User',
         ];
     }

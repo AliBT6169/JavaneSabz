@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\Auth;
+use Shimadotdev\IranRegions\Models\City;
 
 class Address extends Model
 {
@@ -28,6 +29,11 @@ class Address extends Model
     public function addressable(): morphTo
     {
         return $this->morphTo();
+    }
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 
     public static function addressStore(int $id, string $address, string $postcode, $type)

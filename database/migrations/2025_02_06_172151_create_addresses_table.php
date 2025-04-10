@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('address');
             $table->string('postcode');
-            $table->bigInteger('city_id')->nullable();
+            $table->bigInteger('city_id')->default(1);
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
             $table->unsignedInteger('addressable_id');
