@@ -18,7 +18,9 @@ const form = {
     gender: userInfo.value.gender,
     cellphone: userInfo.value.cellphone,
     email: userInfo.value.email,
-    address: userInfo.value.user_address,
+    address: userInfo.value.user_address.address,
+    city_id: userInfo.value.user_address.city_id,
+    province_id: userInfo.value.user_address.province_id,
     post_code: userInfo.value.user_post_code,
 };
 
@@ -41,10 +43,10 @@ const onFileChange = (event) => {
     }
 }
 
-onMounted(async() => {
-    const response =await fetch(form.image)
+onMounted(async () => {
+    const response = await fetch(form.image)
     const blob = await response.blob();
-    form.image = new File([blob], 'defaultImage', { type: blob.type});
+    form.image = new File([blob], 'defaultImage', {type: blob.type});
 });
 </script>
 
@@ -90,10 +92,10 @@ onMounted(async() => {
                     <panel-input label="آدرس ایمیل :" type="email" :value="form.email"
                                  @updateValue="(item)=>form.email=item"
                                  placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
-                    <div class="mt-9 text-black flex gap-2 items-center *:rounded-tr-full *:rounded-bl-full *:border-defaultColor *:w-full *:bg-transparent
-                    *:h-full focus:*:ring-0 focus:*:border-defaultColor3 dark:focus:*:border-defaultColor3 *:dark:border-defaultColor5">
-                        <address-select-option-bt/>
-                    </div>
+                    <address-select-option-bt label="آدرس:" :value="form.address"/>
+                    <panel-input label="توضحات آدرس" :value="form.address"
+                                 @updateValue="(item)=>form.address=item"
+                                 placeholder-text="اطلاعات تکمیلی آدرس خود را وارد کنید:"/>
                     <panel-input label="کد پستی :" :value="form.post_code"
                                  @updateValue="(item)=>form.post_code=item"
                                  placeholder-text="کد پستی خود را وارد کنید:"/>

@@ -25,14 +25,33 @@ class DashboardResource extends JsonResource
             'email' => $this->email,
             'cellphone' => $this->cellphone,
             'created_at' => jalalian::fromDateTime($this->created_at)->format('l, d F Y'),
-            'user_address' => $this->address == null ? '' : trans('iranRegions::slug.'. $this->address->city->province->slug) . ' - ' .
-                trans('iranRegions::slug.'. $this->address->city->slug) . ' - ' . $this->address->address,
+            'user_address' => $this->address($this->address),
             'user_post_code' => $this->address->postcode ?? '',
             'user_buy_cart' => $this->getBuyCartItems($this->buy_carts),
             'user_orders' => $this->getOrder($this->orders),
             'user_transactions' => (object)$this->getTransactions($this->transactions),
             'user_wish_list' => (object)$this->getWishLists($this->wish_lists),
         ];
+    }
+
+    public function address($address)
+    {
+        if ($address == null)
+            return '';
+        $result = [
+            "province" => [
+                "id" => $address->city->province->id,
+                "data" => trans('iranRegions::slug.' . $address->city->province->slug)
+            ],
+            "city" => [
+                "id" => $address->city->id,
+                "data" => trans('iranRegions::slug.' . $address->city->slug),
+            ],
+            "address" => $address->address,
+            "full_address" => trans('iranRegions::slug.' . $address->city->province->slug) . ' - ' .
+                trans('iranRegions::slug.' . $address->city->slug) . ' - ' . $address->address,
+        ];
+        return $result;
     }
 
     public static function getBuyCartItems($request)

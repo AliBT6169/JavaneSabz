@@ -36,7 +36,7 @@ const authUser = ref(useAuthStore());
             </div>
             <div class="border-b border-gray-700 dark:border-gray-300">
                 <span class="pl-2 text-black">آدرس :</span>
-                <span>{{authUser.user.user_address??'وارد نشده'}}</span>
+                <span>{{authUser.user.user_address.full_address??'وارد نشده'}}</span>
             </div>
             <div class="border-b border-gray-700 dark:border-gray-300">
                 <span class="pl-2 text-black">کد پستی :</span>
