@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -28,6 +29,11 @@ Route::controller(ProductController::class)->group(function () {
 Route::controller(SearchController::class)->group(function () {
     Route::get('/ProductSearch/{input?}', 'search')->name('ProductSearch');
     Route::get('/searchPage', 'searchPage')->name('searchPage');
+});
+
+Route::controller(AddressController::class)->group(function () {
+    Route::get('/cities', 'cities')->name('cities');
+    Route::get('/provinces', 'provinces')->name('provinces');
 });
 
 require __DIR__ . '/auth.php';

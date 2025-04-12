@@ -1,11 +1,24 @@
 <script setup>
 import {useAuthStore} from "../Helper/authStore.js";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 
-const props = defineProps(["label"])
+const props = defineProps(["label"]);
+const provinces = ref();
 onMounted(() => {
+    if (useAuthStore().user.user_address.address === '') {
+        axios.get(route('provinces')).then((res) => {
+            provinces.value = res.data;
+            console.log(res.data);
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
 
 })
+
+const getCities = (e) => {
+    console.log(e)
+}
 </script>
 
 <template>
@@ -17,9 +30,9 @@ onMounted(() => {
                 <option selected value="">{{ useAuthStore().user.user_address.city.data }}</option>
                 <option v-for="item in 5" value="">شهر</option>
             </select>
-            <select name="province" id="province" class="">
+            <select name="province" id="province" class="" @change="(e)=>console.log(e.selectedIndex)">
                 <option selected value="">{{ useAuthStore().user.user_address.province.data }}</option>
-                <option v-for="item in 5" value="">استان</option>
+                <option v-for="item in provinces" :value="item.id">{{ item.name }}</option>
             </select>
         </div>
     </div>
