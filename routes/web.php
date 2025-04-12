@@ -32,7 +32,7 @@ Route::controller(SearchController::class)->group(function () {
 });
 
 Route::controller(AddressController::class)->group(function () {
-    Route::get('/cities', 'cities')->name('cities');
+    Route::get('/cities/{province_id}', 'cities')->name('cities');
     Route::get('/provinces', 'provinces')->name('provinces');
 });
 

@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(adminSeeder::class);
+        $this->call(provinceSeeder::class);
+        $this->call(citySeeder::class);
         User::factory(100)->create()->unique;
 //        User Gallery
 //        Gallery::factory(1)->create();

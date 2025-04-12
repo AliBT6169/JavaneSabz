@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Province;
 use Illuminate\Http\Request;
-use Shimadotdev\IranRegions\Models\Province;
 
 class AddressController extends Controller
 {
-    public function cities()
+    public function cities($province_id)
     {
-
+        $data = City::where('province_id', $province_id)->get();
+        $result = [];
+        foreach ($data as $city) {
+            $result[] = [
+                'id' => $city->id,
+                'name' => $city->slug,
+            ];
+        }
+        return $result;
     }
 
     public function provinces()
@@ -19,7 +28,7 @@ class AddressController extends Controller
         foreach ($data as $province) {
             $result[] = [
                 'id' => $province->id,
-                'name' => trans('iranRegions::slug.' . $province->slug),
+                'name' => $province->slug,
             ];
         }
         return $result;

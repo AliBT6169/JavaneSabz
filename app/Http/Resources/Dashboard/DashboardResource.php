@@ -52,15 +52,15 @@ class DashboardResource extends JsonResource
         $result = [
             "province" => [
                 "id" => $address->city->province->id,
-                "data" => trans('iranRegions::slug.' . $address->city->province->slug)
+                "data" => $address->city->province->slug
             ],
             "city" => [
                 "id" => $address->city->id,
-                "data" => trans('iranRegions::slug.' . $address->city->slug),
+                "data" => $address->city->slug,
             ],
             "address" => $address->address,
-            "full_address" => trans('iranRegions::slug.' . $address->city->province->slug) . ' - ' .
-                trans('iranRegions::slug.' . $address->city->slug) . ' - ' . $address->address,
+            "full_address" => $address->city->province->slug . ' - ' .
+                $address->city->slug . ' - ' . $address->address,
         ];
         return $result;
     }
