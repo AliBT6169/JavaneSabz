@@ -93,7 +93,7 @@ onMounted(async () => {
                                  @updateValue="(item)=>form.email=item"
                                  placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
                     <address-select-option-bt label="آدرس:" :value="form.address"/>
-                    <panel-input label="توضحات آدرس" :value="form.address"
+                    <panel-input label="توضحات آدرس :" :value="form.address"
                                  @updateValue="(item)=>form.address=item"
                                  placeholder-text="اطلاعات تکمیلی آدرس خود را وارد کنید:"/>
                     <panel-input label="کد پستی :" :value="form.post_code"
