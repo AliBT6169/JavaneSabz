@@ -37,7 +37,18 @@ class DashboardResource extends JsonResource
     public function address($address)
     {
         if ($address == null)
-            return '';
+            return $data = [
+                "province" => [
+                    "id" => '',
+                    "data" => 'استان'
+                ],
+                "city" => [
+                    "id" => '',
+                    "data" => 'شهر',
+                ],
+                "address" => '',
+                "full_address" => '',
+            ];
         $result = [
             "province" => [
                 "id" => $address->city->province->id,
