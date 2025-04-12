@@ -17,6 +17,7 @@ class citySeeder extends Seeder
         $json = File::get(database_path("/data/cities.json"));
         $data = json_decode($json);
         foreach ($data as $item) {
+            if (!preg_match('/\d/', $item->name))
             City::create([
                 'name' => $item->name,
                 'slug' => $item->slug,

@@ -17,12 +17,13 @@ class provinceSeeder extends Seeder
         $json = File::get(database_path() . '/data/provinces.json');
         $data = json_decode($json);
         foreach ($data as $item) {
-            Province::create([
-                'id' => $item->id,
-                'name' => $item->name,
-                'slug' => $item->slug,
-                'tel_prefix' => $item->tel_prefix
-            ]);
+            if (!preg_match('/\d/', $item->name))
+                Province::create([
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'slug' => $item->slug,
+                    'tel_prefix' => $item->tel_prefix
+                ]);
         }
     }
 }

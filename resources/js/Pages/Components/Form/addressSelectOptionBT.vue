@@ -12,7 +12,6 @@ onMounted(() => {
     if (useAuthStore().user.user_address.address === '') {
         axios.get(route('provinces')).then((res) => {
             provinces.value = res.data;
-            console.log(res.data);
         }).catch((err) => {
             console.log(err)
         });
@@ -21,7 +20,7 @@ onMounted(() => {
 })
 
 const getCities = async () => {
-    await axios.get(route('cities', {province_id: province.value.selectedIndex})).then((res)=>{
+    await axios.get(route('cities', {province_id: province.value.value})).then((res)=>{
         cities.value = res.data;
     }).catch((err)=>{
         console.log(err);
