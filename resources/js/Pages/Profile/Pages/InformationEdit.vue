@@ -20,7 +20,6 @@ const form = {
     email: userInfo.value.email,
     address: userInfo.value.user_address.address,
     city_id: userInfo.value.user_address.city_id,
-    province_id: userInfo.value.user_address.province_id,
     post_code: userInfo.value.user_post_code,
 };
 
@@ -90,9 +89,9 @@ onMounted(async () => {
                                  @updateValue="(item)=>form.cellphone=item"
                                  placeholder-text="شماره تلفن خود را وارد کنید:"/>
                     <panel-input label="آدرس ایمیل :" type="email" :value="form.email"
-                                 @updateValue="(item)=>form.email=item"
+                                 @updateValue="(item)=>form.email = item"
                                  placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
-                    <address-select-option-bt label="آدرس:" :value="form.address"/>
+                    <address-select-option-bt label="آدرس:" @updateValue="(item)=>form.city_id = item"/>
                     <panel-input label="توضحات آدرس :" :value="form.address"
                                  @updateValue="(item)=>form.address=item"
                                  placeholder-text="اطلاعات تکمیلی آدرس خود را وارد کنید:"/>

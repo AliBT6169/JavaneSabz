@@ -45,7 +45,7 @@ class UserController extends Controller
                 Rule::unique('users')->ignore(Auth::id()),
             ],
             'image' => ['required', 'image', 'max:2048'],
-            'city' => ['required', 'numeric', 'max:176'],
+            'city' => ['required', 'numeric'],
             'address' => ['required', 'string', 'max:500'],
             'cellphone' => ['required', 'numeric', 'digits:11', 'regex:/^(\+98|0)?9\d{9}$/',
                 Rule::unique('users')->ignore(Auth::id()),],
@@ -57,7 +57,7 @@ class UserController extends Controller
 //        user update section
         User::updateUser($validatedData);
 //        address update or create section
-        Address::addressStore($request->id, $validatedData['address'], $validatedData['city_id'], $validatedData['post_code'], User::class);
+        Address::addressStore($request->id, $validatedData['address'], $validatedData['city'], $validatedData['post_code'], User::class);
         return DashboardResource::make(User::whereId(Auth::id())->first());
     }
 
