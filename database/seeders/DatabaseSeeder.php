@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(adminSeeder::class);
         $this->call(provinceSeeder::class);
         $this->call(citySeeder::class);
+        $this->call(DeliveryAmountSeeder::class);
         User::factory(100)->create()->unique;
 //        User Gallery
 //        Gallery::factory(1)->create();
