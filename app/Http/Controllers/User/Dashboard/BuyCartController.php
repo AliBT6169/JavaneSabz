@@ -64,18 +64,16 @@ class BuyCartController extends Controller
                 $province_percentage = 60;
                 break;
         }
-        $productsDeliveries = [];
+        $productWeight = 0;
         foreach ($products as $product) {
             $productDeliveryAmount = DeliveryAmount::getPrice($product->product_variation->weight);
             $productDeliveryAmount += ($productDeliveryAmount * $province_percentage) / 100;
-            $productsDeliveries = [
-                $productDeliveryAmount
-            ];
             $deliveryAmount += $productDeliveryAmount * $product->quantity;
+            $productWeight = $product->product_variation->weight;
         }
         return [
             'هزینه ارسال' => $deliveryAmount,
-            'صول هاهزینه مح' => $productsDeliveries
+            'وزن محصول' => $productWeight,
         ];
     }
 
