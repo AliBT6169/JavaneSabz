@@ -24,6 +24,7 @@ class ProductVariation extends Model
         'id',
         'product_id',
         'value',
+        'weight',
         'price',
         'quantity',
         'off_sale',

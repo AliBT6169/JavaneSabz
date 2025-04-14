@@ -31,6 +31,32 @@ class BuyCartController extends Controller
         return BuyCart::addToCart($ProductId);
     }
 
+    public function getOrderDeliveryAmount()
+    {
+        if (Auth::user()->address === null)
+            return [
+                'status' => 100,
+                'message' => 'اطلاعات آدرس تکمیل نیست'
+            ];
+        if (Auth::user()->buy_carts->count() === 0)
+            return [
+                'status' => 100,
+                'message' => 'محصولی در سبد خرید شما نیست'
+            ];
+        $deliveryAmount = 0;
+        $products = Auth::user()->buy_carts ?? null;
+        $orderWeight = 0;
+        foreach ($products as $product) {
+            $orderWeight += $product->product_variation->weight * $product->quantity;
+        }
+        $userProvince = Auth::user()->address !== null ? Auth::user()->address->city->province : null;
+
+        return [
+            'وزن بار' => $orderWeight,
+            'استان مقصد' => $userProvince
+        ];
+    }
+
     public function UserCartChecker()
     {
         $cartItems = BuyCart::where('user_id', Auth::id())->get();

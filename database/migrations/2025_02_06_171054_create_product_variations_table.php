@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('value');
+            $table->string('weight');
             $table->unsignedInteger('price')->default(0);
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedInteger('off_sale')->default(0);

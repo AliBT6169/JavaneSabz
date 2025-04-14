@@ -23,6 +23,7 @@ class ProductVariationFactory extends Factory
         return [
             "product_id" => rand(1, 100),
             "value" => Faker::firstName(),
+            "weight" => rand(1, 25),
             "price" => $price,
             "quantity" => rand(0, 100),
             "off_sale" => $off_sale,

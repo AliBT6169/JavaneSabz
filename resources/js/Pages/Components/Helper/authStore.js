@@ -123,7 +123,7 @@ export const useAuthStore = defineStore('auth', {
             })
         },
         toastMessage(methode = '', message = '') {
-            switch (method) {
+            switch (methode) {
                 case 'error':
                     toast.error(message);
                     break;
