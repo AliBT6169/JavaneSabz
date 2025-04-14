@@ -12,4 +12,25 @@ class DeliveryAmount extends Model
         'price',
     ];
 
+    public static function getPrice(int $weight)
+    {
+        switch ($weight) {
+            case 1:
+                return self::find(1)->price;
+            case 2:
+                return self::find(2)->price;
+            case 3:
+                return self::find(3)->price;
+            case 4 | 5:
+                return self::find(4)->price;
+            case 6 | 7 | 8 | 9 | 10:
+                return self::find(5)->price;
+            case 11 | 12 | 13 | 14 | 15:
+                return self::find(6)->price;
+            case 16 | 17 | 18 | 19 | 20:
+                return self::find(7)->price;
+            default:
+                return self::find(8)->price;
+        }
+    }
 }

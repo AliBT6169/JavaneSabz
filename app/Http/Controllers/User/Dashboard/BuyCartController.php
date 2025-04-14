@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\DashboardResource;
 use App\Http\Resources\Home\ProductResource;
 use App\Models\BuyCart\BuyCart;
+use App\Models\DeliveryAmount;
 use App\Models\Order;
 use App\Models\ProductVariation;
 use App\Models\Transaction;
@@ -47,11 +48,15 @@ class BuyCartController extends Controller
         $products = Auth::user()->buy_carts ?? null;
         $orderWeight = 0;
         foreach ($products as $product) {
+            $deliveryAmount += DeliveryAmount::getPrice($product->product_variation->weight) * $product->quantity;
             $orderWeight += $product->product_variation->weight * $product->quantity;
         }
         $userProvince = Auth::user()->address !== null ? Auth::user()->address->city->province : null;
-
+        switch ($userProvince) {
+            case 'مازندران':
+        }
         return [
+            'هزینه ارسال' => $deliveryAmount,
             'وزن بار' => $orderWeight,
             'استان مقصد' => $userProvince
         ];
