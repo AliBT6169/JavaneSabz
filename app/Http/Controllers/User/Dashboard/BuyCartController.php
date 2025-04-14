@@ -45,20 +45,37 @@ class BuyCartController extends Controller
                 'message' => 'محصولی در سبد خرید شما نیست'
             ];
         $deliveryAmount = 0;
-        $products = Auth::user()->buy_carts ?? null;
-        $orderWeight = 0;
-        foreach ($products as $product) {
-            $deliveryAmount += DeliveryAmount::getPrice($product->product_variation->weight) * $product->quantity;
-            $orderWeight += $product->product_variation->weight * $product->quantity;
-        }
-        $userProvince = Auth::user()->address !== null ? Auth::user()->address->city->province : null;
+        $products = Auth::user()->buy_carts;
+        $province_percentage = 0;
+        $userProvince = Auth::user()->address !== null ? Auth::user()->address->city->province->name : null;
         switch ($userProvince) {
             case 'مازندران':
+                $province_percentage = 0;
+                break;
+            case 'گلستان' :
+            case 'سمنان':
+            case 'تهران' :
+            case 'البرز' :
+            case 'قزوین' :
+            case 'گیلان':
+                $province_percentage = 40;
+                break;
+            default:
+                $province_percentage = 60;
+                break;
+        }
+        $productsDeliveries = [];
+        foreach ($products as $product) {
+            $productDeliveryAmount = DeliveryAmount::getPrice($product->product_variation->weight);
+            $productDeliveryAmount += ($productDeliveryAmount * $province_percentage) / 100;
+            $productsDeliveries = [
+                $productDeliveryAmount
+            ];
+            $deliveryAmount += $productDeliveryAmount * $product->quantity;
         }
         return [
             'هزینه ارسال' => $deliveryAmount,
-            'وزن بار' => $orderWeight,
-            'استان مقصد' => $userProvince
+            'صول هاهزینه مح' => $productsDeliveries
         ];
     }
 
