@@ -65,16 +65,6 @@ class DeliveryAmount extends Model
     }
     public static function getOrderDeliveryAmount()
     {
-        if (Auth::user()->address === null)
-            return [
-                'status' => 100,
-                'message' => 'اطلاعات آدرس تکمیل نیست'
-            ];
-        if (Auth::user()->buy_carts->count() === 0)
-            return [
-                'status' => 100,
-                'message' => 'محصولی در سبد خرید شما نیست'
-            ];
         $deliveryAmount = 0;
         $products = Auth::user()->buy_carts;
         $province_percentage = 0;

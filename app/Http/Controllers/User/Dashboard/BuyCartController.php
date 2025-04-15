@@ -34,7 +34,24 @@ class BuyCartController extends Controller
 
     public function completePayment()
     {
-        return DeliveryAmount::getOrderDeliveryAmount();
+        if (Auth::user()->address === null)
+            return [
+                'status' => 100,
+                'message' => 'اطلاعات آدرس تکمیل نیست'
+            ];
+        if (Auth::user()->buy_carts->count() === 0)
+            return [
+                'status' => 100,
+                'message' => 'محصولی در سبد خرید شما نیست'
+            ];
+        $deliveryAmount = DeliveryAmount::getOrderDeliveryAmount();
+        $products = BuyCart::getUserProducts();
+        return $data = [
+            'products' => $products,
+            'delivery_amount' => $deliveryAmount,
+            'VAT' => '',
+            'total_amount' => '',
+        ];
     }
 
     public function UserCartChecker()

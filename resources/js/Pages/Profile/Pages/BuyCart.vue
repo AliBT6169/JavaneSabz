@@ -43,8 +43,10 @@ const cacheDeliveryAmount = async () => {
     <div class="grid gap-4">
         <PanelCartItems v-for="(item , index) in Products" :product="item" :index="index"></PanelCartItems>
     </div>
-    <div v-if="cartCompleteModal" class="fixed size-full top-0 left-0 bg-black/50"
-         @click="cartCompleteModal = false">
+    <div v-if="cartCompleteModal" class="fixed z-50 flex items-center justify-center size-full top-0 left-0 bg-black/50"
+         @click.self="cartCompleteModal = false">
+        <div class="w-10/12 h-2/3 bg-defaultColor6 dark:bg-defaultColor2 rounded-2xl">
 
+        </div>
     </div>
 </template>

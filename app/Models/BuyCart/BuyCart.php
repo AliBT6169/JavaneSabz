@@ -73,4 +73,24 @@ class BuyCart extends Model
             return 'deleted';
         }
     }
+
+    public static function getUserProducts()
+    {
+        $products = null;
+        $total_price = 0;
+        $cartItems = Auth::user()->buy_carts;
+        foreach ($cartItems as $product) {
+            $products[] = [
+                'name' => $product->product_variation->product->name,
+                'value' => $product->product_variation->value,
+                'quantity' => $product->quantity,
+                'price' => $product->product_variation->sale_price,
+            ];
+            $total_price += $product->product_variation->sale_price * $product->quantity;
+        }
+        return [
+            'products' => $products,
+            'total_price' => $total_price,
+        ];
+    }
 }
