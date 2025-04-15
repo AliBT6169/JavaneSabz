@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class DeliveryAmount extends Model
 {
@@ -45,5 +46,81 @@ class DeliveryAmount extends Model
             default:
                 return self::find(8)->price;
         }
+    }
+
+
+    public static function ensure($deliveryAmount): int
+    {
+        if ($deliveryAmount <= 4000000)
+            return 4000;
+        else if ($deliveryAmount <= 30000000)
+            return ($deliveryAmount * 0.2) / 100;
+        else if ($deliveryAmount <= 50000000)
+            return ($deliveryAmount * 0.25) / 100;
+        else if ($deliveryAmount <= 70000000)
+            return ($deliveryAmount * 0.3) / 100;
+        else if ($deliveryAmount <= 100000000)
+            return ($deliveryAmount * 0.35) / 100;
+        return 0;
+    }
+    public static function getOrderDeliveryAmount()
+    {
+        if (Auth::user()->address === null)
+            return [
+                'status' => 100,
+                'message' => 'اطلاعات آدرس تکمیل نیست'
+            ];
+        if (Auth::user()->buy_carts->count() === 0)
+            return [
+                'status' => 100,
+                'message' => 'محصولی در سبد خرید شما نیست'
+            ];
+        $deliveryAmount = 0;
+        $products = Auth::user()->buy_carts;
+        $province_percentage = 0;
+        $userProvince = Auth::user()->address->city->province->name;
+        $userCity = Auth::user()->address->city->name;
+        $bigCitiesPercentage = 0;
+        switch ($userCity) {
+            case 'تهران':
+            case 'مشهد':
+            case 'کرج':
+            case 'یزد':
+            case 'اصفهان':
+            case 'شیراز':
+                $bigCitiesPercentage = 15;
+        }
+        switch ($userProvince) {
+            case 'مازندران':
+                $province_percentage = 0;
+                break;
+            case 'گلستان' :
+            case 'سمنان':
+            case 'تهران' :
+            case 'البرز' :
+            case 'قزوین' :
+            case 'گیلان':
+                $province_percentage = 40;
+                break;
+            default:
+                $province_percentage = 60;
+                break;
+        }
+        $productWeight = 0;
+        foreach ($products as $product) {
+            $productDeliveryAmount = self::getPrice($product->product_variation->weight);
+            $productDeliveryAmount += ($productDeliveryAmount * $province_percentage) / 100;
+            $productDeliveryAmount += ($productDeliveryAmount * $bigCitiesPercentage) / 100;
+            $deliveryAmount += $productDeliveryAmount * $product->quantity;
+            $productWeight += $product->product_variation->weight * $product->quantity;
+        }
+        $ensureAmount = self::ensure($deliveryAmount);
+        $deliveryAmount += $ensureAmount;
+        return [
+            'deliveryAmount' => $deliveryAmount,
+            'finalWeight' => $productWeight,
+            'ensureAmount' => $ensureAmount,
+            'bigCityPercentage' => $bigCitiesPercentage,
+        ];
     }
 }

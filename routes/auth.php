@@ -84,7 +84,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/IncrementBuyCart/{id}', 'CartItemIncrement')->name('BuyCart.CartItemIncrement');
         Route::post('/DecrementBuyCart/{id}', 'CartItemDecrement')->name('BuyCart.CartItemDecrement');
         Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
-        Route::get('/getOrderDeliveryAmount', 'getOrderDeliveryAmount')->name('BuyCart.getOrderDeliveryAmount');
+        Route::get('/completePayment', 'completePayment')->name('BuyCart.completePayment');
         Route::get('/Payment', 'UserCartChecker')->name('BuyCart.UserCartChecker');
     });
 });

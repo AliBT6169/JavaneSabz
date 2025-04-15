@@ -12,7 +12,7 @@ const goToPayPage = () => {
     useAuthStore().CartCompleter();
 }
 const cacheDeliveryAmount = async () => {
-    await axios.get(route('BuyCart.getOrderDeliveryAmount')).then(res => {
+    await axios.get(route('BuyCart.completePayment')).then(res => {
         console.log(res.data)
         if (res.data.status === 100)
             useAuthStore().toastMessage('error', res.data.message);

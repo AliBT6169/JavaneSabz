@@ -32,49 +32,9 @@ class BuyCartController extends Controller
         return BuyCart::addToCart($ProductId);
     }
 
-    public function getOrderDeliveryAmount()
+    public function completePayment()
     {
-        if (Auth::user()->address === null)
-            return [
-                'status' => 100,
-                'message' => 'اطلاعات آدرس تکمیل نیست'
-            ];
-        if (Auth::user()->buy_carts->count() === 0)
-            return [
-                'status' => 100,
-                'message' => 'محصولی در سبد خرید شما نیست'
-            ];
-        $deliveryAmount = 0;
-        $products = Auth::user()->buy_carts;
-        $province_percentage = 0;
-        $userProvince = Auth::user()->address !== null ? Auth::user()->address->city->province->name : null;
-        switch ($userProvince) {
-            case 'مازندران':
-                $province_percentage = 0;
-                break;
-            case 'گلستان' :
-            case 'سمنان':
-            case 'تهران' :
-            case 'البرز' :
-            case 'قزوین' :
-            case 'گیلان':
-                $province_percentage = 40;
-                break;
-            default:
-                $province_percentage = 60;
-                break;
-        }
-        $productWeight = 0;
-        foreach ($products as $product) {
-            $productDeliveryAmount = DeliveryAmount::getPrice($product->product_variation->weight);
-            $productDeliveryAmount += ($productDeliveryAmount * $province_percentage) / 100;
-            $deliveryAmount += $productDeliveryAmount * $product->quantity;
-            $productWeight = $product->product_variation->weight;
-        }
-        return [
-            'هزینه ارسال' => $deliveryAmount,
-            'وزن محصول' => $productWeight,
-        ];
+        return DeliveryAmount::getOrderDeliveryAmount();
     }
 
     public function UserCartChecker()
