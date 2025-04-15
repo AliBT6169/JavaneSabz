@@ -46,11 +46,13 @@ class BuyCartController extends Controller
             ];
         $deliveryAmount = DeliveryAmount::getOrderDeliveryAmount();
         $products = BuyCart::getUserProducts();
+        $total_amount = $products['total_price'] + $deliveryAmount['deliveryAmount'];
+        $VAT = ($total_amount * 9) /100;
         return $data = [
             'products' => $products,
             'delivery_amount' => $deliveryAmount,
-            'VAT' => '',
-            'total_amount' => '',
+            'VAT' => $VAT,
+            'total_amount' => $total_amount - $VAT,
         ];
     }
 
