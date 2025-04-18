@@ -30,6 +30,6 @@ const productCount = ref(props.product.count)
                       class="cursor-pointer bg-red-600 bg-opacity-80">-</span>
             </div>
         </div>
-        <div class="*:px-2"><span>قیمت:</span> <span>{{ product.price }}</span></div>
+        <div class="*:px-2"><span>قیمت:</span> <span>{{ (product.price).toLocaleString('fa-IR') }}</span></div>
     </div>
 </template>
