@@ -51,8 +51,8 @@ class BuyCartController extends Controller
         return $data = [
             'products' => $products,
             'delivery_amount' => $deliveryAmount,
-            'VAT' => $VAT,
-            'total_amount' => $total_amount - $VAT,
+            'VAT' => (int)$VAT,
+            'total_amount' => (int)($total_amount + $VAT),
         ];
     }
 

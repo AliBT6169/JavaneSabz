@@ -47,7 +47,8 @@ const cacheDeliveryAmount = async () => {
     </div>
     <div v-if="cartCompleteModal" class="fixed z-50 flex items-center justify-center size-full top-0 left-0 bg-black/50"
          @click.self="cartCompleteModal = false">
-        <div class="w-72 h-2/3 bg-defaultColor5 text-sm rounded-2xl overflow-hidden sm:text-base md:flex dark:bg-cover dark:bg-defaultColor">
+        <div class="w-72 h-2/3 bg-defaultColor5 text-sm rounded-2xl overflow-hidden sm:text-base md:flex dark:bg-cover
+         dark:bg-defaultColor md:w-80">
             <div class="overflow-y-scroll h-full w-full no-scrollbar space-y-10 p-5 *:text-nowrap *:flex
              *:justify-between *:items-center">
                 <div class="">

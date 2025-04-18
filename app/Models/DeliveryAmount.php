@@ -107,9 +107,9 @@ class DeliveryAmount extends Model
         $ensureAmount = self::ensure($deliveryAmount);
         $deliveryAmount += $ensureAmount;
         return [
-            'deliveryAmount' => $deliveryAmount,
+            'deliveryAmount' => (int)$deliveryAmount,
             'finalWeight' => $productWeight,
-            'ensureAmount' => $ensureAmount,
+            'ensureAmount' => (int)$ensureAmount,
             'bigCityPercentage' => $bigCitiesPercentage,
         ];
     }

@@ -84,7 +84,7 @@ class BuyCart extends Model
                 'name' => $product->product_variation->product->name,
                 'value' => $product->product_variation->value,
                 'quantity' => $product->quantity,
-                'price' => $product->product_variation->sale_price,
+                'price' => $product->product_variation->sale_price * $product->quantity,
             ];
             $total_price += $product->product_variation->sale_price * $product->quantity;
         }
