@@ -13,7 +13,6 @@ class Coupon extends Model
     protected $table = 'coupons';
 
     protected $fillable = [
-        'id',
         'name',
         'code',
         'status',
