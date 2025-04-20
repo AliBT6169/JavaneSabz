@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignId('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreignId('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
             $table->unsignedTinyInteger('quantity');
+            $table->unsignedInteger('price');
             $table->unsignedInteger('coupon_amount')->default(0);
             $table->timestamps();
         });

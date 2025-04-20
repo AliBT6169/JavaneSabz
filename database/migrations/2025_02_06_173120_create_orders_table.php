@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->unsignedInteger('delivery_amount')->default(0);
             $table->unsignedInteger('coupon_amount')->default(0);
             $table->unsignedInteger('paying_amount')->default(0);
-            $table->tinyInteger('payment_status');
+            $table->tinyInteger('payment_status')->default(0);
             $table->timestamps();
         });
     }

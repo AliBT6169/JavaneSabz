@@ -87,10 +87,16 @@ class BuyCart extends Model
                 'price' => $product->product_variation->sale_price * $product->quantity,
             ];
             $total_price += $product->product_variation->sale_price * $product->quantity;
+//            $total_price += $products[$products->count()-1]->price * $product->quantity;
         }
         return [
             'products' => $products,
             'total_price' => $total_price,
         ];
+    }
+
+    public static function cartCleaner($id)
+    {
+        $buy_carts = self::where('user_id', $id)->delete();
     }
 }

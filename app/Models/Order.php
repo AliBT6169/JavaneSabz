@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
@@ -34,25 +35,19 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function Creator($cartItems, $status = 0, $payment_status = 0, $coupon_amount = 0, $delivery_amount = 0)
+    public static function Creator($request)
     {
-        $total_amount = 0;
-        foreach ($cartItems as $cartItem) {
-            $total_amount += $cartItem->product_variation->price * $cartItem->quantity;
-        }
-        $paying_amount = $total_amount - $coupon_amount + $delivery_amount;
+        $paying_amount = $request['total_amount'] - ($request['coupon_amount'] ?? 0) + $request['delivery_amount'];
         $Order = self::create([
             'user_id' => Auth::id(),
-            'status' => $status,
-            'total_amount' => $total_amount,
-            'delivery_amount' => $delivery_amount,
-            'coupon_amount' => $coupon_amount,
-            'paying_amount' => $paying_amount,
-            'payment_status' => $payment_status,
+            'status' => $request['status'] ?? 0,
+            'total_amount' => $request['total_amount'],
+            'delivery_amount' => $request['delivery_amount'] ?? 0,
+            'coupon_amount' => $request['coupon_amount'] ?? 0,
+            'paying_amount' => $request['paying_amount'] ?? $paying_amount,
+            'payment_status' => $request['payment_status'] ?? 0,
         ]);
-        OrderItem::Creator($cartItems, $Order->id);
-        Transaction::Creator($Order->id);
-        return 'OK';
+        OrderItem::Creator(Auth::user()->buy_carts, $Order->id);
     }
 
     public function orderItems(): HasMany

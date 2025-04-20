@@ -18,11 +18,11 @@ class OrderItem extends Model
         'order_id',
         'product_variation_id',
         'quantity',
-        'coupon_amount',
+        'price',
         'created_at',
     ];
 
-    public static function Creator($cartItems, $OrderId, $coupon_amount = 0)
+    public static function Creator($cartItems, $OrderId)
     {
         foreach ($cartItems as $item) {
             $cartItem = BuyCart::whereId($item->id)->first();
@@ -30,7 +30,7 @@ class OrderItem extends Model
                 'order_id' => $OrderId,
                 'product_variation_id' => $cartItem->product_variation->id,
                 'quantity' => $cartItem->quantity,
-                'coupon_amount' => $coupon_amount,
+                'price' => $cartItem->product_variation->sale_price * $cartItem->quantity,
             ]);
         }
     }
