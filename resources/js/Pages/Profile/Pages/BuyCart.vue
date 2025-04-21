@@ -17,10 +17,16 @@ const orderMaker = async () => {
     await axios.get(route('BuyCart.completePayment')).then(res => {
         if (res.data.status === 100) {
             useAuthStore().toastMessage('error', res.data.message);
-        }
-        else {
+        } else {
             productCompletionData.value = res.data;
             cartCompleteModal.value = true;
+            const authUser = useAuthStore();
+            authUser.user = {
+                ...authUser.user,
+                user_orders: res.data.data,
+                user_buy_cart: []
+            }
+            useAuthStore().setUser(authUser.user)
         }
         console.log(res)
     }).catch(err => {

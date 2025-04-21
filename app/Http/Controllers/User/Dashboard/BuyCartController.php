@@ -55,8 +55,8 @@ class BuyCartController extends Controller
             'paying_amount' => (int)($paying_amount),
         ]);
         BuyCart::cartCleaner(Auth::id());
-
-        return $data = [
+        return [
+            'data'=>DashboardResource::getOrder(Auth::user()->orders),
             'products' => $products,
             'delivery_amount' => $deliveryAmount,
             'VAT' => (int)$VAT,
