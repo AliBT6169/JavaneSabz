@@ -26,6 +26,7 @@ const orderMaker = async () => {
                 user_orders: res.data.data,
                 user_buy_cart: []
             }
+            Products.value = [];
             useAuthStore().setUser(authUser.user)
         }
         console.log(res)
@@ -54,7 +55,7 @@ const orderMaker = async () => {
         </button>
     </div>
     <div class="grid gap-4">
-        <PanelCartItems v-for="(item , index) in Products" :product="item" :index="index"></PanelCartItems>
+        <PanelCartItems v-for="(item , index) in Products" :product="item" :index="index" :key="Products.length + index"></PanelCartItems>
     </div>
     <CartComplete :productCompletionData="productCompletionData" :CompleteModal="cartCompleteModal"
                   @updateCompleteModal="cartCompleteModal = false"/>
