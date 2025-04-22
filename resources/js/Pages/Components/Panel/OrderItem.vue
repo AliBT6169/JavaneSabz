@@ -53,6 +53,15 @@ const props = defineProps(["Order"])
                 <div class="">هزینه ارسال:</div>
                 <div class="">{{Order.delivery_amount.toLocaleString('fa-IR')}}</div>
             </div>
+            <div v-if="Order.coupon_amount" class="">
+                <div class="">تخفیف:</div>
+                <div class="">{{Order.coupon_amount.toLocaleString('fa-IR')}}</div>
+            </div>
+            <div v-else class="">
+                <input type="text" class="w-28 h-8 rounded-xl" placeholder="کد تخفیف:">
+                <Link class="border rounded-xl bg-blue-500 p-1 duration-300 hover:shadow-inner hover:shadow-gray-600
+hover:grayscale-[15%]">اعمال تخفیف</Link>
+            </div>
             <div class="border-b pb-2">
                 <div class="">مالیات9%:</div>
                 <div class="">{{(Order.paying_amount - Order.price).toLocaleString('fa-IR')}}</div>
