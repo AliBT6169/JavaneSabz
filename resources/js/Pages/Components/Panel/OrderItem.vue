@@ -8,7 +8,7 @@ const props = defineProps(["Order"])
 </script>
 
 <template>
-    <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 border-defaultColor h-96 overflow-y-scroll
+    <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 no-scrollbar border-defaultColor h-96 overflow-y-scroll
       dark:border-darkColor1 sm:w-96 hover3D-animation hover:shadow-red-500 dark:bg-defaultColor7">
         <div v-if="Order.status > 0" class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
             <div class="flex gap-6 text-[8px] text-nowrap sm:text-sm">
@@ -43,8 +43,8 @@ const props = defineProps(["Order"])
                    hover:shadow-gray-600"> صفحه پرداخت
             </Link>
         </div>
-        <div class="bg-white/50 rounded-xl h-40 space-y-6
-*:flex *:justify-between *:items-center *:px-2">
+        <div class="bg-white/50 rounded-xl p-2 space-y-6
+*:flex *:justify-between *:items-center">
             <div class="">
                 <div class="">جمع قیمت:</div>
                 <div class="">{{Order.price.toLocaleString('fa-IR')}}</div>
@@ -53,9 +53,13 @@ const props = defineProps(["Order"])
                 <div class="">هزینه ارسال:</div>
                 <div class="">{{Order.delivery_amount.toLocaleString('fa-IR')}}</div>
             </div>
+            <div class="border-b pb-2">
+                <div class="">مالیات9%:</div>
+                <div class="">{{(Order.paying_amount - Order.price).toLocaleString('fa-IR')}}</div>
+            </div>
             <div class="">
-                <div class="">مالیات:</div>
-                <div class="">{{Order.delivery_amount.toLocaleString('fa-IR')}}</div>
+                <div class="">جمع کل:</div>
+                <div class="">{{Order.paying_amount.toLocaleString('fa-IR')}}</div>
             </div>
         </div>
         <div class="space-y-2" v-for="item in Order.items">

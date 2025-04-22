@@ -33,7 +33,7 @@ const information_edit = markRaw(InformationEdit);
         <SidebarItem @click="profileComponent=buyCart" :chosen="profileComponent===BuyCart" svg="cart">سبد خرید
         </SidebarItem>
         <SidebarItem @click="profileComponent=transaction" :chosen="profileComponent===Transaction" svg="card" >تراکنش ها</SidebarItem>
-        <SidebarItem @click="profileComponent=payment" :chosen="profileComponent===Payment" svg="list">پیگیری خرید</SidebarItem>
+        <SidebarItem @click="profileComponent=payment" :chosen="profileComponent===Payment" svg="list">سفارشات</SidebarItem>
         <SidebarItem @click="profileComponent=favorite" :chosen="profileComponent===Favorite" svg="like" class="fill-transparent">علاقه مندی ها</SidebarItem>
         <SidebarItem @click="profileComponent=comment" :chosen="profileComponent===Comments" svg="comment">نظرات</SidebarItem>
         <SidebarItem @click="profileComponent=information_edit" :chosen="profileComponent===InformationEdit" svg="edit">تکمیل اطلاعات</SidebarItem>
