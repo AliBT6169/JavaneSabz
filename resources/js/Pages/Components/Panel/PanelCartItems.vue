@@ -9,18 +9,17 @@ const productCount = ref(props.product.count)
 </script>
 
 <template>
-    <div v-if="product.quantity>0" class="grid select-none shadow-md duration-300 shadow-slate-600 place-items-center place-self-center gap-4 w-fit
-        py-2 px-4 rounded-xl border-2 border-defaultColor dark:border-defaultColor5 hover:shadow-lg hover:shadow-slate-600
-        sm:flex xl:w-full xl:justify-between">
-        <div class="w-40 rounded-lg cursor-pointer overflow-hidden">
+    <div v-if="product.quantity>0" class="w-full *:m-auto border-2 rounded-xl border-current *:text-center space-y-2">
+        <div class="w-full rounded-lg cursor-pointer overflow-hidden relative">
             <img :src="product.image" :alt="product.name" class="duration-300 hover:scale-110">
+        <div class="absolute p-1 rounded-lg bg-white/50 w-fit max-w-full right-2 top-3/4">{{ product.name + ' : ' + product.value }}</div>
         </div>
-        <span class="w-20">{{ product.name.length > 25 ? product.name.substring(0, 25) + '...' : product.name }}</span>
-        <p class="w-32">
+        <p class="w-11/12">
             {{
-                product.description.length > 50 ? product.description.substring(0, 50) + '...' : product.description
+                product.description.length > 100 ? product.description.substring(0, 100) + '...' : product.description
             }}</p>
-        <div class="flex items-center gap-1">تعداد:
+        <div class="flex w-fit justify-center items-center gap-1">
+            <div class="">تعداد:</div>
             <div
                 class="mr-4 !overflow-hidden *:px-2 border-black text-lg font-bold border rounded-xl dark:border-white">
                 <span @click="dashboard.productIncrement(index ,product.id)"

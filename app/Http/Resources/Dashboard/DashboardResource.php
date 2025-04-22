@@ -72,6 +72,7 @@ class DashboardResource extends JsonResource
             $BuyCartItems[] = [
                 "id" => $buy_cart_item->id,
                 "name" => $buy_cart_item->product_variation->product->name,
+                "value" => $buy_cart_item->product_variation->value,
                 "image" => $buy_cart_item->product_variation->product->primary_image,
                 "description" => $buy_cart_item->product_variation->product->description,
                 "size" => $buy_cart_item->product_variation->value,
