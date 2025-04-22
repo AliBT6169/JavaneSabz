@@ -126,6 +126,7 @@ export const useAuthStore = defineStore('auth', {
             console.log()
             axios.post(route('BuyCart.CouponChecker'), {'id': order_id, 'coupon_code': coupon_code}).then((res) => {
                 console.log(res)
+                this.Orders = res.data
             }).catch((err) => {
                 console.log(err.response.data.message)
                 this.toastMessage('error', err.response.data.message)
