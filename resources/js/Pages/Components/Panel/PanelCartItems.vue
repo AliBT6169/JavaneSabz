@@ -9,7 +9,7 @@ const productCount = ref(props.product.count)
 </script>
 
 <template>
-    <div v-if="product.quantity>0" class="w-full *:m-auto border-2 rounded-xl border-current *:text-center space-y-2">
+    <div v-if="product.quantity>0" class="w-full pb-4 *:m-auto border-2 rounded-xl border-current *:text-center space-y-2">
         <div class="w-full rounded-lg cursor-pointer overflow-hidden relative">
             <img :src="product.image" :alt="product.name" class="duration-300 hover:scale-110">
         <div class="absolute p-1 rounded-lg bg-white/50 w-fit max-w-full right-2 top-3/4">{{ product.name + ' : ' + product.value }}</div>
@@ -18,7 +18,7 @@ const productCount = ref(props.product.count)
             {{
                 product.description.length > 100 ? product.description.substring(0, 100) + '...' : product.description
             }}</p>
-        <div class="flex w-fit justify-center items-center gap-1">
+        <div class="flex w-11/12 justify-between items-center">
             <div class="">تعداد:</div>
             <div
                 class="mr-4 !overflow-hidden *:px-2 border-black text-lg font-bold border rounded-xl dark:border-white">
@@ -29,6 +29,6 @@ const productCount = ref(props.product.count)
                       class="cursor-pointer bg-red-600 bg-opacity-80">-</span>
             </div>
         </div>
-        <div class="*:px-2"><span>قیمت:</span> <span>{{ (product.price).toLocaleString('fa-IR') }}</span></div>
+        <div class="w-11/12 flex justify-between"><span>قیمت:</span> <span class="py-1 px-2 rounded-full bg-defaultColor/50 dark:bg-defaultColor5/50 border">{{ (product.price).toLocaleString('fa-IR') }}</span></div>
     </div>
 </template>
