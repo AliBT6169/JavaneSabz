@@ -63,7 +63,7 @@ const props = defineProps(["Order"])
 hover:grayscale-[15%]">اعمال تخفیف %</Link>
             </div>
             <div class="border-b pb-2">
-                <div class="">مالیات9%:</div>
+                <div class="">مالیات %9:</div>
                 <div class="">{{(Order.paying_amount - Order.price).toLocaleString('fa-IR')}}</div>
             </div>
             <div class="">
