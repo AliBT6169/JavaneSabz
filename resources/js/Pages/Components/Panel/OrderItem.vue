@@ -3,8 +3,11 @@
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 import {Link} from "@inertiajs/vue3";
+import {ref} from "vue";
+import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["Order"])
+const coupon_code = ref('');
 </script>
 
 <template>
@@ -31,7 +34,8 @@ const props = defineProps(["Order"])
                 </div>
             </div>
         </div>
-        <div v-else class="w-full bg-blue-500/50 px-2 py-1 rounded-xl border space-y-1 *:w-fit *:m-auto sm:flex justify-between items-center">
+        <div v-else
+             class="w-full bg-blue-500/50 px-2 py-1 rounded-xl border space-y-1 *:w-fit *:m-auto sm:flex justify-between items-center">
             <div class="flex gap-2 items-center">
                 <div class="relative">
                     در انتظار پرداخت
@@ -47,28 +51,29 @@ const props = defineProps(["Order"])
 *:flex *:justify-between *:items-center">
             <div class="">
                 <div class="">جمع قیمت:</div>
-                <div class="">{{Order.price.toLocaleString('fa-IR')}}</div>
+                <div class="">{{ Order.price.toLocaleString('fa-IR') }}</div>
             </div>
             <div class="">
                 <div class="">هزینه ارسال:</div>
-                <div class="">{{Order.delivery_amount.toLocaleString('fa-IR')}}</div>
+                <div class="">{{ Order.delivery_amount.toLocaleString('fa-IR') }}</div>
             </div>
             <div v-if="Order.coupon_amount" class="">
                 <div class="">تخفیف:</div>
-                <div class="">{{Order.coupon_amount.toLocaleString('fa-IR')}}</div>
+                <div class="">{{ Order.coupon_amount.toLocaleString('fa-IR') }}</div>
             </div>
             <div v-else class="text-sm">
-                <input type="text" class="w-28 h-8 rounded-xl" placeholder="کد تخفیف:">
-                <Link class="border rounded-xl bg-blue-500 py-1 px-2 duration-300 hover:shadow-inner hover:shadow-gray-600
-hover:grayscale-[15%]">اعمال تخفیف %</Link>
+                <input type="text" v-model="coupon_code" class="w-28 h-8 rounded-xl" placeholder="کد تخفیف:">
+                <div @click="useAuthStore().coupon_checker(coupon_code)" class="border cursor-pointer rounded-xl bg-blue-500 py-1 px-2 duration-300 hover:shadow-inner hover:shadow-gray-600
+hover:grayscale-[15%]">اعمال تخفیف %
+                </div>
             </div>
             <div class="border-b pb-2">
                 <div class="">مالیات %9:</div>
-                <div class="">{{(Order.paying_amount - Order.price).toLocaleString('fa-IR')}}</div>
+                <div class="">{{ (Order.paying_amount - Order.price).toLocaleString('fa-IR') }}</div>
             </div>
             <div class="">
                 <div class="">جمع کل:</div>
-                <div class="">{{Order.paying_amount.toLocaleString('fa-IR')}}</div>
+                <div class="">{{ Order.paying_amount.toLocaleString('fa-IR') }}</div>
             </div>
         </div>
         <div class="space-y-2" v-for="item in Order.items">

@@ -10,6 +10,7 @@ use App\Models\DeliveryAmount;
 use App\Models\Order;
 use App\Models\ProductVariation;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Morilog\Jalali\Jalalian;
 
@@ -57,7 +58,7 @@ class BuyCartController extends Controller
         ]);
         BuyCart::cartCleaner(Auth::id());
         return [
-            'data'=>DashboardResource::getOrder(Auth::user()->orders),
+            'data' => DashboardResource::getOrder(Auth::user()->orders),
             'products' => $products,
             'delivery_amount' => $deliveryAmount,
             'VAT' => (int)$VAT,
@@ -101,5 +102,13 @@ class BuyCartController extends Controller
 
             }
         }
+    }
+
+    public function CouponChecker(Request $request)
+    {
+        $validation = $request->validate([
+            'coupon_code' => 'required|string'
+        ]);
+        return $validation['coupon_code'];
     }
 }

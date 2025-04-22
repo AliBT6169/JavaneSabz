@@ -1,8 +1,14 @@
 <script setup>
 
+import {ref} from "vue";
+
 const props = defineProps(["CompleteModal", "productCompletionData"]);
 const emit = defineEmits(["updateCompleteModal"])
 import {Link} from "@inertiajs/vue3";
+import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+
+const coupon_code = ref('');
+
 </script>
 
 <template>
@@ -20,11 +26,13 @@ import {Link} from "@inertiajs/vue3";
                     </Link>
                 </div>
                 <div class="">
-                    <input type="text" class="focus:ring-defaultColor border-none focus:outline-none w-36 rounded-xl dark:placeholder-white
+                    <input v-model="coupon_code" type="text" class="focus:ring-defaultColor border-none focus:outline-none w-36 rounded-xl dark:placeholder-white
                      dark:focus:ring-defaultColor2 dark:bg-gray-600" placeholder="کد تخفیف:">
-                    <input type="button" class="border py-1 px-5 cursor-pointer rounded-tr-full rounded-bl-full duration-500 bg-gradient-to-l from-yellow-300
-                     to-defaultColor5 hover:shadow-inner hover:grayscale-[15%] dark:from-defaultColor dark:to-defaultColor5 hover:shadow-gray-600"
-                           value="اعمال تخفیف ">
+                    <div @click="useAuthStore().coupon_checker(coupon_code)"
+                         class="border py-1 px-5 cursor-pointer rounded-tr-full rounded-bl-full duration-500 bg-gradient-to-l from-yellow-300
+                     to-defaultColor5 hover:shadow-inner hover:grayscale-[15%] dark:from-defaultColor dark:to-defaultColor5 hover:shadow-gray-600">
+                        اعمال تخفیف
+                    </div>
                 </div>
                 <div class="" v-for="item in productCompletionData.products.products">
                     <div class="">{{ item.name + ' : ' + item.value + ' x' + item.quantity }}</div>
@@ -43,7 +51,6 @@ import {Link} from "@inertiajs/vue3";
                     <div class="">مبلغ قابل پرداخت :</div>
                     <div class="">{{ (productCompletionData.paying_amount).toLocaleString('fa-IR') }}</div>
                 </div>
-
             </div>
         </div>
     </div>

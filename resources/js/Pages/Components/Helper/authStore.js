@@ -122,6 +122,13 @@ export const useAuthStore = defineStore('auth', {
                 });
             })
         },
+        async coupon_checker (coupon_code){
+            axios.post(route('BuyCart.CouponChecker'), {'coupon_code': coupon_code}).then((res)=>{
+                console.log(res)
+            }).catch((err)=>{
+                console.log(err.response.data.message)
+            })
+        },
         toastMessage(methode = '', message = '') {
             switch (methode) {
                 case 'error':

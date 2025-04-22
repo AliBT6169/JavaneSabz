@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
         Route::get('/completePayment', 'completePayment')->name('BuyCart.completePayment');
         Route::get('/Payment', 'UserCartChecker')->name('BuyCart.UserCartChecker');
+        Route::post('Coupon-Checker','CouponChecker')->name('BuyCart.CouponChecker');
     });
 });
 

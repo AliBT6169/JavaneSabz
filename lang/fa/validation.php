@@ -214,6 +214,7 @@ return [
         "post_code" => "کد پستی",
         "standard_group_id" => "دسته بندی",
         "learnstandard_id" => "مهارت",
+        "coupon_code" => "کد تخفیف",
 
         "roleName" => "نام مقام",
 
