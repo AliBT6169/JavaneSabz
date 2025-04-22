@@ -89,7 +89,7 @@ class DashboardResource extends JsonResource
         foreach ($request as $order) {
             $orders[] = [
                 "id" => $order->id,
-                "status" => $order->status,
+                "status" => $order->payment_status == 1 ? $order->status : -1,
                 "price" => $order->paying_amount,
                 "items" => DashboardResource::getOrderItems($order->orderItems),
                 "created_at" => $order->created_at,

@@ -2,13 +2,15 @@
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 
+import {Link} from "@inertiajs/vue3";
+
 const props = defineProps(["Order"])
 </script>
 
 <template>
     <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 border-defaultColor h-96 overflow-y-scroll
       dark:border-darkColor1 sm:w-96 hover3D-animation hover:shadow-red-500 dark:bg-defaultColor7">
-        <div class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
+        <div v-if="Order.status > 0" class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
             <div class="flex gap-6 text-[8px] text-nowrap sm:text-sm">
                 <div class="">در حال تائید</div>
                 <div class="">در حال آماده سازی</div>
@@ -16,9 +18,10 @@ const props = defineProps(["Order"])
             </div>
             <div class="flex justify-center items-center">
                 <div class="size-5 p-1 rounded-full bg-defaultColor" :class="{'!bg-blue-500':Order.status>=0}">
-                    <svg-component v-if="Order.status>=0" name="check" class="-mt-2 -mr-2 size-5"></svg-component>
+                    <svg-component v-if="Order.status=0" name="check" class="-mt-2 -mr-2 size-5"></svg-component>
                 </div>
-                <div class="w-16 h-0.5 relative rounded-full bg-black sm:w-32" :class="{'bg-blue-500':Order.status>=0}"></div>
+                <div class="w-16 h-0.5 relative rounded-full bg-black sm:w-32"
+                     :class="{'bg-blue-500':Order.status>=0}"></div>
                 <div class="size-5 rounded-full bg-defaultColor" :class="{'!bg-blue-500':Order.status>=1}">
                     <svg-component v-if="Order.status>=1" name="check" class="-mt-1 -mr-1 size-5"></svg-component>
                 </div>
@@ -28,6 +31,19 @@ const props = defineProps(["Order"])
                 </div>
             </div>
         </div>
+        <div v-else class="w-full bg-blue-500/50 px-2 py-1 rounded-xl border space-y-1 *:w-fit *:m-auto sm:flex justify-between items-center">
+            <div class="flex gap-2 items-center">
+                <div class="relative">
+                    در انتظار پرداخت
+                </div>
+                <svg-component name="loading" class="size-8"></svg-component>
+            </div>
+            <Link href="" class="block px-4 text-sm py-1 rounded-tr-full rounded-bl-full border bg-gradient-to-l from-yellow-300 to-defaultColor5
+                     duration-500 hover:shadow-inner hover:grayscale-[15%] dark:from-defaultColor dark:to-defaultColor5
+                   hover:shadow-gray-600"> صفحه پرداخت
+            </Link>
+        </div>
+        <div class=""></div>
         <div class="space-y-2" v-for="item in Order.items">
             <div class="flex gap-2 items-center">
                 <img :src="item.image" :alt="item.name"
