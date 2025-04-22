@@ -17,7 +17,7 @@ class Coupon extends Model
         'code',
         'status',
         'percentage',
-        'max_percentage_amount',
+        'max_amount',
         'expired_at',
         'description',
         'couponable_id',

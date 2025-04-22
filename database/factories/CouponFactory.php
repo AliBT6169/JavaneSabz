@@ -23,7 +23,7 @@ class CouponFactory extends Factory
             'name' => 'کپن ادمین',
             'code' => Str::random(10),
             'percentage' => 20,
-            'max_percentage_amount' => 2000000,
+            'max_amount' => 2000000,
             'expired_at' => Carbon::now()->addMonth(6),
             'description' => 'این کپن واسه ادمینه',
             'couponable_id' => 1,

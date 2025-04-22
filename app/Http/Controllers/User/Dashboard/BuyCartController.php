@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\DashboardResource;
 use App\Http\Resources\Home\ProductResource;
 use App\Models\BuyCart\BuyCart;
+use App\Models\Coupon;
 use App\Models\DeliveryAmount;
 use App\Models\Order;
 use App\Models\ProductVariation;
 use App\Models\Transaction;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Morilog\Jalali\Jalalian;
@@ -107,8 +110,20 @@ class BuyCartController extends Controller
     public function CouponChecker(Request $request)
     {
         $validation = $request->validate([
-            'coupon_code' => 'required|string'
+            'id' => 'required|numeric',
+            'coupon_code' => 'required|string|exists:coupons,code|min:10|max:10',
         ]);
-        return $validation['coupon_code'];
+        $coupon = Coupon::where('code', $validation['coupon_code'])
+            ->where('couponable_id', Auth::id())
+            ->where('couponable_type', User::class)->first();
+        if (!$coupon)
+            return abort('404', 'کد مورد نظر یافت نشد');
+        if ($coupon->status == 0 || $coupon->expired_at < Carbon::today())
+            return abort(404, 'کد تخفیف منقضی شده');
+
+        if ($validation['id'] == -1) {
+            $Order = Order::latest()->first();
+        }
+        return Order::whereId([$validation['id']])->first()??$Order;
     }
 }

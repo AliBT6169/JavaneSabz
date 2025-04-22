@@ -63,7 +63,7 @@ const coupon_code = ref('');
             </div>
             <div v-else class="text-sm">
                 <input type="text" v-model="coupon_code" class="w-28 h-8 rounded-xl" placeholder="کد تخفیف:">
-                <div @click="useAuthStore().coupon_checker(coupon_code)" class="border cursor-pointer rounded-xl bg-blue-500 py-1 px-2 duration-300 hover:shadow-inner hover:shadow-gray-600
+                <div @click="useAuthStore().coupon_checker(coupon_code,Order.id)" class="border cursor-pointer rounded-xl bg-blue-500 py-1 px-2 duration-300 hover:shadow-inner hover:shadow-gray-600
 hover:grayscale-[15%]">اعمال تخفیف %
                 </div>
             </div>

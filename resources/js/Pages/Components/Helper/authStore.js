@@ -122,11 +122,13 @@ export const useAuthStore = defineStore('auth', {
                 });
             })
         },
-        async coupon_checker (coupon_code){
-            axios.post(route('BuyCart.CouponChecker'), {'coupon_code': coupon_code}).then((res)=>{
+        async coupon_checker(coupon_code, order_id = -1) {
+            console.log()
+            axios.post(route('BuyCart.CouponChecker'), {'id': order_id, 'coupon_code': coupon_code}).then((res) => {
                 console.log(res)
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.log(err.response.data.message)
+                this.toastMessage('error', err.response.data.message)
             })
         },
         toastMessage(methode = '', message = '') {
