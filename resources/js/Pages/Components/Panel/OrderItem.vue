@@ -57,10 +57,10 @@ const props = defineProps(["Order"])
                 <div class="">تخفیف:</div>
                 <div class="">{{Order.coupon_amount.toLocaleString('fa-IR')}}</div>
             </div>
-            <div v-else class="">
+            <div v-else class="text-sm">
                 <input type="text" class="w-28 h-8 rounded-xl" placeholder="کد تخفیف:">
-                <Link class="border rounded-xl bg-blue-500 p-1 duration-300 hover:shadow-inner hover:shadow-gray-600
-hover:grayscale-[15%]">اعمال تخفیف</Link>
+                <Link class="border rounded-xl bg-blue-500 py-1 px-2 duration-300 hover:shadow-inner hover:shadow-gray-600
+hover:grayscale-[15%]">اعمال تخفیف %</Link>
             </div>
             <div class="border-b pb-2">
                 <div class="">مالیات9%:</div>
