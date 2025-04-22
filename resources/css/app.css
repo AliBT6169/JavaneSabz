@@ -129,7 +129,7 @@
 }
 
 .hover3D-animation:hover{
-    transform: perspective(1000px) rotateY(-8deg) rotateX(8deg)
+    transform: perspective(1000px) rotateY(8deg) rotateX(-8deg)
 }
 
 @keyframes introOut {
