@@ -46,11 +46,12 @@ class BuyCartController extends Controller
             ];
         $deliveryAmount = DeliveryAmount::getOrderDeliveryAmount();
         $products = BuyCart::getUserProducts();
-        $paying_amount = $products['total_price'] + $deliveryAmount['deliveryAmount'];
-        $VAT = ($paying_amount * 9) / 100;
+        $total_amount = $products['total_price'] + $deliveryAmount['deliveryAmount'];
+        $VAT = ($total_amount * 9) / 100;
+        $paying_amount = $total_amount + $VAT;
 
         Order::Creator([
-            'total_amount' => (int)($products['total_price']),
+            'total_amount' => (int)($total_amount),
             'delivery_amount' => $deliveryAmount['deliveryAmount'],
             'paying_amount' => (int)($paying_amount),
         ]);

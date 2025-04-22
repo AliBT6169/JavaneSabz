@@ -43,7 +43,21 @@ const props = defineProps(["Order"])
                    hover:shadow-gray-600"> صفحه پرداخت
             </Link>
         </div>
-        <div class=""></div>
+        <div class="bg-white/50 rounded-xl h-40 space-y-6
+*:flex *:justify-between *:items-center *:px-2">
+            <div class="">
+                <div class="">جمع قیمت:</div>
+                <div class="">{{Order.price.toLocaleString('fa-IR')}}</div>
+            </div>
+            <div class="">
+                <div class="">هزینه ارسال:</div>
+                <div class="">{{Order.delivery_amount.toLocaleString('fa-IR')}}</div>
+            </div>
+            <div class="">
+                <div class="">مالیات:</div>
+                <div class="">{{Order.delivery_amount.toLocaleString('fa-IR')}}</div>
+            </div>
+        </div>
         <div class="space-y-2" v-for="item in Order.items">
             <div class="flex gap-2 items-center">
                 <img :src="item.image" :alt="item.name"
