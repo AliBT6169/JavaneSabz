@@ -50,15 +50,17 @@ class BuyCartController extends Controller
             ];
         $deliveryAmount = DeliveryAmount::getOrderDeliveryAmount();
         $products = BuyCart::getUserProducts();
-        $total_amount = $products['total_price'] + $deliveryAmount['deliveryAmount'];
+        $total_amount = $products['total_price'];
+        $paying_amount = $total_amount + $deliveryAmount['deliveryAmount'];
         $VAT = ($total_amount * 9) / 100;
-        $paying_amount = $total_amount + $VAT;
-
+        $paying_amount = $paying_amount + $VAT;
         Order::Creator([
             'total_amount' => (int)($total_amount),
             'delivery_amount' => $deliveryAmount['deliveryAmount'],
             'paying_amount' => (int)($paying_amount),
+            'VAT' => $VAT,
         ]);
+        $paying_amount = $total_amount + $VAT;
         BuyCart::cartCleaner(Auth::id());
         return [
             'data' => DashboardResource::getOrder(Auth::user()->orders),
@@ -127,12 +129,9 @@ class BuyCartController extends Controller
             $Order = Order::whereId($validation['id'])->first();
         $couponAmount = ($Order->paying_amount * $coupon->percentage) / 100;
         $paying_amount = 0;
-        if ($coupon->max_amount >= $couponAmount) {
-            $paying_amount = $Order->paying_amount - $couponAmount;
-        } else {
+        if ($coupon->max_amount <= $couponAmount)
             $couponAmount = $coupon->max_amount;
-            $paying_amount = $coupon->max_amount - $couponAmount;
-        }
+        $paying_amount = $Order->paying_amount - $couponAmount;
         Order::whereId($Order->id)->update([
             'paying_amount' => $paying_amount,
             'coupon_amount' => $couponAmount,

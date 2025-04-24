@@ -94,6 +94,7 @@ class DashboardResource extends JsonResource
                 "delivery_amount" => $order->delivery_amount,
                 "coupon_amount" => $order->coupon_amount,
                 "paying_amount" => $order->paying_amount,
+                "VAT" => $order->VAT,
                 "items" => DashboardResource::getOrderItems($order->orderItems),
                 "created_at" => $order->created_at,
             ];

@@ -59,7 +59,7 @@ const coupon_code = ref('');
             </div>
             <div v-if="Order.coupon_amount" class="">
                 <div class="">تخفیف:</div>
-                <div class="">{{ Order.coupon_amount.toLocaleString('fa-IR') }}</div>
+                <div class="">{{ Order.coupon_amount.toLocaleString('fa-IR') }}-</div>
             </div>
             <div v-else class="text-sm">
                 <input type="text" v-model="coupon_code" class="w-28 h-8 rounded-xl dark:bg-gray-600 focus:ring-0 border-none" placeholder="کد تخفیف:">
@@ -69,7 +69,7 @@ hover:grayscale-[15%]">اعمال تخفیف %
             </div>
             <div class="border-b pb-2">
                 <div class="">مالیات %9:</div>
-                <div class="">{{ (Order.paying_amount - Order.price).toLocaleString('fa-IR') }}</div>
+                <div class="">{{ (Order.VAT).toLocaleString('fa-IR') }}</div>
             </div>
             <div class="">
                 <div class="">جمع کل:</div>

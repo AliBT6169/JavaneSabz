@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->tinyInteger('status')->default(0);
+            $table->unsignedInteger('VAT');
             $table->unsignedInteger('total_amount');
             $table->unsignedInteger('delivery_amount')->default(0);
             $table->unsignedInteger('coupon_amount')->default(0);
