@@ -112,7 +112,7 @@ class BuyCartController extends Controller
     public function CouponChecker(Request $request)
     {
         $validation = $request->validate([
-            'id' => 'required|numeric|exists:orders,id',
+            'id' => 'required|numeric',
             'coupon_code' => 'required|string|exists:coupons,code|min:10|max:10',
         ]);
         $coupon = Coupon::where('code', $validation['coupon_code'])
