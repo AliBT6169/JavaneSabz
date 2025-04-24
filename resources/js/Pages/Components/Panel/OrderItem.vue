@@ -72,7 +72,7 @@ hover:grayscale-[15%]">اعمال تخفیف %
                 <div class="">{{ (Order.VAT).toLocaleString('fa-IR') }}</div>
             </div>
             <div class="">
-                <div class="">جمع کل:</div>
+                <div class="">مبلغ قابل پرداخت:</div>
                 <div class="">{{ Order.paying_amount.toLocaleString('fa-IR') }}</div>
             </div>
         </div>

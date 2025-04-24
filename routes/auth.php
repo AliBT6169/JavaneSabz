@@ -84,8 +84,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/IncrementBuyCart/{id}', 'CartItemIncrement')->name('BuyCart.CartItemIncrement');
         Route::post('/DecrementBuyCart/{id}', 'CartItemDecrement')->name('BuyCart.CartItemDecrement');
         Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
-        Route::get('/completePayment', 'completePayment')->name('BuyCart.completePayment');
+//        Complete User Cart & Make Order
+        Route::get('/completePayment', 'completeCart')->name('BuyCart.completePayment');
         Route::get('/Payment', 'UserCartChecker')->name('BuyCart.UserCartChecker');
+        //checks a coupon code
         Route::post('Coupon-Checker','CouponChecker')->name('BuyCart.CouponChecker');
     });
 });

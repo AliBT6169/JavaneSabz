@@ -33,7 +33,7 @@ const likeUnLike = async () => {
         <!--        price & buy cart-->
         <div class="w-full px-4 flex lg:justify-between items-center flex-col gap-2">
             <div v-if="product.price" class="text-defaultColor dark:text-defaultColor5">{{
-                    product.price + 'تومان'
+                    product.price.toLocaleString('fa-IR') + 'تومان '
                 }} </div>
             <div v-else class="bg-defaultColor5 text-defaultColor7 rounded-full flex items-center p-1
              dark:bg-defaultColor dark:text-defaultColor5 hover:bg-opacity-50 hover:-translate-y-1 duration-500">مشاهده

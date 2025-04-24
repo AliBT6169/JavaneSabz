@@ -36,7 +36,7 @@ class BuyCartController extends Controller
         return BuyCart::addToCart($ProductId);
     }
 
-    public function completePayment()
+    public function completeCart()
     {
         if (Auth::user()->address === null)
             return [
