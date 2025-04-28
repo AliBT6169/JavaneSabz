@@ -39,9 +39,15 @@ class CouponController extends Controller
             'paying_amount' => $paying_amount,
             'coupon_amount' => $couponAmount,
         ]);
-        $coupon->update([
-            'status' => 0,
-        ]);
+        if ($coupon->quantity > 1)
+            $coupon->update([
+                'quantity' => $coupon->quantity - 1,
+            ]);
+        else
+            $coupon->update([
+                'status' => 0,
+                'quantity' => 0,
+            ]);
         return DashboardResource::getOrder(Auth::user()->orders);
     }
 }
