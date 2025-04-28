@@ -21,8 +21,9 @@ class CouponFactory extends Factory
     {
         return [
             'name' => 'کپن ادمین',
-            'code' => Str::random(10),
+            'code' => 'admin-coupon',
             'percentage' => 20,
+            'quantity' => 100,
             'max_amount' => 2000000,
             'expired_at' => Carbon::now()->addMonth(6),
             'description' => 'این کپن واسه ادمینه',

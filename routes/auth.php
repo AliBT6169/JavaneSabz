@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\Dashboard\BuyCartController;
 use App\Http\Controllers\User\Dashboard\DashboardController;
@@ -88,7 +89,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/completePayment', 'completeCart')->name('BuyCart.completePayment');
         Route::get('/Payment', 'UserCartChecker')->name('BuyCart.UserCartChecker');
         //checks a coupon code
-        Route::post('Coupon-Checker','CouponChecker')->name('BuyCart.CouponChecker');
+    });
+    Route::controller(CouponController::class)->group(function () {
+        Route::post('Coupon-Checker', 'CouponChecker')->name('BuyCart.CouponChecker');
     });
 });
 

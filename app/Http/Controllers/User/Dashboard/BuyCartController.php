@@ -109,36 +109,4 @@ class BuyCartController extends Controller
         }
     }
 
-    public function CouponChecker(Request $request)
-    {
-        $validation = $request->validate([
-            'id' => 'required|numeric',
-            'coupon_code' => 'required|string|exists:coupons,code|min:10|max:10',
-        ]);
-        $coupon = Coupon::where('code', $validation['coupon_code'])
-            ->where('couponable_id', Auth::id())
-            ->where('couponable_type', User::class)->first();
-        if (!$coupon)
-            return abort('404', 'کد مورد نظر یافت نشد');
-        if ($coupon->status == 0 || $coupon->expired_at < Carbon::today())
-            return abort(404, 'کد تخفیف منقضی شده');
-        $Order = null;
-        if ($validation['id'] == -1)
-            $Order = Order::latest()->first();
-        else
-            $Order = Order::whereId($validation['id'])->first();
-        $couponAmount = ($Order->paying_amount * $coupon->percentage) / 100;
-        $paying_amount = 0;
-        if ($coupon->max_amount <= $couponAmount)
-            $couponAmount = $coupon->max_amount;
-        $paying_amount = $Order->paying_amount - $couponAmount;
-        Order::whereId($Order->id)->update([
-            'paying_amount' => $paying_amount,
-            'coupon_amount' => $couponAmount,
-        ]);
-        $coupon->update([
-            'status' => 0,
-        ]);
-        return DashboardResource::getOrder(Auth::user()->orders);
-    }
 }

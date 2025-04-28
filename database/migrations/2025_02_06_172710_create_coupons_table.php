@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('code');
             $table->unsignedInteger('status')->default(1);
             $table->unsignedInteger('percentage');
+            $table->unsignedInteger('quantity');
             $table->unsignedInteger('max_amount');
             $table->timestamp('expired_at')->nullable();
             $table->text('description')->nullable();
