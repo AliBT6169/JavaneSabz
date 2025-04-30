@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
         //checks a coupon code
     });
     Route::controller(CouponController::class)->group(function () {
-        Route::post('Coupon-Checker', 'CouponChecker')->name('BuyCart.CouponChecker');
+        Route::post('Coupon-Checker', 'CouponChecker')->name('CouponChecker');
     });
 });
 

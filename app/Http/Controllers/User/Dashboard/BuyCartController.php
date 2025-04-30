@@ -62,13 +62,7 @@ class BuyCartController extends Controller
         ]);
         $paying_amount = $total_amount + $VAT;
         BuyCart::cartCleaner(Auth::id());
-        return [
-            'data' => DashboardResource::getOrder(Auth::user()->orders),
-            'products' => $products,
-            'delivery_amount' => $deliveryAmount,
-            'VAT' => (int)$VAT,
-            'paying_amount' => (int)($paying_amount + $VAT),
-        ];
+        return DashboardResource::getOrder(Auth::user()->orders);
     }
 
     public function UserCartChecker()

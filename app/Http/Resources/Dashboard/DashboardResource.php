@@ -109,10 +109,11 @@ class DashboardResource extends JsonResource
             $order_items[] = [
                 "id" => $item->id,
                 "name" => $item->productVariation->product->name,
+                "value" => $item->productVariation->value,
                 "image" => $item->productVariation->product->primary_image,
                 "quantity" => $item->quantity,
                 "created_at" => $item->created_at,
-                "price" => $item->productVariation->sale_price,
+                "price" => $item->price,
             ];
         }
         return $order_items;

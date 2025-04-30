@@ -18,12 +18,13 @@ const orderMaker = async () => {
         if (res.data.status === 100) {
             useAuthStore().toastMessage('error', res.data.message);
         } else {
-            productCompletionData.value = res.data;
+            productCompletionData.value = res.data[0];
+            console.log(productCompletionData.value)
             cartCompleteModal.value = true;
             const authUser = useAuthStore();
             authUser.user = {
                 ...authUser.user,
-                user_orders: res.data.data,
+                user_orders: res.data,
                 user_buy_cart: []
             }
             Products.value = [];
@@ -55,7 +56,8 @@ const orderMaker = async () => {
         </button>
     </div>
     <div class="grid gap-4">
-        <PanelCartItems v-for="(item , index) in Products" :product="item" :index="index" :key="Products.length + index"></PanelCartItems>
+        <PanelCartItems v-for="(item , index) in Products" :product="item" :index="index"
+                        :key="Products.length + index"></PanelCartItems>
     </div>
     <CartComplete :productCompletionData="productCompletionData" :CompleteModal="cartCompleteModal"
                   @updateCompleteModal="cartCompleteModal = false"/>

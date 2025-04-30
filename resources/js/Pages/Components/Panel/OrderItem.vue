@@ -81,7 +81,7 @@ hover:grayscale-[15%]">اعمال تخفیف %
                 <img :src="item.image" :alt="item.name"
                      class="w-14 border-red-500 border-2 rounded-full sm:w-16 md:!w-20">
                 <div class="grid gap-1 text-xs sm:text-sm">
-                    <p class="w-32 text-wrap">{{ item.name }}</p>
+                    <p class="w-32 text-wrap">{{ item.name + ' : '  + item.value}}</p>
                     <div class="">تعداد: <span>{{ item.quantity }}</span></div>
                     <div class="">قیمت: <span>{{ (item.price).toLocaleString('fa-IR') }}</span></div>
                 </div>

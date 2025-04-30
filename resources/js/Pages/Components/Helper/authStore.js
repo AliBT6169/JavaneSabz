@@ -124,12 +124,9 @@ export const useAuthStore = defineStore('auth', {
         },
         async coupon_checker(coupon_code, order_id = -1) {
             console.log()
-            axios.post(route('BuyCart.CouponChecker'), {'id': order_id, 'coupon_code': coupon_code}).then((res) => {
+            axios.post(route('CouponChecker'), {'id': order_id, 'coupon_code': coupon_code}).then((res) => {
                 console.log(res)
-                this.user = {
-                    ...this.user,
-                    user_orders: res.data,
-                }
+                this.Orders.splice(0, this.Orders.length, ...res.data.data);
             }).catch((err) => {
                 console.log(err.response.data.message)
                 this.toastMessage('error', err.response.data.message)

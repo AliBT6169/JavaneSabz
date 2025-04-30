@@ -34,13 +34,13 @@ const coupon_code = ref('');
                         اعمال تخفیف
                     </div>
                 </div>
-                <div class="" v-for="item in productCompletionData.products.products">
+                <div class="" v-for="item in productCompletionData.items">
                     <div class="">{{ item.name + ' : ' + item.value + ' x' + item.quantity }}</div>
                     <div class="">{{ (item.price).toLocaleString('fa-IR') }}</div>
                 </div>
                 <div class="">
                     <div class="">هزینه ارسال :</div>
-                    <div class="">{{ (productCompletionData.delivery_amount.deliveryAmount).toLocaleString('fa-IR') }}
+                    <div class="">{{ (productCompletionData.delivery_amount).toLocaleString('fa-IR') }}
                     </div>
                 </div>
                 <div class="">
