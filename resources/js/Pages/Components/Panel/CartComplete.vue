@@ -1,8 +1,12 @@
 <script setup>
 
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 
-const props = defineProps(["CompleteModal", "productCompletionData"]);
+const props = defineProps({
+    CompleteModal: null,
+    productCompletionData: null
+});
+
 const emit = defineEmits(["updateCompleteModal"])
 import {Link} from "@inertiajs/vue3";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
@@ -25,13 +29,18 @@ const coupon_code = ref('');
                    hover:shadow-gray-600"> صفحه پرداخت
                     </Link>
                 </div>
-                <div class="">
+                <div v-if="productCompletionData.coupon_amount===0" class="">
                     <input v-model="coupon_code" type="text" class="focus:ring-defaultColor border-none focus:outline-none w-36 rounded-xl dark:placeholder-white
                      dark:focus:ring-defaultColor2 dark:bg-gray-600" placeholder="کد تخفیف:">
                     <div @click="useAuthStore().coupon_checker(coupon_code)"
                          class="border py-1 px-5 cursor-pointer rounded-tr-full rounded-bl-full duration-500 bg-gradient-to-l from-yellow-300
                      to-defaultColor5 hover:shadow-inner hover:grayscale-[15%] dark:from-defaultColor dark:to-defaultColor5 hover:shadow-gray-600">
                         اعمال تخفیف
+                    </div>
+                </div>
+                <div v-else class="flex items-center justify-between">
+                    <div class="">تخفیف :</div>
+                    <div class="">{{ (productCompletionData.coupon_amount).toLocaleString('fa-IR') }}
                     </div>
                 </div>
                 <div class="" v-for="item in productCompletionData.items">

@@ -122,6 +122,26 @@ export const useAuthStore = defineStore('auth', {
                 });
             })
         },
+        async orderMaker() {
+            const result = await axios.get(route('BuyCart.completePayment')).then(res => {
+                if (res.data.status === 100) {
+                    useAuthStore().toastMessage('error', res.data.message);
+                } else {
+                    const authUser = this;
+                    authUser.user = {
+                        ...authUser.user,
+                        user_orders: res.data,
+                        user_buy_cart: []
+                    }
+                    this.setUser(authUser.user)
+                    return true;
+                }
+                console.log(res)
+            }).catch(err => {
+                console.log(err);
+            });
+            return result;
+        },
         async coupon_checker(coupon_code, order_id = -1) {
             console.log()
             axios.post(route('CouponChecker'), {'id': order_id, 'coupon_code': coupon_code}).then((res) => {

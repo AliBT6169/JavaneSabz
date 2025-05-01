@@ -7,33 +7,16 @@ import {Link} from "@inertiajs/vue3";
 import CartComplete from "@/Pages/Components/Panel/CartComplete.vue";
 
 const cartCompleteModal = ref(false);
-
-const Products = ref(useAuthStore().Products);
 const productCompletionData = ref();
-const goToPayPage = () => {
-    useAuthStore().CartCompleter();
+const Products = ref(useAuthStore().Products);
+const goToPayPage = async () => {
+    if (await useAuthStore().orderMaker()) {
+        Products.value = useAuthStore().Products
+        cartCompleteModal.value = true;
+    }
 }
-const orderMaker = async () => {
-    await axios.get(route('BuyCart.completePayment')).then(res => {
-        if (res.data.status === 100) {
-            useAuthStore().toastMessage('error', res.data.message);
-        } else {
-            productCompletionData.value = res.data[0];
-            console.log(productCompletionData.value)
-            cartCompleteModal.value = true;
-            const authUser = useAuthStore();
-            authUser.user = {
-                ...authUser.user,
-                user_orders: res.data,
-                user_buy_cart: []
-            }
-            Products.value = [];
-            useAuthStore().setUser(authUser.user)
-        }
-        console.log(res)
-    }).catch(err => {
-        console.log(err);
-    });
+const completeCart = () => {
+    useAuthStore().orderMaker();
 }
 
 </script>
@@ -51,7 +34,7 @@ const orderMaker = async () => {
                 (Products.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0)).toLocaleString('fa-IR')
             }}</span>
         </div>
-        <button @click="orderMaker()" class="p-2 rounded-full text-center duration-300 border-2 bg-defaultColor
+        <button @click="goToPayPage" class="p-2 rounded-full text-center duration-300 border-2 bg-defaultColor
             hover:!bg-opacity-70 dark:bg-defaultColor5">تکمیل پرداخت
         </button>
     </div>
@@ -59,6 +42,6 @@ const orderMaker = async () => {
         <PanelCartItems v-for="(item , index) in Products" :product="item" :index="index"
                         :key="Products.length + index"></PanelCartItems>
     </div>
-    <CartComplete :productCompletionData="productCompletionData" :CompleteModal="cartCompleteModal"
+    <CartComplete :CompleteModal="cartCompleteModal" :productCompletionData="useAuthStore().Orders[0]"
                   @updateCompleteModal="cartCompleteModal = false"/>
 </template>
