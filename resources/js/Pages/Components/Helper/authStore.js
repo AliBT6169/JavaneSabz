@@ -57,25 +57,16 @@ export const useAuthStore = defineStore('auth', {
                 });
             } else toast.warning('لطفا اول وارد حساب کاربری خود شوید')
         },
-        async CartCompleter() {
-            if (this.user.full_name === '' || this.user.cellphone === '' || this.user.user_address === '' || this.user.user_post_code === '')
-                toast.error('اطلاعات خود را در پروفایل کامل کنید');
-            else {
-                await axios.get(route('BuyCart.UserCartChecker')).then((res) => {
-                    if (res.data.status === 201) {
-                        toast.error(res.data.message);
-                    } else {
-                        this.Products = [];
-                        this.user.user_buy_cart = [];
-                        this.Orders = res.data.data.Orders;
-                        this.Transactions = res.data.data.Transactions;
-                        useIndexStore().updateProductData();
-                        toast.success(res.data.message);
-                    }
-                }).catch((err) => {
-                    console.log(err.response.data);
-                });
-            }
+        async payment() {
+            await axios.get(route('paymentPage')).then((res) => {
+                if (res.data.status === 400) {
+                    toast.error(res.data.message);
+                } else {
+                    console.log(res.data)
+                }
+            }).catch((err) => {
+                console.log(err.response.data);
+            });
         },
         async likeOrUnLike(product_id, like) {
             const res = ref(like);
@@ -136,7 +127,6 @@ export const useAuthStore = defineStore('auth', {
                     this.setUser(authUser.user)
                     return true;
                 }
-                console.log(res)
             }).catch(err => {
                 console.log(err);
             });

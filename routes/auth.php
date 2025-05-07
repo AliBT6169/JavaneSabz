@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\Dashboard\BuyCartController;
 use App\Http\Controllers\User\Dashboard\DashboardController;
 use App\Http\Controllers\User\Dashboard\WishListController;
+use App\Http\Controllers\User\TransactionController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -87,11 +88,14 @@ Route::middleware('auth')->group(function () {
         Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
 //        Complete User Cart & Make Order
         Route::get('/completePayment', 'completeCart')->name('BuyCart.completePayment');
-        Route::get('/Payment', 'UserCartChecker')->name('BuyCart.UserCartChecker');
         //checks a coupon code
     });
     Route::controller(CouponController::class)->group(function () {
         Route::post('Coupon-Checker', 'CouponChecker')->name('CouponChecker');
+    });
+    Route::controller(TransactionController::class)->group(function () {
+        Route::get('/Payment/{order_id}', 'paymentPage')->name('paymentPage');
+
     });
 });
 

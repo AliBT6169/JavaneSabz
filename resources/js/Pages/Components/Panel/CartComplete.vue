@@ -24,7 +24,7 @@ const coupon_code = ref('');
              *:justify-between *:items-center">
                 <div class="">
                     <div class="">{{ (productCompletionData.paying_amount).toLocaleString('fa-IR') }} تومان</div>
-                    <Link href="" class="px-4 py-1 rounded-tr-full rounded-bl-full border bg-gradient-to-l from-yellow-300 to-defaultColor5
+                    <Link :href="route('paymentPage',{'order_id':productCompletionData.id})" class="px-4 py-1 rounded-tr-full rounded-bl-full border bg-gradient-to-l from-yellow-300 to-defaultColor5
                      duration-500 hover:shadow-inner hover:grayscale-[15%] dark:from-defaultColor dark:to-defaultColor5
                    hover:shadow-gray-600"> صفحه پرداخت
                     </Link>

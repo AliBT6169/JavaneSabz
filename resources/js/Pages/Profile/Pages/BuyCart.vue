@@ -7,7 +7,6 @@ import {Link} from "@inertiajs/vue3";
 import CartComplete from "@/Pages/Components/Panel/CartComplete.vue";
 
 const cartCompleteModal = ref(false);
-const productCompletionData = ref();
 const Products = ref(useAuthStore().Products);
 const goToPayPage = async () => {
     if (await useAuthStore().orderMaker()) {

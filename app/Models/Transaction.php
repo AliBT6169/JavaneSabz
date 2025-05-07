@@ -6,6 +6,7 @@ use App\Models\BuyCart\BuyCart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class Transaction extends Model
@@ -34,14 +35,14 @@ class Transaction extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public static function Creator($OrderId, $refId = 0, $status = 2, $gateway_name = 'zarinpal')
+    public static function Creator($request)
     {
         self::create([
-            'user_id' => Auth::id(),
-            'order_id' => $OrderId,
-            'gateway_name' => $gateway_name,
-            'status' => $status,
-            'ref_id' => $refId,
+            'user_id' => $request['id'] ?? Auth::id(),
+            'order_id' => $request['OrderId'],
+            'gateway_name' => $request['gateway_name'] ?? 'zarinpal',
+            'status' => $request['status'] ?? 0,
+            'ref_id' => $request['refId'] ?? null,
         ]);
     }
 }

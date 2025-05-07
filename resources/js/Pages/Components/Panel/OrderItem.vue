@@ -42,7 +42,7 @@ const coupon_code = ref('');
                 </div>
                 <svg-component name="loading" class="size-8"></svg-component>
             </div>
-            <Link href="" class="block px-4 text-sm py-1 rounded-tr-full rounded-bl-full border bg-gradient-to-l from-yellow-300 to-defaultColor5
+            <Link :href="route('paymentPage',{'order_id':Order.id})" class="block px-4 text-sm py-1 rounded-tr-full rounded-bl-full border bg-gradient-to-l from-yellow-300 to-defaultColor5
                      duration-500 hover:shadow-inner hover:grayscale-[15%] dark:from-defaultColor dark:to-defaultColor5
                    hover:shadow-gray-600"> صفحه پرداخت
             </Link>
