@@ -9,9 +9,21 @@ console.log(props.transaction_data);
 
 <template>
     <div class="w-screen h-screen flex justify-center items-center"
-         >
-        <div class="p-20 rounded-2xl space-y-6 font-extrabold text-2xl text-center">
-            <div class="">
+    >
+        <div class="p-20 rounded-2xl space-y-6 font-extrabold text-2xl text-center"
+             :class="{
+            'bg-blue-500':transaction_data[0].status===1,
+            'bg-yellow-500':transaction_data[0].status===2,
+            'bg-red-500':transaction_data[0].status===3,
+             }">
+            <div v-if="transaction_data[0].status===1" class="">
+                تراکنش موفق
+            </div>
+            <div v-if="transaction_data[0].status===2" class="">
+                تراکنش نامعلوم
+            </div>
+            <div v-if="transaction_data[0].status===3" class="">
+                تراکنش ناموفق
             </div>
             <Link :href="route('dashboard')" class="block bg-defaultColor2 p-2 rounded-xl">
                 برگشت به پروفایل
