@@ -37,12 +37,13 @@ class Transaction extends Model
 
     public static function Creator($request)
     {
-        self::create([
+        $data = self::create([
             'user_id' => $request['id'] ?? Auth::id(),
-            'order_id' => $request['OrderId'],
+            'order_id' => $request['order_id'],
             'gateway_name' => $request['gateway_name'] ?? 'zarinpal',
             'status' => $request['status'] ?? 0,
             'ref_id' => $request['refId'] ?? null,
         ]);
+        return $data;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Dashboard\DashboardResource;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,28 +16,25 @@ class TransactionController extends Controller
         $response = [];
         switch (rand(1, 3)) {
             case 1:
-                Transaction::Creator();
-                $response = [
-                    'data' => '',
-                    'status' => 200,
-                    'message' => 'پرداخت موفق',
+                $transaction_data = [
+                    'order_id' => $order_id,
+                    'status' => 1,
                 ];
                 break;
             case 2:
-                $response = [
-                    'data' => '',
-                    'status' => 500,
-                    'message' => 'پرداخت نامعلوم',
+                $transaction_data = [
+                    'order_id' => $order_id,
+                    'status' => 2,
                 ];
                 break;
             case 3:
-                $response = [
-                    'data' => '',
-                    'status' => 400,
-                    'message' => 'پرداخت ناموفق',
-                ];
+                $transaction_data = [
+                    'order_id' => $order_id,
+                    'status' => 3,
+                ];;
                 break;
         }
-        return Inertia::render('Profile/Pages/Payment', ['response' => $response, 'order_id' => $order_id]);
+        $data = DashboardResource::getTransactions([Transaction::Creator($transaction_data)]);
+        return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data]);
     }
 }
