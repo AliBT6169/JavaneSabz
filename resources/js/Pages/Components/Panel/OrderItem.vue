@@ -62,8 +62,9 @@ console.log(props.Order.status)
                 <div class="">تخفیف:</div>
                 <div class="">{{ Order.coupon_amount.toLocaleString('fa-IR') }}-</div>
             </div>
-            <div v-else class="text-sm">
-                <input type="text" v-model="coupon_code" class="w-28 h-8 rounded-xl dark:bg-gray-600 focus:ring-0 border-none" placeholder="کد تخفیف:">
+            <div v-else-if="Order.status===-1" class="text-sm">
+                <input type="text" v-model="coupon_code"
+                       class="w-28 h-8 rounded-xl dark:bg-gray-600 focus:ring-0 border-none" placeholder="کد تخفیف:">
                 <div @click="useAuthStore().coupon_checker(coupon_code,Order.id)" class="border cursor-pointer rounded-xl bg-blue-500 py-1 px-2 duration-300 hover:shadow-inner hover:shadow-gray-600
 hover:grayscale-[15%]">اعمال تخفیف %
                 </div>
@@ -82,7 +83,7 @@ hover:grayscale-[15%]">اعمال تخفیف %
                 <img :src="item.image" :alt="item.name"
                      class="w-14 border-red-500 border-2 rounded-full sm:w-16 md:!w-20">
                 <div class="grid gap-1 text-xs sm:text-sm">
-                    <p class="w-32 text-wrap">{{ item.name + ' : '  + item.value}}</p>
+                    <p class="w-32 text-wrap">{{ item.name + ' : ' + item.value }}</p>
                     <div class="">تعداد: <span>{{ item.quantity }}</span></div>
                     <div class="">قیمت: <span>{{ (item.price).toLocaleString('fa-IR') }}</span></div>
                 </div>
