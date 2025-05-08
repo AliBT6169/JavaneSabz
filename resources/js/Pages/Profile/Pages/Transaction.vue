@@ -24,6 +24,6 @@ const Transactions = ref(useAuthStore().Transactions);
             </div>
         </div>
         <!--        item-->
-        <TransactionItems v-for="item in Transactions" :transaction-data="item"></TransactionItems>
+        <TransactionItems v-for="item in Transactions" :transaction-data="item"/>
     </div>
 </template>

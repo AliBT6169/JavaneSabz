@@ -11,6 +11,7 @@ const Orders = ref(authStore.Orders);
 
 <template>
     <div class="grid justify-center place-items-center gap-4 p-4 Sidebar lg:flex lg:flex-wrap ">
+        <div v-if="Orders.length===0" class="">هنوز هیچ  سفارشی موجود نیست</div>
         <OrderItem v-for="item in Orders" :Order="item"/>
     </div>
 </template>
