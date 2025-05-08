@@ -8,12 +8,13 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["Order"])
 const coupon_code = ref('');
+console.log(props.Order.status)
 </script>
 
 <template>
     <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 no-scrollbar border-defaultColor h-96 overflow-y-scroll
       dark:border-darkColor1 sm:w-96 hover3D-animation hover:shadow-red-500 dark:bg-defaultColor7">
-        <div v-if="Order.status > 0" class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
+        <div v-if="Order.status >= 0" class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
             <div class="flex gap-6 text-[8px] text-nowrap sm:text-sm">
                 <div class="">در حال تائید</div>
                 <div class="">در حال آماده سازی</div>

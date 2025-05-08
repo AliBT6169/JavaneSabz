@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\DashboardResource;
+use App\Models\Order;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ class TransactionController extends Controller
                     'order_id' => $order_id,
                     'status' => 1,
                 ];
+                Order::where('id', $order_id)->where('user_id', Auth::id())->update(['payment_status' => 1]);
                 break;
             case 2:
                 $transaction_data = [
@@ -35,6 +37,7 @@ class TransactionController extends Controller
                 break;
         }
         $data = DashboardResource::getTransactions([Transaction::Creator($transaction_data)]);
+
         return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data]);
     }
 }
