@@ -351,7 +351,8 @@
     </symbol>
 
     <symbol id="arrow-left" viewBox="0 0 24 24">
-        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 6s-6 4.419-6 6s6 6 6 6" color="currentColor" />
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+              d="M15 6s-6 4.419-6 6s6 6 6 6" color="currentColor"/>
     </symbol>
 
     <symbol id="d-arrow-left" viewBox="0 0 24 24">
@@ -361,13 +362,34 @@
 
     <symbol id="loading" viewBox="0 0 24 24">
         <circle cx="18" cy="12" r="0" fill="currentColor">
-            <animate attributeName="r" begin=".67" calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0" />
+            <animate attributeName="r" begin=".67" calcMode="spline" dur="1.5s"
+                     keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite"
+                     values="0;2;0;0"/>
         </circle>
         <circle cx="12" cy="12" r="0" fill="currentColor">
-            <animate attributeName="r" begin=".33" calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0" />
+            <animate attributeName="r" begin=".33" calcMode="spline" dur="1.5s"
+                     keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite"
+                     values="0;2;0;0"/>
         </circle>
         <circle cx="6" cy="12" r="0" fill="currentColor">
-            <animate attributeName="r" begin="0" calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0" />
+            <animate attributeName="r" begin="0" calcMode="spline" dur="1.5s"
+                     keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite"
+                     values="0;2;0;0"/>
         </circle>
+    </symbol>
+
+    <symbol id="tick" viewBox="0 0 24 24">
+        <path fill="currentColor"
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z"/>
+    </symbol>
+
+    <symbol id="close" viewBox="0 0 32 32">
+        <path fill="currentColor"
+              d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2m5.4 21L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4z"/>
+    </symbol>
+
+    <symbol id="info" viewBox="0 0 24 24">
+        <path fill="currentColor"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m1 15h-2v-6h2zm0-8h-2V7h2z"/>
     </symbol>
 </svg>
