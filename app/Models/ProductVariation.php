@@ -109,4 +109,31 @@ class ProductVariation extends Model
             self::whereId($item->product_variation_id)->decrement('quantity', $item->quantity);
         }
     }
+
+    public static function productQuantityControl($order_id = -1)
+    {
+        if ($order_id === -1) {
+            $order = Order::whereId($order_id)->first();
+            $orderItems = $order->orderItems;
+            foreach ($orderItems as $item) {
+                if ( $item->quantity > $item->productVariation->quantity)
+                    return [
+                        'status' => 400,
+                        'message' => 'Quantity out of stock'
+                    ];
+            }
+        } else {
+            $items = Auth::user()->buy_carts;
+            foreach ($items as $item) {
+                if ($item->product_variation->quantity - $item->quantity < 0)
+                    return [
+                        'status' => 400,
+                        'message' => 'موجودی محصول' . ' ( ' . $item->product_variation->product->name . ':' . $item->product_variation->value . ' ) ' . 'کمتر از سفارش شماست !'
+                    ];
+            }
+            return [
+                'status' => 200,
+            ];
+        }
+    }
 }

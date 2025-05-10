@@ -48,6 +48,12 @@ class BuyCartController extends Controller
                 'status' => 100,
                 'message' => 'محصولی در سبد خرید شما نیست'
             ];
+        $quantity_check = ProductVariation::productQuantityControl();
+        if ($quantity_check['status'] === 400)
+            return [
+                'status' => 100,
+                'message' => $quantity_check['message']
+            ];
         $deliveryAmount = DeliveryAmount::getOrderDeliveryAmount();
         $products = BuyCart::getUserProducts();
         $total_amount = $products['total_price'];

@@ -15,6 +15,13 @@ class TransactionController extends Controller
 {
     public function paymentPage($order_id)
     {
+        if (ProductVariation::productQuantityControl($order_id)['status'] === 400) {
+            $data = DashboardResource::getTransactions([Transaction::Creator([
+                'order_id' => $order_id,
+                'status' => 3
+            ])]);
+            return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data]);
+        }
         $response = [];
         switch (rand(1, 3)) {
             case 1:
