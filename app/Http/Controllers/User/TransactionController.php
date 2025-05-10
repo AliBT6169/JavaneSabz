@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\DashboardResource;
 use App\Models\Order;
+use App\Models\ProductVariation;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class TransactionController extends Controller
                     'order_id' => $order_id,
                     'status' => 1,
                 ];
-                Order::where('id', $order_id)->where('user_id', Auth::id())->update(['payment_status' => 1]);
+                ProductVariation::productQuantityDecrement($order_id);
                 break;
             case 2:
                 $transaction_data = [

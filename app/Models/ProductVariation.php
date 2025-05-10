@@ -100,4 +100,13 @@ class ProductVariation extends Model
         }
         return $productData;
     }
+
+    public static function productQuantityDecrement($order_id)
+    {
+        $order = Order::whereId($order_id)->first();
+        $orderItems = $order->orderItems;
+        foreach ($orderItems as $item) {
+            self::whereId($item->product_variation_id)->decrement('quantity', $item->quantity);
+        }
+    }
 }
