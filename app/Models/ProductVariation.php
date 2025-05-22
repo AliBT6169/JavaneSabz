@@ -119,7 +119,8 @@ class ProductVariation extends Model
                 if ($item->quantity > $item->productVariation->quantity)
                     return [
                         'status' => 400,
-                        'message' => 'Quantity out of stock'
+                        'message' => 'تعداد محصول (' . $item->productVariation->product->name . ' : ' .
+                            $item->productVariation->value . ')کافی نیست!'
                     ];
             }
         } else {

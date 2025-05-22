@@ -1,11 +1,23 @@
 <script setup>
 import {Link, router} from "@inertiajs/vue3";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps({
     transaction_data: null,
+    message: null,
 })
 console.log(props.transaction_data);
+switch (props.transaction_data[0].status) {
+    case 1:
+        useAuthStore().toastMessage('success', props.message)
+        break;
+    case 2:
+        useAuthStore().toastMessage('warning', props.message)
+        break;
+    case 3:
+        useAuthStore().toastMessage('error', props.message)
+}
 </script>
 
 <template>
