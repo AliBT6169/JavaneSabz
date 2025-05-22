@@ -112,11 +112,11 @@ class ProductVariation extends Model
 
     public static function productQuantityControl($order_id = -1)
     {
-        if ($order_id === -1) {
+        if ($order_id != -1) {
             $order = Order::whereId($order_id)->first();
             $orderItems = $order->orderItems;
             foreach ($orderItems as $item) {
-                if ( $item->quantity > $item->productVariation->quantity)
+                if ($item->quantity > $item->productVariation->quantity)
                     return [
                         'status' => 400,
                         'message' => 'Quantity out of stock'
@@ -131,9 +131,10 @@ class ProductVariation extends Model
                         'message' => 'موجودی محصول' . ' ( ' . $item->product_variation->product->name . ':' . $item->product_variation->value . ' ) ' . 'کمتر از سفارش شماست !'
                     ];
             }
-            return [
-                'status' => 200,
-            ];
         }
+        return [
+            'status' => 200,
+            'message' => 'ok'
+        ];
     }
 }

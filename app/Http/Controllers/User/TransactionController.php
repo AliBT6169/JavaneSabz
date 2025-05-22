@@ -23,6 +23,7 @@ class TransactionController extends Controller
             return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data]);
         }
         $response = [];
+        $transaction_data = null;
         switch (rand(1, 3)) {
             case 1:
                 $transaction_data = [
@@ -30,6 +31,10 @@ class TransactionController extends Controller
                     'status' => 1,
                 ];
                 ProductVariation::productQuantityDecrement($order_id);
+                Order::whereId($order_id)->update([
+                    'payment_status' => 1,
+                    'status' => 2
+                ]);
                 break;
             case 2:
                 $transaction_data = [

@@ -8,7 +8,6 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["Order"])
 const coupon_code = ref('');
-console.log(props.Order.status)
 </script>
 
 <template>
