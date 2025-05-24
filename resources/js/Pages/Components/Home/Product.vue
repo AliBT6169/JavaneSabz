@@ -4,6 +4,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {Link} from '@inertiajs/vue3'
 import {ref} from "vue";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 const props = defineProps(["product", "special"]);
 const likeUnLike = async () => {
@@ -61,8 +62,8 @@ const likeUnLike = async () => {
                            class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500
                            dark:fill-transparent dark:hover:fill-red-900 dark:text-red-900"
                            :class="{'!fill-red-500':product.is_liked}"></svg-component>
-            <svg-component title="مشاهده محصول" name="show"
-                           class="size-6 hover:text-defaultColor duration-500"></svg-component>
+            <svg-component title="مشاهده محصول" name="show" @click="async ()=>console.log(await useIndexStore().productShow(product.id))"
+                           class="size-6 hover:text-defaultColor duration-500"/>
         </div>
         <div class="absolute -top-3 right-0 py-5 rounded-b-full bg-red-600 text-slate-200 dark:bg-red-900"
              v-if="props.special===true">
