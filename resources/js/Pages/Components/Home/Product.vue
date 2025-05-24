@@ -5,18 +5,21 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {Link} from '@inertiajs/vue3'
 import {ref} from "vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
+import ProductShowModal from "@/Pages/Components/Home/ProductShowModal.vue";
 
 const props = defineProps(["product", "special"]);
 const productModal = ref(false);
+const productModalData = ref();
 const likeUnLike = async () => {
     const res = await ref(useAuthStore().likeOrUnLike(props.product.id, props.product.is_liked));
     props.product.is_liked = await res.value;
 }
 const productShow = async () => {
     const data = ref(await useIndexStore().productShow(props.product.id));
-    console.log(data.value.data);
-    if (data.value.status === 200)
+    if (data.value.status === 200) {
         productModal.value = true;
+        productModalData.value = data.value.data
+    }
 }
 </script>
 
@@ -83,6 +86,6 @@ const productShow = async () => {
         class="fixed invisible z-50 opacity-0 duration-500 top-0 left-0 flex justify-center items-center w-screen h-screen bg-gray-800/30"
         :class="{'!visible !opacity-100':productModal}"
         @click.self="productModal=false">
-        <div class="size-3/4 bg-blue-400 rounded-xl"></div>
+        <product-show-modal v-if="productModal" :product-data="productModalData"/>
     </div>
 </template>
