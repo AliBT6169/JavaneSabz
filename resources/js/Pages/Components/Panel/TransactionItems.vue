@@ -16,7 +16,7 @@ const descriptionStatus = ref(false);
             <div v-if="transactionData.status===1" class="bg-defaultColor5 bg-opacity-70 p-2 rounded-full">موفق</div>
             <p class="w-32 hidden overflow-hidden text-ellipsis text-nowrap md:block lg:w-80 xl:!w-[40rem]">
                 <strong class="">محصولات:</strong>
-                <span v-for="item in transactionData.products" class="">{{ item.name + ' , ' }}</span>
+                <span v-for="item in transactionData.products" class="border-l px-2">{{item.name + ' : ' + item.value }}</span>
             </p>
             <!--            date & time-->
             <div class="p-2 rounded-full border">{{ transactionData.date }}</div>
@@ -32,6 +32,9 @@ const descriptionStatus = ref(false);
         </div>
         <div class="grid duration-300 h-0 overflow-hidden" :class="{'h-fit overflow-y-scroll pt-2':descriptionStatus}">
             <div class="w-full max-w-60 border-defaultColor overflow-hidden border-2 rounded-2xl">
+                <div class="text-center">
+                    {{transactionData.date + ' ساعت : ' + transactionData.time}}
+                </div>
                 <table class="w-full rounded-3xl overflow-hidden *:border-t *:border-defaultColor ">
                     <tr class="*:text-center">
                         <td class="">نام محصول</td>
