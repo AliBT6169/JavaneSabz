@@ -24,7 +24,7 @@ const likeUnLike = async () => {
 </script>
 
 <template>
-        <div class="p-2 size-5/6 bg-defaultColor5 rounded-xl dark:bg-defaultColor md:size-3/4">
+        <div class="p-2 size-5/6 bg-defaultColor5 rounded-xl dark:bg-defaultColor md:size-3/4 md:p-3">
 
         <div class="size-full overflow-scroll space-y-6 lg:flex lg:space-y-0 gap-4">
             <!--                rightSide-->
@@ -50,7 +50,7 @@ const likeUnLike = async () => {
                     </div>
                 </div>
                 <!--            slider-->
-                <div class="w-full h-60 lg:h-96">
+                <div class="w-full h-60">
                     <Carousel v-bind="carouselConfig" class="!size-full">
                         <Slide v-for="slide in productData.images" :key="slide" class="">
                             <div class="carousel__item !size-full">
@@ -119,7 +119,7 @@ const likeUnLike = async () => {
             </div>
             <!--                leftSide-->
             <div class="space-y-6 max-w-full">
-                <div class="space-y-4 md:space-y-0 md:flex md:gap-4 md:justify-between py-4 *:w-full">
+                <div class="space-y-4 md:space-y-0 md:flex md:gap-4 md:justify-between *:w-full">
                     <h3 class="productShowItems">
                         <svg-component name="esalat"
                                        class="size-8 inline text-defaultColor/70 dark:text-defaultColor5"></svg-component>
