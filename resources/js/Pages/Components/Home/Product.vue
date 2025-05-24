@@ -85,7 +85,7 @@ const productShow = async () => {
     <div
         class="fixed invisible z-50 opacity-0 duration-500 top-0 left-0 flex justify-center items-center w-screen h-screen bg-gray-800/30"
         :class="{'!visible !opacity-100':productModal}"
-        @click.self="productModal=false">
+        @click.self="productModal = false">
         <product-show-modal v-if="productModal" :product-data="productModalData"/>
     </div>
 </template>

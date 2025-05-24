@@ -1,9 +1,8 @@
 import {defineStore} from 'pinia';
 import axios from "axios";
 import {ref} from "vue";
-import {toArray} from "@vueuse/core";
 import {useToast} from "vue-toastification";
-import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
+import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 
 const toast = useToast();
 export const useAuthStore = defineStore('auth', {
@@ -148,6 +147,7 @@ export const useAuthStore = defineStore('auth', {
             }
         },
         logout() {
+            useAdminStore().logout();
             this.user = null;
             this.Products = null;
             this.Orders = null;

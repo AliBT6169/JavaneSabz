@@ -9,7 +9,13 @@ export const useAdminStore = defineStore('admin', {
     actions: {
         sideBarSelector(name, index) {
             this.Page = name;
-            this.PageIndexTop = (index-1) * 80 + 16;
+            this.PageIndexTop = (index - 1) * 80 + 16;
         },
+        logout() {
+            this.SideBar = true;
+            this.Page = 'dashboard';
+            this.PageIndexTop = 16;
+        }
     },
-})
+    persist: true,
+});
