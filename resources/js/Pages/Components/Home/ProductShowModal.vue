@@ -3,17 +3,30 @@ import {data} from "autoprefixer";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {Carousel, Pagination, Slide} from "vue3-carousel";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import {ref} from "vue";
 
 const props = defineProps({
     productData: null,
 });
-console.log(props.productData);
+
+const carouselConfig = {
+    itemsToShow: 1,
+    autoplay: 3000,
+    dir: 'rtl',
+    gap: 1,
+    wrapAround: true,
+    breakpointMode: 'carousel',
+}
+const likeUnLike = async () => {
+    const res = await ref(useAuthStore().likeOrUnLike(props.productData.id, props.productData.is_liked));
+    props.productData.is_liked = await res.value;
+}
 </script>
 
 <template>
-        <div class="size-3/4 bg-defaultColor5 rounded-xl dark:bg-defaultColor">
+        <div class="p-2 size-3/4 bg-defaultColor5 rounded-xl dark:bg-defaultColor">
 
-        <div class="w-full overflow-scroll space-y-6 lg:flex lg:space-y-0 gap-4 *:w-full">
+        <div class="size-full overflow-scroll space-y-6 lg:flex lg:space-y-0 gap-4">
             <!--                rightSide-->
             <div class="space-y-6">
                 <!--                    name-->
@@ -106,12 +119,12 @@ console.log(props.productData);
                 </div>
             </div>
             <!--                leftSide-->
-            <div class="space-y-6 w-full">
+            <div class="space-y-6 max-w-full">
                 <div class="rounded-xl border border-defaultColor lg:mt-[4.5rem]">
                     <div class="productShowItems justify-center rounded-b-none py-2">
                         اطلاعات محصول
                     </div>
-                    <div class="p-4">
+                    <div class="p-4 text-wrap">
                         {{ productData.description }}
                     </div>
                 </div>
