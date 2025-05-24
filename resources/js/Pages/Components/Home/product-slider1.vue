@@ -34,7 +34,7 @@ const mouseupd = (e) => {
          @mousemove="mousmoving"
          @mouseup="mouseupd">
         <div class="text-nowrap w-fit gap-2 flex">
-            <Product class="w-40" :product="item" v-for="item in products"></Product>
+            <Product class="w-40" :product="item" v-for="item in products"/>
         </div>
     </div>
 

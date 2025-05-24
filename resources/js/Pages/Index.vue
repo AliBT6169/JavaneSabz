@@ -11,6 +11,7 @@ import Navigation from "@/Pages/Components/Home/navigation.vue";
 import LiveCards from "@/Pages/Components/Home/live-cards.vue";
 import Intro from "@/Pages/Components/Home/intro.vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
+import {useWindowScroll} from "@vueuse/core";
 
 const props = defineProps(["indexData"]);
 useIndexStore().setData(props.indexData.products);
@@ -66,8 +67,8 @@ const liveCardData = ref([
             <Brands class="w-full" :brands-data="brandsData"></Brands>
         </div>
         <!--        product show-1-->
-        <div data-aos="fade-up" class="w-full mx-auto">
-            <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
+        <div data-aos="fade-up" class="w-full mx-auto !transform-none">
+            <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">کود های</span>
                     <span class="font-black text-defaultColor5">تقویتی</span>
@@ -98,7 +99,7 @@ const liveCardData = ref([
             </div>
         </div>
         <!--   special product list-->
-        <div data-aos="fade-up" class="w-full mx-auto gap-4 flex flex-col">
+        <div data-aos="fade-up" class="w-full mx-auto gap-4 flex flex-col !transform-none">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>

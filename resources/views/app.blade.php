@@ -20,7 +20,7 @@
 @inertia
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById("loader").classList.add('opacity-0', 'invisible');
+        document.getElementById("loader").classList.add('opacity-0', 'invisible','-z-50');
     })
 </script>
 </body>

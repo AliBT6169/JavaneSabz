@@ -7,6 +7,7 @@ export const useIndexStore = defineStore('index', {
     state: () => ({
         Products: null,
         ProductShowData: null,
+        modal: false,
     }),
     actions: {
         setData(data) {

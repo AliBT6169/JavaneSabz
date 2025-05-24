@@ -7,9 +7,16 @@ import {ref} from "vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 const props = defineProps(["product", "special"]);
+const productModal = ref(false);
 const likeUnLike = async () => {
     const res = await ref(useAuthStore().likeOrUnLike(props.product.id, props.product.is_liked));
     props.product.is_liked = await res.value;
+}
+const productShow = async () => {
+    const data = ref(await useIndexStore().productShow(props.product.id));
+    console.log(data.value.data);
+    if (data.value.status === 200)
+        productModal.value = true;
 }
 </script>
 
@@ -35,7 +42,8 @@ const likeUnLike = async () => {
         <div class="w-full px-4 flex lg:justify-between items-center flex-col gap-2">
             <div v-if="product.price" class="text-defaultColor dark:text-defaultColor5">{{
                     product.price.toLocaleString('fa-IR') + 'تومان '
-                }} </div>
+                }}
+            </div>
             <div v-else class="bg-defaultColor5 text-defaultColor7 rounded-full flex items-center p-1
              dark:bg-defaultColor dark:text-defaultColor5 hover:bg-opacity-50 hover:-translate-y-1 duration-500">مشاهده
                 <svg-component name="show" class="size-5"></svg-component>
@@ -49,7 +57,7 @@ const likeUnLike = async () => {
                                class="size-5 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7
                                dark:hover:fill-red-900 dark:text-red-900 lg:hidden md:size-7"
                                :class="{'!fill-red-500':product.is_liked}"></svg-component>
-            <svg-component title="مشاهده محصول" name="show"
+            <svg-component title="مشاهده محصول" name="show" @click="productShow"
                            class="size-5 hover:text-defaultColor duration-500 lg:hidden md:size-7"></svg-component>
             </span>
         </div>
@@ -62,12 +70,19 @@ const likeUnLike = async () => {
                            class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500
                            dark:fill-transparent dark:hover:fill-red-900 dark:text-red-900"
                            :class="{'!fill-red-500':product.is_liked}"></svg-component>
-            <svg-component title="مشاهده محصول" name="show" @click="async ()=>console.log(await useIndexStore().productShow(product.id))"
+            <svg-component title="مشاهده محصول" name="show"
+                           @click="productShow"
                            class="size-6 hover:text-defaultColor duration-500"/>
         </div>
         <div class="absolute -top-3 right-0 py-5 rounded-b-full bg-red-600 text-slate-200 dark:bg-red-900"
              v-if="props.special===true">
             <p class="-rotate-90 mr-0.5">ویژه</p>
         </div>
+    </div>
+    <div
+        class="fixed invisible z-50 opacity-0 duration-500 top-0 left-0 flex justify-center items-center w-screen h-screen bg-gray-800/30"
+        :class="{'!visible !opacity-100':productModal}"
+        @click.self="productModal=false">
+        <div class="size-3/4 bg-blue-400 rounded-xl"></div>
     </div>
 </template>
