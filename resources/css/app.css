@@ -117,7 +117,7 @@
 }
 
 .productShowItems{
-    @apply p-1 rounded-xl bg-defaultColor5/70 border border-defaultColor/50 flex items-center dark:bg-defaultColor/50;
+    @apply p-2 rounded-xl bg-defaultColor5/70 border border-defaultColor/50 flex justify-center items-center dark:bg-defaultColor/50;
 }
 
 .introView {

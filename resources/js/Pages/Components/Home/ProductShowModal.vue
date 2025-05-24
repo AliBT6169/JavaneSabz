@@ -24,7 +24,7 @@ const likeUnLike = async () => {
 </script>
 
 <template>
-        <div class="p-2 size-3/4 bg-defaultColor5 rounded-xl dark:bg-defaultColor">
+        <div class="p-2 size-5/6 bg-defaultColor5 rounded-xl dark:bg-defaultColor md:size-3/4">
 
         <div class="size-full overflow-scroll space-y-6 lg:flex lg:space-y-0 gap-4">
             <!--                rightSide-->
@@ -81,14 +81,13 @@ const likeUnLike = async () => {
                     </div>
                 </div>
                 <!--                    category & brand-->
-                <div class="productShowItems">
-                    <div class="w-full flex justify-between px-4">
-                        <h2 class="">
+                <div class="">
+                    <div class="w-full space-y-4 m-auto md:flex md:justify-between md:*:w-full md:gap-4 md:space-y-0">
+                        <h2 class="productShowItems">
                             <strong class="">دسته بندی :</strong>
                             {{ productData.category.name }}
                         </h2>
-                        <div class="h-6 w-0.5 rounded-full bg-defaultColor"></div>
-                        <h2 class="">
+                        <h2 class="productShowItems">
                             <strong class="">برند :</strong>
                             {{ productData.brand.name }}
                         </h2>
@@ -120,6 +119,18 @@ const likeUnLike = async () => {
             </div>
             <!--                leftSide-->
             <div class="space-y-6 max-w-full">
+                <div class="space-y-4 md:space-y-0 md:flex md:gap-4 md:justify-between py-4 *:w-full">
+                    <h3 class="productShowItems">
+                        <svg-component name="esalat"
+                                       class="size-8 inline text-defaultColor/70 dark:text-defaultColor5"></svg-component>
+                        تضمین اصالت کالا
+                    </h3>
+                    <h3 class="productShowItems">
+                        <svg-component name="garantie"
+                                       class="size-8 inline text-defaultColor/70 stroke-1 stroke-black dark:text-defaultColor5"></svg-component>
+                        گارانتی 7 روز بازگشت کالا
+                    </h3>
+                </div>
                 <div class="rounded-xl border border-defaultColor lg:mt-[4.5rem]">
                     <div class="productShowItems justify-center rounded-b-none py-2">
                         اطلاعات محصول
@@ -127,18 +138,6 @@ const likeUnLike = async () => {
                     <div class="p-4 text-wrap">
                         {{ productData.description }}
                     </div>
-                </div>
-                <div class="productShowItems flex gap-6 justify-between py-4 *:w-full">
-                    <h3 class="">
-                        <svg-component name="esalat"
-                                       class="size-8 inline text-defaultColor/70 dark:text-defaultColor5"></svg-component>
-                        تضمین اصالت کالا
-                    </h3>
-                    <h3 class="">
-                        <svg-component name="garantie"
-                                       class="size-8 inline text-defaultColor/70 stroke-1 stroke-black dark:text-defaultColor5"></svg-component>
-                        گارانتی 7 روز بازگشت کالا
-                    </h3>
                 </div>
             </div>
         </div>
