@@ -129,6 +129,7 @@ class DashboardResource extends JsonResource
                 "price" => $item->order->paying_amount,
                 "status" => $item->status,
                 "date" => jalalian::fromDateTime($item->created_at)->format('l, d F Y'),
+                "time" => jalalian::fromDateTime($item->created_at)->format('H:i:s'),
                 "products" => DashboardResource::getOrderItems($item->order->orderItems),
             ];
         }
