@@ -39,7 +39,7 @@ const descriptionStatus = ref(false);
                         <td class="">تعداد</td>
                     </tr>
                     <tr class="*:text-center" v-for="item in transactionData.products">
-                        <td class="">{{item.name}}</td>
+                        <td class="">{{item.name + ' : ' + item.value}}</td>
                         <td>{{item.quantity}}</td>
                     </tr>
                     <tr class="*:text-center">

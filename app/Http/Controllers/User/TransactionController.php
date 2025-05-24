@@ -34,7 +34,7 @@ class TransactionController extends Controller
                 ProductVariation::productQuantityDecrement($order_id);
                 Order::whereId($order_id)->update([
                     'payment_status' => 1,
-                    'status' => 2
+                    'status' => 1
                 ]);
                 $message = 'تراکنش موفقیت آمیز بود';
                 break;

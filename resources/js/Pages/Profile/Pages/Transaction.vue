@@ -20,7 +20,7 @@ const Transactions = ref(useAuthStore().Transactions);
                 }}</span>
             </div>
             <div class="flex justify-between">
-                <span>جمع مبلغ :</span><span>{{Transactions.reduce((accumulator , Transactions)=> accumulator + Transactions.price, 0)}}</span>
+                <span>جمع مبلغ :</span><span>{{(Transactions.reduce((accumulator , Transactions)=> accumulator + Transactions.price, 0)).toLocaleString('fa-IR')}}</span>
             </div>
         </div>
         <!--        item-->
