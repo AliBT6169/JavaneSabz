@@ -22,6 +22,7 @@ console.log(props.userData)
                     <td class="hidden md:table-cell w-[5%]">آیدی</td>
                     <td>نام و نام خانوادگی</td>
                     <td>نام کاربری</td>
+                    <td class="text-center">عملیات</td>
                     <td class="w-[7%]">مقام</td>
                     <td class="hidden md:table-cell w-[7%]">جنسیت</td>
                     <td>شماره تماس</td>
@@ -31,6 +32,7 @@ console.log(props.userData)
                     <td class="hidden md:table-cell w-[5%]">{{ user.id }}</td>
                     <td class="">{{ user.full_name === '' ? 'خالی' : user.full_name }}</td>
                     <td class="truncate">{{ user.user_name === '' ? 'خالی' : user.user_name }}</td>
+                    <td class="flex pt-2 justify-center items-center"><span class="py-1 px-2 duration-500 bg-gray-500 rounded-lg relative hover:bg-gray-700">...</span></td>
                     <td class="w-[7%]">{{ user.is_admin ? 'مدیر' : 'کاربر' }}</td>
                     <td class="hidden md:table-cell w-[7%]">{{ user.gender === 1 ? 'آقا' : 'خانم' }}</td>
                     <td class="">{{ user.cellphone }}</td>
