@@ -95,7 +95,6 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(TransactionController::class)->group(function () {
         Route::get('/Payment/{order_id}', 'paymentPage')->name('paymentPage');
-
     });
 });
 

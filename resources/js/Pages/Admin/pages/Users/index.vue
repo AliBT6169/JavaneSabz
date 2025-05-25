@@ -33,11 +33,12 @@ console.log(props.userData)
                     <td class="">{{ user.full_name === '' ? 'خالی' : user.full_name }}</td>
                     <td class="truncate">{{ user.user_name === '' ? 'خالی' : user.user_name }}</td>
                     <td class="flex pt-2 justify-center items-center"><span
-                        class="group py-1 px-2 duration-500 bg-gray-500 rounded-lg relative hover:bg-gray-700">...
-                        <div class="flex gap-2 -right-3 items-center invisible opacity-0 top-0 duration-300 absolute *:size-5 lg:*:size-5 lg:gap-6
+                        class="group py-1 px-2 flex justify-center duration-500 bg-gray-500 rounded-lg relative hover:bg-gray-700">...
+                        <div class="flex gap-2 justify-center items-center invisible opacity-0 top-0 duration-300 absolute lg:gap-6
+                        *:border *:rounded-full *:p-1 *:duration-300 hover:*:text-red-500 hover:*:border-red-500 *:size-5 lg:*:size-7
                          group-hover:visible group-hover:opacity-100 group-hover:-top-5">
-                            <svg-component name="delete" class="duration-300 hover:text-red-500"/>
-                            <svg-component name="edit" class="duration-300 hover:text-red-500"/>
+                            <svg-component name="delete" @click=""/>
+                            <svg-component name="edit"/>
                         </div>
                     </span></td>
                     <td class="w-[7%]">{{ user.is_admin ? 'مدیر' : 'کاربر' }}</td>
