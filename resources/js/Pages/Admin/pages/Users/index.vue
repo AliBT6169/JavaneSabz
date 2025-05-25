@@ -8,7 +8,7 @@ import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import axios from "axios";
 import {useToast} from "vue-toastification";
-import DeleteWarning from "@/Pages/Admin/Components/DeleteWarning.vue";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 
 const props = defineProps(["userData"]);
@@ -16,7 +16,7 @@ console.log(props.userData)
 
 const userDelete = async (id) => {
     const content = {
-        component: DeleteWarning,
+        component: ToastWarning,
         props: {
             message: 'آیا مطمعن هستید؟'
         },
