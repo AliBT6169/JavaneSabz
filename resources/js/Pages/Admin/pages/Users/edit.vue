@@ -6,13 +6,13 @@ import Layout from "@/Pages/Admin/Components/Layout.vue";
 const props = defineProps({
     user: null,
 });
-console.log(props.user)
+console.log(props.user.data)
 </script>
 
 <template>
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
-        slam
+
     </Layout>
 </template>
