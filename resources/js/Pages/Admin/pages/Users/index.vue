@@ -6,9 +6,22 @@ import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import {Link} from "@inertiajs/vue3";
 import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import axios from "axios";
+import {useToast} from "vue-toastification";
 
 const props = defineProps(["userData"]);
 console.log(props.userData)
+
+const userDelete = async (id) => {
+    await axios.delete(route('admin.users.destroy', {'id': id})).then((res) => {
+        if (res.data.status === 200) {
+            useToast().success('کاربر با موفقیت حذف شد');
+            props.userData.data = props.userData.data.filter(item => item.id !== id)
+        }
+    }).catch((err) => {
+        console.log(err)
+    })
+}
 </script>
 
 <template>
@@ -37,7 +50,7 @@ console.log(props.userData)
                         <div class="flex gap-2 justify-center items-center invisible opacity-0 top-0 duration-300 absolute lg:gap-6
                         *:border *:rounded-full *:p-1 *:duration-300 hover:*:text-red-500 hover:*:border-red-500 *:size-5 lg:*:size-7
                          group-hover:visible group-hover:opacity-100 group-hover:-top-5">
-                            <svg-component name="delete" @click=""/>
+                            <svg-component name="delete" @click="userDelete(user.id)"/>
                             <svg-component name="edit"/>
                         </div>
                     </span></td>

@@ -15,4 +15,13 @@ class UserController extends Controller
         $userData = UserResource::collection(User::latest()->paginate(10));
         return Inertia::render('Admin/pages/Users/index', ['userData' => $userData]);
     }
+
+    public function destroy($id)
+    {
+        User::destroy($id);
+        return [
+            'status' => 200,
+            'message' => 'User deleted'
+        ];
+    }
 }
