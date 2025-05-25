@@ -5,13 +5,13 @@ import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import {Link} from "@inertiajs/vue3";
 import Pagination from "@/Pages/Admin/Components/Pagination.vue";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const props = defineProps(["userData"]);
 console.log(props.userData)
 </script>
 
 <template>
-
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
@@ -26,13 +26,20 @@ console.log(props.userData)
                     <td class="w-[7%]">مقام</td>
                     <td class="hidden md:table-cell w-[7%]">جنسیت</td>
                     <td>شماره تماس</td>
-                    <td class="hidden md:table-cell" >ایمیل</td>
+                    <td class="hidden md:table-cell">ایمیل</td>
                 </tr>
                 <tr v-for="user in userData.data" class="h-12 cursor-pointer hover:!bg-adminColor2 duration-500">
                     <td class="hidden md:table-cell w-[5%]">{{ user.id }}</td>
                     <td class="">{{ user.full_name === '' ? 'خالی' : user.full_name }}</td>
                     <td class="truncate">{{ user.user_name === '' ? 'خالی' : user.user_name }}</td>
-                    <td class="flex pt-2 justify-center items-center"><span class="py-1 px-2 duration-500 bg-gray-500 rounded-lg relative hover:bg-gray-700">...</span></td>
+                    <td class="flex pt-2 justify-center items-center"><span
+                        class="group py-1 px-2 duration-500 bg-gray-500 rounded-lg relative hover:bg-gray-700">...
+                        <div class="flex gap-2 -right-3 items-center invisible opacity-0 top-0 duration-300 absolute *:size-5 lg:*:size-5 lg:gap-6
+                         group-hover:visible group-hover:opacity-100 group-hover:-top-5">
+                            <svg-component name="delete" class="duration-300 hover:text-red-500"/>
+                            <svg-component name="edit" class="duration-300 hover:text-red-500"/>
+                        </div>
+                    </span></td>
                     <td class="w-[7%]">{{ user.is_admin ? 'مدیر' : 'کاربر' }}</td>
                     <td class="hidden md:table-cell w-[7%]">{{ user.gender === 1 ? 'آقا' : 'خانم' }}</td>
                     <td class="">{{ user.cellphone }}</td>
