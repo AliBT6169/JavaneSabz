@@ -8,19 +8,33 @@ import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import axios from "axios";
 import {useToast} from "vue-toastification";
+import DeleteWarning from "@/Pages/Admin/Components/DeleteWarning.vue";
+
 
 const props = defineProps(["userData"]);
 console.log(props.userData)
 
 const userDelete = async (id) => {
-    await axios.delete(route('admin.users.destroy', {'id': id})).then((res) => {
-        if (res.data.status === 200) {
-            useToast().success('کاربر با موفقیت حذف شد');
-            props.userData.data = props.userData.data.filter(item => item.id !== id)
+    const content = {
+        component: DeleteWarning,
+        props: {
+            message: 'آیا مطمعن هستید؟'
+        },
+        listeners: {
+            set: async () => {
+                await axios.delete(route('admin.users.destroy', {'id': id})).then((res) => {
+                    if (res.data.status === 200) {
+                        useToast().success('کاربر با موفقیت حذف شد');
+                        props.userData.data = props.userData.data.filter(item => item.id !== id)
+                    }
+                }).catch((err) => {
+                    console.log(err)
+                })
+            }
         }
-    }).catch((err) => {
-        console.log(err)
-    })
+    }
+    let toast = useToast();
+    toast.warning(content)
 }
 </script>
 
