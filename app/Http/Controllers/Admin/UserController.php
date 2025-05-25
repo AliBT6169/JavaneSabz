@@ -24,4 +24,10 @@ class UserController extends Controller
             'message' => 'User deleted'
         ];
     }
+
+    public function edit($id)
+    {
+        $user = UserResource::make(User::whereId($id)->first());
+        return Inertia::render('Admin/pages/Users/edit', ['user' => $user]);
+    }
 }

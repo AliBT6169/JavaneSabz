@@ -65,7 +65,7 @@ const userDelete = async (id) => {
                         *:border *:rounded-full *:p-1 *:duration-300 hover:*:text-red-500 hover:*:border-red-500 *:size-5 lg:*:size-7
                          group-hover:visible group-hover:opacity-100 group-hover:-top-5">
                             <svg-component name="delete" @click="userDelete(user.id)"/>
-                            <svg-component name="edit"/>
+                            <Link class="block" :href="route('admin.users.edit',{'id':user.id})"><svg-component class="size-full" name="edit"/></Link>
                         </div>
                     </span></td>
                     <td class="w-[7%]">{{ user.is_admin ? 'مدیر' : 'کاربر' }}</td>
