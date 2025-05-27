@@ -9,7 +9,7 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
 </script>
 
 <template>
-    <div class="fixed top-0 right-0 px-1 sm:px-5 bg-adminColor1 w-screen h-16 border-b border-b-gray-700/50 flex items-center justify-between
+    <div class="fixed top-0 right-0 px-1 z-30 sm:px-5 bg-adminColor1 w-screen h-16 border-b border-b-gray-700/50 flex items-center justify-between
                 after:shadow-inner after:shadow-gray-500/40 after:absolute after:top-16 after:w-screen after:-mr-5 after:h-2 dark:bg-adminColor3/60">
         <!--        rightSide-->
         <div class="flex gap-2 sm:gap-5 items-center *:select-none *:cursor-pointer text-adminColor3 dark:text-adminColor2">

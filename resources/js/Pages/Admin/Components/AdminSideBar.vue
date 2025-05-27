@@ -8,7 +8,7 @@ import {router} from "@inertiajs/vue3";
 </script>
 
 <template>
-    <div class="fixed w-16 duration-300 overflow-scroll no-scrollbar right-0 top-16 bg-adminColor2 h-[calc(100vh-4rem)] border-l border-l-gray-500/50
+    <div class="fixed w-16 duration-300 overflow-scroll no-scrollbar z-30 right-0 top-16 bg-adminColor2 h-[calc(100vh-4rem)] border-l border-l-gray-500/50
                 dark:bg-adminColor4"
          :class="{'!w-40 md:!w-48':useAdminStore().SideBar}">
         <div class="absolute duration-300 h-14 w-2 rounded-r-xl left-0 bg-adminColor3 dark:bg-adminColor2"
