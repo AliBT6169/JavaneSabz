@@ -3,6 +3,9 @@ import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import AddressSelectOptionBt from "@/Pages/Components/Form/addressSelectOptionBT.vue";
+import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
+import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 
 const props = defineProps({
     user: null,
@@ -15,9 +18,14 @@ console.log(props.user.data)
     <AdminSideBar/>
     <Layout>
         <div class="pb-6">
-            <img :src="'/'+(user.data.user_image===''?'images/default/default.jpg':user.data.user_image)" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
-             dark:border-adminColor3 hover:scale-95" alt="">
-            <div class="space-y-6 *:space-y-6 *:md:space-y-0 *:md:flex *:md:justify-between *:md:items-center *:md:gap-6">
+            <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
+             dark:border-adminColor3 hover:scale-95 block overflow-hidden">
+                <input type="file" id="image" class="invisible absolute">
+                <img :src="'/'+(user.data.user_image===''?'images/default/default.jpg':user.data.user_image)" class="size-full"
+                     alt="">
+            </label>
+            <div
+                class="space-y-6 *:space-y-6 *:md:space-y-0 *:md:flex *:md:justify-between *:md:items-center *:md:gap-6">
                 <div class="">
                     <AdminInput name="نام و نام خانوادگی" :default_value="user.data.full_name"/>
                     <AdminInput name="نام کاربری" :default_value="user.data.user_name"/>
@@ -41,6 +49,7 @@ console.log(props.user.data)
                         </div>
                     </div>
                 </div>
+                <admin-address label="آدرس:" default_province="11" default_city="11"/>
             </div>
         </div>
     </Layout>
