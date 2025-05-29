@@ -3,8 +3,7 @@ import {onMounted, ref} from "vue";
 
 const props = defineProps({
     label: null,
-    default_city: null,
-    default_province: null
+    address:null
 });
 const province = ref(null);
 const city = ref(null);
@@ -36,7 +35,7 @@ const getCities = async () => {
             <label class="pr-2 text-black dark:text-white">{{ label }}</label>
             <select name="province" id="province" ref="province" class="p-3 w-full rounded-lg pr-10 border-adminColor2 bg-adminColor1 border-2 placeholder-adminColor2 focus:ring-adminColor2
                 focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4" @change="getCities">
-                <option selected value="">{{ props.default_province }}</option>
+                <option selected :value="props.address.province_id">{{ props.address.province }}</option>
                 <option v-for="item in provinces" :value="item.id">{{ item.name }}</option>
             </select>
         </div>
@@ -45,7 +44,7 @@ const getCities = async () => {
             <select name="city" id="city" ref="city" class="p-3 w-full rounded-lg pr-10 border-adminColor2 bg-adminColor1 border-2 placeholder-adminColor2 focus:ring-adminColor2
                 focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4"
                     @change="()=>emit('updateValue',city.value)">
-                <option selected value="">{{ props.default_city }}</option>
+                <option selected :value="props.address.city_id">{{ props.address.city }}</option>
                 <option v-for="item in cities" :value="item.id">{{ item.name }}</option>
             </select>
         </div>

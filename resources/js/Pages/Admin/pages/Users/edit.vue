@@ -49,7 +49,7 @@ console.log(props.user.data)
                         </div>
                     </div>
                 </div>
-                <admin-address label="آدرس:" default_province="11" default_city="11"/>
+                <admin-address label="آدرس:" :address="user.data.address"/>
             </div>
         </div>
     </Layout>

@@ -24,8 +24,13 @@ class UserResource extends JsonResource
             'gender' => $this->gender,
             'cellphone' => $this->cellphone,
             'email' => $this->email,
-            'address' => $this->address == null ? '' : $this->address->city->province->slug . ' - ' .
-                $this->address->city->slug . ' - ' . $this->address->address,
+            'address' => $this->address != null ? [
+                'province' => $this->address->city->province->slug,
+                'province_id' => $this->address->city->province->id,
+                'city' => $this->address->city->slug,
+                'city_id' => $this->address->city->id,
+                'address' => $this->address->address,
+            ] : '',
             'postal_code' => $this->address->postcode ?? '',
         ];
     }
