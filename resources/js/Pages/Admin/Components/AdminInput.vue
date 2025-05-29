@@ -13,8 +13,7 @@ const props = defineProps({
     <div class="relative w-full">
         <div class="text-sm px-3">{{name}} :</div>
         <input :type="type" :placeholder="name" :value="default_value"
-               class="p-3 w-full rounded-lg border-adminColor2 bg-adminColor1 border-2 placeholder-adminColor2 focus:ring-adminColor2
-                focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4">
+               class="admin_inputs">
         <svg-component v-if="icon!==''" :name="icon" class="size-5 absolute left-1 top-4 z-50 text-black"/>
     </div>
 </template>

@@ -17,7 +17,7 @@ console.log(props.user.data)
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
-        <div class="pb-6">
+        <div class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
                 <input type="file" id="image" class="invisible absolute">
@@ -50,6 +50,7 @@ console.log(props.user.data)
                     </div>
                 </div>
                 <admin-address label="آدرس:" :address="user.data.address"/>
+                <textarea name="" id="" class="admin_inputs">{{user.data.address.address}}</textarea>
             </div>
         </div>
     </Layout>
