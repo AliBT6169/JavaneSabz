@@ -6,6 +6,7 @@ import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AddressSelectOptionBt from "@/Pages/Components/Form/addressSelectOptionBT.vue";
 import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
 import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
+import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 
 const props = defineProps({
     user: null,
@@ -51,6 +52,10 @@ console.log(props.user.data)
                 </div>
                 <admin-address label="آدرس:" :address="user.data.address"/>
                 <textarea name="" id="" class="admin_inputs">{{user.data.address.address}}</textarea>
+                <div class="*:text-center md:!justify-end">
+                    <admin-button text="ثبت" type="submit" @clicked="console.log('submit')"/>
+                    <admin-button text="لغو" type="cancel" @clicked="console.log('cancel')"/>
+                </div>
             </div>
         </div>
     </Layout>
