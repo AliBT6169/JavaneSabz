@@ -15,6 +15,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/user/index', 'index')->name('users.index');
         Route::get('/user/{id}', 'edit')->name('users.edit');
+        Route::post('/user', 'update')->name('users.update');
         Route::delete('/user/{id}', 'destroy')->name('users.destroy');
     });
 });

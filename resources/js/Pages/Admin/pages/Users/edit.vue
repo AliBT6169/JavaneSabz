@@ -7,6 +7,9 @@ import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import {ref} from "vue";
 import {Link} from "@inertiajs/vue3";
+import {useToast} from "vue-toastification";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import axios from "axios";
 
 const props = defineProps({
     user: null,
@@ -36,7 +39,27 @@ const onFileChange = (event) => {
         form.value.image = '';
     }
 }
-console.log(props.user.data)
+const changeData = async () => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا مطمعن به تغییر اطلاعات کاربر هستید؟'
+        },
+        listeners: {
+            set: async () => {
+                await axios.post(route('admin.users.update', form.value)).then((res) => {
+                    console.log(res.data);
+                    toast.success('عملیات موفقیت آمیز بود')
+                }).catch((err) => {
+                    toast.error(err.response.data.message)
+                    console.log(err)
+                })
+            }
+        }
+    }
+    let toast = useToast();
+    toast.warning(content)
+}
 </script>
 
 <template>
@@ -88,7 +111,7 @@ console.log(props.user.data)
                 <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{user.data.address.address}}</textarea>
                 <div class="*:text-center md:!justify-end">
-                    <admin-button text="ثبت" type="submit" @click="console.log(form)"/>
+                    <admin-button text="ثبت" type="submit" @click="changeData"/>
                     <Link :href="route('admin.users.index')">
                         <admin-button text="لغو" type="cancel"/>
                     </Link>

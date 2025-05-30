@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
 use App\Http\Resources\Admin\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,5 +30,10 @@ class UserController extends Controller
     {
         $user = UserResource::make(User::whereId($id)->first());
         return Inertia::render('Admin/pages/Users/edit', ['user' => $user]);
+    }
+
+    public function update(UserRequest $request)
+    {
+        return $request;
     }
 }
