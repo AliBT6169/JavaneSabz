@@ -3,7 +3,7 @@ import {onMounted, ref} from "vue";
 
 const props = defineProps({
     label: null,
-    address:null
+    address: null
 });
 
 const province = ref(null);
@@ -12,13 +12,17 @@ const provinces = ref();
 const cities = ref();
 const emit = defineEmits(["updateValue"]);
 
-onMounted(() => {
-    axios.get(route('provinces')).then((res) => {
+onMounted(async () => {
+    await axios.get(route('provinces')).then((res) => {
         provinces.value = res.data;
     }).catch((err) => {
         console.log(err)
     });
-
+    await axios.get(route('cities', {province_id: province.value.value})).then((res) => {
+        cities.value = res.data;
+    }).catch((err) => {
+        console.log(err);
+    });
 })
 
 const getCities = async () => {
