@@ -3,14 +3,25 @@ import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
-import AddressSelectOptionBt from "@/Pages/Components/Form/addressSelectOptionBT.vue";
-import PanelInput from "@/Pages/Components/Panel/panel-input.vue";
 import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
+import {ref} from "vue";
 
 const props = defineProps({
     user: null,
 });
+
+const form = ref({
+    full_name: props.user.data.full_name,
+    user_name: props.user.data.user_name,
+    image: props.user.data.user_image,
+    gender: props.user.data.gender,
+    email: props.user.data.email,
+    cellphone: props.user.data.cellphone,
+    postal_code: props.user.data.postal_code,
+    city: props.user.data.address.city_id,
+    address: props.user.data.address.address,
+})
 console.log(props.user.data)
 </script>
 
@@ -29,32 +40,40 @@ console.log(props.user.data)
             <div
                 class="space-y-6 *:space-y-6 *:md:space-y-0 *:md:flex *:md:justify-between *:md:items-center *:md:gap-6">
                 <div class="">
-                    <AdminInput name="نام و نام خانوادگی" :default_value="user.data.full_name"/>
-                    <AdminInput name="نام کاربری" :default_value="user.data.user_name"/>
+                    <AdminInput name="نام و نام خانوادگی" @changed="(e)=>form.full_name=e"
+                                :default_value="user.data.full_name"/>
+                    <AdminInput name="نام کاربری" @changed="(e)=>form.user_name=e"
+                                :default_value="user.data.user_name"/>
                 </div>
                 <div class="">
-                    <AdminInput name="شماره تماس" :default_value="user.data.cellphone"/>
-                    <AdminInput name="ایمیل" :default_value="user.data.email"/>
+                    <AdminInput name="شماره تماس" @changed="(e)=>form.cellphone=e"
+                                :default_value="user.data.cellphone"/>
+                    <AdminInput name="ایمیل" @changed="(e)=>form.email=e"
+                                :default_value="user.data.email"/>
                 </div>
                 <div class="">
-                    <AdminInput name="کد پستی" :default_value="user.data.postal_code"/>
+                    <AdminInput name="کد پستی" @changed="(e)=>form.postal_code=e"
+                                :default_value="user.data.postal_code"/>
                     <div class="w-full">
                         <div class="text-sm px-3">جنسیت :</div>
                         <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2
                 focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4">
                             <label for="man">آقا</label>
-                            <input :checked="user.data.gender" type="radio" id="man" name="gender"
+                            <input :checked="user.data.gender" @change="form.gender=1" type="radio" id="man"
+                                   name="gender"
                                    class="text-adminColor2 cursor-pointer  focus:ring-0 dark:text-adminColor3">
                             <label for="woman">خانم</label>
-                            <input :checked="!user.data.gender" type="radio" id="woman" name="gender"
+                            <input :checked="!user.data.gender" @change="form.gender=0" type="radio" id="woman"
+                                   name="gender"
                                    class="text-adminColor2 cursor-pointer focus:ring-0 dark:text-adminColor3">
                         </div>
                     </div>
                 </div>
-                <admin-address label="آدرس:" :address="user.data.address"/>
-                <textarea name="" id="" class="admin_inputs">{{user.data.address.address}}</textarea>
+                <admin-address label="آدرس:" @update-value="(e)=>form.city=e" :address="user.data.address"/>
+                <textarea name="" id="" @input="(e)=>form.address=e.target.value"
+                          class="admin_inputs">{{user.data.address.address}}</textarea>
                 <div class="*:text-center md:!justify-end">
-                    <admin-button text="ثبت" type="submit" @clicked="console.log('submit')"/>
+                    <admin-button text="ثبت" type="submit" @clicked="console.log(form)"/>
                     <admin-button text="لغو" type="cancel" @clicked="console.log('cancel')"/>
                 </div>
             </div>
