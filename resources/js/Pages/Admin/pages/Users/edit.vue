@@ -22,6 +22,19 @@ const form = ref({
     city: props.user.data.address.city_id,
     address: props.user.data.address.address,
 })
+const onFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onloadend = (e) => {
+            form.value.image = e.target.result;
+        };
+        reader.readAsDataURL(file);
+
+    } else {
+        form.value.image = '';
+    }
+}
 console.log(props.user.data)
 </script>
 
@@ -32,8 +45,9 @@ console.log(props.user.data)
         <div class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
-                <input type="file" id="image" class="invisible absolute">
-                <img :src="'/'+(user.data.user_image===''?'images/default/default.jpg':user.data.user_image)"
+                <input type="file" id="image" accept="*image/*" class="invisible absolute" @change="onFileChange"
+                       @input="(e)=>form.image = e.target.files[0]">
+                <img :src="form.image === ''?'images/default/default.jpg':form.image"
                      class="size-full"
                      alt="">
             </label>
@@ -70,11 +84,11 @@ console.log(props.user.data)
                     </div>
                 </div>
                 <admin-address label="آدرس:" @update-value="(e)=>form.city=e" :address="user.data.address"/>
-                <textarea name="" id="" @input="(e)=>form.address=e.target.value"
+                <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{user.data.address.address}}</textarea>
                 <div class="*:text-center md:!justify-end">
-                    <admin-button text="ثبت" type="submit" @clicked="console.log(form)"/>
-                    <admin-button text="لغو" type="cancel" @clicked="console.log('cancel')"/>
+                    <admin-button text="ثبت" type="submit" @click=""/>
+                    <admin-button text="لغو" type="cancel" @click=""/>
                 </div>
             </div>
         </div>
