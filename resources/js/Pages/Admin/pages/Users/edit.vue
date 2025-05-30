@@ -6,6 +6,7 @@ import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import {ref} from "vue";
+import {Link} from "@inertiajs/vue3";
 
 const props = defineProps({
     user: null,
@@ -47,27 +48,27 @@ console.log(props.user.data)
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
                 <input type="file" id="image" accept="*image/*" class="invisible absolute" @change="onFileChange"
                        @input="(e)=>form.image = e.target.files[0]">
-                <img :src="form.image === ''?'images/default/default.jpg':form.image"
+                <img :src="form.image === ''?'/images/default/default.jpg':form.image"
                      class="size-full"
                      alt="">
             </label>
             <div
                 class="space-y-6 *:space-y-6 *:md:space-y-0 *:md:flex *:md:justify-between *:md:items-center *:md:gap-6">
                 <div class="">
-                    <AdminInput name="نام و نام خانوادگی" @changed="(e)=>form.full_name=e"
-                                :default_value="user.data.full_name"/>
-                    <AdminInput name="نام کاربری" @changed="(e)=>form.user_name=e"
-                                :default_value="user.data.user_name"/>
+                    <AdminInput name="نام و نام خانوادگی" @changed="form.full_name=$event"
+                                :default_value="form.full_name"/>
+                    <AdminInput name="نام کاربری" @changed="form.user_name=$event"
+                                :default_value="form.user_name"/>
                 </div>
                 <div class="">
-                    <AdminInput name="شماره تماس" @changed="(e)=>form.cellphone=e"
-                                :default_value="user.data.cellphone"/>
-                    <AdminInput name="ایمیل" @changed="(e)=>form.email=e"
-                                :default_value="user.data.email"/>
+                    <AdminInput name="شماره تماس" @changed="form.cellphone=$event"
+                                :default_value="form.cellphone"/>
+                    <AdminInput name="ایمیل" @changed="form.email=$event"
+                                :default_value="form.email"/>
                 </div>
                 <div class="">
-                    <AdminInput name="کد پستی" @changed="(e)=>form.postal_code=e"
-                                :default_value="user.data.postal_code"/>
+                    <AdminInput name="کد پستی" @changed="form.postal_code=$event"
+                                :default_value="form.postal_code"/>
                     <div class="w-full">
                         <div class="text-sm px-3">جنسیت :</div>
                         <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2
@@ -87,8 +88,10 @@ console.log(props.user.data)
                 <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{user.data.address.address}}</textarea>
                 <div class="*:text-center md:!justify-end">
-                    <admin-button text="ثبت" type="submit" @click=""/>
-                    <admin-button text="لغو" type="cancel" @click=""/>
+                    <admin-button text="ثبت" type="submit" @click="console.log(form)"/>
+                    <Link :href="route('admin.users.index')">
+                        <admin-button text="لغو" type="cancel"/>
+                    </Link>
                 </div>
             </div>
         </div>
