@@ -29,17 +29,23 @@ class Gallery extends Model
 
     public static function updateImage($type, $image, $id = 0)
     {
+        $user = Auth::user();
+        if ($id != 0) {
+            $user = User::whereId($id)->first();
+        } else {
+            $id = Auth::id();
+        }
         if ($type == User::class) {
-            if (Auth::user()->gallery!=null)
-                unlink((Auth::user()->gallery->media) ?? '');
-            $URL = 'images/users/' . Auth::id() . '/' . $image->getClientOriginalName();
-            $path = $image->move(public_path('images/users/' . Auth::id() . '/'), $image->getClientOriginalName());
-            if (self::where('gallery_id', Auth::id())->where('gallery_type', User::class)->exists())
-                self::where('gallery_id', Auth::id())->update(['media' => $URL]);
+            if ($user->gallery != null)
+                unlink(($user->gallery->media) ?? '');
+            $URL = 'images/users/' . $id . '/' . $image->getClientOriginalName();
+            $path = $image->move(public_path('images/users/' . $id . '/'), $image->getClientOriginalName());
+            if (self::where('gallery_id', $id)->where('gallery_type', $type)->exists())
+                self::where('gallery_id', $id)->update(['media' => $URL]);
             else
                 self::create([
-                    'gallery_id' => Auth::id(),
-                    'gallery_type' => User::class,
+                    'gallery_id' => $id,
+                    'gallery_type' => $type,
                     'media' => $URL
                 ]);
         }

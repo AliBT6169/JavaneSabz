@@ -30,7 +30,6 @@ class UserRequest extends FormRequest
             'email' => 'required|email',
             'cellphone' => ['required', 'numeric', 'digits:11', 'regex:/^(\+98|0)?9\d{9}$/'],
             'post_code' => 'nullable|numeric|digits:10',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,|max:2048',
             'gender' => 'boolean',
             'city' => 'nullable|numeric',
             'address' => 'nullable|string|nullable',

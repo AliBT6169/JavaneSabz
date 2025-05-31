@@ -67,7 +67,7 @@ class UserController extends Controller
             ]);
         }
 //        user profile image update
-        Gallery::updateImage(User::class, $request->image);
+        Gallery::updateImage(User::class, $request->image,$request->id);
         return 'done';
     }
 }

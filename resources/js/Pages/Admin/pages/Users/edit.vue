@@ -52,7 +52,8 @@ const changeData = async () => {
                 Object.entries(form.value).forEach(([key, value]) => {
                     formData.append(key, value);
                 });
-                await axios.post(route('admin.users.update'),formData).then((res) => {
+                formData.append('image', document.querySelector('#image').files[0]);
+                await axios.post(route('admin.users.update'), formData).then((res) => {
                     console.log(res.data);
                     toast.success('عملیات موفقیت آمیز بود')
                 }).catch((err) => {
@@ -71,7 +72,7 @@ const changeData = async () => {
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
-        <div class="pb-20">
+        <form @submit.prevent="changeData" class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
                 <input type="file" id="image" accept="*image/*" class="invisible absolute" @change="onFileChange"
@@ -122,6 +123,6 @@ const changeData = async () => {
                     </Link>
                 </div>
             </div>
-        </div>
+        </form>
     </Layout>
 </template>
