@@ -16,13 +16,14 @@ const props = defineProps({
 });
 
 const form = ref({
+    id: props.user.data.id,
     full_name: props.user.data.full_name,
     user_name: props.user.data.user_name,
     image: props.user.data.user_image,
     gender: props.user.data.gender,
     email: props.user.data.email,
     cellphone: props.user.data.cellphone,
-    postal_code: props.user.data.postal_code,
+    post_code: props.user.data.postal_code,
     city: props.user.data.address.city_id,
     address: props.user.data.address.address,
 })
@@ -90,8 +91,8 @@ const changeData = async () => {
                                 :default_value="form.email"/>
                 </div>
                 <div class="">
-                    <AdminInput name="کد پستی" @changed="form.postal_code=$event"
-                                :default_value="form.postal_code"/>
+                    <AdminInput name="کد پستی" @changed="form.post_code=$event"
+                                :default_value="form.post_code"/>
                     <div class="w-full">
                         <div class="text-sm px-3">جنسیت :</div>
                         <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2

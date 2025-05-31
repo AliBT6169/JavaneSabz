@@ -24,15 +24,16 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => 'required|exists:users,id',
             'full_name' => 'required',
             'user_name' => 'required',
             'email' => 'required|email',
             'cellphone' => ['required', 'numeric', 'digits:11', 'regex:/^(\+98|0)?9\d{9}$/'],
-            'postal_code' => 'numeric|digits:10',
+            'post_code' => 'nullable|numeric|digits:10',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,|max:2048',
             'gender' => 'boolean',
-            'city' => 'numeric',
-            'address' => 'string|nullable',
+            'city' => 'nullable|numeric',
+            'address' => 'nullable|string|nullable',
         ];
     }
 }

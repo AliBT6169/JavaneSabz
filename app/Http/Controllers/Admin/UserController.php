@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Http\Resources\Admin\UserResource;
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -34,6 +35,36 @@ class UserController extends Controller
 
     public function update(UserRequest $request)
     {
-        return $request;
+        //user update
+        $user = User::whereId($request->id)->first()->update([
+            'full_name' => $request->full_name,
+            'name' => $request->user_name,
+            'email' => $request->email,
+            'cellphone' => $request->cellphone,
+            'gender' => $request->gender,
+        ]);
+        $address = Address::where('addressable_id', $request->id)->where('addressable_type', User::class)->first();
+        if ($address) {
+            $address_validate = $request->validate([
+                'address' => 'required',
+                'city' => 'required',
+                'post_code' => 'required',
+            ]);
+            $address->update([
+                'city_id' => $request->city,
+                'address' => $request->address,
+                'post_code' => $request->post_code,
+            ]);
+            return $address;
+        } else {
+            $address = Address::create([
+                'addressable_id' => $request->id,
+                'addressable_type' => User::class,
+                'city_id' => $request->city,
+                'address' => $request->address ?? '',
+                'post_code' => $request->post_code ?? '1234567890',
+            ]);
+            return $address;
+        }
     }
 }
