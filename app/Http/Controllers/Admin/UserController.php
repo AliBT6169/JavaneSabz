@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Http\Resources\Admin\UserResource;
 use App\Models\Address;
+use App\Models\Gallery;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -35,7 +36,7 @@ class UserController extends Controller
 
     public function update(UserRequest $request)
     {
-        //user update
+//        user update
         $user = User::whereId($request->id)->first()->update([
             'full_name' => $request->full_name,
             'name' => $request->user_name,
@@ -43,6 +44,7 @@ class UserController extends Controller
             'cellphone' => $request->cellphone,
             'gender' => $request->gender,
         ]);
+//        user address update
         $address = Address::where('addressable_id', $request->id)->where('addressable_type', User::class)->first();
         if ($address) {
             $address_validate = $request->validate([
@@ -55,7 +57,6 @@ class UserController extends Controller
                 'address' => $request->address,
                 'post_code' => $request->post_code,
             ]);
-            return $address;
         } else {
             $address = Address::create([
                 'addressable_id' => $request->id,
@@ -64,7 +65,9 @@ class UserController extends Controller
                 'address' => $request->address ?? '',
                 'post_code' => $request->post_code ?? '1234567890',
             ]);
-            return $address;
         }
+//        user profile image update
+        Gallery::updateImage(User::class, $request->image);
+        return 'done';
     }
 }

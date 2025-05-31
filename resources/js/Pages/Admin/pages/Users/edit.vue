@@ -15,7 +15,7 @@ const props = defineProps({
     user: null,
 });
 
-const form = ref({
+const form = new ref({
     id: props.user.data.id,
     full_name: props.user.data.full_name,
     user_name: props.user.data.user_name,
@@ -48,12 +48,16 @@ const changeData = async () => {
         },
         listeners: {
             set: async () => {
-                await axios.post(route('admin.users.update', form.value)).then((res) => {
+                const formData = new FormData();
+                Object.entries(form.value).forEach(([key, value]) => {
+                    formData.append(key, value);
+                });
+                await axios.post(route('admin.users.update'),formData).then((res) => {
                     console.log(res.data);
                     toast.success('عملیات موفقیت آمیز بود')
                 }).catch((err) => {
-                    toast.error(err.response.data.message)
-                    console.log(err)
+                    // toast.error(err.response.data.message)
+                    console.log(err.response)
                 })
             }
         }
