@@ -17,15 +17,15 @@ const props = defineProps({
 
 const form = new ref({
     id: props.user.data.id,
-    full_name: props.user.data.full_name,
-    user_name: props.user.data.user_name,
-    image: props.user.data.user_image,
-    gender: props.user.data.gender,
-    email: props.user.data.email,
-    cellphone: props.user.data.cellphone,
-    post_code: props.user.data.postal_code,
-    city: props.user.data.address.city_id,
-    address: props.user.data.address.address,
+    full_name: props.user.data.full_name ?? '',
+    user_name: props.user.data.user_name ?? '',
+    image: props.user.data.user_image ?? '',
+    gender: props.user.data.gender ?? '',
+    email: props.user.data.email ?? '',
+    cellphone: props.user.data.cellphone ?? '',
+    post_code: props.user.data.postal_code ?? '',
+    city: props.user.data.address.city_id ?? '',
+    address: props.user.data.address.address ?? '',
 })
 const onFileChange = (event) => {
     const file = event.target.files[0];
@@ -53,11 +53,12 @@ const changeData = async () => {
                     formData.append(key, value);
                 });
                 formData.append('image', document.querySelector('#image').files[0]);
+                console.log(formData)
                 await axios.post(route('admin.users.update'), formData).then((res) => {
                     console.log(res.data);
                     toast.success('عملیات موفقیت آمیز بود')
                 }).catch((err) => {
-                    // toast.error(err.response.data.message)
+                    toast.error(err.response.data.message)
                     console.log(err.response)
                 })
             }

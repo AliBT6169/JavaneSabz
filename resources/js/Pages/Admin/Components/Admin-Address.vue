@@ -12,12 +12,24 @@ const cities = ref();
 const emit = defineEmits(["updateValue"]);
 
 onMounted(async () => {
+    if (props.addres != null) {
+        await axios.get(route('provinces')).then((res) => {
+            provinces.value = res.data;
+        }).catch((err) => {
+            console.log(err)
+        });
+        await axios.get(route('cities', {province_id: province.value.value})).then((res) => {
+            cities.value = res.data;
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
     await axios.get(route('provinces')).then((res) => {
         provinces.value = res.data;
     }).catch((err) => {
         console.log(err)
     });
-    await axios.get(route('cities', {province_id: province.value.value})).then((res) => {
+    await axios.get(route('cities', 1)).then((res) => {
         cities.value = res.data;
     }).catch((err) => {
         console.log(err);

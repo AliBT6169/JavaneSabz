@@ -31,8 +31,7 @@ class UserRequest extends FormRequest
             'cellphone' => ['required', 'numeric', 'digits:11', 'regex:/^(\+98|0)?9\d{9}$/'],
             'post_code' => 'nullable|numeric|digits:10',
             'gender' => 'boolean',
-            'city' => 'nullable|numeric',
-            'address' => 'nullable|string|nullable',
+            'address' => 'nullable|string',
         ];
     }
 }

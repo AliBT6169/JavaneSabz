@@ -45,29 +45,32 @@ class UserController extends Controller
             'gender' => $request->gender,
         ]);
 //        user address update
-        $address = Address::where('addressable_id', $request->id)->where('addressable_type', User::class)->first();
-        if ($address) {
+        if ($request->city != '' || $request->address != '' || $request->post_code != '') {
             $address_validate = $request->validate([
-                'address' => 'required',
-                'city' => 'required',
-                'post_code' => 'required',
+                'address' => 'required|string',
+                'city' => 'required|numeric',
+                'post_code' => 'required|numeric|digits:10',
             ]);
-            $address->update([
-                'city_id' => $request->city,
-                'address' => $request->address,
-                'post_code' => $request->post_code,
-            ]);
-        } else {
-            $address = Address::create([
-                'addressable_id' => $request->id,
-                'addressable_type' => User::class,
-                'city_id' => $request->city,
-                'address' => $request->address ?? '',
-                'post_code' => $request->post_code ?? '1234567890',
-            ]);
+            $address = Address::where('addressable_id', $request->id)->where('addressable_type', User::class)->first();
+            if ($address) {
+                $address->update([
+                    'city_id' => $address_validate['city'],
+                    'address' => $address_validate['address'],
+                    'postcode' => $address_validate['post_code'],
+                ]);
+            } else {
+                $address = Address::create([
+                    'addressable_id' => $request->id,
+                    'addressable_type' => User::class,
+                    'city_id' => $address_validate['city'],
+                    'address' => $address_validate['address'] ?? '',
+                    'postcode' => $address_validate['post_code'] ?? '1234567890',
+                ]);
+            }
         }
 //        user profile image update
-        Gallery::updateImage(User::class, $request->image,$request->id);
+        if ($request->hasFile('image'))
+            Gallery::updateImage(User::class, $request->image, $request->id);
         return 'done';
     }
 }
