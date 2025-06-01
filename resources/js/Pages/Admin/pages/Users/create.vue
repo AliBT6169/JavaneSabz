@@ -13,11 +13,10 @@ import axios from "axios";
 import {useToast} from "vue-toastification";
 
 const form = new ref({
-    id: '',
     full_name: '',
     user_name: '',
     image: '',
-    gender: '',
+    gender: 1,
     email: '',
     cellphone: '',
     post_code: '',
