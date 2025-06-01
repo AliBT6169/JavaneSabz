@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UserRequest;
+use App\Http\Requests\Admin\UserUpdateRequest;
 use App\Http\Resources\Admin\UserResource;
 use App\Models\Address;
 use App\Models\Gallery;
@@ -24,7 +24,7 @@ class UserController extends Controller
         return Inertia::render('Admin/pages/Users/create');
     }
 
-    public function store(UserRequest $request)
+    public function store(UserUpdateRequest $request)
     {
         return $request;
     }
@@ -44,7 +44,7 @@ class UserController extends Controller
         return Inertia::render('Admin/pages/Users/edit', ['user' => $user]);
     }
 
-    public function update(UserRequest $request)
+    public function update(UserUpdateRequest $request)
     {
 //        user update
         $user = User::whereId($request->id)->first()->update([
@@ -79,8 +79,12 @@ class UserController extends Controller
             }
         }
 //        user profile image update
-        if ($request->hasFile('image'))
+        if ($request->hasFile('image')) {
+            $validatedImage = $request->validate([
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             Gallery::updateImage(User::class, $request->image, $request->id);
+        }
         return 'done';
     }
 }
