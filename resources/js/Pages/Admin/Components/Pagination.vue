@@ -19,6 +19,9 @@ const props = defineProps({
         <Link :class="{'!bg-opacity-50':links.prev===null}" :href="links.prev">
             <svg-component name="arrow-left" class="size-4 sm:size-5 rotate-180"/>
         </Link>
+        <Link :href="route('admin.users.create')">
+            افزودن
+        </Link>
         <Link :class="{'!bg-opacity-50':links.next===null}" :href="links.next">
             <svg-component name="arrow-left" class="size-4 sm:size-5"/>
         </Link>

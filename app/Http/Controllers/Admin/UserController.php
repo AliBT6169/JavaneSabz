@@ -19,6 +19,16 @@ class UserController extends Controller
         return Inertia::render('Admin/pages/Users/index', ['userData' => $userData]);
     }
 
+    public function create()
+    {
+        return Inertia::render('Admin/pages/Users/create');
+    }
+
+    public function store(UserRequest $request)
+    {
+        return $request;
+    }
+
     public function destroy($id)
     {
         User::destroy($id);
