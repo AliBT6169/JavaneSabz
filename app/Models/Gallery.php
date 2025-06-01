@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class Gallery extends Model
 {
@@ -37,8 +38,9 @@ class Gallery extends Model
         }
         if ($type == User::class) {
             if ($user->gallery != null)
-                unlink(($user->gallery->media) ?? '');
-            $URL = 'images/users/' . $id . '/' . $image->getClientOriginalName();
+                if (File::exists($user->gallery->media))
+                    unlink(($user->gallery->media));
+            $URL = '/images/users/' . $id . '/' . $image->getClientOriginalName();
             $path = $image->move(public_path('images/users/' . $id . '/'), $image->getClientOriginalName());
             if (self::where('gallery_id', $id)->where('gallery_type', $type)->exists())
                 self::where('gallery_id', $id)->update(['media' => $URL]);
