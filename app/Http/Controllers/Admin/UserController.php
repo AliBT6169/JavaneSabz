@@ -28,6 +28,7 @@ class UserController extends Controller
 
     public function store(UserCreateRequest $request)
     {
+//        save user section
         $user = User::create([
             'full_name' => $request->full_name,
             'name' => $request->user_name,
@@ -36,7 +37,22 @@ class UserController extends Controller
             'cellphone' => $request->cellphone,
             'gender' => $request->gender,
         ]);
-        return $request;
+//        save user address section
+        if ($request->city != '' || $request->address != '' || $request->post_code != '') {
+            $address_validate = $request->validate([
+                'address' => 'required|string',
+                'city' => 'required|numeric',
+                'post_code' => 'required|numeric|digits:10',
+            ]);
+            $address = Address::create([
+                'addressable_id' => $user->id,
+                'addressable_type' => User::class,
+                'city_id' => $address_validate['city'],
+                'address' => $address_validate['address'] ?? '',
+                'postcode' => $address_validate['post_code'] ?? '1234567890',
+            ]);
+        }
+        return UserResource::make($user);
     }
 
     public function destroy($id)
