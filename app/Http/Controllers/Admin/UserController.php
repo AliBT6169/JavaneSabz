@@ -52,6 +52,14 @@ class UserController extends Controller
                 'postcode' => $address_validate['post_code'] ?? '1234567890',
             ]);
         }
+//        save uer picture section
+        if ($request->hasFile('image')) {
+            $validatedImage = $request->validate([
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            Gallery::updateImage(User::class, $request->image, $user->id);
+        }
+
         return UserResource::make($user);
     }
 
