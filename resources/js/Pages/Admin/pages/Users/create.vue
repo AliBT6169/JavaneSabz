@@ -18,6 +18,8 @@ const form = new ref({
     image: '',
     gender: 1,
     email: '',
+    password: '',
+    password_confirmation: '',
     cellphone: '',
     post_code: '',
     city: '',
@@ -44,19 +46,23 @@ const saveChanges = async () => {
         },
         listeners: {
             set: async () => {
-                const formData = new FormData();
-                Object.entries(form.value).forEach(([key, value]) => {
-                    formData.append(key, value);
-                });
-                formData.append('image', document.querySelector('#image').files[0]);
-                console.log(formData)
-                await axios.post(route('admin.users.store'), formData).then((res) => {
-                    console.log(res.data);
-                    toast.success('عملیات موفقیت آمیز بود')
-                }).catch((err) => {
-                    toast.error(err.response.data.message)
-                    console.log(err.response)
-                })
+                if (form.value.password === form.value.password_confirmation) {
+                    const formData = new FormData();
+                    Object.entries(form.value).forEach(([key, value]) => {
+                        formData.append(key, value);
+                    });
+                    formData.append('image', document.querySelector('#image').files[0]);
+                    console.log(formData)
+                    await axios.post(route('admin.users.store'), formData).then((res) => {
+                        console.log(res.data);
+                        toast.success('عملیات موفقیت آمیز بود')
+                    }).catch((err) => {
+                        toast.error(err.response.data.message)
+                        console.log(err.response)
+                    })
+                }else {
+                    toast.error('رمز عبور باید با تائید رمز عبور یکی باشد!');
+                }
             }
         }
     }
@@ -92,6 +98,12 @@ const saveChanges = async () => {
                                 :default_value="form.cellphone"/>
                     <AdminInput name="ایمیل" @changed="form.email=$event"
                                 :default_value="form.email"/>
+                </div>
+                <div class="">
+                    <AdminInput type="password" name="رمز عبور" @changed="form.password=$event"
+                                :default_value="form.password"/>
+                    <AdminInput type="password" name="تایید رمز عبور" @changed="form.password_confirmation=$event"
+                                :default_value="form.password_confirmation"/>
                 </div>
                 <div class="">
                     <AdminInput name="کد پستی" @changed="form.post_code=$event"
