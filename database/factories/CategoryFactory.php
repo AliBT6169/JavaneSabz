@@ -24,7 +24,7 @@ class CategoryFactory extends Factory
             'slug' => $slug,
             'description' => Faker::sentence(),
             'is_active' => rand(0, 1),
-            'icon' => fake()->imageUrl(),
+            'icon' => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
         ];
     }
 }
