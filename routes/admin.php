@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +25,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('/product/index', 'index')->name('products.index');
         Route::get('/product', 'create')->name('products.create');
+    });
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/categories', 'show')->name('categories.show');
     });
 });
 

@@ -11,6 +11,7 @@ import {onMounted, ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios from "axios";
 import {useToast} from "vue-toastification";
+import CategoryInput from "@/Pages/Admin/Components/CategoryInput.vue";
 
 const form = new ref({
     name: '',
@@ -99,9 +100,9 @@ const dataChanged = (key, value) => {
                         </div>
                     </div>
                 </div>
-<!--                brand & categories section-->
+                <!--                brand & categories section-->
                 <div class="">
-                    <div class=""></div>
+                    <CategoryInput/>
                     <div class=""></div>
                 </div>
                 <textarea name="" id="" @input="(e)=>form.description = e.target.value"

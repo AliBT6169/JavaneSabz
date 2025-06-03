@@ -17,9 +17,11 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $name = Faker::firstName();
+        $slug = $name . '-' . Faker::firstName() . '-' . Faker::firstName();
         return [
-            'name' => Faker::firstName(),
-            'slug' => fake()->unique()->slug(),
+            'name' => $name,
+            'slug' => $slug,
             'description' => Faker::sentence(),
             'is_active' => rand(0, 1),
             'icon' => fake()->imageUrl(),
