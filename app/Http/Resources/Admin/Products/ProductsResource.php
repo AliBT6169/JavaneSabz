@@ -18,8 +18,20 @@ class ProductsResource extends JsonResource
             'name' => $this->name,
             'brand' => $this->brand->name,
             'category' => $this->category->name,
-            'variations' => $this->product_variations,
+            'variations' => self::getVariations($this->product_variations),
             'image' => $this->primary_image,
         ];
+    }
+
+    public static function getVariations($variations)
+    {
+        $data = [];
+        foreach ($variations as $variation) {
+            $data[] = [
+                'name' => $variation->value,
+            ];
+        }
+        return $data;
+
     }
 }
