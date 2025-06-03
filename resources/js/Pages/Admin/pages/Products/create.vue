@@ -103,7 +103,7 @@ const dataChanged = (key, value) => {
                 <!--                brand & categories section-->
                 <div class="">
                     <CategoryInput/>
-                    <div class=""></div>
+                    <CategoryInput/>
                 </div>
                 <textarea name="" id="" @input="(e)=>form.description = e.target.value"
                           class="admin_inputs">{{form.description}}</textarea>
