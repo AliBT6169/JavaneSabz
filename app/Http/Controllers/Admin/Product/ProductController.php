@@ -15,4 +15,9 @@ class ProductController extends Controller
         $products = ProductsResource::collection(Product::paginate(20));
         return Inertia::render('Admin/pages/Products/index', ['products' => $products]);
     }
+
+    public function create()
+    {
+        return Inertia::render('Admin/pages/Products/create');
+    }
 }

@@ -19,6 +19,6 @@ console.log(props.products)
         <div class="flex p-4 flex-wrap gap-10 justify-center">
             <Product v-for="item in products.data" :product="item"/>
         </div>
-        <Pagination :links="products.links" :meta="products.meta" />
+        <Pagination :links="products.links" :meta="products.meta" create-link="admin.products.create"/>
     </Layout>
 </template>
