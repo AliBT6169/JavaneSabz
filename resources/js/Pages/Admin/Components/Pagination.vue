@@ -6,6 +6,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 const props = defineProps({
     links: null,
     meta: null,
+    createLink: '#',
 })
 </script>
 
@@ -19,7 +20,7 @@ const props = defineProps({
         <Link :class="{'!bg-opacity-50':links.prev===null}" :href="links.prev">
             <svg-component name="arrow-left" class="size-4 sm:size-5 rotate-180"/>
         </Link>
-        <Link :href="route('admin.users.create')">
+        <Link :href="route(createLink)">
             افزودن
         </Link>
         <Link :class="{'!bg-opacity-50':links.next===null}" :href="links.next">

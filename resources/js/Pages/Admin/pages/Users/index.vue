@@ -74,7 +74,7 @@ const userDelete = async (id) => {
                     <td class="hidden md:table-cell truncate">{{ user.email }}</td>
                 </tr>
             </table>
-            <Pagination :links="userData.links" :meta="userData.meta"/>
+            <Pagination :links="userData.links" :meta="userData.meta" create-link="admin.users.create"/>
         </div>
     </Layout>
 </template>
