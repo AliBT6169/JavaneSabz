@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::get('/user/{id}', 'edit')->name('users.edit');
         Route::put('/user/', 'update')->name('users.update');
         Route::delete('/user/{id}', 'destroy')->name('users.destroy');
+    });
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/product/index', 'index')->name('products.index');
     });
 });
 
