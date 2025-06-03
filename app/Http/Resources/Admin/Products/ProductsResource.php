@@ -15,11 +15,13 @@ class ProductsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'brand' => $this->brand->name,
             'category' => $this->category->name,
             'variations' => self::getVariations($this->product_variations),
             'image' => $this->primary_image,
+            'is_active' => $this->is_active,
         ];
     }
 
