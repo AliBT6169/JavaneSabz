@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -36,4 +38,10 @@ Route::controller(AddressController::class)->group(function () {
     Route::get('/provinces', 'provinces')->name('provinces');
 });
 
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/categories', 'show')->name('categories.show');
+});
+Route::controller(BrandController::class)->group(function () {
+    Route::get('/brands', 'show')->name('brands.show');
+});
 require __DIR__ . '/auth.php';

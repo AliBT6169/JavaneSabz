@@ -16,8 +16,8 @@ import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 const form = new ref({
     name: '',
     brand: '',
-    image: '',
     category: '',
+    image: '',
     description: '',
     is_active: 1,
 })
@@ -102,8 +102,10 @@ const dataChanged = (key, value) => {
                 </div>
                 <!--                brand & categories section-->
                 <div class="">
-                    <AdminDataList @selected="form.category=$event" route="admin.categories.show"/>
-<!--                    <AdminDataList/>-->
+                    <!--                    categories-->
+                    <AdminDataList @selected="form.category=$event" label="دسته بندی" route="categories.show"/>
+                    <!--                    brands-->
+                    <AdminDataList @selected="form.brand=$event" label="برند" route="brands.show"/>
                 </div>
                 <textarea name="" id="" @input="(e)=>form.description = e.target.value"
                           class="admin_inputs">{{form.description}}</textarea>

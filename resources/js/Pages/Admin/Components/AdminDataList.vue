@@ -2,7 +2,8 @@
 import {onMounted, ref} from "vue";
 
 const props = defineProps({
-    route: ''
+    route: '',
+    label: ''
 });
 const emit = defineEmits({
     selected: null,
@@ -25,8 +26,11 @@ const dataSender = (value) => {
 </script>
 
 <template>
-    <input class="admin_inputs" list="dataList" name="DataList" @input="dataSender($event.target.value)">
-    <datalist id="dataList">
-        <option v-for="item in listData" :value="item.name">{{ item.name }}</option>
-    </datalist>
+    <div class="w-full">
+        <div class="text-sm px-3">{{ label }} :</div>
+        <input class="admin_inputs" :list="'dataList'+label" name="DataList" @input="dataSender($event.target.value)">
+        <datalist :id="'dataList'+label">
+            <option v-for="item in listData" :value="item.name">{{ item.name }}</option>
+        </datalist>
+    </div>
 </template>
