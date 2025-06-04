@@ -12,7 +12,8 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
     <div class="fixed top-0 right-0 px-1 z-30 sm:px-5 bg-adminColor1 w-screen h-16 border-b border-b-gray-700/50 flex items-center justify-between
                 after:shadow-inner after:shadow-gray-500/40 after:absolute after:top-16 after:w-screen after:-mr-5 after:h-2 dark:bg-adminColor3/60">
         <!--        rightSide-->
-        <div class="flex gap-2 sm:gap-5 items-center *:select-none *:cursor-pointer text-adminColor3 dark:text-adminColor2">
+        <div
+            class="flex gap-2 sm:gap-5 items-center *:select-none *:cursor-pointer text-adminColor3 dark:text-adminColor2">
             <div @click="useAdminStore().SideBar = !useAdminStore().SideBar">
                 <svg-component name="admin-menu" class="size-7 sm:size-10"/>
             </div>
@@ -31,7 +32,7 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
             <!--            profile picture-->
             <div class="relative group">
                 <div class="rounded-full flex justify-center items-center bg-defaultColor size-12 overflow-hidden">
-                    <img :src="useAuthStore().user.image" class="scale-105" alt="">
+                    <img :src="'/'+useAuthStore().user.image" class="scale-105" alt="">
                 </div>
                 <div class="invisible z-10 opacity-0 absolute duration-300 pt-4 top-28 left-0
                 group-hover:visible group-hover:opacity-100 group-hover:top-10">
