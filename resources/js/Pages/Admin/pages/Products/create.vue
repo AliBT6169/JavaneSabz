@@ -11,7 +11,7 @@ import {onMounted, ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios from "axios";
 import {useToast} from "vue-toastification";
-import CategoryInput from "@/Pages/Admin/Components/CategoryInput.vue";
+import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 
 const form = new ref({
     name: '',
@@ -102,8 +102,8 @@ const dataChanged = (key, value) => {
                 </div>
                 <!--                brand & categories section-->
                 <div class="">
-                    <CategoryInput/>
-                    <CategoryInput/>
+                    <AdminDataList @selected="form.category=$event" route="admin.categories.show"/>
+<!--                    <AdminDataList/>-->
                 </div>
                 <textarea name="" id="" @input="(e)=>form.description = e.target.value"
                           class="admin_inputs">{{form.description}}</textarea>
