@@ -112,7 +112,7 @@ const dataChanged = (key, value) => {
                     <textarea name="" id="" @input="(e)=>form.description = e.target.value"
                               class="admin_inputs">{{form.description}}</textarea>
                 </div>
-                <div class="flex">
+                <div class="flex justify-center flex-wrap gap-5 !space-y-0">
                     <product-variation-modal v-for="(item,index) in 5" :component_index="index"/>
 
                 </div>
