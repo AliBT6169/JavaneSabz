@@ -45,8 +45,9 @@ const addImage = (event) => {
 
     }
 }
-const changeImage = (index) => {
-    console.log(VariationImages.value)
+const changeImage = (event, index) => {
+    console.log(index)
+    console.log(VariationImages.value.length)
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -66,10 +67,12 @@ const changeImage = (index) => {
          @click="modal_status = true">
         <form :class="{'hidden':!modal_status}" class="w-full">
             <div class="flex gap-5 flex-wrap justify-center">
-                <label v-for="(item, index) in VariationImages" :for="'variation-image' + component_index" class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
+                <label v-for="(item, index) in VariationImages" :key="index"
+                       :for="'variation-image' + index"
+                       class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
-                    <input type="file" :id="'variation-image' + component_index" accept="*image/*"
-                           class="invisible absolute" @input="changeImage(index)">
+                    <input type="file" :id="'variation-image' + index" accept="*image/*"
+                           class="invisible absolute" @input="changeImage($event ,index)">
                     <img
                         :src="item"
                         class="size-full"

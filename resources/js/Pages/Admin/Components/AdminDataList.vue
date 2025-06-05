@@ -12,7 +12,6 @@ const listData = ref();
 onMounted(async () => {
     await axios.get(route(props.route)).then((res) => {
         listData.value = res.data.data;
-        console.log(res.data.data);
     }).catch((err) => {
         console.log(err.data);
     });
