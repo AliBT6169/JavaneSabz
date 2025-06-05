@@ -12,6 +12,7 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios from "axios";
 import {useToast} from "vue-toastification";
 import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
+import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 
 const form = new ref({
     name: '',
@@ -107,9 +108,16 @@ const dataChanged = (key, value) => {
                     <!--                    brands-->
                     <AdminDataList @selected="form.brand=$event" label="برند" route="brands.show"/>
                 </div>
-                <textarea name="" id="" @input="(e)=>form.description = e.target.value"
-                          class="admin_inputs">{{form.description}}</textarea>
-                <div class="*:text-center md:!justify-end">
+                <div class="!block !space-y-0">
+                    <div class="pr-3">توضیحات :</div>
+                    <textarea name="" id="" @input="(e)=>form.description = e.target.value"
+                              class="admin_inputs">{{form.description}}</textarea>
+                </div>
+                <div class="flex">
+                <product-variation-modal v-for="item in 5"/>
+
+                </div>
+                <div class="*:text-center md:!justify-end *:my-2">
                     <admin-button text="ثبت" type="submit" @click="saveChanges"/>
                     <Link :href="route('admin.products.index')">
                         <admin-button text="لغو" type="cancel"/>
