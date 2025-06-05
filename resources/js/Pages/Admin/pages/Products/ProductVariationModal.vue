@@ -1,12 +1,19 @@
 <script setup>
-import {ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 
 const modal = ref('');
 const modal_status = ref(false);
-document.addEventListener('click', (e) => {
-    if (e.target !== modal.value)
+const modalCloser = (e) => {
+    if (!modal.value.contains(e.target))
         modal_status.value = false;
-})
+}
+onMounted(() => {
+    document.addEventListener('click', modalCloser);
+});
+
+onBeforeUnmount(() => {
+    document.removeEventListener('click',modalCloser);
+});
 </script>
 
 <template>
