@@ -1,7 +1,6 @@
 <script setup>
 
 import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
-import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import {Link} from "@inertiajs/vue3";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
@@ -114,7 +113,7 @@ const dataChanged = (key, value) => {
                               class="admin_inputs">{{form.description}}</textarea>
                 </div>
                 <div class="flex">
-                <product-variation-modal v-for="item in 5"/>
+                    <product-variation-modal v-for="(item,index) in 5" :component_index="index"/>
 
                 </div>
                 <div class="*:text-center md:!justify-end *:my-2">
