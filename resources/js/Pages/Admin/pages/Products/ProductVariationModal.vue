@@ -9,7 +9,7 @@ const props = defineProps({
 const emit = defineEmits({
     dataSend: null,
 });
-const VariationImages = ref('');
+const VariationImages = ref([]);
 
 const variationData = ref({
     'value': '',
@@ -34,6 +34,29 @@ onMounted(() => {
 onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
+const addImage = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onloadend = (e) => {
+            VariationImages.value.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+
+    }
+}
+const changeImage = (index) => {
+    console.log(VariationImages.value)
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onloadend = (e) => {
+            VariationImages.value[index] = e.target.result;
+        };
+        reader.readAsDataURL(file);
+
+    }
+};
 </script>
 
 <template>
@@ -42,17 +65,26 @@ onBeforeUnmount(() => {
          :class="{'fixed z-50 top-20 size-5/6 py-6':modal_status}"
          @click="modal_status = true">
         <form :class="{'hidden':!modal_status}" class="w-full">
-            <label :for="'variation-image' + component_index" class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
+            <div class="flex gap-5 flex-wrap justify-center">
+                <label v-for="(item, index) in VariationImages" :for="'variation-image' + component_index" class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
-                <input type="file" :id="'variation-image' + component_index" accept="*image/*"
-                       class="invisible absolute"
-                       @change="onFileChange">
-                <img
-                    :src="VariationImages[0] === undefined?'/images/default/product.png':VariationImages[0]"
-                    class="size-full"
-                    alt="">
-            </label>
-            <div class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
+                    <input type="file" :id="'variation-image' + component_index" accept="*image/*"
+                           class="invisible absolute" @input="changeImage(index)">
+                    <img
+                        :src="item"
+                        class="size-full"
+                        alt="">
+                </label>
+                <!--            add image-->
+                <label :for="'add-variation-image' + component_index" class="relative cursor-pointer m-auto duration-300 size-32 rounded-xl border-4 bg-adminColor3 border-adminColor2 flex justify-center items-center
+             dark:border-adminColor3 hover:scale-95 overflow-hidden">
+                    <input type="file" :id="'add-variation-image'+component_index" accept="*image/*"
+                           class="invisible absolute" @input="addImage">
+                    <div class="text-6xl text-center">+</div>
+                </label>
+            </div>
+            <div
+                class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
                 <div class="">
                     <admin-input name="اندازه"/>
                     <admin-input name="وزن"/>
