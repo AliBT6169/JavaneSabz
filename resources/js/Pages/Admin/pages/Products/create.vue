@@ -13,7 +13,8 @@ import {useToast} from "vue-toastification";
 import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 
-const form = new ref({
+const VariationsCount = ref([]);
+const form = ref({
     name: '',
     brand: '',
     category: '',
@@ -112,9 +113,9 @@ const dataChanged = (key, value) => {
                     <textarea name="" id="" @input="(e)=>form.description = e.target.value"
                               class="admin_inputs">{{form.description}}</textarea>
                 </div>
-                <div class="flex justify-center flex-wrap gap-5 !space-y-0">
-                    <product-variation-modal v-for="(item,index) in 5" :component_index="index"/>
-
+                <div class="flex !justify-center flex-wrap gap-5 !space-y-0">
+                    <product-variation-modal v-for="(item, index) in VariationsCount" :component_index="index"/>
+                    <div class="py-10 px-12 rounded-xl cursor-pointer bg-black/30 text-5xl" @click="()=>VariationsCount.push([])">+</div>
                 </div>
                 <div class="*:text-center md:!justify-end *:my-2">
                     <admin-button text="ثبت" type="submit" @click="saveChanges"/>

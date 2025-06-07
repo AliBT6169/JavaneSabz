@@ -2,6 +2,8 @@
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import axios from "axios";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import {Link} from "@inertiajs/vue3";
+import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 
 const props = defineProps({
     component_index: null
@@ -63,8 +65,7 @@ const changeImage = (event, index) => {
 <template>
     <div class="size-40 flex justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
-         :class="{'fixed z-50 top-20 size-5/6 py-6':modal_status}"
-         @click="modal_status = true">
+         :class="{'fixed z-50 top-20 size-5/6 py-6':modal_status}">
         <form :class="{'hidden':!modal_status}" class="w-full">
             <div class="flex gap-5 flex-wrap justify-center">
                 <label v-for="(item, index) in VariationImages" :key="index"
@@ -89,13 +90,20 @@ const changeImage = (event, index) => {
             <div
                 class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
                 <div class="">
-                    <admin-input name="اندازه"/>
-                    <admin-input name="وزن"/>
+                    <admin-input name="اندازه" @changed="variationData.value=$event"/>
+                    <admin-input name="وزن" @changed="variationData.weight=$event"/>
                 </div>
                 <div class="">
-                    <admin-input name="تعداد"/>
-                    <admin-input name="تخفیف"/>
+                    <admin-input name="تعداد" @changed="variationData.quantity=$event"/>
+                    <admin-input name="تخفیف" @changed="variationData.off_sale=$event"/>
                 </div>
+                <div class="!block pl-2 !w-1/2">
+                    <admin-input name="قیمت" @changed="variationData.price=$event"/>
+                </div>
+            </div>
+            <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">
+                <admin-button text="ثبت" @click="console.log(variationData)" type="submit"/>
+                <admin-button text="لغو" type="cancel" @click="modal_status = false"/>
             </div>
         </form>
         <div @click.stop="modal_status = true" class=" cursor-pointer m-auto duration-300 size-full rounded-xl border-4 border-adminColor2
