@@ -13,6 +13,8 @@ const emit = defineEmits({
     dataSend: null,
     delete: null,
 });
+
+const images = new FormData();
 const VariationImages = ref([]);
 
 const variationData = ref({
@@ -27,7 +29,6 @@ const modal_status = ref(false);
 const modalCloser = (e) => {
     if (!modal.value.contains(e.target) && modal_status.value) {
         modal_status.value = false;
-        console.log('closed')
     }
 }
 
@@ -46,33 +47,35 @@ const addImage = (event) => {
             VariationImages.value.push(e.target.result);
         };
         reader.readAsDataURL(file);
-
+        let count = 0;
+        for (let pair of images.entries()) {
+            count++;
+        }
+        images.append('image' + count, event.target.files[0]);
     }
 }
 const changeImage = (event, index) => {
-    console.log(index)
-    console.log(VariationImages.value.length)
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onloadend = (e) => {
             VariationImages.value[index] = e.target.result;
+            images.set('image' + index, event.target.files[0])
         };
         reader.readAsDataURL(file);
-
     }
 };
 const dataSender = () => {
     emit('dataSend', {
-        'images': VariationImages.value,
+        'images': images,
         'data': variationData.value,
-    })
+    });
     modal_status.value = false;
 }
 </script>
 
 <template>
-    <div class="size-40 flex justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
+    <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
          :class="{'fixed z-50 top-20 size-5/6 py-6':modal_status}">
         <form :class="{'hidden':!modal_status}" class="w-full">
@@ -81,7 +84,8 @@ const dataSender = () => {
                        :for="'variation-image' + index"
                        class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden group">
-                    <svg-component @click.stop.prevent="VariationImages.splice(index,1)" name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
+                    <svg-component @click.stop.prevent="VariationImages.splice(index,1), images.delete('image'+index)"
+                                   name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
                     group-hover:right-16"/>
                     <input type="file" :id="'variation-image' + index" accept="*image/*"
                            class="invisible absolute" @input="changeImage($event ,index)">
