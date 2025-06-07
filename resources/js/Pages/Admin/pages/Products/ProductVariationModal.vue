@@ -1,6 +1,6 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
-import axios from "axios";
+import axios, {toFormData} from "axios";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import {Link} from "@inertiajs/vue3";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
@@ -60,6 +60,13 @@ const changeImage = (event, index) => {
 
     }
 };
+const dataSender = () => {
+    emit('dataSend', {
+        'images': VariationImages.value,
+        'data': variationData.value,
+    })
+    modal_status.value = false;
+}
 </script>
 
 <template>
@@ -102,7 +109,7 @@ const changeImage = (event, index) => {
                 </div>
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">
-                <admin-button text="ثبت" @click="console.log(variationData)" type="submit"/>
+                <admin-button text="ثبت" @click="dataSender" type="submit"/>
                 <admin-button text="لغو" type="cancel" @click="modal_status = false"/>
             </div>
         </form>
