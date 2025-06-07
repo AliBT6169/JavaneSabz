@@ -47,8 +47,16 @@ const saveChanges = async () => {
                 const formData = new FormData();
                 toFormData(form.value, formData);
                 formData.append('image', document.querySelector('#image').files[0]);
-                VariationsData.value.map((item) => {
-                    console.log(item)
+                VariationsData.value.map((item, index) => {
+                    formData.append('variation' + index + '_value', item.data.value);
+                    formData.append('variation' + index + '_weight', item.data.weight);
+                    formData.append('variation' + index + '_price', item.data.weight);
+                    formData.append('variation' + index + '_quantity', item.data.quantity);
+                    formData.append('variation' + index + '_off_sale', item.data.off_sale);
+                    item.images.forEach((imageItem, imageIndex) => {
+                        formData.append('variation' + index + '_image' + imageIndex, imageItem)
+                    });
+                    // console.log(formData.get('variation' + index));
                 });
                 console.log(formData);
                 // await axios.post(route('admin.product.store'), formData).then((res) => {
