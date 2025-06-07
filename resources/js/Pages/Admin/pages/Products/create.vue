@@ -14,7 +14,7 @@ import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 
 const VariationsData = ref([]);
-const productImage = ref();
+const productImage = ref('');
 const form = ref({
     name: '',
     brand: '',
@@ -47,6 +47,9 @@ const saveChanges = async () => {
                 const formData = new FormData();
                 toFormData(form.value, formData);
                 formData.append('image', document.querySelector('#image').files[0]);
+                VariationsData.value.map((item) => {
+                    console.log(item)
+                });
                 console.log(formData);
                 // await axios.post(route('admin.product.store'), formData).then((res) => {
                 //     console.log(res.data);
