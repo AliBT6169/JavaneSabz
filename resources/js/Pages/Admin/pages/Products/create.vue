@@ -8,32 +8,32 @@ import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import {onMounted, ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
-import axios from "axios";
+import axios, {toFormData} from "axios";
 import {useToast} from "vue-toastification";
 import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 
 const VariationsData = ref([]);
+const productImage = ref();
 const form = ref({
     name: '',
     brand: '',
     category: '',
-    image: '',
     description: '',
     is_active: 1,
 })
 const onFileChange = (event) => {
     const file = event.target.files[0];
-    form.value.image = event.target.files[0];
+    productImage.value = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onloadend = (e) => {
-            form.value.image = e.target.result;
+            productImage.value = e.target.result;
         };
         reader.readAsDataURL(file);
 
     } else {
-        form.value.image = '';
+        productImage.value = '';
     }
 }
 const saveChanges = async () => {
@@ -45,11 +45,9 @@ const saveChanges = async () => {
         listeners: {
             set: async () => {
                 const formData = new FormData();
-                Object.entries(form.value).forEach(([key, value]) => {
-                    formData.append(key, value);
-                });
+                toFormData(form.value, formData);
                 formData.append('image', document.querySelector('#image').files[0]);
-                console.log(formData)
+                console.log(formData);
                 // await axios.post(route('admin.product.store'), formData).then((res) => {
                 //     console.log(res.data);
                 //     toast.success('عملیات موفقیت آمیز بود')
@@ -63,7 +61,7 @@ const saveChanges = async () => {
     let toast = useToast();
     toast.warning(content)
 }
-const dataChanged = (index, value) => {
+const VariationDataChanged = (index, value) => {
     VariationsData.value[index] = value;
     console.log(VariationsData.value)
 }
@@ -78,7 +76,7 @@ const dataChanged = (index, value) => {
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
                 <input type="file" id="image" accept="*image/*" class="invisible absolute" @change="onFileChange">
-                <img :src="form.image === ''?'/images/default/product.png':form.image"
+                <img :src="productImage === ''?'/images/default/product.png':productImage"
                      class="size-full"
                      alt="">
             </label>
@@ -116,7 +114,8 @@ const dataChanged = (index, value) => {
                 </div>
                 <div class="flex !justify-center flex-wrap gap-5 !space-y-0">
                     <product-variation-modal v-for="(item, index) in VariationsData"
-                                             @dataSend="dataChanged(index,$event)" :component_index="index"/>
+                                             @delete="VariationsData.splice(index,1)"
+                                             @dataSend="VariationDataChanged(index,$event)" :component_index="index"/>
                     <div class="py-10 px-12 rounded-xl cursor-pointer bg-black/30 text-5xl"
                          @click="()=>VariationsData.push([])">+
                     </div>
