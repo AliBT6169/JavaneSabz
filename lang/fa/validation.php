@@ -228,6 +228,16 @@ return [
         "one_people_amount" => "شهریه یک نفره",
         "non_attendance_amount" => "شهریه غیر حضوری",
         "status" => "وضعیت",
+        "brand" => "برند",
+        "category" => "دسته بندی",
+
+
+        'variation.*.value' => 'اندازه محصول',
+        'variation.*.weight' => 'وزن محصول',
+        'variation.*.quantity' => 'تعداد محصول',
+        'variation.*.off_sale' => 'تخفیف محصول',
+        'variation.*.price' => 'قیمت محصول',
+        'variation.*.image.*' => 'تصویر محصول',
 
         "age_range_from" => "سن اول",
         "age_range_to" => "سن دوم",

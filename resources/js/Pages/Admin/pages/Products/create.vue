@@ -46,7 +46,8 @@ const saveChanges = async () => {
             set: async () => {
                 const formData = new FormData();
                 toFormData(form.value, formData);
-                formData.append('image', document.querySelector('#image').files[0]);
+                if (document.querySelector('#image').files[0] != null)
+                    formData.append('image', document.querySelector('#image').files[0]);
                 VariationsData.value.map((item, index) => {
                     formData.append('variation[' + index + '][value]', item.data.value);
                     formData.append('variation[' + index + '][weight]', item.data.weight);
@@ -54,7 +55,7 @@ const saveChanges = async () => {
                     formData.append('variation[' + index + '][quantity]', item.data.quantity);
                     formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
                     item.images.forEach((imageItem, imageIndex) => {
-                        formData.append('variation[' + index + '][image][' + imageIndex +']', imageItem)
+                        formData.append('variation[' + index + '][image][' + imageIndex + ']', imageItem)
                     });
                 });
                 // console.log(formData);
