@@ -49,16 +49,17 @@ const saveChanges = async () => {
                 if (document.querySelector('#image').files[0] != null)
                     formData.append('image', document.querySelector('#image').files[0]);
                 VariationsData.value.map((item, index) => {
-                    formData.append('variation[' + index + '][value]', item.data.value);
-                    formData.append('variation[' + index + '][weight]', item.data.weight);
-                    formData.append('variation[' + index + '][price]', item.data.weight);
-                    formData.append('variation[' + index + '][quantity]', item.data.quantity);
-                    formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
-                    item.images.forEach((imageItem, imageIndex) => {
-                        formData.append('variation[' + index + '][image][' + imageIndex + ']', imageItem)
-                    });
+                    if (item.data !== undefined) {
+                        formData.append('variation[' + index + '][value]', item.data.value);
+                        formData.append('variation[' + index + '][weight]', item.data.weight);
+                        formData.append('variation[' + index + '][price]', item.data.weight);
+                        formData.append('variation[' + index + '][quantity]', item.data.quantity);
+                        formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
+                        item.images.forEach((imageItem, imageIndex) => {
+                            formData.append('variation[' + index + '][image][' + imageIndex + ']', imageItem)
+                        });
+                    }
                 });
-                // console.log(formData);
                 await axios.post(route('admin.products.store'), formData).then((res) => {
                     console.log(res.data);
                     toast.success('عملیات موفقیت آمیز بود')
