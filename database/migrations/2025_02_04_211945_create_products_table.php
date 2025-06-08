@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreignId('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('slug')->unique();
-            $table->string('primary_image');
+            $table->string('primary_image')->nullable();
             $table->text('description');
             $table->integer('status')->default(1);
             $table->boolean('is_active')->default(1);
