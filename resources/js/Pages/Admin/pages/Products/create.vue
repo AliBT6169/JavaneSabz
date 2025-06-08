@@ -60,6 +60,7 @@ const saveChanges = async () => {
                         });
                     }
                 });
+                console.log(formData)
                 await axios.post(route('admin.products.store'), formData).then((res) => {
                     console.log(res.data);
                     toast.success('عملیات موفقیت آمیز بود')

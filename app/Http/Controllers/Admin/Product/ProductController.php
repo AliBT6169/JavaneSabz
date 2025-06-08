@@ -24,6 +24,15 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
+        Product::create([
+            'name' => $request->name,
+            'brand_id' => $request->brand,
+            'category_id' => $request->category,
+            'slug' => $request->name,
+            'primary_image' => $request->image ?? null,
+            'description' => $request->description,
+            'is_active' => $request->is_active,
+        ]);
         return $request;
     }
 }

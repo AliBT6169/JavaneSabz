@@ -230,6 +230,7 @@ return [
         "status" => "وضعیت",
         "brand" => "برند",
         "category" => "دسته بندی",
+        "is_active" => "وضعیت",
 
 
         'variation.*.value' => 'اندازه محصول',

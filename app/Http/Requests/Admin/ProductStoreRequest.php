@@ -27,6 +27,7 @@ class ProductStoreRequest extends FormRequest
             'brand' => 'required|exists:brands,id',
             'category' => 'required|exists:categories,id',
             'description' => 'required|string',
+            'is_active' => 'required|boolean',
             'variation.*.value' => 'required|string|max:50',
             'variation.*.weight' => 'required|numeric',
             'variation.*.quantity' => 'required|numeric|min:1',
