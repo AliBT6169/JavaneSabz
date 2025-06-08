@@ -24,15 +24,21 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
+        $variations = [];
+        foreach ($request->variation as $variation) {
+            $variations [] = $variation;
+        }
+        return $variations;
         Product::create([
             'name' => $request->name,
             'brand_id' => $request->brand,
             'category_id' => $request->category,
             'slug' => $request->name,
-            'primary_image' => $request->image ?? null,
+            'primary_image' => null,
             'description' => $request->description,
             'is_active' => $request->is_active,
         ]);
+
         return $request;
     }
 }
