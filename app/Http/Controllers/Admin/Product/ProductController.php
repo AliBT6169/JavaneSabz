@@ -25,15 +25,20 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
+        $image = $request->file('image');
+        $primaryImageURL = '/images/products/' . $request->name;
+        $path = $image->move(public_path($primaryImageURL), $request->name . $image->getClientOriginalExtension());
+
         $product = Product::create([
             'name' => $request->name,
             'brand_id' => $request->brand,
             'category_id' => $request->category,
             'slug' => $request->name,
-            'primary_image' => null,
+            'primary_image' => $path,
             'description' => $request->description,
             'is_active' => $request->is_active,
         ]);
+
         foreach ($request->variation as $variation) {
             if ($variation['off_sale'] !== null)
                 $salePrice = $variation['price'] - ($variation['off_sale'] * $variation['price'] / 100);
