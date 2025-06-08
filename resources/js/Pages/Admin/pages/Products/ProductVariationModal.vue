@@ -106,14 +106,14 @@ const dataSender = () => {
                 class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
                 <div class="">
                     <admin-input name="اندازه" @changed="variationData.value=$event"/>
-                    <admin-input name="وزن" @changed="variationData.weight=$event"/>
+                    <admin-input name="وزن به KG" @changed="variationData.weight=$event"/>
                 </div>
                 <div class="">
                     <admin-input name="تعداد" @changed="variationData.quantity=$event"/>
-                    <admin-input name="تخفیف" @changed="variationData.off_sale=$event"/>
+                    <admin-input name="تخفیف به %" @changed="variationData.off_sale=$event"/>
                 </div>
                 <div class="!block pl-2 !w-1/2">
-                    <admin-input name="قیمت" @changed="variationData.price=$event"/>
+                    <admin-input name="قیمت به تومان" @changed="variationData.price=$event"/>
                 </div>
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">
