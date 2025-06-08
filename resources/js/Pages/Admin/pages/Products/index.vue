@@ -9,7 +9,6 @@ import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 const props = defineProps({
     products: null,
 });
-console.log(props.products)
 </script>
 
 <template>

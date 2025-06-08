@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Http\Resources\Admin\Products\ProductsResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -19,5 +20,10 @@ class ProductController extends Controller
     public function create()
     {
         return Inertia::render('Admin/pages/Products/create');
+    }
+
+    public function store(ProductStoreRequest $request)
+    {
+        return $request;
     }
 }
