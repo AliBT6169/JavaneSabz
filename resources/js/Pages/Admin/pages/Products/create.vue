@@ -52,7 +52,7 @@ const saveChanges = async () => {
                     if (item.data !== undefined) {
                         formData.append('variation[' + index + '][value]', item.data.value);
                         formData.append('variation[' + index + '][weight]', item.data.weight);
-                        formData.append('variation[' + index + '][price]', item.data.weight);
+                        formData.append('variation[' + index + '][price]', item.data.price);
                         formData.append('variation[' + index + '][quantity]', item.data.quantity);
                         formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
                         item.images.forEach((imageItem, imageIndex) => {

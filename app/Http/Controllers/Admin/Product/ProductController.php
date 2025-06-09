@@ -42,15 +42,15 @@ class ProductController extends Controller
         ]);
 
         foreach ($request->variation as $variation) {
-            if ($variation['off_sale'] !== null)
-                $salePrice = $variation['price'] - ($variation['off_sale'] * $variation['price'] / 100);
+            if ($variation['off_sale'] != null)
+                $salePrice = $variation['price'] - ($variation['off_sale'] * $variation['price']) / 100;
             $productVariation = ProductVariation::create([
                 'product_id' => $product->id,
                 'value' => $variation['value'],
                 'weight' => $variation['weight'],
                 'price' => $variation['price'],
                 'quantity' => $variation['quantity'],
-                'off_sale' => $variation['off_sale'] ?? null,
+                'off_sale' => $variation['off_sale'] ?? 0,
                 'sale_price' => $salePrice,
             ]);
             foreach ($variation['image'] as $variationImage) {
