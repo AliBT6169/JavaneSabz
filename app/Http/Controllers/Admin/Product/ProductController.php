@@ -26,7 +26,11 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
-//        return $request->variation[0]['image'];
+        if ($request->variation == '')
+            return response()->json([
+                'message' => 'ساخت حداقل یک سایز از این محصول نیاز است!',
+                'status' => 400,
+            ]);
         $image = $request->file('image');
         $primaryImageURL = '/images/products/' . $request->name;
         $path = $image->move(public_path($primaryImageURL), $request->name . '.' . $image->getClientOriginalExtension());

@@ -63,7 +63,10 @@ const saveChanges = async () => {
                 console.log(formData)
                 await axios.post(route('admin.products.store'), formData).then((res) => {
                     console.log(res.data);
-                    toast.success('عملیات موفقیت آمیز بود')
+                    if (res.data.status === 400)
+                        toast.error(res.data.message);
+                    else
+                        toast.success('عملیات موفقیت آمیز بود')
                 }).catch((err) => {
                     toast.error(err.response.data.message)
                     console.log(err.response)
