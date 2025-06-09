@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Http\Resources\Admin\Products\ProductsResource;
+use App\Models\Gallery;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
@@ -25,16 +26,17 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
+//        return $request->variation[0]['image'];
         $image = $request->file('image');
         $primaryImageURL = '/images/products/' . $request->name;
-        $path = $image->move(public_path($primaryImageURL), $request->name . $image->getClientOriginalExtension());
+        $path = $image->move(public_path($primaryImageURL), $request->name . '.' . $image->getClientOriginalExtension());
 
         $product = Product::create([
             'name' => $request->name,
             'brand_id' => $request->brand,
             'category_id' => $request->category,
             'slug' => $request->name,
-            'primary_image' => $path,
+            'primary_image' => $primaryImageURL . '/' . $request->name . '.' . $image->getClientOriginalExtension(),
             'description' => $request->description,
             'is_active' => $request->is_active,
         ]);
@@ -51,6 +53,9 @@ class ProductController extends Controller
                 'off_sale' => $variation['off_sale'] ?? null,
                 'sale_price' => $salePrice,
             ]);
+            foreach ($variation['image'] as $variationImage) {
+                Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
+            }
         }
 
         return [

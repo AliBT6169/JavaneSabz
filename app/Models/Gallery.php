@@ -30,13 +30,13 @@ class Gallery extends Model
 
     public static function updateImage($type, $image, $id = 0)
     {
-        $user = Auth::user();
-        if ($id != 0) {
-            $user = User::whereId($id)->first();
-        } else {
-            $id = Auth::id();
-        }
         if ($type == User::class) {
+            $user = Auth::user();
+            if ($id != 0) {
+                $user = User::whereId($id)->first();
+            } else {
+                $id = Auth::id();
+            }
             if ($user->gallery != null)
                 if (File::exists($user->gallery->media))
                     unlink(($user->gallery->media));
@@ -50,6 +50,15 @@ class Gallery extends Model
                     'gallery_type' => $type,
                     'media' => $URL
                 ]);
+        } elseif ($type == ProductVariation::class) {
+            $before_images = self::where('gallery_id', $id)->where('gallery_type', $type)->get();
+            $URL = '/images/productVariations/' . $id . '/' . $before_images->count() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/productVariations/' . $id . '/'), $before_images->count() . '.' . $image->getClientOriginalExtension());
+            self::create([
+                'gallery_id' => $id,
+                'gallery_type' => $type,
+                'media' => $URL
+            ]);
         }
     }
 }
