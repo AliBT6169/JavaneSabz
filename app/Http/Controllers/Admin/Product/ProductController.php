@@ -8,6 +8,7 @@ use App\Http\Resources\Admin\Products\ProductsResource;
 use App\Models\Gallery;
 use App\Models\Product;
 use App\Models\ProductVariation;
+use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -54,11 +55,12 @@ class ProductController extends Controller
                 'off_sale' => $variation['off_sale'] ?? 0,
                 'sale_price' => $salePrice,
             ]);
-            if (!isset($variation['image']))
-                Gallery::updateImage(ProductVariation::class, $image, $productVariation->id);
-            foreach ($variation['image'] as $variationImage) {
-                Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
-            }
+            if (isset($variation['image']))
+                foreach ($variation['image'] as $variationImage) {
+                    Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
+                }
+            else if ($image instanceof UploadedFile)
+                Gallery::updateImage(ProductVariation::class, $request->image, $productVariation->id);
         }
 
         return response()->json([

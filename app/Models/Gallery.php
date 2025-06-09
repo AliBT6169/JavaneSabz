@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -28,7 +29,7 @@ class Gallery extends Model
         return $this->morphTo();
     }
 
-    public static function updateImage($type, $image, $id = 0)
+    public static function updateImage($type, UploadedFile $image, $id = 0)
     {
         if ($type == User::class) {
             $user = Auth::user();
