@@ -28,8 +28,6 @@ class ProductController extends Controller
     {
         if ($request->variation == '')
             abort(400, 'ساخت حداقل یک سایز از این محصول نیاز است!');
-        if (!isset($request->variation[0]['image']))
-            abort(400, 'عکس برای اندازه محصول الزامی است!');
         $image = $request->file('image');
         $primaryImageURL = '/images/products/' . $request->name;
         $path = $image->move(public_path($primaryImageURL), $request->name . '.' . $image->getClientOriginalExtension());
@@ -56,14 +54,16 @@ class ProductController extends Controller
                 'off_sale' => $variation['off_sale'] ?? 0,
                 'sale_price' => $salePrice,
             ]);
+            if (!isset($variation['image']))
+                Gallery::updateImage(ProductVariation::class, $image, $productVariation->id);
             foreach ($variation['image'] as $variationImage) {
                 Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
             }
         }
 
-        return [
+        return response()->json([
             'message' => 'محصول با موفقیت ساخته شد',
             'status' => '200',
-        ];
+        ]);
     }
 }
