@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Resources\Home\ProductResource;
 use App\Models\BuyCart\BuyCart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -94,7 +95,7 @@ class ProductVariation extends Model
                 "value" => $item->value,
                 "quantity" => $item->quantity,
                 "price" => $item->sale_price,
-                "image" => $item->product->primary_image,
+                "image" => $item->gallery->count() != 0 ? $item->gallery[0]->media : $item->product->primary_image,
                 "is_liked" => Auth::check() ? Wishlist::is_exist(Auth::user()->id, $item->id) : false,
             ];
         }

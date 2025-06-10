@@ -55,12 +55,10 @@ class ProductController extends Controller
                 'off_sale' => $variation['off_sale'] ?? 0,
                 'sale_price' => $salePrice,
             ]);
-            if (isset($variation['image']))
+            if (isset($variation['image']['image0']))
                 foreach ($variation['image'] as $variationImage) {
                     Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
                 }
-            else if ($image instanceof UploadedFile)
-                Gallery::updateImage(ProductVariation::class, $request->image, $productVariation->id);
         }
 
         return response()->json([

@@ -29,7 +29,7 @@ class ProductResource extends JsonResource
                 'name' => $this->product->brand->name,
                 'id' => $this->product->brand->id,
             ],
-            'images' => $this->imageHandler($this->gallery),
+            'images' => self::imageHandler($this->gallery),
             'description' => $this->product->description,
             'quantity' => $this->quantity,
             'price' => $this->price,
@@ -68,7 +68,7 @@ class ProductResource extends JsonResource
         return $result;
     }
 
-    public function imageHandler($images): array
+    public static function imageHandler($images): array
     {
         $result = [];
         foreach ($images as $image) {
