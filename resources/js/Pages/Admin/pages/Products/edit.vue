@@ -13,6 +13,10 @@ import {useToast} from "vue-toastification";
 import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 
+const props = defineProps({
+    Product: null,
+});
+console.log(props.Product.data);
 const VariationsData = ref([]);
 const productImage = ref('');
 const form = ref({

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Admin\Products;
 
+use App\Http\Resources\Admin\ProductVariations\ProductVariationsResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +20,7 @@ class ProductsResource extends JsonResource
             'name' => $this->name,
             'brand' => $this->brand->name,
             'category' => $this->category->name,
-            'variations' => self::getVariations($this->product_variations),
+            'variations' => ProductVariationsResource::collection($this->product_variations),
             'image' => $this->primary_image,
             'is_active' => $this->is_active,
         ];

@@ -53,7 +53,7 @@ const ActiveDeActive = async () => {
                 <div class="">سایزبندی:</div>
                 <div v-for="(variation, index) in product.variations"
                      :class="{'border-l pl-2 border-current':product.variations.length-1> index}">
-                    {{ variation.name }}
+                    {{ variation.value }}
                 </div>
             </div>
         </div>

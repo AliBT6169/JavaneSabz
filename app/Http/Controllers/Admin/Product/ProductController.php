@@ -82,6 +82,7 @@ class ProductController extends Controller
 
     public function edit(int $id)
     {
-        return Inertia::render('Admin/pages/Products/edit');
+        $product = ProductsResource::make(Product::whereId($id)->first());
+        return Inertia::render('Admin/pages/Products/edit',['Product' => $product]);
     }
 }
