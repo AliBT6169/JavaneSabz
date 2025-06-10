@@ -1,10 +1,21 @@
 <script setup>
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
+import {ref} from "vue";
+import {useToast} from "vue-toastification";
 
 const props = defineProps({
     product: null,
 })
+const is_active = ref(props.product.is_active);
+const ActiveDeActive = async () => {
+    await axios.patch(route('admin.products.active_DeActive', {id: props.product.id})).then((res) => {
+        useToast().success(res.data.message);
+        is_active.value = !is_active.value;
+    }).catch((err) => {
+        console.log(err.data)
+    });
+}
 </script>
 
 <template>
@@ -21,13 +32,14 @@ const props = defineProps({
             <div
                 class="p-1 *:px-1 *:border *:cursor-pointer *:duration-300 *:rounded-3xl *:shadow-md *:shadow-gray-500 hover:*:scale-95">
                 <Link href="#"
-                    class="bg-adminColor2">
+                      class="bg-adminColor2">
                     تغییر اطلاعات
                     <svg-component name="edit" class="size-5 inline"/>
                 </Link>
-                <Link href="#" class="bg-green-500" :class="{'!bg-red-500':product.is_active===0}">
-                    {{ product.is_active ? 'فعال' : 'غیر فعال' }}
-                </Link>
+                <div class="bg-green-500 cursor-pointer" @click="ActiveDeActive"
+                     :class="{'!bg-red-500':is_active===false}">
+                    {{ is_active ? 'فعال' : 'غیر فعال' }}
+                </div>
             </div>
             <div class="">
                 <div class="">برند:</div>

@@ -10,14 +10,27 @@ use App\Models\Product;
 use App\Models\ProductVariation;
 use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = ProductsResource::collection(Product::paginate(20));
+        $products = ProductsResource::collection(Product::latest()->paginate(20));
         return Inertia::render('Admin/pages/Products/index', ['products' => $products]);
+    }
+
+    public function active_deActive(int $id)
+    {
+        $productVariation = Product::whereId($id)->update([
+            'is_active' => DB::raw('NOT is_active')
+        ]);
+        return response()->json([
+            'success' => true,
+            'message' => 'عملیات موفقیت آمیز بود',
+            'status' => 200
+        ]);
     }
 
     public function create()
