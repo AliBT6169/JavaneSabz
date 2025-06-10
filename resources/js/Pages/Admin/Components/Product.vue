@@ -31,7 +31,7 @@ const ActiveDeActive = async () => {
             </div>
             <div
                 class="p-1 *:px-1 *:border *:cursor-pointer *:duration-300 *:rounded-3xl *:shadow-md *:shadow-gray-500 hover:*:scale-95">
-                <Link href="#"
+                <Link :href="route('admin.products.edit',{id:product.id})"
                       class="bg-adminColor2">
                     تغییر اطلاعات
                     <svg-component name="edit" class="size-5 inline"/>

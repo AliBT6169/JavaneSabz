@@ -79,4 +79,9 @@ class ProductController extends Controller
             'status' => '200',
         ]);
     }
+
+    public function edit(int $id)
+    {
+        return Inertia::render('Admin/pages/Products/edit');
+    }
 }
