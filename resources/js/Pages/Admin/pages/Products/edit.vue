@@ -58,20 +58,24 @@ const saveChanges = async () => {
                         formData.append('variation[' + index + '][price]', item.data.price);
                         formData.append('variation[' + index + '][quantity]', item.data.quantity);
                         formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
-                        // item.data.passedImages.map()
+                        if (typeof item.data.passedImages !== 'string')
+                            item.data.passedImages.map((passedImage, passed_index) => {
+                                formData.append('variation[' + index + '][passed_image][' + passed_index + '][id]', passedImage.id);
+                                formData.append('variation[' + index + '][passed_image][' + passed_index + '][image]', passedImage.image);
+                            });
                         item.images.forEach((imageItem, imageIndex) => {
                             formData.append('variation[' + index + '][image][' + imageIndex + ']', imageItem)
                         });
                     }
                 });
                 console.log(formData)
-                await axios.post(route('admin.products.store'), formData).then((res) => {
-                    console.log(res.data);
-                    toast.success('عملیات موفقیت آمیز بود')
-                }).catch((err) => {
-                    toast.error(err.response.data.message)
-                    console.log(err.response)
-                })
+                // await axios.post(route('admin.products.store'), formData).then((res) => {
+                //     console.log(res.data);
+                //     toast.success('عملیات موفقیت آمیز بود')
+                // }).catch((err) => {
+                //     toast.error(err.response.data.message)
+                //     console.log(err.response)
+                // })
             }
         }
     }
@@ -120,9 +124,11 @@ const VariationDataChanged = (index, value) => {
                 <!--                brand & categories section-->
                 <div class="">
                     <!--                    categories-->
-                    <AdminDataList @selected="form.category=$event" :default_value="form.brand" label="دسته بندی" route="categories.show"/>
+                    <AdminDataList @selected="form.category=$event" :default_value="form.brand" label="دسته بندی"
+                                   route="categories.show"/>
                     <!--                    brands-->
-                    <AdminDataList @selected="form.brand=$event" :default_value="form.category" label="برند" route="brands.show"/>
+                    <AdminDataList @selected="form.brand=$event" :default_value="form.category" label="برند"
+                                   route="brands.show"/>
                 </div>
                 <div class="!block !space-y-0">
                     <div class="pr-3">توضیحات :</div>

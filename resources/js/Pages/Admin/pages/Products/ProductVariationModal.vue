@@ -19,14 +19,13 @@ const images = new FormData();
 const VariationImages = ref([]);
 
 const variationData = ref({
-    'value': props.variation_data.value,
+    'value': props.variation_data.value ?? '',
     'passedImages': props.variation_data.images ?? [],
-    'weight': props.variation_data.weight,
-    'price': props.variation_data.price,
-    'quantity': props.variation_data.quantity,
-    'off_sale': props.variation_data.off_sale,
+    'weight': props.variation_data.weight ?? '',
+    'price': props.variation_data.price ?? '',
+    'quantity': props.variation_data.quantity ?? '',
+    'off_sale': props.variation_data.off_sale ?? '',
 });
-console.log(variationData.value.passedImages);
 const modal = ref('');
 const modal_status = ref(false);
 const modalCloser = (e) => {
@@ -37,6 +36,10 @@ const modalCloser = (e) => {
 
 onMounted(() => {
     document.addEventListener('click', modalCloser);
+    emit('dataSend', {
+        'images': images,
+        'data': variationData.value,
+    });
 });
 
 onBeforeUnmount(() => {
@@ -83,12 +86,14 @@ const dataSender = () => {
          :class="{'fixed z-50 top-20 size-5/6 py-6':modal_status}">
         <form :class="{'hidden':!modal_status}" class="w-full">
             <div class="flex gap-5 flex-wrap justify-center">
-                <label v-if="typeof variationData.passedImages !=='string'" v-for="(item, index) in variationData.passedImages" :key="index"
+                <label v-if="typeof variationData.passedImages !=='string'"
+                       v-for="(item, index) in variationData.passedImages" :key="index"
                        :for="'variation-image' + index"
                        class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden group">
-                    <svg-component @click.stop.prevent="variationData.passedImages.splice(index,1),console.log(variationData.passedImages)"
-                                   name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
+                    <svg-component
+                        @click.stop.prevent="variationData.passedImages.splice(index,1),console.log(variationData.passedImages)"
+                        name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
                     group-hover:right-16"/>
                     <input type="file" :id="'variation-image' + index" accept="*image/*"
                            class="invisible absolute" @input="changeImage($event ,index)">
