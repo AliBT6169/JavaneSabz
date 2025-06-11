@@ -126,7 +126,7 @@ const VariationDataChanged = (index, value) => {
                               class="admin_inputs">{{form.description}}</textarea>
                 </div>
                 <div class="flex !justify-center flex-wrap gap-5 !space-y-0">
-                    <product-variation-modal v-for="(item, index) in VariationsData"
+                    <product-variation-modal v-for="(item, index) in VariationsData" variation_data=""
                                              @delete="VariationsData.splice(index,1)"
                                              @dataSend="VariationDataChanged(index,$event)" :component_index="index"/>
                     <div class="py-10 px-12 rounded-xl cursor-pointer bg-black/30 text-5xl"

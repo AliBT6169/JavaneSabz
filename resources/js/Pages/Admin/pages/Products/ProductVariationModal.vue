@@ -7,22 +7,24 @@ import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const props = defineProps({
+    variation_data: null,
     component_index: null
-})
+});
 const emit = defineEmits({
     dataSend: null,
     delete: null,
 });
 
 const images = new FormData();
-const VariationImages = ref([]);
+const VariationImages = ref(props.variation_data.images);
+console.log(VariationImages.value)
 
 const variationData = ref({
-    'value': '',
-    'weight': 1,
-    'price': 1000,
-    'quantity': 1000,
-    'off_sale': 0,
+    'value': props.variation_data.value,
+    'weight': props.variation_data.weight,
+    'price': props.variation_data.price,
+    'quantity': props.variation_data.quantity,
+    'off_sale': props.variation_data.off_sale,
 });
 const modal = ref('');
 const modal_status = ref(false);
@@ -105,15 +107,15 @@ const dataSender = () => {
             <div
                 class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
                 <div class="">
-                    <admin-input name="اندازه" @changed="variationData.value=$event"/>
-                    <admin-input name="وزن به KG" @changed="variationData.weight=$event"/>
+                    <admin-input name="اندازه" :default_value="variationData.value" @changed="variationData.value=$event"/>
+                    <admin-input name="وزن به KG" :default_value="variationData.weight" @changed="variationData.weight=$event"/>
                 </div>
                 <div class="">
-                    <admin-input name="تعداد" @changed="variationData.quantity=$event"/>
-                    <admin-input name="تخفیف به %" @changed="variationData.off_sale=$event"/>
+                    <admin-input name="تعداد" :default_value="variation_data.quantity" @changed="variationData.quantity=$event"/>
+                    <admin-input name="تخفیف به %" :default_value="variationData.off_sale" @changed="variationData.off_sale=$event"/>
                 </div>
                 <div class="!block pl-2 !w-1/2">
-                    <admin-input name="قیمت به تومان" @changed="variationData.price=$event"/>
+                    <admin-input name="قیمت به تومان" :default_value="variationData.price" @changed="variationData.price=$event"/>
                 </div>
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">
