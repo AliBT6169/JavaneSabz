@@ -16,7 +16,6 @@ import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariation
 const props = defineProps({
     Product: null,
 });
-console.log(props.Product.data);
 const VariationsData = ref(props.Product.data.variations);
 const productImage = ref(props.Product.data.image);
 const form = ref({
@@ -59,6 +58,7 @@ const saveChanges = async () => {
                         formData.append('variation[' + index + '][price]', item.data.price);
                         formData.append('variation[' + index + '][quantity]', item.data.quantity);
                         formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
+                        // item.data.passedImages.map()
                         item.images.forEach((imageItem, imageIndex) => {
                             formData.append('variation[' + index + '][image][' + imageIndex + ']', imageItem)
                         });

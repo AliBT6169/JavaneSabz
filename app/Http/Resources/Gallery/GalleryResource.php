@@ -12,8 +12,11 @@ class GalleryResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request)
+    public function toArray(Request $request): array
     {
-        return  $this->media;
+        return [
+            'id' => $this->id,
+            'image' => $this->media,
+        ];
     }
 }

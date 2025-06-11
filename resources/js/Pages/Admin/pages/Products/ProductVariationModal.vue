@@ -16,16 +16,17 @@ const emit = defineEmits({
 });
 
 const images = new FormData();
-const VariationImages = ref(props.variation_data.images);
-console.log(VariationImages.value)
+const VariationImages = ref([]);
 
 const variationData = ref({
     'value': props.variation_data.value,
+    'passedImages': props.variation_data.images ?? [],
     'weight': props.variation_data.weight,
     'price': props.variation_data.price,
     'quantity': props.variation_data.quantity,
     'off_sale': props.variation_data.off_sale,
 });
+console.log(variationData.value.passedImages);
 const modal = ref('');
 const modal_status = ref(false);
 const modalCloser = (e) => {
@@ -77,11 +78,25 @@ const dataSender = () => {
 </script>
 
 <template>
-    <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
+    <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-scroll rounded-xl border"
          ref="modal"
          :class="{'fixed z-50 top-20 size-5/6 py-6':modal_status}">
         <form :class="{'hidden':!modal_status}" class="w-full">
             <div class="flex gap-5 flex-wrap justify-center">
+                <label v-if="typeof variationData.passedImages !=='string'" v-for="(item, index) in variationData.passedImages" :key="index"
+                       :for="'variation-image' + index"
+                       class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
+             dark:border-adminColor3 hover:scale-95 block overflow-hidden group">
+                    <svg-component @click.stop.prevent="variationData.passedImages.splice(index,1),console.log(variationData.passedImages)"
+                                   name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
+                    group-hover:right-16"/>
+                    <input type="file" :id="'variation-image' + index" accept="*image/*"
+                           class="invisible absolute" @input="changeImage($event ,index)">
+                    <img
+                        :src="item.image"
+                        class="size-full"
+                        alt="">
+                </label>
                 <label v-for="(item, index) in VariationImages" :key="index"
                        :for="'variation-image' + index"
                        class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
@@ -107,15 +122,20 @@ const dataSender = () => {
             <div
                 class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
                 <div class="">
-                    <admin-input name="اندازه" :default_value="variationData.value" @changed="variationData.value=$event"/>
-                    <admin-input name="وزن به KG" :default_value="variationData.weight" @changed="variationData.weight=$event"/>
+                    <admin-input name="اندازه" :default_value="variationData.value"
+                                 @changed="variationData.value=$event"/>
+                    <admin-input name="وزن به KG" :default_value="variationData.weight"
+                                 @changed="variationData.weight=$event"/>
                 </div>
                 <div class="">
-                    <admin-input name="تعداد" :default_value="variation_data.quantity" @changed="variationData.quantity=$event"/>
-                    <admin-input name="تخفیف به %" :default_value="variationData.off_sale" @changed="variationData.off_sale=$event"/>
+                    <admin-input name="تعداد" :default_value="variation_data.quantity"
+                                 @changed="variationData.quantity=$event"/>
+                    <admin-input name="تخفیف به %" :default_value="variationData.off_sale"
+                                 @changed="variationData.off_sale=$event"/>
                 </div>
                 <div class="!block pl-2 !w-1/2">
-                    <admin-input name="قیمت به تومان" :default_value="variationData.price" @changed="variationData.price=$event"/>
+                    <admin-input name="قیمت به تومان" :default_value="variationData.price"
+                                 @changed="variationData.price=$event"/>
                 </div>
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">
