@@ -83,8 +83,8 @@ const saveChanges = async () => {
     toast.warning(content)
 }
 const VariationDataChanged = (index, value) => {
+    console.log(value)
     VariationsData.value[index] = value;
-    console.log(VariationsData.value)
 }
 </script>
 

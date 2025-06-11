@@ -1,8 +1,6 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
-import axios, {toFormData} from "axios";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
-import {Link} from "@inertiajs/vue3";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 
@@ -19,12 +17,12 @@ const images = new FormData();
 const VariationImages = ref([]);
 
 const variationData = ref({
-    'value': props.variation_data.value ?? '',
-    'passedImages': props.variation_data.images ?? [],
-    'weight': props.variation_data.weight ?? '',
-    'price': props.variation_data.price ?? '',
-    'quantity': props.variation_data.quantity ?? '',
-    'off_sale': props.variation_data.off_sale ?? '',
+    size : props.variation_data.value ?? '',
+    passedImages : props.variation_data.images ?? [],
+    weight : props.variation_data.weight ?? '',
+    price : props.variation_data.price ?? '',
+    quantity : props.variation_data.quantity ?? '',
+    off_sale : props.variation_data.off_sale ?? '',
 });
 const modal = ref('');
 const modal_status = ref(false);
@@ -127,8 +125,8 @@ const dataSender = () => {
             <div
                 class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
                 <div class="">
-                    <admin-input name="اندازه" :default_value="variationData.value"
-                                 @changed="variationData.value=$event"/>
+                    <admin-input name="اندازه" :default_value="variationData.size"
+                                 @changed="variationData.size=$event"/>
                     <admin-input name="وزن به KG" :default_value="variationData.weight"
                                  @changed="variationData.weight=$event"/>
                 </div>
