@@ -17,14 +17,14 @@ const props = defineProps({
     Product: null,
 });
 console.log(props.Product.data);
-const VariationsData = ref([]);
-const productImage = ref('');
+const VariationsData = ref(props.Product.data.variations);
+const productImage = ref(props.Product.data.image);
 const form = ref({
-    name: '',
-    brand: '',
-    category: '',
-    description: '',
-    is_active: 1,
+    name: props.Product.data.name,
+    brand: props.Product.data.brand,
+    category: props.Product.data.category,
+    description: props.Product.data.description,
+    is_active: props.Product.data.is_active,
 })
 const onFileChange = (event) => {
     const file = event.target.files[0];
@@ -120,9 +120,9 @@ const VariationDataChanged = (index, value) => {
                 <!--                brand & categories section-->
                 <div class="">
                     <!--                    categories-->
-                    <AdminDataList @selected="form.category=$event" label="دسته بندی" route="categories.show"/>
+                    <AdminDataList @selected="form.category=$event" :default_value="form.brand" label="دسته بندی" route="categories.show"/>
                     <!--                    brands-->
-                    <AdminDataList @selected="form.brand=$event" label="برند" route="brands.show"/>
+                    <AdminDataList @selected="form.brand=$event" :default_value="form.category" label="برند" route="brands.show"/>
                 </div>
                 <div class="!block !space-y-0">
                     <div class="pr-3">توضیحات :</div>
