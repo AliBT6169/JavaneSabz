@@ -17,12 +17,12 @@ const images = new FormData();
 const VariationImages = ref([]);
 
 const variationData = ref({
-    size : props.variation_data.value ?? '',
-    passedImages : props.variation_data.images ?? [],
-    weight : props.variation_data.weight ?? '',
-    price : props.variation_data.price ?? '',
-    quantity : props.variation_data.quantity ?? '',
-    off_sale : props.variation_data.off_sale ?? '',
+    size: props.variation_data.value ?? '',
+    passedImages: props.variation_data.images ?? [],
+    weight: props.variation_data.weight ?? '',
+    price: props.variation_data.price ?? '',
+    quantity: props.variation_data.quantity ?? '',
+    off_sale: props.variation_data.off_sale ?? '',
 });
 const modal = ref('');
 const modal_status = ref(false);
@@ -34,10 +34,13 @@ const modalCloser = (e) => {
 
 onMounted(() => {
     document.addEventListener('click', modalCloser);
-    emit('dataSend', {
-        'images': images,
-        'data': variationData.value,
-    });
+    setTimeout(() => {
+        emit('dataSend', {
+            'images': images,
+            'data': variationData.value,
+        });
+        console.log(variationData.value)
+    }, 500)
 });
 
 onBeforeUnmount(() => {
