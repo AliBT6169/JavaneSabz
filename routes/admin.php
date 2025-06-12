@@ -28,6 +28,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::post('/product', 'store')->name('products.store');
         Route::patch('/product/{id}', 'active_DeActive')->name('products.active_DeActive');
         Route::get('/product/{id}', 'edit')->name('products.edit');
+        Route::put('/product', 'update')->name('products.update');
     });
 });
 

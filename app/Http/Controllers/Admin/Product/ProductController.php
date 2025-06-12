@@ -61,7 +61,7 @@ class ProductController extends Controller
                 $salePrice = $variation['price'] - ($variation['off_sale'] * $variation['price']) / 100;
             $productVariation = ProductVariation::create([
                 'product_id' => $product->id,
-                'value' => $variation['value'],
+                'value' => $variation['size'],
                 'weight' => $variation['weight'],
                 'price' => $variation['price'],
                 'quantity' => $variation['quantity'],
@@ -84,5 +84,10 @@ class ProductController extends Controller
     {
         $product = ProductsResource::make(Product::whereId($id)->first());
         return Inertia::render('Admin/pages/Products/edit',['Product' => $product]);
+    }
+
+    public function update($request)
+    {
+
     }
 }
