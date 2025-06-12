@@ -154,7 +154,10 @@ const dataSender = () => {
              :class="{'hidden':modal_status}">
             <svg-component @click.stop.prevent="emit('delete')" name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
                     group-hover:right-16"/>
-            <img :src="VariationImages[0] === undefined?'/images/default/product.png':VariationImages[0]"
+            <img v-if="variationData.passedImages[0]!==undefined" :src="variationData.passedImages[0].image"
+                 class="size-full"
+                 alt="">
+            <img v-else :src="VariationImages[0] === undefined?'/images/default/product.png':VariationImages[0]"
                  class="size-full"
                  alt="">
         </div>
