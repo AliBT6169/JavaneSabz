@@ -11,7 +11,7 @@ class ProductUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,20 @@ class ProductUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:50',
+            'brand' => 'required|exists:brands,id',
+            'category' => 'required|exists:categories,id',
+            'description' => 'required|string',
+            'is_active' => 'required|boolean',
+            'variation.*.size' => 'required|string|max:50',
+            'variation.*.weight' => 'required|numeric',
+            'variation.*.quantity' => 'required|numeric|min:1',
+            'variation.*.off_sale' => 'numeric|nullable|min:0|max:100',
+            'variation.*.price' => 'required|numeric',
+            'variation.*.image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'variation.*.passed_image.*.id' => 'numeric|min:1',
+            'variation.*.passed_image.*.image' => 'string',
         ];
     }
 }

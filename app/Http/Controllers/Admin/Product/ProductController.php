@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Products\ProductUpdateRequest;
 use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Http\Resources\Admin\Products\ProductsResource;
 use App\Models\Gallery;
@@ -86,8 +87,8 @@ class ProductController extends Controller
         return Inertia::render('Admin/pages/Products/edit',['Product' => $product]);
     }
 
-    public function update($request)
+    public function update(ProductUpdateRequest $request)
     {
-
+        return $request;
     }
 }

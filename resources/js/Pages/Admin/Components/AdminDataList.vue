@@ -6,6 +6,7 @@ const props = defineProps({
     route: '',
     label: ''
 });
+const selected_value = ref(props.default_value);
 const emit = defineEmits({
     selected: null,
 })
@@ -16,14 +17,16 @@ onMounted(async () => {
     }).catch((err) => {
         console.log(err.data);
     });
-    if (props.default_value !== '') {
+    if (props.default_value !== 0) {
         dataSender(props.default_value);
     }
 });
 const dataSender = (value) => {
     let key = listData.value.map((item) => {
-        if (item.name === value)
+        if (item.name === value) {
             emit('selected', item.id);
+            selected_value.value = item.name;
+        }
     });
 }
 </script>
@@ -31,7 +34,7 @@ const dataSender = (value) => {
 <template>
     <div class="w-full">
         <div class="text-sm px-3">{{ label }} :</div>
-        <input class="admin_inputs" :list="'dataList'+label" name="DataList" :value="default_value"
+        <input class="admin_inputs" :list="'dataList'+label" name="DataList" :value="selected_value"
                @input="dataSender($event.target.value)">
         <datalist :id="'dataList'+label">
             <option v-for="item in listData" :value="item.name">{{ item.name }}</option>

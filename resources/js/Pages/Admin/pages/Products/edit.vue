@@ -24,7 +24,8 @@ const form = ref({
     category: props.Product.data.category,
     description: props.Product.data.description,
     is_active: props.Product.data.is_active,
-})
+});
+console.log(form.value.category)
 const onFileChange = (event) => {
     const file = event.target.files[0];
     productImage.value = event.target.files[0];
@@ -68,14 +69,19 @@ const saveChanges = async () => {
                         });
                     }
                 });
-                console.log(formData)
-                // await axios.post(route('admin.products.store'), formData).then((res) => {
-                //     console.log(res.data);
-                //     toast.success('عملیات موفقیت آمیز بود')
-                // }).catch((err) => {
-                //     toast.error(err.response.data.message)
-                //     console.log(err.response)
-                // })
+                // console.log(formData)
+                await axios.post(route('admin.products.update'), formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'X-HTTP-Method-Override': 'PUT'
+                    }
+                }).then((res) => {
+                    console.log(res.data);
+                    toast.success('عملیات موفقیت آمیز بود')
+                }).catch((err) => {
+                    toast.error(err.response.data.message)
+                    console.log(err.response)
+                })
             }
         }
     }
@@ -124,10 +130,10 @@ const VariationDataChanged = (index, value) => {
                 <!--                brand & categories section-->
                 <div class="">
                     <!--                    categories-->
-                    <AdminDataList @selected="form.category=$event" :default_value="form.brand" label="دسته بندی"
+                    <AdminDataList @selected="form.category=$event" :default_value="form.category" label="دسته بندی"
                                    route="categories.show"/>
                     <!--                    brands-->
-                    <AdminDataList @selected="form.brand=$event" :default_value="form.category" label="برند"
+                    <AdminDataList @selected="form.brand=$event" :default_value="form.brand" label="برند"
                                    route="brands.show"/>
                 </div>
                 <div class="!block !space-y-0">
