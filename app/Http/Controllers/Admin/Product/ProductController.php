@@ -84,11 +84,14 @@ class ProductController extends Controller
     public function edit(int $id)
     {
         $product = ProductsResource::make(Product::whereId($id)->first());
-        return Inertia::render('Admin/pages/Products/edit',['Product' => $product]);
+        return Inertia::render('Admin/pages/Products/edit', ['Product' => $product]);
     }
 
     public function update(ProductUpdateRequest $request)
     {
-        return $request;
+        return $request->id;
+        $product = Product::whereId($request->id)->update([
+            'name' => $request->name
+        ]);
     }
 }

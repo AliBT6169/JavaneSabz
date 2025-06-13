@@ -19,13 +19,13 @@ const props = defineProps({
 const VariationsData = ref(props.Product.data.variations);
 const productImage = ref(props.Product.data.image);
 const form = ref({
+    id: props.Product.data.id,
     name: props.Product.data.name,
     brand: props.Product.data.brand,
     category: props.Product.data.category,
     description: props.Product.data.description,
     is_active: props.Product.data.is_active,
 });
-console.log(form.value.category)
 const onFileChange = (event) => {
     const file = event.target.files[0];
     productImage.value = event.target.files[0];
@@ -89,7 +89,6 @@ const saveChanges = async () => {
     toast.warning(content)
 }
 const VariationDataChanged = (index, value) => {
-    console.log(value)
     VariationsData.value[index] = value;
 }
 </script>

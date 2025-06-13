@@ -39,7 +39,6 @@ onMounted(() => {
             'images': images,
             'data': variationData.value,
         });
-        console.log(variationData.value)
     }, 500)
 });
 

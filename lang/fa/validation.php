@@ -233,7 +233,7 @@ return [
         "is_active" => "وضعیت",
 
 
-        'variation.*.value' => 'اندازه محصول',
+        'variation.*.size' => 'اندازه محصول',
         'variation.*.weight' => 'وزن محصول',
         'variation.*.quantity' => 'تعداد محصول',
         'variation.*.off_sale' => 'تخفیف محصول',
