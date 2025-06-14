@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Products\ProductUpdateRequest;
 use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Http\Resources\Admin\Products\ProductsResource;
+use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\Product;
 use App\Models\ProductVariation;
@@ -89,9 +90,15 @@ class ProductController extends Controller
 
     public function update(ProductUpdateRequest $request)
     {
-        return $request->id;
+
         $product = Product::whereId($request->id)->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'brand_id' => $request->brand,
+            'category_id' => $request->category,
+            'is_active' => $request->is_active,
+            'slug' => $request->name,
+            'description' => $request->description,
         ]);
+        return ProductsResource::make(Product::whereId($request->id)->first());
     }
 }

@@ -36,7 +36,7 @@ class Product extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'brand_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function product_variations(): HasMany
