@@ -6,7 +6,7 @@ import {useToast} from "vue-toastification";
 
 const props = defineProps({
     product: null,
-})
+});
 const is_active = ref(props.product.is_active);
 const ActiveDeActive = async () => {
     await axios.patch(route('admin.products.active_DeActive', {id: props.product.id})).then((res) => {
@@ -37,7 +37,7 @@ const ActiveDeActive = async () => {
                     <svg-component name="edit" class="size-5 inline"/>
                 </Link>
                 <div class="bg-green-500 cursor-pointer" @click="ActiveDeActive"
-                     :class="{'!bg-red-500':is_active===false}">
+                     :class="{'!bg-red-500':is_active===0}">
                     {{ is_active ? 'فعال' : 'غیر فعال' }}
                 </div>
             </div>
