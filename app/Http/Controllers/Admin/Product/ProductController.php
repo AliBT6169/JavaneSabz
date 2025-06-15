@@ -45,15 +45,15 @@ class ProductController extends Controller
         if ($request->variation == '')
             abort(400, 'ساخت حداقل یک سایز از این محصول نیاز است!');
         $image = $request->file('image');
-        $primaryImageURL = '/images/products/' . $request->id;
-        $path = $image->move(public_path($primaryImageURL), $request->id . '.' . $image->getClientOriginalExtension());
+        $primaryImageURL = '/images/products/' . Product::latest()->first()->id + 1 ;
+        $path = $image->move(public_path($primaryImageURL), Product::latest()->first()->id + 1 . '.' . $image->getClientOriginalExtension());
 
         $product = Product::create([
             'name' => $request->name,
             'brand_id' => $request->brand,
             'category_id' => $request->category,
             'slug' => $request->name,
-            'primary_image' => $primaryImageURL . '/' . $request->name . '.' . $image->getClientOriginalExtension(),
+            'primary_image' => $primaryImageURL . '/' . Product::latest()->first()->id + 1 . '.' . $image->getClientOriginalExtension(),
             'description' => $request->description,
             'is_active' => $request->is_active,
         ]);
