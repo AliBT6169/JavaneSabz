@@ -12,6 +12,7 @@ import axios, {toFormData} from "axios";
 import {useToast} from "vue-toastification";
 import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
+import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
 
 const props = defineProps({
     Product: null,
@@ -91,6 +92,7 @@ const saveChanges = async () => {
 const VariationDataChanged = (index, value) => {
     VariationsData.value[index] = value;
 }
+const is_active = ref(false);
 </script>
 
 
@@ -111,20 +113,7 @@ const VariationDataChanged = (index, value) => {
                 <div class="">
                     <AdminInput name="نام محصول" @changed="form.name=$event"
                                 :default_value="form.name"/>
-                    <div class="w-full">
-                        <div class="text-sm px-3">وضعیت :</div>
-                        <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2
-                focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4">
-                            <label for="active">فعال</label>
-                            <input checked @change="form.is_active=1" type="radio" id="active"
-                                   name="is_active"
-                                   class="text-adminColor2 cursor-pointer  focus:ring-0 dark:text-adminColor3">
-                            <label for="de_active">غیر فعال</label>
-                            <input @change="form.is_active=0" type="radio" id="de_active"
-                                   name="is_active"
-                                   class="text-adminColor2 cursor-pointer focus:ring-0 dark:text-adminColor3">
-                        </div>
-                    </div>
+                    <AdminActiveDeActiveInput v-model="form.is_active"/>
                 </div>
                 <!--                brand & categories section-->
                 <div class="">

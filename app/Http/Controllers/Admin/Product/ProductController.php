@@ -45,8 +45,8 @@ class ProductController extends Controller
         if ($request->variation == '')
             abort(400, 'ساخت حداقل یک سایز از این محصول نیاز است!');
         $image = $request->file('image');
-        $primaryImageURL = '/images/products/' . $request->name;
-        $path = $image->move(public_path($primaryImageURL), $request->name . '.' . $image->getClientOriginalExtension());
+        $primaryImageURL = '/images/products/' . $request->id;
+        $path = $image->move(public_path($primaryImageURL), $request->id . '.' . $image->getClientOriginalExtension());
 
         $product = Product::create([
             'name' => $request->name,
@@ -90,8 +90,13 @@ class ProductController extends Controller
 
     public function update(ProductUpdateRequest $request)
     {
-
-        $product = Product::whereId($request->id)->update([
+        $product = Product::whereId($request->id)->first();
+        if ($request->image != null) {
+            $image = $request->file('image');
+            $ImageURL = $product->primary_image;
+            $image->move(public_path($ImageURL));
+        }
+        $product->update([
             'name' => $request->name,
             'brand_id' => $request->brand,
             'category_id' => $request->category,
@@ -99,6 +104,6 @@ class ProductController extends Controller
             'slug' => $request->name,
             'description' => $request->description,
         ]);
-        return ProductsResource::make(Product::whereId($request->id)->first());
+        return ProductsResource::make($product);
     }
 }
