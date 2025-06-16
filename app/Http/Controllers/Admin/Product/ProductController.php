@@ -90,6 +90,8 @@ class ProductController extends Controller
 
     public function update(ProductUpdateRequest $request)
     {
+        if ($request->variation == '')
+            abort(400, 'داشتن حد اقل یک سایز ضروری است!');
         $product = Product::whereId($request->id)->first();
         $ImageURL = 'images/products/' . $product->id;
         $image = null;
@@ -107,6 +109,26 @@ class ProductController extends Controller
             'slug' => $request->name,
             'description' => $request->description,
         ]);
+
+        foreach ($request->variation as $variation) {
+            if ($variation['id'] == 0) {
+                $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
+                ProductVariation::create([
+                    'product_id' => $request->id,
+                    'value' => $variation['size'],
+                    'weight' => $variation['weight'],
+                    'price' => $variation['price'],
+                    'quantity' => $variation['quantity'],
+                    'off_sale' => $variation['off_sale'] ?? 0,
+                    'sale_price' => $salePrice,
+                ]);
+                if (isset($variation['image']['image0']))
+                    foreach ($variation['image'] as $variationImage) {
+                        Gallery::updateImage(ProductVariation::class, $variationImage, $product->id);
+                    }
+                else return 'its not set';
+            }
+        }
         return ProductsResource::make($product);
     }
 }

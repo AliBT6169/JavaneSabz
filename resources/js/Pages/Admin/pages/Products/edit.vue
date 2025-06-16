@@ -55,6 +55,7 @@ const saveChanges = async () => {
                     formData.append('image', document.querySelector('#image').files[0]);
                 VariationsData.value.map((item, index) => {
                     if (item.data !== undefined) {
+                        formData.append('variation[' + index + '][id]', item.data.id);
                         formData.append('variation[' + index + '][size]', item.data.size);
                         formData.append('variation[' + index + '][weight]', item.data.weight);
                         formData.append('variation[' + index + '][price]', item.data.price);
