@@ -113,7 +113,7 @@ class ProductController extends Controller
         foreach ($request->variation as $variation) {
             if ($variation['id'] == 0) {
                 $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
-                ProductVariation::create([
+                $productVariation = ProductVariation::create([
                     'product_id' => $request->id,
                     'value' => $variation['size'],
                     'weight' => $variation['weight'],
@@ -124,9 +124,8 @@ class ProductController extends Controller
                 ]);
                 if (isset($variation['image']['image0']))
                     foreach ($variation['image'] as $variationImage) {
-                        Gallery::updateImage(ProductVariation::class, $variationImage, $product->id);
+                        Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
                     }
-                else return 'its not set';
             }
         }
         return ProductsResource::make($product);
