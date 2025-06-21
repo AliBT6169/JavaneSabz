@@ -8,7 +8,6 @@ const props = defineProps({
     meta: null,
     createLink: '#',
 })
-console.log(props.links.first)
 </script>
 
 <template>

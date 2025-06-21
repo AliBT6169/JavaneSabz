@@ -82,9 +82,9 @@ const dataSender = () => {
 </script>
 
 <template>
-    <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-scroll rounded-xl border"
+    <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
-         :class="{'fixed z-50 top-20 size-5/6 py-6':modal_status}">
+         :class="{'fixed z-50 top-20 size-5/6 py-6 overflow-scroll':modal_status}">
         <form :class="{'hidden':!modal_status}" class="w-full">
             <div class="flex gap-5 flex-wrap justify-center">
                 <label v-if="typeof variationData.passedImages !=='string'"
