@@ -134,7 +134,7 @@ const dataSender = () => {
                                  @changed="variationData.weight=$event"/>
                 </div>
                 <div class="">
-                    <admin-input name="تعداد" :default_value="variation_data.quantity"
+                    <admin-input name="تعداد" :default_value="variationData.quantity"
                                  @changed="variationData.quantity=$event"/>
                     <admin-input name="تخفیف به %" :default_value="variationData.off_sale"
                                  @changed="variationData.off_sale=$event"/>

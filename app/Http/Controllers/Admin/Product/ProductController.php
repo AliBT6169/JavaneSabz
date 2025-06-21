@@ -126,6 +126,17 @@ class ProductController extends Controller
                     foreach ($variation['image'] as $variationImage) {
                         Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
                     }
+            } else {
+                $oldVariation = ProductVariation::whereId($variation['id'])->first();
+                $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
+                $oldVariation->update([
+                    'value' => $variation['size'],
+                    'weight' => $variation['weight'],
+                    'price' => $variation['price'],
+                    'quantity' => $variation['quantity'],
+                    'off_sale' => $variation['off_sale'] ?? 0,
+                    'sale_price' => $salePrice,
+                ]);
             }
         }
         return ProductsResource::make($product);
