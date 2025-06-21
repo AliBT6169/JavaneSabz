@@ -109,7 +109,16 @@ class ProductController extends Controller
             'slug' => $request->name,
             'description' => $request->description,
         ]);
-
+        foreach ($product->product_variations as $variation) {
+            $deleted_variation = true;
+            foreach ($request->variation as $request_variation) {
+                if ($variation->id == $request_variation['id']) {
+                    $deleted_variation = false;
+                }
+            }
+            if ($deleted_variation)
+                $variation->delete();
+        }
         foreach ($request->variation as $variation) {
             if ($variation['id'] == 0) {
                 $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
@@ -137,6 +146,10 @@ class ProductController extends Controller
                     'off_sale' => $variation['off_sale'] ?? 0,
                     'sale_price' => $salePrice,
                 ]);
+                $passedImage = $oldVariation->gallery;
+                if ($passedImage != null) {
+                    return $passedImage;
+                }
             }
         }
         return ProductsResource::make($product);
