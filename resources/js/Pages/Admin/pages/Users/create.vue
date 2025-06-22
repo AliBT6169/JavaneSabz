@@ -88,26 +88,19 @@ const saveChanges = async () => {
             <div
                 class="space-y-6 *:space-y-6 *:md:space-y-0 *:md:flex *:md:justify-between *:md:items-center *:md:gap-6">
                 <div class="">
-                    <AdminInput name="نام و نام خانوادگی" @changed="form.full_name=$event"
-                                :default_value="form.full_name"/>
-                    <AdminInput name="نام کاربری" @changed="form.user_name=$event"
-                                :default_value="form.user_name"/>
+                    <AdminInput name="نام و نام خانوادگی" v-model="form.full_name"/>
+                    <AdminInput name="نام کاربری" v-model="form.user_name"/>
                 </div>
                 <div class="">
-                    <AdminInput name="شماره تماس" @changed="form.cellphone=$event"
-                                :default_value="form.cellphone"/>
-                    <AdminInput name="ایمیل" @changed="form.email=$event"
-                                :default_value="form.email"/>
+                    <AdminInput name="شماره تماس" v-model="form.cellphone"/>
+                    <AdminInput name="ایمیل" v-model="form.email"/>
                 </div>
                 <div class="">
-                    <AdminInput type="password" name="رمز عبور" @changed="form.password=$event"
-                                :default_value="form.password"/>
-                    <AdminInput type="password" name="تایید رمز عبور" @changed="form.password_confirmation=$event"
-                                :default_value="form.password_confirmation"/>
+                    <AdminInput type="password" name="رمز عبور" v-model="form.password"/>
+                    <AdminInput type="password" name="تایید رمز عبور" v-model="form.password_confirmation"/>
                 </div>
                 <div class="">
-                    <AdminInput name="کد پستی" @changed="form.post_code=$event"
-                                :default_value="form.post_code"/>
+                    <AdminInput name="کد پستی" v-model="form.post_code"/>
                     <div class="w-full">
                         <div class="text-sm px-3">جنسیت :</div>
                         <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2
@@ -123,7 +116,7 @@ const saveChanges = async () => {
                         </div>
                     </div>
                 </div>
-                <admin-address label="آدرس:" @update-value="(e)=>form.city=e" :address="form.address"/>
+                <admin-address label="آدرس:" v-model="form.city"/>
                 <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{form.address}}</textarea>
                 <div class="*:text-center md:!justify-end">
