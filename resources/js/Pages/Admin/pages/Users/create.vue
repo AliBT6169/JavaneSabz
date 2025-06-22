@@ -60,7 +60,7 @@ const saveChanges = async () => {
                         toast.error(err.response.data.message)
                         console.log(err.response)
                     })
-                }else {
+                } else {
                     toast.error('رمز عبور باید با تائید رمز عبور یکی باشد!');
                 }
             }
@@ -116,7 +116,7 @@ const saveChanges = async () => {
                         </div>
                     </div>
                 </div>
-                <admin-address label="آدرس:" v-model="form.city"/>
+                <admin-address label="آدرس:" @update-value="form.city=$event" :address="form.address"/>
                 <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{form.address}}</textarea>
                 <div class="*:text-center md:!justify-end">
