@@ -128,20 +128,15 @@ const dataSender = () => {
             <div
                 class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
                 <div class="">
-                    <admin-input name="اندازه" :default_value="variationData.size"
-                                 @changed="variationData.size=$event"/>
-                    <admin-input name="وزن به KG" :default_value="variationData.weight"
-                                 @changed="variationData.weight=$event"/>
+                    <admin-input name="اندازه" v-model="variationData.size"/>
+                    <admin-input name="وزن به KG" v-model="variationData.weight"/>
                 </div>
                 <div class="">
-                    <admin-input name="تعداد" :default_value="variationData.quantity"
-                                 @changed="variationData.quantity=$event"/>
-                    <admin-input name="تخفیف به %" :default_value="variationData.off_sale"
-                                 @changed="variationData.off_sale=$event"/>
+                    <admin-input name="تعداد" v-model="variationData.quantity"/>
+                    <admin-input name="تخفیف به %" v-model="variationData.off_sale"/>
                 </div>
                 <div class="!block pl-2 !w-1/2">
-                    <admin-input name="قیمت به تومان" :default_value="variationData.price"
-                                 @changed="variationData.price=$event"/>
+                    <admin-input name="قیمت به تومان" v-model="variationData.price"/>
                 </div>
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">

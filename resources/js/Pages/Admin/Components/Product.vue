@@ -6,14 +6,15 @@ import {useToast} from "vue-toastification";
 
 const props = defineProps({
     product: null,
-})
+});
+console.log(props.product);
 const is_active = ref(Boolean(props.product.is_active));
 const ActiveDeActive = async () => {
     await axios.patch(route('admin.products.active_DeActive', {id: props.product.id})).then((res) => {
         useToast().success(res.data.message);
         is_active.value = !is_active.value;
     }).catch((err) => {
-        console.log(err.data)
+        console.log(err.data);
     });
 }
 </script>

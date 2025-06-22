@@ -71,7 +71,6 @@ const saveChanges = async () => {
                         });
                     }
                 });
-                // console.log(formData)
                 await axios.post(route('admin.products.update'), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -112,8 +111,7 @@ const is_active = ref(false);
             <div
                 class="space-y-6 *:space-y-6 *:md:space-y-0 *:md:flex *:md:justify-between *:md:items-center *:md:gap-6">
                 <div class="">
-                    <AdminInput name="نام محصول" @changed="form.name=$event"
-                                :default_value="form.name"/>
+                    <AdminInput name="نام محصول" v-model="form.name"/>
                     <AdminActiveDeActiveInput v-model="form.is_active"/>
                 </div>
                 <!--                brand & categories section-->
@@ -132,7 +130,7 @@ const is_active = ref(false);
                 </div>
                 <div class="flex !justify-center flex-wrap gap-5 !space-y-0">
                     <product-variation-modal v-for="(item, index) in VariationsData" :variation_data="item"
-                                             @delete="VariationsData.splice(index,1)"
+                                             @delete="VariationsData.splice(index-1,1)"
                                              @dataSend="VariationDataChanged(index,$event)" :component_index="index"/>
                     <div class="py-10 px-12 rounded-xl cursor-pointer bg-black/30 text-5xl"
                          @click="()=>VariationsData.push([])">+

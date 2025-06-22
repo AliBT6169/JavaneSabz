@@ -96,8 +96,7 @@ const VariationDataChanged = (index, value) => {
             <div
                 class="space-y-6 *:space-y-6 *:md:space-y-0 *:md:flex *:md:justify-between *:md:items-center *:md:gap-6">
                 <div class="">
-                    <AdminInput name="نام محصول" @changed="form.name=$event"
-                                :default_value="form.name"/>
+                    <AdminInput name="نام محصول" v-model="form.name"/>
                     <div class="w-full">
                         <div class="text-sm px-3">وضعیت :</div>
                         <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2
