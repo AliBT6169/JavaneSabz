@@ -163,10 +163,28 @@ class ProductController extends Controller
                     'off_sale' => $variation['off_sale'] ?? 0,
                     'sale_price' => $salePrice,
                 ]);
-//                $passedImage = $oldVariation->gallery;
-//                if ($passedImage != null) {
-//                    return $passedImage;
-//                }
+//                deleting passed image when admin deleted
+                $passedImage = $oldVariation->gallery;
+                if ($passedImage != null) {
+                    if (isset($variation['passed_image']))
+                        foreach ($passedImage as $variationImage) {
+                            $deleted = true;
+                            foreach ($variation['passed_image'] as $variationPassedImage) {
+                                if ($variationImage->id == $variationPassedImage['id'])
+                                    $deleted = false;
+                            }
+                            if ($deleted) {
+                                unlink(public_path($variationImage->media));
+                                $variationImage->delete();
+                            }
+                        }
+                    else {
+                        foreach ($passedImage as  $variationImage) {
+                            $variationImage->delete();
+                        }
+                        File::deleteDirectory(public_path('images/productVariations/' . $oldVariation->id));
+                    }
+                }
             }
         }
         return ProductsResource::make($product);

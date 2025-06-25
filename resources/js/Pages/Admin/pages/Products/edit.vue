@@ -72,6 +72,7 @@ const saveChanges = async () => {
                         });
                     }
                 });
+                console.log(formData)
                 await axios.post(route('admin.products.update'), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
