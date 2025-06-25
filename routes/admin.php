@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CategoryController;
@@ -29,6 +30,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::patch('/product/{id}', 'active_DeActive')->name('products.active_DeActive');
         Route::get('/product/{id}', 'edit')->name('products.edit');
         Route::put('/product', 'update')->name('products.update');
+    });
+    Route::controller(BrandController::class)->group(function () {
+        Route::get('/brand/index', 'index')->name('brands.index');
     });
 });
 
