@@ -98,7 +98,7 @@ const dataSender = () => {
                         name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
                     group-hover:right-16"/>
                     <input type="file" :id="'variation-image' + index" accept="*image/*"
-                           class="invisible absolute" @input="changeImage($event ,index)">
+                           class="invisible absolute" @input="changeImage($event ,index),variationData.passedImages.splice(index,1)">
                     <img
                         :src="item.image"
                         class="size-full"

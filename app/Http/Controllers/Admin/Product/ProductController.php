@@ -179,10 +179,17 @@ class ProductController extends Controller
                             }
                         }
                     else {
-                        foreach ($passedImage as  $variationImage) {
+                        foreach ($passedImage as $variationImage) {
                             $variationImage->delete();
                         }
                         File::deleteDirectory(public_path('images/productVariations/' . $oldVariation->id));
+                    }
+                }
+
+//                add new images
+                if (isset($variation['image']['image0'])) {
+                    foreach ($variation['image'] as $variationImage) {
+                        Gallery::updateImage(ProductVariation::class, $variationImage, $oldVariation->id);
                     }
                 }
             }
