@@ -22,12 +22,5 @@ class GalleryFactory extends Factory
             "gallery_id" => rand(1, 200),
             "gallery_type" => "App\Models\ProductVariation",
         ];
-
-//        for user
-//        return [
-//            "media" => 'https://picsum.photos/seed/' . fake()->uuid . '/480/480',
-//            "gallery_id" => 1,
-//            "gallery_type" => "App\Models\User",
-//        ];
     }
 }

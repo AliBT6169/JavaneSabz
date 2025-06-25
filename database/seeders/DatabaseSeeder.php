@@ -33,12 +33,12 @@ class DatabaseSeeder extends Seeder
 //        User Gallery
 //        Gallery::factory(1)->create();
 //        Product Gallery
-        Gallery::factory(400)->create();
+//        Gallery::factory(100)->create();
         Brand::factory(50)->create()->unique;
         Category::factory(50)->create()->unique();
-        Product::factory(200)->create()->unique();
+//        Product::factory(200)->create()->unique();
         Attribute::factory(50)->create()->unique();
-        ProductVariation::factory(200)->create()->unique;
+//        ProductVariation::factory(200)->create()->unique;
         Address::factory(100)->create();
         Coupon::factory(1)->create();
 //        Order::factory(10)->create();
