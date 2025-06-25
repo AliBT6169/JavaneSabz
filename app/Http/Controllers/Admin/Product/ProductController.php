@@ -91,8 +91,12 @@ class ProductController extends Controller
 
     public function update(ProductUpdateRequest $request)
     {
+//        check if have eny variations
         if ($request->variation == '')
             abort(400, 'داشتن حد اقل یک سایز ضروری است!');
+
+
+//        product updating
         $product = Product::whereId($request->id)->first();
         $ImageURL = 'images/products/' . $product->id;
         $image = null;
@@ -110,6 +114,9 @@ class ProductController extends Controller
             'slug' => $request->name,
             'description' => $request->description,
         ]);
+
+
+//        deleting deleted variations
         foreach ($product->product_variations as $variation) {
             $deleted_variation = true;
             foreach ($request->variation as $request_variation) {
@@ -122,9 +129,11 @@ class ProductController extends Controller
                     File::deleteDirectory(public_path('images/productVariations/' . $variation->id));
                 }
                 $variation->delete();
-
             }
         }
+
+
+//        updating existing variation and add new variations
         foreach ($request->variation as $variation) {
             if ($variation['id'] == 0) {
                 $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
