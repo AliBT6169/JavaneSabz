@@ -20,7 +20,7 @@ class BrandResource extends JsonResource
             'name' => $this->name,
             'is_active' => $this->is_active,
             'icon' => $this->icon,
-            'products' => ProductsResource::collection($this->products)
+            'products'=>ProductsResource::collection($this->products)
         ];
     }
 }
