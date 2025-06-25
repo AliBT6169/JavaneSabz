@@ -19,27 +19,26 @@ import {router} from "@inertiajs/vue3";
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('users.index',2)" :href="route('admin.users.index')" icon="users" name="users.index">کاربران
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('roles.index',3)" icon="roles" name="roles.index">مقام ها
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',3)" icon="roles" name="AdminDashboard">مقام ها
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('products.index',4)" :href="route('admin.products.index')" icon="products" name="products.index">
                 محصولات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('brands.index',5)" icon="brands" name="brands.index">برند
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',5)" icon="brands" name="AdminDashboard">برند
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('categories.index',6)" icon="categories"
-                             name="categories.index">دسته بندی
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',6)" icon="categories"
+                             name="AdminDashboard">دسته بندی
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('attributes.index',7)" icon="attributes"
-                             name="attributes.index">خصوصیات
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',7)" icon="attributes"
+                             name="AdminDashboard">خصوصیات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('transactions.index',8)" icon="card"
-                             name="transactions.index">تراکنش
-                ها
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',8)" icon="card"
+                             name="AdminDashboard">تراکنش
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('orders.index',9)" icon="orders" name="orders.index">
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',9)" icon="orders" name="AdminDashboard">
                 سفارشات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('settings.index',10)" icon="settings" name="settings.index">
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',10)" icon="settings" name="AdminDashboard">
                 تنظیمات
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAuthStore().logout()" :href="route('logout')" icon="logout" methode="post">
