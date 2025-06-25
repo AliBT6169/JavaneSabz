@@ -135,7 +135,8 @@ class ProductController extends Controller
 
 //        updating existing variation and add new variations
         foreach ($request->variation as $variation) {
-            if ($variation['id'] == 0) {
+            if ($variation['id'] == -1) {
+//                new variations
                 $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
                 $productVariation = ProductVariation::create([
                     'product_id' => $request->id,
@@ -151,6 +152,7 @@ class ProductController extends Controller
                         Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
                     }
             } else {
+//                old variations
                 $oldVariation = ProductVariation::whereId($variation['id'])->first();
                 $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
                 $oldVariation->update([
@@ -161,10 +163,10 @@ class ProductController extends Controller
                     'off_sale' => $variation['off_sale'] ?? 0,
                     'sale_price' => $salePrice,
                 ]);
-                $passedImage = $oldVariation->gallery;
-                if ($passedImage != null) {
-                    return $passedImage;
-                }
+//                $passedImage = $oldVariation->gallery;
+//                if ($passedImage != null) {
+//                    return $passedImage;
+//                }
             }
         }
         return ProductsResource::make($product);

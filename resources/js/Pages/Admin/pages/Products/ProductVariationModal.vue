@@ -17,7 +17,7 @@ const images = new FormData();
 const VariationImages = ref([]);
 
 const variationData = ref({
-    id: props.variation_data.id ?? 0,
+    id: props.variation_data.id ?? -1,
     size: props.variation_data.value ?? '',
     passedImages: props.variation_data.images ?? [],
     weight: props.variation_data.weight ?? '',
