@@ -90,6 +90,7 @@ class ProductController extends Controller
 
     public function update(ProductUpdateRequest $request)
     {
+        return $request;
         if ($request->variation == '')
             abort(400, 'داشتن حد اقل یک سایز ضروری است!');
         $product = Product::whereId($request->id)->first();

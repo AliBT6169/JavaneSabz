@@ -3,7 +3,7 @@ import {defineStore} from "pinia";
 export const useAdminStore = defineStore('admin', {
     state: () => ({
         SideBar: true,
-        Page: 'dashboard',
+        Page: 'AdminDashboard',
         PageIndexTop: 16,
     }),
     actions: {
@@ -13,7 +13,7 @@ export const useAdminStore = defineStore('admin', {
         },
         logout() {
             this.SideBar = true;
-            this.Page = 'dashboard';
+            this.Page = 'AdminDashboard';
             this.PageIndexTop = 16;
         }
     },

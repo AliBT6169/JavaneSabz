@@ -53,7 +53,8 @@ const saveChanges = async () => {
                 toFormData(form.value, formData);
                 if (document.querySelector('#image').files[0] != null)
                     formData.append('image', document.querySelector('#image').files[0]);
-                VariationsData.value.map((item, index) => {
+                const filteredData = VariationsData.value.filter(item => item.data !== undefined)
+                filteredData.map((item, index) => {
                     if (item.data !== undefined) {
                         formData.append('variation[' + index + '][id]', item.data.id);
                         formData.append('variation[' + index + '][size]', item.data.size);
@@ -92,7 +93,21 @@ const saveChanges = async () => {
 const VariationDataChanged = (index, value) => {
     VariationsData.value[index] = value;
 }
-const is_active = ref(false);
+const VariationDelete = (index) => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا مطمعن به حذف این سایز از محصول هستید؟'
+        },
+        listeners: {
+            set: () => {
+                document.getElementById('product_variation_modal' + index).style.display = 'none';
+                VariationsData.value[index].data = undefined;
+            }
+        }
+    }
+    useToast().warning(content);
+}
 </script>
 
 
@@ -129,8 +144,9 @@ const is_active = ref(false);
                               class="admin_inputs">{{form.description}}</textarea>
                 </div>
                 <div class="flex !justify-center flex-wrap gap-5 !space-y-0">
-                    <product-variation-modal v-for="(item, index) in VariationsData" :variation_data="item"
-                                             @delete="VariationsData.splice(index-1,1)"
+                    <product-variation-modal v-for="(item, index) in VariationsData"
+                                             :id="'product_variation_modal'+index" :variation_data="item"
+                                             @delete="VariationDelete(index)" :key="index"
                                              @dataSend="VariationDataChanged(index,$event)" :component_index="index"/>
                     <div class="py-10 px-12 rounded-xl cursor-pointer bg-black/30 text-5xl"
                          @click="()=>VariationsData.push([])">+

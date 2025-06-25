@@ -14,32 +14,32 @@ import {router} from "@inertiajs/vue3";
         <div class="absolute duration-300 h-14 w-2 rounded-r-xl left-0 bg-adminColor3 dark:bg-adminColor2"
              :style="{top:useAdminStore().PageIndexTop + 'px'}"></div>
         <div class="space-y-6 pt-4">
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('dashboard',1)" :href="route('admin.AdminDashboard')" icon="home2" name="dashboard">
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',1)" :href="route('admin.AdminDashboard')" icon="home2" name="AdminDashboard">
                 داشبورد
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('users',2)" :href="route('admin.users.index')" icon="users" name="users">کاربران
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('users.index',2)" :href="route('admin.users.index')" icon="users" name="users.index">کاربران
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('roles',3)" icon="roles" name="roles">مقام ها
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('roles.index',3)" icon="roles" name="roles.index">مقام ها
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('products',4)" :href="route('admin.products.index')" icon="products" name="products">
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('products.index',4)" :href="route('admin.products.index')" icon="products" name="products.index">
                 محصولات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('brands',5)" icon="brands" name="brands">برند
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('brands.index',5)" icon="brands" name="brands.index">برند
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('categories',6)" icon="categories"
-                             name="categories">دسته بندی
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('categories.index',6)" icon="categories"
+                             name="categories.index">دسته بندی
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('attributes',7)" icon="attributes"
-                             name="attributes">خصوصیات
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('attributes.index',7)" icon="attributes"
+                             name="attributes.index">خصوصیات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('transactions',8)" icon="card"
-                             name="transactions">تراکنش
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('transactions.index',8)" icon="card"
+                             name="transactions.index">تراکنش
                 ها
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('orders',9)" icon="orders" name="orders">
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('orders.index',9)" icon="orders" name="orders.index">
                 سفارشات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('settings',10)" icon="settings" name="settings">
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('settings.index',10)" icon="settings" name="settings.index">
                 تنظیمات
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAuthStore().logout()" :href="route('logout')" icon="logout" methode="post">

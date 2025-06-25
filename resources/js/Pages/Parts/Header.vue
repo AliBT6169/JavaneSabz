@@ -7,8 +7,10 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {Modal, ModalComponent, modalSet} from "@/Pages/Components/Helper/Helper.js";
 import {useSearchStore} from "@/Pages/Components/Helper/searchStore.js";
 import SearchResultBox from "@/Pages/Components/searchResultBox.vue";
+import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 
 const authUser = useAuthStore();
+
 </script>
 <template>
     <header class="w-full">
@@ -59,11 +61,11 @@ const authUser = useAuthStore();
                         </div>
                     </Link>
                 </div>
-                <Link class="md:hidden" v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin" :href="route('admin.AdminDashboard')">
+                <Link class="md:hidden" v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin" :href="route('admin.'+useAdminStore().Page)">
                     <div
                         class="size-10 flex items-center justify-center hover:bg-red-400 transition-all rounded-xl bg-red-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
                         title="پنل مدیریت">
-                        <svg-component name="admin" class="size-6" title="پنل مدیریت"></svg-component>
+                        <svg-component name="admin" class="size-6" title="پنل مدیریت"/>
                     </div>
                 </Link>
             </div>
@@ -96,7 +98,7 @@ const authUser = useAuthStore();
                         </div>
                     </Link>
 <!--                    is_Admin-->
-                    <Link :href="route('admin.AdminDashboard')">
+                    <Link :href="route('admin.'+ useAdminStore().Page)">
                         <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute invisible opacity-0 top-20 duration-300 rounded-xl
                          border py-3 -left-12 flex gap-2 text-sm text-nowrap px-5 bg-defaultColor5 cursor-pointer dark:bg-defaultColor group-hover:top-10 group-hover:visible
                           group-hover:opacity-100">
