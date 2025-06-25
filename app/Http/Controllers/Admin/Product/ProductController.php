@@ -13,6 +13,7 @@ use App\Models\ProductVariation;
 use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -90,7 +91,6 @@ class ProductController extends Controller
 
     public function update(ProductUpdateRequest $request)
     {
-        return $request;
         if ($request->variation == '')
             abort(400, 'داشتن حد اقل یک سایز ضروری است!');
         $product = Product::whereId($request->id)->first();
@@ -117,8 +117,13 @@ class ProductController extends Controller
                     $deleted_variation = false;
                 }
             }
-            if ($deleted_variation)
+            if ($deleted_variation) {
+                if ($variation->gallery() && File::exists(public_path('images/productVariations/' . $variation->id))) {
+                    File::deleteDirectory(public_path('images/productVariations/' . $variation->id));
+                }
                 $variation->delete();
+
+            }
         }
         foreach ($request->variation as $variation) {
             if ($variation['id'] == 0) {
