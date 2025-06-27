@@ -34,12 +34,18 @@ const toggle = async () => {
 <template>
 
     <div
-        class="text-center space-y-2 border-2 cursor-pointer border-black rounded-xl group p-2">
+        class="text-center relative overflow-hidden space-y-2 border-2 cursor-pointer flex flex-col
+         justify-center items-center border-black rounded-xl group p-2">
         <img :src="brandData.icon" alt=""
              class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95">
+        <div
+            class="hidden lg:block p-2 xl:px-6 rounded-xl absolute bg-white/20 duration-300 top-12 translate-x-40 group-hover:translate-x-0
+            dark:bg-gray-800/20">
+            مشاهده
+        </div>
         <div class="">{{ brandData.name }}</div>
         <div class="">{{ brandData.productsQuantity }} محصول</div>
-        <div class="py-1 rounded-lg border border-black"
+        <div class="py-1 w-full rounded-lg border border-black"
              @click="toggle"
              :class="{'bg-green-500':is_active,'bg-red-500':!is_active }">
             {{ is_active ? 'فعال' : 'غیرفعال' }}

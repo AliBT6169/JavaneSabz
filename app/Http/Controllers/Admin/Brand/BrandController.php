@@ -13,7 +13,7 @@ class BrandController extends Controller
 {
     public function index()
     {
-        $brands = BrandResource::collection(Brand::latest()->paginate(20));
+        $brands = BrandResource::collection(Brand::latest()->get());
         return Inertia::render('Admin/pages/Brands/index', ['brands' => $brands]);
     }
 
@@ -23,5 +23,10 @@ class BrandController extends Controller
             'is_active' => DB::raw('NOT is_active')
         ]);
         return response()->json(['message' => 'عملیات موفقیت آمیز بود'], 200);
+    }
+
+    public function create()
+    {
+        return Inertia::render('Admin/pages/Brands/create');
     }
 }
