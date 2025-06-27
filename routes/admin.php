@@ -33,6 +33,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(BrandController::class)->group(function () {
         Route::get('/brand/index', 'index')->name('brands.index');
+        Route::get('/brand/{id}', 'toggle')->name('brands.toggle');
     });
 });
 
