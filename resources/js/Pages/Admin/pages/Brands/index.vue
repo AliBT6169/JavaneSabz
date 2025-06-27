@@ -10,7 +10,6 @@ import {Link} from "@inertiajs/vue3";
 const props = defineProps({
     brands: null,
 });
-console.log(props.brands)
 </script>
 
 <template>
