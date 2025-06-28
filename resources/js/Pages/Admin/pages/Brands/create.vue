@@ -55,11 +55,13 @@ const sendData = async () => {
         <form @submit.prevent="sendData">
             <admin-picture-input v-model="picture"/>
             <div class="space-y-6">
-                <AdminInput name="نام" v-model="form.name"/>
-                <admin-active-de-active-input :model-value="form.is_active"/>
+                <div class="space-y-6 md:space-y-0 md:flex md:gap-4 md:justify-between">
+                    <AdminInput name="نام" v-model="form.name"/>
+                    <admin-active-de-active-input :model-value="form.is_active"/>
+                </div>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
-                    <Link :href="route('admin.brands.index')">
+                    <Link class="block" :href="route('admin.brands.index')">
                         <admin-button type="cancel" text="لغو"/>
                     </Link>
                 </div>
