@@ -243,6 +243,7 @@ return [
         "age_range_from" => "سن اول",
         "age_range_to" => "سن دوم",
 
+        "id" => "آیدی",
         "category_count" => "دسته بندی",
     ],
 ];

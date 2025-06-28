@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Brand;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Brands\BrandStoreRequest;
+use App\Http\Requests\Admin\Brands\BrandUpdateRequest;
 use App\Http\Resources\Admin\Brands\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
@@ -53,5 +54,10 @@ class BrandController extends Controller
     {
         $brandData = BrandResource::make(Brand::whereId($id)->first());
         return Inertia::render('Admin/pages/Brands/edit', ['brandData' => $brandData]);
+    }
+
+    public function update(BrandUpdateRequest $request)
+    {
+        return $request;
     }
 }

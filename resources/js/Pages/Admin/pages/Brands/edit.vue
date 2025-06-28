@@ -19,6 +19,7 @@ const props = defineProps({
 console.log(props.brandData)
 const picture = ref(props.brandData.data.icon);
 const form = ref({
+    id: props.brandData.data.id,
     name: props.brandData.data.name,
     is_active: props.brandData.data.is_active
 });
@@ -38,11 +39,16 @@ const sendData = async () => {
                 else
                     formData.append('image', picture.value);
                 console.log(formData)
-                // await axios.post(route('admin.brands.update'), formData).then(res => {
-                //     useToast().success('عملیات موفقی آمیز بود');
-                // }).catch(err => {
-                //     useToast().error(err.response.data.message)
-                // });
+                await axios.post(route('admin.brands.update'), formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'X-HTTP-Method-Override': 'PUT'
+                    }
+                }).then(res => {
+                    useToast().success('عملیات موفقی آمیز بود');
+                }).catch(err => {
+                    useToast().error(err.response.data.message)
+                });
             }
         }
     }
