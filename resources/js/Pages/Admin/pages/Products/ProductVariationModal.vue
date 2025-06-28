@@ -142,7 +142,8 @@ const dataSender = () => {
                 </div>
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">
-                <admin-button text="ثبت" @click="dataSender" type="submit"/>
+                <div @click="dataSender" class="px-12 py-2 rounded-xl duration-300 cursor-pointer border-2 bg-adminColor1 border-adminColor2
+     dark:bg-adminColor3 dark:border-adminColor4 hover:scale-95 hover:shadow-inner hover:shadow-gray-500">ثبت</div>
                 <admin-button text="لغو" type="cancel" @click="modal_status = false"/>
             </div>
         </form>
