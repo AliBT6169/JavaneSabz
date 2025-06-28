@@ -120,7 +120,7 @@ const saveChanges = async () => {
                 <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{form.address}}</textarea>
                 <div class="*:text-center md:!justify-end">
-                    <admin-button text="ثبت" type="submit" @click="saveChanges"/>
+                    <admin-button text="ثبت" type="submit"/>
                     <Link :href="route('admin.users.index')">
                         <admin-button text="لغو" type="cancel"/>
                     </Link>

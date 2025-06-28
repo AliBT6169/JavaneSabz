@@ -154,7 +154,7 @@ const VariationDelete = (index) => {
                     </div>
                 </div>
                 <div class="*:text-center md:!justify-end *:my-2">
-                    <admin-button text="ثبت" type="submit" @click="saveChanges"/>
+                    <admin-button text="ثبت" type="submit"/>
                     <Link :href="route('admin.products.index')">
                         <admin-button text="لغو" type="cancel"/>
                     </Link>

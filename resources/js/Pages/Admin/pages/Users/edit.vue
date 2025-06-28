@@ -116,7 +116,7 @@ const changeData = async () => {
                 <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{user.data.address.address}}</textarea>
                 <div class="*:text-center md:!justify-end">
-                    <admin-button text="ثبت" type="submit" @click="changeData"/>
+                    <admin-button text="ثبت" type="submit"/>
                     <Link :href="route('admin.users.index')">
                         <admin-button text="لغو" type="cancel"/>
                     </Link>
