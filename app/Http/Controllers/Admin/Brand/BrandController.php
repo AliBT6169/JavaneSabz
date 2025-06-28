@@ -48,4 +48,10 @@ class BrandController extends Controller
         ]);
         return response()->json(['message' => 'success'], 200);
     }
+
+    public function edit(int $id)
+    {
+        $brandData = BrandResource::make(Brand::whereId($id)->first());
+        return Inertia::render('Admin/pages/Brands/edit', ['brandData' => $brandData]);
+    }
 }
