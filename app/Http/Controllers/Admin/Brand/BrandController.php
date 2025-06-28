@@ -58,6 +58,17 @@ class BrandController extends Controller
 
     public function update(BrandUpdateRequest $request)
     {
-        return $request;
+        $brand = Brand::whereId($request->id)->first();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            unlink(public_path('images/brands/' . $brand->id . '.' . $image->getClientOriginalExtension()));
+            $image->move(public_path('images/brands/'), $brand->id . '.' . $image->getClientOriginalExtension());
+        }
+        $brand->update([
+            'name' => $request->name,
+            'slug' => $request->name,
+            'is_active' => $request->is_active,
+        ]);
+        return response()->json(['message' => 'success'], 200);
     }
 }

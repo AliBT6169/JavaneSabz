@@ -5,6 +5,7 @@
 /public/storage
 /public/images/users
 /public/images/products
+/public/images/brands
 /public/images/productVariations
 /storage/*.key
 /storage/pail
