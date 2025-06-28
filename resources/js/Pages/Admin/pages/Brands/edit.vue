@@ -33,16 +33,16 @@ const sendData = async () => {
             set: async () => {
                 const formData = new FormData();
                 toFormData(form.value, formData);
-                if (picture.value !== '')
+                if (typeof picture.value !== "string")
                     formData.append('image', picture.value.get('image'));
                 else
                     formData.append('image', picture.value);
-                console.log(form.value.name)
-                await axios.post(route('admin.brands.store'), formData).then(res => {
-                    useToast().success('عملیات موفقی آمیز بود');
-                }).catch(err => {
-                    useToast().error(err.response.data.message)
-                });
+                console.log(formData)
+                // await axios.post(route('admin.brands.update'), formData).then(res => {
+                //     useToast().success('عملیات موفقی آمیز بود');
+                // }).catch(err => {
+                //     useToast().error(err.response.data.message)
+                // });
             }
         }
     }
@@ -61,7 +61,7 @@ const sendData = async () => {
             <div class="space-y-6">
                 <div class="space-y-6 md:space-y-0 md:flex md:gap-4 md:justify-between">
                     <AdminInput name="نام" v-model="form.name"/>
-                    <admin-active-de-active-input :model-value="form.is_active"/>
+                    <admin-active-de-active-input v-model="form.is_active"/>
                 </div>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
