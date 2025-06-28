@@ -10,6 +10,8 @@ import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActi
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import {Link} from "@inertiajs/vue3";
 import {toFormData} from "axios";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import {useToast} from "vue-toastification";
 
 const picture = ref('');
 const form = ref({
@@ -18,10 +20,31 @@ const form = ref({
 });
 
 const sendData = async () => {
-    const formData = new FormData();
-    toFormData(form.value, formData);
-    formData.append('image',picture.value.get('image'))
-    console.log(formData);
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا مطمعن به ذخیره این برند هستید؟'
+        },
+        listeners: {
+            set: async () => {
+                const formData = new FormData();
+                toFormData(form.value, formData);
+                if (picture.value !== '')
+                    formData.append('image', picture.value.get('image'));
+                else
+                    formData.append('image', picture.value);
+                console.log(form.value.name)
+                await axios.post(route('admin.brands.store'), formData).then(res => {
+                    useToast().success('عملیات موفقی آمیز بود');
+                }).catch(err => {
+                    useToast().error(err.response.data.message)
+                });
+            }
+        }
+    }
+    const toast = useToast();
+    toast.warning(content);
+
 }
 </script>
 
@@ -32,7 +55,7 @@ const sendData = async () => {
         <form @submit.prevent="sendData">
             <admin-picture-input v-model="picture"/>
             <div class="space-y-6">
-                <admin-input name="نام" :model-value="form.name"/>
+                <AdminInput name="نام" v-model="form.name"/>
                 <admin-active-de-active-input :model-value="form.is_active"/>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>

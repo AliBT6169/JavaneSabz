@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Products\ProductStoreRequest;
 use App\Http\Requests\Admin\Products\ProductUpdateRequest;
-use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Http\Resources\Admin\Products\ProductsResource;
-use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\Product;
 use App\Models\ProductVariation;
-use GuzzleHttp\Psr7\UploadedFile;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Inertia\Inertia;

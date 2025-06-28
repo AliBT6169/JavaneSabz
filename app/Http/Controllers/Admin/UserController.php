@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UserCreateRequest;
-use App\Http\Requests\Admin\UserUpdateRequest;
+use App\Http\Requests\Admin\Users\UserCreateRequest;
+use App\Http\Requests\Admin\Users\UserUpdateRequest;
 use App\Http\Resources\Admin\UserResource;
 use App\Models\Address;
 use App\Models\Gallery;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
