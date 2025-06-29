@@ -56,7 +56,7 @@ const sendData = async () => {
             <div class="space-y-6">
                 <div class="space-y-6 md:space-y-0 md:flex md:gap-4 md:justify-between">
                     <AdminInput name="نام" v-model="form.name"/>
-                    <admin-active-de-active-input :model-value="form.is_active"/>
+                    <admin-active-de-active-input v-model="form.is_active"/>
                 </div>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
