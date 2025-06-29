@@ -39,6 +39,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::patch('/brand/{id}', 'toggle')->name('brands.toggle');
         Route::get('/brand/{id}', 'edit')->name('brands.edit');
         Route::put('/brand', 'update')->name('brands.update');
+        Route::delete('/brand/{id}', 'destroy')->name('brands.destroy');
     });
 });
 

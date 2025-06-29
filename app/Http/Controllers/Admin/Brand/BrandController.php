@@ -9,6 +9,7 @@ use App\Http\Resources\Admin\Brands\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class BrandController extends Controller
@@ -35,10 +36,7 @@ class BrandController extends Controller
     public function store(BrandStoreRequest $request)
     {
         $image = $request->file('image');
-        $lastId = 1;
-        if (Brand::latest()->first() != null) {
-            $lastId = Brand::latest()->first()->id + 1;
-        }
+        $lastId = DB::select('SHOW TABLE STATUS LIKE "brands"')[0]->Auto_increment;
         $URL = '/images/brands/' . $lastId . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('images/brands/'), $lastId . '.' . $image->getClientOriginalExtension());
         Brand::create([
@@ -69,6 +67,18 @@ class BrandController extends Controller
             'slug' => $request->name,
             'is_active' => $request->is_active,
         ]);
+        return response()->json(['message' => 'success'], 200);
+    }
+
+    public function destroy($id)
+    {
+        $brand = Brand::whereId($id)->first();
+        if ($brand->products->count() > 0)
+            abort(400, 'این برند شامل محصول است!!!');
+        if (File::exists(public_path($brand->icon))) {
+            unlink(public_path($brand->icon));
+        }
+        $brand->delete();
         return response()->json(['message' => 'success'], 200);
     }
 }
