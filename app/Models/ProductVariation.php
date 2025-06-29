@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Resources\Home\ProductResource;
+use App\Http\Resources\Home\Product\IndexProductVariationsResource;
 use App\Models\BuyCart\BuyCart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,35 +70,22 @@ class ProductVariation extends Model
 
 
     //دریافت تعدادی اختیاری از محصولات
-    public static function getSomeProduct(int $count = 10, int $categoryId = null)
+    public static function getSomeProduct(int $count = 10, $filters = [])
     {
+        $products = [];
+        $query = Product::query()->where('is_active', 1);
+        foreach ($filters as $column => $value) {
+            if ($value !== 0)
+                $query->where($column, $value);
+        }
+        $products = $query->latest()->take($count)->get();
         $productVariations = [];
-        $productData = [];
-        if ($categoryId != null) {
-            $products = Product::where('category_id', $categoryId)->get();
-            foreach ($products as $product) {
-                foreach ($product->product_variations as $variation) {
-                    $productVariations[] = $variation;
-                }
+        foreach ($products as $product) {
+            foreach ($product->product_variations as $productVariation) {
+                $productVariations[] = $productVariation;
             }
-        } else {
-            $productVariations = self::latest()->take($count)->get();
         }
-        foreach ($productVariations as $item) {
-            $productData[] = [
-                "id" => $item->id,
-                "product_id" => $item->product_id,
-                "category_id" => $item->product->category_id,
-                "brand_id" => $item->product->brand_id,
-                "name" => $item->product->name,
-                "value" => $item->value,
-                "quantity" => $item->quantity,
-                "price" => $item->sale_price,
-                "image" => $item->gallery->count() != 0 ? $item->gallery[0]->media : $item->product->primary_image,
-                "is_liked" => Auth::check() ? Wishlist::is_exist(Auth::user()->id, $item->id) : false,
-            ];
-        }
-        return $productData;
+        return IndexProductVariationsResource::collection($productVariations);
     }
 
     public static function productQuantityDecrement($order_id)

@@ -4,18 +4,11 @@ namespace App\Http\Controllers\User\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\DashboardResource;
-use App\Http\Resources\Home\ProductResource;
 use App\Models\BuyCart\BuyCart;
-use App\Models\Coupon;
 use App\Models\DeliveryAmount;
 use App\Models\Order;
 use App\Models\ProductVariation;
-use App\Models\Transaction;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Morilog\Jalali\Jalalian;
 
 class BuyCartController extends Controller
 {

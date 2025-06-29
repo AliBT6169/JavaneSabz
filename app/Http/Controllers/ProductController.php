@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Home\ProductResource;
+use App\Http\Resources\Home\Product\ProductResource;
 use App\Models\Product;
 use App\Models\ProductVariation;
-use http\Client\Response;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

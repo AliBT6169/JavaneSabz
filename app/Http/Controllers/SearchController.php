@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Home\ProductResource;
 use App\Models\Product;
-use App\Models\ProductVariation;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SearchController extends Controller

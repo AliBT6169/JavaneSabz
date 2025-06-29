@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Home;
+namespace App\Http\Resources\Home\Product;
 
 use App\Models\ProductVariation;
 use App\Models\Wishlist;
@@ -38,7 +38,10 @@ class ProductResource extends JsonResource
             'comments' => '',
             "is_liked" => Auth::check() ? Wishlist::is_exist(Auth::user()->id, $this->id) : false,
             'rate' => '',
-            'sameProducts' => ProductVariation::getSomeProduct(10, $this->product->category->id),
+            'sameProducts' => ProductVariation::getSomeProduct(10, [
+                'brand_id' => $this->product->brand->id,
+                'category_id' => $this->product->category->id,
+            ]),
         ];
     }
 

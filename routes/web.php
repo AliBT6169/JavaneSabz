@@ -14,7 +14,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     $indexData = (object)[
-        "products" => ProductVariation::getSomeProduct(20),
+        "products" => ProductVariation::getSomeProduct(20)
     ];
     return Inertia::render('Index', ["indexData" => $indexData]);
 });
