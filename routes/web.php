@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -12,11 +13,8 @@ use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    $indexData = (object)[
-        "products" => ProductVariation::getSomeProduct(20)
-    ];
-    return Inertia::render('Index', ["indexData" => $indexData]);
+Route::controller(IndexController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
 });
 
 Route::get('/درباره ما', function () {

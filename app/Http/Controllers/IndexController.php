@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductVariation;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class IndexController extends Controller
 {
@@ -11,7 +13,10 @@ class IndexController extends Controller
      */
     public function index()
     {
-        //
+        $indexData = (object)[
+            "products" => ProductVariation::getSomeProduct(20)
+        ];
+        return Inertia::render('Index', ["indexData" => $indexData]);
     }
 
     /**
