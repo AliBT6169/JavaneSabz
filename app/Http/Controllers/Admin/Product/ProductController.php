@@ -43,10 +43,7 @@ class ProductController extends Controller
         if ($request->variation == '')
             abort(400, 'ساخت حداقل یک سایز از این محصول نیاز است!');
         $image = $request->file('image');
-        if (Product::latest()->first() != null)
-            $ProductId = Product::latest()->first()->id + 1;
-        else
-            $ProductId = 1;
+        $ProductId = DB::select('SHOW TABLE STATUS LIKE "products"')[0]->Auto_increment;
         $primaryImageURL = '/images/products/' . $ProductId;
         $path = $image->move(public_path($primaryImageURL), $ProductId . '.' . $image->getClientOriginalExtension());
 
@@ -202,7 +199,7 @@ class ProductController extends Controller
     {
         $product = Product::whereId($id)->first();
 //        if (File::isDirectory(public_path('images/products/' . $product->id)))
-            File::deleteDirectory(public_path('images/products/' . $product->id));
+        File::deleteDirectory(public_path('images/products/' . $product->id));
         foreach ($product->product_variations as $variation) {
             if ($variation->gallery() && File::isDirectory(public_path('images/productVariations/' . $variation->id))) {
                 File::deleteDirectory(public_path('images/productVariations/' . $variation->id));
