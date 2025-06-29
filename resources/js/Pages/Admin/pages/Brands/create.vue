@@ -33,7 +33,6 @@ const sendData = async () => {
                     formData.append('image', picture.value.get('image'));
                 else
                     formData.append('image', picture.value);
-                console.log(form.value.name)
                 await axios.post(route('admin.brands.store'), formData).then(res => {
                     useToast().success('عملیات موفقی آمیز بود');
                 }).catch(err => {

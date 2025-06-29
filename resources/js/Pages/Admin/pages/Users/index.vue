@@ -12,7 +12,6 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 
 const props = defineProps(["userData"]);
-console.log(props.userData)
 
 const userDelete = async (id) => {
     const content = {

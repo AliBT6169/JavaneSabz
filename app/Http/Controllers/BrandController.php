@@ -37,7 +37,7 @@ class BrandController extends Controller
      */
     public function show()
     {
-        return BrandResource::collection(Brand::all());
+        return BrandResource::collection(Brand::where('is_active', 1)->get());
     }
 
     /**
