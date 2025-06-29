@@ -12,7 +12,7 @@ const props = defineProps({
 });
 const productData = ref(props.products.data);
 const productDeleted = (id) => {
-    productData.value = productData.filter((item) => item.id === id);
+    productData.value = productData.value.filter((item) => item.id !== id);
 }
 </script>
 
