@@ -32,8 +32,8 @@ const mouseupd = (e) => {
     <div id="brands" class="mx-auto overflow-x-scroll" @mousedown="mousedowned" @mousemove="mousmoving"
          @mouseup="mouseupd">
         <div class="flex w-fit text-xs gap-4 mt-4 py-5">
-            <div class="brand-list" v-for="item in props.brandsData">
-                <img :src="item" alt="" class="brands-image"
+            <div class="brand-list" v-for="item in brandsData">
+                <img :src="item.icon" alt="" class="brands-image"
                      @dragstart.prevent>
             </div>
         </div>

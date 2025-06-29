@@ -14,8 +14,6 @@ import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import {useWindowScroll} from "@vueuse/core";
 
 const props = defineProps(["indexData"]);
-console.log(props.indexData)
-useIndexStore().setData(props.indexData.products);
 const indexData = ref(props.indexData);
 const slider1Data = ref([
     "../../../../images/slider/slider%20(1).jpeg",
@@ -53,7 +51,7 @@ const liveCardData = ref([
                     <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <Brands class="w-full" :brands-data="brandsData"></Brands>
+            <Brands class="w-full" :brands-data="indexData.brands"></Brands>
         </div>
         <!--        product show-1-->
         <div data-aos="fade-up" class="w-full mx-auto !transform-none">
