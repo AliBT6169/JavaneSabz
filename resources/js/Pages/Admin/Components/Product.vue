@@ -3,10 +3,12 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import {useToast} from "vue-toastification";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 const props = defineProps({
     product: null,
 });
+const emit = defineEmits(['deleted']);
 const is_active = ref(Boolean(props.product.is_active));
 const ActiveDeActive = async () => {
     await axios.patch(route('admin.products.active_DeActive', {id: props.product.id})).then((res) => {
@@ -16,10 +18,35 @@ const ActiveDeActive = async () => {
         console.log(err.data);
     });
 }
+const deleter = async () => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا از حذف این محصول مطمعن هستید؟'
+        },
+        listeners: {
+            set: async () => {
+                await axios.delete(route('admin.products.destroy', {id: props.product.id})).then((res) => {
+                    useToast().success('محصول با موفقیت حذف شد.');
+                    emit('deleted', props.product.id);
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }
+        }
+    }
+    const toast = useToast();
+    toast.warning(content);
+}
 </script>
 
 <template>
-    <div class="pb-2 w-60 rounded-xl overflow-hidden border border-current space-y-4 cursor-pointer">
+    <div class="pb-2 w-60 relative rounded-xl overflow-hidden border border-current space-y-4 cursor-pointer">
+        <!--        delete button-->
+        <div @click="deleter"
+             class="absolute p-1 rounded-xl left-1 duration-300 top-1 hover:text-red-500 bg-white/30 dark:bg-gray-800/30">
+            <svg-component name="delete" class="size-6"/>
+        </div>
         <Link href="#">
             <img :src="product.image" class="w-full max-h-40 border" alt="">
         </Link>

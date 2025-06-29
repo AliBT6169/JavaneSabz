@@ -30,6 +30,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::patch('/product/{id}', 'active_DeActive')->name('products.active_DeActive');
         Route::get('/product/{id}', 'edit')->name('products.edit');
         Route::put('/product', 'update')->name('products.update');
+        Route::delete('/product/{id}', 'destroy')->name('products.destroy');
     });
     Route::controller(BrandController::class)->group(function () {
         Route::get('/brand/index', 'index')->name('brands.index');

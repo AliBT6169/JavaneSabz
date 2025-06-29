@@ -197,4 +197,19 @@ class ProductController extends Controller
         }
         return ProductsResource::make($product);
     }
+
+    public function destroy(int $id)
+    {
+        $product = Product::whereId($id)->first();
+//        if (File::isDirectory(public_path('images/products/' . $product->id)))
+            File::deleteDirectory(public_path('images/products/' . $product->id));
+        foreach ($product->product_variations as $variation) {
+            if ($variation->gallery() && File::isDirectory(public_path('images/productVariations/' . $variation->id))) {
+                File::deleteDirectory(public_path('images/productVariations/' . $variation->id));
+            }
+            $variation->delete();
+        }
+        $product->delete();
+        return response()->json(['message' => 'success'], 200);
+    }
 }
