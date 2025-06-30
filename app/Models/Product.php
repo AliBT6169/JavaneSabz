@@ -49,6 +49,11 @@ class Product extends Model
         return $this->morphToMany(Coupon::class, 'couponable');
     }
 
+    public function attributes(): MorphToMany
+    {
+        return $this->morphToMany(Attribute::class, 'attributable');
+    }
+
     public static function search(string $search)
     {
         $productVariations = null;

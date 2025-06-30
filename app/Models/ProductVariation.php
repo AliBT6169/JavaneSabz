@@ -48,9 +48,9 @@ class ProductVariation extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function attribute(): BelongsToMany
+    public function attributes(): MorphToMany
     {
-        return $this->belongsToMany(Attribute::class);
+        return $this->morphToMany(Attribute::class, 'attributable');
     }
 
     public function coupons(): MorphToMany

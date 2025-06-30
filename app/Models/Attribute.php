@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Attribute extends Model
 {
@@ -21,8 +23,13 @@ class Attribute extends Model
         'created_at',
     ];
 
-    public function product_variation(): HasMany
+    public function products(): MorphToMany
     {
-        return $this->hasMany(ProductVariation::class);
+        return $this->morphToMany(Product::class, 'attributable');
+    }
+
+    public function productVariations(): MorphToMany
+    {
+        return $this->morphToMany(ProductVariation::class, 'attributable');
     }
 }
