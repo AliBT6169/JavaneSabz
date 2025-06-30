@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Brand\BrandController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,7 +34,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(BrandController::class)->group(function () {
         Route::get('/brand/index', 'index')->name('brands.index');
-        Route::get('/brand/create', 'create')->name('brands.create');
+        Route::get('/brand', 'create')->name('brands.create');
         Route::post('/brand', 'store')->name('brands.store');
         Route::patch('/brand/{id}', 'toggle')->name('brands.toggle');
         Route::get('/brand/{id}', 'edit')->name('brands.edit');
@@ -43,6 +43,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/category/index', 'index')->name('categories.index');
+        Route::get('/category', 'index')->name('categories.create');
     });
 });
 

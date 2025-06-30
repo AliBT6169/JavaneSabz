@@ -11,6 +11,7 @@ import CategoryItem from "@/Pages/Admin/Components/CategoryItem.vue";
 const props = defineProps({
     categories: null,
 });
+console.log(props.categories)
 const categoryData = ref(props.categories.data);
 const brandDeleted = (id) => {
     categoryData.value = categoryData.value.filter((item) => item.id !== id);

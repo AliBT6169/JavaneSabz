@@ -26,8 +26,8 @@ import {router} from "@inertiajs/vue3";
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('brands.index',5)" :href="route('admin.brands.index')" icon="brands" name="brands.index">برند
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',6)" icon="categories"
-                             name="AdminDashboard">دسته بندی
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('categories.index',6)" icon="categories" :href="route('admin.categories.index')"
+                             name="categories.index">دسته بندی
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',7)" icon="attributes"
                              name="AdminDashboard">خصوصیات
