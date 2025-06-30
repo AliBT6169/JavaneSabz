@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique()->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('icon')->nullable();
             $table->timestamps();

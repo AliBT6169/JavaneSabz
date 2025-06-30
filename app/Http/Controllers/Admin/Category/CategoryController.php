@@ -32,7 +32,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'slug' => $request->name,
-            'description' => $request->decription,
+            'description' => $request->description,
             'icon' => $URL,
             'is_active' => $request->is_active,
         ]);

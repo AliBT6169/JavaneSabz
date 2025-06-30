@@ -59,8 +59,8 @@ const deleter = async () => {
 
     <div
         class="text-center overflow-hidden space-y-2 border-2 cursor-pointer border-black rounded-xl group p-2">
-        <Link class="relative flex h-1/3 lg:h-1/2 justify-center items-center"
-              :href="route('admin.brands.edit',{id:categoryData.id})">
+        <Link class="relative flex h-1/3 justify-center items-center"
+              :href="route('admin.categories.edit',{id:categoryData.id})">
             <img :src="categoryData.icon" alt=""
                  class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95 h-full ">
             <div
@@ -71,6 +71,8 @@ const deleter = async () => {
         </Link>
         <div class="">{{ categoryData.name }}</div>
         <div class="">{{ categoryData.productsQuantity }} محصول</div>
+        <div class=""><span class="">توضیحات :</span>
+        {{ categoryData.description}}</div>
         <div class="flex gap-2 items-center">
             <div class="py-1 w-full rounded-lg border border-black"
                  @click="toggle"

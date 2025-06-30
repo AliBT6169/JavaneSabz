@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function show()
     {
-        return CategoryResource::collection(Category::all());
+        return CategoryResource::collection(Category::where('is_active',1)->get());
 
     }
 

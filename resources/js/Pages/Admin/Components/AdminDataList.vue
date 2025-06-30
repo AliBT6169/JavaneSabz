@@ -34,7 +34,7 @@ const dataSender = (value) => {
 <template>
     <div class="w-full">
         <div class="text-sm px-3">{{ label }} :</div>
-        <input class="admin_inputs" :list="'dataList'+label" name="DataList" :value="selected_value"
+        <input class="admin_inputs" :list="'dataList'+label" name="DataList" :value="selected_value" autocomplete="off"
                @input="dataSender($event.target.value)">
         <datalist :id="'dataList'+label">
             <option v-for="item in listData" :value="item.name">{{ item.name }}</option>
