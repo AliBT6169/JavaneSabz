@@ -22,7 +22,7 @@ class Category extends Model
         'created_at',
     ];
 
-    public function product(): HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }

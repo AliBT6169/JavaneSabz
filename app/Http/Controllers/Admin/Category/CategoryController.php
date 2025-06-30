@@ -9,6 +9,7 @@ use App\Http\Resources\Admin\Categories\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class CategoryController extends Controller
@@ -70,6 +71,17 @@ class CategoryController extends Controller
             'description' => $request->description,
             'is_active' => $request->is_active,
         ]);
+        return response()->json(['message' => 'success'], 200);
+    }
+
+    public function destroy($id)
+    {
+        $category = Category::whereId($id)->first();
+        if ($category->products->count() > 0)
+            abort(400, 'این دسته بندی شامل محصول است!!!');
+        if (File::exists(public_path($category->icon)))
+            unlink(public_path($category->icon));
+        $category->delete();
         return response()->json(['message' => 'success'], 200);
     }
 }

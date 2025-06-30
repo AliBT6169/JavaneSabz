@@ -12,7 +12,7 @@ const props = defineProps({
     categories: null,
 });
 const categoryData = ref(props.categories.data);
-const brandDeleted = (id) => {
+const categoryDeleted = (id) => {
     categoryData.value = categoryData.value.filter((item) => item.id !== id);
 }
 </script>
@@ -22,7 +22,7 @@ const brandDeleted = (id) => {
     <AdminSideBar/>
     <Layout>
         <div class="space-y-5">
-            <CategoryItem v-for="item in categoryData" @deleted="categoryData($event)" :category-data="item"/>
+            <CategoryItem v-for="item in categoryData" @deleted="categoryDeleted($event)" :category-data="item"/>
             <Link :href="route('admin.categories.create')"
                   class="border-2 cursor-pointer border-black rounded-xl duration-300 p-2 hover:scale-95">
                 <svg-component name="plus" class="size-full"/>
