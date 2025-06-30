@@ -22,7 +22,7 @@ const brandDeleted = (id) => {
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
-        <div class="grid grid-cols-3 gap-5 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
+        <div class="space-y-5">
             <CategoryItem v-for="item in categoryData" @deleted="categoryData($event)" :category-data="item"/>
             <Link :href="route('admin.categories.create')"
                   class="border-2 cursor-pointer border-black rounded-xl duration-300 p-2 hover:scale-95">

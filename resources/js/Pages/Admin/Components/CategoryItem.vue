@@ -58,31 +58,40 @@ const deleter = async () => {
 <template>
 
     <div
-        class="text-center overflow-hidden space-y-2 border-2 cursor-pointer border-black rounded-xl group p-2">
-        <Link class="relative flex h-1/3 justify-center items-center"
-              :href="route('admin.categories.edit',{id:categoryData.id})">
-            <img :src="categoryData.icon" alt=""
-                 class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95 h-full ">
-            <div
-                class="hidden lg:block p-2 xl:px-6 rounded-xl absolute bg-white/20 duration-300 translate-x-40 group-hover:translate-x-0
-            dark:bg-gray-800/20">
-                مشاهده
+        class="text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6">
+        <div class="space-y-2 lg:flex lg:space-y-0 lg:items-center lg:gap-6">
+            <Link class="w-full relative flex justify-center items-center lg:w-60"
+                  :href="route('admin.categories.edit',{id:categoryData.id})">
+                <img :src="categoryData.icon" alt=""
+                     class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95 size-32 ">
+                <div class="hidden size-40 absolute rounded-xl overflow-hidden lg:flex justify-center items-center">
+                    <div
+                        class="p-2 xl:px-6 rounded-xl translate-x-40 group-hover:translate-x-0 bg-white/20 duration-300 dark:bg-gray-800/20">
+                        مشاهده
+                    </div>
+                </div>
+            </Link>
+            <div class="flex gap-2 items-center border-b-2 pb-2 border-black dark:border-white lg:border-0 lg:p-0 lg:gap-6">
+                <div class="w-full"><span class="lg:block">نام: </span>{{ categoryData.name }}</div>
+                <div class="w-full"><span class="lg:block">تعداد محصول: </span>{{ categoryData.productsQuantity }}</div>
             </div>
-        </Link>
-        <div class="">{{ categoryData.name }}</div>
-        <div class="">{{ categoryData.productsQuantity }} محصول</div>
-        <div class=""><span class="">توضیحات :</span>
-        {{ categoryData.description}}</div>
-        <div class="flex gap-2 items-center">
-            <div class="py-1 w-full rounded-lg border border-black"
-                 @click="toggle"
-                 :class="{'bg-green-500/70':is_active,'bg-red-500/70':!is_active }">
-                {{ is_active ? 'فعال' : 'غیرفعال' }}
+            <div class="w-full lg:hidden"><span class="">توضیحات :</span>
+                {{ categoryData.description }}
             </div>
-            <div @click="deleter"
-                 class="p-1 rounded-xl bg-gray-800/30 duration-300 hover:text-red-500 dark:bg-white/30">
-                <svg-component name="delete" class="size-6"/>
+            <div class="flex gap-2 items-center lg:block lg:space-y-2">
+                <div class="py-1 w-full rounded-lg border border-black lg:px-10"
+                     @click="toggle"
+                     :class="{'bg-green-500/70':is_active,'bg-red-500/70':!is_active }">
+                    {{ is_active ? 'فعال' : 'غیرفعال' }}
+                </div>
+                <div @click="deleter"
+                     class="p-1 rounded-xl bg-gray-800/30 duration-300 hover:text-red-500 dark:bg-white/30 lg:w-full">
+                    <svg-component name="delete" class="size-6 lg:m-auto"/>
+                </div>
             </div>
+        </div>
+        <div class="w-full hidden lg:block"><span class="">توضیحات :</span>
+            {{ categoryData.description }}
         </div>
     </div>
 </template>
