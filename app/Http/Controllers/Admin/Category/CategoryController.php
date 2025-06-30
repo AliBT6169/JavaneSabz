@@ -15,4 +15,9 @@ class CategoryController extends Controller
         $categories = CategoryResource::collection(Category::latest()->get());
         return Inertia::render('Admin/pages/Categories/index', ['categories' => $categories]);
     }
+
+    public function create()
+    {
+        return Inertia::render('Admin/pages/Categories/create');
+    }
 }
