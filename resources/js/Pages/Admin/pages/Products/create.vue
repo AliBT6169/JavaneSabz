@@ -112,9 +112,9 @@ const VariationDataChanged = (index, value) => {
                         </div>
                     </div>
                 </div>
-                <!--                brand & categories section-->
+                <!--                brand & Categories section-->
                 <div class="">
-                    <!--                    categories-->
+                    <!--                    Categories-->
                     <AdminDataList @selected="form.category=$event" label="دسته بندی" route="categories.show"/>
                     <!--                    brands-->
                     <AdminDataList @selected="form.brand=$event" label="برند" route="brands.show"/>

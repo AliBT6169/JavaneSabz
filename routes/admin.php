@@ -41,6 +41,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::put('/brand', 'update')->name('brands.update');
         Route::delete('/brand/{id}', 'destroy')->name('brands.destroy');
     });
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/category/index', 'index')->name('categories.index');
+    });
 });
 
 

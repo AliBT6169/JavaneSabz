@@ -37,7 +37,7 @@ Route::controller(AddressController::class)->group(function () {
 });
 
 Route::controller(CategoryController::class)->group(function () {
-    Route::get('/categories', 'show')->name('categories.show');
+    Route::get('/Categories', 'show')->name('Categories.show');
 });
 Route::controller(BrandController::class)->group(function () {
     Route::get('/brands', 'show')->name('brands.show');

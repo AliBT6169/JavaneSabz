@@ -130,9 +130,9 @@ const VariationDelete = (index) => {
                     <AdminInput name="نام محصول" v-model="form.name"/>
                     <AdminActiveDeActiveInput v-model="form.is_active"/>
                 </div>
-                <!--                brand & categories section-->
+                <!--                brand & Categories section-->
                 <div class="">
-                    <!--                    categories-->
+                    <!--                    Categories-->
                     <AdminDataList @selected="form.category=$event" :default_value="form.category" label="دسته بندی"
                                    route="categories.show"/>
                     <!--                    brands-->

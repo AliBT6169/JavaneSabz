@@ -6,12 +6,12 @@ import {Link} from "@inertiajs/vue3";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const props = defineProps({
-    brandData: {
+    categoryData: {
         required: true,
     }
 });
 const emit = defineEmits(['deleted']);
-const is_active = ref(props.brandData.is_active);
+const is_active = ref(props.categoryData.is_active);
 const toggle = async () => {
     const content = {
         component: ToastWarning,
@@ -20,7 +20,7 @@ const toggle = async () => {
         },
         listeners: {
             set: async () => {
-                await axios.patch(route('admin.brands.toggle', {id: props.brandData.id})).then(res => {
+                await axios.patch(route('admin.categories.toggle', {id: props.categoryData.id})).then(res => {
                     useToast().success(res.data.message);
                     is_active.value = !is_active.value;
                 }).catch(err => {
@@ -36,13 +36,13 @@ const deleter = async () => {
     const content = {
         component: ToastWarning,
         props: {
-            message: 'آیا از حذف این برند مطمعن هستید؟'
+            message: 'آیا از حذف این دسته بندی مطمعن هستید؟'
         },
         listeners: {
             set: async () => {
-                await axios.delete(route('admin.brands.destroy', {id: props.brandData.id})).then((res) => {
-                    useToast().success('برند با موفقیت حذف شد.');
-                    emit('deleted', props.brandData.id);
+                await axios.delete(route('admin.categories.destroy', {id: props.categoryData.id})).then((res) => {
+                    useToast().success('دسته بندی با موفقیت حذف شد.');
+                    emit('deleted', props.categoryData.id);
                 }).catch((err) => {
                     useToast().error(err.response.data.message);
                     console.log(err);
@@ -60,8 +60,8 @@ const deleter = async () => {
     <div
         class="text-center overflow-hidden space-y-2 border-2 cursor-pointer border-black rounded-xl group p-2">
         <Link class="relative flex h-1/3 lg:h-1/2 justify-center items-center"
-              :href="route('admin.brands.edit',{id:brandData.id})">
-            <img :src="brandData.icon" alt=""
+              :href="route('admin.brands.edit',{id:categoryData.id})">
+            <img :src="categoryData.icon" alt=""
                  class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95 h-full ">
             <div
                 class="hidden lg:block p-2 xl:px-6 rounded-xl absolute bg-white/20 duration-300 translate-x-40 group-hover:translate-x-0
@@ -69,8 +69,8 @@ const deleter = async () => {
                 مشاهده
             </div>
         </Link>
-        <div class="">{{ brandData.name }}</div>
-        <div class="">{{ brandData.productsQuantity }} محصول</div>
+        <div class="">{{ categoryData.name }}</div>
+        <div class="">{{ categoryData.productsQuantity }} محصول</div>
         <div class="flex gap-2 items-center">
             <div class="py-1 w-full rounded-lg border border-black"
                  @click="toggle"
