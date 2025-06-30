@@ -11,7 +11,7 @@ class CategoryStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class CategoryStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:50|unique:brands',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'description' => 'required|text|max:500',
+            'description' => 'required|string|max:500',
             'is_active' => 'required|boolean',
         ];
     }

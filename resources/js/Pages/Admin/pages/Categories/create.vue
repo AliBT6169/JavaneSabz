@@ -35,12 +35,11 @@ const sendData = async () => {
                     formData.append('image', picture.value.get('image'));
                 else
                     formData.append('image', picture.value);
-                console.log(form.value);
-                // await axios.post(route('admin.categories.store'), formData).then(res => {
-                //     useToast().success('عملیات موفقی آمیز بود');
-                // }).catch(err => {
-                //     useToast().error(err.response.data.message)
-                // });
+                await axios.post(route('admin.categories.store'), formData).then(res => {
+                    useToast().success('عملیات موفقی آمیز بود');
+                }).catch(err => {
+                    useToast().error(err.response.data.message)
+                });
             }
         }
     }
