@@ -23,10 +23,12 @@ const categoryDeleted = (id) => {
     <Layout>
         <div class="space-y-5">
             <CategoryItem v-for="item in categoryData" @deleted="categoryDeleted($event)" :category-data="item"/>
-            <Link :href="route('admin.categories.create')"
-                  class="border-2 cursor-pointer border-black rounded-xl duration-300 p-2 hover:scale-95">
-                <svg-component name="plus" class="size-full"/>
-            </Link>
+            <div class="flex justify-center">
+                <Link :href="route('admin.categories.create')"
+                      class="border-2 cursor-pointer border-black rounded-xl duration-300 p-2 hover:scale-95">
+                    <svg-component name="plus" class="size-40"/>
+                </Link>
+            </div>
         </div>
     </Layout>
 </template>
