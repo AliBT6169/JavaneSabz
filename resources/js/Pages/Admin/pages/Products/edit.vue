@@ -72,18 +72,15 @@ const saveChanges = async () => {
                         });
                     }
                 });
-                console.log(formData)
                 await axios.post(route('admin.products.update'), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'X-HTTP-Method-Override': 'PUT'
                     }
                 }).then((res) => {
-                    console.log(res.data);
                     toast.success('عملیات موفقیت آمیز بود')
                 }).catch((err) => {
                     toast.error(err.response.data.message)
-                    console.log(err.response)
                 })
             }
         }

@@ -27,7 +27,6 @@ const userDelete = async (id) => {
                         props.userData.data = props.userData.data.filter(item => item.id !== id)
                     }
                 }).catch((err) => {
-                    console.log(err)
                 })
             }
         }

@@ -52,13 +52,10 @@ const saveChanges = async () => {
                         formData.append(key, value);
                     });
                     formData.append('image', document.querySelector('#image').files[0]);
-                    console.log(formData)
                     await axios.post(route('admin.users.store'), formData).then((res) => {
-                        console.log(res.data);
                         toast.success('عملیات موفقیت آمیز بود')
                     }).catch((err) => {
                         toast.error(err.response.data.message)
-                        console.log(err.response)
                     })
                 } else {
                     toast.error('رمز عبور باید با تائید رمز عبور یکی باشد!');

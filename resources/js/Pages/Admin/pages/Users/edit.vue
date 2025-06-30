@@ -59,7 +59,6 @@ const changeData = async () => {
                         'X-HTTP-Method-Override': 'PUT'
                     }
                 }).then((res) => {
-                    console.log(res.data)
                     toast.success('عملیات موفقیت آمیز بود')
                 }).catch((err) => {
                     toast.error(err.response.data.message)
