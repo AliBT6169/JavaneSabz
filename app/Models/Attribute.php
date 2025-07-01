@@ -18,18 +18,17 @@ class Attribute extends Model
         'id',
         'name',
         'slug',
-        'attributable_id',
-        'attributable_type',
         'created_at',
     ];
 
     public function products(): MorphToMany
     {
-        return $this->morphToMany(Product::class, 'attributable');
+        return $this->morphedByMany(Product::class, 'attributable');
     }
 
     public function productVariations(): MorphToMany
     {
-        return $this->morphToMany(ProductVariation::class, 'attributable');
+        return $this->morphedByMany(ProductVariation::class, 'attributable');
     }
+
 }
