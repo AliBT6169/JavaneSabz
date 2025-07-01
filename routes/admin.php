@@ -50,6 +50,15 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::put('/category', 'update')->name('categories.update');
         Route::delete('/category/{id}', 'destroy')->name('categories.destroy');
     });
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/category/index', 'index')->name('categories.index');
+        Route::get('/category', 'create')->name('categories.create');
+        Route::post('/category', 'store')->name('categories.store');
+        Route::patch('/category/{id}', 'toggle')->name('categories.toggle');
+        Route::get('/category/{id}', 'edit')->name('categories.edit');
+        Route::put('/category', 'update')->name('categories.update');
+        Route::delete('/category/{id}', 'destroy')->name('categories.destroy');
+    });
 });
 
 
