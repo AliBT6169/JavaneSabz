@@ -5,17 +5,17 @@ import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
 
 const props = defineProps({
-    attributes: {
+    Attributes: {
         required: true,
     }
 });
-console.log(props.attributes);
+console.log(props.Attributes);
 </script>
 
 <template>
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
-        <AttributeItem v-for="item in 10" attribute="unknown"/>
+        <AttributeItem v-for="item in Attributes.data" :Attribute="item"/>
     </Layout>
 </template>

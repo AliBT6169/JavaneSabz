@@ -13,6 +13,6 @@ class AttributeController extends Controller
     public function index()
     {
         $attributes = AttributeResource::collection(Attribute::latest()->get());
-        return Inertia::render('Admin/pages/Attributes/index', ['attributes' => $attributes]);
+        return Inertia::render('Admin/pages/Attributes/index', ['Attributes' => $attributes]);
     }
 }

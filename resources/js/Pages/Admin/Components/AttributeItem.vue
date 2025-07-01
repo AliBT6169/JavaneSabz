@@ -4,27 +4,16 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 
 const props = defineProps({
-    attribute: {
+    Attribute: {
         required: true,
     }
 });
-const Attribute = ref({
-    id: 5,
-    icon: '/images/default/default.jpg',
-    description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.',
-    name: 'خصوصیت',
-    is_active: 0,
-    brands_count: 2,
-    categories_count: 5,
-    products_count: 8,
-    product_variations_count: 1,
-});
-const is_active = ref(Attribute.value.is_active);
+const is_active = ref(props.Attribute.is_active);
 </script>
 
 <template>
     <div
-        class="text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6">
+        class="w-full text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6">
         <div class="space-y-2 lg:flex lg:space-y-0 lg:items-center lg:gap-6">
             <div class="w-full relative flex justify-center items-center lg:w-60">
                 <img :src="Attribute.icon" alt=""
