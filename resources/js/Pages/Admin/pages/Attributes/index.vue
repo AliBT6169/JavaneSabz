@@ -16,6 +16,6 @@ console.log(props.attributes);
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
-        <AttributeItem v-for="item in 100" attribute="unknown"/>
+        <AttributeItem v-for="item in 10" attribute="unknown"/>
     </Layout>
 </template>

@@ -40,7 +40,7 @@ class Attribute extends Model
         return $this->morphedByMany(Category::class, 'attributable');
     }
 
-    public function productVariations(): MorphToMany
+    public function product_variations(): MorphToMany
     {
         return $this->morphedByMany(ProductVariation::class, 'attributable');
     }

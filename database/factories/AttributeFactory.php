@@ -21,6 +21,12 @@ class AttributeFactory extends Factory
      */
     public function definition(): array
     {
+        return [
+            'name' => Faker::firstName(),
+            'slug' => Faker::firstName() . ' ' . Faker::firstName() . ' ' . Faker::firstName(),
+            'icon' => '/images/default/default.jpg',
+            'description' => Faker::paragraph(),
+        ];
 
     }
 }

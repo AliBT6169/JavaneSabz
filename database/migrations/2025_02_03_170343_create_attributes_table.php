@@ -17,8 +17,6 @@ return new class extends Migration {
             $table->boolean('is_active')->default(true);
             $table->string('icon');
             $table->text('description')->nullable();
-            $table->unsignedInteger('attributable_id');
-            $table->string('attributable_type');
             $table->timestamps();
         });
     }
