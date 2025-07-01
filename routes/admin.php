@@ -52,13 +52,13 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::delete('/category/{id}', 'destroy')->name('categories.destroy');
     });
     Route::controller(AttributeController::class)->group(function () {
-        Route::get('/category/index', 'index')->name('categories.index');
-        Route::get('/category', 'create')->name('categories.create');
-        Route::post('/category', 'store')->name('categories.store');
-        Route::patch('/category/{id}', 'toggle')->name('categories.toggle');
-        Route::get('/category/{id}', 'edit')->name('categories.edit');
-        Route::put('/category', 'update')->name('categories.update');
-        Route::delete('/category/{id}', 'destroy')->name('categories.destroy');
+        Route::get('/attribute/index', 'index')->name('attributes.index');
+        Route::get('/attribute', 'create')->name('attributes.create');
+        Route::post('/attribute', 'store')->name('attributes.store');
+        Route::patch('/attribute/{id}', 'toggle')->name('attributes.toggle');
+        Route::get('/attribute/{id}', 'edit')->name('attributes.edit');
+        Route::put('/attribute', 'update')->name('attributes.update');
+        Route::delete('/attribute/{id}', 'destroy')->name('attributes.destroy');
     });
 });
 
