@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->boolean('is_active')->default(true);
             $table->unsignedInteger('attributable_id');
             $table->string('attributable_type');
             $table->timestamps();
