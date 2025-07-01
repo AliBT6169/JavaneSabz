@@ -13,7 +13,7 @@ const is_active = ref(props.Attribute.is_active);
 
 <template>
     <div
-        class="w-full text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6">
+        class="text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6">
         <div class="space-y-2 lg:flex lg:space-y-0 lg:items-center lg:gap-6">
             <div class="w-full relative flex justify-center items-center lg:w-60">
                 <img :src="Attribute.icon" alt=""
@@ -27,17 +27,17 @@ const is_active = ref(props.Attribute.is_active);
             </div>
             <div
                 class="flex flex-wrap gap-8 items-center border-b-2 pb-2 border-black dark:border-white lg:border-0 lg:p-0 md:justify-around md:w-full">
-                <div class=""><span class="lg:block">نام: </span>{{ Attribute.name }}</div>
-                <div class=""><span class="lg:block">محصول: </span>{{ Attribute.products_count }}</div>
-                <div class=""><span class="lg:block">موجودیت محصول: </span>{{ Attribute.categories_count }}
+                <div class=""><span class="">نام: </span>{{ Attribute.name }}</div>
+                <div class=""><span class="">محصول: </span>{{ Attribute.products_count }}</div>
+                <div class=""><span class="">موجودیت محصول: </span>{{ Attribute.categories_count }}
                 </div>
-                <div class=""><span class="lg:block">برند: </span>{{ Attribute.brands_count }}</div>
-                <div class=""><span class="lg:block">دسته بندی: </span>{{
+                <div class=""><span class="">برند: </span>{{ Attribute.brands_count }}</div>
+                <div class=""><span class="">دسته بندی: </span>{{
                         Attribute.product_variations_count
                     }}
                 </div>
             </div>
-            <div class="w-full text-wrap lg:hidden"><span class="">توضیحات :</span>
+            <div class="w-full lg:hidden"><span class="">توضیحات :</span>
                 {{ Attribute.description }}
             </div>
             <div class="flex gap-2 items-center lg:block lg:space-y-2">
@@ -49,7 +49,7 @@ const is_active = ref(props.Attribute.is_active);
                 <Link
                     class="block bg-adminColor1 py-1 w-full rounded-lg border border-black lg:px-10 dark:bg-adminColor4"
                     :href="route('admin.attributes.edit',{id:Attribute.id})">
-                    تغییر
+                    پیکربندی
                 </Link>
                 <div @click="deleter"
                      class="p-1 rounded-xl bg-gray-800/30 duration-300 hover:text-red-500 dark:bg-white/30 lg:w-full">
@@ -57,7 +57,7 @@ const is_active = ref(props.Attribute.is_active);
                 </div>
             </div>
         </div>
-        <div class="w-full hidden lg:block"><span class="">توضیحات :</span>
+        <div class="hidden lg:block"><span class="">توضیحات :</span>
             {{ Attribute.description }}
         </div>
     </div>
