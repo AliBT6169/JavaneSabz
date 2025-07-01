@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Attribute\AttributeController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
@@ -50,7 +51,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::put('/category', 'update')->name('categories.update');
         Route::delete('/category/{id}', 'destroy')->name('categories.destroy');
     });
-    Route::controller(CategoryController::class)->group(function () {
+    Route::controller(AttributeController::class)->group(function () {
         Route::get('/category/index', 'index')->name('categories.index');
         Route::get('/category', 'create')->name('categories.create');
         Route::post('/category', 'store')->name('categories.store');
