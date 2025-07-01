@@ -26,8 +26,7 @@ const is_active = ref(Attribute.value.is_active);
     <div
         class="text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6">
         <div class="space-y-2 lg:flex lg:space-y-0 lg:items-center lg:gap-6">
-            <Link class="w-full relative flex justify-center items-center lg:w-60"
-                  :href="route('admin.attributes.edit',{id:Attribute.id})">
+            <div class="w-full relative flex justify-center items-center lg:w-60">
                 <img :src="Attribute.icon" alt=""
                      class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95 size-32 ">
                 <div class="hidden size-40 absolute rounded-xl overflow-hidden lg:flex justify-center items-center">
@@ -36,15 +35,15 @@ const is_active = ref(Attribute.value.is_active);
                         مشاهده
                     </div>
                 </div>
-            </Link>
+            </div>
             <div
-                class="flex flex-wrap gap-2 items-center border-b-2 pb-2 border-black dark:border-white lg:border-0 lg:p-0 lg:gap-6">
-                <div class="w-full"><span class="lg:block">نام: </span>{{ Attribute.name }}</div>
-                <div class="w-full"><span class="lg:block">تعداد محصول: </span>{{ Attribute.products_count }}</div>
-                <div class="w-full"><span class="lg:block">تعداد موجودیت محصول: </span>{{ Attribute.categories_count }}
+                class="flex flex-wrap gap-8 items-center border-b-2 pb-2 border-black dark:border-white lg:border-0 lg:p-0 md:justify-around md:w-full">
+                <div class=""><span class="lg:block">نام: </span>{{ Attribute.name }}</div>
+                <div class=""><span class="lg:block">محصول: </span>{{ Attribute.products_count }}</div>
+                <div class=""><span class="lg:block">موجودیت محصول: </span>{{ Attribute.categories_count }}
                 </div>
-                <div class="w-full"><span class="lg:block">تعداد برند: </span>{{ Attribute.brands_count }}</div>
-                <div class="w-full"><span class="lg:block">تعداد دسته بندی: </span>{{
+                <div class=""><span class="lg:block">برند: </span>{{ Attribute.brands_count }}</div>
+                <div class=""><span class="lg:block">دسته بندی: </span>{{
                         Attribute.product_variations_count
                     }}
                 </div>
@@ -58,6 +57,11 @@ const is_active = ref(Attribute.value.is_active);
                      :class="{'bg-green-500/70':is_active,'bg-red-500/70':!is_active }">
                     {{ is_active ? 'فعال' : 'غیرفعال' }}
                 </div>
+                <Link
+                    class="block bg-adminColor1 py-1 w-full rounded-lg border border-black lg:px-10 dark:bg-adminColor4"
+                    :href="route('admin.attributes.edit',{id:Attribute.id})">
+                    تغییر
+                </Link>
                 <div @click="deleter"
                      class="p-1 rounded-xl bg-gray-800/30 duration-300 hover:text-red-500 dark:bg-white/30 lg:w-full">
                     <svg-component name="delete" class="size-6 lg:m-auto"/>
