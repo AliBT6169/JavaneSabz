@@ -13,12 +13,17 @@ import {toFormData} from "axios";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
+import AttributeConnectionItem from "@/Pages/Admin/Components/AttributeConnectionItem.vue";
 
 const picture = ref('');
 const form = ref({
     name: '',
     description: '',
-    is_active: 1
+    is_active: 1,
+    brands: null,
+    categories: null,
+    products: null,
+    products_variations: null,
 });
 
 const sendData = async () => {
@@ -66,6 +71,12 @@ const sendData = async () => {
                     <Link class="block" :href="route('admin.brands.index')">
                         <admin-button type="cancel" text="لغو"/>
                     </Link>
+                </div>
+                <div class="flex items-center flex-wrap gap-6 lg:justify-between">
+                    <AttributeConnectionItem v-model="form.brands" model-name="برند"/>
+                    <AttributeConnectionItem v-model="form.categories" model-name="دسته بندی"/>
+                    <AttributeConnectionItem v-model="form.products" model-name="محصول"/>
+                    <AttributeConnectionItem v-model="form.products_variations" model-name="موجودیت محصول"/>
                 </div>
             </div>
         </form>
