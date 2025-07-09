@@ -1,6 +1,10 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import axios from "axios";
+import CategoryItem from "@/Pages/Admin/Components/CategoryItem.vue";
+import BrandItem from "@/Pages/Admin/Components/BrandItem.vue";
+import product from "@/Pages/Components/Home/Product.vue";
+import Product from "@/Pages/Admin/Components/Product.vue";
 
 const props = defineProps({
     modelName: {
@@ -16,9 +20,10 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue"]);
 const modal = ref();
 const modal_status = ref(false);
+const data = ref();
 onMounted(async () => {
     axios.get(route(props.modelHref)).then(res => {
-        console.log(res.data)
+        data.value = res.data;
     }).catch(err => {
         console.log(err.data);
     });
@@ -46,6 +51,19 @@ onBeforeUnmount(() => {
                 modelName
             }}
         </div>
-        <div v-else class=""></div>
+        <div v-else class="">
+            <div v-if="modelHref.includes('categories')" class="size-full *:!w-full space-y-6 items-center ">
+                <category-item v-for="item in data" :category-data="item"/>
+            </div>
+            <div v-if="modelHref.includes('brands')" class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
+                <brand-item v-for="item in data" :brand-data="item"/>
+            </div>
+            <div v-if="modelHref.includes('products')" class="size-full flex flex-wrap justify-center gap-6 *:!w-60 items-center ">
+                <Product v-for="item in data" :product="item" />
+            </div>
+            <div v-if="modelHref.includes('productVariations')" class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
+<!--                <product v-for="item in data"-->
+            </div>
+        </div>
     </div>
 </template>
