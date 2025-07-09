@@ -20,4 +20,9 @@ class AttributeController extends Controller
     {
         return Inertia::render('Admin/pages/Attributes/create');
     }
+
+    public function store($request)
+    {
+        return $request;
+    }
 }

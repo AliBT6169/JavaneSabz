@@ -81,4 +81,9 @@ class BrandController extends Controller
         $brand->delete();
         return response()->json(['message' => 'success'], 200);
     }
+
+    public function show()
+    {
+        return response()->json(BrandResource::collection(Brand::all()), 200);
+    }
 }

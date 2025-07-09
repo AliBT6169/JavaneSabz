@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Admin\Brands;
 
-use App\Http\Resources\Admin\Products\ProductsResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

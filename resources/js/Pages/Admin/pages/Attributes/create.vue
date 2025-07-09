@@ -40,11 +40,12 @@ const sendData = async () => {
                     formData.append('image', picture.value.get('image'));
                 else
                     formData.append('image', picture.value);
-                await axios.post(route('admin.attributes.store'), formData).then(res => {
-                    useToast().success('عملیات موفقی آمیز بود');
-                }).catch(err => {
-                    useToast().error(err.response.data.message)
-                });
+                console.log(formData)
+                // await axios.post(route('admin.attributes.store'), formData).then(res => {
+                //     useToast().success('عملیات موفقی آمیز بود');
+                // }).catch(err => {
+                //     useToast().error(err.response.data.message)
+                // });
             }
         }
     }

@@ -35,6 +35,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(BrandController::class)->group(function () {
         Route::get('/brand/index', 'index')->name('brands.index');
+        Route::get('/brand/show', 'show')->name('brands.show');
         Route::get('/brand', 'create')->name('brands.create');
         Route::post('/brand', 'store')->name('brands.store');
         Route::patch('/brand/{id}', 'toggle')->name('brands.toggle');
