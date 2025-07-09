@@ -84,6 +84,6 @@ class BrandController extends Controller
 
     public function show()
     {
-        return response()->json(BrandResource::collection(Brand::all()), 200);
+        return response()->json(BrandResource::collection(Brand::latest()->get()), 200);
     }
 }

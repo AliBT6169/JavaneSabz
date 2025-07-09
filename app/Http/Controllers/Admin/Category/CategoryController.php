@@ -84,4 +84,9 @@ class CategoryController extends Controller
         $category->delete();
         return response()->json(['message' => 'success'], 200);
     }
+
+    public function show()
+    {
+        return response()->json(CategoryResource::collection(Category::latest()->get()), 200);
+    }
 }

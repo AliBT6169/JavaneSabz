@@ -61,7 +61,6 @@ const sendData = async () => {
                     <admin-active-de-active-input v-model="form.is_active"/>
                 </div>
                 <div class="space-y-2">
-                    <div class="pr-2">توضیحات</div>
                     <AdminTextArea v-model="form.description"/>
                 </div>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">

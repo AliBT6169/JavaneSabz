@@ -209,4 +209,9 @@ class ProductController extends Controller
         $product->delete();
         return response()->json(['message' => 'success'], 200);
     }
+
+    public function show()
+    {
+        return response()->json(ProductsResource::collection(Product::latest()->get()), 200);
+    }
 }

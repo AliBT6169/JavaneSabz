@@ -8,13 +8,16 @@ const props = defineProps({
     },
     modelValue: {
         required: true
+    },
+    modelHref: {
+        required: true
     }
 });
 const emit = defineEmits(["update:modelValue"]);
 const modal = ref();
 const modal_status = ref(false);
 onMounted(async () => {
-    axios.get(route('admin.brands.show')).then(res => {
+    axios.get(route(props.modelHref)).then(res => {
         console.log(res.data)
     }).catch(err => {
         console.log(err.data);

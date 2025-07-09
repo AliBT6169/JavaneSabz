@@ -74,10 +74,13 @@ const sendData = async () => {
                     </Link>
                 </div>
                 <div class="flex items-center flex-wrap gap-6 lg:justify-between">
-                    <AttributeConnectionItem v-model="form.brands" model-name="برند"/>
-                    <AttributeConnectionItem v-model="form.categories" model-name="دسته بندی"/>
-                    <AttributeConnectionItem v-model="form.products" model-name="محصول"/>
-                    <AttributeConnectionItem v-model="form.products_variations" model-name="موجودیت محصول"/>
+                    <AttributeConnectionItem model-href="admin.brands.show" v-model="form.brands" model-name="برند"/>
+                    <AttributeConnectionItem model-href="admin.categories.show" v-model="form.categories"
+                                             model-name="دسته بندی"/>
+                    <AttributeConnectionItem model-href="admin.products.show" v-model="form.products"
+                                             model-name="محصول"/>
+                    <AttributeConnectionItem model-href="admin.productVariations.show"
+                                             v-model="form.products_variations" model-name="موجودیت محصول"/>
                 </div>
             </div>
         </form>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Attribute\AttributeController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(ProductController::class)->group(function () {
         Route::get('/product/index', 'index')->name('products.index');
+        Route::get('/product/show', 'index')->name('products.show');
         Route::get('/product', 'create')->name('products.create');
         Route::post('/product', 'store')->name('products.store');
         Route::patch('/product/{id}', 'active_DeActive')->name('products.active_DeActive');
@@ -45,6 +47,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/category/index', 'index')->name('categories.index');
+        Route::get('/category/show', 'show')->name('categories.show');
         Route::get('/category', 'create')->name('categories.create');
         Route::post('/category', 'store')->name('categories.store');
         Route::patch('/category/{id}', 'toggle')->name('categories.toggle');
@@ -60,6 +63,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::get('/attribute/{id}', 'edit')->name('attributes.edit');
         Route::put('/attribute', 'update')->name('attributes.update');
         Route::delete('/attribute/{id}', 'destroy')->name('attributes.destroy');
+    });
+    Route::controller(ProductVariationController::class)->group(function () {
+        Route::get('/productVariation/show', 'show')->name('productVariations.show');
     });
 });
 
