@@ -5,6 +5,7 @@ import CategoryItem from "@/Pages/Admin/Components/CategoryItem.vue";
 import BrandItem from "@/Pages/Admin/Components/BrandItem.vue";
 import product from "@/Pages/Components/Home/Product.vue";
 import Product from "@/Pages/Admin/Components/Product.vue";
+import AttributeProductItem from "@/Pages/Admin/Components/AttributeProductItem.vue";
 
 const props = defineProps({
     modelName: {
@@ -55,14 +56,17 @@ onBeforeUnmount(() => {
             <div v-if="modelHref.includes('categories')" class="size-full *:!w-full space-y-6 items-center ">
                 <category-item v-for="item in data" :category-data="item"/>
             </div>
-            <div v-if="modelHref.includes('brands')" class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
+            <div v-if="modelHref.includes('brands')"
+                 class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
                 <brand-item v-for="item in data" :brand-data="item"/>
             </div>
-            <div v-if="modelHref.includes('products')" class="size-full flex flex-wrap justify-center gap-6 *:!w-60 items-center ">
-                <Product v-for="item in data" :product="item" />
+            <div v-if="modelHref.includes('products')"
+                 class="size-full flex flex-wrap justify-center gap-6 *:!w-60 items-center ">
+                <Product v-for="item in data" :product="item"/>
             </div>
-            <div v-if="modelHref.includes('productVariations')" class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
-<!--                <product v-for="item in data"-->
+            <div v-if="modelHref.includes('productVariations')"
+                 class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
+                <AttributeProductItem v-for="item in data" :product="item"/>
             </div>
         </div>
     </div>
