@@ -20,10 +20,10 @@ const form = ref({
     name: '',
     description: '',
     is_active: 1,
-    brands: null,
-    categories: null,
-    products: null,
-    products_variations: null,
+    brands: [],
+    categories: [],
+    products: [],
+    products_variations: [],
 });
 
 const sendData = async () => {
@@ -74,8 +74,8 @@ const sendData = async () => {
                     </Link>
                 </div>
                 <div class="flex items-center flex-wrap gap-6 lg:justify-between">
-                    <AttributeConnectionItem model-href="admin.brands.show" v-model="form.brands" model-name="برند"/>
-                    <AttributeConnectionItem model-href="admin.categories.show" v-model="form.categories"
+                    <AttributeConnectionItem model-href="admin.brands.show"  v-model="form.brands" model-name="برند"/>
+                    <AttributeConnectionItem model-href="admin.categories.show" v-model="form.categories" @click="console.log(form.categories)"
                                              model-name="دسته بندی"/>
                     <AttributeConnectionItem model-href="admin.products.show" v-model="form.products"
                                              model-name="محصول"/>

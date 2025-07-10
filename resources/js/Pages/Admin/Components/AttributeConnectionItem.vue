@@ -12,7 +12,7 @@ const props = defineProps({
         required: true,
     },
     modelValue: {
-        required: true
+        required: true,
     },
     modelHref: {
         required: true
@@ -40,6 +40,11 @@ onMounted(() => {
 onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
+const updateModelValue = (id) => {
+    props.modelValue.push(id);
+    emit('update:modelValue', props.modelValue)
+}
+
 </script>
 
 <template>
@@ -54,19 +59,40 @@ onBeforeUnmount(() => {
         </div>
         <div v-else class="">
             <div v-if="modelHref.includes('categories')" class="size-full *:!w-full space-y-6 items-center ">
-                <category-item v-for="item in data" :category-data="item"/>
+                <div
+                    :class="{'border-2 rounded-xl p-1 border-red-500':modelValue.includes(item.id)}"
+                    v-for="item in data">
+
+                    <category-item @click="updateModelValue(item.id)"
+                                   :category-data="item"/>
+                </div>
             </div>
             <div v-if="modelHref.includes('brands')"
                  class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
-                <brand-item v-for="item in data" :brand-data="item"/>
+                <div
+                    :class="{'border-2 rounded-xl p-1 border-red-500':modelValue.includes(item.id)}"
+                    v-for="item in data">
+                    <brand-item :brand-data="item"
+                                @click="updateModelValue(item.id)"/>
+                </div>
             </div>
             <div v-if="modelHref.includes('products')"
-                 class="size-full flex flex-wrap justify-center gap-6 *:!w-60 items-center ">
-                <Product v-for="item in data" :product="item"/>
+                 class="size-full flex flex-wrap justify-center gap-6 *:!w-60 items-center p-2">
+                <div
+                    :class="{'border-2 rounded-xl !p-1 border-red-500':modelValue.includes(item.id)}"
+                    v-for="item in data">
+                    <Product :product="item"
+                             @click="updateModelValue(item.id)"/>
+                </div>
             </div>
             <div v-if="modelHref.includes('productVariations')"
-                 class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
-                <AttributeProductItem v-for="item in data" :product="item"/>
+                 class="size-full flex flex-wrap justify-center gap-6 items-center">
+                <div
+                    :class="{'border-2 rounded-xl p-1 border-red-500':modelValue.includes(item.id)}"
+                    v-for="item in data">
+                    <AttributeProductItem :product="item"
+                                          @click="updateModelValue(item.id)"/>
+                </div>
             </div>
         </div>
     </div>
