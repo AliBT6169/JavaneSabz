@@ -41,7 +41,7 @@ const deleter = async () => {
 </script>
 
 <template>
-    <div class="pb-2 w-60 relative rounded-xl overflow-hidden border border-current space-y-4 cursor-pointer">
+    <div class="pb-2 w-60 rounded-xl overflow-hidden border border-current space-y-4 cursor-pointer">
         <!--        delete button-->
         <div @click="deleter"
              class="absolute p-1 rounded-xl left-1 duration-300 top-1 hover:text-red-500 bg-white/30 dark:bg-gray-800/30">
