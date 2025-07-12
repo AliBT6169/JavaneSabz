@@ -52,14 +52,15 @@ const sendData = async () => {
                     formData.append('product[' + index + ']', item);
                 });
                 connections.value.products_variations.map((item, index) => {
-                    formData.append('products_variation[' + index + ']', item);
+                    formData.append('product_variation[' + index + ']', item);
                 });
                 console.log(formData)
-                // await axios.post(route('admin.attributes.store'), formData).then(res => {
-                //     useToast().success('عملیات موفقی آمیز بود');
-                // }).catch(err => {
-                //     useToast().error(err.response.data.message)
-                // });
+                await axios.post(route('admin.attributes.store'), formData).then(res => {
+                    console.log(res.data)
+                    useToast().success('عملیات موفقی آمیز بود');
+                }).catch(err => {
+                    useToast().error(err.response.data.message)
+                });
             }
         }
     }

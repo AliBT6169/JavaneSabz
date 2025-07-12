@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Attribute;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Attribute\AttributeStoreRequest;
 use App\Http\Resources\Admin\Attribute\AttributeResource;
 use App\Models\Attribute;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class AttributeController extends Controller
         return Inertia::render('Admin/pages/Attributes/create');
     }
 
-    public function store($request)
+    public function store(AttributeStoreRequest $request)
     {
         return $request;
     }

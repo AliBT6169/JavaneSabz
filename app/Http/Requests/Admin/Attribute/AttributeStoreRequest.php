@@ -11,7 +11,7 @@ class AttributeStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class AttributeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:50|unique:categories',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'required|string|max:500',
+            'is_active' => 'required|boolean',
+            'brand.*' => 'numeric|nullable',
+            'category.*' => 'numeric|nullable',
+            'product.*' => 'numeric|nullable',
+            'product_variation.*' => 'numeric',
         ];
     }
 }
