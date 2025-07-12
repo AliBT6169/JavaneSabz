@@ -21,15 +21,22 @@ const props = defineProps({
 console.log(props.attributeData.data)
 const picture = ref(props.attributeData.data.icon);
 const form = ref({
+    id: props.attributeData.data.id,
     name: props.attributeData.data.name,
     description: props.attributeData.data.description,
     is_active: props.attributeData.data.is_active,
 });
+const passedConnection = {
+    brands: props.attributeData.data.brands,
+    categories: props.attributeData.data.categories,
+    products: props.attributeData.data.products,
+    products_variations: props.attributeData.data.product_variations,
+}
 const connections = ref({
-    brands: [],
-    categories: [],
-    products: [],
-    products_variations: [],
+    brands: props.attributeData.data.brands,
+    categories: props.attributeData.data.categories,
+    products: props.attributeData.data.products,
+    products_variations: props.attributeData.data.product_variations,
 })
 
 const sendData = async () => {
@@ -42,7 +49,7 @@ const sendData = async () => {
             set: async () => {
                 const formData = new FormData();
                 toFormData(form.value, formData);
-                if (picture.value !== '')
+                if (typeof picture.value !== 'string')
                     formData.append('image', picture.value.get('image'));
                 else
                     formData.append('image', picture.value);
@@ -58,10 +65,27 @@ const sendData = async () => {
                 connections.value.products_variations.map((item, index) => {
                     formData.append('product_variation[' + index + ']', item);
                 });
+                passedConnection.brands.map((item, index) => {
+                    formData.append('passed_brand[' + index + ']', item);
+                });
+                passedConnection.categories.map((item, index) => {
+                    formData.append('passed_category[' + index + ']', item);
+                });
+                passedConnection.products.map((item, index) => {
+                    formData.append('passed_product[' + index + ']', item);
+                });
+                passedConnection.products_variations.map((item, index) => {
+                    formData.append('passed_product_variation[' + index + ']', item);
+                });
                 console.log(formData)
-                await axios.post(route('admin.attributes.store'), formData).then(res => {
+                await axios.post(route('admin.attributes.update'), formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'X-HTTP-Method-Override': 'PUT'
+                    }
+                }).then(res => {
                     console.log(res.data)
-                    useToast().success('عملیات ذخیره خصوصیت موفقیت آمیز بود');
+                    useToast().success('عملیات بروزرسانی خصوصیت موفقیت آمیز بود');
                 }).catch(err => {
                     useToast().error(err.response.data.message)
                 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Attribute;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Attribute\AttributeStoreRequest;
+use App\Http\Requests\Admin\Attribute\AttributeUpdateRequest;
 use App\Http\Resources\Admin\Attribute\AttributeEditResource;
 use App\Http\Resources\Admin\Attribute\AttributeResource;
 use App\Models\Attribute;
@@ -77,5 +78,10 @@ class AttributeController extends Controller
     {
         $attribute = Attribute::whereId($id)->first();
         return Inertia::render('Admin/pages/Attributes/edit', ['attributeData' => AttributeEditResource::make($attribute)]);
+    }
+
+    public function update(AttributeUpdateRequest $request)
+    {
+        return $request;
     }
 }
