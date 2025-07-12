@@ -57,7 +57,7 @@ const sendData = async () => {
                 console.log(formData)
                 await axios.post(route('admin.attributes.store'), formData).then(res => {
                     console.log(res.data)
-                    useToast().success('عملیات موفقی آمیز بود');
+                    useToast().success('عملیات ذخیره خصوصیت موفقیت آمیز بود');
                 }).catch(err => {
                     useToast().error(err.response.data.message)
                 });

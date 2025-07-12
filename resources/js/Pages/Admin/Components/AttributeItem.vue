@@ -29,11 +29,11 @@ const is_active = ref(props.Attribute.is_active);
                 class="flex flex-wrap gap-8 items-center border-b-2 pb-2 border-black dark:border-white lg:border-0 lg:p-0 md:justify-around md:w-full">
                 <div class=""><span class="">نام: </span>{{ Attribute.name }}</div>
                 <div class=""><span class="">محصول: </span>{{ Attribute.products_count }}</div>
-                <div class=""><span class="">موجودیت محصول: </span>{{ Attribute.categories_count }}
+                <div class=""><span class="">موجودیت محصول: </span>{{ Attribute.product_variations_count }}
                 </div>
                 <div class=""><span class="">برند: </span>{{ Attribute.brands_count }}</div>
                 <div class=""><span class="">دسته بندی: </span>{{
-                        Attribute.product_variations_count
+                        Attribute.categories_count
                     }}
                 </div>
             </div>

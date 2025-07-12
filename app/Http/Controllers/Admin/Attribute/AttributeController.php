@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Attribute\AttributeStoreRequest;
 use App\Http\Resources\Admin\Attribute\AttributeResource;
 use App\Models\Attribute;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -36,6 +37,30 @@ class AttributeController extends Controller
             'description' => $request->description,
             'is_active' => $request->is_active
         ]);
+//        attach brands
+        if ($request->brand != null)
+            foreach ($request->brand as $brandId) {
+                $brand = Brand::whereId($brandId)->first();
+                $attribute->brands()->attach($brand);
+            }
+//        attach categories
+        if ($request->category != null)
+            foreach ($request->category as $categoryId) {
+                $category = Brand::whereId($categoryId)->first();
+                $attribute->categories()->attach($category);
+            }
+//        attach products
+        if ($request->product != null)
+            foreach ($request->product as $productId) {
+                $product = Brand::whereId($productId)->first();
+                $attribute->products()->attach($product);
+            }
+//        attach product variations
+        if ($request->product_variation != null)
+            foreach ($request->product_variation as $product_variationId) {
+                $product_variation = Brand::whereId($product_variationId)->first();
+                $attribute->product_variations()->attach($product_variation);
+            }
         return response()->json($attribute, 201);
     }
 }
