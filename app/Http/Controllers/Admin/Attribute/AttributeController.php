@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Attribute;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Attribute\AttributeStoreRequest;
+use App\Http\Resources\Admin\Attribute\AttributeEditResource;
 use App\Http\Resources\Admin\Attribute\AttributeResource;
 use App\Models\Attribute;
 use App\Models\Brand;
@@ -70,5 +71,11 @@ class AttributeController extends Controller
             'is_active' => DB::raw('NOT is_active')
         ]);
         return response()->json('عملیات موفقیت آمیز بود!', 200);
+    }
+
+    public function edit(int $id)
+    {
+        $attribute = Attribute::whereId($id)->first();
+        return Inertia::render('Admin/pages/Attributes/edit', ['attributeData' => AttributeEditResource::make($attribute)]);
     }
 }
