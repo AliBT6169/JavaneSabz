@@ -8,6 +8,7 @@
 /public/images/brands
 /public/images/categories
 /public/images/productVariations
+/public/images/attributes
 /storage/*.key
 /storage/pail
 /vendor

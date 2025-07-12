@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Attribute\AttributeStoreRequest;
 use App\Http\Resources\Admin\Attribute\AttributeResource;
 use App\Models\Attribute;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class AttributeController extends Controller
@@ -24,6 +25,17 @@ class AttributeController extends Controller
 
     public function store(AttributeStoreRequest $request)
     {
-        return $request;
+        $image = $request->file('image');
+        $lastId = DB::select('SHOW TABLE STATUS LIKE "attributes"')[0]->Auto_increment;
+        $URL = '/images/attributes/' . $lastId . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/attributes/'), $lastId . '.' . $image->getClientOriginalExtension());
+        $attribute = Attribute::create([
+            'name' => $request->name,
+            'slug' => $request->name,
+            'icon' => $URL,
+            'description' => $request->description,
+            'is_active' => $request->is_active
+        ]);
+        return response()->json($attribute, 201);
     }
 }
