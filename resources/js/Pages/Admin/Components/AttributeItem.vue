@@ -2,6 +2,8 @@
 import {ref} from "vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import {useToast} from "vue-toastification";
 
 const props = defineProps({
     Attribute: {
@@ -9,6 +11,27 @@ const props = defineProps({
     }
 });
 const is_active = ref(props.Attribute.is_active);
+
+const toggle = async () => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا مطمعن هستید؟'
+        },
+        listeners: {
+            set: async () => {
+                await axios.patch(route('admin.attributes.toggle', {id: props.Attribute.id})).then(res => {
+                    useToast().success(res.data);
+                    is_active.value = !is_active.value;
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
+        }
+    }
+    let toast = useToast();
+    toast.warning(content);
+}
 </script>
 
 <template>

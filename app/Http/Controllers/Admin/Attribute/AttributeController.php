@@ -63,4 +63,12 @@ class AttributeController extends Controller
             }
         return response()->json($attribute, 201);
     }
+
+    public function toggle(int $id)
+    {
+        Attribute::whereId($id)->update([
+            'is_active' => DB::raw('NOT is_active')
+        ]);
+        return response()->json('عملیات موفقیت آمیز بود!', 200);
+    }
 }
