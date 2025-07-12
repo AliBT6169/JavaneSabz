@@ -6,6 +6,8 @@ import BrandItem from "@/Pages/Admin/Components/BrandItem.vue";
 import Product from "@/Pages/Admin/Components/Product.vue";
 import AttributeProductVariationItem from "@/Pages/Admin/Components/AttributeProductVariationItem.vue";
 import AttributeProductItem from "@/Pages/Admin/Components/AttributeProductItem.vue";
+import AttributeCategoryItem from "@/Pages/Admin/Components/AttributeCategoryItem.vue";
+import AttributeBrandItem from "@/Pages/Admin/Components/AttributeBrandItem.vue";
 
 const props = defineProps({
     modelName: {
@@ -62,22 +64,22 @@ const updateModelValue = (id) => {
             }}
         </div>
         <div v-else class="">
-            <div v-if="modelHref.includes('categories')" class="size-full *:!w-full space-y-6 items-center ">
+            <div v-if="modelHref.includes('categories')"
+                 class="size-full flex flex-wrap justify-center gap-6 p-2 items-center">
                 <div class="border-0 duration-300"
                      :class="{'border-2 rounded-xl p-1 border-red-500':modelValue.includes(item.id)}"
                      v-for="item in data">
-
-                    <category-item @click="updateModelValue(item.id)"
-                                   :category-data="item"/>
+                    <AttributeCategoryItem @click="updateModelValue(item.id)"
+                                           :category="item"/>
                 </div>
             </div>
             <div v-if="modelHref.includes('brands')"
-                 class="size-full flex flex-wrap justify-center gap-6 *:!w-40 items-center ">
+                 class="size-full flex flex-wrap justify-center gap-6 items-center">
                 <div class="border-0 duration-300"
                      :class="{'border-2 rounded-xl p-1 border-red-500':modelValue.includes(item.id)}"
                      v-for="item in data">
-                    <brand-item :brand-data="item"
-                                @click="updateModelValue(item.id)"/>
+                    <AttributeBrandItem :brand="item"
+                                        @click="updateModelValue(item.id)"/>
                 </div>
             </div>
             <div v-if="modelHref.includes('products')"

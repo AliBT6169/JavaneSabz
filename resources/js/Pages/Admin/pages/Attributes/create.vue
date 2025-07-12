@@ -20,11 +20,13 @@ const form = ref({
     name: '',
     description: '',
     is_active: 1,
+});
+const connections = ref({
     brands: [],
     categories: [],
     products: [],
     products_variations: [],
-});
+})
 
 const sendData = async () => {
     const content = {
@@ -40,6 +42,18 @@ const sendData = async () => {
                     formData.append('image', picture.value.get('image'));
                 else
                     formData.append('image', picture.value);
+                connections.value.brands.map((item, index) => {
+                    formData.append('brand[' + index + ']', item);
+                });
+                connections.value.categories.map((item, index) => {
+                    formData.append('category[' + index + ']', item);
+                });
+                connections.value.products.map((item, index) => {
+                    formData.append('product[' + index + ']', item);
+                });
+                connections.value.products_variations.map((item, index) => {
+                    formData.append('products_variation[' + index + ']', item);
+                });
                 console.log(formData)
                 // await axios.post(route('admin.attributes.store'), formData).then(res => {
                 //     useToast().success('عملیات موفقی آمیز بود');
@@ -74,13 +88,14 @@ const sendData = async () => {
                     </Link>
                 </div>
                 <div class="flex items-center flex-wrap gap-6 lg:justify-between">
-                    <AttributeConnectionItem model-href="admin.brands.show"  v-model="form.brands" model-name="برند"/>
-                    <AttributeConnectionItem model-href="admin.categories.show" v-model="form.categories" @click="console.log(form.categories)"
+                    <AttributeConnectionItem model-href="admin.brands.show" v-model="connections.brands"
+                                             model-name="برند"/>
+                    <AttributeConnectionItem model-href="admin.categories.show" v-model="connections.categories"
                                              model-name="دسته بندی"/>
-                    <AttributeConnectionItem model-href="admin.products.show" v-model="form.products"
+                    <AttributeConnectionItem model-href="admin.products.show" v-model="connections.products"
                                              model-name="محصول"/>
                     <AttributeConnectionItem model-href="admin.productVariations.show"
-                                             v-model="form.products_variations" model-name="موجودیت محصول"/>
+                                             v-model="connections.products_variations" model-name="موجودیت محصول"/>
                 </div>
             </div>
         </form>
