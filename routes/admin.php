@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Attribute\AttributeController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
 use App\Http\Controllers\Admin\UserController;
@@ -64,6 +65,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::put('/attribute', 'update')->name('attributes.update');
         Route::delete('/attribute/{id}', 'destroy')->name('attributes.destroy');
     });
+    Route::resource('orders', OrderController::class);
     Route::controller(ProductVariationController::class)->group(function () {
         Route::get('/productVariation/show', 'show')->name('productVariations.show');
     });
