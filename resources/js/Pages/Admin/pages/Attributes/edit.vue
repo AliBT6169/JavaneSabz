@@ -65,26 +65,12 @@ const sendData = async () => {
                 connections.value.products_variations.map((item, index) => {
                     formData.append('product_variation[' + index + ']', item);
                 });
-                passedConnection.brands.map((item, index) => {
-                    formData.append('passed_brand[' + index + ']', item);
-                });
-                passedConnection.categories.map((item, index) => {
-                    formData.append('passed_category[' + index + ']', item);
-                });
-                passedConnection.products.map((item, index) => {
-                    formData.append('passed_product[' + index + ']', item);
-                });
-                passedConnection.products_variations.map((item, index) => {
-                    formData.append('passed_product_variation[' + index + ']', item);
-                });
-                console.log(formData)
                 await axios.post(route('admin.attributes.update'), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'X-HTTP-Method-Override': 'PUT'
                     }
                 }).then(res => {
-                    console.log(res.data)
                     useToast().success('عملیات بروزرسانی خصوصیت موفقیت آمیز بود');
                 }).catch(err => {
                     useToast().error(err.response.data.message)

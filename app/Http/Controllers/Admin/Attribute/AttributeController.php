@@ -82,6 +82,27 @@ class AttributeController extends Controller
 
     public function update(AttributeUpdateRequest $request)
     {
-        return $request;
+        $attribute = Attribute::whereId($request->id)->first();
+        $URL = '';
+        if ($request->hasFile('image')) {
+            unlink(public_path($attribute->icon));
+            $image = $request->file('image');
+            $URL = '/images/attributes/' . $request->id . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/attributes/'), $request->id . '.' . $image->getClientOriginalExtension());
+        } else {
+            $URL = $attribute->icon;
+        }
+        $attribute->update([
+            'name' => $request->name,
+            'slug' => $request->name,
+            'icon' => $URL,
+            'description' => $request->description,
+            'is_active' => $request->is_active,
+        ]);
+        $attribute->brands()->sync($request->brand);
+        $attribute->products()->sync($request->product);
+        $attribute->categories()->sync($request->category);
+        $attribute->product_variations()->sync($request->product_variation);
+        return response()->json('موفقیت آمیز بود', 201);
     }
 }
