@@ -10,6 +10,8 @@ const props = defineProps({
         required: true,
     }
 });
+const emit = defineEmits('deleted');
+
 const is_active = ref(props.Attribute.is_active);
 
 const toggle = async () => {
@@ -30,6 +32,27 @@ const toggle = async () => {
         }
     }
     let toast = useToast();
+    toast.warning(content);
+}
+const deleter = async () => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا از حذف این خصوصیت مطمعن هستید؟'
+        },
+        listeners: {
+            set: async () => {
+                await axios.delete(route('admin.attributes.destroy', {id: props.Attribute.id})).then((res) => {
+                    useToast().success('خصوصیت با موفقیت حذف شد.');
+                    emit('deleted', props.Attribute.id);
+                }).catch((err) => {
+                    useToast().error(err.response.data.message);
+                    console.log(err);
+                });
+            }
+        }
+    }
+    const toast = useToast();
     toast.warning(content);
 }
 </script>

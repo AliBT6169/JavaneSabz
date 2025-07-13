@@ -11,6 +11,7 @@ use App\Models\Attribute;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class AttributeController extends Controller
@@ -104,5 +105,17 @@ class AttributeController extends Controller
         $attribute->categories()->sync($request->category);
         $attribute->product_variations()->sync($request->product_variation);
         return response()->json('موفقیت آمیز بود', 201);
+    }
+
+    public function destroy(int $id)
+    {
+        $attribute = Attribute::whereId($id)->first();
+        if (File::exists(public_path($attribute->icon)))
+            File::delete(public_path($attribute->icon));
+        $attribute->brands()->detach();
+        $attribute->categories()->detach();
+        $attribute->products()->detach();
+        $attribute->product_variations()->detach();
+        $attribute->delete();
     }
 }
