@@ -44,7 +44,7 @@ class Order extends Model
         $Order = self::create([
             'user_id' => Auth::id(),
             'status' => $request['status'] ?? 0,
-            'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment * 25,
+            'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment + 10000,
             'total_amount' => $request['total_amount'],
             'VAT' => $request['VAT'] ?? 0,
             'delivery_amount' => $request['delivery_amount'] ?? 0,
