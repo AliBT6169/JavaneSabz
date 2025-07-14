@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -20,6 +21,7 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = [
         'id',
+        'code',
         'user_id',
         'status',
         'total_amount',
@@ -42,6 +44,7 @@ class Order extends Model
         $Order = self::create([
             'user_id' => Auth::id(),
             'status' => $request['status'] ?? 0,
+            'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment * 25,
             'total_amount' => $request['total_amount'],
             'VAT' => $request['VAT'] ?? 0,
             'delivery_amount' => $request['delivery_amount'] ?? 0,

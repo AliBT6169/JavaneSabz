@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Admin\Orders;
 
+use App\Http\Resources\Admin\OrderItem\OrderItemIndexResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Morilog\Jalali\Jalalian;
@@ -21,6 +22,7 @@ class OrderIndexResource extends JsonResource
                 'id' => $this->user_id,
                 'name' => $this->user->name,
             ],
+            'items' => OrderItemIndexResource::collection($this->orderItems),
             'total_amount' => $this->total_amount,
             'delivery_amount' => $this->delivery_amount,
             'VAT' => $this->VAT,
