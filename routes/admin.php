@@ -66,6 +66,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::delete('/attribute/{id}', 'destroy')->name('attributes.destroy');
     });
     Route::resource('orders', OrderController::class);
+    Route::controller(OrderController::class)->group(function () {
+        Route::patch('/orders/{id}/disable', 'disable')->name('orders.disable');
+    });
     Route::controller(ProductVariationController::class)->group(function () {
         Route::get('/productVariation/show', 'show')->name('productVariations.show');
     });

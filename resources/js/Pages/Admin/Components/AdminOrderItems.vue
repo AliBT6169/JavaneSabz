@@ -1,11 +1,33 @@
 <script setup>
 import {Link} from "@inertiajs/vue3";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import {useToast} from "vue-toastification";
 
 const props = defineProps({
     order: {
         required: true,
     }
 });
+
+const disable = async () => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا مطمعن به لغو این سفارش هستید؟'
+        },
+        listeners: {
+            set: async () => {
+                await axios.patch(route('admin.orders.disable',props.order.id)).then(res => {
+                    useToast().success(res.data);
+                    props.order.status = 4;
+                }).catch(err => {
+                    console.log(err);
+                });
+            }
+        }
+    }
+    useToast().warning(content);
+}
 </script>
 
 <template>
@@ -30,6 +52,7 @@ const props = defineProps({
                 <div v-if="order.status===1" class="text-blue-600">در انتظار آماده سازی</div>
                 <div v-if="order.status===2" class="text-green-500">ارسال شده</div>
                 <div v-if="order.status===3" class="text-red-500">مرجوع شده</div>
+                <div v-if="order.status===4" class="text-red-500">لغو شده</div>
             </div>
         </div>
         <div class="">
@@ -53,8 +76,12 @@ const props = defineProps({
             <div class="">{{ order.paying_amount.toLocaleString('fa-IR') }}</div>
         </div>
         <div class="">
-            <Link :href="route('admin.orders.edit',order)" class="border-2 px-2 rounded-lg border-gray-400 bg-adminColor2">عملیات</Link>
-            <div class="border-2 px-2 rounded-lg border-gray-400 bg-red-500">لغو سفارش</div>
+            <Link :href="route('admin.orders.edit',order)"
+                  class="border-2 px-2 rounded-lg border-gray-400 bg-adminColor2">عملیات
+            </Link>
+            <div v-if="order.status!==4" class="border-2 px-2 rounded-lg border-gray-400 bg-red-500 cursor-pointer"
+                 @click="disable">لغو سفارش
+            </div>
         </div>
     </div>
 </template>

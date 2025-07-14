@@ -66,4 +66,11 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function disable(int $id)
+    {
+        $order = Order::whereId($id)->first();
+        $order->update(['status' => 4]);
+        return response()->json('سفارش با موفقیت لغو شد!', 200);
+    }
 }
