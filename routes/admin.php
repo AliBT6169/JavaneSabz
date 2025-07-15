@@ -65,8 +65,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::put('/attribute', 'update')->name('attributes.update');
         Route::delete('/attribute/{id}', 'destroy')->name('attributes.destroy');
     });
-    Route::resource('orders', OrderController::class);
+    Route::resource('orders', OrderController::class)->except('update');
     Route::controller(OrderController::class)->group(function () {
+        Route::put('/orders/update', 'update')->name('orders.update');
         Route::patch('/orders/{id}/disable', 'disable')->name('orders.disable');
     });
     Route::controller(ProductVariationController::class)->group(function () {
