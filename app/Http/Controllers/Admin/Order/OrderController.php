@@ -46,9 +46,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+        $order = OrderIndexResource::make(Order::whereId($id)->first());
+        return Inertia::render('Admin/pages/Order/edit', ['order' => $order]);
     }
 
     /**

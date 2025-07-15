@@ -125,6 +125,10 @@
     focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4;
 }
 
+.adminOrderEditItems{
+    @apply border-2 rounded-xl border-adminColor3 py-5 px-2 flex justify-between w-full;
+}
+
 .introView {
     animation: introOut 3s;
 }

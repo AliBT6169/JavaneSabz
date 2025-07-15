@@ -17,7 +17,7 @@ const disable = async () => {
         },
         listeners: {
             set: async () => {
-                await axios.patch(route('admin.orders.disable',props.order.id)).then(res => {
+                await axios.patch(route('admin.orders.disable', props.order.id)).then(res => {
                     useToast().success(res.data);
                     props.order.status = 4;
                 }).catch(err => {
@@ -46,7 +46,7 @@ const disable = async () => {
         </div>
         <div class="">
             <div class="">وضعیت:</div>
-            <div v-if="order.payment_status===0" class="">در انتظار پرداخت</div>
+            <div v-if="order.payment_status===0 && order.status<3" class="">در انتظار پرداخت</div>
             <div v-else class="">
                 <div v-if="order.status===0" class="">در انتظار تایید</div>
                 <div v-if="order.status===1" class="text-blue-600">در انتظار آماده سازی</div>
@@ -77,7 +77,7 @@ const disable = async () => {
         </div>
         <div class="">
             <Link :href="route('admin.orders.edit',order)"
-                  class="border-2 px-2 rounded-lg border-gray-400 bg-adminColor2">عملیات
+                  class="border-2 px-2 rounded-lg border-gray-400 bg-adminColor2" :class="{'w-full text-center':order.status===4}">عملیات
             </Link>
             <div v-if="order.status!==4" class="border-2 px-2 rounded-lg border-gray-400 bg-red-500 cursor-pointer"
                  @click="disable">لغو سفارش
