@@ -38,15 +38,19 @@ const dataSender = () => {
     <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
          :class="{'fixed z-50 top-20 size-5/6 py-6 overflow-scroll':modal_status}">
-        <div :class="{'hidden':!modal_status}">
-            <div v-for="item in order_items" class="size-60 border-gray-800 border-2 rounded-xl text-black">
-                نام:{{item.product_name}}
+        <div :class="{'hidden':!modal_status}" class="flex gap-5 justify-center flex-wrap">
+            <div v-for="item in order_items"
+                 class="border-gray-800 w-60 overflow-hidden border-2 rounded-xl text-black">
+                <div class="">
+                    <img :src="item.product_image" class="size-60">
+                </div>
+                <div class=""></div>
             </div>
         </div>
         <div @click.stop="modal_status = true" class="flex justify-center items-center cursor-pointer m-auto duration-300 size-full rounded-xl border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 overflow-hidden"
              :class="{'hidden':modal_status}">
-            مشاهده {{order_items.length}} محصولات
+            مشاهده {{ order_items.length }} محصولات
         </div>
     </div>
 </template>
