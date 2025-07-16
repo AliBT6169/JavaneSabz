@@ -22,7 +22,7 @@ class OrderItemIndexResource extends JsonResource
             'product_id' => $this->product_variation_id,
             'product_image' => $this->productVariation->gallery->count() != 0 ? $this->productVariation->gallery[0]->media : $this->productVariation->product->primary_image,
             'product_name' => $this->productVariation->product->name,
-            'product_value' => $this->productVariation->value,
+            'product_size' => $this->productVariation->value,
             'product_weight' => $this->productVariation->weight,
         ];
     }
