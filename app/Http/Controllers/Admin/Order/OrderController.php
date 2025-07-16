@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin\Order;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\Orders\OrderIndexResource;
+use App\Http\Resources\Admin\ProductVariations\ProductVariationsResource;
 use App\Models\Order;
-use App\Models\OrderItem;
+use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -78,7 +79,12 @@ class OrderController extends Controller
 
     public function getProducts(Request $request)
     {
-        $orderItems = OrderItem::whereNotIn('id',$request)->get();
-        return $orderItems;
+        $productVariations = ProductVariationsResource::collection(ProductVariation::whereNotIn('id', $request)->latest()->get());
+        $selectedProducts = ProductVariationsResource::collection(ProductVariation::whereIn('id', $request)->get());
+        $products = [
+            'products' => $productVariations,
+            'selectedProducts' => $selectedProducts
+        ];
+        return $products;
     }
 }

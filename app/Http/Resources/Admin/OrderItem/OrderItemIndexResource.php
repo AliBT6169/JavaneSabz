@@ -18,7 +18,7 @@ class OrderItemIndexResource extends JsonResource
         return [
             'id' => $this->id,
             'product_variation_id' => $this->product_variation_id,
-            'quantity' => $this->quantity
+            'quantity' => $this->quantity,
         ];
     }
 }
