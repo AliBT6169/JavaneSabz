@@ -1,6 +1,7 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import AdminOrderProductSelectItem from "@/Pages/Admin/Components/Order/AdminOrderProductSelectItem.vue";
+import {useToast} from "vue-toastification";
 
 const props = defineProps({
     order_items: {
@@ -11,6 +12,7 @@ console.log(props.order_items);
 const emit = defineEmits({
     dataSend: null,
 });
+
 const modal = ref('');
 const modal_status = ref(false);
 const modalCloser = (e) => {
@@ -21,6 +23,16 @@ const modalCloser = (e) => {
 
 onMounted(() => {
     document.addEventListener('click', modalCloser);
+    const ides = ref([]);
+    props.order_items.map((item) => {
+        ides.value.push(item.product_variation_id);
+    });
+    axios.post(route('admin.orders.getProducts'), ides.value).then(res => {
+        useToast().success('عملیات موفق آمیز بود.');
+        console.log(res);
+    }).catch(err => {
+        console.log(err);
+    });
 });
 
 onBeforeUnmount(() => {
@@ -37,7 +49,7 @@ const dataSender = () => {
          ref="modal"
          :class="{'fixed z-50 top-20 size-5/6 py-6 overflow-scroll':modal_status}">
         <div :class="{'hidden':!modal_status}" class="flex gap-5 justify-center flex-wrap">
-            <AdminOrderProductSelectItem v-for="item in order_items" :order-item="item"/>
+            <!--            <AdminOrderProductSelectItem v-for="item in order_items" :order-item="item"/>-->
         </div>
         <div @click.stop="modal_status = true" class="flex justify-center items-center cursor-pointer m-auto duration-300 size-full rounded-xl border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 overflow-hidden"

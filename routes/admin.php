@@ -68,6 +68,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::resource('orders', OrderController::class)->except('update');
     Route::controller(OrderController::class)->group(function () {
         Route::put('/orders/update', 'update')->name('orders.update');
+        Route::post('/orders/getProducts', 'getProducts')->name('orders.getProducts');
         Route::patch('/orders/{id}/disable', 'disable')->name('orders.disable');
     });
     Route::controller(ProductVariationController::class)->group(function () {

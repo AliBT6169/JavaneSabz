@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Order;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\Orders\OrderIndexResource;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -57,7 +58,7 @@ class OrderController extends Controller
      */
     public function update(Request $request)
     {
-        return response()->json($request,200);
+        return response()->json($request, 200);
     }
 
     /**
@@ -73,5 +74,11 @@ class OrderController extends Controller
         $order = Order::whereId($id)->first();
         $order->update(['status' => 4]);
         return response()->json('سفارش با موفقیت لغو شد!', 200);
+    }
+
+    public function getProducts(Request $request)
+    {
+        $orderItems = OrderItem::whereNotIn('id',$request)->get();
+        return $orderItems;
     }
 }
