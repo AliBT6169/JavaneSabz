@@ -39,6 +39,9 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
+                const data = ref(form.value);
+                data.value.items = products.value;
+                console.log(data.value)
                 await axios.post(route('admin.orders.update'), form.value, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -117,7 +120,7 @@ const sendData = async () => {
                         <div class="">{{ paying_amount.toLocaleString('fa-IR') }}</div>
                     </div>
                 </div>
-                <AdminOrderItemsModal :order_items="order.data.items" @dataSend="products = $event"/>
+                <AdminOrderItemsModal :order_items="order.data.items" @dataSend="products = $event,console.log(products)"/>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
                     <Link class="block" :href="route('admin.orders.index')">

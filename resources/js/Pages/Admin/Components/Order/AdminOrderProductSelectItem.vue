@@ -1,4 +1,6 @@
 <script setup>
+import {useToast} from "vue-toastification";
+
 const props = defineProps({
     orderItem: {
         required: true,
@@ -12,7 +14,10 @@ const quantityUpdate = (status) => {
     if (status === 'plus') {
         if (props.modelValue === 0)
             emit('addToOrder');
-        emit('update:modelValue', props.modelValue + 1);
+        if (props.modelValue < props.orderItem.quantity)
+            emit('update:modelValue', props.modelValue + 1);
+        else
+            useToast().error('موجودی محصول در انبار کافی نیست!')
     } else if (status === 'minus') {
         if (props.modelValue === 1)
             emit('deleteFromOrder');
@@ -44,6 +49,10 @@ const quantityUpdate = (status) => {
             <div class="">
                 <div class="">قیمت:</div>
                 <div class="">{{ orderItem.sale_price.toLocaleString('en-US') }}</div>
+            </div>
+            <div class="">
+                <div class="">موجودی:</div>
+                <div class="">{{ orderItem.quantity.toLocaleString('en-US') }}</div>
             </div>
             <div class="">
                 <div class="">تعداد:</div>

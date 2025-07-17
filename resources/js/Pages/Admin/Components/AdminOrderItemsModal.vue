@@ -37,6 +37,7 @@ onMounted(() => {
                 }
             });
         });
+        emit("dataSend", selectedProducts.value);
         Products.value = res.data.products;
         Products.value.map((product) => {
             product.order_quantity = 0;
@@ -48,10 +49,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
-const dataSender = () => {
-    emit('dataSend', [1, 2, 3]);
-    modal_status.value = false;
-}
 const deleteFromOrder = (id) => {
     Products.value.push(selectedProducts.value.filter((item) => item.id === id)[0]);
     selectedProducts.value = selectedProducts.value.filter((product) => product.id !== id);
