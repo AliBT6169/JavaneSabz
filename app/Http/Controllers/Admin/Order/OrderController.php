@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Order;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Orders\OrderUpdateRequest;
 use App\Http\Resources\Admin\Orders\OrderIndexResource;
 use App\Http\Resources\Admin\ProductVariations\ProductVariationsResource;
 use App\Models\Order;
@@ -57,7 +58,7 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(OrderUpdateRequest $request)
     {
         return response()->json($request, 200);
     }

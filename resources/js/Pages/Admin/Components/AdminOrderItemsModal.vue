@@ -1,7 +1,6 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import AdminOrderProductSelectItem from "@/Pages/Admin/Components/Order/AdminOrderProductSelectItem.vue";
-import {useToast} from "vue-toastification";
 
 const props = defineProps({
     order_items: {
@@ -34,6 +33,7 @@ onMounted(() => {
             props.order_items.map((item) => {
                 if (item.product_variation_id === product.id) {
                     product.order_quantity = item.quantity;
+                    product.order_item_id = item.id;
                 }
             });
         });
@@ -41,6 +41,7 @@ onMounted(() => {
         Products.value = res.data.products;
         Products.value.map((product) => {
             product.order_quantity = 0;
+            product.order_item_id = -1;
         });
     }).catch(err => {
         console.log(err);
@@ -69,8 +70,8 @@ const addToOrder = (id) => {
             <AdminOrderProductSelectItem v-for="item in Products" v-model="item.order_quantity"
                                          @add-to-order="addToOrder(item.id)" :order-item="item"/>
         </div>
-        <div @click.stop="modal_status = true" class="flex justify-center items-center cursor-pointer m-auto duration-300 size-full rounded-xl border-4 border-adminColor2
-             dark:border-adminColor3 hover:scale-95 overflow-hidden"
+        <div @click.stop="modal_status = true" class="flex justify-center items-center cursor-pointer m-auto duration-300
+        size-full rounded-xl border-4 border-adminColor2 dark:border-adminColor3 hover:scale-95 overflow-hidden"
              :class="{'hidden':modal_status}">
             مشاهده {{ selectedProducts.length }} محصولات
         </div>

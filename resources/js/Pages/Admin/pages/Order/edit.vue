@@ -39,10 +39,20 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
+                const filteredProducts = ref(products.value.map(({
+                                                                     images,
+                                                                     name,
+                                                                     value,
+                                                                     weight,
+                                                                     price,
+                                                                     quantity,
+                                                                     sale_price,
+                                                                     ...rest
+                                                                 }) => rest));
                 const data = ref(form.value);
-                data.value.items = products.value;
+                data.value.items = filteredProducts.value;
                 console.log(data.value)
-                await axios.post(route('admin.orders.update'), form.value, {
+                await axios.post(route('admin.orders.update'), data.value, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'X-HTTP-Method-Override': 'PUT'
@@ -100,7 +110,8 @@ const sendData = async () => {
                     </div>
                 </div>
                 <div class="space-y-6 md:space-y-0">
-                    <admin-input @input="payAmountChanged" v-model="form.delivery_amount" type="number" name="هزینه ارسال"/>
+                    <admin-input @input="payAmountChanged" v-model="form.delivery_amount" type="number"
+                                 name="هزینه ارسال"/>
                     <div class="adminOrderEditItems">
                         <div class="">مالیات:</div>
                         <div class="">{{ order.data.VAT.toLocaleString('fa-IR') }}</div>
@@ -120,7 +131,8 @@ const sendData = async () => {
                         <div class="">{{ paying_amount.toLocaleString('fa-IR') }}</div>
                     </div>
                 </div>
-                <AdminOrderItemsModal :order_items="order.data.items" @dataSend="products = $event,console.log(products)"/>
+                <AdminOrderItemsModal :order_items="order.data.items"
+                                      @dataSend="products = $event,console.log(products)"/>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
                     <Link class="block" :href="route('admin.orders.index')">
