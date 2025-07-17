@@ -7,7 +7,6 @@ import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import {Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
-import {toFormData} from "axios";
 import {useToast} from "vue-toastification";
 import AdminOrderItemsModal from "@/Pages/Admin/Components/AdminOrderItemsModal.vue";
 
@@ -21,11 +20,12 @@ const form = ref({
     delivery_amount: props.order.data.delivery_amount,
     status: props.order.data.payning_status === 0 && props.order.data.status < 3 ? -1 : props.order.data.status,
     coupon_amount: props.order.data.coupon_amount,
-    paying_amount: props.order.data.total_amount + props.order.data.VAT + props.order.data.delivery_amount - props.order.data.coupon_amount,
 });
+const paying_amount = ref(props.order.data.total_amount + props.order.data.VAT + props.order.data.delivery_amount - props.order.data.coupon_amount);
+const products = ref([]);
 
 const payAmountChanged = () => {
-    form.value.paying_amount = props.order.data.total_amount + props.order.data.VAT + form.value.delivery_amount - form.value.coupon_amount
+    paying_amount.value = props.order.data.total_amount + props.order.data.VAT + form.value.delivery_amount - form.value.coupon_amount
 }
 console.log(props.order);
 
@@ -95,7 +95,7 @@ const sendData = async () => {
                     </div>
                 </div>
                 <div class="space-y-6 md:space-y-0">
-                    <admin-input v-model="form.delivery_amount" type="number" name="هزینه ارسال"/>
+                    <admin-input @update:modelValue="payAmountChanged" v-model="form.delivery_amount" type="number" name="هزینه ارسال"/>
                     <div class="adminOrderEditItems">
                         <div class="">مالیات:</div>
                         <div class="">{{ order.data.VAT.toLocaleString('fa-IR') }}</div>
@@ -112,10 +112,10 @@ const sendData = async () => {
                 <div class="space-y-6 md:space-y-0">
                     <div class="adminOrderEditItems">
                         <div class="">مبلغ پرداختی:</div>
-                        <div class="">{{ form.paying_amount.toLocaleString('fa-IR') }}</div>
+                        <div class="">{{ paying_amount.toLocaleString('fa-IR') }}</div>
                     </div>
                 </div>
-                <AdminOrderItemsModal :order_items="order.data.items"/>
+                <AdminOrderItemsModal :order_items="order.data.items" @dataSend="products = $event"/>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
                     <Link class="block" :href="route('admin.orders.index')">

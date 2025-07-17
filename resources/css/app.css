@@ -126,7 +126,7 @@
 }
 
 .adminOrderEditItems{
-    @apply border-2 rounded-xl border-adminColor3 py-5 px-2 flex justify-between w-full;
+    @apply border-2 rounded-xl border-adminColor3 py-4 px-2 flex justify-between w-full;
 }
 
 .introView {

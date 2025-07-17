@@ -17,9 +17,10 @@ const modal_status = ref(false);
 const modalCloser = (e) => {
     if (!modal.value.contains(e.target) && modal_status.value) {
         modal_status.value = false;
+        emit("dataSend", selectedProducts.value);
     }
 }
-const selectedProducts = ref();
+const selectedProducts = ref([]);
 const Products = ref();
 onMounted(() => {
     document.addEventListener('click', modalCloser);
