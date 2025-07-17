@@ -63,15 +63,28 @@ class DeliveryAmount extends Model
             return ($deliveryAmount * 0.35) / 100;
         return 0;
     }
-    public static function getOrderDeliveryAmount()
+
+    public static function getOrderDeliveryAmount($request = null)
     {
-        $deliveryAmount = 0;
-        $products = Auth::user()->buy_carts;
-        $province_percentage = 0;
-        $userProvince = Auth::user()->address->city->province->name;
-        $userCity = Auth::user()->address->city->name;
+        $item = null;
+        $products = null;
+        $province = '';
+        $city = '';
+        if ($request != null) {
+            $item = Order::whereId($request['id'])->first();
+            $products = $item->orderItems;
+            $city = $item->address->city->name;
+            $province = $item->address->city->province->name;
+        } else {
+            $item = Auth::user();
+            $province = $item->address->city->province->name;
+            $city = $item->address->city->name;
+            $products = $item->buy_carts;
+        }
         $bigCitiesPercentage = 0;
-        switch ($userCity) {
+        $deliveryAmount = 0;
+        $province_percentage = 0;
+        switch ($city) {
             case 'تهران':
             case 'مشهد':
             case 'کرج':
@@ -80,7 +93,7 @@ class DeliveryAmount extends Model
             case 'شیراز':
                 $bigCitiesPercentage = 15;
         }
-        switch ($userProvince) {
+        switch ($province) {
             case 'مازندران':
                 $province_percentage = 0;
                 break;

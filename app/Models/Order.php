@@ -52,6 +52,14 @@ class Order extends Model
             'paying_amount' => $request['paying_amount'] ?? $paying_amount,
             'payment_status' => $request['payment_status'] ?? 0,
         ]);
+        $user = Auth::user();
+        Address::create([
+            'address' => $user->address->address,
+            'postcode' => $user->address->postcode,
+            'addressable_id' => $Order->id,
+            'addressable_type' => Order::class,
+            'city_id' => $user->address->city_id,
+        ]);
         OrderItem::Creator(Auth::user()->buy_carts, $Order->id);
     }
 
