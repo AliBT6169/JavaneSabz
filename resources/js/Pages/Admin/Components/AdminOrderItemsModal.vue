@@ -44,13 +44,20 @@ onMounted(() => {
         console.log(err);
     });
 });
-
 onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
 const dataSender = () => {
     emit('dataSend', [1, 2, 3]);
     modal_status.value = false;
+}
+const deleteFromOrder = (id) => {
+    Products.value.push(selectedProducts.value.filter((item) => item.id === id)[0]);
+    selectedProducts.value = selectedProducts.value.filter((product) => product.id !== id);
+}
+const addToOrder = (id) => {
+    selectedProducts.value.push(Products.value.filter((item) => item.id === id)[0]);
+    Products.value = Products.value.filter((product) => product.id !== id);
 }
 </script>
 
@@ -59,13 +66,15 @@ const dataSender = () => {
          ref="modal"
          :class="{'fixed z-50 top-20 size-fit md:size-5/6 py-6 overflow-scroll':modal_status}">
         <div :class="{'hidden':!modal_status}" class="flex gap-5 justify-center flex-wrap">
-            <AdminOrderProductSelectItem v-for="item in selectedProducts" v-model="item.order_quantity" :order-item="item"/>
-            <AdminOrderProductSelectItem v-for="item in Products" :order-item="item"/>
+            <AdminOrderProductSelectItem v-for="item in selectedProducts" v-model="item.order_quantity"
+                                         @delete-from-order="deleteFromOrder(item.id)" :order-item="item"/>
+            <AdminOrderProductSelectItem v-for="item in Products" v-model="item.order_quantity"
+                                         @add-to-order="addToOrder(item.id)" :order-item="item"/>
         </div>
         <div @click.stop="modal_status = true" class="flex justify-center items-center cursor-pointer m-auto duration-300 size-full rounded-xl border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 overflow-hidden"
              :class="{'hidden':modal_status}">
-            مشاهده {{ order_items.length }} محصولات
+            مشاهده {{ selectedProducts.length }} محصولات
         </div>
     </div>
 </template>
