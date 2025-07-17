@@ -95,9 +95,9 @@ const sendData = async () => {
                     </div>
                     <div class="border-2 rounded-xl border-adminColor3 items-center flex justify-between w-full">
                         <div class="">وضعیت:</div>
-                        <select
-                            class="adminOrderEditItems w-60 text-center cursor-pointer bg-adminColor2 dark:bg-adminColor4"
-                            name="" id="">
+                        <select @change="form.status = Number($event.target.value)"
+                                class="adminOrderEditItems w-60 text-center cursor-pointer bg-adminColor2 dark:bg-adminColor4"
+                                name="" id="">
                             <option :selected="form.status===-1" value="-1">در انتظار
                                 پرداخت
                             </option>

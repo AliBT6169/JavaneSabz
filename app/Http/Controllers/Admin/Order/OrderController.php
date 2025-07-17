@@ -62,7 +62,6 @@ class OrderController extends Controller
      */
     public function update(OrderUpdateRequest $request)
     {
-        return response()->json($request, 200);
         $order = Order::whereId($request->id)->first();
         $orderIdes = [];
         $newOrderItems = [];

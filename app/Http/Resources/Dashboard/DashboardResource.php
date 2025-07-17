@@ -109,9 +109,9 @@ class DashboardResource extends JsonResource
         foreach ($request as $item) {
             $order_items[] = [
                 "id" => $item->id,
-                "name" => $item->productVariation->product->name,
-                "value" => $item->productVariation->value,
-                "image" => $item->productVariation->product->primary_image,
+                "name" => $item->product_variation->product->name,
+                "value" => $item->product_variation->value,
+                "image" => $item->product_variation->product->primary_image,
                 "quantity" => $item->quantity,
                 "created_at" => $item->created_at,
                 "price" => $item->price,
