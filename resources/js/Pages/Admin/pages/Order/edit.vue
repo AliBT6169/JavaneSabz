@@ -15,12 +15,14 @@ const props = defineProps({
         required: true,
     }
 });
+
 const form = ref({
     id: props.order.data.id,
     delivery_amount: props.order.data.delivery_amount,
     status: props.order.data.payning_status === 0 && props.order.data.status < 3 ? -1 : props.order.data.status,
     coupon_amount: props.order.data.coupon_amount,
 });
+
 const paying_amount = ref(props.order.data.total_amount + props.order.data.VAT + props.order.data.delivery_amount - props.order.data.coupon_amount);
 const products = ref([]);
 
@@ -95,7 +97,7 @@ const sendData = async () => {
                     </div>
                 </div>
                 <div class="space-y-6 md:space-y-0">
-                    <admin-input @update:modelValue="payAmountChanged" v-model="form.delivery_amount" type="number" name="هزینه ارسال"/>
+                    <admin-input @input="payAmountChanged" v-model="form.delivery_amount" type="number" name="هزینه ارسال"/>
                     <div class="adminOrderEditItems">
                         <div class="">مالیات:</div>
                         <div class="">{{ order.data.VAT.toLocaleString('fa-IR') }}</div>
@@ -106,7 +108,7 @@ const sendData = async () => {
                         <div class="">جمع کل:</div>
                         <div class="">{{ order.data.total_amount.toLocaleString('fa-IR') }}</div>
                     </div>
-                    <admin-input @update:modelValue="payAmountChanged" type="number" v-model="form.coupon_amount"
+                    <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"
                                  name="تخفیف"/>
                 </div>
                 <div class="space-y-6 md:space-y-0">
