@@ -21,7 +21,8 @@ const quantityUpdate = (status) => {
     } else if (status === 'minus') {
         if (props.modelValue === 1)
             emit('deleteFromOrder');
-        emit('update:modelValue', props.modelValue - 1);
+        if (props.modelValue > 0)
+            emit('update:modelValue', props.modelValue - 1);
     }
 }
 </script>

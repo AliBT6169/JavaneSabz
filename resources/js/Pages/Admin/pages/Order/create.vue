@@ -10,31 +10,26 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminOrderItemsModal from "@/Pages/Admin/Components/AdminOrderItemsModal.vue";
 
-const props = defineProps({
-    order: {
-        required: true,
-    }
-});
-
 const form = ref({
-    id: props.order.data.id,
-    status: props.order.data.payment_status === 0 ? -1 : props.order.data.status,
-    coupon_amount: props.order.data.coupon_amount,
+    status: -1,
+    coupon_amount: 0,
 });
-
-const paying_amount = ref(props.order.data.total_amount + props.order.data.VAT + props.order.data.delivery_amount - props.order.data.coupon_amount);
+const total_amount = ref(0);
+const VAT = ref(0);
+const delivery_amount = ref(0);
+const coupon_amount = ref(0);
+const paying_amount = ref(0);
 const products = ref([]);
 
 const payAmountChanged = () => {
-    paying_amount.value = props.order.data.total_amount + props.order.data.VAT + props.order.data.delivery_amount - form.value.coupon_amount
+    paying_amount.value = total_amount.value + VAT.value + delivery_amount.value - coupon_amount.value;
 }
-console.log(props.order);
 
 const sendData = async () => {
     const content = {
         component: ToastWarning,
         props: {
-            message: 'آیا مطمعن به آپدیت این سفارش هستید؟'
+            message: 'آیا مطمعن به ذخیره این سفارش هستید؟'
         },
         listeners: {
             set: async () => {
@@ -51,12 +46,7 @@ const sendData = async () => {
                 const data = ref(form.value);
                 data.value.items = filteredProducts.value;
                 console.log(data.value)
-                await axios.post(route('admin.orders.update'), data.value, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'X-HTTP-Method-Override': 'PUT'
-                    }
-                }).then(res => {
+                await axios.post(route('admin.orders.store'), data.value).then(res => {
                     useToast().success(res.data);
                 }).catch(err => {
                     useToast().error(err.response.data.message)
@@ -78,18 +68,8 @@ const sendData = async () => {
             <div class="space-y-6 py-4 md:*:flex md:*:justify-center *:gap-2">
                 <div class="space-y-6 md:space-y-0">
                     <div class="adminOrderEditItems">
-                        <div class="">تاریخ:</div>
-                        <div class="">{{ order.data.created_at }}</div>
-                    </div>
-                    <div class="adminOrderEditItems">
-                        <div class="">کد:</div>
-                        <div class="">{{ order.data.code }}</div>
-                    </div>
-                </div>
-                <div class="space-y-6 md:space-y-0">
-                    <div class="adminOrderEditItems">
                         <div class="">اقلام:</div>
-                        <div class="">{{ order.data.items.length }}</div>
+                        <div class="">{{ products.length.toLocaleString('fa-IR') }}</div>
                     </div>
                     <div class="border-2 rounded-xl border-adminColor3 items-center flex justify-between w-full">
                         <div class="">وضعیت:</div>
@@ -110,17 +90,17 @@ const sendData = async () => {
                 <div class="space-y-6 md:space-y-0">
                     <div class="adminOrderEditItems">
                         <div class="">هزینه ارسال:</div>
-                        <div class="">{{ order.data.delivery_amount.toLocaleString('fa-IR') }}</div>
+                        <div class="">{{delivery_amount.toLocaleString('fa-IR') }}</div>
                     </div>
                     <div class="adminOrderEditItems">
                         <div class="">مالیات:</div>
-                        <div class="">{{ order.data.VAT.toLocaleString('fa-IR') }}</div>
+                        <div class="">{{ VAT.toLocaleString('fa-IR') }}</div>
                     </div>
                 </div>
                 <div class="space-y-6 md:space-y-0">
                     <div class="adminOrderEditItems">
                         <div class="">جمع کل:</div>
-                        <div class="">{{ order.data.total_amount.toLocaleString('fa-IR') }}</div>
+                        <div class="">{{ total_amount.toLocaleString('fa-IR') }}</div>
                     </div>
                     <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"
                                  name="تخفیف"/>
@@ -131,8 +111,7 @@ const sendData = async () => {
                         <div class="">{{ paying_amount.toLocaleString('fa-IR') }}</div>
                     </div>
                 </div>
-                <AdminOrderItemsModal :order_items="order.data.items"
-                                      @dataSend="products = $event,console.log(products)"/>
+                <AdminOrderItemsModal @dataSend="products = $event"/>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
                     <Link class="block" :href="route('admin.orders.index')">

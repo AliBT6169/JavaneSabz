@@ -29,7 +29,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/pages/Order/create');
     }
 
     /**

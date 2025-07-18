@@ -3,9 +3,7 @@ import {onBeforeUnmount, onMounted, ref} from "vue";
 import AdminOrderProductSelectItem from "@/Pages/Admin/Components/Order/AdminOrderProductSelectItem.vue";
 
 const props = defineProps({
-    order_items: {
-        required: true,
-    }
+    order_items: {}
 });
 const emit = defineEmits({
     dataSend: null,
@@ -24,19 +22,22 @@ const Products = ref();
 onMounted(() => {
     document.addEventListener('click', modalCloser);
     const ides = ref([]);
-    props.order_items.map((item) => {
-        ides.value.push(item.product_variation_id);
-    });
-    axios.post(route('admin.orders.getProducts'), ides.value).then(res => {
-        selectedProducts.value = res.data.selectedProducts;
-        selectedProducts.value.map((product) => {
-            props.order_items.map((item) => {
-                if (item.product_variation_id === product.id) {
-                    product.order_quantity = item.quantity;
-                    product.order_item_id = item.id;
-                }
-            });
+    if (props.order_items !== undefined)
+        props.order_items.map((item) => {
+            ides.value.push(item.product_variation_id);
         });
+    axios.post(route('admin.orders.getProducts'), ides.value).then(res => {
+        if (res.data.selectedProducts.length !== 0) {
+            selectedProducts.value = res.data.selectedProducts;
+            selectedProducts.value.map((product) => {
+                props.order_items.map((item) => {
+                    if (item.product_variation_id === product.id) {
+                        product.order_quantity = item.quantity;
+                        product.order_item_id = item.id;
+                    }
+                });
+            });
+        }
         emit("dataSend", selectedProducts.value);
         Products.value = res.data.products;
         Products.value.map((product) => {
