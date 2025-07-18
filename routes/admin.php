@@ -20,6 +20,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
 
     Route::controller(UserController::class)->group(function () {
         Route::get('/user/index', 'index')->name('users.index');
+        Route::get('/user/showAll', 'showAll')->name('users.showAll');
         Route::get('/user', 'create')->name('users.create');
         Route::post('/user', 'store')->name('users.store');
         Route::get('/user/{id}', 'edit')->name('users.edit');

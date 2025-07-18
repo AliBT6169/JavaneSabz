@@ -9,10 +9,15 @@ import {ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminOrderItemsModal from "@/Pages/Admin/Components/AdminOrderItemsModal.vue";
+import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
+import SelectOrderUserModal from "@/Pages/Admin/pages/Order/SelectOrderUserModal.vue";
 
 const form = ref({
     status: -1,
     coupon_amount: 0,
+    address: null,
+    city: null,
+    user_id: null,
 });
 const total_amount = ref(0);
 const VAT = ref(0);
@@ -65,12 +70,14 @@ const sendData = async () => {
     <AdminSideBar/>
     <Layout>
         <form @submit.prevent="sendData">
-            <div class="space-y-6 py-4 md:*:flex md:*:justify-center *:gap-2">
+            <div class="space-y-6 py-4 md:*:flex md:items-center md:*:justify-center *:gap-2">
+                <div class="space-y-6 *:w-full md:space-y-0">
+                    <admin-address label="آدرس:" @update-value="form.city=$event"/>
+                    <admin-input v-model="form.address" name="آدرس"/>
+                </div>
                 <div class="space-y-6 md:space-y-0">
-                    <div class="adminOrderEditItems">
-                        <div class="">اقلام:</div>
-                        <div class="">{{ products.length.toLocaleString('fa-IR') }}</div>
-                    </div>
+                    <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"
+                                 name="تخفیف"/>
                     <div class="border-2 rounded-xl border-adminColor3 items-center flex justify-between w-full">
                         <div class="">وضعیت:</div>
                         <select @change="form.status = Number($event.target.value)"
@@ -90,7 +97,7 @@ const sendData = async () => {
                 <div class="space-y-6 md:space-y-0">
                     <div class="adminOrderEditItems">
                         <div class="">هزینه ارسال:</div>
-                        <div class="">{{delivery_amount.toLocaleString('fa-IR') }}</div>
+                        <div class="">{{ delivery_amount.toLocaleString('fa-IR') }}</div>
                     </div>
                     <div class="adminOrderEditItems">
                         <div class="">مالیات:</div>
@@ -102,16 +109,15 @@ const sendData = async () => {
                         <div class="">جمع کل:</div>
                         <div class="">{{ total_amount.toLocaleString('fa-IR') }}</div>
                     </div>
-                    <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"
-                                 name="تخفیف"/>
-                </div>
-                <div class="space-y-6 md:space-y-0">
                     <div class="adminOrderEditItems">
                         <div class="">مبلغ پرداختی:</div>
                         <div class="">{{ paying_amount.toLocaleString('fa-IR') }}</div>
                     </div>
                 </div>
-                <AdminOrderItemsModal @dataSend="products = $event"/>
+                <div class="">
+                    <AdminOrderItemsModal @dataSend="products = $event"/>
+                    <SelectOrderUserModal v-model="form.user_id"/>
+                </div>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
                     <Link class="block" :href="route('admin.orders.index')">

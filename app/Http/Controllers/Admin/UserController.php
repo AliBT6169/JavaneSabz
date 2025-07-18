@@ -20,6 +20,12 @@ class UserController extends Controller
         return Inertia::render('Admin/pages/Users/index', ['userData' => $userData]);
     }
 
+    public function showAll()
+    {
+        $userData = UserResource::collection(User::latest()->get());
+        return response()->json($userData);
+    }
+
     public function create()
     {
         return Inertia::render('Admin/pages/Users/create');
