@@ -44,7 +44,7 @@ const quantityUpdate = (status) => {
             </div>
             <div class="">
                 <div class="">وزن:</div>
-                <div class="">{{ orderItem.weight }}</div>
+                <div class="">{{ orderItem.weight.toLocaleString('en-US') }}</div>
             </div>
             <div class="">
                 <div class="">قیمت:</div>

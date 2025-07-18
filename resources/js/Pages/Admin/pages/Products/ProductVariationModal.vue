@@ -131,14 +131,14 @@ const dataSender = () => {
                 class="p-2 space-y-5 *:space-y-5 md:space-y-0 md:*:space-y-0 md:*:flex *:gap-5 *:justify-center *:w-full ">
                 <div class="">
                     <admin-input name="اندازه" v-model="variationData.size"/>
-                    <admin-input name="وزن به KG" v-model="variationData.weight"/>
+                    <admin-input name="وزن به KG" type="number" v-model="variationData.weight"/>
                 </div>
                 <div class="">
-                    <admin-input name="تعداد" v-model="variationData.quantity"/>
+                    <admin-input name="تعداد" type="number" v-model="variationData.quantity"/>
                     <admin-input name="تخفیف به %" v-model="variationData.off_sale"/>
                 </div>
                 <div class="!block pl-2 !w-1/2">
-                    <admin-input name="قیمت به تومان" v-model="variationData.price"/>
+                    <admin-input name="قیمت به تومان" type="number" v-model="variationData.price"/>
                 </div>
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">

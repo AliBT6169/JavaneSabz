@@ -24,7 +24,6 @@ class OrderUpdateRequest extends FormRequest
         return [
             'id' => 'required|numeric|exists:orders,id',
             'coupon_amount' => 'required|numeric',
-            'delivery_amount' => 'required|numeric',
             'status' => 'required|numeric|between:-1,4',
             'items' => 'required|array',
             'items.*.id' => 'required|numeric|exists:product_variations,id',

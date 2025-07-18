@@ -103,7 +103,7 @@ class OrderController extends Controller
             $orderPrice += $orderItem->price * $orderItem->quantity;
         }
         $deliveryAmount = DeliveryAmount::getOrderDeliveryAmount(['id' => $order->id]);
-        $payment_status = $request->status === -1 ? 0 : $order->payment_status;
+        $payment_status = $request->status == -1 ? 0 : 1;
         $status = $request->status <= 0 ? 0 : $request->status;
         $VAT = (int)($deliveryAmount['deliveryAmount'] + $orderPrice) * 15 / 100;
         $order->update([

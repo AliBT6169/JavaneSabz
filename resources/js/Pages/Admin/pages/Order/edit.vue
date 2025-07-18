@@ -18,8 +18,7 @@ const props = defineProps({
 
 const form = ref({
     id: props.order.data.id,
-    delivery_amount: props.order.data.delivery_amount,
-    status: props.order.data.payning_status === 0 && props.order.data.status < 3 ? -1 : props.order.data.status,
+    status: props.order.data.payment_status === 0 ? -1 : props.order.data.status,
     coupon_amount: props.order.data.coupon_amount,
 });
 
@@ -27,7 +26,7 @@ const paying_amount = ref(props.order.data.total_amount + props.order.data.VAT +
 const products = ref([]);
 
 const payAmountChanged = () => {
-    paying_amount.value = props.order.data.total_amount + props.order.data.VAT + form.value.delivery_amount - form.value.coupon_amount
+    paying_amount.value = props.order.data.total_amount + props.order.data.VAT + props.order.data.delivery_amount - form.value.coupon_amount
 }
 console.log(props.order);
 
@@ -58,8 +57,7 @@ const sendData = async () => {
                         'X-HTTP-Method-Override': 'PUT'
                     }
                 }).then(res => {
-                    useToast().success('عملیات موفقی آمیز بود');
-                    console.log(res.data)
+                    useToast().success(res.data);
                 }).catch(err => {
                     useToast().error(err.response.data.message)
                 });
@@ -110,8 +108,10 @@ const sendData = async () => {
                     </div>
                 </div>
                 <div class="space-y-6 md:space-y-0">
-                    <admin-input @input="payAmountChanged" v-model="form.delivery_amount" type="number"
-                                 name="هزینه ارسال"/>
+                    <div class="adminOrderEditItems">
+                        <div class="">هزینه ارسال:</div>
+                        <div class="">{{ order.data.delivery_amount.toLocaleString('fa-IR') }}</div>
+                    </div>
                     <div class="adminOrderEditItems">
                         <div class="">مالیات:</div>
                         <div class="">{{ order.data.VAT.toLocaleString('fa-IR') }}</div>
