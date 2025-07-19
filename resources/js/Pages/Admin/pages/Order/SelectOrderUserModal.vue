@@ -36,15 +36,15 @@ const select = (id) => {
 <template>
     <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
-         :class="{'fixed z-50 top-20 size-fit md:size-5/6 py-6 overflow-scroll':modal_status}">
+         :class="{'fixed z-50 top-20 left-7 !size-5/6 py-6 overflow-scroll':modal_status}">
         <div :class="{'hidden':!modal_status}" class="space-y-4 w-full">
             <div @click="emit('update:modelValue',item.id)" v-for="item in users"
                  class="rounded-xl duration-500 border-2 p-1 border-transparent"
                  :class="{'!border-red-500':modelValue===item.id}">
                 <div
-                    class="border-2 overflow-hidden flex rounded-xl justify-between items-center w-full pl-4 *:w-72 border-adminColor3
-         *:text-center *:flex *:items-center *:gap-2 ">
-                    <div class="!size-14 rounded-full overflow-hidden">
+                    class="border-2 rounded-xl space-y-2 place-items-center overflow-hidden w-full pl-4 *:w-full border-adminColor3
+                    *:text-center *:flex *:items-center *:gap-2 *:justify-center lg:*:w-72 lg:flex lg:justify-between lg:space-y-0 lg:items-center">
+                    <div class="!size-14 rounded-full m-auto md:m-0 overflow-hidden">
                         <img :src="item.user_image===''?'/images/default/default.jpg':item.user_image" alt="">
                     </div>
                     <div class="">

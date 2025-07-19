@@ -64,7 +64,7 @@ const addToOrder = (id) => {
 <template>
     <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
-         :class="{'fixed z-50 top-20 size-fit md:size-5/6 py-6 overflow-scroll':modal_status}">
+         :class="{'fixed z-50 top-20 left-7 !size-5/6 py-6 overflow-scroll':modal_status}">
         <div :class="{'hidden':!modal_status}" class="flex gap-5 justify-center flex-wrap">
             <AdminOrderProductSelectItem v-for="item in selectedProducts" v-model="item.order_quantity"
                                          @delete-from-order="deleteFromOrder(item.id)" :order-item="item"/>
