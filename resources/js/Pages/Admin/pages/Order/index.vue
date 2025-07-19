@@ -23,7 +23,7 @@ console.log(props.orderData);
             <AdminOrderItem v-for="item in orders" :order="item"/>
             <Link :href="route('admin.orders.create')">
                 <div
-                    class="size-40 rounded-xl border-2 border-adminColor2 cursor-pointer duration-300 hover:scale-95 dark:border-adminColor4 flex items-center justify-center">
+                    class="size-40 rounded-xl border-2 border-adminColor2 cursor-pointer duration-300 hover:scale-95 flex items-center justify-center dark:border-adminColor2">
                     <div class="text-8xl">+</div>
                 </div>
             </Link>

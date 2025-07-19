@@ -17,6 +17,7 @@ const form = ref({
     coupon_amount: 0,
     address: null,
     city: null,
+    postal_code: null,
     user_id: null,
 });
 const total_amount = ref(0);
