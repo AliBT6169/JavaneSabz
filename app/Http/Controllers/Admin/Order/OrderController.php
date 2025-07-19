@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Order;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Orders\OrderUpdateRequest;
 use App\Http\Resources\Admin\Orders\OrderIndexResource;
-use App\Http\Resources\Admin\ProductVariations\ProductVariationsResource;
+use App\Http\Resources\Admin\ProductVariations\CreateOrderProductVariationsResource;
 use App\Models\DeliveryAmount;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -135,8 +135,8 @@ class OrderController extends Controller
 
     public function getProducts(Request $request)
     {
-        $productVariations = ProductVariationsResource::collection(ProductVariation::whereNotIn('id', $request)->latest()->get());
-        $selectedProducts = ProductVariationsResource::collection(ProductVariation::whereIn('id', $request)->get());
+        $productVariations = CreateOrderProductVariationsResource::collection(ProductVariation::whereNotIn('id', $request)->latest()->get());
+        $selectedProducts = CreateOrderProductVariationsResource::collection(ProductVariation::whereIn('id', $request)->get());
         $products = [
             'products' => $productVariations,
             'selectedProducts' => $selectedProducts

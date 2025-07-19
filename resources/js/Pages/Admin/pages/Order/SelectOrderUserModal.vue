@@ -28,9 +28,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
-const select = (id) => {
-    emit('update:modelValue', selected_id.value);
-}
 </script>
 
 <template>

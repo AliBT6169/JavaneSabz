@@ -48,22 +48,6 @@ class DeliveryAmount extends Model
         }
     }
 
-
-    public static function ensure($deliveryAmount): int
-    {
-        if ($deliveryAmount <= 4000000)
-            return 4000;
-        else if ($deliveryAmount <= 30000000)
-            return ($deliveryAmount * 0.2) / 100;
-        else if ($deliveryAmount <= 50000000)
-            return ($deliveryAmount * 0.25) / 100;
-        else if ($deliveryAmount <= 70000000)
-            return ($deliveryAmount * 0.3) / 100;
-        else if ($deliveryAmount <= 100000000)
-            return ($deliveryAmount * 0.35) / 100;
-        return 0;
-    }
-
     public static function getOrderDeliveryAmount($request = null)
     {
         $item = null;
@@ -117,12 +101,9 @@ class DeliveryAmount extends Model
             $deliveryAmount += $productDeliveryAmount * $product->quantity;
             $productWeight += $product->product_variation->weight * $product->quantity;
         }
-        $ensureAmount = self::ensure($deliveryAmount);
-        $deliveryAmount += $ensureAmount;
         return [
             'deliveryAmount' => (int)$deliveryAmount,
             'finalWeight' => $productWeight,
-            'ensureAmount' => (int)$ensureAmount,
             'bigCityPercentage' => $bigCitiesPercentage,
         ];
     }

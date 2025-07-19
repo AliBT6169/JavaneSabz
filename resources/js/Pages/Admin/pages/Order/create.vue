@@ -11,6 +11,7 @@ import {useToast} from "vue-toastification";
 import AdminOrderItemsModal from "@/Pages/Admin/Components/AdminOrderItemsModal.vue";
 import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import SelectOrderUserModal from "@/Pages/Admin/pages/Order/SelectOrderUserModal.vue";
+import {deliveryAmountHelper} from "@/Pages/Admin/Components/Helpers/deliveryAmountHelper.js";
 
 const form = ref({
     status: -1,
@@ -30,7 +31,20 @@ const products = ref([]);
 const payAmountChanged = () => {
     paying_amount.value = total_amount.value + VAT.value + delivery_amount.value - coupon_amount.value;
 }
-
+const productSelection = async (e) => {
+    products.value = e;
+    delivery_amount.value = 0;
+    const weight = ref(0);
+    if (products.value.length > 0) {
+        products.value.map((item) => {
+            delivery_amount.value += item.delivery_amount * item.order_quantity;
+            weight.value += item.weight * item.order_quantity;
+        });
+        if (form.value.city !== null)
+            delivery_amount.value = await deliveryAmountHelper(weight.value, form.value.city, delivery_amount.value);
+        console.log(delivery_amount.value)
+    }
+}
 const sendData = async () => {
     const content = {
         component: ToastWarning,
@@ -72,7 +86,7 @@ const sendData = async () => {
     <Layout>
         <form @submit.prevent="sendData">
             <div
-                class="space-y-6 py-4 *:w-full *:h-20 d:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-5 *:md:w-[45%]">
+                class="space-y-6 py-4 *:w-full *:h-fit d:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-5 *:md:w-[45%]">
                 <admin-address label="آدرس:" @update-value="form.city=$event"/>
                 <admin-input v-model="form.address" name="آدرس"/>
                 <admin-input v-model="form.postal_code" name="کد پستی"/>
@@ -111,7 +125,7 @@ const sendData = async () => {
                 </div>
                 <div
                     class="space-y-6 py-4 !h-fit *:w-full md:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-5 *:md:w-[45%]">
-                    <AdminOrderItemsModal @dataSend="products = $event"/>
+                    <AdminOrderItemsModal @dataSend="productSelection($event)"/>
                     <SelectOrderUserModal v-model="form.user_id"/>
                 </div>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end md:!w-[90%]">
