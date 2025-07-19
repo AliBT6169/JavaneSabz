@@ -39,10 +39,10 @@ const productSelection = async (e) => {
         products.value.map((item) => {
             delivery_amount.value += item.delivery_amount * item.order_quantity;
             weight.value += item.weight * item.order_quantity;
+            total_amount.value += item.sale_price * item.order_quantity;
         });
         if (form.value.city !== null)
             delivery_amount.value = await deliveryAmountHelper(weight.value, form.value.city, delivery_amount.value);
-        console.log(delivery_amount.value)
     }
 }
 const sendData = async () => {
@@ -86,8 +86,8 @@ const sendData = async () => {
     <Layout>
         <form @submit.prevent="sendData">
             <div
-                class="space-y-6 py-4 *:w-full *:h-fit d:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-5 *:md:w-[45%]">
-                <admin-address label="آدرس:" @update-value="form.city=$event"/>
+                class="space-y-6 py-4 *:w-full *:h-fit md:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-5 *:md:w-[45%]">
+                <admin-address label="آدرس:" @update-value="form.city = $event"/>
                 <admin-input v-model="form.address" name="آدرس"/>
                 <admin-input v-model="form.postal_code" name="کد پستی"/>
                 <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"

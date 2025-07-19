@@ -21,7 +21,7 @@ class CreateOrderProductVariationsResource extends JsonResource
             'name' => $this->product->name,
             'value' => $this->value,
             'weight' => $this->weight,
-            'delivery_amount'=>DeliveryAmount::getPrice((int)$this->wheight),
+            'delivery_amount' => DeliveryAmount::getPrice((int)$this->wheight),
             'price' => $this->price,
             'quantity' => $this->quantity,
             'off_sale' => $this->off_sale ?? 0,
