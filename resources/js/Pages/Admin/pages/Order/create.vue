@@ -39,15 +39,13 @@ const productSelection = async (e) => {
     total_amount.value = 0;
     VAT.value = 0;
     paying_amount.value = 0;
-    const weight = ref(0);
     if (products.value.length > 0) {
         products.value.map((item) => {
             delivery_amount.value += item.delivery_amount * item.order_quantity;
-            weight.value += item.weight * item.order_quantity;
             total_amount.value += item.sale_price * item.order_quantity;
         });
         if (form.value.city !== null)
-            delivery_amount.value = await deliveryAmountHelper(weight.value, form.value.city, delivery_amount.value);
+            delivery_amount.value = await deliveryAmountHelper(form.value.city, delivery_amount.value);
         paying_amount.value = total_amount.value + delivery_amount.value - form.value.coupon_amount;
         VAT.value = paying_amount.value * 15 / 100;
         paying_amount.value += VAT.value;

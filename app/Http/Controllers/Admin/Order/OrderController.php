@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Orders\OrderUpdateRequest;
 use App\Http\Resources\Admin\Orders\OrderIndexResource;
 use App\Http\Resources\Admin\ProductVariations\CreateOrderProductVariationsResource;
 use App\Models\Address;
+use App\Models\City;
 use App\Models\DeliveryAmount;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -44,23 +45,34 @@ class OrderController extends Controller
         $status = $request->status <= 0 ? 0 : $request->status;
         $ides = [];
         foreach ($request->items as $item) {
-            $ides[] = $item;
+            $ides[] = $item['id'];
         }
         $products = ProductVariation::whereIn('id', $ides)->get();
         $totalAmount = 0;
+        $deliveryAmount = 0;
         foreach ($products as $product) {
             $totalAmount += $product->sale_price * $product->quantity;
+            foreach ($request->items as $item) {
+                if ($item['id'] == $product->id) {
+                    $deliveryAmount += DeliveryAmount::getPrice($product->weight * $item['order_quantity']);
+                }
+            }
         }
-        DeliveryAmount::
+        $city = City::whereId($request->city)->first();
+        $deliveryAmount += $deliveryAmount * DeliveryAmount::getProvincePercentage($city->province->name) / 100;
+        $deliveryAmount += $deliveryAmount * DeliveryAmount::getBigCityPercentage($city->name) / 100;
+        $payingAmount = $totalAmount + $deliveryAmount;
+        $VAT = $payingAmount * 15 / 100;
+        $payingAmount += $VAT;
         $order = Order::create([
             'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment + 10000,
             'user_id' => $request->user,
             'status' => $status,
             'total_amount' => $totalAmount,
-            'delivery_amount',
-            'VAT',
+            'delivery_amount' => $deliveryAmount,
+            'VAT' => $VAT,
             'coupon_amount' => $request->coupon_amount,
-            'paying_amount',
+            'paying_amount' => $payingAmount,
             'payment_status' => $payment_status,
         ]);
         Address::create([
@@ -70,7 +82,18 @@ class OrderController extends Controller
             'addressable_type' => Order::class,
             'city_id' => $request->city,
         ]);
-        return response()->json($request);
+        foreach ($products as $product) {
+            foreach ($request->items as $item) {
+                if ($item['id'] == $product->id) {
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'product_variation_id' => $product->id,
+                        'quantity' => $item['order_quantity'],
+                        'price' => $product->sale_price * $item['order_quantity'],
+                    ]);
+                }
+            }
+        }
         return response()->json('موفقیت آمیز بود!');
     }
 

@@ -55,35 +55,37 @@ class DeliveryAmount extends Model
         $province = '';
         $city = '';
         if ($request != null) {
-            if ($request->type == 'order') {
-                $item = Order::whereId($request['id'])->first();
-                $products = $item->orderItems;
-                $city = $item->address->city->name;
-                $province = $item->address->city->province->name;
-            } elseif ($request->type == 'products') {
-                $City = City::whereId($request['city'])->first();
-                $province = $City->province->name;
-                $city = $City->name;
-                $products = $request->products;
-            }
+            $item = Order::whereId($request['id'])->first();
+            $products = $item->orderItems;
+            $city = $item->address->city->name;
+            $province = $item->address->city->province->name;
         } else {
             $item = Auth::user();
             $province = $item->address->city->province->name;
             $city = $item->address->city->name;
             $products = $item->buy_carts;
         }
-        $bigCitiesPercentage = 0;
+        $bigCitiesPercentage = self::getBigCityPercentage($city);
         $deliveryAmount = 0;
-        $province_percentage = 0;
-        switch ($city) {
-            case 'تهران':
-            case 'مشهد':
-            case 'کرج':
-            case 'یزد':
-            case 'اصفهان':
-            case 'شیراز':
-                $bigCitiesPercentage = 15;
+        $province_percentage = self::getProvincePercentage($province);
+        $productWeight = 0;
+        foreach ($products as $product) {
+            $productDeliveryAmount = self::getPrice($product->product_variation->weight);
+            $productDeliveryAmount += ($productDeliveryAmount * $province_percentage) / 100;
+            $productDeliveryAmount += ($productDeliveryAmount * $bigCitiesPercentage) / 100;
+            $deliveryAmount += $productDeliveryAmount * $product->quantity;
+            $productWeight += $product->product_variation->weight * $product->quantity;
         }
+        return [
+            'deliveryAmount' => (int)$deliveryAmount,
+            'finalWeight' => $productWeight,
+            'bigCityPercentage' => $bigCitiesPercentage,
+        ];
+    }
+
+    public static function getProvincePercentage($province)
+    {
+        $province_percentage = 0;
         switch ($province) {
             case 'مازندران':
                 $province_percentage = 0;
@@ -100,18 +102,21 @@ class DeliveryAmount extends Model
                 $province_percentage = 60;
                 break;
         }
-        $productWeight = 0;
-        foreach ($products as $product) {
-            $productDeliveryAmount = self::getPrice($product->product_variation->weight);
-            $productDeliveryAmount += ($productDeliveryAmount * $province_percentage) / 100;
-            $productDeliveryAmount += ($productDeliveryAmount * $bigCitiesPercentage) / 100;
-            $deliveryAmount += $productDeliveryAmount * $product->quantity;
-            $productWeight += $product->product_variation->weight * $product->quantity;
+        return $province_percentage;
+    }
+
+    public static function getBigCityPercentage($city)
+    {
+        $percentage = 0;
+        switch ($city) {
+            case 'تهران':
+            case 'مشهد':
+            case 'کرج':
+            case 'یزد':
+            case 'اصفهان':
+            case 'شیراز':
+                $percentage = 15;
         }
-        return [
-            'deliveryAmount' => (int)$deliveryAmount,
-            'finalWeight' => $productWeight,
-            'bigCityPercentage' => $bigCitiesPercentage,
-        ];
+        return $percentage;
     }
 }
