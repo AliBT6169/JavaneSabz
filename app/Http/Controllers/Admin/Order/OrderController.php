@@ -88,6 +88,10 @@ class OrderController extends Controller
         foreach ($products as $product) {
             foreach ($request->items as $item) {
                 if ($item['id'] == $product->id) {
+                    if ($request->status >= 0)
+                        $product->update([
+                            'quantity' => $product->quantity - $item['order_quantity'],
+                        ]);
                     OrderItem::create([
                         'order_id' => $order->id,
                         'product_variation_id' => $product->id,
@@ -129,11 +133,16 @@ class OrderController extends Controller
             if ($item['order_item_id'] != -1)
                 $orderIdes[] = $item['order_item_id'];
             else {
+                $newProductVariationItem = ProductVariation::whereId($item['id'])->first();
+                if ($request->status >= 0)
+                    $newProductVariationItem->update([
+                        'quantity' => $newProductVariationItem->quantity - $item['order_quantity'],
+                    ]);
                 $newOrderItems = OrderItem::create([
                     'order_id' => $request->id,
                     'product_variation_id' => $item['id'],
                     'quantity' => $item['order_quantity'],
-                    'price' => ProductVariation::whereId($item['id'])->first()->sale_price,
+                    'price' => $newProductVariationItem->sale_price,
                 ]);
                 $orderIdes[] = $newOrderItems['id'];
             }
@@ -152,6 +161,12 @@ class OrderController extends Controller
                     $orderItem->update([
                         'quantity' => $item['order_quantity'],
                     ]);
+                    if ($request->status >= 0) {
+                        $newProductVariationItem = ProductVariation::whereId($item['id'])->first();
+                        $newProductVariationItem->update([
+                            'quantity' => $newProductVariationItem->quantity - $item['order_quantity'],
+                        ]);
+                    }
                 }
             }
             if (!$searchItem) {
