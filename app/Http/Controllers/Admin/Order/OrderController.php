@@ -54,14 +54,15 @@ class OrderController extends Controller
             foreach ($request->items as $item) {
                 if ($item['id'] == $product->id) {
                     $totalAmount += $product->sale_price * $item['order_quantity'];
-                    $weight = $product->weight * $item['order_quantity'];
-                    $deliveryAmount += DeliveryAmount::getPrice($weight);
+                    $deliveryAmount = DeliveryAmount::getPrice($product->weight) * $item['order_quantity'];
                 }
             }
         }
         $city = City::whereId($request->city)->first();
-        $deliveryAmount += $deliveryAmount * DeliveryAmount::getProvincePercentage($city->province->name) / 100;
-        $deliveryAmount += $deliveryAmount * DeliveryAmount::getBigCityPercentage($city->name) / 100;
+        $province_percentage = DeliveryAmount::getProvincePercentage($city->province->name);
+        $city_percentage = DeliveryAmount::getBigCityPercentage($city->name);
+        $deliveryAmount += $city_percentage * $deliveryAmount / 100;
+        $deliveryAmount += $province_percentage * $deliveryAmount / 100;
         $payingAmount = $totalAmount + $deliveryAmount;
         $payingAmount -= $request->coupon_amount;
         $VAT = $payingAmount * 15 / 100;
