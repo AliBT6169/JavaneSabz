@@ -22,13 +22,12 @@ const form = ref({
     coupon_amount: props.order.data.coupon_amount,
 });
 
-const paying_amount = ref(props.order.data.total_amount + props.order.data.VAT + props.order.data.delivery_amount - props.order.data.coupon_amount);
+const paying_amount = ref(props.order.data.paying_amount);
 const products = ref([]);
 
 const payAmountChanged = () => {
     paying_amount.value = props.order.data.total_amount + props.order.data.VAT + props.order.data.delivery_amount - form.value.coupon_amount
 }
-console.log(props.order);
 
 const sendData = async () => {
     const content = {

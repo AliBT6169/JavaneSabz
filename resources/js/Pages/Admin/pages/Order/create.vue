@@ -76,8 +76,7 @@ const sendData = async () => {
                 data.value.items = filteredProducts.value;
                 console.log(data.value)
                 await axios.post(route('admin.orders.store'), data.value).then(res => {
-                    // useToast().success(res.data);
-                    console.log(res.data);
+                    useToast().success(res.data);
                 }).catch(err => {
                     useToast().error(err.response.data.message)
                 });

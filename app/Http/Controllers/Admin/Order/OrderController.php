@@ -51,10 +51,11 @@ class OrderController extends Controller
         $totalAmount = 0;
         $deliveryAmount = 0;
         foreach ($products as $product) {
-            $totalAmount += $product->sale_price * $product->quantity;
             foreach ($request->items as $item) {
                 if ($item['id'] == $product->id) {
-                    $deliveryAmount += DeliveryAmount::getPrice($product->weight * $item['order_quantity']);
+                    $totalAmount += $product->sale_price * $item['order_quantity'];
+                    $weight = $product->weight * $item['order_quantity'];
+                    $deliveryAmount += DeliveryAmount::getPrice($weight);
                 }
             }
         }
@@ -62,6 +63,7 @@ class OrderController extends Controller
         $deliveryAmount += $deliveryAmount * DeliveryAmount::getProvincePercentage($city->province->name) / 100;
         $deliveryAmount += $deliveryAmount * DeliveryAmount::getBigCityPercentage($city->name) / 100;
         $payingAmount = $totalAmount + $deliveryAmount;
+        $payingAmount -= $request->coupon_amount;
         $VAT = $payingAmount * 15 / 100;
         $payingAmount += $VAT;
         $order = Order::create([
@@ -94,7 +96,7 @@ class OrderController extends Controller
                 }
             }
         }
-        return response()->json('موفقیت آمیز بود!');
+        return response()->json('ساخت سفارش موفقیت آمیز بود');
     }
 
     /**
