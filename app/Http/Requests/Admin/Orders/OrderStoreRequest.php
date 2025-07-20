@@ -22,10 +22,10 @@ class OrderStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|numeric|exists:users,id',
+            'user' => 'required|numeric|exists:users,id',
             'coupon_amount' => 'required|numeric',
             'status' => 'required|numeric|between:-1,4',
-            'address' => 'text|required',
+            'address' => 'required|string|max:500',
             'postal_code' => 'numeric|required|digits:10',
             'city' => 'numeric|required|exists:cities,id',
             'items' => 'required|array',

@@ -55,10 +55,17 @@ class DeliveryAmount extends Model
         $province = '';
         $city = '';
         if ($request != null) {
-            $item = Order::whereId($request['id'])->first();
-            $products = $item->orderItems;
-            $city = $item->address->city->name;
-            $province = $item->address->city->province->name;
+            if ($request->type == 'order') {
+                $item = Order::whereId($request['id'])->first();
+                $products = $item->orderItems;
+                $city = $item->address->city->name;
+                $province = $item->address->city->province->name;
+            } elseif ($request->type == 'products') {
+                $City = City::whereId($request['city'])->first();
+                $province = $City->province->name;
+                $city = $City->name;
+                $products = $request->products;
+            }
         } else {
             $item = Auth::user();
             $province = $item->address->city->province->name;

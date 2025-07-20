@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Admin\Order;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Orders\OrderStoreRequest;
 use App\Http\Requests\Admin\Orders\OrderUpdateRequest;
 use App\Http\Resources\Admin\Orders\OrderIndexResource;
 use App\Http\Resources\Admin\ProductVariations\CreateOrderProductVariationsResource;
+use App\Models\Address;
 use App\Models\DeliveryAmount;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -35,9 +38,40 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OrderStoreRequest $request)
     {
-        //
+        $payment_status = $request->status == -1 ? 0 : 1;
+        $status = $request->status <= 0 ? 0 : $request->status;
+        $ides = [];
+        foreach ($request->items as $item) {
+            $ides[] = $item;
+        }
+        $products = ProductVariation::whereIn('id', $ides)->get();
+        $totalAmount = 0;
+        foreach ($products as $product) {
+            $totalAmount += $product->sale_price * $product->quantity;
+        }
+        DeliveryAmount::
+        $order = Order::create([
+            'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment + 10000,
+            'user_id' => $request->user,
+            'status' => $status,
+            'total_amount' => $totalAmount,
+            'delivery_amount',
+            'VAT',
+            'coupon_amount' => $request->coupon_amount,
+            'paying_amount',
+            'payment_status' => $payment_status,
+        ]);
+        Address::create([
+            'address' => $request->address,
+            'postcode' => $request->postal_code,
+            'addressable_id' => $order->id,
+            'addressable_type' => Order::class,
+            'city_id' => $request->city,
+        ]);
+        return response()->json($request);
+        return response()->json('موفقیت آمیز بود!');
     }
 
     /**
@@ -105,7 +139,7 @@ class OrderController extends Controller
         $deliveryAmount = DeliveryAmount::getOrderDeliveryAmount(['id' => $order->id]);
         $payment_status = $request->status == -1 ? 0 : 1;
         $status = $request->status <= 0 ? 0 : $request->status;
-        $VAT = (int)($deliveryAmount['deliveryAmount'] + $orderPrice) * 15 / 100;
+        $VAT = (int)($deliveryAmount['deliveryAmount'] + $orderPrice - $request->coupon_amount) * 15 / 100;
         $order->update([
             'status' => $status,
             'total_amount' => $orderPrice,

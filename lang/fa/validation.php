@@ -153,6 +153,7 @@ return [
     'attributes' => [
         "name" => "نام",
         "username" => "نام کاربری",
+        "user" => 'کاربر',
         "full_name" => "نام و نام خانوادگی",
         "email" => "پست الکترونیکی",
         "first_name" => "نام",
@@ -242,7 +243,6 @@ return [
 
         "age_range_from" => "سن اول",
         "age_range_to" => "سن دوم",
-
         "id" => "آیدی",
         "category_count" => "دسته بندی",
     ],

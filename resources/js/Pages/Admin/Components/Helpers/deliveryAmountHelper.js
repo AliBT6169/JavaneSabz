@@ -31,7 +31,8 @@ const deliveryAmountHelper = async (weight, city_id, delivery_amount) => {
             case 'شیراز':
                 bigCitiesPercentage.value = 15;
         }
-        const deliveryAmount = ref(delivery_amount * province_percentage.value / 100);
+        const deliveryAmount = ref(delivery_amount);
+        deliveryAmount.value += deliveryAmount.value * province_percentage.value / 100;
         deliveryAmount.value += deliveryAmount.value * bigCitiesPercentage.value / 100;
         return deliveryAmount.value;
     }).catch((err) => {
