@@ -25,8 +25,6 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
         </div>
         <!--        leftSide-->
         <div class="flex items-center gap-2">
-            <!--            search-->
-            <AdminSearch/>
             <!--            darkMode lightMode-->
             <DarkLight/>
             <!--            profile picture-->

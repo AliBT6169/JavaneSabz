@@ -12,7 +12,7 @@ const props = defineProps({
 
 <template>
 
-    <div class="flex items-center justify-start gap-5 py-5 *:p-2 text-sm sm:text-base sm:justify-center
+    <div class="flex items-center justify-start gap-5 *:p-2 text-sm sm:text-base sm:justify-center
                 *:rounded-xl *:border *:border-gray-700/50 *:bg-adminColor1 *:dark:bg-adminColor3 md:*:px-10">
         <Link v-if="links.prev!==null" :href="links.first">
             <svg-component name="d-arrow-left" class="size-4 sm:size-5 rotate-180"/>

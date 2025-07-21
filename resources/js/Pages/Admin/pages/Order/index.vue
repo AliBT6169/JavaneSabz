@@ -25,8 +25,7 @@ const pageCount = ref({
     <AdminSideBar/>
     <Layout>
         <AdminPageShower PageName="سفارشات" :PageCount="pageCount"/>
-        <Pagination :links="orderData.links" :meta="orderData.meta" :create-link="'admin.orders.create'"/>
-        <div class="flex justify-center items-center gap-6 flex-wrap">
+        <div class="flex w-full justify-center items-center gap-6 flex-wrap">
             <AdminOrderItem v-for="item in orders" :order="item"/>
             <Link :href="route('admin.orders.create')">
                 <div
@@ -35,5 +34,6 @@ const pageCount = ref({
                 </div>
             </Link>
         </div>
+        <Pagination :links="orderData.links" :meta="orderData.meta" :create-link="'admin.orders.create'"/>
     </Layout>
 </template>
