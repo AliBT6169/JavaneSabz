@@ -29,7 +29,15 @@ class OrderIndexResource extends JsonResource
             'VAT' => $this->VAT,
             'coupon_amount' => $this->coupon_amount,
             'paying_amount' => $this->paying_amount,
-            'status' => $this->status,
+            'address' => $this->address != null ? [
+                'province' => $this->address->city->province->slug,
+                'province_id' => $this->address->city->province->id,
+                'postal_code' => $this->address->postcode,
+                'city' => $this->address->city->slug,
+                'city_id' => $this->address->city->id,
+                'address' => $this->address->address,
+            ] : '',
+            'status' => $this->payment_status == 0 ? -1 : $this->status,
             'payment_status' => $this->payment_status,
             'created_at' => Jalalian::fromDateTime($this->created_at)->format('l, d F Y H:i:s'),
         ];

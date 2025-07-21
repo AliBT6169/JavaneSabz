@@ -20,7 +20,6 @@ onMounted(() => {
     document.addEventListener('click', modalCloser);
     axios.get(route('admin.users.showAll')).then(res => {
         users.value = res.data;
-        console.log(users.value)
     }).catch(err => {
         console.log(err);
     });

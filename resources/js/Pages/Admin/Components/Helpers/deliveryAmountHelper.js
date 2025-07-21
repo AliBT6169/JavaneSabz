@@ -1,7 +1,6 @@
 import {ref} from "vue";
 
 const deliveryAmountHelper = async (city_id, delivery_amount) => {
-    console.log(delivery_amount)
     return await axios.get(route('admin.deliveries.GetCityName', {city_id: city_id})).then((res) => {
         const city = res.data.city;
         const province = res.data.city;
@@ -35,7 +34,6 @@ const deliveryAmountHelper = async (city_id, delivery_amount) => {
         const deliveryAmount = ref(delivery_amount);
         deliveryAmount.value += deliveryAmount.value * province_percentage.value / 100;
         deliveryAmount.value += deliveryAmount.value * bigCitiesPercentage.value / 100;
-        console.log(deliveryAmount.value);
         return deliveryAmount.value;
     }).catch((err) => {
 

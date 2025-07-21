@@ -3,7 +3,7 @@ import {onBeforeUnmount, onMounted, ref} from "vue";
 import AdminOrderProductSelectItem from "@/Pages/Admin/Components/Order/AdminOrderProductSelectItem.vue";
 
 const props = defineProps({
-    order_items: {}
+    order_items: {},
 });
 const emit = defineEmits({
     dataSend: null,
