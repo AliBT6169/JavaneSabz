@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Delivery\DeliveryController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
+use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::get('/productVariation/show', 'show')->name('productVariations.show');
     });
     Route::get('/deliveries/GetCityName/{city_id}', [DeliveryController::class, 'GetCityName'])->name('deliveries.GetCityName');
+    Route::controller(TransactionController::class)->group(function () {
+        Route::get('/transaction/index', 'index')->name('transactions.index');
+    });
 });
 
 

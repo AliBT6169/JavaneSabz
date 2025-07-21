@@ -39,8 +39,9 @@ import {router} from "@inertiajs/vue3";
                              :href="route('admin.attributes.index')"
                              name="attributes.index">خصوصیات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',7)" icon="card"
-                             name="AdminDashboard">تراکنش
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('transactions.index',7)" icon="card"
+                             :href="route('admin.transactions.index')"
+                             name="transactions.index">تراکنش
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('orders.index',8)" icon="orders"
                              :href="route('admin.orders.index')" name="orders.index">
