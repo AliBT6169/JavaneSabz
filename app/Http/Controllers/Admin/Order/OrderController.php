@@ -127,69 +127,22 @@ class OrderController extends Controller
     public function update(OrderUpdateRequest $request)
     {
         $order = Order::whereId($request->id)->first();
-        $orderIdes = [];
-        $newOrderItems = [];
+        $oldOrderItems = $order->items;
+        $ides = [];
         foreach ($request->items as $item) {
-            if ($item['order_item_id'] != -1)
-                $orderIdes[] = $item['order_item_id'];
-            else {
-                $newProductVariationItem = ProductVariation::whereId($item['id'])->first();
-                if ($request->status >= 0)
-                    $newProductVariationItem->update([
-                        'quantity' => $newProductVariationItem->quantity - $item['order_quantity'],
-                    ]);
-                $newOrderItems = OrderItem::create([
-                    'order_id' => $request->id,
-                    'product_variation_id' => $item['id'],
-                    'quantity' => $item['order_quantity'],
-                    'price' => $newProductVariationItem->sale_price,
-                ]);
-                $orderIdes[] = $newOrderItems['id'];
-            }
+            $ides[] = $item['id'];
         }
-        $orderItems = OrderItem::whereIn('id', $orderIdes)->get();
-        $orderAllItems = $order->orderItems;
-        foreach ($orderAllItems as $orderItem) {
-            $searchItem = false;
-            foreach ($orderItems as $newOrderItem) {
-                if ($newOrderItem->id == $orderItem->id) {
-                    $searchItem = true;
-                }
-            }
-            foreach ($request->items as $item) {
-                if ($item['order_item_id'] == $orderItem->id && $item['order_quantity'] != $orderItem->quantity) {
-                    $orderItem->update([
-                        'quantity' => $item['order_quantity'],
-                    ]);
-                    if ($request->status >= 0) {
-                        $newProductVariationItem = ProductVariation::whereId($item['id'])->first();
-                        $newProductVariationItem->update([
-                            'quantity' => $newProductVariationItem->quantity - $item['order_quantity'],
-                        ]);
-                    }
-                }
-            }
-            if (!$searchItem) {
-                $orderItem->delete();
-            }
-        }
-        $orderPrice = 0;
-        foreach ($orderItems as $orderItem) {
-            $orderPrice += $orderItem->price * $orderItem->quantity;
-        }
-        $deliveryAmount = DeliveryAmount::getOrderDeliveryAmount(['id' => $order->id]);
-        $payment_status = $request->status == -1 ? 0 : 1;
-        $status = $request->status <= 0 ? 0 : $request->status;
-        $VAT = (int)($deliveryAmount['deliveryAmount'] + $orderPrice - $request->coupon_amount) * 15 / 100;
-        $order->update([
-            'status' => $status,
-            'total_amount' => $orderPrice,
-            'delivery_amount' => $deliveryAmount['deliveryAmount'],
-            'VAT' => $VAT,
-            'coupon_amount' => $request->coupon_amount,
-            'paying_amount' => $deliveryAmount['deliveryAmount'] + $orderPrice + $VAT - $request->coupon_amount,
-            'payment_status' => $payment_status,
-        ]);
+        return $ides;
+        $newOrderItemProductVariations =
+            $order->update([
+                'status' => '',
+                'total_amount' => '',
+                'delivery_amount' => '',
+                'VAT' => '',
+                'coupon_amount' => '',
+                'paying_amount' => '',
+                'payment_status' => '',
+            ]);
         return response()->json('عملیات بروزرسانی سفارش کاربر موفقیت آمیز بود!', 200);
     }
 

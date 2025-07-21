@@ -18,6 +18,7 @@ const props = defineProps({
 });
 console.log(props.order);
 const form = ref({
+    id: props.order.data.id,
     status: props.order.data.status,
     coupon_amount: props.order.data.coupon_amount,
     address: props.order.data.address.address,
@@ -79,12 +80,17 @@ const sendData = async () => {
                 const data = ref(form.value);
                 data.value.items = filteredProducts.value;
                 console.log(data.value)
-                // await axios.post(route('admin.orders.store'), data.value).then(res => {
-                //     console.log(res.data)
-                //     useToast().success(res.data);
-                // }).catch(err => {
-                //     useToast().error(err.response.data.message)
-                // });
+                await axios.post(route('admin.orders.update'), data.value, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'X-HTTP-Method-Override': 'PUT'
+                    }
+                }).then(res => {
+                    console.log(res.data);
+                    useToast().success(res.data);
+                }).catch(err => {
+                    useToast().error(err.response.data.message)
+                });
             }
         }
     }
@@ -101,7 +107,8 @@ const sendData = async () => {
         <form @submit.prevent="sendData">
             <div
                 class="space-y-6 py-4 *:w-full *:h-fit md:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-5 *:md:w-[45%]">
-                <admin-address label="آدرس:" :address="order.data.address" @update-value="form.city = $event,productSelection(null)"/>
+                <admin-address label="آدرس:" :address="order.data.address"
+                               @update-value="form.city = $event,productSelection(null)"/>
                 <admin-input v-model="form.address" name="آدرس"/>
                 <admin-input v-model="form.postal_code" name="کد پستی"/>
                 <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"

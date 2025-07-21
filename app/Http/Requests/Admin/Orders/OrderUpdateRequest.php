@@ -23,12 +23,15 @@ class OrderUpdateRequest extends FormRequest
     {
         return [
             'id' => 'required|numeric|exists:orders,id',
+            'user' => 'required|numeric|exists:users,id',
             'coupon_amount' => 'required|numeric',
             'status' => 'required|numeric|between:-1,4',
+            'address' => 'required|string|max:500',
+            'postal_code' => 'numeric|required|digits:10',
+            'city' => 'numeric|required|exists:cities,id',
             'items' => 'required|array',
             'items.*.id' => 'required|numeric|exists:product_variations,id',
             'items.*.order_quantity' => 'required|numeric',
-            'items.*.order_item_id' => 'required|numeric',
         ];
     }
 }
