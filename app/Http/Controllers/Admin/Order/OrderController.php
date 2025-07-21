@@ -127,22 +127,88 @@ class OrderController extends Controller
     public function update(OrderUpdateRequest $request)
     {
         $order = Order::whereId($request->id)->first();
-        $oldOrderItems = $order->items;
+        $oldStatus = $order->payment_status;
+        $payment_status = $request->status == -1 ? 0 : 1;
+        $status = $request->status <= 0 ? 0 : $request->status;
+        $oldOrderItems = $order->orderItems;
         $ides = [];
+        $oldOrderIdes = [];
+//        در حلقه زیر باید شر این که اگه تعداد سفارش محصول 0 بود محصول رو از آرایه بردار
         foreach ($request->items as $item) {
             $ides[] = $item['id'];
         }
-        return $ides;
-        $newOrderItemProductVariations =
-            $order->update([
-                'status' => '',
-                'total_amount' => '',
-                'delivery_amount' => '',
-                'VAT' => '',
-                'coupon_amount' => '',
-                'paying_amount' => '',
-                'payment_status' => '',
-            ]);
+//        delete & update old order Items
+        foreach ($oldOrderItems as $oldOrderItem) {
+            if (in_array($oldOrderItem->product_variation_id, $ides)) {
+                foreach ($request->items as $item) {
+                    if ($item['id'] == $oldOrderItem->product_variation_id) {
+                        $oldOrderItemQuantity = $item['order_quantity'];
+                        $oldOrderItem->update([
+                            'quantity' => $item['order_quantity'],
+                        ]);
+                        if ($status >= 0 && $oldStatus === 0) {
+                            $variation = ProductVariation::whereId($oldOrderItem->product_variation_id)->first();
+                            $changeQuantityValue = $oldOrderItemQuantity - $item['order_quantity'];
+                            $variation->update([
+                                'quantity' => $variation->quantity + $changeQuantityValue,
+                            ]);
+                        }
+                        $oldOrderIdes[] = $oldOrderItem->product_variation_id;
+                    }
+                }
+            } else {
+                if ($status >= 0 && $oldStatus === 0) {
+                    $variation = ProductVariation::whereId($oldOrderItem->product_variation_id)->first();
+                    $variation->update([
+                        'quantity' => $variation->quantity + $oldOrderItem->quantity,
+                    ]);
+                }
+                $oldOrderItem->delete();
+            }
+        }
+//        create new orders
+        foreach ($request->items as $item) {
+            if (!in_array($item['id'], $oldOrderIdes)) {
+                $variation = ProductVariation::whereId($item['id'])->first();
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_variation_id' => $item['id'],
+                    'quantity' => $item['order_quantity'],
+                    'price' => $variation->sale_price * $item['order_quantity'],
+                ]);
+                if ($status >= 0 && $oldStatus === 0) {
+                    $variation->update([
+                        'quantity' => $variation->quantity - $item['order_quantity'],
+                    ]);
+                }
+            }
+        }
+        $order->address->update([
+            'address' => $request->address,
+            'postcode' => $request->postal_code,
+            'city_id' => $request->city,
+        ]);
+        $delivery_amount = DeliveryAmount::getOrderDeliveryAmount([
+            'id' => $order->id,
+        ])['deliveryAmount'];
+        $orderItems = Order::whereId($request->id)->first()->orderItems;
+        $total_amount = 0;
+        foreach ($orderItems as $orderItem) {
+            $total_amount += $orderItem->price;
+        }
+        $payingAmount = $total_amount + $delivery_amount - $request['coupon_amount'];
+        $VAT = $payingAmount * 15 / 100;
+        $payingAmount += $VAT;
+        $order->update([
+            'user_id' => $request['user'],
+            'status' => $status,
+            'total_amount' => $total_amount,
+            'delivery_amount' => $delivery_amount,
+            'VAT' => $VAT,
+            'coupon_amount' => $request['coupon_amount'],
+            'paying_amount' => $payingAmount,
+            'payment_status' => $payment_status,
+        ]);
         return response()->json('عملیات بروزرسانی سفارش کاربر موفقیت آمیز بود!', 200);
     }
 
