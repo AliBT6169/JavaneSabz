@@ -102,7 +102,7 @@ class ProductVariation extends Model
             $order = Order::whereId($order_id)->first();
             $orderItems = $order->orderItems;
             foreach ($orderItems as $item) {
-                if ($item->quantity > $item->productVariation->quantity)
+                if ($item->quantity > $item->product_variation->quantity)
                     return [
                         'status' => 400,
                         'message' => 'تعداد محصول (' . $item->productVariation->product->name . ' : ' .
