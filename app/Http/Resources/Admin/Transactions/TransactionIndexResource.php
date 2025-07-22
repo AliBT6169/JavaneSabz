@@ -26,7 +26,7 @@ class TransactionIndexResource extends JsonResource
                 'paying_amount' => $this->order->paying_amount,
                 'payment_status' => $this->order->payment_status,
             ],
-            'ref_id' => $this->ref_id ?? '',
+            'ref_id' => $this->ref_id ?? '123456789',
             'token' => $this->token ?? '',
             'gateway_name' => $this->gateway_name ?? '',
             'status' => $this->status ?? '',
