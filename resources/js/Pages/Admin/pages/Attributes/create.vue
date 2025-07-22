@@ -54,9 +54,7 @@ const sendData = async () => {
                 connections.value.products_variations.map((item, index) => {
                     formData.append('product_variation[' + index + ']', item);
                 });
-                console.log(formData)
                 await axios.post(route('admin.attributes.store'), formData).then(res => {
-                    console.log(res.data)
                     useToast().success('عملیات ذخیره خصوصیت موفقیت آمیز بود');
                 }).catch(err => {
                     useToast().error(err.response.data.message)

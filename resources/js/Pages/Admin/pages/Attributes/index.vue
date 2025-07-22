@@ -16,6 +16,7 @@ const props = defineProps({
 const filteredAttributes = ref(props.Attributes.data);
 const attributeDeleted = (id) => {
     props.Attributes.data = props.Attributes.data.filter((item) => item.id !== id);
+    filteredAttributes.value = props.Attributes.data.filter((item) => item.id !== id);
 }
 const searchKeyWord = ref("");
 const searchKeyWordChanged = (e) => {
@@ -28,7 +29,7 @@ const searchKeyWordChanged = (e) => {
     <AdminSideBar/>
     <Layout>
         <div class="space-y-4">
-            <AdminInput v-model="searchKeyWord" class="md:w-1/2" name="جستجو"
+            <AdminInput v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"
                         @update:modelValue="searchKeyWordChanged($event)"/>
             <AttributeItem v-for="item in filteredAttributes" :Attribute="item" @deleted="attributeDeleted($event)"/>
             <div class="flex justify-center">
