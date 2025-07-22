@@ -18,7 +18,6 @@ import AttributeConnectionItem from "@/Pages/Admin/Components/AttributeConnectio
 const props = defineProps({
     attributeData: null,
 });
-console.log(props.attributeData.data)
 const picture = ref(props.attributeData.data.icon);
 const form = ref({
     id: props.attributeData.data.id,

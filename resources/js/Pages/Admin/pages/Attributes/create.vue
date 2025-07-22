@@ -26,7 +26,7 @@ const connections = ref({
     categories: [],
     products: [],
     products_variations: [],
-})
+});
 
 const sendData = async () => {
     const content = {
