@@ -213,6 +213,7 @@ return [
         "lastname" => "نام خانوادگی",
         "national_code" => "کد ملی",
         "post_code" => "کد پستی",
+        "postal_code" => "کد پستی",
         "standard_group_id" => "دسته بندی",
         "learnstandard_id" => "مهارت",
         "coupon_code" => "کد تخفیف",

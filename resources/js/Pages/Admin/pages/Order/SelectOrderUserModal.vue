@@ -1,5 +1,6 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
+import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 
 const props = defineProps({
     modelValue: {
@@ -11,6 +12,8 @@ const emit = defineEmits(['update:modelValue']);
 const modal = ref('');
 const modal_status = ref(false);
 const users = ref();
+const searchKeyword = ref("");
+const filteredUsers = ref();
 const modalCloser = (e) => {
     if (!modal.value.contains(e.target) && modal_status.value) {
         modal_status.value = false;
@@ -20,6 +23,7 @@ onMounted(() => {
     document.addEventListener('click', modalCloser);
     axios.get(route('admin.users.showAll')).then(res => {
         users.value = res.data;
+        filteredUsers.value = res.data;
     }).catch(err => {
         console.log(err);
     });
@@ -27,6 +31,9 @@ onMounted(() => {
 onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
+const filterChanged = (e) => {
+    filteredUsers.value = users.value.filter((item) => item.full_name.includes(e));
+}
 </script>
 
 <template>
@@ -34,7 +41,10 @@ onBeforeUnmount(() => {
          ref="modal"
          :class="{'fixed z-50 top-20 left-7 !size-5/6 py-6 overflow-scroll':modal_status}">
         <div :class="{'hidden':!modal_status}" class="space-y-4 w-full">
-            <div @click="emit('update:modelValue',item.id)" v-for="item in users"
+            <div class="px-1">
+                <AdminInput name="جستجو" @update:modelValue="filterChanged($event)" v-model="searchKeyword"/>
+            </div>
+            <div @click="emit('update:modelValue',item.id)" v-for="item in filteredUsers"
                  class="rounded-xl duration-500 border-2 p-1 border-transparent"
                  :class="{'!border-red-500':modelValue===item.id}">
                 <div

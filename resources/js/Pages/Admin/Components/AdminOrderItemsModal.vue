@@ -1,6 +1,7 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import AdminOrderProductSelectItem from "@/Pages/Admin/Components/Order/AdminOrderProductSelectItem.vue";
+import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 
 const props = defineProps({
     order_items: {},
@@ -11,6 +12,8 @@ const emit = defineEmits({
 
 const modal = ref('');
 const modal_status = ref(false);
+const filteredProducts = ref();
+const searchKeyword = ref("");
 const modalCloser = (e) => {
     if (!modal.value.contains(e.target) && modal_status.value) {
         modal_status.value = false;
@@ -44,6 +47,7 @@ onMounted(() => {
             product.order_quantity = 0;
             product.order_item_id = -1;
         });
+        filteredProducts.value = Products.value;
     }).catch(err => {
         console.log(err);
     });
@@ -58,6 +62,10 @@ const deleteFromOrder = (id) => {
 const addToOrder = (id) => {
     selectedProducts.value.push(Products.value.filter((item) => item.id === id)[0]);
     Products.value = Products.value.filter((product) => product.id !== id);
+    filteredProducts.value = Products.value;
+}
+const searchKeywordChanged = (e) => {
+    filteredProducts.value = Products.value.filter((item) => item.name.includes(e));
 }
 </script>
 
@@ -65,11 +73,16 @@ const addToOrder = (id) => {
     <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
          :class="{'fixed z-50 top-20 left-7 !size-5/6 py-6 overflow-scroll':modal_status}">
-        <div :class="{'hidden':!modal_status}" class="flex gap-5 justify-center flex-wrap">
-            <AdminOrderProductSelectItem v-for="item in selectedProducts" v-model="item.order_quantity"
-                                         @delete-from-order="deleteFromOrder(item.id)" :order-item="item"/>
-            <AdminOrderProductSelectItem v-for="item in Products" v-model="item.order_quantity"
-                                         @add-to-order="addToOrder(item.id)" :order-item="item"/>
+        <div :class="{'hidden':!modal_status}" class="space-y-5">
+            <div class="">
+                <AdminInput name="جستجو" @update:modelValue="searchKeywordChanged($event)" v-model="searchKeyword"/>
+            </div>
+            <div class="flex gap-5 justify-center flex-wrap">
+                <AdminOrderProductSelectItem v-for="item in selectedProducts" v-model="item.order_quantity"
+                                             @delete-from-order="deleteFromOrder(item.id)" :order-item="item"/>
+                <AdminOrderProductSelectItem v-for="item in filteredProducts" v-model="item.order_quantity"
+                                             @add-to-order="addToOrder(item.id)" :order-item="item"/>
+            </div>
         </div>
         <div @click.stop="modal_status = true" class="flex justify-center items-center cursor-pointer m-auto duration-300
         size-full rounded-xl border-4 border-adminColor2 dark:border-adminColor3 hover:scale-95 overflow-hidden"

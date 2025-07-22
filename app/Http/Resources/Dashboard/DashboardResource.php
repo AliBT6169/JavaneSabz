@@ -89,7 +89,7 @@ class DashboardResource extends JsonResource
         foreach ($request as $order) {
             $orders[] = [
                 "id" => $order->id,
-                "status" => $order->status,
+                "status" => $order->payment_status == 0 ? -1 : $order->status,
                 "payment_status" => $order->payment_status,
                 "price" => $order->total_amount,
                 "delivery_amount" => $order->delivery_amount,
