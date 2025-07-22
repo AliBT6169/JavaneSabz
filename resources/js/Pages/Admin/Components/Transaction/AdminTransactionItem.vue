@@ -1,4 +1,6 @@
 <script setup>
+import AdminTransactionProductShowModal from "@/Pages/Admin/pages/Transactions/AdminTransactionProductShowModal.vue";
+
 const props = defineProps({
     transaction: {
         required: true,
@@ -10,7 +12,8 @@ const props = defineProps({
 <template>
 
     <div
-        class="space-y-3 border-2 rounded-xl p-1 border-adminColor3 *:w-fit *:m-auto md:*:w-60 *:space-y-1 *:text-center md:flex md:justify-between md:items-center">
+        class="space-y-3 border-2 rounded-xl p-1 border-adminColor3 *:w-fit *:m-auto md:*:w-60 *:space-y-1 *:text-center
+         md:flex md:justify-between md:items-center">
         <div class="">
             <div class="">تاریخ:</div>
             <div class="">{{ transaction.created_at }}</div>
@@ -32,6 +35,9 @@ const props = defineProps({
         <div class="">
             <div class="">درگاه پرداخت:</div>
             <div class="">{{ transaction.gateway_name }}</div>
+        </div>
+        <div class="">
+            <AdminTransactionProductShowModal :products="transaction.items"/>
         </div>
     </div>
 </template>
