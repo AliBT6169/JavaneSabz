@@ -1,6 +1,5 @@
 <script setup>
 
-import SvgComponent from "@/Pages/Components/svg-component.vue";
 import TransactionItems from "@/Pages/Components/Panel/TransactionItems.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";

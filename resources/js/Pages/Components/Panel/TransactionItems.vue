@@ -11,9 +11,9 @@ const descriptionStatus = ref(false);
     <div class="w-full p-2 rounded-lg border border-gray-500 bg-defaultColor3 text-xs lg:text-base">
         <div class="flex items-center justify-between flex-wrap">
             <!--            success-->
-            <div v-if="transactionData.status===3" class="bg-red-500 bg-opacity-70 p-2 rounded-full">ناموفق</div>
-            <div v-if="transactionData.status===2" class="bg-yellow-500 bg-opacity-70 p-2 rounded-full">نامعلوم</div>
-            <div v-if="transactionData.status===1" class="bg-defaultColor5 bg-opacity-70 p-2 rounded-full">موفق</div>
+            <div v-if="transactionData.status===0" class="bg-red-500 bg-opacity-70 p-2 rounded-full">ناموفق</div>
+            <div v-if="transactionData.status===1" class="bg-yellow-500 bg-opacity-70 p-2 rounded-full">نامعلوم</div>
+            <div v-if="transactionData.status===2" class="bg-defaultColor5 bg-opacity-70 p-2 rounded-full">موفق</div>
             <p class="w-32 hidden overflow-hidden text-ellipsis text-nowrap md:block lg:w-80 xl:!w-[40rem]">
                 <strong class="">محصولات:</strong>
                 <span v-for="item in transactionData.products" class="border-l px-2">{{item.name + ' : ' + item.value }}</span>

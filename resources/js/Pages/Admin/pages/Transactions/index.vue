@@ -12,7 +12,6 @@ const props = defineProps({
     }
 });
 const transactions = ref(props.transaction_data.data);
-console.log(props.transaction_data);
 </script>
 
 <template>
