@@ -19,7 +19,7 @@ const attributeDeleted = (id) => {
 }
 const searchKeyWord = ref("");
 const searchKeyWordChanged = (e) => {
-    filteredAttributes.value = props.Attributes.data.filter((item) => item.name !== e);
+    filteredAttributes.value = props.Attributes.data.filter((item) => item.name.includes(e));
 }
 </script>
 
