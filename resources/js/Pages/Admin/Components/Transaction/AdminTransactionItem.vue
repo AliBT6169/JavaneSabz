@@ -29,6 +29,10 @@ const props = defineProps({
             <div class="">{{ transaction.user }}</div>
         </div>
         <div class="">
+            <div class="">قیمت:</div>
+            <div class="">{{ transaction.order.paying_amount.toLocaleString('en-US') }}</div>
+        </div>
+        <div class="">
             <div class="">کد رهگیری:</div>
             <div class="">{{ transaction.ref_id }}</div>
         </div>
@@ -37,7 +41,7 @@ const props = defineProps({
             <div class="">{{ transaction.gateway_name }}</div>
         </div>
         <div class="">
-            <AdminTransactionProductShowModal :products="transaction.items"/>
+            <AdminTransactionProductShowModal :products="transaction.order.items"/>
         </div>
     </div>
 </template>
