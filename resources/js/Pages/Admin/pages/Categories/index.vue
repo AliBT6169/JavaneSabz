@@ -21,7 +21,7 @@ const categoryDeleted = (id) => {
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
-        <div class="space-y-5">
+        <div class="space-y-5 lg:flex lg:space-y-0 lg:gap-6 lg:flex-wrap lg:items-center">
             <CategoryItem v-for="item in categoryData" @deleted="categoryDeleted($event)" :category-data="item"/>
             <div class="flex justify-center">
                 <Link :href="route('admin.categories.create')"
