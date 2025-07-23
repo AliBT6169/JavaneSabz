@@ -1,5 +1,4 @@
 <script setup>
-import {data} from "autoprefixer";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {Carousel, Pagination, Slide} from "vue3-carousel";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
@@ -21,12 +20,13 @@ const likeUnLike = async () => {
     const res = await ref(useAuthStore().likeOrUnLike(props.productData.id, props.productData.is_liked));
     props.productData.is_liked = await res.value;
 }
+console.log(props.productData);
 </script>
 
 <template>
-        <div class="p-2 size-5/6 bg-defaultColor5 rounded-xl dark:bg-defaultColor md:size-3/4 md:p-3">
+        <div class="!p-5 size-5/6 bg-defaultColor5 rounded-xl dark:bg-defaultColor md:size-3/4 md:p-3">
 
-        <div class="size-full overflow-scroll space-y-6 lg:flex lg:space-y-0 gap-4">
+        <div class="size-full overflow-scroll no-scrollbar space-y-6 lg:flex lg:space-y-0 gap-4 *:w-full">
             <!--                rightSide-->
             <div class="space-y-6">
                 <!--                    name-->
@@ -50,7 +50,7 @@ const likeUnLike = async () => {
                     </div>
                 </div>
                 <!--            slider-->
-                <div class="w-full h-60">
+                <div class="w-full h-96">
                     <Carousel v-bind="carouselConfig" class="!size-full">
                         <Slide v-for="slide in productData.images" :key="slide" class="">
                             <div class="carousel__item !size-full">
