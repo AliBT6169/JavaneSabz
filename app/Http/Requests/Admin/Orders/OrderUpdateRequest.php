@@ -25,6 +25,7 @@ class OrderUpdateRequest extends FormRequest
             'id' => 'required|numeric|exists:orders,id',
             'user' => 'required|numeric|exists:users,id',
             'coupon_amount' => 'required|numeric',
+            'delivery_methode' => 'required|string|max:15',
             'status' => 'required|numeric|between:-1,4',
             'address' => 'required|string|max:500',
             'postal_code' => 'numeric|required|digits:10',

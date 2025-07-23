@@ -26,6 +26,7 @@ class OrderIndexResource extends JsonResource
             'code' => $this->code,
             'total_amount' => $this->total_amount,
             'delivery_amount' => $this->delivery_amount,
+            'delivery_methode' => $this->delivery_methode,
             'VAT' => $this->VAT,
             'coupon_amount' => $this->coupon_amount,
             'paying_amount' => $this->paying_amount,

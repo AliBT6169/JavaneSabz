@@ -12,6 +12,7 @@ import AdminOrderItemsModal from "@/Pages/Admin/Components/AdminOrderItemsModal.
 import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import SelectOrderUserModal from "@/Pages/Admin/pages/Order/SelectOrderUserModal.vue";
 import {deliveryAmountHelper} from "@/Pages/Admin/Components/Helpers/deliveryAmountHelper.js";
+import AdminCheckBoxInput from "@/Pages/Admin/Components/adminCheckBoxInput.vue";
 
 const props = defineProps({
     order: Object,
@@ -21,6 +22,7 @@ const form = ref({
     id: props.order.data.id,
     status: props.order.data.status,
     coupon_amount: props.order.data.coupon_amount,
+    delivery_methode: props.order.data.delivery_methode,
     address: props.order.data.address.address,
     city: props.order.data.address.city_id,
     postal_code: props.order.data.address.postal_code,
@@ -111,6 +113,7 @@ const sendData = async () => {
                                @update-value="form.city = $event,productSelection(null)"/>
                 <admin-input v-model="form.address" name="آدرس"/>
                 <admin-input v-model="form.postal_code" name="کد پستی"/>
+                <admin-check-box-input v-model="form.delivery_methode"/>
                 <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"
                              name="تخفیف"/>
                 <div class="border-2 pr-2 rounded-xl border-adminColor3 h-fit items-center flex justify-between w-full">
