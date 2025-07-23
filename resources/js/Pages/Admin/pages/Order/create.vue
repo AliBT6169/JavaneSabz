@@ -12,11 +12,13 @@ import AdminOrderItemsModal from "@/Pages/Admin/Components/AdminOrderItemsModal.
 import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import SelectOrderUserModal from "@/Pages/Admin/pages/Order/SelectOrderUserModal.vue";
 import {deliveryAmountHelper} from "@/Pages/Admin/Components/Helpers/deliveryAmountHelper.js";
+import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
 
 const form = ref({
     status: -1,
     coupon_amount: 0,
     address: null,
+    delivery_methode: 0,
     city: null,
     postal_code: null,
     user: null,
@@ -100,6 +102,7 @@ const sendData = async () => {
                 <admin-address label="آدرس:" @update-value="form.city = $event,productSelection(null)"/>
                 <admin-input v-model="form.address" name="آدرس"/>
                 <admin-input v-model="form.postal_code" name="کد پستی"/>
+                <admin-active-de-active-input v-model="form.delivery_methode"/>
                 <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"
                              name="تخفیف"/>
                 <div class="border-2 pr-2 rounded-xl border-adminColor3 h-fit items-center flex justify-between w-full">

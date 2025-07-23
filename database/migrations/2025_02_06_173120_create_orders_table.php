@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->tinyInteger('status')->default(0);
             $table->unsignedInteger('VAT');
             $table->unsignedInteger('total_amount');
+            $table->enum('delivery_methode', ['pishtaz', 'tipax'])->default('pishtaz');
             $table->unsignedInteger('delivery_amount')->default(0);
             $table->unsignedInteger('coupon_amount')->default(0);
             $table->unsignedInteger('paying_amount')->default(0);

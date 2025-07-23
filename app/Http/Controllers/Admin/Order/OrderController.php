@@ -73,6 +73,7 @@ class OrderController extends Controller
             'status' => $status,
             'total_amount' => $totalAmount,
             'delivery_amount' => $deliveryAmount,
+            'delivery_methode' => $request->delivery_methode,
             'VAT' => $VAT,
             'coupon_amount' => $request->coupon_amount,
             'paying_amount' => $payingAmount,
