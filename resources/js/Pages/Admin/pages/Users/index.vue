@@ -9,10 +9,11 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import axios from "axios";
 import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import {ref} from "vue";
 
 
 const props = defineProps(["userData"]);
-
 const userDelete = async (id) => {
     const content = {
         component: ToastWarning,
@@ -32,7 +33,14 @@ const userDelete = async (id) => {
         }
     }
     let toast = useToast();
-    toast.warning(content)
+    toast.warning(content);
+}
+const searchKeyWordChanged = (e) => {
+    axios.get(route("admin.users.search", {name: e === '' ? '~' : e})).then((res) => {
+        props.userData.data = res.data;
+    }).catch((err) => {
+        console.log(err);
+    })
 }
 </script>
 
@@ -40,6 +48,8 @@ const userDelete = async (id) => {
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
+        <AdminInput class="!m-auto md:w-1/2" name="جستجو"
+                    @update:modelValue="searchKeyWordChanged($event)"/>
         <div class="overflow-scroll border h-fit border-current rounded-2xl text-xs sm:text-base">
             <table class="text-nowrap w-full table-auto md:table-fixed *:*:!pr-4 *:border-b last:border-none even:*:bg-adminColor1 *:border-current
              dark:even:*:bg-adminColor4">
@@ -63,7 +73,8 @@ const userDelete = async (id) => {
                         *:border *:rounded-full *:p-1 *:duration-300 hover:*:text-red-500 hover:*:border-red-500 *:size-5 lg:*:size-7
                          group-hover:visible group-hover:opacity-100 group-hover:-top-5">
                             <svg-component name="delete" @click="userDelete(user.id)"/>
-                            <Link class="block" :href="route('admin.users.edit',{'id':user.id})"><svg-component class="size-full" name="edit"/></Link>
+                            <Link class="block" :href="route('admin.users.edit',{'id':user.id})"><svg-component
+                                class="size-full" name="edit"/></Link>
                         </div>
                     </span></td>
                     <td class="w-[7%]">{{ user.is_admin ? 'مدیر' : 'کاربر' }}</td>

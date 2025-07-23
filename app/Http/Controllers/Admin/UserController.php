@@ -126,4 +126,15 @@ class UserController extends Controller
         }
         return 'done';
     }
+
+    public function search(string $name)
+    {
+        $products = null;
+        if ($name != '~')
+            $users = User::where('full_name', 'like', '%' . $name . '%')->latest()->paginate(20);
+        else
+            $users = User::latest()->paginate(20);
+        return response()->json(UserResource::collection($users), 200);
+
+    }
 }
