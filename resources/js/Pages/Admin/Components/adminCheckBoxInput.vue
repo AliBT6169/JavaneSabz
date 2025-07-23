@@ -16,12 +16,12 @@ const emit = defineEmits(
             class="adminOrderEditItems bg-adminColor1 border-adminColor2 !h-14 flex justify-between gap-2 items-center *:w-full">
             <div class="flex justify-center items-center gap-3">
                 <label for="pishtaz">پیشتاز</label>
-                <input type="radio" :checked="modelValue==='pishtaz'" id="pishtaz" value="pishtaz"
+                <input type="radio" @change="emit('update:modelValue',$event.target.value)" :checked="modelValue==='pishtaz'" id="pishtaz" value="pishtaz"
                        name="delivery_methode">
             </div>
             <div class="flex justify-center items-center gap-3">
                 <label for="tipax">تیپاکس</label>
-                <input type="radio" :checked="modelValue==='tipax'" id="tipax" value="tipax"
+                <input type="radio" @change="emit('update:modelValue',$event.target.value)" :checked="modelValue==='tipax'" id="tipax" value="tipax"
                        name="delivery_methode">
             </div>
         </div>
