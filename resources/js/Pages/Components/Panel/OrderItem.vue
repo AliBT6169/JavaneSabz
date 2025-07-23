@@ -78,6 +78,11 @@ const coupon_code = ref('');
                 <div class="">هزینه ارسال:</div>
                 <div class="">{{ Order.delivery_amount.toLocaleString('fa-IR') }}</div>
             </div>
+            <div class="">
+                <div class="">روش ارسال:</div>
+                <div v-if="Order.delivery_methode === 'pishtaz'" class="">پست پیشتاز</div>
+                <div v-if="Order.delivery_methode === 'tipax'" class="">تیپاکس</div>
+            </div>
             <div v-if="Order.coupon_amount" class="">
                 <div class="">تخفیف:</div>
                 <div class="">{{ Order.coupon_amount.toLocaleString('fa-IR') }}-</div>

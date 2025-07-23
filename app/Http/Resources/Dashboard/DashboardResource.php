@@ -93,6 +93,7 @@ class DashboardResource extends JsonResource
                 "payment_status" => $order->payment_status,
                 "price" => $order->total_amount,
                 "delivery_amount" => $order->delivery_amount,
+                "delivery_methode" => $order->delivery_methode,
                 "coupon_amount" => $order->coupon_amount,
                 "paying_amount" => $order->paying_amount,
                 "VAT" => $order->VAT,
