@@ -28,12 +28,14 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::get('/user/{id}', 'edit')->name('users.edit');
         Route::put('/user/', 'update')->name('users.update');
         Route::delete('/user/{id}', 'destroy')->name('users.destroy');
+        Route::get('/user/search/{name}', 'search')->name('users.search');
     });
     Route::controller(ProductController::class)->group(function () {
         Route::get('/product/index', 'index')->name('products.index');
         Route::get('/product/show', 'show')->name('products.show');
         Route::get('/product', 'create')->name('products.create');
         Route::post('/product', 'store')->name('products.store');
+        Route::get('/product/search/{name}', 'search')->name('products.search');
         Route::patch('/product/{id}', 'active_DeActive')->name('products.active_DeActive');
         Route::get('/product/{id}', 'edit')->name('products.edit');
         Route::put('/product', 'update')->name('products.update');

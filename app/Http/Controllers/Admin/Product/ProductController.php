@@ -214,4 +214,14 @@ class ProductController extends Controller
     {
         return response()->json(ProductsResource::collection(Product::latest()->get()), 200);
     }
+
+    public function search(string $name)
+    {
+        $products = null;
+        if ($name != '~')
+            $products = Product::where('name', 'like', '%' . $name . '%')->latest()->paginate(20);
+        else
+            $products = Product::latest()->paginate(20);
+        return response()->json(ProductsResource::collection($products), 200);
+    }
 }
