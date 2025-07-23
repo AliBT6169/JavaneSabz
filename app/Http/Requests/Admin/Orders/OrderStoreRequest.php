@@ -26,7 +26,7 @@ class OrderStoreRequest extends FormRequest
             'coupon_amount' => 'required|numeric',
             'status' => 'required|numeric|between:-1,4',
             'address' => 'required|string|max:500',
-            'delivery_methode' => 'required|boolean',
+            'delivery_methode' => 'required|string|max:15',
             'postal_code' => 'numeric|required|digits:10',
             'city' => 'numeric|required|exists:cities,id',
             'items' => 'required|array',

@@ -13,12 +13,13 @@ import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import SelectOrderUserModal from "@/Pages/Admin/pages/Order/SelectOrderUserModal.vue";
 import {deliveryAmountHelper} from "@/Pages/Admin/Components/Helpers/deliveryAmountHelper.js";
 import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
+import AdminCheckBoxInput from "@/Pages/Admin/Components/adminCheckBoxInput.vue";
 
 const form = ref({
     status: -1,
     coupon_amount: 0,
     address: null,
-    delivery_methode: 0,
+    delivery_methode: 'pishtaz',
     city: null,
     postal_code: null,
     user: null,
@@ -98,11 +99,11 @@ const sendData = async () => {
     <Layout>
         <form @submit.prevent="sendData">
             <div
-                class="space-y-6 py-4 *:w-full *:h-fit md:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-5 *:md:w-[45%]">
+                class="space-y-6 py-4 *:w-full *:h-fit md:space-y-0 md:flex md:flex-wrap md:items-center md:justify-center md:gap-5 *:md:w-[45%]">
                 <admin-address label="آدرس:" @update-value="form.city = $event,productSelection(null)"/>
                 <admin-input v-model="form.address" name="آدرس"/>
                 <admin-input v-model="form.postal_code" name="کد پستی"/>
-                <admin-active-de-active-input v-model="form.delivery_methode"/>
+                <admin-check-box-input v-model="form.delivery_methode"/>
                 <admin-input @input="payAmountChanged" type="number" v-model="form.coupon_amount"
                              name="تخفیف"/>
                 <div class="border-2 pr-2 rounded-xl border-adminColor3 h-fit items-center flex justify-between w-full">
