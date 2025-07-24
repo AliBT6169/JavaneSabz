@@ -3,6 +3,7 @@ import axios from "axios";
 import {ref} from "vue";
 import {useToast} from "vue-toastification";
 import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 const toast = useToast();
 export const useAuthStore = defineStore('auth', {
@@ -30,14 +31,27 @@ export const useAuthStore = defineStore('auth', {
             axios.post(route('BuyCart.CartItemIncrement', id));
         },
         async productDecrement(index, id) {
-            if (this.Products[index].quantity > 0) {
-                await axios.post(route('BuyCart.CartItemDecrement', id)).then((response) => {
-                    if (response.data === 'deleted') {
-                        this.Products.splice(index, 1);
-                    } else
-                        this.Products[index].quantity--;
+            if (this.Products[index].quantity > 0)
+                await axios.post(route('BuyCart.CartItemDecrement', id)).then((res) => {
+                    this.Products[index].quantity--;
                 });
+        },
+        async deleteItemFromCart(index, id) {
+            const content = {
+                component: ToastWarning,
+                props: {
+                    message: 'آیا مطمعن به حذف این محصول از سبد خرید خود هستید؟'
+                },
+                listeners: {
+                    set: async () => {
+                        await axios.delete(route('BuyCart.deleteItemFromCart', id)).then((response) => {
+                            this.Products.splice(index, 1);
+                            useToast().success(response.data);
+                        });
+                    }
+                }
             }
+            useToast().warning(content);
         },
         async addToCart(id) {
             if (this.isAuthenticated) {

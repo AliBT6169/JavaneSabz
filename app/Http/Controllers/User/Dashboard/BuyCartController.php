@@ -29,6 +29,12 @@ class BuyCartController extends Controller
         return BuyCart::addToCart($ProductId);
     }
 
+    public function deleteItemFromCart(int $ProductId)
+    {
+        BuyCart::whereId($ProductId)->delete();
+        return response()->json('محصول با موفقیت حذف شد!',200);
+    }
+
     public function completeCart()
     {
         if (Auth::user()->address === null)

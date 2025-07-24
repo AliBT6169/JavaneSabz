@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/IncrementBuyCart/{id}', 'CartItemIncrement')->name('BuyCart.CartItemIncrement');
         Route::post('/DecrementBuyCart/{id}', 'CartItemDecrement')->name('BuyCart.CartItemDecrement');
         Route::post('/addToBuyCart/{product_id}', 'addToBuyCart')->name('BuyCart.adToBuyCart');
+        Route::delete('/deleteItemFromCart/{product_id}', 'deleteItemFromCart')->name('BuyCart.deleteItemFromCart');
 //        Complete User Cart & Make Order
         Route::get('/completePayment', 'completeCart')->name('BuyCart.completePayment');
         //checks a coupon code

@@ -8,7 +8,6 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 const props = defineProps(["User"]);
 const authStore = useAuthStore();
 authStore.setUser(props.User.data);
-console.log(authStore.user)
 </script>
 
 <template>
