@@ -1,6 +1,7 @@
 <script setup>
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {useWindowSize} from "@vueuse/core";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const dashboard = useAuthStore();
 const props = defineProps(["product", "index"]);
@@ -20,16 +21,21 @@ const props = defineProps(["product", "index"]);
                 product.description.length > useWindowSize().width.value / 5 ? product.description.substring(0, useWindowSize().width.value / 5) + '...' : product.description
             }}</p>
         <div class="w-11/12 space-y-4 *:flex *:justify-between *:items-center sm:w-fit *:lg:block *:lg:space-y-2">
-            <div class="">
-                <div class="">تعداد:</div>
-                <div
-                    class="mr-4 !overflow-hidden *:px-2 border-black text-lg font-bold border rounded-xl dark:border-white">
+            <div class="lg:!flex !items-end gap-2">
+                <div class="">
+                    <div class="">تعداد:</div>
+                    <div
+                        class="mr-4 !overflow-hidden *:px-2 border-black text-lg font-bold border rounded-xl dark:border-white">
                 <span @click="dashboard.productIncrement(index ,product.id)"
                       class=" cursor-pointer bg-defaultColor dark:bg-defaultColor5 bg-opacity-80">+</span>
-                    <span>{{ product.quantity }}</span>
-                    <span
-                        @click="product.quantity>0?dashboard.productDecrement(index ,product.id):dashboard.deleteItemFromCart(index ,product.id)"
-                        class="cursor-pointer bg-red-600 bg-opacity-80">-</span>
+                        <span>{{ product.quantity }}</span>
+                        <span
+                            @click="product.quantity>0?dashboard.productDecrement(index ,product.id):dashboard.deleteItemFromCart(index ,product.id)"
+                            class="cursor-pointer bg-red-600 bg-opacity-80">-</span>
+                    </div>
+                </div>
+                <div @click="dashboard.deleteItemFromCart(index, product.id)" class="p-1 size-fit border rounded-lg bg-red-500/50 border-red-700">
+                    <svg-component name="delete" class="size-5 text-red-700"/>
                 </div>
             </div>
             <div class="">
