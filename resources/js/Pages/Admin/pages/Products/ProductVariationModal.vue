@@ -98,7 +98,8 @@ const dataSender = () => {
                         name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
                     group-hover:right-16"/>
                     <input type="file" :id="'variation-image' + index" accept="*image/*"
-                           class="invisible absolute" @input="changeImage($event ,index),variationData.passedImages.splice(index,1)">
+                           class="invisible absolute"
+                           @input="changeImage($event ,index),variationData.passedImages.splice(index,1)">
                     <img
                         :src="item.image"
                         class="size-full"
@@ -143,8 +144,13 @@ const dataSender = () => {
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">
                 <div @click="dataSender" class="px-12 py-2 rounded-xl duration-300 cursor-pointer border-2 bg-adminColor1 border-adminColor2
-     dark:bg-adminColor3 dark:border-adminColor4 hover:scale-95 hover:shadow-inner hover:shadow-gray-500">ثبت</div>
-                <admin-button text="لغو" type="cancel" @click="modal_status = false"/>
+     dark:bg-adminColor3 dark:border-adminColor4 hover:scale-95 hover:shadow-inner hover:shadow-gray-500">ثبت
+                </div>
+                <div @click="modal_status = false"
+                        class="px-12 w-full py-2 rounded-xl duration-300 cursor-pointer border-2 bg-red-300 border-red-600
+                    dark:bg-red-400 dark:border-red-800 hover:scale-95 hover:shadow-inner hover:shadow-gray-500 md:w-fit">
+                    لغو
+                </div>
             </div>
         </form>
         <div @click.stop="modal_status = true" class="relative group cursor-pointer m-auto duration-300 size-full rounded-xl border-4 border-adminColor2

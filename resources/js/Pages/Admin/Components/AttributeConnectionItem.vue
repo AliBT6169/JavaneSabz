@@ -52,17 +52,25 @@ const updateModelValue = (id) => {
 const searchKeyWordChanged = (e) => {
     filteredData.value = data.value.filter((item) => item.name.includes(e));
 }
+
 </script>
 
 <template>
     <div
-        class="size-40 flex !justify-center bg-adminColor2 duration-500 transition-all overflow-hidden rounded-xl border dark:bg-adminColor3"
+        class="size-40 mt-10 flex !justify-center bg-adminColor2 duration-500 transition-all overflow-hidden rounded-xl border dark:bg-adminColor3"
         ref="modal"
         :class="{'fixed z-50 top-20 size-5/6 py-6 overflow-scroll !bg-adminColor1 dark:!bg-adminColor3':modal_status}">
         <div v-if="!modal_status" @click.stop="modal_status = true" ref="modal"
-             class="size-40 rounded-xl border-2 border-current flex justify-center items-center">{{
-                modelName
-            }}
+             class="size-40 rounded-xl border-2 border-current flex justify-center cursor-pointer overflow-hidden items-center">
+            <div v-if="filteredData!==undefined" class="relative flex items-center justify-center">
+                <div
+                    class="absolute select-none cursor-pointer bg-gray-300/60 py-1 px-3 text-nowrap rounded-lg dark:bg-gray-700/60">
+                    {{ modelName }}
+                </div>
+                <img v-if="filteredData[0].icon!==undefined" :src="filteredData[0].icon" class="size-full" alt="">
+                <img v-if="filteredData[0].images!==undefined" :src="filteredData[0].images[0].image" class="size-full" alt="">
+                <img v-if="filteredData[0].image!==undefined" :src="filteredData[0].image" class="size-full" alt="">
+            </div>
         </div>
         <div v-else class="">
             <AdminInput name="جستجو" v-model="searchKeyWord" @update:modelValue="searchKeyWordChanged($event)"/>

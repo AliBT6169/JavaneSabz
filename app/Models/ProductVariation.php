@@ -29,6 +29,7 @@ class ProductVariation extends Model
         'off_sale',
         'sku',
         'sale_price',
+        'sailed_quantity',
         'created_at',
     ];
 
@@ -123,5 +124,17 @@ class ProductVariation extends Model
             'status' => 200,
             'message' => 'ok'
         ];
+    }
+
+    public static function sailedQuantityIncrement($order_id = -1)
+    {
+        $order = Order::whereId($order_id)->first();
+        $order_items = $order->orderItems;
+        foreach ($order_items as $item) {
+            $variation = $item->product_variation;
+            $variation->update([
+                'sailed_quantity' => $variation->sailed_quantity + $item->quantity
+            ]);
+        }
     }
 }

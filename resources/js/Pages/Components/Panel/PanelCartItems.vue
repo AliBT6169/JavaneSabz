@@ -1,12 +1,9 @@
 <script setup>
-import {onMounted, ref} from "vue";
-import Product from "@/Pages/Components/Home/Product.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {useWindowSize} from "@vueuse/core";
 
 const dashboard = useAuthStore();
 const props = defineProps(["product", "index"]);
-const productCount = ref(props.product.count)
 </script>
 
 <template>

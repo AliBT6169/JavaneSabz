@@ -58,27 +58,26 @@ const deleter = async () => {
 <template>
 
     <div
-        class="text-center overflow-hidden space-y-2 border-2 cursor-pointer border-black rounded-xl group p-2">
-        <Link class="relative flex h-1/3 lg:h-1/2 justify-center items-center"
-              :href="route('admin.brands.edit',{id:brandData.id})">
+        class="text-center overflow-hidden space-y-2 border-2 cursor-pointer border-black rounded-xl p-2">
+        <div class="size-32 m-auto">
             <img :src="brandData.icon" alt=""
-                 class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95 h-full ">
-            <div
-                class="hidden lg:block p-2 xl:px-6 rounded-xl absolute bg-white/20 duration-300 translate-x-40 group-hover:translate-x-0
-            dark:bg-gray-800/20">
-                مشاهده
-            </div>
-        </Link>
+                 class="rounded-full border-2 border-adminColor1 h-full">
+        </div>
         <div class="">{{ brandData.name }}</div>
         <div class="">{{ brandData.productsQuantity }} محصول</div>
-        <div class="flex gap-2 items-center">
+        <div class="space-y-2">
             <div class="py-1 w-full rounded-lg border border-black"
                  @click="toggle"
                  :class="{'bg-green-500/70':is_active,'bg-red-500/70':!is_active }">
                 {{ is_active ? 'فعال' : 'غیرفعال' }}
             </div>
+            <Link class="bg-adminColor1 block py-1 w-full rounded-lg border border-black"
+                  :href="route('admin.brands.edit',{id:brandData.id})">
+                عملیات
+            </Link>
             <div @click="deleter"
-                 class="p-1 rounded-xl bg-gray-800/30 duration-300 hover:text-red-500 dark:bg-white/30">
+                 class="p-1 flex justify-center items-center gap-4 rounded-xl bg-gray-800/30 duration-300 hover:text-red-500 dark:bg-white/30">
+                حذف
                 <svg-component name="delete" class="size-6"/>
             </div>
         </div>

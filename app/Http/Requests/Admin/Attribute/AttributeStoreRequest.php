@@ -22,7 +22,7 @@ class AttributeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:50|unique:categories',
+            'name' => 'required|string|max:50|unique:attributes,name',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|string|max:500',
             'is_active' => 'required|boolean',

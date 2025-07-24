@@ -43,13 +43,11 @@ const deleter = async () => {
 <template>
     <div class="pb-2 w-60 rounded-xl overflow-hidden border border-current space-y-4 cursor-pointer">
         <!--        delete button-->
-        <div @click="deleter"
-             class="absolute p-1 rounded-xl left-1 duration-300 top-1 hover:text-red-500 bg-white/30 dark:bg-gray-800/30">
-            <svg-component name="delete" class="size-6"/>
-        </div>
-        <Link href="#">
-            <img :src="product.image" class="w-full max-h-40 border" alt="">
-        </Link>
+        <!--        <div @click="deleter"-->
+        <!--             class="absolute p-1 rounded-xl left-1 duration-300 top-1 hover:text-red-500 bg-white/30 dark:bg-gray-800/30">-->
+        <!--            <svg-component name="delete" class="size-6"/>-->
+        <!--        </div>-->
+        <img :src="product.image" class="w-full max-h-40 border" alt="">
         <div
             class="px-2 text-nowrap space-y-2 *:flex *:justify-between *:products-center *:gap-4 *:border-t *:border-current *:rounded-t-xl">
             <div class="">

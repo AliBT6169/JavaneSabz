@@ -32,6 +32,7 @@ class TransactionController extends Controller
                     'status' => 1,
                 ];
                 ProductVariation::productQuantityDecrement($order_id);
+                ProductVariation::sailedQuantityIncrement($order_id);
                 Order::whereId($order_id)->update([
                     'payment_status' => 1,
                     'status' => 0

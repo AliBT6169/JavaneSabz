@@ -7,6 +7,7 @@ import Product from "@/Pages/Admin/Components/Product.vue";
 import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import {ref} from "vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import {Link} from "@inertiajs/vue3";
 
 const props = defineProps({
     products: null,
@@ -30,8 +31,9 @@ const searchKeyWordChanged = (e) => {
     <Layout>
         <AdminInput class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>
-        <div class="flex p-4 flex-wrap gap-10 justify-center">
+        <div class="flex p-4 flex-wrap gap-10 justify-center items-center">
             <Product v-for="item in productData" @deleted="productDeleted($event)" :product="item"/>
+            <Link :href="route('admin.products.create')" class="size-40 text-8xl flex items-center justify-center border-2 rounded-xl border-adminColor1 duration-300 cursor-pointer hover:scale-95">+</Link>
         </div>
         <Pagination :links="products.links" :meta="products.meta" create-link="admin.products.create"/>
     </Layout>
