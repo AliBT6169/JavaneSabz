@@ -19,17 +19,17 @@ class TransactionController extends Controller
         if ($quantityCheck['status'] === 400) {
             $data = DashboardResource::getTransactions([Transaction::Creator([
                 'order_id' => $order_id,
-                'status' => 3
+                'status' => 0
             ])]);
             return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data, 'message' => $quantityCheck['message']]);
         }
         $transaction_data = null;
         $message = null;
-        switch (rand(1, 3)) {
-            case 1:
+        switch (rand(0, 2)) {
+            case 2:
                 $transaction_data = [
                     'order_id' => $order_id,
-                    'status' => 1,
+                    'status' => 2,
                 ];
                 ProductVariation::productQuantityDecrement($order_id);
                 ProductVariation::sailedQuantityIncrement($order_id);
@@ -39,23 +39,23 @@ class TransactionController extends Controller
                 ]);
                 $message = 'تراکنش موفقیت آمیز بود';
                 break;
-            case 2:
+            case 1:
                 $transaction_data = [
                     'order_id' => $order_id,
-                    'status' => 2,
+                    'status' => 1,
                 ];
                 $message = 'تراکش نامعلوم';
                 break;
-            case 3:
+            case 0:
                 $transaction_data = [
                     'order_id' => $order_id,
-                    'status' => 3,
+                    'status' => 0,
                 ];
                 $message = 'تراکنش ناموفق بود';
                 break;
         }
         $data = DashboardResource::getTransactions([Transaction::Creator($transaction_data)]);
 
-        return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data,'message' => $message]);
+        return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data, 'message' => $message]);
     }
 }

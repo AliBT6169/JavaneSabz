@@ -28,7 +28,7 @@ const completeCart = () => {
                 Products.reduce((accumulator, item) => accumulator + item.quantity, 0)
             }}</span>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between p-2 rounded-2xl border-defaultColor !text-xl border-2 bg-defaultColor/50">
             <span>جمع مبلغ :</span><span>{{
                 (Products.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0)).toLocaleString('fa-IR')
             }}</span>

@@ -9,7 +9,7 @@ const descriptionStatus = ref(false);
 
 <template>
     <div class="w-full p-2 rounded-lg border border-gray-500 bg-defaultColor3 text-xs lg:text-base">
-        <div class="flex items-center justify-between flex-wrap">
+        <div class="flex items-center justify-between flex-wrap *:!w-60">
             <!--            success-->
             <div v-if="transactionData.status===0" class="bg-red-500 bg-opacity-70 p-2 rounded-full">ناموفق</div>
             <div v-if="transactionData.status===1" class="bg-yellow-500 bg-opacity-70 p-2 rounded-full">نامعلوم</div>

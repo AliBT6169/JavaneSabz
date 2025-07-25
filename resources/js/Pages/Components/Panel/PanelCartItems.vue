@@ -21,7 +21,7 @@ const props = defineProps(["product", "index"]);
                 product.description.length > useWindowSize().width.value / 5 ? product.description.substring(0, useWindowSize().width.value / 5) + '...' : product.description
             }}</p>
         <div class="w-11/12 space-y-4 *:flex *:justify-between *:items-center sm:w-fit *:lg:block *:lg:space-y-2">
-            <div class="lg:!flex !items-end gap-2">
+            <div class="lg:!flex select-none !items-end gap-2">
                 <div class="">
                     <div class="">تعداد:</div>
                     <div
