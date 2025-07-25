@@ -8,8 +8,8 @@ const descriptionStatus = ref(false);
 </script>
 
 <template>
-    <div class="w-full p-2 rounded-lg border border-gray-500 bg-defaultColor3 text-xs lg:text-base">
-        <div class="flex items-center justify-between gap-4 flex-wrap *:!w-40 lg:*:!w-60 *:flex *:justify-center">
+    <div class="w-fit lg:w-full p-2 rounded-lg border border-gray-500 bg-defaultColor3 text-xs lg:text-base">
+        <div class="space-y-5 *:m-auto lg:flex lg:space-y-0 items-center justify-between gap-4 flex-wrap *:!w-40 lg:*:!w-60 *:flex *:justify-center">
             <!--            success-->
             <div class="*:w-20 text-center">
                 <div v-if="transactionData.status===0" class="bg-red-500 bg-opacity-70 p-2 rounded-full">ناموفق</div>
@@ -18,12 +18,6 @@ const descriptionStatus = ref(false);
                 <div v-if="transactionData.status===2" class="bg-defaultColor5 bg-opacity-70 p-2 rounded-full">موفق
                 </div>
             </div>
-            <p class="!hidden overflow-hidden text-ellipsis text-nowrap md:!block lg:w-80 xl:!w-[40rem]">
-                <strong class="">محصولات:</strong>
-                <span v-for="item in transactionData.products" class="border-l px-2">{{
-                        item.name + ' : ' + item.value
-                    }}</span>
-            </p>
             <!--            date & time-->
             <div class="*:w-52 text-center">
                 <div class="p-2 rounded-full border">{{ transactionData.date }}</div>
