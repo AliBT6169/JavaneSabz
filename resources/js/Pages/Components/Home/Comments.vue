@@ -1,15 +1,38 @@
 <script setup>
 import {ref} from "vue";
 import CommentItems from "@/Pages/Components/Home/CommentItems.vue";
+import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import {useToast} from "vue-toastification";
 
 const props = defineProps({
     comments: Array | null,
     product_id: Number,
 });
 const form = ref({
+    user_id: useAuthStore().user.id,
     product_id: "",
     comment: ''
-})
+});
+
+const sendData = () => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: "آیا مطمعن به ثبت این نظر هستید؟"
+        },
+        listeners: {
+            set: async () => {
+                await axios.post("/user/comments", form.value).then((res) => {
+                    console.log(res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }
+        }
+    }
+    useToast().warning(content);
+}
 </script>
 
 <template>
@@ -18,21 +41,23 @@ const form = ref({
         <div class="p-2 rounded-xl border-4 border-defaultColor">
             <div class="space-y-2 ">
                 <div class="w-full">نظر خود را درمورد این محصول با ما در اشتراک بگذارید:</div>
-                <input
-                    placeholder="نظر خود را درمورد این محصول با ما در اشتراک بگذارید:"
-                    class="w-full duration-150 rounded-xl border-2 !border-defaultColor bg-defaultColor4 focus:border-4 focus:ring-defaultColor placeholder-defaultColor5"
-                    type="text" v-model="form.comment">
+                <textarea
+                    placeholder="نظر خود را اینجا بنویسید:"
+                    class="w-full h-60 duration-150 rounded-xl border-2 !border-defaultColor bg-defaultColor4 focus:border-4
+                    focus:ring-defaultColor placeholder-defaultColor5 dark:bg-defaultColor7"
+                    v-model="form.comment"></textarea>
                 <div class="flex justify-end">
-                    <div
+                    <div @click="sendData"
                         class="bg-defaultColor5 duration-300 px-10 py-1 cursor-pointer rounded-full w-fit text-white border-4 border-defaultColor hover:scale-95 ">
                         ثبت
                     </div>
                 </div>
             </div>
-            <CommentItems :comment="{
-                user_name:'فرشید احسانی',
-                comment:'خیلی خوبه این محصول من که راضیم'
-            }"/>
         </div>
+        <CommentItems :comment="{
+                user_name:'فرشید احسانی',
+                user_image:'/images/default/default.jpg',
+                comment:'خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم'
+            }"/>
     </div>
 </template>

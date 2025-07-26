@@ -15,8 +15,9 @@ class ProductCommentsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'user' => $this->user ?? '',
-            'text' => $this->comment ?? '',
+            'user_name' => $this->user ?? '',
+            'user_image' => $this->user->gallery->media ?? '/images/default/default.jpg',
+            'comment' => $this->comment ?? '',
         ];
     }
 }
