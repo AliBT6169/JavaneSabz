@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Attribute\AttributeController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Comments\AdminCommentController;
 use App\Http\Controllers\Admin\Delivery\DeliveryController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
@@ -82,6 +83,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/deliveries/GetCityName/{city_id}', [DeliveryController::class, 'GetCityName'])->name('deliveries.GetCityName');
     Route::controller(TransactionController::class)->group(function () {
         Route::get('/transaction/index', 'index')->name('transactions.index');
+    });
+    Route::controller(AdminCommentController::class)->group(function () {
+        Route::get('/comment/index', 'index')->name('comments.index');
     });
 });
 

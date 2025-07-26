@@ -21,7 +21,7 @@ class Comment extends Model
         'created_at',
     ];
 
-    public function product_variations(): BelongsTo
+    public function product_variation(): BelongsTo
     {
         return $this->belongsTo(ProductVariation::class);
     }
