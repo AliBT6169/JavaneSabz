@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Comments;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Comments\AdminCommentStatusChangeRequest;
 use App\Http\Resources\Admin\Comments\AdminCommentsIndexResource;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -65,5 +66,13 @@ class AdminCommentController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function change_status(AdminCommentStatusChangeRequest $request)
+    {
+        Comment::whereId($request->id)->update([
+            'approved' => $request->status,
+        ]);
+        return response()->json('success', 200);
     }
 }

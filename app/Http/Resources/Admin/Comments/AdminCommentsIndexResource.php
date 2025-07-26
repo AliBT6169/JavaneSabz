@@ -16,16 +16,17 @@ class AdminCommentsIndexResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'user' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
-                'image' => $this->user->gallery->media ?? '/images/defaults/default.jpg',
+                'image' => $this->user->gallery->media ?? '/images/default/default.jpg',
             ],
             'product_variation' => [
                 'id' => $this->product_variation_id,
                 'name' => $this->product_variation->product->name,
                 'value' => $this->product_variation->value,
-                'image' => isset($this->product_variation->gallery) ? GalleryResource::collection($this->product_variation->gallery) : '/images/defaults/default.jpg',
+                'image' => $this->product_variation->gallery->count() != 0 ? GalleryResource::collection($this->product_variation->gallery) : [['image' => '/images/default/product.png']],
             ],
             'comment' => $this->comment,
             'approved' => $this->approved

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
-            $table->boolean('approved')->default(false);
+            $table->tinyInteger('approved')->default(0);
             $table->text('comment');
             $table->softDeletes();
             $table->timestamps();
