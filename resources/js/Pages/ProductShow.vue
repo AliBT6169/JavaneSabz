@@ -170,7 +170,6 @@ const likeUnLike = async () => {
                 </div>
             </div>
 <!--            comments-->
-            <Comments :comments="product.data.comments"></Comments>
             <!--                    same Products-->
             <div class="rounded-t-xl border border-current">
                 <div class="w-full text-center py-2 bg-defaultColor/80 text-defaultColor5 rounded-t-xl">محصولات مشابه:
@@ -181,6 +180,7 @@ const likeUnLike = async () => {
                     </div>
                 </div>
             </div>
+            <Comments :product_id="product.id" :comments="product.data.comments"></Comments>
         </div>
         <Footer/>
     </div>
