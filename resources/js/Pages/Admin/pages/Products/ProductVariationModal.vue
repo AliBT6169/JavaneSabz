@@ -156,8 +156,8 @@ const dataSender = () => {
         <div @click.stop="modal_status = true" class="relative group cursor-pointer m-auto duration-300 size-full rounded-xl border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden"
              :class="{'hidden':modal_status}">
-            <svg-component @click.stop.prevent="emit('delete')" name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
-                    group-hover:right-16"/>
+            <svg-component @click.stop.prevent="emit('delete')" name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-2 -left-20
+                    group-hover:left-2"/>
             <img v-if="variationData.passedImages[0]!==undefined&&typeof variationData.passedImages[0] !=='string'"
                  :src="variationData.passedImages[0].image"
                  class="size-full"

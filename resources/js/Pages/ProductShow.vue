@@ -11,6 +11,7 @@ import Product from "@/Pages/Components/Home/Product.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
+import Comments from "@/Pages/Components/Home/Comments.vue";
 
 const carouselConfig = {
     itemsToShow: 1,
@@ -168,7 +169,8 @@ const likeUnLike = async () => {
                     </div>
                 </div>
             </div>
-
+<!--            comments-->
+            <Comments :comments="product.data.comments"></Comments>
             <!--                    same Products-->
             <div class="rounded-t-xl border border-current">
                 <div class="w-full text-center py-2 bg-defaultColor/80 text-defaultColor5 rounded-t-xl">محصولات مشابه:
