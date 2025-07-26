@@ -58,8 +58,9 @@ const changeStatus = (e) => {
             </select>
         </div>
         <div class="flex gap-2 items-center">
-            <img :src="comment.user.image" alt="" class="size-14 rounded-full">
-            <div class="">{{ comment.user.name }}</div>
+            <div class="">
+                {{comment.comment}}
+            </div>
         </div>
     </div>
 </template>

@@ -75,4 +75,9 @@ class AdminCommentController extends Controller
         ]);
         return response()->json('success', 200);
     }
+
+    public function search(string $search)
+    {
+        return response()->json(AdminCommentsIndexResource::collection(Comment::where('comment', 'LIKE', '%' . $search=='***'?'':$search . '%')->paginate(20)));
+    }
 }

@@ -5,13 +5,18 @@ import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import {ref} from "vue";
 import AdminCommentItem from "@/Pages/Admin/pages/Comments/AdminCommentItem.vue";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 const props = defineProps({
     commentsData: Array,
 });
 const filteredData = ref(props.commentsData.data);
-const filterData = (e) => {
-    console.log(e);
+const filterData = async (e) => {
+    await axios.get(route("admin.comments.search", {text: e === '' ? '***' : e})).then(res => {
+        filteredData.value = res.data;
+    }).catch(err => {
+
+    });
 }
 </script>
 
@@ -19,7 +24,7 @@ const filterData = (e) => {
     <AdminHeader/>
     <AdminSideBar/>
     <Layout>
-        <AdminInput @update:modelValue="" name="جستجو"/>
+        <AdminInput @update:modelValue="filterData($event)" name="جستجو"/>
         <div class="space-y-5">
             <AdminCommentItem v-for="item in filteredData" :comment="item"/>
         </div>
