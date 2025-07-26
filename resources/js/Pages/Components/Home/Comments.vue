@@ -1,7 +1,6 @@
 <script setup>
 import {ref} from "vue";
 import CommentItems from "@/Pages/Components/Home/CommentItems.vue";
-import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 
@@ -52,10 +51,6 @@ const sendData = () => {
                 </div>
             </div>
         </div>
-        <CommentItems :comment="{
-                user_name:'فرشید احسانی',
-                user_image:'/images/default/default.jpg',
-                comment:'خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم خیلی خوبه این محصول من که راضیم'
-            }"/>
+        <CommentItems v-for="item in comments" :comment="item"/>
     </div>
 </template>

@@ -48,7 +48,7 @@ class ProductController extends Controller
      */
     public function show(int $id)
     {
-        $product = ProductResource::make(ProductVariation::where("id", $id)->first());
+        $product = ProductResource::make(ProductVariation::whereId($id)->first());
         return Inertia::render('ProductShow', ["productData" => $product]);
     }
 

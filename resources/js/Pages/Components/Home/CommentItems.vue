@@ -2,6 +2,7 @@
 const props = defineProps({
     comment: Object,
 });
+console.log(props.comment)
 </script>
 
 <template>
