@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserCommentStoreRequest;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -29,7 +31,12 @@ class CommentController extends Controller
      */
     public function store(UserCommentStoreRequest $request)
     {
-        return response()->json($request);
+        Comment::create([
+            'user_id' => Auth::id(),
+            'product_variation_id'=>$request->product_id,
+            'comment'=>$request->comment,
+        ]);
+        return response()->json('کامنت با موفقیت اضافه شد و بعد تاید مدیریت نشان داده میشود.');
     }
 
     /**

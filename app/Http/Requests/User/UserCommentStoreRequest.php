@@ -22,9 +22,8 @@ class UserCommentStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|numeric|exists:users,id',
             'product_id' => 'required|numeric|exists:product_variations,id',
-            'comment' => 'required|string|min:5|max:500',
+            'comment' => 'required|string|min:20|max:500',
         ];
     }
 }

@@ -10,7 +10,6 @@ const props = defineProps({
     product_id: Number,
 });
 const form = ref({
-    user_id: useAuthStore().user.id,
     product_id: props.product_id,
     comment: ''
 });
@@ -23,7 +22,7 @@ const sendData = () => {
         listeners: {
             set: async () => {
                 await axios.post(route('Comment.store'), form.value).then((res) => {
-                    console.log(res);
+                    useToast().success(res.data);
                 }).catch((err) => {
                     console.log(err);
                 });
