@@ -5,6 +5,7 @@ namespace App\Http\Resources\Admin\Comments;
 use App\Http\Resources\Gallery\GalleryResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Morilog\Jalali\Jalalian;
 
 class AdminCommentsIndexResource extends JsonResource
 {
@@ -29,6 +30,7 @@ class AdminCommentsIndexResource extends JsonResource
                 'image' => $this->product_variation->gallery->count() != 0 ? GalleryResource::collection($this->product_variation->gallery) : [['image' => '/images/default/product.png']],
             ],
             'comment' => $this->comment,
+            'created_at' => Jalalian::fromDateTime($this->created_at)->format('l, d F Y H:i:s'),
             'approved' => $this->approved
         ];
     }

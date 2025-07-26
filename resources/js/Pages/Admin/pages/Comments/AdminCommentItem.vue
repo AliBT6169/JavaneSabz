@@ -44,6 +44,9 @@ const commentVisibility = ref(false);
                 <div class="">{{ comment.user.name }}</div>
             </div>
             <div class="">
+                <div class="">{{ comment.created_at }}</div>
+            </div>
+            <div class="">
                 <img :src="comment.product_variation.image[0].image" alt="" class="size-14 rounded-full">
                 <div class="">{{ comment.product_variation.name }}</div>
             </div>

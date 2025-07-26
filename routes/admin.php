@@ -86,6 +86,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(AdminCommentController::class)->group(function () {
         Route::get('/comment/index', 'index')->name('comments.index');
+        Route::get('/comment/create', 'create')->name('comments.create');
         Route::patch('/comment/change_status', 'change_status')->name('comments.change_status');
         Route::get('/comment/search/{text}', 'search')->name('comments.search');
     });

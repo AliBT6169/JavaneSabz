@@ -6,6 +6,7 @@ import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import {ref} from "vue";
 import AdminCommentItem from "@/Pages/Admin/pages/Comments/AdminCommentItem.vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 
 const props = defineProps({
     commentsData: Array,
@@ -28,5 +29,6 @@ const filterData = async (e) => {
         <div class="space-y-5">
             <AdminCommentItem v-for="item in filteredData" :comment="item"/>
         </div>
+        <Pagination :links="commentsData.links" :meta="commentsData.meta" create-link="admin.comments.create"/>
     </Layout>
 </template>

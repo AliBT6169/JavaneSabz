@@ -25,7 +25,7 @@ class AdminCommentController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/pages/Comments/create');
     }
 
     /**
