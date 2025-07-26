@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\Dashboard\BuyCartController;
@@ -96,6 +97,9 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(TransactionController::class)->group(function () {
         Route::get('/Payment/{order_id}', 'paymentPage')->name('paymentPage');
+    });
+    Route::controller(CommentController::class)->group(function () {
+        Route::post('/Comment/store', 'store')->name('Comment.store');
     });
 });
 

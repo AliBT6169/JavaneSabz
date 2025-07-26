@@ -11,10 +11,9 @@ const props = defineProps({
 });
 const form = ref({
     user_id: useAuthStore().user.id,
-    product_id: "",
+    product_id: props.product_id,
     comment: ''
 });
-
 const sendData = () => {
     const content = {
         component: ToastWarning,
@@ -23,7 +22,7 @@ const sendData = () => {
         },
         listeners: {
             set: async () => {
-                await axios.post("/user/comments", form.value).then((res) => {
+                await axios.post(route('Comment.store'), form.value).then((res) => {
                     console.log(res);
                 }).catch((err) => {
                     console.log(err);
@@ -48,7 +47,7 @@ const sendData = () => {
                     v-model="form.comment"></textarea>
                 <div class="flex justify-end">
                     <div @click="sendData"
-                        class="bg-defaultColor5 duration-300 px-10 py-1 cursor-pointer rounded-full w-fit text-white border-4 border-defaultColor hover:scale-95 ">
+                         class="bg-defaultColor5 duration-300 px-10 py-1 cursor-pointer rounded-full w-fit text-white border-4 border-defaultColor hover:scale-95 ">
                         ثبت
                     </div>
                 </div>

@@ -180,7 +180,7 @@ const likeUnLike = async () => {
                     </div>
                 </div>
             </div>
-            <Comments :product_id="product.id" :comments="product.data.comments"></Comments>
+            <Comments :product_id="product.data.id" :comments="product.data.comments"></Comments>
         </div>
         <Footer/>
     </div>
