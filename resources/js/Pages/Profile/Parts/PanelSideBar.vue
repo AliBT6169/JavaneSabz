@@ -27,15 +27,15 @@ const information_edit = markRaw(InformationEdit);
     <div class="Sidebar invisible SidebarCloser overflow-scroll shadow no-scroll opacity-0 grid fixed z-10 duration-300 top-20 w-20 h-[calc(100vh-5.4rem)] rounded-[40px] bg-defaultColor5
     shadow-slate-600 dark:shadow-slate-500 dark:bg-defaultColor right-2 py-10 sm:visible sm:opacity-100 sm:gap-6"
          :class="{'w-52 sm:w-80 !opacity-100 !visible':profileSidebar}">
-        <SidebarItem @click="profileComponent=showProfile" svg="eye" :chosen="profileComponent===ShowProfile">مشاهده
+        <SidebarItem @click="profileComponent=showProfile" svg="eye" :chosen="profileComponent===ShowProfile" title="مشاهده پروفایل">مشاهده
             پروفایل
         </SidebarItem>
-        <SidebarItem @click="profileComponent=buyCart" :chosen="profileComponent===BuyCart" svg="cart">سبد خرید
+        <SidebarItem @click="profileComponent=buyCart" :chosen="profileComponent===BuyCart" svg="cart" title="سبد خرید">سبد خرید
         </SidebarItem>
-        <SidebarItem @click="profileComponent=transaction" :chosen="profileComponent===Transaction" svg="card" >تراکنش ها</SidebarItem>
-        <SidebarItem @click="profileComponent=payment" :chosen="profileComponent===Payment" svg="list">سفارشات</SidebarItem>
-        <SidebarItem @click="profileComponent=favorite" :chosen="profileComponent===Favorite" svg="like" class="fill-transparent">علاقه مندی ها</SidebarItem>
-        <SidebarItem @click="profileComponent=comment" :chosen="profileComponent===Comments" svg="comment">نظرات</SidebarItem>
-        <SidebarItem @click="profileComponent=information_edit" :chosen="profileComponent===InformationEdit" svg="edit">تکمیل اطلاعات</SidebarItem>
+        <SidebarItem @click="profileComponent=transaction" :chosen="profileComponent===Transaction" svg="card" title="تراکنش ها">تراکنش ها</SidebarItem>
+        <SidebarItem @click="profileComponent=payment" :chosen="profileComponent===Payment" svg="list" title="سفارشات">سفارشات</SidebarItem>
+        <SidebarItem @click="profileComponent=favorite" :chosen="profileComponent===Favorite" svg="like" title="علاقه مندی ها" class="fill-transparent">علاقه مندی ها</SidebarItem>
+        <SidebarItem @click="profileComponent=comment" :chosen="profileComponent===Comments" svg="comment" title="نظرات">نظرات</SidebarItem>
+        <SidebarItem @click="profileComponent=information_edit" :chosen="profileComponent===InformationEdit" svg="edit" title="تکمیل اطلاعات">تکمیل اطلاعات</SidebarItem>
     </div>
 </template>

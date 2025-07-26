@@ -12,7 +12,7 @@ const favorite = markRaw(Favorite);
 // const productShow = markRaw(ProductShow);
 
 const connectUsModalVisibility = ref(false);
-const profileSidebar = ref(false);
+const profileSidebar = ref(true);
 const profileComponent = ref(showProfile);
 const Modal = ref(false);
 const ModalComponent = ref();
