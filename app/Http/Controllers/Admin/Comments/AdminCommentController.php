@@ -25,7 +25,7 @@ class AdminCommentController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/pages/Comments/create');
+        //
     }
 
     /**
@@ -78,6 +78,9 @@ class AdminCommentController extends Controller
 
     public function search(string $search)
     {
-        return response()->json(AdminCommentsIndexResource::collection(Comment::where('comment', 'LIKE', '%' . $search=='***'?'':$search . '%')->paginate(20)));
+        if ($search != '***')
+            return response()->json(AdminCommentsIndexResource::collection(Comment::where('comment', 'LIKE', '%' . $search . '%')->latest()->paginate(20)));
+        else
+            return response()->json(AdminCommentsIndexResource::collection(Comment::latest()->paginate(20)));
     }
 }

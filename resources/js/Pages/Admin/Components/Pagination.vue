@@ -20,7 +20,7 @@ const props = defineProps({
         <Link v-if="links.prev!==null" :href="links.prev">
             <svg-component name="arrow-left" class="size-4 sm:size-5 rotate-180"/>
         </Link>
-        <Link :href="route(createLink)">
+        <Link v-if="createLink" :href="route(createLink)">
             افزودن
         </Link>
         <Link  v-if="links.next!==null" :href="links.next">

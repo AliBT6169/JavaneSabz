@@ -36,21 +36,24 @@ const commentVisibility = ref(false);
 </script>
 
 <template>
-    <div class="rounded-xl overflow-hidden border-2 p-2 border-adminColor1 space-y-5 h-20 duration-300"
-         :class="{'h-40':commentVisibility}">
-        <div class="flex justify-between *:w-60 *:flex *:gap-2 *:items-center">
+    <div class="w-72 rounded-xl overflow-hidden border-2 p-2 border-adminColor1 duration-300 lg:w-full" :class="{'space-y-10':commentVisibility}">
+        <div
+            class="space-y-5 justify-between items-center *:flex *:gap-2 *:items-center *:m-auto *:w-fit lg:flex lg:space-y-0 lg:*:w-60">
             <div class="">
                 <img :src="comment.user.image" alt="" class="size-14 rounded-full">
                 <div class="">{{ comment.user.name }}</div>
             </div>
+            <div class="!hidden lg:!block h-10 !w-1 rounded-full bg-gray-700"></div>
             <div class="">
                 <div class="">{{ comment.created_at }}</div>
             </div>
+            <div class="!hidden lg:!block h-10 !w-1 rounded-full bg-gray-700"></div>
             <div class="">
                 <img :src="comment.product_variation.image[0].image" alt="" class="size-14 rounded-full">
                 <div class="">{{ comment.product_variation.name }}</div>
             </div>
-            <div class="">
+            <div class="!hidden lg:!block h-10 !w-1 rounded-full bg-gray-700"></div>
+            <div class="justify-end">
                 <select class="rounded-xl cursor-pointer text-center" name="" id="" v-model="form.status"
                         @change="changeStatus"
                         :class="{
@@ -63,14 +66,15 @@ const commentVisibility = ref(false);
                     <option class="cursor-pointer bg-green-400" :selected="form.status===1" value="1">تایید شده</option>
                     <option class="cursor-pointer bg-red-400" :selected="form.status===2" value="2">تایید نشده</option>
                 </select>
-            </div>
-            <div class="justify-end pl-2">
-                <svg-component name="arrow-left" @click="commentVisibility = !commentVisibility" class="cursor-pointer duration-300 size-7"
-                               :class="{'-rotate-90':commentVisibility}"/>
+                <div class="!w-fit pl-2">
+                    <svg-component name="arrow-left" @click="commentVisibility = !commentVisibility"
+                                   class="cursor-pointer duration-300 size-7"
+                                   :class="{'-rotate-90':commentVisibility}"/>
+                </div>
             </div>
         </div>
-        <div class="flex gap-2 items-center ">
-            <div class="">
+        <div class="duration-300 h-40 lg:h-20 overflow-scroll" :class="{'!h-0 invisible opacity-0':!commentVisibility}">
+            <div class="text-center">
                 {{ comment.comment }}
             </div>
         </div>
