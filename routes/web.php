@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Home\CallToAdmin\CallToAdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -42,4 +43,6 @@ Route::controller(CategoryController::class)->group(function () {
 Route::controller(BrandController::class)->group(function () {
     Route::get('/brands', 'show')->name('brands.show');
 });
+
+Route::post('TextToAdmin', [CallToAdminController::class, 'store'])->name('textToAdmin');
 require __DIR__ . '/auth.php';
