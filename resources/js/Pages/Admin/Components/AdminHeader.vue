@@ -6,6 +6,9 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
+import {ref} from "vue";
+
+const mailModal = ref(false);
 </script>
 
 <template>
@@ -17,7 +20,7 @@ import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
             <div @click="useAdminStore().SideBar = !useAdminStore().SideBar">
                 <svg-component name="admin-menu" class="size-7 sm:size-10"/>
             </div>
-            <svg-component name="mail" class="size-7 sm:size-10"/>
+            <svg-component name="mail" class="size-7 sm:size-10" @click="mailModal = !mailModal"/>
             <svg-component name="bell" class="size-7 sm:size-10"/>
         </div>
         <!--        middleSide-->

@@ -12,6 +12,7 @@ class CallToAdmin extends Model
         'name',
         'phone',
         'text',
+        'seen'
     ];
 
 }

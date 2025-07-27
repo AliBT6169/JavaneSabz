@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('phone');
             $table->text('text');
+            $table->boolean('seen')->default(false);
             $table->timestamps();
         });
     }
