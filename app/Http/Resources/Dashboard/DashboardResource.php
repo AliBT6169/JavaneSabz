@@ -24,6 +24,7 @@ class DashboardResource extends JsonResource
             'gender' => $this->gender,
             'email' => $this->email,
             'cellphone' => $this->cellphone,
+            'comments' => UserCommentResource::collection($this->comments),
             'created_at' => jalalian::fromDateTime($this->created_at)->format('l, d F Y'),
             'user_address' => $this->address($this->address),
             'user_post_code' => $this->address->postcode ?? '',
