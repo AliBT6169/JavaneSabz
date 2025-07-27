@@ -27,7 +27,7 @@ class AdminCommentsIndexResource extends JsonResource
                 'id' => $this->product_variation_id,
                 'name' => $this->product_variation->product->name,
                 'value' => $this->product_variation->value,
-                'image' => $this->product_variation->gallery->count() != 0 ? GalleryResource::collection($this->product_variation->gallery) : [['image' => '/images/default/product.png']],
+                'image' => $this->product_variation->gallery->count() != 0 ? GalleryResource::collection($this->product_variation->gallery) : [['image' => $this->product_variation->product->primary_image]],
             ],
             'comment' => $this->comment,
             'created_at' => Jalalian::fromDateTime($this->created_at)->format('l, d F Y H:i:s'),

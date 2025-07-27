@@ -233,6 +233,7 @@ return [
         "brand" => "برند",
         "category" => "دسته بندی",
         "is_active" => "وضعیت",
+        "comment" => "نظر",
 
 
         'variation.*.size' => 'اندازه محصول',

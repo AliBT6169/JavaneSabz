@@ -36,11 +36,11 @@ const commentVisibility = ref(false);
 </script>
 
 <template>
-    <div class="w-72 rounded-xl overflow-hidden border-2 p-2 border-adminColor1 duration-300 lg:w-full" :class="{'space-y-10':commentVisibility}">
+    <div class="w-72 rounded-xl overflow-hidden border-2 p-2 border-adminColor1 duration-300 lg:w-full" :class="{'space-y-5':commentVisibility}">
         <div
-            class="space-y-5 justify-between items-center *:flex *:gap-2 *:items-center *:m-auto *:w-fit lg:flex lg:space-y-0 lg:*:w-60">
+            class="space-y-5 justify-between items-center lg:*:flex lg:*:gap-2 *:items-center *:text-center *:m-auto *:w-fit lg:flex lg:space-y-0 lg:*:w-60">
             <div class="">
-                <img :src="comment.user.image" alt="" class="size-14 rounded-full">
+                <img :src="comment.user.image" alt="" class="size-20 lg:size-14 rounded-full">
                 <div class="">{{ comment.user.name }}</div>
             </div>
             <div class="!hidden lg:!block h-10 !w-1 rounded-full bg-gray-700"></div>
@@ -48,12 +48,15 @@ const commentVisibility = ref(false);
                 <div class="">{{ comment.created_at }}</div>
             </div>
             <div class="!hidden lg:!block h-10 !w-1 rounded-full bg-gray-700"></div>
-            <div class="">
+            <div class="text-sm">
                 <img :src="comment.product_variation.image[0].image" alt="" class="size-14 rounded-full">
-                <div class="">{{ comment.product_variation.name }}</div>
+                <div class="space-y-0.5">
+                    <div class="">نام محصول :{{ comment.product_variation.name }}</div>
+                    <div class="">اندازه محصول :{{ comment.product_variation.value }}</div>
+                </div>
             </div>
             <div class="!hidden lg:!block h-10 !w-1 rounded-full bg-gray-700"></div>
-            <div class="justify-end select-none">
+            <div class="flex justify-end select-none">
                 <select class="rounded-xl cursor-pointer text-center" name="" id="" v-model="form.status"
                         @change="changeStatus"
                         :class="{

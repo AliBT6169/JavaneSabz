@@ -23,7 +23,7 @@ const sendData = () => {
                 await axios.post(route('Comment.store'), form.value).then((res) => {
                     useToast().success(res.data);
                 }).catch((err) => {
-                    console.log(err);
+                    useToast().error(err.response.data.message);
                 });
             }
         }

@@ -22,7 +22,7 @@ class UserCommentResource extends JsonResource
                 'id' => $this->product_variation->id,
                 'name' => $this->product_variation->product->name,
                 'value' => $this->product_variation->value,
-                'image' => $this->product_variation->gallery->count() != 0 ? GalleryResource::collection($this->product_variation->gallery) : [$this->product_variation->product->primary_image]
+                'image' => $this->product_variation->gallery->count() != 0 ? GalleryResource::collection($this->product_variation->gallery) : [['image'=>$this->product_variation->product->primary_image]]
             ],
             'comment' => $this->comment,
             'status' => $this->approved,
