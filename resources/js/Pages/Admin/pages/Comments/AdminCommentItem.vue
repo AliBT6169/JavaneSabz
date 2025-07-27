@@ -53,7 +53,7 @@ const commentVisibility = ref(false);
                 <div class="">{{ comment.product_variation.name }}</div>
             </div>
             <div class="!hidden lg:!block h-10 !w-1 rounded-full bg-gray-700"></div>
-            <div class="justify-end">
+            <div class="justify-end select-none">
                 <select class="rounded-xl cursor-pointer text-center" name="" id="" v-model="form.status"
                         @change="changeStatus"
                         :class="{
@@ -73,7 +73,7 @@ const commentVisibility = ref(false);
                 </div>
             </div>
         </div>
-        <div class="duration-300 h-40 lg:h-20 overflow-scroll" :class="{'!h-0 invisible opacity-0':!commentVisibility}">
+        <div class="duration-300 h-40 lg:h-20 overflow-y-scroll no-scrollbar" :class="{'!h-0 invisible opacity-0':!commentVisibility}">
             <div class="text-center">
                 {{ comment.comment }}
             </div>
