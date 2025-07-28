@@ -59,7 +59,7 @@ const mailSVGClick = async () => {
                 <div v-else class="text-center">
                     پیام جدیدی موجود نیست!
                 </div>
-                <Link :href="route('admin.userMails.index')" class="border-2 rounded-xl text-center mx-5 duration-300 hover:scale-95">مشاهده همه پیام ها</Link>
+                <Link :href="route('admin.userMails.index')" class="block border-2 rounded-xl text-center mx-5 duration-300 hover:scale-95">مشاهده همه پیام ها</Link>
             </div>
         </div>
     </div>

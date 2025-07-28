@@ -4,7 +4,7 @@ import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 
 const props = defineProps({
-    texts: {
+    mails: {
         type: Array,
         required: true
     },

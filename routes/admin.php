@@ -95,7 +95,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::controller(AdminUserMailController::class)->group(function () {
         Route::get('/getUsersNotSeenMails','getUsersNotSeenMails')->name('getUsersNotSeenMails');
         Route::get('/seenAllMails','seenAllMails')->name('seenAllMails');
-        Route::get('/seenAllMails','index')->name('userMails.index');
+        Route::get('/UserMailsIndex','index')->name('userMails.index');
     });
 });
 
