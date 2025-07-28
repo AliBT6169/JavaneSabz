@@ -51,8 +51,8 @@ import {router} from "@inertiajs/vue3";
                              :href="route('admin.comments.index')" name="comments.index">
                 نظرات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('AdminDashboard',10)" icon="settings"
-                             name="AdminDashboard">
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('settings.index',10)" icon="settings"
+                             :href="route('admin.settings.index')" name="settings.index">
                 تنظیمات
             </AdminSidbarItem>
             <AdminSidbarItem @mousedown="useAuthStore().logout()" :href="route('logout')" icon="logout" methode="post">

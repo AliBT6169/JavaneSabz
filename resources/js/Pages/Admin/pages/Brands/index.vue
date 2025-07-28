@@ -1,8 +1,6 @@
 <script setup>
 
 import Layout from "@/Pages/Admin/Components/Layout.vue";
-import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
-import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import BrandItem from "@/Pages/Admin/Components/BrandItem.vue";
 import {Link} from "@inertiajs/vue3";
@@ -25,8 +23,6 @@ const searchKeyWordChanged = (e) => {
 </script>
 
 <template>
-    <AdminHeader/>
-    <AdminSideBar/>
     <Layout>
         <AdminInput v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>

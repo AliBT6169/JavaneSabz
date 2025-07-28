@@ -1,6 +1,4 @@
 <script setup>
-import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
-import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
@@ -103,8 +101,6 @@ const sendData = async () => {
 </script>
 
 <template>
-    <AdminHeader/>
-    <AdminSideBar/>
     <Layout>
         <form @submit.prevent="sendData">
             <div

@@ -34,7 +34,7 @@ const disable = async () => {
     <div
         class="p-2 rounded-xl border-2 border-gray-500 space-y-2 w-60 bg-adminColor1 *:flex *:justify-between *:items-center *:border-b *:border-gray-500 *:pb-1 dark:bg-adminColor4">
         <div class="!justify-center">
-            <div class="">{{ order.created_at }}</div>
+            <div class="text-sm font-bold">{{ order.created_at }}</div>
         </div>
         <div class="">
             <div class="">کد سفارش:</div>

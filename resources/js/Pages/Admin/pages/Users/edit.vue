@@ -1,6 +1,4 @@
 <script setup>
-import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
-import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
@@ -72,8 +70,6 @@ const changeData = async () => {
 </script>
 
 <template>
-    <AdminHeader/>
-    <AdminSideBar/>
     <Layout>
         <form @submit.prevent="changeData" class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2

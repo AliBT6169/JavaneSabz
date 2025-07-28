@@ -1,6 +1,4 @@
 <script setup>
-import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
-import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminOrderItem from "@/Pages/Admin/Components/AdminOrderItem.vue";
 import {Link} from "@inertiajs/vue3";
@@ -21,8 +19,6 @@ const pageCount = ref({
 </script>
 
 <template>
-    <AdminHeader/>
-    <AdminSideBar/>
     <Layout>
         <AdminPageShower PageName="سفارشات" :PageCount="pageCount"/>
         <div class="flex w-full justify-center items-center gap-6 flex-wrap">

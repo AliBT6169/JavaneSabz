@@ -1,8 +1,6 @@
 <script setup>
 
-import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
-import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import {Link} from "@inertiajs/vue3";
 import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
@@ -10,7 +8,6 @@ import axios from "axios";
 import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
-import {ref} from "vue";
 
 
 const props = defineProps(["userData"]);
@@ -45,8 +42,6 @@ const searchKeyWordChanged = (e) => {
 </script>
 
 <template>
-    <AdminHeader/>
-    <AdminSideBar/>
     <Layout>
         <AdminInput class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>

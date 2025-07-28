@@ -1,6 +1,4 @@
 <script setup>
-import AdminHeader from "@/Pages/Admin/Components/AdminHeader.vue";
-import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
@@ -25,8 +23,6 @@ const searchKeyWordChanged = (e) => {
 </script>
 
 <template>
-    <AdminHeader/>
-    <AdminSideBar/>
     <Layout>
         <div class="space-y-4">
             <AdminInput v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"

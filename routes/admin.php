@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Delivery\DeliveryController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
+use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserMail\AdminUserMailController;
@@ -93,9 +94,13 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
 
     Route::controller(AdminUserMailController::class)->group(function () {
-        Route::get('/getUsersNotSeenMails','getUsersNotSeenMails')->name('getUsersNotSeenMails');
-        Route::get('/seenAllMails','seenAllMails')->name('seenAllMails');
-        Route::get('/UserMailsIndex','index')->name('userMails.index');
+        Route::get('/getUsersNotSeenMails', 'getUsersNotSeenMails')->name('getUsersNotSeenMails');
+        Route::get('/seenAllMails', 'seenAllMails')->name('seenAllMails');
+        Route::get('/UserMailsIndex', 'index')->name('userMails.index');
+    });
+
+    Route::controller(SettingController::class)->group(function () {
+        Route::get('/setting/index', 'index')->name('settings.index');
     });
 });
 
