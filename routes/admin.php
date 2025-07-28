@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserMail\AdminUserMailController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -89,6 +90,10 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::get('/comment/create', 'create')->name('comments.create');
         Route::patch('/comment/change_status', 'change_status')->name('comments.change_status');
         Route::get('/comment/search/{text}', 'search')->name('comments.search');
+    });
+
+    Route::controller(AdminUserMailController::class)->group(function () {
+        Route::get('/getUsersNotSeenMails','getUsersNotSeenMails')->name('getUsersNotSeenMails');
     });
 });
 

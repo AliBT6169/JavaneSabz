@@ -5,10 +5,8 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
-import AdminSearch from "@/Pages/Admin/Components/AdminSearch.vue";
-import {ref} from "vue";
+import MailModal from "@/Pages/Admin/pages/UserTexts/MailModal.vue";
 
-const mailModal = ref(false);
 </script>
 
 <template>
@@ -20,11 +18,8 @@ const mailModal = ref(false);
             <div @click="useAdminStore().SideBar = !useAdminStore().SideBar">
                 <svg-component name="admin-menu" class="size-7 sm:size-10"/>
             </div>
-            <svg-component name="mail" class="size-7 sm:size-10" @click="mailModal = !mailModal"/>
+            <MailModal/>
             <svg-component name="bell" class="size-7 sm:size-10"/>
-        </div>
-        <!--        middleSide-->
-        <div class="">
         </div>
         <!--        leftSide-->
         <div class="flex items-center gap-2">
