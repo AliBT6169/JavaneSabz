@@ -24,6 +24,7 @@ class ProductVariationsResource extends JsonResource
             'quantity' => $this->quantity,
             'off_sale' => $this->off_sale ?? 0,
             'sale_price' => $this->sale_price,
+            'sailed_quantity' => $this->sailed_quantity,
             'images' => $this->gallery->count() != 0 ? GalleryResource::collection($this->gallery) : $this->product->primary_image
         ];
     }

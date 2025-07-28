@@ -9,7 +9,8 @@ const props = defineProps({
     dashboardData: Object,
 });
 const waitOrders = ref(props.dashboardData.waitOrders.data);
-console.log(waitOrders);
+const niceSaleProducts = ref(props.dashboardData.niceSaleProducts.data);
+console.log(niceSaleProducts.value);
 </script>
 
 <template>
@@ -18,7 +19,7 @@ console.log(waitOrders);
         <DashboardItemsLyout title="سفارشات در انتظار تایید:">
             <AdminOrderItem v-for="item in waitOrders" :order="item"/>
         </DashboardItemsLyout>
-        <DashboardItemsLyout>
+        <DashboardItemsLyout title="محصولات پرفروش:">
 
         </DashboardItemsLyout>
     </Layout>

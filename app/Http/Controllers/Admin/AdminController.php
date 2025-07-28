@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         $dashboardData = [];
         $dashboardData['waitOrders'] = OrderIndexResource::collection(Order::where("status", 0)->where('payment_status', 1)->latest()->get());
-        $dashboardData['niceSaleProducts'] = ProductVariationsResource::collection(ProductVariation::orderBy("sailed_quantity", "desc")->take(1)->get());
+        $dashboardData['niceSaleProducts'] = ProductVariationsResource::collection(ProductVariation::orderBy("sailed_quantity", "desc")->take(5)->get());
         return Inertia::render('Admin/Index', ['dashboardData' => $dashboardData]);
     }
 }
