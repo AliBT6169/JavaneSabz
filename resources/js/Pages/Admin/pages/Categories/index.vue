@@ -6,6 +6,8 @@ import {Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import CategoryItem from "@/Pages/Admin/Components/CategoryItem.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
+import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
 
 const props = defineProps({
     categories: null,
@@ -24,16 +26,13 @@ const searchKeyWordChanged = (e) => {
 
 <template>
     <Layout>
-        <AdminInput v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"
+        <AdminInput v-if="filteredCategories.length>0" v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>
-        <div class="space-y-5 lg:flex lg:space-y-0 lg:gap-6 lg:flex-wrap lg:items-center">
+        <div v-if="filteredCategories.length>0"
+             class="space-y-5 lg:flex lg:space-y-0 lg:gap-6 lg:flex-wrap lg:items-center">
             <CategoryItem v-for="item in filteredCategories" @deleted="categoryDeleted($event)" :category-data="item"/>
-            <div class="flex justify-center">
-                <Link :href="route('admin.categories.create')"
-                      class="border-2 cursor-pointer border-black rounded-xl duration-300 p-2 hover:scale-95">
-                    <svg-component name="plus" class="size-40"/>
-                </Link>
-            </div>
         </div>
+        <div v-else class="text-center text-xl font-bold">هنوز دسته بندی نساختید!</div>
+            <AdminCreateButton table-name="categories"/>
     </Layout>
 </template>

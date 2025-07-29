@@ -58,21 +58,19 @@ const deleter = async () => {
 <template>
 
     <div
-        class="text-center w-80 h-[30rem] overflow-y-auto border-2 cursor-pointer border-black rounded-xl p-2 lg:space-y-6 *:m-auto *:w-fit">
+        class="text-center w-60 h-96 border-2 border-black rounded-xl p-2 lg:space-y-6 *:m-auto *:w-full">
         <div class="space-y-2">
-            <div class="w-full flex justify-center items-center lg:w-60">
-                <img :src="categoryData.icon" alt=""
-                     class="rounded-full duration-300 border-2 border-adminColor1 size-32 ">
-            </div>
+            <img :src="categoryData.icon" alt=""
+                 class="rounded-full duration-300 border-2 border-adminColor1 size-28 m-auto">
             <div
-                class="flex gap-2 items-center border-b-2 pb-2 border-black dark:border-white lg:border-0 lg:p-0 lg:gap-6">
-                <div class="w-full"><span class="lg:block">نام: </span>{{ categoryData.name }}</div>
-                <div class="w-full"><span class="lg:block">تعداد محصول: </span>{{ categoryData.productsQuantity }}</div>
+                class="">
+                <div class="">{{ categoryData.name }}</div>
+                <div class="">{{ categoryData.productsQuantity }}</div>
             </div>
             <div class="w-full lg:hidden"><span class="">توضیحات :</span>
                 {{ categoryData.description }}
             </div>
-            <div class="flex gap-2 items-center lg:block lg:space-y-2">
+            <div class="flex gap-2 cursor-pointer items-center lg:block lg:space-y-2">
                 <div class="py-1 w-full rounded-lg border border-black lg:px-10"
                      @click="toggle"
                      :class="{'bg-green-500/70':is_active,'bg-red-500/70':!is_active }">
@@ -88,7 +86,7 @@ const deleter = async () => {
                 </div>
             </div>
         </div>
-        <div class="w-full hidden lg:block"><span class="">توضیحات :</span>
+        <div :title="categoryData.description" class="w-full hidden lg:block truncate"><span class="">توضیحات :</span>
             {{ categoryData.description }}
         </div>
     </div>

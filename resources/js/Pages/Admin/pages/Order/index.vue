@@ -5,6 +5,8 @@ import {Link} from "@inertiajs/vue3";
 import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
 import {ref} from "vue";
+import CategoryItem from "@/Pages/Admin/Components/CategoryItem.vue";
+import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
 
 const props = defineProps({
     orderData: {
@@ -21,15 +23,11 @@ const pageCount = ref({
 <template>
     <Layout>
         <AdminPageShower PageName="سفارشات" :PageCount="pageCount"/>
-        <div class="flex w-full justify-center items-center gap-6 flex-wrap">
+        <div v-if="orders.length>0" class="flex w-full justify-center items-center gap-6 flex-wrap">
             <AdminOrderItem v-for="item in orders" :order="item"/>
-            <Link :href="route('admin.orders.create')">
-                <div
-                    class="size-40 rounded-xl border-2 border-adminColor2 cursor-pointer duration-300 hover:scale-95 flex items-center justify-center dark:border-adminColor2">
-                    <div class="text-8xl">+</div>
-                </div>
-            </Link>
         </div>
+        <div v-else class="text-center text-xl font-bold">سفارشی موجود نیست!</div>
+        <AdminCreateButton table-name="orders"/>
         <Pagination :links="orderData.links" :meta="orderData.meta" :create-link="'admin.orders.create'"/>
     </Layout>
 </template>

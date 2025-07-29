@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Link :href="route('admin.'+tableName+'.create')" class="m-auto size-40 rounded-xl border-4 border-adminColor2 flex justify-center items-center">
+    <Link :href="route('admin.'+tableName+'.create')" class="m-auto size-40 flex justify-center items-center duration-300 hover:scale-95">
         <svg-component name="plus" class="size-full text-adminColor2"/>
     </Link>
 </template>
