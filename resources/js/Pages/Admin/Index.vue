@@ -4,6 +4,7 @@ import Layout from "@/Pages/Admin/Components/Layout.vue";
 import {ref} from "vue";
 import AdminOrderItem from "@/Pages/Admin/Components/AdminOrderItem.vue";
 import DashboardItemsLyout from "@/Pages/Admin/Components/Dashboard/DashboardItemsLyout.vue";
+import AdminProductShow from "@/Pages/Admin/Components/Dashboard/AdminProductShow.vue";
 
 const props = defineProps({
     dashboardData: Object,
@@ -20,7 +21,7 @@ console.log(niceSaleProducts.value);
             <AdminOrderItem v-for="item in waitOrders" :order="item"/>
         </DashboardItemsLyout>
         <DashboardItemsLyout title="محصولات پرفروش:">
-
+            <AdminProductShow v-for="item in niceSaleProducts" :product="item"/>
         </DashboardItemsLyout>
     </Layout>
 </template>
