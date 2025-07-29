@@ -74,6 +74,7 @@ class UserController extends Controller
         $user = User::whereId($id)->first();
         if ($user->gallery != null) {
             File::deleteDirectory(public_path('/images/users/' . $user->id));
+            $user->gallery->delete();
         }
         $user->delete();
         return [
