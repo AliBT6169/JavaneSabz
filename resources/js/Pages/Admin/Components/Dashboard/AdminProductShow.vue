@@ -50,7 +50,7 @@ const changeQuantity = async (e) => {
             </div>
             <div class="text-center">
                 <div class="">موجودی:</div>
-                <div class="space-y-2">
+                <div class="space-y-0.5">
                     <div class="">{{ product.quantity.toLocaleString('en-US') }}</div>
                     <div
                         class="flex rounded-xl overflow-hidden text-lg select-none *:px-2 *:cursor-pointer *:duration-300 hover:*:scale-90">

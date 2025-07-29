@@ -6,6 +6,7 @@ import BrandItem from "@/Pages/Admin/Components/BrandItem.vue";
 import {Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
 
 const props = defineProps({
     brands: null,
@@ -28,10 +29,7 @@ const searchKeyWordChanged = (e) => {
                     @update:modelValue="searchKeyWordChanged($event)"/>
         <div class="grid grid-cols-3 gap-5 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
             <BrandItem v-for="item in filteredBrands" @deleted="brandDeleted($event)" :brand-data="item"/>
-            <Link :href="route('admin.brands.create')"
-                  class="border-2 cursor-pointer border-black rounded-xl duration-300 p-2 hover:scale-95">
-                <svg-component name="plus" class="size-full"/>
-            </Link>
+            <AdminCreateButton table-name="brands"/>
         </div>
     </Layout>
 </template>

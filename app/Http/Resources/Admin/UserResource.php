@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'gender' => $this->gender,
             'cellphone' => $this->cellphone,
             'email' => $this->email,
+            'buy_item_quantity' => $this->buy_item_quantity,
             'address' => $this->address != null ? [
                 'province' => $this->address->city->province->slug,
                 'province_id' => $this->address->city->province->id,

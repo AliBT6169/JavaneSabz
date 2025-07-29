@@ -33,6 +33,7 @@ class User extends Authenticatable
         'password',
         'provider',
         'is_admin',
+        'buy_item_quantity',
         'created_at',
     ];
 

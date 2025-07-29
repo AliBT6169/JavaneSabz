@@ -21,7 +21,7 @@ const filterData = async (e) => {
 <template>
     <Layout>
         <AdminInput @update:modelValue="filterData($event)" name="جستجو"/>
-        <div class="flex  flex-wrap gap-5 justify-center lg:block lg:space-y-5">
+        <div class="flex flex-wrap gap-5 justify-center lg:block lg:space-y-5">
             <AdminCommentItem v-for="item in filteredData" :comment="item"/>
         </div>
         <Pagination :links="commentsData.links" :meta="commentsData.meta"/>

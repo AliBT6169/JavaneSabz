@@ -10,12 +10,8 @@ import AdminSideBar from "@/Pages/Admin/Components/AdminSideBar.vue";
     <AdminHeader/>
     <AdminSideBar/>
     <div class="pr-20 pl-4 duration-300 pt-20 space-y-5"
-         :class="{' lg:pr-52':useAdminStore().SideBar}"
+         :class="{'lg:!pr-52':useAdminStore().SideBar}"
          @click="useAdminStore().SideBar = useWindowSize().width.value < 700 ?false:useAdminStore().SideBar">
         <slot/>
     </div>
 </template>
-
-<style scoped>
-
-</style>
