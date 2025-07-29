@@ -8,17 +8,12 @@ use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
-    public function cities($province_id)
+    public function cities($city_id)
     {
-        $data = City::where('province_id', $province_id)->get();
-        $result = [];
-        foreach ($data as $city) {
-            $result[] = [
-                'id' => $city->id,
-                'name' => $city->slug,
-            ];
-        }
-        return $result;
+        $city = City::whereId($city_id);
+        $province =  $city->province;
+        $cities = $province->cities;
+
     }
 
     public function provinces()
