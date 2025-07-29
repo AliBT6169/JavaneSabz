@@ -81,6 +81,8 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(ProductVariationController::class)->group(function () {
         Route::get('/productVariation/show', 'show')->name('productVariations.show');
+        Route::get('/productVariation/increment/{id}', 'Increment')->name('productVariation.Increment');
+        Route::get('/productVariation/decrement/{id}', 'Decrement')->name('productVariation.Decrement');
     });
     Route::get('/deliveries/GetCityName/{city_id}', [DeliveryController::class, 'GetCityName'])->name('deliveries.GetCityName');
     Route::controller(TransactionController::class)->group(function () {

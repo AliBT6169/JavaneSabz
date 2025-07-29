@@ -13,4 +13,17 @@ class ProductVariationController extends Controller
     {
         return response()->json(ProductVariationsResource::collection(ProductVariation::latest()->get()), 200);
     }
+
+    public function Increment(int $id)
+    {
+        ProductVariation::whereId($id)->increment('quantity');
+    }
+
+    public function Decrement(int $id)
+    {
+        if (ProductVariation::whereId($id)->first()->quantity > 0)
+            ProductVariation::whereId($id)->decrement('quantity');
+        else
+            abort(500, 'مقدار محصول 0 شده است!');
+    }
 }
