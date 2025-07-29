@@ -42,9 +42,9 @@ const userDelete = async (id) => {
         <td class="flex pt-2 justify-center items-center"><span
             class="group py-1 px-2 flex justify-center duration-500 bg-gray-500 rounded-lg relative hover:bg-gray-700">...
                         <div class="flex gap-2 justify-center items-center invisible opacity-0 top-0 duration-300 absolute lg:gap-6
-                        *:border *:rounded-full *:p-1 *:duration-300 hover:*:text-red-500 hover:*:border-red-500 *:size-5 lg:*:size-7
+                        *:border *:rounded-full *:p-1 *:duration-300 hover:*:text-red-500 hover:*:border-red-500 *:size-7
                          group-hover:visible group-hover:opacity-100 group-hover:-top-5">
-                            <svg-component name="delete" @click="userDelete(user.id)"/>
+                            <svg-component class="size-full" name="delete" @click="userDelete(user.id)"/>
                             <Link class="block" :href="route('admin.users.edit',{'id':user.id})"><svg-component
                                 class="size-full" name="edit"/></Link>
                         </div>
