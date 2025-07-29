@@ -9,6 +9,7 @@ use App\Http\Resources\Admin\UserResource;
 use App\Models\Address;
 use App\Models\Gallery;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
@@ -70,7 +71,11 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        User::destroy($id);
+        $user = User::whereId($id)->first();
+        if ($user->gallery != null) {
+            File::deleteDirectory(public_path('/images/users/' . $user->id));
+        }
+        $user->delete();
         return [
             'status' => 200,
             'message' => 'User deleted'
