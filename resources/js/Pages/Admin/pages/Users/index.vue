@@ -6,8 +6,8 @@ import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminUserTable from "@/Pages/Admin/pages/Users/AdminUserTable.vue";
 import AdminUserTableItems from "@/Pages/Admin/pages/Users/AdminUserTableItems.vue";
 
-
 const props = defineProps(["userData"]);
+console.log(props.userData)
 </script>
 
 <template>

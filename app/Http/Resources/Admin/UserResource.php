@@ -18,6 +18,7 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'full_name' => $this->full_name ?? '',
+            'image' => $this->gallery == null ? '/images/default/default.jpg' : $this->gallery->media,
             'user_name' => $this->name,
             'user_image' => $this->gallery->media ?? '',
             'is_admin' => $this->is_admin,
