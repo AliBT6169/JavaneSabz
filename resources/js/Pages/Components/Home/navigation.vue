@@ -119,8 +119,8 @@ const showConnectModal = () => {
                 <div class="separate"></div>
                 <!--                Lesson-->
                 <div class="header-items">
-                    <svg-component name="book" title="آموزش" class="size-5 lg:size-6"></svg-component>
-                    <h1 class="">آموزش ها</h1>
+                    <svg-component name="indexBrands" title="برند" class="size-5 lg:size-6"></svg-component>
+                    <h1 class="">برند ها</h1>
                 </div>
                 <div class="separate"></div>
                 <!--                about us-->
@@ -167,7 +167,7 @@ const showConnectModal = () => {
                     <svg-component name="like" class="size-7"></svg-component>
                 </div>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
-                    <svg-component name="book" class="size-7"></svg-component>
+                    <svg-component name="indexBrands" class="size-7"></svg-component>
                 </div>
             </div>
         </div>
