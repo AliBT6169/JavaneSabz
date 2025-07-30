@@ -128,6 +128,7 @@ class UserController extends Controller
             $validatedImage = $request->validate([
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
+            unlink(public_path(User::whereId($request->id)->first()->gallery->media));
             Gallery::updateImage(User::class, $request->image, $request->id);
         }
         return 'done';
