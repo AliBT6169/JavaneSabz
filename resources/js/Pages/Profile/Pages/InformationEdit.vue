@@ -8,9 +8,8 @@ import AddressSelectOptionBt from "@/Pages/Components/Form/addressSelectOptionBT
 
 const store = useAuthStore();
 const userInfo = ref(useAuthStore().user);
-const formData = new FormData();
 
-const form = {
+const form = ref({
     id: userInfo.value.id,
     image: userInfo.value.image,
     name: userInfo.value.name,
@@ -19,14 +18,14 @@ const form = {
     cellphone: userInfo.value.cellphone,
     email: userInfo.value.email,
     address: userInfo.value.user_address.address,
-    city_id: userInfo.value.user_address.city_id,
+    city_id: userInfo.value.user_address.city.id,
     post_code: userInfo.value.user_post_code,
-};
-
+});
 const submitForm = async (form) => {
+    console.log(form)
     await store.informationUpdate(form);
 }
-const imagePreview = ref(form.image);
+const imagePreview = ref(form.value.image);
 
 const onFileChange = (event) => {
     const file = event.target.files[0];
@@ -43,9 +42,9 @@ const onFileChange = (event) => {
 }
 
 onMounted(async () => {
-    const response = await fetch(form.image)
+    const response = await fetch(form.value.image)
     const blob = await response.blob();
-    form.image = new File([blob], 'defaultImage', {type: blob.type});
+    form.value.image = new File([blob], 'defaultImage', {type: blob.type});
 });
 </script>
 
@@ -91,7 +90,7 @@ onMounted(async () => {
                     <panel-input label="آدرس ایمیل :" type="email" :value="form.email"
                                  @updateValue="(item)=>form.email = item"
                                  placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
-                    <address-select-option-bt label="آدرس:" @updateValue="(item)=>form.city_id = item"/>
+                    <address-select-option-bt label="آدرس:" @update:modelValue="console.log($event)" v-model="form.city_id"/>
                     <panel-input label="توضحات آدرس :" :value="form.address"
                                  @updateValue="(item)=>form.address=item"
                                  placeholder-text="اطلاعات تکمیلی آدرس خود را وارد کنید:"/>

@@ -12,7 +12,6 @@ const emit = defineEmits(["update:modelValue"]);
 
 onMounted(async () => {
     await axios.get(route("cities", props.modelValue === '' ? 126 : props.modelValue)).then(res => {
-        console.log(res.data);
         provinces.value = res.data.provinces;
         province.value = res.data.province.id;
         cities.value = res.data.cities;

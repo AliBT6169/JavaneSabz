@@ -1,25 +1,34 @@
 <script setup>
-import {useAuthStore} from "../Helper/authStore.js";
-import {onMounted, ref, useTemplateRef} from "vue";
+import {onMounted, ref} from "vue";
 
-const props = defineProps(["label"]);
-const emit = defineEmits(["updateValue"]);
+const props = defineProps({
+    label: {
+        type: String,
+        required: true
+    },
+    modelValue: {
+        required: true,
+    },
+});
+const emit = defineEmits(["update:modelValue"]);
 const provinces = ref();
 const cities = ref();
 const province = ref(null);
-const city = ref(null);
 
-onMounted(() => {
-    axios.get(route('provinces')).then((res) => {
-        provinces.value = res.data;
-    }).catch((err) => {
+onMounted(async () => {
+    await axios.get(route("cities", props.modelValue === '' ? 126 : props.modelValue)).then(res => {
+        provinces.value = res.data.provinces;
+        province.value = res.data.province.id;
+        cities.value = res.data.cities;
+        emit("update:modelValue", res.data.city.id);
+        console.log(props.modelValue);
+    }).catch(err => {
         console.log(err)
     });
-
 })
 
-const getCities = async () => {
-    await axios.get(route('cities', {province_id: province.value.value})).then((res) => {
+const setProvince = async (province_id) => {
+    await axios.get(route('getCities', province_id)).then((res) => {
         cities.value = res.data;
     }).catch((err) => {
         console.log(err);
@@ -32,13 +41,17 @@ const getCities = async () => {
         <label class="pr-2 text-black dark:text-white">{{ label }}</label>
         <div class="text-black space-y-2 sm:space-y-0 sm:flex gap-2 items-center *:rounded-tr-full *:rounded-bl-full *:border-defaultColor *:w-full *:bg-transparent
                 focus:*:ring-0 focus:*:border-defaultColor3 dark:focus:*:border-defaultColor3 *:dark:border-defaultColor5">
-            <select name="province" id="province" ref="province" class="" @change="getCities">
-                <option selected value="">{{ useAuthStore().user.user_address.province.data }}</option>
-                <option v-for="item in provinces" :value="item.id">{{ item.name }}</option>
+            <select name="province" id="province" class="" @change="setProvince($event.target.value)">
+                <option v-for="item in provinces" :selected="item.id === province" :value="item.id">{{
+                        item.name
+                    }}
+                </option>
             </select>
-            <select name="city" id="city" ref="city" class="" @change="()=>emit('updateValue',city.value)">
-                <option selected value="">{{ useAuthStore().user.user_address.city.data }}</option>
-                <option v-for="item in cities" :value="item.id">{{ item.name }}</option>
+            <select name="city" id="city" class="" @change="emit('update:modelValue',$event.target.value)">
+                <option v-for="item in cities" :selected="modelValue === item.id" :value="item.id">{{
+                        item.name
+                    }}
+                </option>
             </select>
         </div>
     </div>
