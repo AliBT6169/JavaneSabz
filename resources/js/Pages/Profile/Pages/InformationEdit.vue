@@ -22,7 +22,7 @@ const form = ref({
     post_code: userInfo.value.user_post_code,
 });
 const submitForm = async (form) => {
-    console.log(form)
+    console.log(form);
     await store.informationUpdate(form);
 }
 const imagePreview = ref(form.value.image);
@@ -40,17 +40,11 @@ const onFileChange = (event) => {
         imagePreview.value = null;
     }
 }
-
-onMounted(async () => {
-    const response = await fetch(form.value.image)
-    const blob = await response.blob();
-    form.value.image = new File([blob], 'defaultImage', {type: blob.type});
-});
 </script>
 
 <template>
     <div class="Sidebar p-4">
-        <form action="" @submit.prevent=" submitForm(form)" class="">
+        <form action="" @submit.prevent="submitForm(form)" class="">
             <div class="*:mb-5">
                 <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">
@@ -90,7 +84,7 @@ onMounted(async () => {
                     <panel-input label="آدرس ایمیل :" type="email" :value="form.email"
                                  @updateValue="(item)=>form.email = item"
                                  placeholder-text="آدرس ایمیل خود را وارد کنید:"/>
-                    <address-select-option-bt label="آدرس:" @update:modelValue="console.log($event)" v-model="form.city_id"/>
+                    <address-select-option-bt label="آدرس:" v-model="form.city_id"/>
                     <panel-input label="توضحات آدرس :" :value="form.address"
                                  @updateValue="(item)=>form.address=item"
                                  placeholder-text="اطلاعات تکمیلی آدرس خود را وارد کنید:"/>

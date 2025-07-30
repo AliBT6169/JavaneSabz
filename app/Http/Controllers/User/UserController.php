@@ -44,7 +44,18 @@ class UserController extends Controller
                 'email',
                 Rule::unique('users')->ignore(Auth::id()),
             ],
-            'image' => ['required', 'image', 'max:2048'],
+            'image' => ['required', function ($attribute, $value, $fail) {
+                if (is_string($value))
+                    return;
+                if (request()->hasFile($attribute)) {
+                    $file = request()->file($attribute);
+                    if (!$file->isValid() || !str_starts_with($file->getMimeType(), 'image')) {
+                        $fail('فایل ارسالی باید تصویر باشد');
+                    }
+                } else {
+                    $fail('فیلد تصویر باید شامل تصویر باشد');
+                }
+            }, 'max:2048'],
             'city' => ['required', 'numeric'],
             'address' => ['required', 'string', 'max:500'],
             'cellphone' => ['required', 'numeric', 'digits:11', 'regex:/^(\+98|0)?9\d{9}$/',
@@ -53,7 +64,11 @@ class UserController extends Controller
             'post_code' => ['required', 'numeric', 'digits:10'],
         ]);
 //        image section
-        Gallery::updateImage(User::class, $validatedData['image']);
+        if ($request->hasFile('image')) {
+            if (Auth::user()->gallery != null)
+                unlink(public_path(Auth::user()->gallery->media));
+            Gallery::updateImage(User::class, $validatedData['image'], Auth::id());
+        }
 //        user update section
         User::updateUser($validatedData);
 //        address update or create section

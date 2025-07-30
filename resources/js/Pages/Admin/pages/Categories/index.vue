@@ -8,6 +8,7 @@ import CategoryItem from "@/Pages/Admin/Components/CategoryItem.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
+import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
 
 const props = defineProps({
     categories: null,
@@ -22,10 +23,15 @@ const searchKeyWord = ref("");
 const searchKeyWordChanged = (e) => {
     filteredCategories.value = categoryData.value.filter((item) => item.name.includes(e));
 }
+const pageCount = ref({
+    currentPage: props.categories.meta.current_page,
+    from: props.categories.meta.last_page,
+});
 </script>
 
 <template>
     <Layout>
+        <AdminPageShower PageName="دسته بندی ها" :PageCount="pageCount"/>
         <AdminInput v-if="filteredCategories.length>0" v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>
         <div v-if="filteredCategories.length>0"

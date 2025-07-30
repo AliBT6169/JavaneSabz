@@ -16,7 +16,7 @@ class AdminCommentController extends Controller
      */
     public function index()
     {
-        $comments = AdminCommentsIndexResource::collection(Comment::latest()->paginate(30));
+        $comments = AdminCommentsIndexResource::collection(Comment::latest()->paginate(10));
         return Inertia::render('Admin/pages/Comments/index', ['commentsData' => $comments]);
     }
 

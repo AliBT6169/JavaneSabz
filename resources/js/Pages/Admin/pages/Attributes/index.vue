@@ -7,6 +7,7 @@ import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import {ref} from "vue";
 import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
 import AdminUserMailItem from "@/Pages/Admin/pages/UserMails/AdminUserMailItem.vue";
+import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
 
 const props = defineProps({
     Attributes: {
@@ -22,10 +23,15 @@ const searchKeyWord = ref("");
 const searchKeyWordChanged = (e) => {
     filteredAttributes.value = props.Attributes.data.filter((item) => item.name.includes(e));
 }
+const pageCount = ref({
+    currentPage: props.Attributes.meta.current_page,
+    from: props.Attributes.meta.last_page,
+});
 </script>
 
 <template>
     <Layout>
+        <AdminPageShower PageName="خصوصیت ها" :PageCount="pageCount"/>
         <div class="space-y-4">
             <AdminInput v-if="filteredAttributes.length>0" v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"
                         @update:modelValue="searchKeyWordChanged($event)"/>

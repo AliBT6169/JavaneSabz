@@ -16,7 +16,7 @@ class BrandController extends Controller
 {
     public function index()
     {
-        $brands = BrandResource::collection(Brand::latest()->get());
+        $brands = BrandResource::collection(Brand::latest()->paginate(20));
         return Inertia::render('Admin/pages/Brands/index', ['brands' => $brands]);
     }
 

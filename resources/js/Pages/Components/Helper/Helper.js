@@ -5,6 +5,7 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import Favorite from "@/Pages/Profile/Pages/Favorite.vue";
 import BuyCart from "@/Pages/Profile/Pages/BuyCart.vue";
 import ProductShow from "@/Pages/ProductShow.vue";
+import {useWindowSize} from "@vueuse/core";
 
 const show_profile = markRaw(showProfile);
 const buyCart = markRaw(BuyCart);
@@ -32,7 +33,7 @@ const modalSet = (modal) => {
     }
 }
 const profileSidebarCloser = (event) => {
-    if (!event.target.classList.contains("Sidebar"))
+    if (!event.target.classList.contains("Sidebar")&&useWindowSize().width<700)
         profileSidebar.value = false;
 }
 

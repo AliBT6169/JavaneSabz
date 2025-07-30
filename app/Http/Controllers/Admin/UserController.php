@@ -92,7 +92,8 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request)
     {
 //        user update
-        $user = User::whereId($request->id)->first()->update([
+        $user = User::whereId($request->id)->first();
+        $user->update([
             'full_name' => $request->full_name,
             'name' => $request->user_name,
             'email' => $request->email,
@@ -128,7 +129,8 @@ class UserController extends Controller
             $validatedImage = $request->validate([
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-            unlink(public_path(User::whereId($request->id)->first()->gallery->media));
+            if ($user->gallery != null)
+                unlink(public_path($user->gallery->media));
             Gallery::updateImage(User::class, $request->image, $request->id);
         }
         return 'done';

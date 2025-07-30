@@ -7,6 +7,7 @@ import {ref} from "vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import {Link} from "@inertiajs/vue3";
 import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
+import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
 
 const props = defineProps({
     products: null,
@@ -22,11 +23,16 @@ const searchKeyWordChanged = (e) => {
         console.log(err);
     })
 }
+const pageCount = ref({
+    currentPage: props.products.meta.current_page,
+    from: props.products.meta.last_page,
+});
 </script>
 
 <template>
     <Layout>
-        <AdminInput class="!m-auto md:w-1/2" name="جستجو"
+        <AdminPageShower PageName="محصولات" :PageCount="pageCount"/>
+        <AdminInput v-if="productData.length>0" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>
         <div v-if="productData.length>0" class="flex p-4 flex-wrap gap-10 justify-center items-center">
             <Product v-for="item in productData" @deleted="productDeleted($event)" :product="item"/>

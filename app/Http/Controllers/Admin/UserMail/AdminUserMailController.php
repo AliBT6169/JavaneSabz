@@ -12,7 +12,7 @@ class AdminUserMailController extends Controller
 {
     public function index()
     {
-        $data = CallToAdminIndexResource::collection(CallToAdmin::latest()->get());
+        $data = CallToAdminIndexResource::collection(CallToAdmin::latest()->paginate(10));
         return Inertia::render('Admin/pages/UserMails/index', ['mails' => $data]);
     }
 

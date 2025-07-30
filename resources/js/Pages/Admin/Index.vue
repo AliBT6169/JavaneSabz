@@ -52,7 +52,7 @@ const mostBuyerUsers = ref(props.dashboardData.mostBuyerUsers.data);
             </div>
         </div>
         <div class="space-y-5 p-5 rounded-xl border-4 border-adminColor2">
-            <div class="text-lg font-bold">آخرین تراکنش ها:</div>
+            <div class="text-lg font-bold">پرخرید تریت کاربران:</div>
             <div class="flex flex-wrap gap-5 justify-center lg:block lg:space-y-5">
                 <AdminUserTable v-if="mostBuyerUsers.length > 0">
                     <AdminUserTableItems v-for="item in mostBuyerUsers" :user="item"/>
