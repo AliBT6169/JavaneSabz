@@ -3,7 +3,6 @@ import {onMounted, ref} from "vue";
 
 const props = defineProps({
     modelValue: null,
-    address: null
 });
 
 const province = ref(null);

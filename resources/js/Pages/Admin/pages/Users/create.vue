@@ -109,7 +109,7 @@ const saveChanges = async () => {
                         </div>
                     </div>
                 </div>
-                <admin-address label="آدرس:" @update-value="form.city=$event" :address="form.address"/>
+                <admin-address v-model="form.city"/>
                 <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{form.address}}</textarea>
                 <div class="*:text-center md:!justify-end">

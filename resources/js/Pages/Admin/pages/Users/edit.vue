@@ -24,7 +24,7 @@ const form = new ref({
     post_code: props.user.data.postal_code ?? '',
     city: props.user.data.address.city_id ?? '',
     address: props.user.data.address.address ?? '',
-})
+});
 const onFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
