@@ -8,24 +8,24 @@ use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
-    public function cities($city_id)
+    public function cities($city_id = 126)
     {
-        $city = City::whereId($city_id);
-        $province =  $city->province;
+        $city = City::whereId($city_id)->first();
+        $province = $city->province;
         $cities = $province->cities;
-
+        $provinces = Province::all();
+        return response()->json([
+            'cities' => $cities,
+            'provinces' => $provinces,
+            'province' => $province,
+            'city' => $city,
+        ]);
     }
 
-    public function provinces()
+    public function getCities($province_id)
     {
-        $result = [];
-        $data = Province::all();
-        foreach ($data as $province) {
-            $result[] = [
-                'id' => $province->id,
-                'name' => $province->slug,
-            ];
-        }
-        return $result;
+        $province = Province::whereId($province_id)->first();
+        $cities = $province->cities;
+        return $cities;
     }
 }

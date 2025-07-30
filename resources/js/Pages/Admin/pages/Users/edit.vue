@@ -107,7 +107,7 @@ const changeData = async () => {
                         </div>
                     </div>
                 </div>
-                <admin-address label="آدرس:" @update-value="form.city=$event" :address="user.data.address"/>
+                <admin-address label="آدرس:" v-model="form.city"/>
                 <textarea name="" id="" @input="(e)=>form.address = e.target.value"
                           class="admin_inputs">{{user.data.address.address}}</textarea>
                 <div class="*:text-center md:!justify-end">

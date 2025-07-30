@@ -33,8 +33,8 @@ Route::controller(SearchController::class)->group(function () {
 });
 
 Route::controller(AddressController::class)->group(function () {
-    Route::get('/cities/{province_id}', 'cities')->name('cities');
-    Route::get('/provinces', 'provinces')->name('provinces');
+    Route::get('/cities/{city_id}', 'cities')->name('cities');
+    Route::get('/getCities/{province_id}', 'getCities')->name('getCities');
 });
 
 Route::controller(CategoryController::class)->group(function () {
