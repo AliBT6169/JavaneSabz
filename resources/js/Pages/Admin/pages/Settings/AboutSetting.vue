@@ -39,7 +39,7 @@ const onFileChange = (event) => {
 </script>
 
 <template>
-    <div :class="{'opacity-0 top-[-1000px]':!is_active}" class="w-full absolute top-0 duration-300 border-adminColor2 border-4 rounded-xl p-5">
+    <div :class="{'opacity-0 top-[-1000px] invisible':!is_active}" class="w-full absolute top-0 duration-300 border-adminColor2 border-4 rounded-xl p-5">
         <form @submit.prevent="" class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
