@@ -16,4 +16,8 @@ class SettingController extends Controller
         $setting['AboutSetting'] = AboutSettingResource::make(Setting::first());
         return Inertia::render('Admin/pages/Settings/index', ['settings' => $setting]);
     }
+    public function store(Request $request){
+
+
+    }
 }

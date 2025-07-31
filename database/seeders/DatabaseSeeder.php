@@ -13,6 +13,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductVariation;
+use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wishlist;
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(citySeeder::class);
         $this->call(DeliveryAmountSeeder::class);
         User::factory(100)->create()->unique;
+        Setting::factory(1)->create();
 //        User Gallery
 //        Gallery::factory(1)->create();
 //        Product Gallery
