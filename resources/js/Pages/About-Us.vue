@@ -1,8 +1,5 @@
 <script setup>
 
-import Navigation from "@/Pages/Components/Home/navigation.vue";
-import Header from "@/Pages/Parts/Header.vue";
-import Footer from "@/Pages/Parts/Footer.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 import IndexLyout from "@/Pages/IndexLyout.vue";

@@ -9,6 +9,12 @@ import {useSearchStore} from "@/Pages/Components/Helper/searchStore.js";
 import SearchResultBox from "@/Pages/Components/searchResultBox.vue";
 import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 
+const props = defineProps({
+    settings: {
+        type: Object,
+        required: true
+    }
+});
 const authUser = useAuthStore();
 
 </script>
@@ -19,7 +25,7 @@ const authUser = useAuthStore();
              :class="{'!visible !opacity-100':Modal}">
             <div :class="{'!translate-x-0':Modal}"
                  class="translate-x-[100vw] duration-500 w-2-3 p-6 h-full overflow-y-auto bg-defaultColor5 rounded-xl modal dark:bg-defaultColor">
-                <component class="modal" :is="ModalComponent"></component>
+                <component class="modal" :is="ModalComponent"/>
             </div>
         </div>
         <div class="flex gap-2 z-20 flex-col mx-auto items-center justify-center
@@ -27,7 +33,7 @@ const authUser = useAuthStore();
             <!--            icon-->
             <div class="flex w-full items-center gap-1 justify-center">
                 <Link href="/" class="">
-                    <img src="../../../../public/logo/logo1.png" class="w-24 h10" alt="">
+                    <img :src="settings.icon" class="w-24 h10" alt="">
                 </Link>
                 <div class="w-2 h-8 border-gray-300 border-r-2"></div>
                 <div class="flex gap-1 flex-col">
@@ -61,7 +67,8 @@ const authUser = useAuthStore();
                         </div>
                     </Link>
                 </div>
-                <Link class="md:hidden" v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin" :href="route('admin.'+useAdminStore().Page)">
+                <Link class="md:hidden" v-if="useAuthStore().user===null?false:useAuthStore().user.is_admin"
+                      :href="route('admin.'+useAdminStore().Page)">
                     <div
                         class="size-10 flex items-center justify-center hover:bg-red-400 transition-all rounded-xl bg-red-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
                         title="پنل مدیریت">
@@ -97,7 +104,7 @@ const authUser = useAuthStore();
                             </div>
                         </div>
                     </Link>
-<!--                    is_Admin-->
+                    <!--                    is_Admin-->
                     <Link :href="route('admin.'+ useAdminStore().Page)">
                         <div v-if="useAuthStore().user!=null?useAuthStore().user.is_admin:false" class="absolute invisible opacity-0 top-20 duration-300 rounded-xl
                          border py-3 -left-12 flex gap-2 text-sm text-nowrap px-5 bg-defaultColor5 cursor-pointer dark:bg-defaultColor group-hover:top-10 group-hover:visible

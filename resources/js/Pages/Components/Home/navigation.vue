@@ -7,12 +7,18 @@ import {Link} from '@inertiajs/vue3';
 import ConnectModal from "@/Pages/Components/Home/connect-modal.vue";
 import {connectUsModalVisibility, modalSet} from "@/Pages/Components/Helper/Helper.js";
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
+
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
-
+const props = defineProps({
+    settings: {
+        type: Object,
+        required: true
+    }
+});
 document.addEventListener('click', () => {
     magic_mobile_nav.value = false;
     info_mobile_nav.value = false;
@@ -108,7 +114,8 @@ const showConnectModal = () => {
                                         <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
                                     </div>
                                     <div class="w-96 h-full overflow-hidden">
-                                        <img src="../../../../../public/images/farm.jpg" class="size-full hidden lg:block"
+                                        <img src="../../../../../public/images/farm.jpg"
+                                             class="size-full hidden lg:block"
                                              alt="">
                                     </div>
                                 </div>
@@ -140,17 +147,19 @@ const showConnectModal = () => {
             <!--            connection svgs-->
             <div class="flex gap-2 text-defaultColor4 items-center lg:gap-4">
                 <!--                telegram-->
-                <h2 class="header-connection-svg after:left-[-14px] hover:after:content-['تلگرام']">
+                <a :href="'t.me:'+settings.telegram"
+                   class="header-connection-svg after:left-[-14px] hover:after:content-['تلگرام']">
                     <svg-component name="telegram" title="جوانه سبز در تلگرام" class="size-8"></svg-component>
-                </h2>
+                </a>
                 <!--                instagram-->
-                <h2 class="header-connection-svg after:left-[-29px] hover:after:content-['اینستاگرام']">
+                <a :href="'instagram.com/'+settings.instagram"
+                   class="header-connection-svg after:left-[-29px] hover:after:content-['اینستاگرام']">
                     <svg-component name="instagram" title="جوانه سبز در اینستاگرام" class="size-8"></svg-component>
-                </h2>
+                </a>
                 <!--                whatsapp-->
-                <h2 class="header-connection-svg after:left-[-19px] hover:after:content-['واتساپ']">
+                <a :href="'https://wa.me/'+settings.whatsapp" class="header-connection-svg after:left-[-19px] hover:after:content-['واتساپ']">
                     <svg-component name="whatsapp" title="جوانه سبز در واتساپ" class="size-7"></svg-component>
-                </h2>
+                </a>
             </div>
         </div>
     </div>
@@ -163,7 +172,8 @@ const showConnectModal = () => {
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-12 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
                 <DarkLight></DarkLight>
-                <div @click="modalSet('Favorite')" class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
+                <div @click="modalSet('Favorite')"
+                     class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
                     <svg-component name="like" class="size-7"></svg-component>
                 </div>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
@@ -195,7 +205,8 @@ const showConnectModal = () => {
                         <svg-component name="about" class="size-7"></svg-component>
                     </div>
                 </Link>
-                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg" @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
+                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg"
+                     @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
                     <svg-component name="tell" class="size-7"></svg-component>
                 </div>
             </div>

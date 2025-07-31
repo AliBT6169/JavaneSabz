@@ -6,7 +6,6 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 import MailModal from "@/Pages/Admin/pages/UserMails/MailModal.vue";
-
 </script>
 
 <template>
