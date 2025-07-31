@@ -19,7 +19,7 @@ class SettingFactory extends Factory
         return [
             'address' => 'مازندران - بابلسر - بهنمیر - کیلومتر 4 بلوار درزیان -سر ورودی محل گالشکلا و پارومحله',
             'phone' => '09394001870',
-            'icon' => '/logo/logo1.png',
+            'icon' => '/images/default/logo.png',
             'email' => 'MojtabaGhorbani@gmail.com',
             'about' => 'فروشگاه جوانه سبز در تلاش است تا بهترین خود را برای کشاورزان محترم بگذارد تا همیشه بتوانند سود خوبی از زمین های زراعی و باغ های خود داشته باشند خاک پای کشاورزان ',
             'facebook' => '',

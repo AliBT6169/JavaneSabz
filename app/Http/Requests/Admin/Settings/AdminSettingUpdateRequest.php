@@ -33,7 +33,18 @@ class AdminSettingUpdateRequest extends FormRequest
             'telegram' => 'required|string|max:30',
             'whatsapp' => 'required|string|max:30',
             'eta' => 'required|string|max:30',
-            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'icon' => ['required', function ($attribute, $value, $fail) {
+                if (is_string($value))
+                    return;
+                if (request()->hasFile($attribute)) {
+                    $file = request()->file($attribute);
+                    if (!$file->isValid() || !str_starts_with($file->getMimeType(), 'image')) {
+                        $fail('فایل ارسالی باید تصویر باشد');
+                    }
+                } else {
+                    $fail('فیلد تصویر باید شامل تصویر باشد');
+                }
+            }, 'max:2048'],
         ];
     }
 }

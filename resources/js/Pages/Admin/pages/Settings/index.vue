@@ -7,8 +7,7 @@ import {ref} from "vue";
 const props = defineProps({
     settings: Object,
 });
-console.log(props.settings);
-const settingName = ref('');
+const settingName = ref('AboutSetting');
 
 </script>
 
