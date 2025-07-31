@@ -1,23 +1,31 @@
 <script setup>
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import {Link} from "@inertiajs/vue3";
+import {onMounted, ref} from "vue";
+
+const settings = ref(false);
+onMounted(async () => {
+    await axios.get(route('settings')).then(res => {
+        settings.value = res.data;
+    });
+});
 </script>
 
 <template>
-    <div class="bg-defaultColor7 flex justify-center items-center rounded-t-[8rem] overflow-hidden">
+    <div v-if="settings!==false"
+         class="bg-defaultColor7 flex justify-center items-center rounded-t-[8rem] overflow-hidden">
         <div class="w-[80rem] items-center md:items-start md:justify-around flex flex-col text-white md:flex-row">
             <div class="flex flex-col gap-2 h-full">
                 <div
                     class="flex duration-300 items-center cursor-pointer gap-2 border-b-2 border-defaultColor5">
-                    <img src="../../../../public/logo/logo1.png" alt="جوانه سبز" class="size-20">
+                    <img :src="settings.icon" alt="جوانه سبز" class="size-20">
                     <h3 class="text-2xl font-black text-defaultColor5">جوانه سبز</h3>
                 </div>
                 <p class="w-60">
-                    فروشگاه جوانه سبز در تلاش است تا بهترین خود را برای کشاورزان محترم بگذارد تا
-                    همیشه بتوانند سود خوبی از زمین های زراعی و باغ های خود داشته باشند
-                    خاک پای کشاورزان
+                    {{ settings.about }}
                     <span class="text-defaultColor5">
-                        (علیرضا باباتبار)
+                        (مجتبی قربانی)
                     </span>
                 </p>
             </div>
@@ -28,14 +36,14 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
                     </div>
                     <p class="text-xl translate-x-10 font-black">اطلاعات</p>
                 </div>
-                <div
-                    class="flex duration-300 items-center cursor-pointer gap-2 hover:-translate-x-2 hover:text-defaultColor5">
+                <Link href="/درباره ما"
+                      class="flex duration-300 items-center cursor-pointer gap-2 hover:-translate-x-2 hover:text-defaultColor5">
                     <svg-component name="about" class="size-5"></svg-component>
                     <h3 class="">درباره ما</h3>
-                </div>
+                </Link>
                 <div
                     class="flex duration-300 items-center cursor-pointer gap-2 hover:-translate-x-2 hover:text-defaultColor5">
-                    <a rel="stylesheet" href="tel:09123456789">
+                    <a rel="stylesheet" :href="'tel:'+settings.phone">
                         <svg-component name="tell" title="09123456789" class="size-5"></svg-component>
                     </a>
                     <h3 class="">تماس با ما</h3>
@@ -47,10 +55,18 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
                         <h3 class="">پل های ارتباطی :</h3>
                     </div>
                     <div class="flex gap-2">
-                        <svg-component name="telegram" class="footer-connection-svg size-[30px]"></svg-component>
-                        <svg-component name="instagram" class="footer-connection-svg size-[30px]"></svg-component>
-                        <svg-component name="whatsapp" class="footer-connection-svg size-7"></svg-component>
-                        <svg-component name="tell" class="footer-connection-svg size-[30px]"></svg-component>
+                        <a :href="'https://t.me/'+settings.telegram">
+                            <svg-component name="telegram" class="footer-connection-svg size-[30px]"/>
+                        </a>
+                        <a :href="'https://instagram.com//'+settings.instagram">
+                            <svg-component name="instagram" class="footer-connection-svg size-[30px]"/>
+                        </a>
+                        <a :href="'https://wa.me/'+settings.whatsapp">
+                            <svg-component name="whatsapp" class="footer-connection-svg size-7"/>
+                        </a>
+                        <a :href="'tell:'+settings.phone">
+                            <svg-component name="tell" class="footer-connection-svg size-[30px]"/>
+                        </a>
                     </div>
                 </div>
             </div>

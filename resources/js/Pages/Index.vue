@@ -12,6 +12,7 @@ import LiveCards from "@/Pages/Components/Home/live-cards.vue";
 import Intro from "@/Pages/Components/Home/intro.vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import {useWindowScroll} from "@vueuse/core";
+import IndexLyout from "@/Pages/IndexLyout.vue";
 
 const props = defineProps(["indexData"]);
 const indexData = ref(props.indexData);
@@ -30,14 +31,12 @@ const liveCardData = ref([
     "../../../../images/fertilizer.jpg",
     "../../../../images/slider/slider%20(7).jpeg",
 ]);
+console.log(props.indexData)
 </script>
 
 <template>
-    <div class="mx-auto flex flex-col gap-10 items-center w-[20rem]
-        sm:w-[30rem] md:w-[48rem] lg:w-[60rem] xl:w-[80rem]">
+    <IndexLyout :settings="indexData.settings">
         <intro></intro>
-        <Header></Header>
-        <navigation></navigation>
         <slider1 data-aos="fade-up" data-aos-delay="500" :slider1-data="slider1Data"></slider1>
         <!--        brands-->
         <div data-aos="fade-up" class="w-full mx-auto px-4">
@@ -65,7 +64,7 @@ const liveCardData = ref([
                     <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <product-slider1 :products="indexData.products" class="w-full"></product-slider1>
+            <product-slider1 :products="indexData.products.data" class="w-full"/>
         </div>
         <!--    liveCards-->
         <div data-aos="fade-up" class="w-full mx-auto">
@@ -98,10 +97,9 @@ const liveCardData = ref([
                 </div>
             </div>
             <div class="grid grid-cols-minmaxfill gap-4 justify-center mx-auto w-full">
-                <product v-for="item in indexData.products" :product="item" :special="true"/>
+                <product v-for="item in indexData.products.data" :product="item" :special="true"/>
             </div>
         </div>
-        <Footer class="mt-10"></Footer>
-    </div>
+    </IndexLyout>
 
 </template>

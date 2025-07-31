@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\ProductVariation;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +15,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $indexData = (object)[
+        $indexData = [
             "products" => ProductVariation::getSomeProduct(20),
             "brands" => Brand::where('is_active', 1)->get(),
         ];
