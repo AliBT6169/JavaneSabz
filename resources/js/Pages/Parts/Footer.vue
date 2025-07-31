@@ -4,7 +4,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 </script>
 
 <template>
-    <div class="w-screen bg-defaultColor7 flex justify-center items-center rounded-t-[8rem] overflow-hidden">
+    <div class=" bg-defaultColor7 flex justify-center items-center rounded-t-[8rem] overflow-hidden">
         <div class="w-[80rem] items-center md:items-start md:justify-around flex flex-col text-white md:flex-row">
             <div class="flex flex-col gap-2 h-full">
                 <div

@@ -14,6 +14,7 @@ class Setting extends Model
         'id',
         'address',
         'phone',
+        'icon',
         'email',
         'about',
         'facebook',

@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->string('icon')->nullable();
             $table->string('email')->nullable();
             $table->text('about')->nullable();
             $table->string('facebook')->nullable();
