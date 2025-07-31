@@ -35,7 +35,7 @@ console.log(props.indexData)
 </script>
 
 <template>
-    <IndexLyout :settings="indexData.settings">
+    <IndexLyout>
         <intro></intro>
         <slider1 data-aos="fade-up" data-aos-delay="500" :slider1-data="slider1Data"></slider1>
         <!--        brands-->

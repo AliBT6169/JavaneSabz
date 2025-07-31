@@ -2,20 +2,15 @@
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
-import {onMounted, ref} from "vue";
-
-const settings = ref(false);
-onMounted(async () => {
-    await axios.get(route('settings')).then(res => {
-        settings.value = res.data;
-    });
-});
+const props = defineProps({
+    settings: Object,
+})
 </script>
 
 <template>
-    <div v-if="settings!==false"
+    <div
          class="p-2 bg-defaultColor7 w-full flex justify-center items-center rounded-t-[8rem] overflow-hidden">
-        <div class="pb-40 md:pb-0 items-center md:items-start md:justify-around flex flex-col text-white md:flex-row">
+        <div class="pb-40 w-full md:pb-0 items-center md:items-start md:justify-around flex flex-col text-white md:flex-row">
             <div class="flex flex-col gap-2 h-full">
                 <div
                     class="flex duration-300 items-center cursor-pointer gap-2 border-b-2 border-defaultColor5">

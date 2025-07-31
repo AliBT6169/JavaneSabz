@@ -5,13 +5,11 @@ import Header from "@/Pages/Parts/Header.vue";
 import Footer from "@/Pages/Parts/Footer.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
+import IndexLyout from "@/Pages/IndexLyout.vue";
 </script>
 
 <template>
-    <div class="mx-auto flex flex-col gap-10 items-center w-[20rem]
-        sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
-        <Header></Header>
-        <Navigation></Navigation>
+    <IndexLyout>
         <!--        page location-->
         <div class="w-full flex">
             <div class="flex items-center w-fit gap-2 px-4">
@@ -56,16 +54,20 @@ import {Link} from '@inertiajs/vue3'
                     <div class="text-xl font-black">پل های ارتباطی:</div>
                     <div class="flex justify-center gap-2">
                         <a href="#" class="">
-                            <svg-component name="telegram" class="size-11 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
+                            <svg-component name="telegram"
+                                           class="size-11 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
                         <a href="#" class="">
-                            <svg-component name="whatsapp" class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
+                            <svg-component name="whatsapp"
+                                           class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
                         <a href="#" class="">
-                            <svg-component name="instagram" class="size-11 cursor-pointer duration-300 hover:-translate-y-1 -mt-0.5"></svg-component>
+                            <svg-component name="instagram"
+                                           class="size-11 cursor-pointer duration-300 hover:-translate-y-1 -mt-0.5"></svg-component>
                         </a>
                         <a href="#" class="">
-                            <svg-component name="tell" class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
+                            <svg-component name="tell"
+                                           class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
                     </div>
                 </div>
@@ -84,6 +86,5 @@ import {Link} from '@inertiajs/vue3'
                 </div>
             </div>
         </div>
-        <Footer></Footer>
-    </div>
+    </IndexLyout>
 </template>

@@ -3,10 +3,14 @@
 import Header from "@/Pages/Parts/Header.vue";
 import Navigation from "@/Pages/Components/Home/navigation.vue";
 import Footer from "@/Pages/Parts/Footer.vue";
+import {onMounted, ref} from "vue";
 
-const props = defineProps({
-    settings: Object,
-})
+const settings = ref(false);
+onMounted(async () => {
+    await axios.get(route('settings')).then(res => {
+        settings.value = res.data;
+    });
+});
 </script>
 
 <template>
@@ -15,7 +19,7 @@ const props = defineProps({
         <Header/>
         <navigation/>
         <slot/>
-        <Footer class="mt-10"/>
+        <Footer v-if="settings!==false" :settings="settings" class="mt-10"/>
     </div>
 
 </template>
