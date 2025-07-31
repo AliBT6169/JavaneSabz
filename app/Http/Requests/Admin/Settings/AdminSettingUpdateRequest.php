@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin\Settings;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminSettingStoreRequest extends FormRequest
+class AdminSettingUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,7 @@ class AdminSettingStoreRequest extends FormRequest
             'telegram' => 'required|string|max:30',
             'whatsapp' => 'required|string|max:30',
             'eta' => 'required|string|max:30',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ];
     }
 }

@@ -103,6 +103,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
 
     Route::controller(SettingController::class)->group(function () {
         Route::get('/setting/index', 'index')->name('settings.index');
+        Route::put('/setting/update', 'update')->name('settings.update');
     });
 });
 
