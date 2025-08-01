@@ -13,17 +13,11 @@ const props = defineProps({
     is_active: Boolean,
 });
 const form = ref({
-    address: props.settings.address ?? '',
-    phone: props.settings.phone ?? '',
-    email: props.settings.email ?? '',
-    about: props.settings.about ?? '',
-    facebook: props.settings.facebook ?? '',
-    twitter: props.settings.twitter ?? '',
-    instagram: props.settings.instagram ?? '',
-    youtube: props.settings.youtube ?? '',
-    telegram: props.settings.telegram ?? '',
-    whatsapp: props.settings.whatsapp ?? '',
-    eta: props.settings.eta ?? '',
+    owner_name: props.settings.owner_name ?? '',
+    owner_image: props.settings.owner_image ?? '',
+    store_name: props.settings.store_name ?? '',
+    store_image: props.settings.store_image ?? '',
+    description: props.settings.description ?? '',
 });
 const icon = ref(props.settings.icon);
 const onFileChange = (event) => {
@@ -76,19 +70,12 @@ const sendData = () => {
     <div :class="{'opacity-0 top-[-1000px] invisible':!is_active}"
          class="w-full absolute top-0 duration-1000 bg-adminColor1 border-adminColor2 border-4 rounded-xl p-5">
         <form @submit.prevent="sendData" class="pb-20">
-            <AdminPictureInput v-model="icon"/>
+            <AdminPictureInput v-model="form.store_image"/>
+            <AdminPictureInput v-model="form.owner_image"/>
             <div class="space-y-5 md:flex md:flex-wrap md:gap-5 md:*:w-[45%] md:space-y-0 md:justify-center">
-                <AdminInput name="شماره تماس " v-model="form.phone"/>
-                <AdminInput name="شماره تماس " v-model="form.phone"/>
-                <AdminInput name="ایمیل " v-model="form.email"/>
-                <AdminInput name="ایتا " v-model="form.eta"/>
-                <AdminInput name="فیس بوک " v-model="form.facebook"/>
-                <AdminInput name="توییتر " v-model="form.twitter"/>
-                <AdminInput name="اینستاگرام " v-model="form.instagram"/>
-                <AdminInput name="یوتیوب " v-model="form.youtube"/>
-                <AdminInput name="تلگرام " v-model="form.telegram"/>
-                <AdminInput name="واتساپ " v-model="form.whatsapp"/>
-                <AdminTextArea label="درباره :" v-model="form.about"/>
+                <AdminInput name="نام صاحب وبسایت " v-model="form.phone"/>
+                <AdminInput name="نام وبسایت " v-model="form.phone"/>
+                <AdminTextArea label="توضیحات :" v-model="form.description"/>
                 <div class="space-y-5 justify-end !w-full md:flex md:gap-5 *:md:w-48 md:space-y-0">
                     <AdminButton type="submit" text="ثبت اطلاعات"/>
                     <AdminButton type="cancel" text="لغو"/>
