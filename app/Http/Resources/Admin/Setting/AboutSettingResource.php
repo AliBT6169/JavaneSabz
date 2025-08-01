@@ -17,7 +17,7 @@ class AboutSettingResource extends JsonResource
         return [
             'address' => $this->address ?? '',
             'phone' => $this->phone ?? '',
-            'icon' => $this->icon ?? '/logo/logo1.png',
+            'icon' => $this->icon,
             'email' => $this->email ?? '',
             'about' => $this->about ?? '',
             'facebook' => $this->facebook ?? '',
