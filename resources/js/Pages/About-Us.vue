@@ -2,7 +2,12 @@
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 import IndexLyout from "@/Pages/IndexLyout.vue";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
+const props = defineProps({
+    info: Object,
+});
+const setting = useIndexStore().Settings;
 </script>
 <template>
     <IndexLyout>
@@ -19,28 +24,25 @@ import IndexLyout from "@/Pages/IndexLyout.vue";
         </div>
         <div class="flex flex-col mx-auto items-center w-full gap-5 p-6 rounded-xl border-2 border-defaultColor">
             <span
-                class="w-full p-5 rounded-2xl bg-gradient-to-b from-defaultColor2 to-defaultColor5 2xl:p-10 dark:from-50%">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و
-                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
-                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده،
-                شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
-                الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-            </span>
+                class="w-full p-5 rounded-2xl bg-gradient-to-b from-defaultColor2 to-defaultColor5 2xl:p-10 dark:from-50%">{{
+                    info.description
+                }}</span>
             <div class="flex w-full justify-center gap-4 mt-4 flex-col md:flex-row">
                 <div
                     class="relative w-full h-96 flex justify-center items-center rounded-xl p-5 bg-defaultColor5 mx-auto overflow-hidden dark:bg-defaultColor7">
-                    <img src="../../../public/images/default/about-us/store_image.jpg" alt="" class="size-full rounded-2xl">
+                    <img :src="info.store_image" alt=""
+                         class="size-full rounded-2xl">
                     <div
                         class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">
-                        فروشگاه جوانه سبز از نمای نزدیک
+                        فروشگاه {{ info.store_name }} از نمای نزدیک
                     </div>
                 </div>
                 <div
                     class="relative w-full h-96 flex justify-center items-center rounded-xl p-5 bg-defaultColor5 mx-auto overflow-hidden dark:bg-defaultColor7">
-                    <img src="../../../public/images/default/about-us/owner.jpg" alt="" class="size-full rounded-2xl">
+                    <img :src="info.owner_image" alt="" class="size-full rounded-2xl">
                     <div
                         class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">
-                        مدیریت : مجتبی قربانی
+                        مدیریت : {{ info.owner_name }}
                     </div>
                 </div>
             </div>
@@ -49,19 +51,19 @@ import IndexLyout from "@/Pages/IndexLyout.vue";
                 <div class="flex w-full flex-col items-center gap-2 ">
                     <div class="text-xl font-black">پل های ارتباطی:</div>
                     <div class="flex justify-center gap-2">
-                        <a href="#" class="">
+                        <a :href="'t.me:'+setting.telegram" class="">
                             <svg-component name="telegram"
                                            class="size-11 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
-                        <a href="#" class="">
+                        <a :href="'wa.me:'+setting.whatsapp" class="">
                             <svg-component name="whatsapp"
                                            class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
-                        <a href="#" class="">
+                        <a :href="'instagram.com/'+setting.instagram" class="">
                             <svg-component name="instagram"
                                            class="size-11 cursor-pointer duration-300 hover:-translate-y-1 -mt-0.5"></svg-component>
                         </a>
-                        <a href="#" class="">
+                        <a :href="'tel:'+setting.phone" class="">
                             <svg-component name="tell"
                                            class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
@@ -69,7 +71,7 @@ import IndexLyout from "@/Pages/IndexLyout.vue";
                 </div>
                 <div class="flex w-full flex-col justify-center items-center">
                     <span class="font-black text-xl">نشانی:</span>
-                    <span class="w-60">مازندران-بابلسر-بهنمیر-کیلومتر4بلوار درزیان-ابتدای ورودی روستای پارومحله</span>
+                    <span class="w-60">{{ setting.address }}</span>
                 </div>
                 <div class="flex flex-col w-full items-center justify-center gap2">
                     <div class="font-bold text-xl">موقعیت نقشه:</div>

@@ -16,6 +16,7 @@ class AboutUsSetting extends Model
         'id',
         'owner_name',
         'owner_image',
+        'store_name',
         'store_image',
         'description',
         'created_at',

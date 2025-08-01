@@ -21,7 +21,6 @@ onMounted(async () => {
         province.value = res.data.province.id;
         cities.value = res.data.cities;
         emit("update:modelValue", res.data.city.id);
-        console.log(props.modelValue);
     }).catch(err => {
         console.log(err)
     });

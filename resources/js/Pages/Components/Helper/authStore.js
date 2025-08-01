@@ -16,6 +16,7 @@ export const useAuthStore = defineStore('auth', {
         isAuthenticated: false,
         Toast: null,
         toastTimer: null,
+        Time: Number,
     }),
     actions: {
         setUser(user) {
@@ -25,6 +26,7 @@ export const useAuthStore = defineStore('auth', {
             this.Transactions = user.user_transactions;
             this.WishList = user.user_wish_list;
             this.isAuthenticated = !!user;
+            this.Time = Date.now();
         },
         productIncrement(index, id) {
             this.Products[index].quantity++;

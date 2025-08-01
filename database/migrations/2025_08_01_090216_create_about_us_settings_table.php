@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('owner_name');
             $table->string('owner_image');
+            $table->string('store_name');
             $table->string('store_image');
             $table->text('description');
             $table->timestamps();

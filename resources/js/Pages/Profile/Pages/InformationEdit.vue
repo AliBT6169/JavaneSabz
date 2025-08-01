@@ -22,7 +22,6 @@ const form = ref({
     post_code: userInfo.value.user_post_code,
 });
 const submitForm = async (form) => {
-    console.log(form);
     await store.informationUpdate(form);
 }
 const imagePreview = ref(form.value.image);

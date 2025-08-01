@@ -2,16 +2,17 @@
 
 import Slider1 from "@/Pages/Components/Home/Slider1.vue";
 import Brands from "@/Pages/Components/Home/Brands.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import Product from "@/Pages/Components/Home/Product.vue";
 import ProductSlider1 from "@/Pages/Components/Home/product-slider1.vue";
 import LiveCards from "@/Pages/Components/Home/live-cards.vue";
 import Intro from "@/Pages/Components/Home/intro.vue";
 import IndexLyout from "@/Pages/IndexLyout.vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
+import {useToast} from "vue-toastification";
+import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["indexData"]);
-console.log(props.indexData.settings);
 useIndexStore().setSetting(props.indexData.settings.data);
 const slider1Data = ref([
     "../../../../images/slider/slider%20(1).jpeg",
@@ -28,7 +29,12 @@ const liveCardData = ref([
     "../../../../images/fertilizer.jpg",
     "../../../../images/slider/slider%20(7).jpeg",
 ]);
-
+onMounted(async () => {
+    if (useAuthStore().isAuthenticated && useAuthStore().Time + 600000 < Date.now()) {
+        useAuthStore().logout();
+        await axios.post(route('logout'));
+    }
+});
 </script>
 
 <template>
