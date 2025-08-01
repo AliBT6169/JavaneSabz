@@ -20,19 +20,19 @@ const settingName = ref('AboutSetting');
         <div class="space-y-5 *:m-auto sm:flex sm:gap-5 sm:space-y-0">
             <div class="p-2 border-4 flex gap-5 flex-wrap items-center justify-center border-adminColor2 sm:block rounded-xl sm:space-y-5">
                 <div @click="settingName = 'AboutSetting'"
-                     class="w-40 flex cursor-pointer items-center border-adminColor2 justify-center border-4 rounded-xl">
+                     class="adminSettingSidebarItem">
                     تنظیمات عمومی
                 </div>
                 <div @click="settingName = 'navigationSetting'"
-                     class="w-40 flex items-center border-adminColor2 justify-center border-4 rounded-xl">
+                     class="adminSettingSidebarItem">
                     تنظیمات منوی ناوبری
                 </div>
                 <div @click="settingName = 'sliderSetting'"
-                     class="w-40 flex items-center border-adminColor2 justify-center border-4 rounded-xl">
+                     class="adminSettingSidebarItem">
                     تنظیمات اسلایدر
                 </div>
                 <div @click="settingName = 'BannerSetting'"
-                     class="w-40 flex items-center border-adminColor2 justify-center border-4 rounded-xl">
+                     class="adminSettingSidebarItem">
                     تنظیمات بنر ها
                 </div>
             </div>

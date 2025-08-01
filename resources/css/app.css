@@ -141,6 +141,10 @@
     transform: perspective(1000px) rotateY(5deg) rotateX(-5deg)
 }
 
+.adminSettingSidebarItem{
+    @apply w-40 flex cursor-pointer items-center border-adminColor2 justify-center border-4 rounded-xl;
+}
+
 @keyframes introOut {
     40%{
         top: 0;

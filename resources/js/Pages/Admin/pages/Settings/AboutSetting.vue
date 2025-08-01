@@ -7,6 +7,7 @@ import {toFormData} from "axios";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminPictureInput from "@/Pages/Admin/Components/AdminPictureInput.vue";
+import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
 
 const props = defineProps({
     settings: Object,
@@ -78,14 +79,14 @@ const sendData = () => {
                 <AdminInput name="شماره تماس " v-model="form.phone"/>
                 <AdminInput name="شماره تماس " v-model="form.phone"/>
                 <AdminInput name="ایمیل " v-model="form.email"/>
-                <AdminInput name="درباره " v-model="form.about"/>
+                <AdminInput name="ایتا " v-model="form.eta"/>
                 <AdminInput name="فیس بوک " v-model="form.facebook"/>
                 <AdminInput name="توییتر " v-model="form.twitter"/>
                 <AdminInput name="اینستاگرام " v-model="form.instagram"/>
                 <AdminInput name="یوتیوب " v-model="form.youtube"/>
                 <AdminInput name="تلگرام " v-model="form.telegram"/>
                 <AdminInput name="واتساپ " v-model="form.whatsapp"/>
-                <AdminInput name="ایتا " v-model="form.eta"/>
+                <AdminTextArea label="درباره :" v-model="form.about"/>
                 <div class="space-y-5 justify-end !w-full md:flex md:gap-5 *:md:w-48 md:space-y-0">
                     <AdminButton type="submit" text="ثبت اطلاعات"/>
                     <AdminButton type="cancel" text="لغو"/>
