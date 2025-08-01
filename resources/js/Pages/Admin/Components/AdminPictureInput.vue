@@ -2,8 +2,13 @@
 import {ref} from "vue";
 
 const props = defineProps({
-    modelValue: ''
+    modelValue: '',
+    myKey: {
+        type: String,
+        default: '',
+    }
 });
+console.log()
 const emit = defineEmits(['update:modelValue']);
 
 const showingImage = ref(props.modelValue === '' ? '/images/default/product.png' : props.modelValue);
@@ -27,9 +32,9 @@ const onFileChange = (event) => {
 
 <template>
 
-    <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
+    <label :for="'image' + myKey" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
-        <input type="file" id="image" accept="*image/*" class="invisible absolute" @change="onFileChange">
+        <input type="file" :id="'image' + myKey" accept="*image/*" class="invisible absolute" @change="onFileChange">
         <img :src="showingImage"
              class="size-full"
              alt="">

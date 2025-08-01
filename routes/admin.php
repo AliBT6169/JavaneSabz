@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Delivery\DeliveryController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
+use App\Http\Controllers\Admin\Setting\AboutUsSettingController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\UserController;
@@ -103,6 +104,10 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::controller(SettingController::class)->group(function () {
         Route::get('/setting/index', 'index')->name('settings.index');
         Route::put('/setting/update', 'update')->name('settings.update');
+    });
+
+    Route::controller(AboutUsSettingController::class)->group(function () {
+       Route::put('/aboutUsSetting/update', 'update')->name('aboutUsSetting.update');
     });
 });
 

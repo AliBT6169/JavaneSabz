@@ -26,20 +26,6 @@ const form = ref({
     eta: props.settings.eta ?? '',
 });
 const icon = ref(props.settings.icon);
-const onFileChange = (event) => {
-    const file = event.target.files[0];
-    icon.value = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onloadend = (e) => {
-            icon.value = e.target.result;
-        };
-        reader.readAsDataURL(file);
-
-    } else {
-        icon.value = '';
-    }
-}
 
 const sendData = () => {
     const content = {
