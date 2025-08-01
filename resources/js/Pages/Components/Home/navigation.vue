@@ -40,7 +40,7 @@ const showConnectModal = () => {
                 <!--                home-->
                 <Link href="/">
                     <div class="header-items">
-                        <svg-component name="home" title="صفحه اصلی جوانه سبز" class="size-7"></svg-component>
+                        <svg-component name="home" title="صفحه اصلی جوانه سبز" class="size-7"/>
                         <h1 class="">خانه</h1>
                     </div>
                 </Link>
@@ -48,7 +48,7 @@ const showConnectModal = () => {
                 <!--                products-->
                 <div class="relative group">
                     <div class="header-items">
-                        <svg-component name="strawberry" class="size-5"></svg-component>
+                        <svg-component name="strawberry" class="size-5"/>
                         <h1 class="">محصولات</h1>
                     </div>
                     <!--                    products-list-->
@@ -57,7 +57,7 @@ const showConnectModal = () => {
                         <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
-                                    <svg-component name="bud" class="size-6"></svg-component>
+                                    <svg-component name="bud" class="size-6"/>
                                     <h2 class="">بوته ها</h2>
                                 </div>
                                 <div class="mega-tab-menu-list top-0">
@@ -82,7 +82,7 @@ const showConnectModal = () => {
                         <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
-                                    <svg-component name="fertilizer" class="size-6"></svg-component>
+                                    <svg-component name="fertilizer" class="size-6"/>
                                     <h2 class="">کود ها</h2>
                                 </div>
                                 <div class="mega-tab-menu-list -top-[58px]">
@@ -103,7 +103,7 @@ const showConnectModal = () => {
                         <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
-                                    <svg-component name="up" class="size-6"></svg-component>
+                                    <svg-component name="up" class="size-6"/>
                                     <h2 class="">تقویتی</h2>
                                 </div>
                                 <div class="mega-tab-menu-list -top-[115px]">
@@ -126,21 +126,21 @@ const showConnectModal = () => {
                 <div class="separate"></div>
                 <!--                Lesson-->
                 <div class="header-items">
-                    <svg-component name="indexBrands" title="برند" class="size-5 lg:size-6"></svg-component>
+                    <svg-component name="indexBrands" title="برند" class="size-5 lg:size-6"/>
                     <h1 class="">برند ها</h1>
                 </div>
                 <div class="separate"></div>
                 <!--                about us-->
                 <Link href="/درباره ما">
                     <div class="header-items">
-                        <svg-component name="about" title="درباره جوانه سبز" class="size-5 lg:size-6"></svg-component>
+                        <svg-component name="about" title="درباره جوانه سبز" class="size-5 lg:size-6"/>
                         <h1 class="">درباره ما</h1>
                     </div>
                 </Link>
                 <div class="separate"></div>
                 <!--                connect with us-->
                 <div class="header-items" @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
-                    <svg-component name="tell" title="تماس با جوانه سبز" class="size-5 lg:size-6"></svg-component>
+                    <svg-component name="tell" title="تماس با جوانه سبز" class="size-5 lg:size-6"/>
                     <h1 class="">تماس با ما</h1>
                 </div>
             </div>
@@ -149,16 +149,17 @@ const showConnectModal = () => {
                 <!--                telegram-->
                 <a :href="'t.me:'+settings.telegram"
                    class="header-connection-svg after:left-[-14px] hover:after:content-['تلگرام']">
-                    <svg-component name="telegram" title="جوانه سبز در تلگرام" class="size-8"></svg-component>
+                    <svg-component name="telegram" title="جوانه سبز در تلگرام" class="size-8"/>
                 </a>
                 <!--                instagram-->
-                <a :href="'instagram.com/'+settings.instagram"
+                <a :href="'https://instagram.com/'+settings.instagram"
                    class="header-connection-svg after:left-[-29px] hover:after:content-['اینستاگرام']">
-                    <svg-component name="instagram" title="جوانه سبز در اینستاگرام" class="size-8"></svg-component>
+                    <svg-component name="instagram" title="جوانه سبز در اینستاگرام" class="size-8"/>
                 </a>
                 <!--                whatsapp-->
-                <a :href="'https://wa.me/'+settings.whatsapp" class="header-connection-svg after:left-[-19px] hover:after:content-['واتساپ']">
-                    <svg-component name="whatsapp" title="جوانه سبز در واتساپ" class="size-7"></svg-component>
+                <a :href="'https://wa.me/'+settings.whatsapp"
+                   class="header-connection-svg after:left-[-19px] hover:after:content-['واتساپ']">
+                    <svg-component name="whatsapp" title="جوانه سبز در واتساپ" class="size-7"/>
                 </a>
             </div>
         </div>
@@ -168,22 +169,22 @@ const showConnectModal = () => {
      rounded-t-full bg-defaultColor flex justify-between md:hidden">
         <!--        darkMode & like & lessons-->
         <div class="home_mobile_navigation_items relative" @click.stop="magic_mobile_nav = !magic_mobile_nav">
-            <svg-component name="magic" class="size-[80%] sm:size-10"></svg-component>
+            <svg-component name="magic" class="size-[80%] sm:size-10"/>
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-12 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
-                <DarkLight></DarkLight>
+                <DarkLight/>
                 <div @click="modalSet('Favorite')"
                      class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
-                    <svg-component name="like" class="size-7"></svg-component>
+                    <svg-component name="like" class="size-7"/>
                 </div>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
-                    <svg-component name="indexBrands" class="size-7"></svg-component>
+                    <svg-component name="indexBrands" class="size-7"/>
                 </div>
             </div>
         </div>
         <!--        buyCart-->
         <div @click="modalSet('BuyCart')" class="home_mobile_navigation_items">
-            <svg-component name="cart" title="سبد خرید" class="size-[70%] sm:size-10"></svg-component>
+            <svg-component name="cart" title="سبد خرید" class="size-[70%] sm:size-10"/>
         </div>
         <!--        home-->
         <Link href="/">
@@ -193,25 +194,25 @@ const showConnectModal = () => {
         </Link>
         <!--        products-->
         <div class="home_mobile_navigation_items">
-            <svg-component name="strawberry" title="محصولات" class="size-[70%] sm:size-10"></svg-component>
+            <svg-component name="strawberry" title="محصولات" class="size-[70%] sm:size-10"/>
         </div>
         <!--        aboutUs & connectWithUs-->
         <div class="home_mobile_navigation_items relative" @click.stop="info_mobile_nav=!info_mobile_nav">
-            <svg-component name="about" class="size-[70%] sm:size-10"></svg-component>
+            <svg-component name="about" class="size-[70%] sm:size-10"/>
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-11 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': info_mobile_nav}]">
                 <Link href="/درباره ما">
                     <div class="bg-slate-700 bg-opacity-50 p-1 text-gray-200 rounded-lg fill-none hover:fill-red-900">
-                        <svg-component name="about" class="size-7"></svg-component>
+                        <svg-component name="about" class="size-7"/>
                     </div>
                 </Link>
                 <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg"
                      @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
-                    <svg-component name="tell" class="size-7"></svg-component>
+                    <svg-component name="tell" class="size-7"/>
                 </div>
             </div>
         </div>
     </div>
-    <connect-modal v-if="connectUsModalVisibility"></connect-modal>
+    <connect-modal v-if="connectUsModalVisibility"/>
 </template>
 
