@@ -2,8 +2,7 @@
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 import IndexLyout from "@/Pages/IndexLyout.vue";
-import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
-const indexSettings = useIndexStore().Settings;
+
 </script>
 <template>
     <IndexLyout>
@@ -30,7 +29,7 @@ const indexSettings = useIndexStore().Settings;
             <div class="flex w-full justify-center gap-4 mt-4 flex-col md:flex-row">
                 <div
                     class="relative w-full h-96 flex justify-center items-center rounded-xl p-5 bg-defaultColor5 mx-auto overflow-hidden dark:bg-defaultColor7">
-                    <img src="../../../public/images/about-us/mojtaba.jpg" alt="" class="size-full rounded-2xl">
+                    <img src="../../../public/images/default/about-us/store_image.jpg" alt="" class="size-full rounded-2xl">
                     <div
                         class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">
                         فروشگاه جوانه سبز از نمای نزدیک
@@ -38,7 +37,7 @@ const indexSettings = useIndexStore().Settings;
                 </div>
                 <div
                     class="relative w-full h-96 flex justify-center items-center rounded-xl p-5 bg-defaultColor5 mx-auto overflow-hidden dark:bg-defaultColor7">
-                    <img src="../../../public/images/about-us/owner.jpg" alt="" class="size-full rounded-2xl">
+                    <img src="../../../public/images/default/about-us/owner.jpg" alt="" class="size-full rounded-2xl">
                     <div
                         class="absolute bottom-8 p-2 rounded-lg bg-defaultColor5 dark:bg-defaultColor7 dark:text-white animate-bounce">
                         مدیریت : مجتبی قربانی

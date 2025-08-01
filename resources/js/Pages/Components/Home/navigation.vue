@@ -188,7 +188,7 @@ const showConnectModal = () => {
         <!--        home-->
         <Link href="/">
             <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
-                <img src="../../../../../public/logo/logo1.png" title="خانه" class="size-20 sm:size-32" alt="">
+                <img :src="settings.icon" title="خانه" class="size-20 sm:size-32" alt="">
             </div>
         </Link>
         <!--        products-->

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AboutUsSetting;
 use App\Models\Address;
 use App\Models\Attribute;
 use App\Models\Brand;
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DeliveryAmountSeeder::class);
         User::factory(100)->create()->unique;
         Setting::factory(1)->create();
+        AboutUsSetting::factory(1)->create();
 //        User Gallery
 //        Gallery::factory(1)->create();
 //        Product Gallery

@@ -7,7 +7,6 @@ use App\Models\Brand;
 use App\Models\ProductVariation;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Tests\Integration\Database\Settings;
 use Inertia\Inertia;
 
 class IndexController extends Controller

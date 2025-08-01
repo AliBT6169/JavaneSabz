@@ -7,6 +7,7 @@ use App\Http\Controllers\Home\CallToAdmin\CallToAdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
+use App\Models\AboutUsSetting;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,7 +17,8 @@ Route::controller(IndexController::class)->group(function () {
 });
 
 Route::get('/درباره ما', function () {
-    return Inertia::render('About-Us');
+    $info = AboutUsSetting::first();
+    return Inertia::render('About-Us', ['info' => $info]);
 });
 
 Route::controller(ProductController::class)->group(function () {

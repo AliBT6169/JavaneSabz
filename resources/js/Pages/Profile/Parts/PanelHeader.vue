@@ -5,6 +5,7 @@ import {Link} from '@inertiajs/vue3'
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {profileSidebar, profileSidebarCloser} from "@/Pages/Components/Helper/Helper.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 const authUser = useAuthStore();
 
@@ -22,7 +23,7 @@ const authUser = useAuthStore();
             </Link>
         </div>
         <Link href="/" class="">
-            <img src="../../../../../public/logo/logo1.png" class="w-14 scale-[1.5]" alt="">
+            <img :src="useIndexStore().Settings.icon" class="w-14 scale-[1.5]" alt="">
         </Link>
         <div class="flex gap-2 items-center">
             <DarkLight/>
