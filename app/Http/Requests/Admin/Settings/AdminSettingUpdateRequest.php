@@ -24,15 +24,15 @@ class AdminSettingUpdateRequest extends FormRequest
         return [
             'address' => 'required|string|max:500',
             'phone' => ['required', 'numeric', 'digits:11', 'regex:/^(\+98|0)?9\d{9}$/', 'unique:users,cellphone'],
-            'email' => 'required|email|string',
+            'email' => 'nullable|email|string',
             'about' => 'required|string|max:500',
-            'facebook' => 'required|string|max:30',
-            'twitter' => 'required|string|max:30',
-            'instagram' => 'required|string|max:30',
-            'youtube' => 'required|string|max:30',
-            'telegram' => 'required|string|max:30',
-            'whatsapp' => 'required|string|max:30',
-            'eta' => 'required|string|max:30',
+            'facebook' => 'nullable|string|max:30',
+            'twitter' => 'nullable|string|max:30',
+            'instagram' => 'nullable|string|max:30',
+            'youtube' => 'nullable|string|max:30',
+            'telegram' => 'nullable|string|max:30',
+            'whatsapp' => 'nullable|string|max:30',
+            'eta' => 'nullable|string|max:30',
             'icon' => ['required', function ($attribute, $value, $fail) {
                 if (is_string($value))
                     return;

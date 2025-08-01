@@ -52,7 +52,10 @@ const sendData = () => {
             set: async () => {
                 const formData = ref(new FormData());
                 formData.value = toFormData(form.value);
-                formData.value.append("icon", icon.value.get('image'));
+                if (typeof icon.value !== 'string')
+                    formData.value.append("icon", icon.value.get('image'));
+                else
+                    formData.value.append("icon", icon.value);
                 await axios.post(route('admin.settings.update'), formData.value, {
                     headers: {
                         "Content-Type": "multipart/form-data",

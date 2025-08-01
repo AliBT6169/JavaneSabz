@@ -15,7 +15,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserMail\AdminUserMailController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::middleware(AdminMiddleware::class)->group(function () {
 
