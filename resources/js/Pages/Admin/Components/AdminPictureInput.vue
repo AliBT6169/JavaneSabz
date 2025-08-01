@@ -8,7 +8,6 @@ const props = defineProps({
         default: '',
     }
 });
-console.log()
 const emit = defineEmits(['update:modelValue']);
 
 const showingImage = ref(props.modelValue === '' ? '/images/default/product.png' : props.modelValue);

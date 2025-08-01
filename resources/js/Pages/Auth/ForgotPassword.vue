@@ -2,6 +2,7 @@
 import {Head, Link, useForm} from '@inertiajs/vue3';
 import ButtonBT2 from "@/Pages/Components/Form/ButtonBT2.vue";
 import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 defineProps({
     status: {
@@ -26,7 +27,7 @@ const submit = () => {
                 <div class="w-full bg-defaultColor5 bg-opacity-70 rounded-3xl text-defaultColor7 grid gap-5 pb-6">
                     <div class="flex flex-col items-center border-b-2 border-defaultColor">
                         <div class=" upComingAnimation">
-                            <img src="../../../../public/logo/logo1.png"
+                            <img :src="useIndexStore().Settings.icon"
                                  class="w-28 scale-125" alt="">
                         </div>
                         <span class="text-2xl font-black">بازیابی رمز عبور</span>
