@@ -29,8 +29,8 @@ class SettingController extends Controller
                 unlink(public_path($setting->icon));
             }
             $icon = $request->file('icon');
-            $URL = '/images/logo/' . $setting->id . '.' . $icon->getClientOriginalExtension();
-            $icon->move(public_path('/images/logo/'), $setting->id . '.' . $icon->getClientOriginalExtension());
+            $URL = '/images/logo/' . 'logo.' . $icon->getClientOriginalExtension();
+            $icon->move(public_path('/images/logo/'), 'logo.' . $icon->getClientOriginalExtension());
         }else{
             $URL = $setting->icon;
         }

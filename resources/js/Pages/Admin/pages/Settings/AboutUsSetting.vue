@@ -45,7 +45,7 @@ const sendData = () => {
                         "X-HTTP-Method-Override": "PUT",
                     }
                 }).then(res => {
-                    console.log(res.data)
+                    useToast().success(res.data)
                 }).catch(err => {
                     useToast().error(err.response.data.message);
                 });
