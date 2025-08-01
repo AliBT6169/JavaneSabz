@@ -1,10 +1,10 @@
 <script setup>
-
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from '@inertiajs/vue3'
 import IndexLyout from "@/Pages/IndexLyout.vue";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
+const indexSettings = useIndexStore().Settings;
 </script>
-
 <template>
     <IndexLyout>
         <!--        page location-->

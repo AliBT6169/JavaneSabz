@@ -8,10 +8,16 @@ export const useIndexStore = defineStore('index', {
         Products: null,
         ProductShowData: null,
         modal: false,
+        Settings: {
+            type: Object,
+        }
     }),
     actions: {
         setData(data) {
             this.Products = data;
+        },
+        setSetting(setting) {
+            this.Settings = setting;
         },
         setProductData(data) {
             this.ProductShowData = data;

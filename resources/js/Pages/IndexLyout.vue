@@ -3,23 +3,17 @@
 import Header from "@/Pages/Parts/Header.vue";
 import Navigation from "@/Pages/Components/Home/navigation.vue";
 import Footer from "@/Pages/Parts/Footer.vue";
-import {onBeforeMount, ref} from "vue";
-
-const settings = ref(false);
-onBeforeMount(async () => {
-    await axios.get(route('settings')).then(res => {
-        settings.value = res.data;
-    });
-});
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
+const indexSettings = useIndexStore().Settings;
 </script>
 
 <template>
     <div class="mx-auto flex flex-col gap-10 items-center w-[20rem]
         sm:w-[30rem] md:w-[48rem] lg:w-[60rem] xl:w-[80rem]">
-        <Header v-if="settings!==false" :settings="settings"/>
-        <navigation v-if="settings!==false" :settings="settings"/>
+        <Header :settings="indexSettings"/>
+        <navigation :settings="indexSettings"/>
         <slot/>
-        <Footer v-if="settings!==false" :settings="settings" class="mt-10"/>
+        <Footer :settings="indexSettings" class="mt-10"/>
     </div>
 
 </template>

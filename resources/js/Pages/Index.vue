@@ -1,21 +1,18 @@
 <script setup>
 
-import Header from "@/Pages/Parts/Header.vue";
-import Footer from "@/Pages/Parts/Footer.vue";
 import Slider1 from "@/Pages/Components/Home/Slider1.vue";
 import Brands from "@/Pages/Components/Home/Brands.vue";
 import {ref} from "vue";
 import Product from "@/Pages/Components/Home/Product.vue";
 import ProductSlider1 from "@/Pages/Components/Home/product-slider1.vue";
-import Navigation from "@/Pages/Components/Home/navigation.vue";
 import LiveCards from "@/Pages/Components/Home/live-cards.vue";
 import Intro from "@/Pages/Components/Home/intro.vue";
-import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
-import {useWindowScroll} from "@vueuse/core";
 import IndexLyout from "@/Pages/IndexLyout.vue";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 const props = defineProps(["indexData"]);
-const indexData = ref(props.indexData);
+console.log(props.indexData.settings);
+useIndexStore().setSetting(props.indexData.settings.data);
 const slider1Data = ref([
     "../../../../images/slider/slider%20(1).jpeg",
     "../../../../images/slider/slider%20(2).jpeg",
@@ -31,7 +28,7 @@ const liveCardData = ref([
     "../../../../images/fertilizer.jpg",
     "../../../../images/slider/slider%20(7).jpeg",
 ]);
-console.log(props.indexData)
+
 </script>
 
 <template>
@@ -50,7 +47,7 @@ console.log(props.indexData)
                     <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <Brands class="w-full" :brands-data="indexData.brands"></Brands>
+            <Brands class="w-full" :brands-data="indexData.brands.data"></Brands>
         </div>
         <!--        product show-1-->
         <div data-aos="fade-up" class="w-full mx-auto !transform-none">

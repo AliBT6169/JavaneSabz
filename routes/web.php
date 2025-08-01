@@ -18,9 +18,7 @@ Route::controller(IndexController::class)->group(function () {
 Route::get('/درباره ما', function () {
     return Inertia::render('About-Us');
 });
-Route::get('/settings', function () {
-    return response()->json(Setting::first());
-})->name('settings');
+
 Route::controller(ProductController::class)->group(function () {
     Route::get('ProductShow/{id}', 'show')->name('ProductShow');
     Route::get('updateProductShow/{id}', 'getData')->name('getProductData');

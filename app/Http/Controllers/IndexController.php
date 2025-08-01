@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Home\IndexSettingResource;
 use App\Models\Brand;
 use App\Models\ProductVariation;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Tests\Integration\Database\Settings;
 use Inertia\Inertia;
 
 class IndexController extends Controller
@@ -18,6 +20,7 @@ class IndexController extends Controller
         $indexData = [
             "products" => ProductVariation::getSomeProduct(20),
             "brands" => Brand::where('is_active', 1)->get(),
+            "settings"=>IndexSettingResource::make(Setting::first())
         ];
         return Inertia::render('Index', ["indexData" => $indexData]);
     }
