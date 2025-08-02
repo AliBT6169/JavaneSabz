@@ -42,7 +42,7 @@ const submit = () => {
                 <div class="w-full bg-defaultColor5 bg-opacity-70 rounded-3xl text-defaultColor7 grid gap-5 pb-6">
                     <div class="flex flex-col items-center border-b-2 border-defaultColor">
                         <div class=" upComingAnimation">
-                            <img :src="useIndexStore().Settings.icon"
+                            <img :src="useIndexStore().Settings.settings.data.icon"
                                  class="w-28 scale-125" alt="">
                         </div>
                         <span class="text-2xl font-black">ورود به حساب کاربری</span>

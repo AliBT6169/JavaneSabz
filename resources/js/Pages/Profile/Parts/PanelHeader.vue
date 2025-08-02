@@ -18,8 +18,8 @@ const authUser = useAuthStore();
             <svg-component name="dashboard" class="size-9 Sidebar cursor-pointer dark:text-white"
                            @click.stop="profileSidebar = !profileSidebar"/>
             <Link href="/" class="flex items-center">
-                <svg-component name="home" class="size-12"/>
-                <p class="hidden md:block">بازگشت به خانه</p>
+                <svg-component name="home" class="size-10"/>
+                <p class="hidden pt-1 md:block">بازگشت به خانه</p>
             </Link>
         </div>
         <Link href="/" class="">
