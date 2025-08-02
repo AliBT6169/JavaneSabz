@@ -26,7 +26,20 @@ document.addEventListener('click', () => {
     info_mobile_nav.value = false;
     connectUsModalVisibility.value = false;
 });
-
+const Brand = ref(null);
+const Products = ref(null);
+const AboutUs = ref(null);
+const ConnectWithUs = ref(null);
+navSettings.map(item => {
+    if (item.title === 'برند ها')
+        Brand.value = item;
+    if (item.title === 'محصولات')
+        Products.value = item;
+    if (item.title === 'درباره ما')
+        AboutUs.value = item;
+    if (item.title === 'تماس با ما')
+        ConnectWithUs.value = item;
+});
 const showConnectModal = () => {
     connectUsModalVisibility.value = !connectUsModalVisibility.value;
 }
@@ -38,7 +51,7 @@ const showConnectModal = () => {
         <div
             class=" w-full px-2 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100 lg:px-6">
 
-                <div class="flex items-center h-full gap-2 lg:gap-4">
+            <div class="flex items-center h-full gap-2 lg:gap-4">
                 <div v-for="(item,index) in navSettings" class="">
                     <div v-if="item.link === ''" class="flex items-center"
                          @click.stop="item.title==='تماس با ما'?connectUsModalVisibility=!connectUsModalVisibility:''">
@@ -158,12 +171,14 @@ const showConnectModal = () => {
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-12 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': magic_mobile_nav}]">
                 <DarkLight/>
                 <div @click="modalSet('Favorite')"
+                     :class="{'mt-0':Brand===null}"
                      class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
                     <svg-component name="like" class="size-7"/>
                 </div>
-                <div class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
-                    <svg-component name="indexBrands" class="size-7"/>
-                </div>
+                <Link :href="route(Brand.link)" v-if="Brand!==null"
+                      class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
+                    <svg-component :name="Brand.icon" class="size-7"/>
+                </Link>
             </div>
         </div>
         <!--        buyCart-->
@@ -177,20 +192,20 @@ const showConnectModal = () => {
             </div>
         </Link>
         <!--        products-->
-        <div class="home_mobile_navigation_items">
+        <Link :href="route(Products!==null?Products.link:'index')" class="home_mobile_navigation_items">
             <svg-component name="strawberry" title="محصولات" class="size-[70%] sm:size-10"/>
-        </div>
+        </Link>
         <!--        aboutUs & connectWithUs-->
         <div class="home_mobile_navigation_items relative" @click.stop="info_mobile_nav=!info_mobile_nav">
             <svg-component name="about" class="size-[70%] sm:size-10"/>
             <div
                 :class="['absolute w-fit flex gap-3 p-4 items-center -right-11 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': info_mobile_nav}]">
-                <Link href="/درباره ما">
+                <Link v-if="AboutUs!==null" href="/درباره ما">
                     <div class="bg-slate-700 bg-opacity-50 p-1 text-gray-200 rounded-lg fill-none hover:fill-red-900">
                         <svg-component name="about" class="size-7"/>
                     </div>
                 </Link>
-                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg"
+                <div v-if="ConnectWithUs!==null" class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg"
                      @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
                     <svg-component name="tell" class="size-7"/>
                 </div>
