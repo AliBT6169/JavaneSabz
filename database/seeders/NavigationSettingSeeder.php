@@ -21,13 +21,13 @@ class NavigationSettingSeeder extends Seeder
         ]);
         NavBarSetting::create([
             'title' => 'محصولات',
-            'link' => 'products',
+            'link' => 'products.showAll',
             'icon' => 'strawberry',
             'queue' => 1,
         ]);
         NavBarSetting::create([
             'title' => 'برند ها',
-            'link' => 'brand',
+            'link' => 'brands.show',
             'icon' => 'indexBrands',
             'queue' => 2,
         ]);
@@ -39,7 +39,6 @@ class NavigationSettingSeeder extends Seeder
         ]);
         NavBarSetting::create([
             'title' => 'تماس با ما',
-            'link' => 'nan',
             'icon' => 'tell',
             'queue' => 4,
         ]);

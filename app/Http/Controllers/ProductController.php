@@ -52,6 +52,11 @@ class ProductController extends Controller
         return Inertia::render('ProductShow', ["productData" => $product]);
     }
 
+    public function showAll()
+    {
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

@@ -131,7 +131,7 @@ const showConnectModal = () => {
                 </div>
                 <div class="separate"></div>
                 <!--                about us-->
-                <Link href="/درباره ما">
+                <Link :href="route('about-us')">
                     <div class="header-items">
                         <svg-component name="about" title="درباره جوانه سبز" class="size-5 lg:size-6"/>
                         <h1 class="">درباره ما</h1>
