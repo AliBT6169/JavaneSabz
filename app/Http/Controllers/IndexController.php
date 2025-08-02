@@ -23,7 +23,7 @@ class IndexController extends Controller
             "brands" => Brand::where('is_active', 1)->get(),
             "settings" => [
                 "settings" => IndexSettingResource::make(Setting::first()),
-                "NavSetting" => NavigationSettingResource::collection(NavBarSetting::where('status', 1)->get())
+                "NavSetting" => NavigationSettingResource::collection(NavBarSetting::where('status', 1)->orderBy('queue', 'asc')->get()),
             ],
         ];
         return Inertia::render('Index', ["indexData" => $indexData]);
