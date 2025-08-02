@@ -19,7 +19,7 @@ Route::controller(IndexController::class)->group(function () {
 Route::get('/درباره ما', function () {
     $info = AboutUsSetting::first();
     return Inertia::render('About-Us', ['info' => $info]);
-});
+})->name('about-us');
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('ProductShow/{id}', 'show')->name('ProductShow');

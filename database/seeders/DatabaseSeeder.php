@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(provinceSeeder::class);
         $this->call(citySeeder::class);
         $this->call(DeliveryAmountSeeder::class);
+        $this->call(NavigationSettingSeeder::class);
         User::factory(100)->create()->unique;
         Setting::factory(1)->create();
         AboutUsSetting::factory(1)->create();
