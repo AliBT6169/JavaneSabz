@@ -12,7 +12,7 @@ const indexSettings = useIndexStore().Settings.settings.data;
     <div class="mx-auto flex flex-col gap-10 items-center w-[20rem]
         sm:w-[30rem] md:w-[48rem] lg:w-[60rem] xl:w-[80rem]">
         <Header :settings="indexSettings"/>
-        <navigation :settings="useIndexStore"/>
+        <navigation :settings="indexSettings"/>
         <slot/>
         <Footer :settings="indexSettings" class="mt-10"/>
     </div>

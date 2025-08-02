@@ -20,6 +20,7 @@ const props = defineProps({
         required: true
     }
 });
+console.log(props.settings);
 document.addEventListener('click', () => {
     magic_mobile_nav.value = false;
     info_mobile_nav.value = false;
@@ -29,7 +30,6 @@ document.addEventListener('click', () => {
 const showConnectModal = () => {
     connectUsModalVisibility.value = !connectUsModalVisibility.value;
 }
-console.log(navSettings)
 </script>
 
 <template class="w-full">
@@ -38,16 +38,22 @@ console.log(navSettings)
         <div
             class=" w-full px-2 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100 lg:px-6">
 
-            <div class="flex items-center h-full gap-2 lg:gap-4">
-                <div v-for="(item,index) in navSettings" class="" :class="{'relative group':item.title==='محصولات'}">
-                    <div v-if="item.link === ''" class="header-items"
+                <div class="flex items-center h-full gap-2 lg:gap-4">
+                <div v-for="(item,index) in navSettings" class="">
+                    <div v-if="item.link === ''" class="flex"
                          @click.stop="item.title==='تماس با ما'?connectUsModalVisibility=!connectUsModalVisibility:''">
-                        <svg-component :name="item.icon" class="size-7"/>
-                        <h2 class="">{{ item.title }}</h2>
+                        <div class="header-items" :class="{'relative group':item.title==='محصولات'}">
+                            <svg-component :name="item.icon" class="size-7"/>
+                            <h2 class="">{{ item.title }}</h2>
+                        </div>
+                        <div v-if="index!==navSettings.length-1" class="separate"></div>
                     </div>
-                    <Link v-else :href="route(item.link)" class="header-items">
-                        <svg-component :name="item.icon" class="size-7"/>
-                        <h2 class="">{{ item.title }}</h2>
+                    <Link v-else :href="route(item.link)" class="flex gap-2">
+                        <div class="header-items">
+                            <svg-component :name="item.icon" class="size-7"/>
+                            <h2 class="">{{ item.title }}</h2>
+                        </div>
+                        <div v-if="index!==navSettings.length-1" class="separate"></div>
                     </Link>
                     <!--                    products-list-->
                     <div v-if="item.title==='محصولات'" class="header-item-lists">
@@ -120,7 +126,6 @@ console.log(navSettings)
                             </div>
                         </div>
                     </div>
-                    <div v-if="index!==navSettings.length-1" class="separate"></div>
                 </div>
             </div>
             <!--            connection svgs-->
