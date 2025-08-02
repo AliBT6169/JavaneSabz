@@ -40,7 +40,7 @@ const showConnectModal = () => {
 
                 <div class="flex items-center h-full gap-2 lg:gap-4">
                 <div v-for="(item,index) in navSettings" class="">
-                    <div v-if="item.link === ''" class="flex"
+                    <div v-if="item.link === ''" class="flex items-center"
                          @click.stop="item.title==='تماس با ما'?connectUsModalVisibility=!connectUsModalVisibility:''">
                         <div class="header-items" :class="{'relative group':item.title==='محصولات'}">
                             <svg-component :name="item.icon" class="size-7"/>
@@ -48,7 +48,7 @@ const showConnectModal = () => {
                         </div>
                         <div v-if="index!==navSettings.length-1" class="separate"></div>
                     </div>
-                    <Link v-else :href="route(item.link)" class="flex gap-2">
+                    <Link v-else :href="route(item.link)" class="flex items-center gap-2">
                         <div class="header-items">
                             <svg-component :name="item.icon" class="size-7"/>
                             <h2 class="">{{ item.title }}</h2>
