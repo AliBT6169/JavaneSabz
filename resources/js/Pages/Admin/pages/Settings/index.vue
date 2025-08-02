@@ -46,7 +46,7 @@ const settingName = ref('AboutSetting');
             <div class="w-full relative flex justify-center">
                 <AboutSetting :is_active="settingName==='AboutSetting'" :settings="settings.AboutSetting.data"/>
                 <AboutUsSetting :is_active="settingName==='AboutUsSetting'" :settings="settings.AboutUsSetting"/>
-                <NavSetting :is_active="settingName==='navigationSetting'" />
+                <NavSetting :is_active="settingName==='navigationSetting'" :settings="settings.NavSetting" />
             </div>
         </div>
     </Layout>

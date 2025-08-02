@@ -18,7 +18,7 @@ class NavBarSetting extends Model
         'link',
         'icon',
         'queue',
-        'status',
+        'is_active',
         'created_at',
     ];
 }

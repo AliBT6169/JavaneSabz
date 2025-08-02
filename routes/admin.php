@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Comments\AdminCommentController;
 use App\Http\Controllers\Admin\Delivery\DeliveryController;
+use App\Http\Controllers\Admin\NavSettingController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
@@ -108,6 +109,11 @@ Route::middleware(AdminMiddleware::class)->group(function () {
 
     Route::controller(AboutUsSettingController::class)->group(function () {
        Route::put('/aboutUsSetting/update', 'update')->name('aboutUsSetting.update');
+    });
+
+    Route::controller(NavSettingController::class)->group(function () {
+        Route::patch('/navSetting/toggle/{id}', 'toggle')->name('navSetting.toggle');
+        Route::patch('/navSetting/queueToggle/{id}', 'queueToggle')->name('navSetting.queueToggle');
     });
 });
 

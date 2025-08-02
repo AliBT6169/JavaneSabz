@@ -1,19 +1,19 @@
 <script setup>
 import {ref} from "vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
-import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import {toFormData} from "axios";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
-import AdminPictureInput from "@/Pages/Admin/Components/AdminPictureInput.vue";
-import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
+import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import NavSettingItem from "@/Pages/Admin/pages/Settings/NavSettingItem.vue";
 
 const props = defineProps({
     settings: Object,
     is_active: Boolean,
 });
-const form = ref({
-});
+console.log(props.settings)
+const form = ref({});
 
 const sendData = () => {
     const content = {
@@ -55,8 +55,8 @@ const sendData = () => {
     <div :class="{'opacity-0 top-[-1000px] invisible':!is_active}"
          class="adminSettingPagesDesign">
         <form @submit.prevent="sendData" class="pb-20">
-            <div class="space-y-5 md:flex md:flex-wrap md:gap-5 md:*:w-[45%] md:space-y-0 md:justify-center">
-
+            <div class="flex flex-wrap gap-5 justify-center">
+                <NavSettingItem v-for="(item, index) in settings" :my-key="index" :setting="item"/>
                 <div class="space-y-5 justify-end !w-full md:flex md:gap-5 *:md:w-48 md:space-y-0">
                     <AdminButton type="submit" text="ثبت اطلاعات"/>
                     <AdminButton type="cancel" text="لغو"/>

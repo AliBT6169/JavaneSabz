@@ -20,7 +20,6 @@ const props = defineProps({
         required: true
     }
 });
-console.log(props.settings);
 document.addEventListener('click', () => {
     magic_mobile_nav.value = false;
     info_mobile_nav.value = false;

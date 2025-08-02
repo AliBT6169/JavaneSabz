@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('link')->nullable();
             $table->string('icon');
             $table->tinyInteger('queue');
-            $table->tinyInteger('status')->default('1');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

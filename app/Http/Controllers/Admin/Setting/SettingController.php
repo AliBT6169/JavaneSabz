@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Settings\AdminSettingUpdateRequest;
 use App\Http\Resources\Admin\Setting\AboutSettingResource;
 use App\Models\AboutUsSetting;
+use App\Models\NavBarSetting;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,6 +18,7 @@ class SettingController extends Controller
         $setting = [];
         $setting['AboutSetting'] = AboutSettingResource::make(Setting::first());
         $setting['AboutUsSetting'] = AboutUsSetting::first();
+        $setting['NavSetting'] = NavBarSetting::get();
         return Inertia::render('Admin/pages/Settings/index', ['settings' => $setting]);
     }
 
