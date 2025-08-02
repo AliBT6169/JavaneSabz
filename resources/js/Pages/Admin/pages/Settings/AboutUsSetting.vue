@@ -58,7 +58,7 @@ const sendData = () => {
 
 <template>
     <div :class="{'opacity-0 top-[-1000px] invisible':!is_active}"
-         class="w-full absolute top-0 duration-1000 bg-adminColor1 border-adminColor2 border-4 rounded-xl p-5">
+         class="adminSettingPagesDesign">
         <form @submit.prevent="sendData" class="pb-20">
             <div class="space-y-5 md:flex md:flex-wrap md:gap-5 md:*:w-[45%] md:space-y-0 md:justify-center">
                 <div class="">

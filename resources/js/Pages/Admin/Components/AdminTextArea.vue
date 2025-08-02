@@ -11,7 +11,7 @@ const emit = defineEmits(['update:modelValue'])
 <template>
     <div class="">
         <div class="pr-2">{{label}}</div>
-        <textarea class="admin_inputs no-scrollbar" :placeholder="label"
+        <textarea class="admin_inputs no-scrollbar h-40" :placeholder="label"
                   @input="(e)=>emit('update:modelValue',e.target.value)">{{props.modelValue}}</textarea>
     </div>
 </template>

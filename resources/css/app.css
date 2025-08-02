@@ -125,7 +125,11 @@
     focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4;
 }
 
-.adminOrderEditItems{
+.adminSettingPagesDesign {
+    @apply w-full absolute top-0 duration-1000 bg-adminColor1 border-adminColor2 border-4 rounded-xl p-5 dark:bg-adminColor3;
+}
+
+.adminOrderEditItems {
     @apply border-2 rounded-xl border-adminColor3 py-4 px-2 flex justify-between w-full;
 }
 

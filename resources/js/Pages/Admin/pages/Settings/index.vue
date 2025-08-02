@@ -3,6 +3,7 @@ import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AboutSetting from "@/Pages/Admin/pages/Settings/AboutSetting.vue";
 import {ref} from "vue";
 import AboutUsSetting from "@/Pages/Admin/pages/Settings/AboutUsSetting.vue";
+import NavSetting from "@/Pages/Admin/pages/Settings/NavSetting.vue";
 
 
 const props = defineProps({
@@ -45,6 +46,7 @@ const settingName = ref('AboutSetting');
             <div class="w-full relative flex justify-center">
                 <AboutSetting :is_active="settingName==='AboutSetting'" :settings="settings.AboutSetting.data"/>
                 <AboutUsSetting :is_active="settingName==='AboutUsSetting'" :settings="settings.AboutUsSetting"/>
+                <NavSetting :is_active="settingName==='navigationSetting'" />
             </div>
         </div>
     </Layout>
