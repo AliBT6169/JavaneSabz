@@ -7,12 +7,13 @@ import {Link} from '@inertiajs/vue3';
 import ConnectModal from "@/Pages/Components/Home/connect-modal.vue";
 import {connectUsModalVisibility, modalSet} from "@/Pages/Components/Helper/Helper.js";
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
+import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 
 const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-
+const navSettings = useIndexStore().Settings.NavSetting.data;
 const props = defineProps({
     settings: {
         type: Object,
@@ -28,6 +29,7 @@ document.addEventListener('click', () => {
 const showConnectModal = () => {
     connectUsModalVisibility.value = !connectUsModalVisibility.value;
 }
+console.log(navSettings)
 </script>
 
 <template class="w-full">
@@ -37,22 +39,18 @@ const showConnectModal = () => {
             class=" w-full px-2 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100 lg:px-6">
 
             <div class="flex items-center h-full gap-2 lg:gap-4">
-                <!--                home-->
-                <Link href="/">
-                    <div class="header-items">
-                        <svg-component name="home" title="صفحه اصلی جوانه سبز" class="size-7"/>
-                        <h1 class="">خانه</h1>
+                <div v-for="(item,index) in navSettings" class="" :class="{'relative group':item.title==='محصولات'}">
+                    <div v-if="item.link === ''" class="header-items"
+                         @click.stop="item.title==='تماس با ما'?connectUsModalVisibility=!connectUsModalVisibility:''">
+                        <svg-component :name="item.icon" class="size-7"/>
+                        <h2 class="">{{ item.title }}</h2>
                     </div>
-                </Link>
-                <div class="separate"></div>
-                <!--                products-->
-                <div class="relative group">
-                    <div class="header-items">
-                        <svg-component name="strawberry" class="size-5"/>
-                        <h1 class="">محصولات</h1>
-                    </div>
+                    <Link v-else :href="route(item.link)" class="header-items">
+                        <svg-component :name="item.icon" class="size-7"/>
+                        <h2 class="">{{ item.title }}</h2>
+                    </Link>
                     <!--                    products-list-->
-                    <div class="header-item-lists">
+                    <div v-if="item.title==='محصولات'" class="header-item-lists">
                         <!--                        buds-->
                         <div class="mega-tab-items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
@@ -122,26 +120,7 @@ const showConnectModal = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="separate"></div>
-                <!--                Lesson-->
-                <div class="header-items">
-                    <svg-component name="indexBrands" title="برند" class="size-5 lg:size-6"/>
-                    <h1 class="">برند ها</h1>
-                </div>
-                <div class="separate"></div>
-                <!--                about us-->
-                <Link :href="route('about-us')">
-                    <div class="header-items">
-                        <svg-component name="about" title="درباره جوانه سبز" class="size-5 lg:size-6"/>
-                        <h1 class="">درباره ما</h1>
-                    </div>
-                </Link>
-                <div class="separate"></div>
-                <!--                connect with us-->
-                <div class="header-items" @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
-                    <svg-component name="tell" title="تماس با جوانه سبز" class="size-5 lg:size-6"/>
-                    <h1 class="">تماس با ما</h1>
+                    <div v-if="index!==navSettings.length-1" class="separate"></div>
                 </div>
             </div>
             <!--            connection svgs-->

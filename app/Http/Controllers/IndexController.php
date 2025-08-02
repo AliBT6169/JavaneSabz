@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Home\IndexSettingResource;
+use App\Http\Resources\Home\NavigationSettingResource;
 use App\Models\Brand;
+use App\Models\NavBarSetting;
 use App\Models\ProductVariation;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -19,7 +21,10 @@ class IndexController extends Controller
         $indexData = [
             "products" => ProductVariation::getSomeProduct(20),
             "brands" => Brand::where('is_active', 1)->get(),
-            "settings"=>IndexSettingResource::make(Setting::first())
+            "settings" => [
+                "settings" => IndexSettingResource::make(Setting::first()),
+                "NavSetting" => NavigationSettingResource::collection(NavBarSetting::where('status', 1)->get())
+            ],
         ];
         return Inertia::render('Index', ["indexData" => $indexData]);
     }
