@@ -60,10 +60,12 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request)
     {
         $categories = Category::whereId($request->id)->first();
+        $URL = $categories->icon;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            unlink(public_path('images/categories/' . $categories->id . '.' . $image->getClientOriginalExtension()));
+            unlink(public_path($categories->icon));
             $image->move(public_path('images/categories/'), $categories->id . '.' . $image->getClientOriginalExtension());
+            $URL = public_path() . '/images/categories/' . $categories->id . '.' . $image->getClientOriginalExtension();
         }
         $categories->update([
             'name' => $request->name,
