@@ -32,6 +32,7 @@ class adminSeeder extends Seeder
         Address::create([
             "address" => Faker::address(),
             "postcode" => Faker::melliCode(),
+            "city_id" => 126,
             "addressable_id" => 1,
             "addressable_type" => User::class,
         ]);

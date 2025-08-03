@@ -7,7 +7,6 @@ const props = defineProps({
     transaction_data: null,
     message: null,
 })
-console.log(props.transaction_data);
 switch (props.transaction_data[0].status) {
     case 2:
         useAuthStore().toastMessage('success', props.message)

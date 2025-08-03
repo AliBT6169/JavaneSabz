@@ -1,7 +1,6 @@
 <script setup>
 
 import {profileComponent, profileSidebar} from "@/Pages/Components/Helper/Helper.js";
-import SvgComponent from "@/Pages/Components/svg-component.vue";
 import SidebarItem from "@/Pages/Components/Panel/SidebarItem.vue";
 import ShowProfile from "@/Pages/Profile/Pages/ShowProfile.vue";
 import BuyCart from "@/Pages/Profile/Pages/BuyCart.vue";
@@ -35,7 +34,7 @@ const information_edit = markRaw(InformationEdit);
         <SidebarItem @click="profileComponent=transaction" :chosen="profileComponent===Transaction" svg="card" title="تراکنش ها">تراکنش ها</SidebarItem>
         <SidebarItem @click="profileComponent=payment" :chosen="profileComponent===Payment" svg="list" title="سفارشات">سفارشات</SidebarItem>
         <SidebarItem @click="profileComponent=favorite" :chosen="profileComponent===Favorite" svg="like" title="علاقه مندی ها" class="fill-transparent">علاقه مندی ها</SidebarItem>
-        <SidebarItem @click="profileComponent=comment" :chosen="profileComponent===Comments" svg="comment" title="نظرات">نظرات</SidebarItem>
+<!--        <SidebarItem @click="profileComponent=comment" :chosen="profileComponent===Comments" svg="comment" title="نظرات">نظرات</SidebarItem>-->
         <SidebarItem @click="profileComponent=information_edit" :chosen="profileComponent===InformationEdit" svg="edit" title="تکمیل اطلاعات">تکمیل اطلاعات</SidebarItem>
     </div>
 </template>

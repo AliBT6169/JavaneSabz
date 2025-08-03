@@ -35,7 +35,7 @@ const userDelete = async (id) => {
 </script>
 
 <template>
-    <tr v-if="!userDeleted" class="h-12 cursor-pointer hover:!bg-adminColor2 duration-500">
+    <tr v-if="!userDeleted" class="h-12 cursor-pointer hover:!bg-adminColor2 duration-500 *:text-center">
         <td class="hidden md:table-cell w-[5%] p-2"><img class="size-12 rounded-full" :src="user.image" alt=""></td>
         <td class="">{{ user.full_name === '' ? 'خالی' : user.full_name }}</td>
         <td class="truncate">{{ user.user_name === '' ? 'خالی' : user.user_name }}</td>
@@ -51,6 +51,7 @@ const userDelete = async (id) => {
                         </div>
                     </span></td>
         <td class="w-[7%]">{{ user.is_admin ? 'مدیر' : 'کاربر' }}</td>
+        <td class="w-[7%] text-center">{{ user.buy_item_quantity }}</td>
         <td class="hidden md:table-cell w-[7%]">{{ user.gender === 1 ? 'آقا' : 'خانم' }}</td>
         <td class="">{{ user.cellphone }}</td>
         <td class="hidden md:table-cell truncate">{{ user.email }}</td>

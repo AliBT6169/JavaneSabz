@@ -1,5 +1,4 @@
 <script setup>
-
 import DarkLight from "@/Pages/Components/Home/DarkLight.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import SvgComponent from "@/Pages/Components/svg-component.vue";

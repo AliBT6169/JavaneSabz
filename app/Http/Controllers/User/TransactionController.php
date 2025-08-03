@@ -9,6 +9,7 @@ use App\Models\ProductVariation;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class TransactionController extends Controller
@@ -31,6 +32,9 @@ class TransactionController extends Controller
                     'order_id' => $order_id,
                     'status' => 2,
                 ];
+                Auth::user()->update([
+                   'buy_item_quantity'=> DB::raw('buy_item_quantity +' . Order::whereId($order_id)->first()->orderItems->count())
+                ]);
                 ProductVariation::productQuantityDecrement($order_id);
                 ProductVariation::sailedQuantityIncrement($order_id);
                 Order::whereId($order_id)->update([
