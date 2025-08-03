@@ -97,7 +97,7 @@ const sendData = async () => {
                         <admin-button type="cancel" text="لغو"/>
                     </Link>
                 </div>
-                <div class="flex items-center flex-wrap gap-6 lg:justify-between">
+                <div class="flex justify-center items-center flex-wrap gap-6 lg:justify-between">
                     <AttributeConnectionItem model-href="admin.brands.show" v-model="connections.brands"
                                              model-name="برند"/>
                     <AttributeConnectionItem model-href="admin.categories.show" v-model="connections.categories"

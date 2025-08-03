@@ -58,10 +58,6 @@ const sendData = () => {
             <div class="flex flex-wrap gap-5 justify-center">
                 <NavSettingItem v-for="item in NavSettings" :my-key="item.id" @move="NavSettings = $event, console.log(NavSettings)"
                                 :setting="item"/>
-                <div class="space-y-5 justify-end !w-full md:flex md:gap-5 *:md:w-48 md:space-y-0">
-                    <AdminButton type="submit" text="ثبت اطلاعات"/>
-                    <AdminButton type="cancel" text="لغو"/>
-                </div>
             </div>
         </form>
     </div>

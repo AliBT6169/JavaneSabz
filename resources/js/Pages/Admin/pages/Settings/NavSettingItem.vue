@@ -4,6 +4,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
 import {ref} from "vue";
 import {useToast} from "vue-toastification";
+import NavItemSelectionModal from "@/Pages/Admin/pages/Settings/NavItemSelectionModal.vue";
 
 const props = defineProps({
     setting: Object,
@@ -35,7 +36,12 @@ const queueChanged = async (e) => {
 
 <template>
     <div class="border-2 border-adminColor2 p-2 rounded-xl space-y-1">
-        <div class="size-6 text-center border-2 border-current rounded-full m-auto">{{ setting.queue }}</div>
+        <div :class="{'flex gap-2 items-center justify-center':setting.title==='محصولات'}">
+            <div class="size-6 text-center border-2 border-current rounded-full m-auto"
+                 :class="{'!m-0':setting.title === 'محصولات'}">{{ setting.queue }}
+            </div>
+            <NavItemSelectionModal v-if="setting.title === 'محصولات'" model-name="تنظیمات"/>
+        </div>
         <div class=" flex justify-between items-center">
             <!--            perv-->
             <div class="w-5">
@@ -52,6 +58,6 @@ const queueChanged = async (e) => {
                                class="cursor-pointer size-5 duration-300 hover:text-adminColor2 hover:scale-110"/>
             </div>
         </div>
-        <AdminActiveDeActiveInput v-model="is_active" :my-key="myKey" @update:modelValue="is_activeChanged"/>
+        <AdminActiveDeActiveInput class="text-nowrap" v-model="is_active" :my-key="myKey" @update:modelValue="is_activeChanged"/>
     </div>
 </template>
