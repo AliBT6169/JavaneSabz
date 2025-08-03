@@ -18,7 +18,7 @@ class SettingController extends Controller
         $setting = [];
         $setting['AboutSetting'] = AboutSettingResource::make(Setting::first());
         $setting['AboutUsSetting'] = AboutUsSetting::first();
-        $setting['NavSetting'] = NavBarSetting::get();
+        $setting['NavSetting'] = NavBarSetting::orderBy('queue','asc')->get();
         return Inertia::render('Admin/pages/Settings/index', ['settings' => $setting]);
     }
 

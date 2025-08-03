@@ -112,8 +112,8 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
 
     Route::controller(NavSettingController::class)->group(function () {
+        Route::patch('/navSetting/queueToggle', 'queueToggle')->name('navSetting.queueToggle');
         Route::patch('/navSetting/toggle/{id}', 'toggle')->name('navSetting.toggle');
-        Route::patch('/navSetting/queueToggle/{id}', 'queueToggle')->name('navSetting.queueToggle');
     });
 });
 

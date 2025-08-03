@@ -11,9 +11,20 @@ const props = defineProps({
 });
 const is_active = ref(props.setting.is_active);
 const is_activeChanged = async () => {
-    await axios.patch(route('admin.navSetting.toggle',props.setting.id)).then(res=>{
+    await axios.patch(route('admin.navSetting.toggle', props.setting.id)).then(res => {
         useToast().success(res.data);
-    }).catch(err=>{
+    }).catch(err => {
+        useToast().error(err.response.data.message);
+    });
+}
+const queueChanged = async (e) => {
+    await axios.patch(route('admin.navSetting.queueToggle'), {
+        id: props.setting.id,
+        state: e,
+    }).then(res => {
+        console.log(res.data);
+        useToast().success(res.data);
+    }).catch(err => {
         useToast().error(err.response.data.message);
     });
 }
@@ -23,19 +34,21 @@ const is_activeChanged = async () => {
     <div class="border-2 border-adminColor2 p-2 rounded-xl space-y-1">
         <div class="size-6 text-center border-2 border-current rounded-full m-auto">{{ setting.queue }}</div>
         <div class=" flex justify-between items-center">
-<!--            perv-->
+            <!--            perv-->
             <div class="w-5">
-                <svg-component v-if="setting.queue>0" name="next" class="cursor-pointer size-5 rotate-180"/>
+                <svg-component v-if="setting.queue>0" name="next" @click="queueChanged(-1)"
+                               class="cursor-pointer size-5 rotate-180 duration-300 hover:text-adminColor2 hover:scale-110"/>
             </div>
             <div class="flex items-center gap-2 border-2 rounded-xl p-2 border-adminColor2">
                 <svg-component :name="setting.icon" class="size-7"/>
                 <div class="">{{ setting.title }}</div>
             </div>
-<!--            next-->
+            <!--            next-->
             <div class="w-5">
-                <svg-component v-if="setting.queue<4" name="next" class="cursor-pointer size-5"/>
+                <svg-component v-if="setting.queue<4" name="next" @click="queueChanged(1)"
+                               class="cursor-pointer size-5 duration-300 hover:text-adminColor2 hover:scale-110"/>
             </div>
         </div>
-        <AdminActiveDeActiveInput v-model="is_active" :my-key="myKey"  @update:modelValue="is_activeChanged"/>
+        <AdminActiveDeActiveInput v-model="is_active" :my-key="myKey" @update:modelValue="is_activeChanged"/>
     </div>
 </template>

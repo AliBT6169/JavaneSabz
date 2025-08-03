@@ -23,7 +23,7 @@ const authUser = useAuthStore();
             </Link>
         </div>
         <Link href="/" class="">
-            <img :src="useIndexStore().Settings.icon" class="w-14 scale-[1.5]" alt="">
+            <img :src="useIndexStore().Settings.settings.data.icon" class="w-14 scale-[1.5]" alt="">
         </Link>
         <div class="flex gap-2 items-center">
             <DarkLight/>
