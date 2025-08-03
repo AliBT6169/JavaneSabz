@@ -9,6 +9,9 @@ const props = defineProps({
     setting: Object,
     myKey: '',
 });
+const emit = defineEmits({
+    move: Number,
+});
 const is_active = ref(props.setting.is_active);
 const is_activeChanged = async () => {
     await axios.patch(route('admin.navSetting.toggle', props.setting.id)).then(res => {
@@ -22,8 +25,8 @@ const queueChanged = async (e) => {
         id: props.setting.id,
         state: e,
     }).then(res => {
-        console.log(res.data);
-        useToast().success(res.data);
+        emit('move', res.data.data)
+        useToast().success(res.data.message);
     }).catch(err => {
         useToast().error(err.response.data.message);
     });

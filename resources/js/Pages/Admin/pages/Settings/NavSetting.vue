@@ -4,14 +4,13 @@ import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import {toFormData} from "axios";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
-import SvgComponent from "@/Pages/Components/svg-component.vue";
-import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import NavSettingItem from "@/Pages/Admin/pages/Settings/NavSettingItem.vue";
 
 const props = defineProps({
     settings: Object,
     is_active: Boolean,
 });
+const NavSettings = ref(props.settings);
 console.log(props.settings)
 const form = ref({});
 
@@ -49,6 +48,7 @@ const sendData = () => {
     }
     useToast().warning(content);
 }
+
 </script>
 
 <template>
@@ -56,7 +56,8 @@ const sendData = () => {
          class="adminSettingPagesDesign">
         <form @submit.prevent="sendData" class="pb-20">
             <div class="flex flex-wrap gap-5 justify-center">
-                <NavSettingItem v-for="(item, index) in settings" :my-key="index" :setting="item"/>
+                <NavSettingItem v-for="item in NavSettings" :my-key="item.id" @move="NavSettings = $event, console.log(NavSettings)"
+                                :setting="item"/>
                 <div class="space-y-5 justify-end !w-full md:flex md:gap-5 *:md:w-48 md:space-y-0">
                     <AdminButton type="submit" text="ثبت اطلاعات"/>
                     <AdminButton type="cancel" text="لغو"/>

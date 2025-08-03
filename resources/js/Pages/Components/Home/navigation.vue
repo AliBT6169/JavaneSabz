@@ -51,7 +51,7 @@ const showConnectModal = () => {
             class=" w-full px-2 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100 lg:px-6">
 
             <div class="flex items-center h-full gap-2 lg:gap-4">
-                <div v-for="(item,index) in navSettings" class="">
+                <div v-for="(item,index) in navSettings" class=" group relative">
                     <div v-if="item.link === ''" class="flex items-center"
                          @click.stop="item.title==='تماس با ما'?connectUsModalVisibility=!connectUsModalVisibility:''">
                         <div class="header-items" :class="{'relative group':item.title==='محصولات'}">

@@ -28,7 +28,7 @@ class NavSettingController extends Controller
         switch ($request->state) {
             case -1:
                 if ($nav_item->queue > 0) {
-                    NavBarSetting::where('queue',$nav_item->queue -1)->first()->update([
+                    NavBarSetting::where('queue', $nav_item->queue - 1)->first()->update([
                         'queue' => DB::raw('queue +1')
                     ]);
                     $nav_item->update([
@@ -39,7 +39,7 @@ class NavSettingController extends Controller
                 break;
             case 1:
                 if ($nav_item->queue < 4) {
-                    NavBarSetting::where('queue',$nav_item->queue +1)->first()->update([
+                    NavBarSetting::where('queue', $nav_item->queue + 1)->first()->update([
                         'queue' => DB::raw('queue -1')
                     ]);
                     $nav_item->update([
@@ -49,6 +49,10 @@ class NavSettingController extends Controller
                     abort(500, 'امکان جلو کشیدن این تب وجود ندارد!');
                 break;
         }
-        return response()->json('عملیات با موفقیت انجام شد!',200);
+        return response()->json([
+            'message' => 'عملیات با موفقیت انجام شد!',
+            'data' => NavBarSetting::OrderBy('queue', 'asc')->get(),
+            'status' => 200
+        ]);
     }
 }

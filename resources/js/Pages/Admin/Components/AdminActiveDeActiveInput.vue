@@ -5,6 +5,7 @@ const props = defineProps({
         required: true,
     },
     myKey: {
+        type: String,
         default: '',
     }
 });
@@ -22,7 +23,6 @@ const emit = defineEmits(['update:modelValue']);
             <label :for="myKey + 'de_active'">غیر فعال</label>
             <input :checked="modelValue===0" @change="emit('update:modelValue',0)" type="radio"
                    :id="myKey + 'de_active'"
-                   name="is_active"
                    class="text-adminColor2 cursor-pointer focus:ring-0 dark:text-adminColor3">
         </div>
     </div>
