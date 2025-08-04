@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('nav_item_setting_attributes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bav_bar_setting_id')->references('id')->on('nav_bar_settings')->constrained()->cascadeOnDelete();
+            $table->foreignId('nav_bar_setting_id')->references('id')->on('nav_bar_settings')->constrained()->cascadeOnDelete();
             $table->foreignId('attribute_id')->references('id')->on('attributes')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

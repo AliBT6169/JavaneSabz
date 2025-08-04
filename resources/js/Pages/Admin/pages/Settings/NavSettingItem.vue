@@ -40,7 +40,7 @@ const queueChanged = async (e) => {
             <div class="size-6 text-center border-2 border-current rounded-full m-auto"
                  :class="{'!m-0':setting.title === 'محصولات'}">{{ setting.queue }}
             </div>
-            <NavItemSelectionModal v-if="setting.title === 'محصولات'" model-name="تنظیمات"/>
+            <NavItemSelectionModal v-if="setting.title === 'محصولات'" :item-id="setting.id" model-name="تنظیمات"/>
         </div>
         <div class=" flex justify-between items-center">
             <!--            perv-->

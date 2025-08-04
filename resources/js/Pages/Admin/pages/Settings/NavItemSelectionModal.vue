@@ -6,12 +6,21 @@ const props = defineProps({
     modelName: {
         required: true,
     },
+    itemId: {
+        required: true,
+        type: Number,
+    },
 });
 const modal = ref();
 const modal_status = ref(false);
 
 onMounted(async () => {
     document.addEventListener('click', modalCloser);
+    axios.get(route('admin.navSetting.getAttributes',props.itemId)).then(res => {
+        console.log(res.data);
+    }).catch(err => {
+        console.log(err);
+    });
 });
 
 const modalCloser = (e) => {

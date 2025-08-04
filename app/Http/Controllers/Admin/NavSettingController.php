@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribute;
 use App\Models\NavBarSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,8 +57,18 @@ class NavSettingController extends Controller
         ]);
     }
 
-    public function geAttributes()
+    public function geAttributes(int $id)
     {
-
+        $navItemAttributes = NavBarSetting::whereId($id)->first()->navItemSettingAttributes();
+        $selectedAttributeIdes = [];
+        if ($navItemAttributes->count() > 0) {
+            foreach ($navItemAttributes as $navItemAttribute) {
+                $selectedAttributeIdes[] = $navItemAttribute->id;
+            }
+        }
+        return response()->json([
+            'selectedAttributes' => $selectedAttributeIdes,
+            'Attributes' => Attribute::latest()->get(),
+        ]);
     }
 }

@@ -23,7 +23,7 @@ class NavBarSetting extends Model
         'created_at',
     ];
 
-    public function navItemSettingAttribute(): HasMany
+    public function navItemSettingAttributes(): HasMany
     {
         return $this->hasMany(NavItemSettingAttribute::class);
 
