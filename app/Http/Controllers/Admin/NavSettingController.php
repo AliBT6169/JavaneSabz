@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Settings\AdminSetAttributesToNavItemRequest;
 use App\Http\Resources\Admin\Attribute\AttributeResource;
 use App\Models\Attribute;
 use App\Models\NavBarSetting;
@@ -74,5 +75,10 @@ class NavSettingController extends Controller
             'selectedAttributes' => AttributeResource::collection($selectedAttributes),
             'Attributes' => AttributeResource::collection($attributes),
         ]);
+    }
+
+    public function setAttributeToNavItem(AdminSetAttributesToNavItemRequest $request)
+    {
+        return $request;
     }
 }

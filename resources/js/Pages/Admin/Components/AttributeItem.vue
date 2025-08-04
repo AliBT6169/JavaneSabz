@@ -73,7 +73,7 @@ const selector = () => {
 
 <template>
     <div
-        class="text-center border-2 border-black rounded-xl group p-2 lg:space-y-6"
+        class="text-center border-2 border-black rounded-xl p-2 lg:space-y-6"
         :class="{'relative cursor-pointer':choosable}" @click.prevent.stop="selector">
         <div v-if="choosable" class="absolute size-7 rounded-xl overflow-hidden">
             <input @click.stop class="size-full cursor-pointer" :key="Attribute.id + 'choosable'" :checked="selected" type="checkbox" ref="attributeSelector"
@@ -82,7 +82,7 @@ const selector = () => {
         <div class="space-y-2 lg:flex lg:space-y-0 lg:items-center lg:gap-6">
             <div class="w-full flex justify-center items-center lg:w-60">
                 <img :src="Attribute.icon" alt=""
-                     class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95 size-32 ">
+                     class="rounded-full border-2 border-adminColor1 size-32 ">
             </div>
             <div
                 class="flex flex-wrap gap-8 items-center border-b-2 pb-2 border-black dark:border-white lg:border-0 lg:p-0 md:justify-around md:w-full">

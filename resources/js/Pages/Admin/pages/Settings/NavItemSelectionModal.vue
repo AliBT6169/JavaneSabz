@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
 
-const setOrDeleteAttribute = async (id, status) => {
+const setOrDeleteAttribute = (id, status) => {
     if (status) {
         attributes.value.map((item) => {
             if (item.id === id) {
@@ -53,6 +53,29 @@ const setOrDeleteAttribute = async (id, status) => {
         selectedAttributes.value = selectedAttributes.value.filter((item) => item.id !== id);
     }
 
+}
+
+const sendData = async () => {
+    const attribute = ref([]);
+    selectedAttributes.value.map((item) => {
+        attribute.value.push({
+            id: item.id
+        });
+    })
+    const form = {
+        nav_id: props.itemId,
+        attributes: attribute.value,
+    }
+    await axios.post(route('admin.navSetting.AttributeSet'), form, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'X-HTTP-Method-Override': 'PUT'
+        }
+    }).then(res => {
+        console.log(res.data);
+    }).catch(err => {
+        console.log(err);
+    });
 }
 </script>
 
@@ -71,6 +94,10 @@ const setOrDeleteAttribute = async (id, status) => {
                 <div class="text-center p-2 rounded-xl border-2 border-red-500">
                     <strong class="text-yellow-300">هشدار: </strong>
                     خصوصیت های انتخاب شده نباید محصول و موجودیت محصول داشته باشند!
+                    <div @click="sendData"
+                         class="mx-5 px-5 cursor-pointer bg-green-500/50 rounded-xl duration-300 inline-block border-2 border-adminColor1 hover:scale-95">
+                        ثبت
+                    </div>
                 </div>
                 <AttributeItem v-for="item in selectedAttributes" :choosable="true" :selected="true"
                                @selected="setOrDeleteAttribute(item.id, $event)" :Attribute="item"/>
