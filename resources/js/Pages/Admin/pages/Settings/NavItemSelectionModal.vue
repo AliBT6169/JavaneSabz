@@ -1,6 +1,7 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import axios from "axios";
+import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
 
 const props = defineProps({
     modelName: {
@@ -13,11 +14,12 @@ const props = defineProps({
 });
 const modal = ref();
 const modal_status = ref(false);
-
+const attributes = ref();
 onMounted(async () => {
     document.addEventListener('click', modalCloser);
-    axios.get(route('admin.navSetting.getAttributes',props.itemId)).then(res => {
+    axios.get(route('admin.navSetting.getAttributes', props.itemId)).then(res => {
         console.log(res.data);
+        attributes.value = res.data.Attributes;
     }).catch(err => {
         console.log(err);
     });
@@ -31,6 +33,10 @@ const modalCloser = (e) => {
 onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
+
+const setOrDeleteAttribute = async (id, status) => {
+
+}
 </script>
 
 <template>
@@ -49,7 +55,8 @@ onBeforeUnmount(() => {
                     <strong class="text-yellow-300">هشدار: </strong>
                     خصوصیت های انتخاب شده نباید محصول و موجودیت محصول داشته باشند!
                 </div>
-
+                <AttributeItem v-for="item in attributes" :choosable="true"
+                               @selected="setOrDeleteAttribute(item.id, $event)" :Attribute="item"/>
             </div>
         </div>
     </div>

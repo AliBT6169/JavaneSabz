@@ -43,7 +43,7 @@ class Attribute extends Model
         return $this->morphedByMany(ProductVariation::class, 'attributable');
     }
 
-    public function navItemSettingAttribute(): HasMany
+    public function navItemSettingAttributes(): HasMany
     {
         return $this->hasMany(NavItemSettingAttribute::class);
 

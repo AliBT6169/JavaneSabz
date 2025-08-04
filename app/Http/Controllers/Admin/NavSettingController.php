@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\Attribute\AttributeResource;
 use App\Models\Attribute;
 use App\Models\NavBarSetting;
 use Illuminate\Http\Request;
@@ -57,18 +58,21 @@ class NavSettingController extends Controller
         ]);
     }
 
+//    for nav items attributes selection
     public function geAttributes(int $id)
     {
-        $navItemAttributes = NavBarSetting::whereId($id)->first()->navItemSettingAttributes();
+        $selectedItemAttributes = NavBarSetting::whereId($id)->first()->navItemSettingAttributes();
         $selectedAttributeIdes = [];
-        if ($navItemAttributes->count() > 0) {
-            foreach ($navItemAttributes as $navItemAttribute) {
-                $selectedAttributeIdes[] = $navItemAttribute->id;
+        $selectedAttributes = [];
+        if ($selectedItemAttributes->count() > 0)
+            foreach ($selectedItemAttributes as $itemAttribute) {
+                $selectedAttributeIdes[] = $itemAttribute->attribute_id;
+                $selectedAttributes[] = $itemAttribute->attribute();
             }
-        }
+        $attributes = Attribute::whereNotIn('id', $selectedAttributeIdes)->get();
         return response()->json([
-            'selectedAttributes' => $selectedAttributeIdes,
-            'Attributes' => Attribute::latest()->get(),
+            'selectedAttributes' => AttributeResource::collection($selectedAttributes),
+            'Attributes' => AttributeResource::collection($attributes),
         ]);
     }
 }

@@ -11,7 +11,6 @@ const props = defineProps({
     is_active: Boolean,
 });
 const NavSettings = ref(props.settings);
-console.log(props.settings)
 const form = ref({});
 
 const sendData = () => {
@@ -56,7 +55,7 @@ const sendData = () => {
          class="adminSettingPagesDesign">
         <form @submit.prevent="sendData" class="pb-20">
             <div class="flex flex-wrap gap-5 justify-center">
-                <NavSettingItem v-for="item in NavSettings" :my-key="item.id" @move="NavSettings = $event, console.log(NavSettings)"
+                <NavSettingItem v-for="item in NavSettings" :my-key="item.id" @move="NavSettings = $event"
                                 :setting="item"/>
             </div>
         </form>

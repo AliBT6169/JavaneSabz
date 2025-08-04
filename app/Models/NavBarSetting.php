@@ -25,7 +25,7 @@ class NavBarSetting extends Model
 
     public function navItemSettingAttributes(): HasMany
     {
-        return $this->hasMany(NavItemSettingAttribute::class);
+        return $this->hasMany(NavItemSettingAttribute::class, 'nav_bar_setting_id', 'id');
 
     }
 }

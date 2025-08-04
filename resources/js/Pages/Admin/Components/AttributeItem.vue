@@ -8,9 +8,14 @@ import {useToast} from "vue-toastification";
 const props = defineProps({
     Attribute: {
         required: true,
+    },
+    choosable: {
+        type: Boolean,
     }
 });
-const emit = defineEmits('deleted');
+
+const attributeSelector = ref(null);
+const emit = defineEmits('deleted', 'selected');
 
 const is_active = ref(props.Attribute.is_active);
 
@@ -55,21 +60,27 @@ const deleter = async () => {
     const toast = useToast();
     toast.warning(content);
 }
+
+const selector = () => {
+    if (props.choosable) {
+        attributeSelector.value.checked = !attributeSelector.value.checked;
+        emit('selected', attributeSelector.value.checked);
+    }
+}
 </script>
 
 <template>
     <div
-        class="text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6">
+        class="text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6"
+        :class="{'relative':choosable}" @click="selector">
+        <div v-if="choosable" class="absolute size-7 rounded-xl overflow-hidden">
+            <input @click.stop class="size-full" type="checkbox" ref="attributeSelector"
+                   @change="emit('selected',$event.target.value)">
+        </div>
         <div class="space-y-2 lg:flex lg:space-y-0 lg:items-center lg:gap-6">
-            <div class="w-full relative flex justify-center items-center lg:w-60">
+            <div class="w-full flex justify-center items-center lg:w-60">
                 <img :src="Attribute.icon" alt=""
                      class="rounded-full duration-300 border-2 border-adminColor1 group-hover:scale-95 size-32 ">
-                <div class="hidden size-40 absolute rounded-xl overflow-hidden lg:flex justify-center items-center">
-                    <div
-                        class="p-2 xl:px-6 rounded-xl translate-x-40 group-hover:translate-x-0 bg-white/20 duration-300 dark:bg-gray-800/20">
-                        مشاهده
-                    </div>
-                </div>
             </div>
             <div
                 class="flex flex-wrap gap-8 items-center border-b-2 pb-2 border-black dark:border-white lg:border-0 lg:p-0 md:justify-around md:w-full">
