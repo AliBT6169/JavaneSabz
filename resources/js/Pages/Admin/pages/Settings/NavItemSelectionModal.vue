@@ -37,7 +37,6 @@ onBeforeUnmount(() => {
 });
 
 const setOrDeleteAttribute = async (id, status) => {
-    console.log(status)
     if (status) {
         attributes.value.map((item) => {
             if (item.id === id) {

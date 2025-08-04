@@ -77,7 +77,6 @@ const sendData = () => {
                 <AdminTextArea label="درباره :" v-model="form.about"/>
                 <div class="space-y-5 justify-end !w-full md:flex md:gap-5 *:md:w-48 md:space-y-0">
                     <AdminButton type="submit" text="ثبت اطلاعات"/>
-                    <AdminButton type="cancel" text="لغو"/>
                 </div>
             </div>
         </form>

@@ -70,7 +70,7 @@ const sendData = async () => {
                 <AdminTextArea v-model="form.description"/>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end">
                     <admin-button type="submit" text="ثبت"/>
-                    <Link class="block" :href="route('admin.brands.index')">
+                    <Link class="block" :href="route('admin.categories.index')">
                         <admin-button type="cancel" text="لغو"/>
                     </Link>
                 </div>
