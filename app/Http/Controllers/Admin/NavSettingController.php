@@ -55,4 +55,9 @@ class NavSettingController extends Controller
             'status' => 200
         ]);
     }
+
+    public function geAttributes()
+    {
+
+    }
 }

@@ -35,11 +35,12 @@ onBeforeUnmount(() => {
             {{ modelName }}
         </div>
         <div v-else class="">
-            <div class="p-5">
-                <div class="text-center">
+            <div class="p-5 space-y-4">
+                <div class="text-center p-2 rounded-xl border-2 border-red-500">
                     <strong class="text-yellow-300">هشدار: </strong>
-                    خصوصیت های انتخاب شده نباید محصول و
+                    خصوصیت های انتخاب شده نباید محصول و موجودیت محصول داشته باشند!
                 </div>
+
             </div>
         </div>
     </div>
