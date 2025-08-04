@@ -15,11 +15,13 @@ const props = defineProps({
 const modal = ref();
 const modal_status = ref(false);
 const attributes = ref();
+const selectedAttributes = ref();
 onMounted(async () => {
     document.addEventListener('click', modalCloser);
     axios.get(route('admin.navSetting.getAttributes', props.itemId)).then(res => {
         console.log(res.data);
         attributes.value = res.data.Attributes;
+        selectedAttributes.value = res.data.selectedAttributes;
     }).catch(err => {
         console.log(err);
     });
@@ -35,6 +37,22 @@ onBeforeUnmount(() => {
 });
 
 const setOrDeleteAttribute = async (id, status) => {
+    console.log(status)
+    if (status) {
+        attributes.value.map((item) => {
+            if (item.id === id) {
+                selectedAttributes.value.push(item);
+            }
+        });
+        attributes.value = attributes.value.filter((item) => item.id !== id);
+    } else {
+        selectedAttributes.value.map((item) => {
+            if (item.id === id) {
+                attributes.value.push(item);
+            }
+        });
+        selectedAttributes.value = selectedAttributes.value.filter((item) => item.id !== id);
+    }
 
 }
 </script>
@@ -55,7 +73,9 @@ const setOrDeleteAttribute = async (id, status) => {
                     <strong class="text-yellow-300">هشدار: </strong>
                     خصوصیت های انتخاب شده نباید محصول و موجودیت محصول داشته باشند!
                 </div>
-                <AttributeItem v-for="item in attributes" :choosable="true"
+                <AttributeItem v-for="item in selectedAttributes" :choosable="true" :selected="true"
+                               @selected="setOrDeleteAttribute(item.id, $event)" :Attribute="item"/>
+                <AttributeItem v-for="item in attributes" :choosable="true" :selected="false"
                                @selected="setOrDeleteAttribute(item.id, $event)" :Attribute="item"/>
             </div>
         </div>

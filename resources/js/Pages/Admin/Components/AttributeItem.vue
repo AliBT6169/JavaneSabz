@@ -11,9 +11,11 @@ const props = defineProps({
     },
     choosable: {
         type: Boolean,
+    },
+    selected: {
+        type: Boolean,
     }
 });
-
 const attributeSelector = ref(null);
 const emit = defineEmits('deleted', 'selected');
 
@@ -47,7 +49,7 @@ const deleter = async () => {
         },
         listeners: {
             set: async () => {
-                await axios.delete(route('admin.attributes.destroy', {id: props.Attribute.id})).then((res) => {
+                await axios.delete(route('admin.attributes.destroy', props.Attribute.id)).then((res) => {
                     useToast().success('خصوصیت با موفقیت حذف شد.');
                     emit('deleted', props.Attribute.id);
                 }).catch((err) => {
@@ -71,11 +73,11 @@ const selector = () => {
 
 <template>
     <div
-        class="text-center border-2 cursor-pointer border-black rounded-xl group p-2 lg:space-y-6"
-        :class="{'relative':choosable}" @click="selector">
+        class="text-center border-2 border-black rounded-xl group p-2 lg:space-y-6"
+        :class="{'relative cursor-pointer':choosable}" @click.prevent.stop="selector">
         <div v-if="choosable" class="absolute size-7 rounded-xl overflow-hidden">
-            <input @click.stop class="size-full" type="checkbox" ref="attributeSelector"
-                   @change="emit('selected',$event.target.value)">
+            <input @click.stop class="size-full cursor-pointer" :key="Attribute.id + 'choosable'" :checked="selected" type="checkbox" ref="attributeSelector"
+                   @change="emit('selected',$event.target.checked)">
         </div>
         <div class="space-y-2 lg:flex lg:space-y-0 lg:items-center lg:gap-6">
             <div class="w-full flex justify-center items-center lg:w-60">
