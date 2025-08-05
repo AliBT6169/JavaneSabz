@@ -73,7 +73,7 @@
 }
 
 .mega-tab-menu-list {
-    @apply absolute invisible group-hover:visible h-[19rem] w-[50rem] right-[160px] lg:right-[217px] text-xs bg-defaultColor6 flex justify-between text-slate-800 dark:text-slate-100 dark:bg-defaultColor7;
+    @apply absolute invisible group-hover:visible z-[100] h-[19rem] w-[50rem] right-[160px] lg:right-[217px] text-xs bg-defaultColor6 flex justify-between text-slate-800 dark:text-slate-100 dark:bg-defaultColor7;
 }
 
 .mega-tab-items {
