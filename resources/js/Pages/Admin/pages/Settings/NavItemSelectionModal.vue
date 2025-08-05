@@ -20,7 +20,6 @@ const selectedAttributes = ref();
 onMounted(async () => {
     document.addEventListener('click', modalCloser);
     axios.get(route('admin.navSetting.getAttributes', props.itemId)).then(res => {
-        console.log(res.data);
         attributes.value = res.data.Attributes;
         selectedAttributes.value = res.data.selectedAttributes;
     }).catch(err => {

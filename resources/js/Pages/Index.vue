@@ -9,7 +9,6 @@ import LiveCards from "@/Pages/Components/Home/live-cards.vue";
 import Intro from "@/Pages/Components/Home/intro.vue";
 import IndexLyout from "@/Pages/IndexLyout.vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
-import {useToast} from "vue-toastification";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["indexData"]);

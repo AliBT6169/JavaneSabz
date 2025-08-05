@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Home\Categories;
 
+use App\Http\Resources\Home\Product\HomeProductResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class indexCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,6 +18,9 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'icon' => $this->icon,
+            'products' => $this->products->count() > 0 ? HomeProductResource::collection($this->products) : null,
         ];
+
     }
 }

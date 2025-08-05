@@ -14,6 +14,7 @@ const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const navSettings = useIndexStore().Settings.NavSetting.data;
+console.log(navSettings);
 const props = defineProps({
     settings: {
         type: Object,
@@ -69,70 +70,36 @@ const showConnectModal = () => {
                     </Link>
                     <!--                    products-list-->
                     <div v-if="item.title==='محصولات'" class="header-item-lists">
-                        <!--                        buds-->
-                        <div class="mega-tab-items">
+                        <div class="mega-tab-items relative" v-for="(navItem, index) in item.items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
-                                    <svg-component name="bud" class="size-6"/>
-                                    <h2 class="">بوته ها</h2>
+                                    <img :src="navItem.icon" alt="" class=" size-8 rounded-full">
+                                    <h2 class="">{{ navItem.name }}</h2>
                                 </div>
-                                <div class="mega-tab-menu-list top-0">
+                                <div class="mega-tab-menu-list" :style="'top: -' + index * 66 + 'px' ">
                                     <div class="text-nowrap w-fit flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
-                                        <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های تابستانه</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 15">توت فرنگی</p>
-                                        <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های زمستانه</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 21">انگور تابستونی</p>
-                                        <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های بهاره</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 3">انجیر سیاه </p>
-                                        <p class=" border-r-4 pr-1 border-defaultColor font-bold">بوته های پاییزه</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 11">شاه توت</p>
+                                        <div class=""
+                                             v-for="navItemBrand in navItem.brands">
+                                            <p class="border-r-4 pr-1 border-defaultColor font-bold">
+                                                {{ navItemBrand.name }}
+                                            </p>
+                                            <div class="" v-for="navItemBrandItems in navItemBrand.products">
+                                            <p class="pr-2 mega-tab-menu-list-items" v-for="ItemVariations in navItemBrandItems.variations">{{ItemVariations.name + ' ' + ItemVariations.value}}</p>
+                                            </div>
+                                        </div>
+                                        <div class=""
+                                             v-for="navItemCategory in navItem.categories">
+                                            <p class="border-r-4 pr-1 border-defaultColor font-bold">
+                                                {{ navItemCategory.name }}
+                                            </p>
+                                            <div class="" v-for="navItemCategoryItems in navItemCategory.products">
+                                                <p class="pr-2 mega-tab-menu-list-items" v-for="ItemVariations in navItemCategoryItems.variations">{{ItemVariations.name + ' ' + ItemVariations.value}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="w-52 h-full overflow-hidden">
-                                        <img src="../../../../../public/images/tootfarangi.jpg"
+                                        <img :src="navItem.icon"
                                              class="size-full hidden lg:block" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--                        Fertilizers-->
-                        <div class="mega-tab-items">
-                            <div class="relative overflow-hidden p-4 hover:overflow-visible">
-                                <div class="mega-tab-menu-items">
-                                    <svg-component name="fertilizer" class="size-6"/>
-                                    <h2 class="">کود ها</h2>
-                                </div>
-                                <div class="mega-tab-menu-list -top-[58px]">
-                                    <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
-                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">شیمیایی</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 7">کود سفید</p>
-                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">ارگانیک</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
-                                    </div>
-                                    <div class="w-72 h-full overflow-hidden">
-                                        <img src="../../../../../public/images/fertilizer.jpg"
-                                             class="size-full hidden lg:block" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--                        more...-->
-                        <div class="mega-tab-items">
-                            <div class="relative overflow-hidden p-4 hover:overflow-visible">
-                                <div class="mega-tab-menu-items">
-                                    <svg-component name="up" class="size-6"/>
-                                    <h2 class="">تقویتی</h2>
-                                </div>
-                                <div class="mega-tab-menu-list -top-[115px]">
-                                    <div class="text-nowrap flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
-                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">شیمیایی</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 7">کود سفید</p>
-                                        <p class=" border-r-4 pr-1 border-blue-600 font-bold">ارگانیک</p>
-                                        <p class="mega-tab-menu-list-items" v-for="index in 10">کود سیاه</p>
-                                    </div>
-                                    <div class="w-96 h-full overflow-hidden">
-                                        <img src="../../../../../public/images/farm.jpg"
-                                             class="size-full hidden lg:block"
-                                             alt="">
                                     </div>
                                 </div>
                             </div>
