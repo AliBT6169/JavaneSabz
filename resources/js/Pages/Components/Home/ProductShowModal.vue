@@ -20,7 +20,6 @@ const likeUnLike = async () => {
     const res = await ref(useAuthStore().likeOrUnLike(props.productData.id, props.productData.is_liked));
     props.productData.is_liked = await res.value;
 }
-console.log(props.productData);
 </script>
 
 <template>

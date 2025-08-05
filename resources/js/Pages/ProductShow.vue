@@ -20,7 +20,6 @@ const carouselConfig = {
     breakpointMode: 'carousel',
 }
 const props = defineProps(["productData"]);
-console.log(props.productData.data.images);
 useIndexStore().setProductData(props.productData);
 const product = ref(useIndexStore().ProductShowData);
 const likeUnLike = async () => {
