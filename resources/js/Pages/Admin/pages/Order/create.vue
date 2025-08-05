@@ -95,7 +95,7 @@ const sendData = async () => {
         <form @submit.prevent="sendData">
             <div
                 class="space-y-6 py-4 *:w-full *:h-fit md:space-y-0 md:flex md:flex-wrap md:items-center md:justify-center md:gap-5 *:md:w-[45%]">
-                <admin-address v-model="form.city" @update-value="productSelection(null)"/>
+                <admin-address v-model="form.city" @update:modelValue="productSelection(null)"/>
                 <admin-input v-model="form.address" name="آدرس"/>
                 <admin-input v-model="form.postal_code" name="کد پستی"/>
                 <admin-check-box-input v-model="form.delivery_methode"/>
