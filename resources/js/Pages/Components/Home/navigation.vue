@@ -14,7 +14,6 @@ const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const navSettings = useIndexStore().Settings.NavSetting.data;
-console.log(navSettings);
 const props = defineProps({
     settings: {
         type: Object,

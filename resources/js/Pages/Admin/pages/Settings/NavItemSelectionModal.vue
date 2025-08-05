@@ -3,6 +3,7 @@ import {onBeforeUnmount, onMounted, ref} from "vue";
 import axios from "axios";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
 import {useToast} from "vue-toastification";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 const props = defineProps({
     modelName: {
@@ -66,16 +67,27 @@ const sendData = async () => {
         nav_id: props.itemId,
         attributes: attribute.value,
     }
-    await axios.post(route('admin.navSetting.AttributeSet'), form, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            'X-HTTP-Method-Override': 'PUT'
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا مطمعن به ذخیره این تغییرات هستید؟'
+        },
+        listeners: {
+            set: async () => {
+                await axios.post(route('admin.navSetting.AttributeSet'), form, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'X-HTTP-Method-Override': 'PUT'
+                    }
+                }).then(res => {
+                    useToast().success(res.data);
+                }).catch(err => {
+                    useToast().error(err.response.data.message);
+                });
+            }
         }
-    }).then(res => {
-        console.log(res.data);
-    }).catch(err => {
-        useToast().error(err.response.data.message);
-    });
+    }
+    useToast().warning(content);
 }
 </script>
 
