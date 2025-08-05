@@ -2,6 +2,7 @@
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import axios from "axios";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
+import {useToast} from "vue-toastification";
 
 const props = defineProps({
     modelName: {
@@ -61,7 +62,7 @@ const sendData = async () => {
         attribute.value.push({
             id: item.id
         });
-    })
+    });
     const form = {
         nav_id: props.itemId,
         attributes: attribute.value,
@@ -74,7 +75,7 @@ const sendData = async () => {
     }).then(res => {
         console.log(res.data);
     }).catch(err => {
-        console.log(err);
+        useToast().error(err.response.data.message);
     });
 }
 </script>

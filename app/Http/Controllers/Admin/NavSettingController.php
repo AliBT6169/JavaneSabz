@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Settings\AdminSetAttributesToNavItemRequest;
 use App\Http\Resources\Admin\Attribute\AttributeResource;
 use App\Models\Attribute;
 use App\Models\NavBarSetting;
+use App\Models\NavItemSettingAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -62,23 +63,39 @@ class NavSettingController extends Controller
 //    for nav items attributes selection
     public function geAttributes(int $id)
     {
-        $selectedItemAttributes = NavBarSetting::whereId($id)->first()->navItemSettingAttributes();
+        $selectedItemAttributes = NavBarSetting::whereId($id)->first()->navItemSettingAttributes;
         $selectedAttributeIdes = [];
         $selectedAttributes = [];
-        if ($selectedItemAttributes->count() > 0)
+        if ($selectedItemAttributes != null)
             foreach ($selectedItemAttributes as $itemAttribute) {
                 $selectedAttributeIdes[] = $itemAttribute->attribute_id;
-                $selectedAttributes[] = $itemAttribute->attribute();
+                $selectedAttributes[] = $itemAttribute->attribute;
             }
         $attributes = Attribute::whereNotIn('id', $selectedAttributeIdes)->get();
         return response()->json([
-            'selectedAttributes' => AttributeResource::collection($selectedAttributes),
+            'selectedAttributes' => $selectedAttributes,
             'Attributes' => AttributeResource::collection($attributes),
         ]);
     }
 
     public function setAttributeToNavItem(AdminSetAttributesToNavItemRequest $request)
     {
-        return $request;
+        $navItem = NavBarSetting::whereId($request['nav_id'])->first();
+        if ($request['attributes'] == null)
+            abort(500, 'حداقل یک خصوصیت را انتخاب کنید!');
+        $attributes = $navItem->navItemSettingAttributes;
+        if ($attributes->count() > 0) {
+            foreach ($attributes as [$attribute, $index]) {
+                $attributes[$index] = $attribute;
+            }
+        }
+        foreach ($request['attributes'] as $attribute) {
+            NavItemSettingAttribute::create([
+                'nav_bar_setting_id' => $request['nav_id'],
+                'attribute_id' => $attribute['id'],
+            ]);
+        }
+
+        return response()->json('عملیات موفقیت آمیز بود');
     }
 }
