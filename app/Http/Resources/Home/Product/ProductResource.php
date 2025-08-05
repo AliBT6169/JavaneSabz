@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Home\Product;
 
+use App\Http\Resources\Gallery\GalleryResource;
 use App\Http\Resources\Home\Comment\ProductCommentsResource;
 use App\Models\ProductVariation;
 use App\Models\Wishlist;
@@ -30,7 +31,7 @@ class ProductResource extends JsonResource
                 'name' => $this->product->brand->name,
                 'id' => $this->product->brand->id,
             ],
-            'images' => self::imageHandler($this->gallery),
+            'images' => $this->gallery->count() > 0 ? GalleryResource::collection($this->gallery) : [0 => ['image' => $this->product->primary_image]],
             'description' => $this->product->description,
             'quantity' => $this->quantity,
             'price' => $this->price,

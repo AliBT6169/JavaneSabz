@@ -1,12 +1,9 @@
 <script setup>
 
-import Header from "@/Pages/Parts/Header.vue";
-import Footer from "@/Pages/Parts/Footer.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import 'vue3-carousel/carousel.css'
 import {Carousel, Slide, Pagination} from 'vue3-carousel';
-import Navigation from "@/Pages/Components/Home/navigation.vue";
 import Product from "@/Pages/Components/Home/Product.vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";
@@ -23,6 +20,7 @@ const carouselConfig = {
     breakpointMode: 'carousel',
 }
 const props = defineProps(["productData"]);
+console.log(props.productData.data.images);
 useIndexStore().setProductData(props.productData);
 const product = ref(useIndexStore().ProductShowData);
 const likeUnLike = async () => {

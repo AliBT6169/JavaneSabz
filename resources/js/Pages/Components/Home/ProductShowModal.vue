@@ -24,7 +24,7 @@ console.log(props.productData);
 </script>
 
 <template>
-        <div class="!p-5 size-5/6 bg-defaultColor5 rounded-xl dark:bg-defaultColor md:size-3/4 md:p-3">
+        <div class="!p-5 size-5/6 bg-defaultColor2 rounded-xl dark:bg-defaultColor7 md:size-3/4 md:p-3">
 
         <div class="size-full overflow-scroll no-scrollbar space-y-6 lg:flex lg:space-y-0 gap-4 *:w-full">
             <!--                rightSide-->

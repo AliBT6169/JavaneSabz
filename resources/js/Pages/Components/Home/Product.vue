@@ -29,7 +29,7 @@ const productShow = async () => {
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 space-y-2 pb-6 hover3D-animation
          items-center dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700 md:text-base lg:w-60"
         :class="{'shadow-xl !shadow-red-500':product.is_liked}">
-        <Link :href="'/محصول/' + product.id + '-' + product.slug">
+        <Link :href="route('ProductShow',{id:product.id,slug:product.slug})">
             <!--        image-->
             <div class="size-40 lg:size-60 flex items-center">
                 <img loading="lazy" :src="product.image" alt="" @dragstart.prevent class="w-full h-fit">

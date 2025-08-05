@@ -49,7 +49,6 @@ const showConnectModal = () => {
     <div class="mx-auto sticky top-2 z-10 hidden md:block md:w-full ">
         <div
             class=" w-full px-2 flex justify-between items-center rounded-full z-10 rounded-tl-md bg-defaultColor h-14 text-slate-100 lg:px-6">
-
             <div class="flex items-center h-full gap-2 lg:gap-4">
                 <div v-for="(item,index) in navSettings" class=" group relative">
                     <div v-if="item.link === ''" class="flex items-center"
@@ -83,7 +82,7 @@ const showConnectModal = () => {
                                                 {{ navItemBrand.name }}
                                             </p>
                                             <div class="" v-for="navItemBrandItems in navItemBrand.products">
-                                            <p class="pr-2 mega-tab-menu-list-items" v-for="ItemVariations in navItemBrandItems.variations">{{ItemVariations.name + ' ' + ItemVariations.value}}</p>
+                                            <Link :href="route('ProductShow',{id:ItemVariations.id,slug:ItemVariations.slug})" class="block pr-2 mega-tab-menu-list-items" v-for="ItemVariations in navItemBrandItems.variations">{{ItemVariations.name + ' ' + ItemVariations.value}}</Link>
                                             </div>
                                         </div>
                                         <div class=""
@@ -92,7 +91,7 @@ const showConnectModal = () => {
                                                 {{ navItemCategory.name }}
                                             </p>
                                             <div class="" v-for="navItemCategoryItems in navItemCategory.products">
-                                                <p class="pr-2 mega-tab-menu-list-items" v-for="ItemVariations in navItemCategoryItems.variations">{{ItemVariations.name + ' ' + ItemVariations.value}}</p>
+                                                <Link :href="route('ProductShow',{id:ItemVariations.id,slug:ItemVariations.slug})" class="block pr-2 mega-tab-menu-list-items" v-for="ItemVariations in navItemCategoryItems.variations">{{ItemVariations.name + ' ' + ItemVariations.value}}</Link>
                                             </div>
                                         </div>
                                     </div>
