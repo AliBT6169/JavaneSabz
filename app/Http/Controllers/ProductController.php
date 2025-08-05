@@ -46,10 +46,13 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id)
+    public function show(int $id, string $slug)
     {
-        $product = ProductResource::make(ProductVariation::whereId($id)->first());
-        return Inertia::render('ProductShow', ["productData" => $product]);
+        $product = ProductVariation::whereId($id)->first();
+        if ($product->product->slug != $slug) {
+            return Inertia::location(route('ProductShow', ['id' => $id, 'slug' => $product->product->slug]));
+        }
+        return Inertia::render('ProductShow', ["productData" => ProductResource::make($product)]);
     }
 
     public function showAll()

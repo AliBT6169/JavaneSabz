@@ -21,6 +21,7 @@ class IndexProductVariationsResource extends JsonResource
             "product_id" => $this->product_id,
             "category_id" => $this->product->category_id,
             "brand_id" => $this->product->brand_id,
+            "slug" => $this->product->slug,
             "name" => $this->product->name,
             "value" => $this->value,
             "quantity" => $this->quantity,

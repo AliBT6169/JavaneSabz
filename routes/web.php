@@ -22,7 +22,7 @@ Route::get('/درباره-' . AboutUsSetting::first()->store_name, function () {
 })->name('about-us');
 
 Route::controller(ProductController::class)->group(function () {
-    Route::get('ProductShow/{id}', 'show')->name('ProductShow');
+    Route::get('/محصول/' . '{id}-' . '{slug}', 'show')->name('ProductShow');
     Route::get('updateProductShow/{id}', 'getData')->name('getProductData');
     Route::get('/محصولات-جوانه-سبز', 'showAll')->name('products.showAll');
 });
