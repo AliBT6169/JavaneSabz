@@ -37,5 +37,8 @@ const searchData = ref(useSearchStore());
                 </div>
             </Link>
         </div>
+        <div v-else class="text-center text-lg">
+            هیچ محصولی یافت نشد!
+        </div>
     </div>
 </template>

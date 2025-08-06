@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Home\Product\IndexProductVariationsResource;
 use App\Http\Resources\Home\Product\ProductResource;
 use App\Models\Product;
 use App\Models\ProductVariation;
@@ -14,20 +15,19 @@ class SearchController extends Controller
         return Inertia::render('SearchPage');
     }
 
-    public function search($input = '')
+    public function search(string $input = '')
     {
         $productVariations = null;
         if ($input != '') {
-            $products = Product::where('name', 'like', "%{$input}%")->get();
-            $variations[] = ProductVariation::where('value', 'like', "%{$input}%")->get();
+            $products = Product::where('name', 'like', "%{$input}%")->where('is_active', 1)->get();
+            $variations = ProductVariation::where('value', 'like', "%{$input}%")->get();
             foreach ($products as $product) {
                 foreach ($product->product_variations as $variation) {
-                    $variations = $variation;
+                    $variations[] = $variation;
                 }
             }
-            $productVariations = ProductResource::collection($variations);
-
-        }
-        return $productVariations;
+            $productVariations = IndexProductVariationsResource::collection($variations);
+            return response()->json($productVariations);
+        } else abort(404);
     }
 }
