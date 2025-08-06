@@ -45,13 +45,12 @@ const downed = (event) => {
     clearInterval(timer.value);
 }
 const moved = (event) => {
-    console.log(event)
     if (drag.value) {
         let trans = 0;
         if (event.changedTouches === undefined)
             trans = translation.value + (event.pageX - X.value) / 16;
         else
-            trans = translation.value - event.changedTouches[0].pageX - X.value;
+            trans = translation.value + (event.changedTouches[0].pageX - X.value) / 16;
         if (trans > -3 && trans * 16 + sliderWith.value * 16 - 100 < slider.value.clientWidth) {
             slider.value.style.transform = "translateX(" + trans + "rem)";
         }
@@ -77,10 +76,10 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
 
 <template>
     <div ref="sliderParent"
-         class="slider1 mx-auto relative mt-1 rounded-2xl w-[20rem] h-40 overflow-hidden cursor-pointer
+         class="slider1 mx-auto relative flex justify-center items-center mt-1 rounded-2xl w-[20rem] h-40 overflow-hidden cursor-pointer
           sm:w-[30rem] sm:h-48 md:w-[40rem] md:h-52 lg:w-[60rem] lg:h-80 xl:w-[80rem] xl:h-96">
-        <div ref="slider" class="flex w-fit h-96 duration-500" @mouseup="upd"
-             @mousemove="moved" @mousedown="downed" @touchmove="moved" @toucend="upd"
+        <div ref="slider" class="flex absolute top-0 right-0 w-fit h-96 duration-500" @mouseup="upd"
+             @mousemove="moved" @mousedown="downed" @touchmove="moved" @touchend="upd"
              @touchstart="downed"
              :style="`transform: translateX(${translation}rem)`">
             <span class="slider-pages" v-for="item in props.slider1Data">
@@ -88,11 +87,17 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
                      @dragstart.prevent>
             </span>
         </div>
+        <!--        slider text-->
+        <p class="slider1 top-2/3 select-none mx-20 text-black absolute w-fit border-2 rounded-2xl bg-gray-50/50 text-current dark:bg-gray-800/50 md:p-3" @mouseup="upd"
+           @mousemove="moved" @mousedown="downed" @touchmove="moved" @touchend="upd"
+           @touchstart="downed"
+        > یمقدار نوشته برای تست کردن اسلایدر یمقدار نوشته برای تست کردن اسلایدر یمقدار نوشته برای تست کردن اسلایدر یمقدار نوشته برای تست کردن اسلایدریمقدار نوشته برای تست کردن اسلایدر</p>
         <!--        slider controllers-->
+
         <div class="select-none slider1 flex justify-between items-center w-full px-4 absolute top-16
-             sm:top-20 md:top-24 lg:top-32 xl:top-40" @mousemove="moved"
-             @mouseup="upd"
-             @mousemove.prevent @mousedown="downed">
+             sm:top-20 md:top-24 lg:top-32 xl:top-40" @mousemove="moved" @mouseup="upd" @touchmove="moved"
+             @touchend="upd"
+             @touchstart="downed" @mousemove.prevent @mousedown="downed">
             <div class="slider-button" @click="slider_show('backward')">
                 <svg-component name="chev-right" class="size-6 lg:size-8 xl:size-10"/>
             </div>

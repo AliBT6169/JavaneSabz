@@ -38,7 +38,7 @@ onMounted(async () => {
 
 <template>
     <IndexLyout>
-        <intro></intro>
+        <intro/>
         <slider1 data-aos="fade-up" data-aos-delay="500" :slider1-data="slider1Data"></slider1>
         <!--        brands-->
         <div data-aos="fade-up" class="w-full mx-auto px-4">

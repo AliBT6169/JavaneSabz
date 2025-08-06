@@ -53,14 +53,4 @@ class Product extends Model
     {
         return $this->morphToMany(Attribute::class, 'attributable');
     }
-
-    public static function search(string $search)
-    {
-        $productVariations = null;
-        if ($search != '') {
-            $productVariations = ProductResource::handleProduct(self::where('name', 'like', "%{$search}%")->get());
-
-        }
-        return $productVariations;
-    }
 }

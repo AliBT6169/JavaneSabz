@@ -53,7 +53,7 @@ const authUser = useAuthStore();
                     <search-result-box/>
                     <div class="absolute top-2.5 left-2 cursor-pointer text-slate-200">
                         <Link :href="route('searchPage')">
-                            <svg-component name="search" class="size-5"></svg-component>
+                            <svg-component name="search" class="size-5"/>
 
                         </Link>
                     </div>
@@ -63,7 +63,7 @@ const authUser = useAuthStore();
                         <div
                             class="size-10 flex items-center justify-center hover:bg-blue-400 transition-all rounded-xl bg-blue-300 border-slate-800 shine_animation cursor-pointer dark:bg-opacity-50"
                             title="ورود/ثبت نام">
-                            <svg-component name="person" class="size-6" title="ورود/ثبت نام"></svg-component>
+                            <svg-component name="person" class="size-6" title="ورود/ثبت نام"/>
                         </div>
                     </Link>
                 </div>

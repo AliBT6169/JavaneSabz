@@ -17,7 +17,6 @@ export const useSearchStore = defineStore('search', {
             }).catch((error) => {
                 console.log(error.response.data);
             });
-            await console.log(this.Products)
         }
     },
     persist: true,

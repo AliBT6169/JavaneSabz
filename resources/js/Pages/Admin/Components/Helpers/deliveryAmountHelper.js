@@ -3,7 +3,6 @@ import {ref} from "vue";
 const deliveryAmountHelper = async (city_id, delivery_amount) => {
     return await axios.get(route('admin.deliveries.GetCityName', {city_id: city_id})).then((res) => {
         const city = res.data.city;
-        console.log(city);
         const province = res.data.province;
         const province_percentage = ref(0);
         const bigCitiesPercentage = ref(0);
