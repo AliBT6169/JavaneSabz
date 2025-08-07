@@ -82,16 +82,15 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
              @mousemove="moved" @mousedown="downed" @touchmove="moved" @touchend="upd"
              @touchstart="downed"
              :style="`transform: translateX(${translation}rem)`">
-            <span class="slider-pages" v-for="item in props.slider1Data">
+            <div class="slider-pages flex relative justify-center items-center" v-for="item in props.slider1Data">
                 <img loading="lazy" class="slider1 size-full select-none" :src="item" alt=""
                      @dragstart.prevent>
-            </span>
+                <!--        slider text-->
+                <p class="select-none  w-2/3 bottom-2 text-center text-sm text-black absolute border-2 rounded-2xl
+                 bg-gray-50/50 text-current dark:bg-gray-800/50 md:p-3 lg:bottom-16"
+                > یمقدار نوشته برای تست کردن اسلایدر یمقدار</p>
+            </div>
         </div>
-        <!--        slider text-->
-        <p class="slider1 top-2/3 select-none mx-20 text-black absolute w-fit border-2 rounded-2xl bg-gray-50/50 text-current dark:bg-gray-800/50 md:p-3" @mouseup="upd"
-           @mousemove="moved" @mousedown="downed" @touchmove="moved" @touchend="upd"
-           @touchstart="downed"
-        > یمقدار نوشته برای تست کردن اسلایدر یمقدار نوشته برای تست کردن اسلایدر یمقدار نوشته برای تست کردن اسلایدر یمقدار نوشته برای تست کردن اسلایدریمقدار نوشته برای تست کردن اسلایدر</p>
         <!--        slider controllers-->
 
         <div class="select-none slider1 flex justify-between items-center w-full px-4 absolute top-16
