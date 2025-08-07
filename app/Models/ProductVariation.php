@@ -29,6 +29,7 @@ class ProductVariation extends Model
         'off_sale',
         'sku',
         'sale_price',
+        'is_special',
         'sailed_quantity',
         'created_at',
     ];

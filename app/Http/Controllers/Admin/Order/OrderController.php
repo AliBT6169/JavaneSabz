@@ -53,6 +53,10 @@ class OrderController extends Controller
         foreach ($products as $product) {
             foreach ($request->items as $item) {
                 if ($item['id'] == $product->id) {
+                    if ($payment_status == 1)
+                        $product->update([
+                            'sailed_quantity' => $product->sailed_quantity + $item['order_quantity'],
+                        ]);
                     $totalAmount += $product->sale_price * $item['order_quantity'];
                     $deliveryAmount = DeliveryAmount::getPrice($product->weight) * $item['order_quantity'];
                 }

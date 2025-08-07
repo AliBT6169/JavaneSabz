@@ -4,9 +4,6 @@ export const useSearchStore = defineStore('search', {
     state: () => ({
         allProducts: null,
         ProductsToShow: null,
-        categories: null,
-        brands: null,
-        attributes: null,
     }),
     actions: {
         async setData(input) {

@@ -20,7 +20,7 @@ const searchData = ref(useSearchStore());
             <Product class="w-32 md:w-40 hidden sm:block" v-for="item in searchData.ProductsToShow"
                      :product="item"/>
             <Link :href="route('searchPage')" @mousedown="(e)=>e.target.click()">
-                <div v-if="searchData.allProducts.length !== searchData.ProductsToShow.length"
+                <div
                      class="flex gap-1 items-center justify-center h-fit w-full md:w-48 text-xs p-4 rounded-lg border border-white/50 bg-defaultColor/50
                       duration-300 cursor-pointer hover:scale-95 hover:shadow-sm hover:shadow-gray-600 dark:bg-defaultColor5/50">
                     <strong class="hidden sm:block">
