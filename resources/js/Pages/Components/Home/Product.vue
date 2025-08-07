@@ -49,19 +49,19 @@ const productShow = async () => {
             </div>
             <div v-else class="bg-defaultColor5 text-defaultColor7 rounded-full flex items-center p-1
              dark:bg-defaultColor dark:text-defaultColor5 hover:bg-opacity-50 hover:-translate-y-1 duration-500">مشاهده
-                <svg-component name="show" class="size-5"></svg-component>
+                <svg-component name="show" class="size-5"/>
             </div>
             <span
                 class="flex justify-between w-full lg:w-fit lg:block">
                 <svg-component name="cart" @click="useAuthStore().addToCart(product.id)"
-                               class="size-5 duration-500 hover:translate-x-2 hover:text-defaultColor md:size-7 dark:hover:text-defaultColor5"></svg-component>
+                               class="size-5 duration-500 hover:translate-x-2 hover:text-defaultColor md:size-7 dark:hover:text-defaultColor5"/>
                 <svg-component :title="product.is_liked?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
                                @click="likeUnLike"
                                class="size-5 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7
                                dark:hover:fill-red-900 dark:text-red-900 lg:hidden md:size-7"
-                               :class="{'!fill-red-500':product.is_liked}"></svg-component>
+                               :class="{'!fill-red-500':product.is_liked}"/>
             <svg-component title="مشاهده محصول" name="show" @click="productShow"
-                           class="size-5 hover:text-defaultColor duration-500 lg:hidden md:size-7"></svg-component>
+                           class="size-5 hover:text-defaultColor duration-500 lg:hidden md:size-7"/>
             </span>
         </div>
         <!--        like & show-->

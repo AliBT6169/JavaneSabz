@@ -9,7 +9,7 @@ export const useSearchStore = defineStore('search', {
         async setData(input) {
             await axios(route('ProductSearch', input)).then((response) => {
                 this.allProducts = response.data;
-                this.ProductsToShow = response.data.slice(0, 10);
+                this.ProductsToShow = response.data.slice(0, 3);
             }).catch((error) => {
                 this.allProducts = null;
                 this.ProductsToShow = null;
