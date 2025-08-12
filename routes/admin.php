@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Attribute\AttributeController;
-use App\Http\Controllers\Admin\Blug\AdminBlogController;
+use App\Http\Controllers\Admin\Blog\AdminBlogController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Comments\AdminCommentController;
@@ -116,6 +116,8 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
     Route::controller(AdminBlogController::class)->group(function () {
         Route::get('/blog/index', 'index')->name('blogs.index');
+        Route::get('/blog/create', 'create')->name('blogs.create');
+        Route::post('/blog/store', 'store')->name('blogs.store');
     });
 });
 
