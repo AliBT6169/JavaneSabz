@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Attribute\AttributeController;
+use App\Http\Controllers\Admin\Blug\AdminBlogController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Comments\AdminCommentController;
@@ -95,27 +96,26 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::patch('/comment/change_status', 'change_status')->name('comments.change_status');
         Route::get('/comment/search/{text}', 'search')->name('comments.search');
     });
-
     Route::controller(AdminUserMailController::class)->group(function () {
         Route::get('/getUsersNotSeenMails', 'getUsersNotSeenMails')->name('getUsersNotSeenMails');
         Route::get('/seenAllMails', 'seenAllMails')->name('seenAllMails');
         Route::get('/UserMailsIndex', 'index')->name('userMails.index');
     });
-
     Route::controller(SettingController::class)->group(function () {
         Route::get('/setting/index', 'index')->name('settings.index');
         Route::put('/setting/update', 'update')->name('settings.update');
     });
-
     Route::controller(AboutUsSettingController::class)->group(function () {
-       Route::put('/aboutUsSetting/update', 'update')->name('aboutUsSetting.update');
+        Route::put('/aboutUsSetting/update', 'update')->name('aboutUsSetting.update');
     });
-
     Route::controller(NavSettingController::class)->group(function () {
-        Route::put('/navSetting/attributeSet','setAttributeToNavItem')->name('navSetting.AttributeSet');
+        Route::put('/navSetting/attributeSet', 'setAttributeToNavItem')->name('navSetting.AttributeSet');
         Route::get('/navSetting/getAttributes/{id}', 'geAttributes')->name('navSetting.getAttributes');
         Route::patch('/navSetting/queueToggle', 'queueToggle')->name('navSetting.queueToggle');
         Route::patch('/navSetting/toggle/{id}', 'toggle')->name('navSetting.toggle');
+    });
+    Route::controller(AdminBlogController::class)->group(function () {
+        Route::get('/blog/index', 'index')->name('blogs.index');
     });
 });
 

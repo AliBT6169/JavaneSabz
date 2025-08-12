@@ -51,7 +51,11 @@ import {router} from "@inertiajs/vue3";
                              :href="route('admin.comments.index')" name="comments.index">
                 نظرات
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('settings.index',10)" icon="settings"
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('blogs.index',10)" icon="blog"
+                             :href="route('admin.blogs.index')" name="blogs.index">
+                بلاگ
+            </AdminSidbarItem>
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('settings.index',11)" icon="settings"
                              :href="route('admin.settings.index')" name="settings.index">
                 تنظیمات
             </AdminSidbarItem>
