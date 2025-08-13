@@ -16,6 +16,7 @@ const onFileChange = (event) => {
     if (file) {
         const formData = new FormData();
         formData.append('image', event.target.files[0]);
+        formData.append('key', props.myKey);
         emit('update:modelValue', formData)
         const reader = new FileReader();
         reader.onloadend = (e) => {
