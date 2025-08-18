@@ -115,6 +115,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::patch('/navSetting/toggle/{id}', 'toggle')->name('navSetting.toggle');
     });
     Route::controller(AdminBlogController::class)->group(function () {
+        Route::post('/blog/uploadBlogMedia', 'blogMediaUpload')->name('blogs.uploadBlogMedia');
         Route::get('/blog/index', 'index')->name('blogs.index');
         Route::get('/blog/create', 'create')->name('blogs.create');
         Route::post('/blog/store', 'store')->name('blogs.store');

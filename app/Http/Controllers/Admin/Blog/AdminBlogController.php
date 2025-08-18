@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\Blog\AdminBlogIndexResource;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class AdminBlogController extends Controller
@@ -24,4 +25,10 @@ class AdminBlogController extends Controller
     {
         return $request;
     }
+
+    public function blogMediaUpload(Request $request)
+    {
+        return response()->json(['url' => asset('/images/default/default.jpg')]);
+    }
+
 }

@@ -2,8 +2,8 @@
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
-import {Link} from "@inertiajs/vue3";
-import {ref} from "vue";
+import {Link, router} from "@inertiajs/vue3";
+import {onMounted, ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminStatusInput from "@/Pages/Admin/Components/AdminStatusInput.vue";
@@ -11,6 +11,7 @@ import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
 import AdminPictureInput from "@/Pages/Admin/Components/AdminPictureInput.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {Axios} from "axios";
 
 const form = ref({
     title: '',
@@ -28,9 +29,14 @@ const editorConfig = {
         options: ['right', 'left', 'center', 'justify']
     },
     simpleUpload: {
-        uploadUrl: '/editor/upload',
+        uploadUrl: route('admin.blogs.uploadBlogMedia'),
     }
 }
+onMounted(() => {
+    axios.post(route('admin.blogs.uploadBlogMedia')).then(res => {
+        console.log(res);
+    })
+})
 const sendData = async () => {
     console.log(editorData.value);
     return;
