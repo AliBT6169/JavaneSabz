@@ -16,7 +16,9 @@ const form = ref({
     status: true,
     description: '',
 });
-
+const CKEditorConfig = ({
+    mode: "text",
+});
 const sendData = async () => {
     const content = {
         component: ToastWarning,
@@ -39,19 +41,6 @@ const sendData = async () => {
 
 }
 
-const addImage = () => {
-    form.value.pictures.push('');
-}
-
-// const onPictureDelete = (index) => {
-//     console.log(form.value.pictures[index].get('key'));
-//     form.value.pictures = form.value.pictures.map((item, f_index) => {
-//         if (form.value.pictures[f_index] !== '' && form.value.pictures[index].get('key') === 'pic' + f_index) {
-//
-//         }
-//
-//     });
-// }
 </script>
 
 <template>
@@ -60,20 +49,9 @@ const addImage = () => {
             <div
                 class="space-y-6 py-4 ">
                 <admin-input v-model="form.title" class="!w-60" name="موضوع"/>
-<!--                <div class="admin_inputs flex flex-wrap gap-5 justify-center">-->
-<!--                    <div class="relative flex justify-center items-center overflow-hidden size-40 group"-->
-<!--                         v-for="(item, index) in form.pictures">-->
-<!--                        <AdminPictureInput v-model="form.pictures[index]" :my-key="'pic' + index"/>-->
-<!--                        <svg-component name="delete"-->
-<!--                                       @click="onPictureDelete(index)"-->
-<!--                                       class="size-7 rounded-xl p-1 absolute top-3 md:top-60 border cursor-pointer-->
-<!--                                       border-current duration-300 bg-gray-800/50 hover:bg-red-500/50 hover:text-red-500 md:group-hover:top-1"/>-->
-<!--                    </div>-->
-<!--                    <svg-component name="plus" class="cursor-pointer duration-300 size-40 hover:scale-95"-->
-<!--                                   @click="addImage"/>-->
-<!--                </div>-->
+                <Ckeditor v-model="form.description" :config=""/>
                 <AdminStatusInput name="وضعیت :" v-model="form.status"/>
-                <AdminTextArea v-model="form.description"/>
+                <!--                <AdminTextArea v-model="form.description"/>-->
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end md:!w-[90%]">
                     <admin-button type="submit" text="ثبت"/>
                     <Link class="block" :href="route('admin.blogs.index')">
