@@ -1,5 +1,6 @@
 @tailwind base;
 @tailwind components;
+@import "ckeditor4/contents.css";
 @font-face {
     font-family: "YekanBakh";
     font-style: normal;

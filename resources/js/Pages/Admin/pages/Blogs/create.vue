@@ -10,8 +10,8 @@ import AdminStatusInput from "@/Pages/Admin/Components/AdminStatusInput.vue";
 import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
 import AdminPictureInput from "@/Pages/Admin/Components/AdminPictureInput.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {Axios} from "axios";
+import { component as ckeditor } from '@mayasabha/ckeditor4-vue3';
 
 const form = ref({
     title: '',
@@ -19,19 +19,13 @@ const form = ref({
     description: '',
 });
 const editorData = ref('<p>تست</p>')
-const editorConfig = {
-    language: 'fa',
-    toolbar: [
-        'heading', '|', 'bold', 'italic', 'underline', 'link', 'bulletedList', 'numberedList', 'blockQuote',
-        '|', 'insertTable', 'undo', 'redo', 'alignment', 'outdent', 'indent', 'code', 'codeBlock', 'imageUpload'
-    ],
-    alignment: {
-        options: ['right', 'left', 'center', 'justify']
-    },
-    simpleUpload: {
-        uploadUrl: route('admin.blogs.uploadBlogMedia'),
-    }
-}
+// const editorConfig = {
+//     language: 'fa',
+//     toolbar: [['bold', 'italic', 'underline']],
+//     alignment: {
+//         options: ['right', 'left', 'center', 'justify']
+//     },
+// }
 onMounted(() => {
     axios.post(route('admin.blogs.uploadBlogMedia')).then(res => {
         console.log(res);
@@ -71,13 +65,9 @@ const sendData = async () => {
                 <admin-input v-model="form.title" class="!w-60" name="موضوع"/>
                 <AdminStatusInput name="وضعیت :" v-model="form.status"/>
                 <!--                <AdminTextArea v-model="form.description"/>-->
-                <div class="h-40">
-                    <ckeditor class="" :editor="ClassicEditor" :config="editorConfig" v-model="editorData"/>
-
+                <div class="h-40 relative z-20">
+                    <ckeditor v-model="editorData"></ckeditor>
                 </div>
-                <pre>
-                    {{ editorData }}
-                </pre>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end md:!w-[90%]">
                     <admin-button type="submit" text="ثبت"/>
                     <Link class="block" :href="route('admin.blogs.index')">

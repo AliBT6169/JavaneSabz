@@ -20,8 +20,7 @@
         "vue-svg-loader": "^0.16.0"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^41.4.2",
-        "@ckeditor/ckeditor5-vue": "^7.3.0",
+        "@mayasabha/ckeditor4-vue3": "^1.0.9",
         "@vueuse/core": "^12.3.0",
         "aos": "^2.3.4",
         "pinia": "^2.3.1",

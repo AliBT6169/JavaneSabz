@@ -10,7 +10,6 @@ import {ZiggyVue} from '../../vendor/tightenco/ziggy';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import {CkeditorPlugin} from "@ckeditor/ckeditor5-vue";
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const pinia = createPinia();
@@ -27,7 +26,6 @@ createInertiaApp({
         return createApp({render: () => h(App, props)})
             .use(plugin)
             .use(ZiggyVue)
-            .use(CkeditorPlugin)
             .use(pinia)
             .use(Toast, {
                 position: POSITION.TOP_CENTER,
