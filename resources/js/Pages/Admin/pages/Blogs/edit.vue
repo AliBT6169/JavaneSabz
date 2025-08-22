@@ -26,11 +26,11 @@ const sendData = async () => {
     const content = {
         component: ToastWarning,
         props: {
-            message: 'آیا مطمعن به ذخیره این بلاگ هستید؟'
+            message: 'آیا مطمعن به به روز رسانی این بلاگ هستید؟'
         },
         listeners: {
             set: async () => {
-                await axios.post(route('admin.blogs.store'), form.value).then(res => {
+                await axios.post(route('admin.blogs.update'), form.value).then(res => {
                     useToast().success(res.data.message);
                     preview.value.innerHTML = res.data.data;
                 }).catch(err => {
