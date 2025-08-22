@@ -43,7 +43,7 @@ class AdminBlogController extends Controller
     public function edit(int $id)
     {
         $blog = AdminBlogIndexResource::make(Blog::whereId($id)->first());
-        Inertia::render('Admin/pages/Blogs/edit.vue', ['data' => $blog]);
+        Inertia::render('Admin/pages/Blogs/edit', ['data' => $blog]);
     }
 
     public function update(BlogUpdateRequest $request)

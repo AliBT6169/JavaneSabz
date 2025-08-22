@@ -115,9 +115,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::patch('/navSetting/toggle/{id}', 'toggle')->name('navSetting.toggle');
     });
     Route::controller(AdminBlogController::class)->group(function () {
+        Route::get('/blog/edit/{id}', 'edit')->name('blogs.edit');
         Route::get('/blog/index', 'index')->name('blogs.index');
         Route::get('/blog/create', 'create')->name('blogs.create');
-        Route::get('/blog/edit/{id}', 'edit')->name('blogs.edit');
         Route::post('/blog/store', 'store')->name('blogs.store');
         Route::post('/blog/update', 'update')->name('blogs.update');
     });

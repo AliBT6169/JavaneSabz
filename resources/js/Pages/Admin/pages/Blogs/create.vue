@@ -57,6 +57,7 @@ const sendData = async () => {
                     </Link>
                 </div>
             </div>
+            <Link :href="route('admin.blogs.edit',1)">صفحه تغییرات</Link>
         </form>
     </Layout>
 </template>
