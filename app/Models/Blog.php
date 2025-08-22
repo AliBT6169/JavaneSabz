@@ -10,6 +10,7 @@ class Blog extends Model
 {
     protected $fillable = [
         'id',
+        'user_id',
         'title',
         'slug',
         'description',
@@ -22,8 +23,4 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function gallery(): MorphMany
-    {
-        return $this->morphMany(Gallery::class, 'gallery');
-    }
 }

@@ -17,6 +17,10 @@ class AdminBlogIndexResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'user' => [
+                'id' => $this->user_id,
+                'name' => $this->user->name,
+            ],
             'slug' => $this->slug,
             'description' => $this->description,
             'status' => $this->status,

@@ -2,17 +2,23 @@
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
-import {Link, router} from "@inertiajs/vue3";
-import {onMounted, ref} from "vue";
+import {Link} from "@inertiajs/vue3";
+import {ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminStatusInput from "@/Pages/Admin/Components/AdminStatusInput.vue";
 import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
 
+const props = defineProps({
+    data: {
+        type: Object,
+        required: true
+    }
+})
 const form = ref({
-    title: '',
-    status: true,
-    description: '',
+    title: props.data.title,
+    status: props.data.status,
+    description: props.data.description,
 });
 const preview = ref(null);
 
@@ -24,7 +30,7 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
-                await axios.post(route('admin.blogs.store'),form.value).then(res => {
+                await axios.post(route('admin.blogs.store'), form.value).then(res => {
                     useToast().success(res.data.message);
                     preview.value.innerHTML = res.data.data;
                 }).catch(err => {
@@ -47,7 +53,8 @@ const sendData = async () => {
                 <admin-input v-model="form.title" class="!w-60" name="موضوع"/>
                 <AdminStatusInput name="وضعیت :" v-model="form.status"/>
                 <ckeditor :config="{language: 'fa'}" v-model="form.description"></ckeditor>
-                <div ref="preview" class="w-full border-2 rounded-xl border-adminColor1 p-4 max-w-full overflow-hidden text-wrap">
+                <div ref="preview"
+                     class="w-full border-2 rounded-xl border-adminColor1 p-4 max-w-full overflow-hidden text-wrap">
                 </div>
                 <div class="size-20 rounded-xl bg-blue-500/50 " @click="dataShow"></div>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end md:!w-[90%]">
