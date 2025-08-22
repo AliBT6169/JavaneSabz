@@ -18,7 +18,6 @@ const form = ref({
     status: true,
     description: '',
 });
-const editorData = ref('<p>تست</p>')
 // const editorConfig = {
 //     language: 'fa',
 //     toolbar: [['bold', 'italic', 'underline']],
@@ -64,9 +63,8 @@ const sendData = async () => {
                 class="space-y-6 py-4 ">
                 <admin-input v-model="form.title" class="!w-60" name="موضوع"/>
                 <AdminStatusInput name="وضعیت :" v-model="form.status"/>
-                <!--                <AdminTextArea v-model="form.description"/>-->
                 <div class="h-40 relative z-20">
-                    <ckeditor v-model="editorData"></ckeditor>
+                    <ckeditor :config="{language: 'fa'}" v-model="form.description"></ckeditor>
                 </div>
                 <div class="space-y-2 md:space-y-0 md:flex md:gap-4 md:justify-end md:!w-[90%]">
                     <admin-button type="submit" text="ثبت"/>
