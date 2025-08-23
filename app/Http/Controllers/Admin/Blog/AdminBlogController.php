@@ -43,12 +43,12 @@ class AdminBlogController extends Controller
     public function edit(int $id)
     {
         $blog = AdminBlogIndexResource::make(Blog::whereId($id)->first());
-        Inertia::render('Admin/pages/Blogs/edit', ['data' => $blog]);
+        return Inertia::render('Admin/pages/Blogs/edit', ['data' => $blog]);
     }
 
     public function update(BlogUpdateRequest $request)
     {
-        $blog = Blog::whereId($request->id)->first()->update([
+        Blog::whereId($request->id)->first()->update([
             'title' => $request->title,
             'slug' => $request->title,
             'description' => $request->description,
@@ -56,7 +56,7 @@ class AdminBlogController extends Controller
         ]);
         return response()->json([
             'message' => 'ملیات به روز رسانی بلاگ موفقیت آمیز بودع',
-            'data' => $blog->description,
+            'data' => $request->description,
             'status' => 201,
         ]);
     }

@@ -14,12 +14,15 @@ const props = defineProps({
         type: Object,
         required: true
     }
-})
-const form = ref({
-    title: props.data.title,
-    status: props.data.status,
-    description: props.data.description,
 });
+console.log(props);
+const form = ref({
+    id: props.data.data.id,
+    title: props.data.data.title,
+    status: props.data.data.status,
+    description: props.data.data.description,
+});
+console.log(form.value.title)
 const preview = ref(null);
 
 const sendData = async () => {

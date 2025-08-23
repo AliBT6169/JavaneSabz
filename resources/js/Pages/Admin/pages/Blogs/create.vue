@@ -2,12 +2,12 @@
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
-import {Link, router} from "@inertiajs/vue3";
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminStatusInput from "@/Pages/Admin/Components/AdminStatusInput.vue";
 import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
+import {Link} from "@inertiajs/vue3";
 
 const form = ref({
     title: '',
