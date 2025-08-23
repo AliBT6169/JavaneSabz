@@ -23,6 +23,18 @@ class BlogUpdateRequest extends FormRequest
     {
         return [
             'id' => 'required|numeric|exists:blogs,id',
+            'icon' => ['required', function ($attribute, $value, $fail) {
+                if (is_string($value))
+                    return;
+                if (request()->hasFile($attribute)) {
+                    $file = request()->file($attribute);
+                    if (!$file->isValid() || !str_starts_with($file->getMimeType(), 'image')) {
+                        $fail('فایل ارسالی باید تصویر باشد');
+                    }
+                } else {
+                    $fail('فیلد تصویر باید شامل تصویر باشد');
+                }
+            }, 'max:2048'],
             'title' => 'required|string|min:3|max:255',
             'description' => 'required|string|min:200',
             'status' => 'required|boolean',

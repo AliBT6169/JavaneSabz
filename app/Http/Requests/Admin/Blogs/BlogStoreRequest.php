@@ -23,6 +23,7 @@ class BlogStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:5|max:255|unique:blogs',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|string|min:200',
             'status' => 'required|boolean',
         ];

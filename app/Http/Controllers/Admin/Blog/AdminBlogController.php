@@ -9,6 +9,7 @@ use App\Http\Resources\Admin\Blog\AdminBlogIndexResource;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
@@ -26,10 +27,15 @@ class AdminBlogController extends Controller
 
     public function store(BlogStoreRequest $request)
     {
+        $image = $request->file('icon');
+        $lastId = DB::select('SHOW TABLE STATUS LIKE "blogs"')[0]->Auto_increment;
+        $URL = '/images/blogs/' . $lastId . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/blogs/'), $lastId . '.' . $image->getClientOriginalExtension());
         $blog = Blog::create([
             'user_id' => 5,
             'title' => $request->title,
             'slug' => $request->title,
+            'icon' => $URL,
             'description' => $request->description,
             'status' => $request->status
         ]);
@@ -48,7 +54,13 @@ class AdminBlogController extends Controller
 
     public function update(BlogUpdateRequest $request)
     {
-        Blog::whereId($request->id)->first()->update([
+        $blog = Blog::whereId($request->id)->first();
+        if ($request->hasFile('icon')) {
+            $image = $request->file('icon');
+            unlink(public_path('images/blogs/' . $blog->id . '.' . $image->getClientOriginalExtension()));
+            $image->move(public_path('images/blogs/'), $blog->id . '.' . $image->getClientOriginalExtension());
+        }
+        $blog->update([
             'title' => $request->title,
             'slug' => $request->title,
             'description' => $request->description,
