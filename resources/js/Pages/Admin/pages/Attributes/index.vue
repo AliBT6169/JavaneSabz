@@ -1,12 +1,9 @@
 <script setup>
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
-import SvgComponent from "@/Pages/Components/svg-component.vue";
-import {Link} from "@inertiajs/vue3";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import {ref} from "vue";
 import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
-import AdminUserMailItem from "@/Pages/Admin/pages/UserMails/AdminUserMailItem.vue";
 import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
 
 const props = defineProps({

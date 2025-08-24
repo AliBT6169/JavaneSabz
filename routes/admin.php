@@ -120,6 +120,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::post('/blog/store', 'store')->name('blogs.store');
         Route::get('/blog/{id}', 'edit')->name('blogs.edit');
         Route::post('/blog/update', 'update')->name('blogs.update');
+        Route::delete('/blog/destroy/{id}', 'destroy')->name('blogs.destroy');
     });
 });
 

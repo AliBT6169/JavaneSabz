@@ -73,4 +73,14 @@ class AdminBlogController extends Controller
         ]);
     }
 
+    public function destroy(int $id)
+    {
+        $blog = Blog::whereId($id)->firstOrFail();
+        if ($blog) {
+            $blog->delete();
+            return response()->json('عملیات حذف وبلاگ موفقیت آمیز بود');
+        }
+        abort(404, 'وبلاگ مورد نظر یافت نشد!!!');
+    }
+
 }
