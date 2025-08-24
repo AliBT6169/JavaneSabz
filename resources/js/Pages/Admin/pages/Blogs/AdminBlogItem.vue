@@ -43,6 +43,10 @@ const deleteBlog = () => {
                     blog.title
                 }}
             </div>
+            <div class="px-4 py-1 m-auto w-fit rounded-xl bg-adminColor1/70 dark:bg-adminColor4/60">{{
+                    'بازدید :' + blog.views
+                }}
+            </div>
         </div>
         <svg-component name="delete" @click="deleteBlog"
                        class="cursor-pointer size-7 rounded-full p-1 bg-adminColor1/50 absolute duration-500 top-2 left-0 md:-top-20

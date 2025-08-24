@@ -15,6 +15,7 @@ class Blog extends Model
         'title',
         'slug',
         'icon',
+        'views',
         'description',
         'status',
         'created_at',

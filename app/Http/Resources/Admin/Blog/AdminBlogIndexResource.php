@@ -23,6 +23,7 @@ class AdminBlogIndexResource extends JsonResource
                 'name' => $this->user->name,
             ],
             'icon' => $this->icon,
+            'views' => $this->views,
             'slug' => $this->slug,
             'description' => $this->description,
             'status' => $this->status,

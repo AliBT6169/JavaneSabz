@@ -17,7 +17,7 @@ class AdminBlogController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Admin/pages/Blogs/index', ['blogs' => AdminBlogIndexResource::collection(Blog::latest()->get())]);
+        return Inertia::render('Admin/pages/Blogs/index', ['blogs' => AdminBlogIndexResource::collection(Blog::latest()->paginate(10))]);
     }
 
     public function create()

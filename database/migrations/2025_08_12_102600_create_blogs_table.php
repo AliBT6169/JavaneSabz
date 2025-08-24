@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('slug');
             $table->string('icon');
+            $table->unsignedInteger('views')->default(0);
             $table->boolean('status');
             $table->longText('description');
             $table->timestamps();
