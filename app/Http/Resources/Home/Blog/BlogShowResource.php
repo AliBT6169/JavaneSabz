@@ -23,7 +23,7 @@ class BlogShowResource extends JsonResource
             'icon' => $this->icon,
             'views' => $this->views,
             'description' => $this->description,
-            'created_at' => Jalalian::fromDateTime($this->created_at)->format('l, d F Y H:i:s'),
+            'created_at' => Jalalian::fromDateTime($this->created_at)->format('d F Y'),
         ];
     }
 }

@@ -22,7 +22,7 @@ class IndexBlogResource extends JsonResource
             'slug' => $this->slug,
             'icon' => $this->icon,
             'views' => $this->views,
-            'created_at' => Jalalian::fromDateTime($this->created_at)->format('l, d F Y H:i:s'),
+            'created_at' => Jalalian::fromDateTime($this->created_at)->format('d F Y'),
         ];
     }
 }
