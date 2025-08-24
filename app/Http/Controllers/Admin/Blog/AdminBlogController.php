@@ -32,7 +32,7 @@ class AdminBlogController extends Controller
         $URL = '/images/blogs/' . $lastId . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('images/blogs/'), $lastId . '.' . $image->getClientOriginalExtension());
         $blog = Blog::create([
-            'user_id' => 5,
+            'user_id' => Auth::id(),
             'title' => $request->title,
             'slug' => $request->title,
             'icon' => $URL,
