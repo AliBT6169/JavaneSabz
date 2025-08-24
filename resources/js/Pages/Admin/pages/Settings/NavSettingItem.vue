@@ -54,7 +54,7 @@ const queueChanged = async (e) => {
             </div>
             <!--            next-->
             <div class="w-5">
-                <svg-component v-if="setting.queue<4" name="next" @click="queueChanged(1)"
+                <svg-component v-if="setting.queue<5" name="next" @click="queueChanged(1)"
                                class="cursor-pointer size-5 duration-300 hover:text-adminColor2 hover:scale-110"/>
             </div>
         </div>

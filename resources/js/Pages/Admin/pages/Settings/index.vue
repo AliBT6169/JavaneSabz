@@ -4,6 +4,7 @@ import AboutSetting from "@/Pages/Admin/pages/Settings/AboutSetting.vue";
 import {ref} from "vue";
 import AboutUsSetting from "@/Pages/Admin/pages/Settings/AboutUsSetting.vue";
 import NavSetting from "@/Pages/Admin/pages/Settings/NavSetting.vue";
+import BestBrands from "@/Pages/Admin/pages/Settings/bestBrands.vue";
 
 
 const props = defineProps({
@@ -34,6 +35,10 @@ const settingName = ref('AboutSetting');
                      class="adminSettingSidebarItem">
                     تنظیمات منوی ناوبری
                 </div>
+                <div @click="settingName = 'bestBrands'"
+                     class="adminSettingSidebarItem">
+                    تنظیمات بهترین برند
+                </div>
                 <div @click="settingName = 'sliderSetting'"
                      class="adminSettingSidebarItem">
                     تنظیمات اسلایدر
@@ -47,6 +52,7 @@ const settingName = ref('AboutSetting');
                 <AboutSetting :is_active="settingName==='AboutSetting'" :settings="settings.AboutSetting.data"/>
                 <AboutUsSetting :is_active="settingName==='AboutUsSetting'" :settings="settings.AboutUsSetting"/>
                 <NavSetting :is_active="settingName==='navigationSetting'" :settings="settings.NavSetting"/>
+                <best-brands :is_active="settingName==='bestBrands'" :settings="settings.bestBrands"/>
             </div>
         </div>
     </Layout>
