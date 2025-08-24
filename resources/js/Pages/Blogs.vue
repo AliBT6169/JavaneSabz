@@ -11,7 +11,8 @@ console.log(props.blogs.data)
 
 <template>
     <IndexLyout>
-        <div class=""></div>
-        <BlogItem v-for="item in blogs.data" :blog="item"/>
+        <div class="space-y-5 md:flex md:space-y-0 md:flex-wrap md:gap-5 md:justify-center md:items-center">
+            <BlogItem v-for="item in blogs.data" :blog="item"/>
+        </div>
     </IndexLyout>
 </template>

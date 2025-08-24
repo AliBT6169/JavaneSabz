@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Home\Blog\BlogShowResource;
 use App\Http\Resources\Home\Blog\IndexBlogResource;
 use App\Http\Resources\Home\IndexSettingResource;
 use App\Http\Resources\Home\NavigationSettingResource;
@@ -83,5 +84,15 @@ class IndexController extends Controller
     {
         $blogs = IndexBlogResource::collection(Blog::where('status', 1)->latest()->paginate(20));
         return Inertia::render('Blogs', ['blogs' => $blogs]);
+    }
+
+    public function blogShow(int $id,string $slug)
+    {
+
+        $blog = Blog::whereId($id)->first();
+        if ($blog->slug != $slug) {
+            return Inertia::location(route('blogs.show', ['id' => $id, 'slug' => $blog->product->slug]));
+        }
+        return Inertia::render('BlogShow', ["blog" => BlogShowResource::make($blog)]);
     }
 }

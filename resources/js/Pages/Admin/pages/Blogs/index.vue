@@ -22,7 +22,7 @@ const pageCount = ref({
 
 <template>
     <Layout>
-        <div class="space-y-5 md:flex md:flex-wrap md:gap-5 md:justify-center md:items-center">
+        <Link :href="route('blog.show',blogs.slug)" class="space-y-5 md:flex md:flex-wrap md:gap-5 md:justify-center md:items-center md:space-y-0">
             <AdminPageShower PageName="وبلاگ ها" :PageCount="pageCount"/>
             <div class="w-full flex justify-center md:size-fit">
                 <div class="w-60">
@@ -30,7 +30,7 @@ const pageCount = ref({
                 </div>
             </div>
             <AdminBlogItem v-for="item in blogs.data" @deleted="blogDeleted(item.id)" :blog="item"/>
-        </div>
+        </Link>
         <Pagination :links="blogs.links" :meta="blogs.meta" :create-link="'admin.blogs.create'"/>
     </Layout>
 </template>
