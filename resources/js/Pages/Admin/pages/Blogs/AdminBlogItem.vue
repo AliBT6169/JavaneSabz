@@ -25,7 +25,7 @@ const deleteBlog = () => {
                     emit("deleted");
                     useToast().success(res.data);
                 }).catch((err) => {
-                    useToast().error(err.message);
+                    useToast().error(err.response.data.message);
                     console.error(err);
                 });
             }
