@@ -88,11 +88,10 @@ class IndexController extends Controller
 
     public function blogShow(int $id,string $slug)
     {
-
         $blog = Blog::whereId($id)->first();
         if ($blog->slug != $slug) {
             return Inertia::location(route('blogs.show', ['id' => $id, 'slug' => $blog->product->slug]));
         }
-        return Inertia::render('BlogShow', ["blog" => BlogShowResource::collection($blog)]);
+        return Inertia::render('BlogShow', ["blog" => BlogShowResource::make($blog)]);
     }
 }
