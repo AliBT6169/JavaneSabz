@@ -42,7 +42,7 @@ class NavSettingController extends Controller
                     abort(500, 'امکان عقب کشیدن این تب وجود ندارد!');
                 break;
             case 1:
-                if ($nav_item->queue < 4) {
+                if ($nav_item->queue < 5) {
                     NavBarSetting::where('queue', $nav_item->queue + 1)->first()->update([
                         'queue' => DB::raw('queue -1')
                     ]);

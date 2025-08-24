@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Home\Blog\IndexBlogResource;
 use App\Http\Resources\Home\IndexSettingResource;
 use App\Http\Resources\Home\NavigationSettingResource;
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\NavBarSetting;
 use App\Models\ProductVariation;
@@ -75,5 +77,11 @@ class IndexController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function blogs()
+    {
+        $blogs = IndexBlogResource::collection(Blog::where('status', 1)->latest()->paginate(20));
+        return Inertia::render('Blogs', ['blogs' => $blogs]);
     }
 }

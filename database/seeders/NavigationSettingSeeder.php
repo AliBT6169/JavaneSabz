@@ -42,5 +42,11 @@ class NavigationSettingSeeder extends Seeder
             'icon' => 'tell',
             'queue' => 4,
         ]);
+        NavBarSetting::create([
+            'title' => 'وبلاگ',
+            'icon' => 'blog',
+            'link' => 'blogs',
+            'queue' => 5,
+        ]);
     }
 }

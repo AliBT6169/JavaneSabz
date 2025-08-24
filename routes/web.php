@@ -14,6 +14,7 @@ use Inertia\Inertia;
 
 Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/وبلاگ', 'blogs')->name('blogs');
 });
 
 Route::get('/درباره-' . AboutUsSetting::first()->store_name, function () {
