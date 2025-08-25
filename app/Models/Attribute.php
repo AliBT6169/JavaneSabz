@@ -46,6 +46,10 @@ class Attribute extends Model
     public function navItemSettingAttributes(): HasMany
     {
         return $this->hasMany(NavItemSettingAttribute::class);
+    }
 
+    public function banner(): HasMany
+    {
+        return $this->hasMany(Banner::class);
     }
 }

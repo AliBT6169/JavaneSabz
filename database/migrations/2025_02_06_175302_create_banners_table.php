@@ -12,15 +12,12 @@ return new class extends Migration {
     {
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('attribute_id')->constrained('attributes')->cascadeOnDelete();
             $table->string('image');
             $table->string('title')->nullable();
             $table->string('text')->nullable();
-            $table->integer('priority')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->string('type');
-            $table->string('button_text')->nullable();
-            $table->string('button_link')->nullable();
-            $table->string('button_icon')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
