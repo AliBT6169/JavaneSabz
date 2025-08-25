@@ -58,15 +58,16 @@ onMounted(async () => {
         <div data-aos="fade-up" class="w-full mx-auto !transform-none">
             <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
-                    <span class="">کود های</span>
-                    <span class="font-black text-defaultColor5">تقویتی</span>
+                    <span class="">محصولات</span>
+                    <span class="font-black text-defaultColor5">تخفیف دار</span>
+
                 </div>
                 <div class="flex gap-2 h-2">
                     <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
                     <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <product-slider1 :products="indexData.products.data" class="w-full"/>
+            <product-slider1 :products="indexData.offSaleProducts.data" class="w-full"/>
         </div>
         <!--    liveCards-->
         <div data-aos="fade-up" class="w-full mx-auto">
@@ -99,8 +100,23 @@ onMounted(async () => {
                 </div>
             </div>
             <div class="grid grid-cols-minmaxfill gap-4 justify-center mx-auto w-full">
-                <product v-for="item in indexData.products.data" :product="item" :special="true"/>
+                <product v-for="item in indexData.specialProducts.data" :product="item" :special="true"/>
             </div>
+        </div>
+        <!--        product show-1-->
+        <div data-aos="fade-up" class="w-full mx-auto !transform-none">
+            <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
+                <div class="flex gap-2">
+                    <span class="">محصولات</span>
+                    <span class="font-black text-defaultColor5">پرفروش</span>
+
+                </div>
+                <div class="flex gap-2 h-2">
+                    <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                    <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+                </div>
+            </div>
+            <product-slider1 :products="indexData.saleFullProducts.data" class="w-full"/>
         </div>
     </IndexLyout>
 

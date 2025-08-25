@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BrandResource;
 use App\Http\Resources\Home\Blog\BlogShowResource;
 use App\Http\Resources\Home\Blog\IndexBlogResource;
 use App\Http\Resources\Home\IndexSettingResource;
 use App\Http\Resources\Home\NavigationSettingResource;
+use App\Http\Resources\Home\Product\IndexProductVariationsResource;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\NavBarSetting;
@@ -22,8 +24,17 @@ class IndexController extends Controller
     public function index()
     {
         $indexData = [
+            "offSaleProducts" => IndexProductVariationsResource::collection(ProductVariation::whereHas("product", function ($query) {
+                $query->where('is_active', true);
+            })->where("off_sale", '>0')->latest()->get()),
+            "specialProducts" => IndexProductVariationsResource::collection(ProductVariation::whereHas("product", function ($query) {
+                $query->where('is_active', true);
+            })->where("is_special", true)->latest()->get()),
+            "saleFullProducts" => IndexProductVariationsResource::collection(ProductVariation::whereHas("product", function ($query) {
+                $query->where('is_active', true);
+            })->where("sailed_quantity", '>10')->latest()->get()),
             "products" => ProductVariation::getSomeProduct(20),
-            "brands" => Brand::where('is_active', 1)->get(),
+            "brands" => BrandResource::collection(Brand::where('is_best', true)->get()),
             "settings" => [
                 "settings" => IndexSettingResource::make(Setting::first()),
                 "NavSetting" => NavigationSettingResource::collection(NavBarSetting::where('is_active', true)->orderBy('queue', 'asc')->get()),
