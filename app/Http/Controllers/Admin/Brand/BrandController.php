@@ -93,6 +93,6 @@ class BrandController extends Controller
         Brand::whereId($id)->update([
             'is_best' => DB::raw('NOT is_best')
         ]);
-        return response()->json(BestBrandsResource::collection(Brand::latest()->orderBy('is_best', 'asc')->get()), 200);
+        return response()->json(BestBrandsResource::collection(Brand::orderBy('is_best', 'desc')->get()));
     }
 }
