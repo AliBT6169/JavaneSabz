@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Brands\BrandStoreRequest;
 use App\Http\Requests\Admin\Brands\BrandUpdateRequest;
 use App\Http\Resources\Admin\Brands\BrandResource;
+use App\Http\Resources\Admin\Setting\BestBrandsResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -85,5 +86,13 @@ class BrandController extends Controller
     public function show()
     {
         return response()->json(BrandResource::collection(Brand::latest()->get()), 200);
+    }
+
+    public function toggleToBest(int $id)
+    {
+        Brand::whereId($id)->update([
+            'is_best' => DB::raw('NOT is_best')
+        ]);
+        return response()->json(BestBrandsResource::collection(Brand::latest()->orderBy('is_best', 'asc')->get()), 200);
     }
 }

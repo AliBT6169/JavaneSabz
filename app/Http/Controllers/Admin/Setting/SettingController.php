@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin\Setting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Settings\AdminSettingUpdateRequest;
 use App\Http\Resources\Admin\Setting\AboutSettingResource;
+use App\Http\Resources\Admin\Setting\BestBrandsResource;
 use App\Models\AboutUsSetting;
+use App\Models\Brand;
 use App\Models\NavBarSetting;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -18,7 +20,8 @@ class SettingController extends Controller
         $setting = [];
         $setting['AboutSetting'] = AboutSettingResource::make(Setting::first());
         $setting['AboutUsSetting'] = AboutUsSetting::first();
-        $setting['NavSetting'] = NavBarSetting::orderBy('queue','asc')->get();
+        $setting['NavSetting'] = NavBarSetting::orderBy('queue', 'asc')->get();
+        $setting['BestBrandsSettings'] = BestBrandsResource::collection(Brand::latest()->orderBy('is_best','asc')->get());
         return Inertia::render('Admin/pages/Settings/index', ['settings' => $setting]);
     }
 
@@ -33,7 +36,7 @@ class SettingController extends Controller
             $icon = $request->file('icon');
             $URL = '/images/logo/' . 'logo.' . $icon->getClientOriginalExtension();
             $icon->move(public_path('/images/logo/'), 'logo.' . $icon->getClientOriginalExtension());
-        }else{
+        } else {
             $URL = $setting->icon;
         }
         $setting->update([

@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('slug')->unique()->nullable();
             $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->boolean('is_best')->default(false);
             $table->string('icon')->nullable();
             $table->timestamps();
         });

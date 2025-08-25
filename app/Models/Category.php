@@ -18,6 +18,7 @@ class Category extends Model
         'slug',
         'description',
         'is_active',
+        'is_best',
         'icon',
         'created_at',
     ];

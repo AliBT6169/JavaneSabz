@@ -52,7 +52,7 @@ const settingName = ref('AboutSetting');
                 <AboutSetting :is_active="settingName==='AboutSetting'" :settings="settings.AboutSetting.data"/>
                 <AboutUsSetting :is_active="settingName==='AboutUsSetting'" :settings="settings.AboutUsSetting"/>
                 <NavSetting :is_active="settingName==='navigationSetting'" :settings="settings.NavSetting"/>
-                <best-brands :is_active="settingName==='bestBrands'" :settings="settings.bestBrands"/>
+                <best-brands :is_active="settingName==='bestBrands'" :settings="settings.BestBrandsSettings.data"/>
             </div>
         </div>
     </Layout>

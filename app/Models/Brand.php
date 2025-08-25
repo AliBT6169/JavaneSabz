@@ -17,6 +17,7 @@ class Brand extends Model
         'name',
         'slug',
         'is_active',
+        'is_best',
         'icon',
         'created_at',
     ];
