@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Attribute\AttributeController;
+use App\Http\Controllers\Admin\Banner\BannerController;
 use App\Http\Controllers\Admin\Blog\AdminBlogController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
@@ -122,6 +123,11 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::get('/blog/{id}', 'edit')->name('blogs.edit');
         Route::post('/blog/update', 'update')->name('blogs.update');
         Route::delete('/blog/destroy/{id}', 'destroy')->name('blogs.destroy');
+    });
+
+    Route::controller(BannerController::class)->group(function () {
+       Route::get('/banner/getAttribute/{id}', 'getAttribute')->name('banner.getAttribute');
+       Route::patch('/banner/attributeToggle/{banner_id}/{attribute_id}', 'toggle')->name('banner.attributeToggle');
     });
 });
 

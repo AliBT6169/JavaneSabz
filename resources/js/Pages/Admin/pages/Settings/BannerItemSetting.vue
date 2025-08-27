@@ -13,16 +13,20 @@ const props = defineProps({
         required: true,
         type: Number,
     },
+    banner: {
+        required: true,
+        type: Object,
+    }
 });
 const modal = ref();
 const modal_status = ref(false);
 const attributes = ref();
-const selectedAttribute = ref();
+const attribute = ref();
 onMounted(async () => {
     document.addEventListener('click', modalCloser);
-    axios.get(route('admin.navSetting.getAttributes', props.itemId)).then(res => {
-        attributes.value = res.data.Attributes;
-        selectedAttribute.value = res.data.selectedAttributes;
+    axios.get(route('admin.banner.getAttribute', props.itemId)).then(res => {
+        attribute.value = res.data.attribute;
+        attributes.value = res.data.attributes;
     }).catch(err => {
         console.log(err);
     });
@@ -37,26 +41,15 @@ onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
 
-const setOrDeleteAttribute = (id, status) => {
-    if (status) {
-        attributes.value.map((item) => {
-            if (item.id === id) {
-                selectedAttributes.value.push(item);
-            }
-        });
-        attributes.value = attributes.value.filter((item) => item.id !== id);
-    } else {
-        selectedAttributes.value.map((item) => {
-            if (item.id === id) {
-                attributes.value.push(item);
-            }
-        });
-        selectedAttributes.value = selectedAttributes.value.filter((item) => item.id !== id);
-    }
-
+const changeAttribute = async (id) => {
+    await axios.patch(route('admin.banner.attributeToggle', {banner_id: props.itemId, attribute_id: id})).then(res => {
+        attribute.value = res.data.attribute;
+        attributes.value = res.data.attributes;
+    });
 }
 
 const sendData = async () => {
+    return;
     const attribute = ref([]);
     selectedAttributes.value.map((item) => {
         attribute.value.push({
@@ -93,28 +86,28 @@ const sendData = async () => {
 
 <template>
     <div
-        class="w-[5.5rem] flex !justify-center bg-adminColor2 duration-500 transition-all overflow-hidden rounded-xl
+        class="!w-[5.5rem] flex !justify-center bg-adminColor2 duration-500 transition-all overflow-hidden rounded-xl
          border-2 border-current dark:bg-adminColor3"
         ref="modal"
         :class="{'fixed z-50 top-20 no-scrollbar !size-5/6 py-6 overflow-scroll !bg-adminColor1 dark:!bg-adminColor3 left-10':modal_status,' hover:scale-95':!modal_status}">
         <div v-if="!modal_status" @click.stop="modal_status = true" ref="modal"
              class="size-fit flex justify-center cursor-pointer overflow-hidden items-center px-3 ">
-            {{ modelName }}
+            {{modelName}}
+            <div
+                class="size-[30%] cursor-pointer md:size-60 rounded-xl overflow-hidden border-4 border-transparent duration-300 relative flex justify-center">
+                <img :src="banner.icon" alt="" class="size-full">
+                <div
+                    class="w-1/2 absolute bottom-10 p-1 rounded-xl  text-center bg-gray-50/50  dark:bg-gray-900/50 text-sm">
+                    {{ banner.title }}
+                </div>
+            </div>
         </div>
         <div v-else class="">
             <div class="p-5 space-y-4">
-                <div class="text-center p-2 rounded-xl border-2 border-red-500">
-                    <strong class="text-yellow-300">هشدار: </strong>
-                    خصوصیت های انتخاب شده نباید محصول و موجودیت محصول داشته باشند!
-                    <div @click="sendData"
-                         class="mx-5 px-5 cursor-pointer bg-green-500/50 rounded-xl duration-300 inline-block border-2 border-adminColor1 hover:scale-95">
-                        ثبت
-                    </div>
-                </div>
-                <AttributeItem v-for="item in selectedAttributes" :choosable="true" :selected="true"
-                               @selected="setOrDeleteAttribute(item.id, $event)" :Attribute="item"/>
+                <AttributeItem :choosable="true" :selected="true" v-if="attribute"
+                               @selected="changeAttribute(attribute.id)" :Attribute="attribute"/>
                 <AttributeItem v-for="item in attributes" :choosable="true" :selected="false"
-                               @selected="setOrDeleteAttribute(item.id, $event)" :Attribute="item"/>
+                               @selected="changeAttribute(item.id)" :Attribute="item"/>
             </div>
         </div>
     </div>

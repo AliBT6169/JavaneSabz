@@ -1,6 +1,7 @@
 <script setup>
 
 import {ref} from "vue";
+import BannerItemSetting from "@/Pages/Admin/pages/Settings/BannerItemSetting.vue";
 
 const props = defineProps({
     settings: Object,
@@ -16,15 +17,7 @@ const attributes = ref(props.settings);
             <div
                 class="text-center space-y-2"
                 v-for="(item, index) in attributes">
-                بنر {{index + 1}}
-                <div
-                    class="size-[30%] cursor-pointer md:size-60 rounded-xl overflow-hidden border-4 border-transparent duration-300 relative flex justify-center">
-                    <img :src="item.icon" alt="" class="size-full">
-                    <div
-                        class="w-1/2 absolute bottom-10 p-1 rounded-xl  text-center bg-gray-50/50  dark:bg-gray-900/50 text-sm">
-                        {{ item.title }}
-                    </div>
-                </div>
+                <BannerItemSetting :itemId="item.id" :key="'banner'+index" :banner="item" :modelName="'بنر '+(index+1)"/>
             </div>
         </div>
     </div>
