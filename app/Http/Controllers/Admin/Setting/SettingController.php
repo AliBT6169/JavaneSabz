@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Settings\AdminSettingUpdateRequest;
+use App\Http\Resources\Admin\Banner\BannerSettingResource;
 use App\Http\Resources\Admin\Setting\AboutSettingResource;
 use App\Http\Resources\Admin\Setting\BestBrandsResource;
 use App\Models\AboutUsSetting;
+use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\NavBarSetting;
 use App\Models\Setting;
@@ -21,7 +23,8 @@ class SettingController extends Controller
         $setting['AboutSetting'] = AboutSettingResource::make(Setting::first());
         $setting['AboutUsSetting'] = AboutUsSetting::first();
         $setting['NavSetting'] = NavBarSetting::orderBy('queue', 'asc')->get();
-        $setting['BestBrandsSettings'] = BestBrandsResource::collection(Brand::orderBy('is_best','desc')->get());
+        $setting['BestBrandsSettings'] = BestBrandsResource::collection(Brand::orderBy('is_best', 'desc')->get());
+        $setting['BannersSettings'] = BannerSettingResource::collection(Banner::latest()->get());
         return Inertia::render('Admin/pages/Settings/index', ['settings' => $setting]);
     }
 

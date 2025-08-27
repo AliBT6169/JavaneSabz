@@ -5,6 +5,7 @@ import {ref} from "vue";
 import AboutUsSetting from "@/Pages/Admin/pages/Settings/AboutUsSetting.vue";
 import NavSetting from "@/Pages/Admin/pages/Settings/NavSetting.vue";
 import BestBrands from "@/Pages/Admin/pages/Settings/bestBrands.vue";
+import BannersSetting from "@/Pages/Admin/pages/Settings/BannersSetting.vue";
 
 
 const props = defineProps({
@@ -43,7 +44,7 @@ const settingName = ref('AboutSetting');
                      class="adminSettingSidebarItem">
                     تنظیمات اسلایدر
                 </div>
-                <div @click="settingName = 'BannerSetting'"
+                <div @click="settingName = 'bannerSetting'"
                      class="adminSettingSidebarItem">
                     تنظیمات بنر ها
                 </div>
@@ -53,6 +54,7 @@ const settingName = ref('AboutSetting');
                 <AboutUsSetting :is_active="settingName==='AboutUsSetting'" :settings="settings.AboutUsSetting"/>
                 <NavSetting :is_active="settingName==='navigationSetting'" :settings="settings.NavSetting"/>
                 <best-brands :is_active="settingName==='bestBrands'" :settings="settings.BestBrandsSettings.data"/>
+                <BannersSetting :is_active="settingName==='bannerSetting'" :settings="settings.BannersSettings.data"/>
             </div>
         </div>
     </Layout>
