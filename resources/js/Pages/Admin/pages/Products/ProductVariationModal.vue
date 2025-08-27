@@ -3,6 +3,7 @@ import {onBeforeUnmount, onMounted, ref} from "vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
 
 const props = defineProps({
     variation_data: null,
@@ -24,6 +25,8 @@ const variationData = ref({
     price: props.variation_data.price ?? '',
     quantity: props.variation_data.quantity ?? '',
     off_sale: props.variation_data.off_sale ?? '',
+    is_active: props.variation_data.is_active ?? 1,
+    is_spacial: props.variation_data.is_spacial ?? 0,
 });
 const modal = ref('');
 const modal_status = ref(false);
@@ -138,8 +141,17 @@ const dataSender = () => {
                     <admin-input name="تعداد" type="number" v-model="variationData.quantity"/>
                     <admin-input name="تخفیف به %" v-model="variationData.off_sale"/>
                 </div>
-                <div class="!block pl-2 !w-1/2">
+                <div class="">
+                    <AdminActiveDeActiveInput v-model="variationData.is_active"/>
                     <admin-input name="قیمت به تومان" type="number" v-model="variationData.price"/>
+                </div>
+                <div class="!block pl-2 !w-fit">
+                    <div class="space-y-0.5 text-sm">
+                        <div class="">ویژه:</div>
+                        <div class="admin_inputs flex items-center">
+                            <input type="checkbox" id="is_spacial">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="gap-5 *:text-center md:flex md:justify-end *:my-2 px-2">
@@ -147,7 +159,7 @@ const dataSender = () => {
      dark:bg-adminColor3 dark:border-adminColor4 hover:scale-95 hover:shadow-inner hover:shadow-gray-500">ثبت
                 </div>
                 <div @click="modal_status = false"
-                        class="px-12 w-full py-2 rounded-xl duration-300 cursor-pointer border-2 bg-red-300 border-red-600
+                     class="px-12 w-full py-2 rounded-xl duration-300 cursor-pointer border-2 bg-red-300 border-red-600
                     dark:bg-red-400 dark:border-red-800 hover:scale-95 hover:shadow-inner hover:shadow-gray-500 md:w-fit">
                     لغو
                 </div>

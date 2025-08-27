@@ -60,6 +60,8 @@ const saveChanges = async () => {
                         formData.append('variation[' + index + '][price]', item.data.price);
                         formData.append('variation[' + index + '][quantity]', item.data.quantity);
                         formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
+                        formData.append('variation[' + index + '][is_active]', item.data.is_active);
+                        formData.append('variation[' + index + '][is_special]', item.data.is_spacial);
                         if (typeof item.data.passedImages !== 'string')
                             item.data.passedImages.map((passedImage, passed_index) => {
                                 formData.append('variation[' + index + '][passed_image][' + passed_index + '][id]', passedImage.id);
@@ -127,10 +129,10 @@ const VariationDelete = (index) => {
                 <div class="">
                     <!--                    Categories-->
                     <AdminDataList @selected="form.category=$event" :default_value="form.category" label="دسته بندی"
-                                   route="categories.show"/>
+                                   :route="route('admin.categories.show')"/>
                     <!--                    brands-->
                     <AdminDataList @selected="form.brand=$event" :default_value="form.brand" label="برند"
-                                   route="brands.show"/>
+                                   :route="route('admin.brands.show')"/>
                 </div>
                 <div class="!block !space-y-0">
                     <div class="pr-3">توضیحات :</div>

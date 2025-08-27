@@ -53,6 +53,8 @@ const saveChanges = async () => {
                         formData.append('variation[' + index + '][price]', item.data.price);
                         formData.append('variation[' + index + '][quantity]', item.data.quantity);
                         formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
+                        formData.append('variation[' + index + '][is_active]', item.data.is_active);
+                        formData.append('variation[' + index + '][is_special]', item.data.is_spacial);
                         item.images.forEach((imageItem, imageIndex) => {
                             formData.append('variation[' + index + '][image][' + imageIndex + ']', imageItem)
                         });

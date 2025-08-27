@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedInteger('off_sale')->default(0);
             $table->unsignedInteger('sailed_quantity')->default(0);
+            $table->boolean('is_active')->default(true);
             $table->boolean('is_special')->default(false);
             $table->string('sku')->nullable();
             $table->unsignedInteger('sale_price')->nullable();

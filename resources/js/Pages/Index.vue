@@ -77,7 +77,7 @@ onMounted(async () => {
                     <span class="w-4/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <div class="mt-6 flex justify-center flex-col items-center gap-2 mx-auto w-full lg:flex-row lg:h-[15rem]">
+            <div v-if="indexData.banners.length>0" class="mt-6 flex justify-center flex-col items-center gap-2 mx-auto w-full lg:flex-row lg:h-[15rem]">
                 <live-cards v-for="item in indexData.banners.data" :banner="item"></live-cards>
             </div>
         </div>
