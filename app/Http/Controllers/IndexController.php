@@ -28,13 +28,13 @@ class IndexController extends Controller
         $indexData = [
             "offSaleProducts" => IndexProductVariationsResource::collection(ProductVariation::whereHas("product", function ($query) {
                 $query->where('is_active', true);
-            })->where("off_sale", '>0')->latest()->get()),
+            })->where("off_sale",'>', '0')->latest()->get()),
             "specialProducts" => IndexProductVariationsResource::collection(ProductVariation::whereHas("product", function ($query) {
                 $query->where('is_active', true);
             })->where("is_special", true)->latest()->get()),
             "saleFullProducts" => IndexProductVariationsResource::collection(ProductVariation::whereHas("product", function ($query) {
                 $query->where('is_active', true);
-            })->where("sailed_quantity", '>10')->latest()->get()),
+            })->orderBy('sailed_quantity','desc')->get()),
             "products" => ProductVariation::getSomeProduct(20),
             "brands" => BrandResource::collection(Brand::where('is_best', true)->get()),
             "banners" => IndexBannersResource::collection(Banner::latest()->get()),

@@ -82,7 +82,8 @@ onMounted(async () => {
             </div>
         </div>
         <!--   special product list-->
-        <div data-aos="fade-up" class="w-full mx-auto gap-4 flex flex-col !transform-none">
+        <div data-aos="fade-up" v-if="indexData.specialProducts.data.length>0"
+             class="w-full mx-auto gap-4 flex flex-col !transform-none">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>
@@ -98,7 +99,8 @@ onMounted(async () => {
             </div>
         </div>
         <!--        product show-1-->
-        <div data-aos="fade-up" class="w-full mx-auto !transform-none">
+        <div v-if="indexData.saleFullProducts.data.length>0"
+             data-aos="fade-up" class="w-full mx-auto !transform-none">
             <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>
