@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\AboutUsSetting;
 use App\Models\Address;
 use App\Models\Attribute;
+use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\BuyCart\BuyCart;
 use App\Models\Category;
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
         User::factory(100)->create()->unique;
         Setting::factory(1)->create();
         AboutUsSetting::factory(1)->create();
+        Banner::factory(3)->create();
 //        User Gallery
 //        Gallery::factory(1)->create();
 //        Product Gallery

@@ -12,12 +12,10 @@ return new class extends Migration {
     {
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('attribute_id')->constrained('attributes')->cascadeOnDelete();
-            $table->string('image');
+            $table->foreignId('attribute_id')->nullable();
             $table->string('title')->nullable();
             $table->string('text')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
