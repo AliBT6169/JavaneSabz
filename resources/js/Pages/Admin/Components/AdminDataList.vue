@@ -10,10 +10,10 @@ const selected_value = ref(props.default_value);
 const emit = defineEmits({
     selected: null,
 })
-const listData = ref();
+const listData = ref([]);
 onMounted(async () => {
-    await axios.get(route(props.route)).then((res) => {
-        listData.value = res.data.data;
+    await axios.get(props.route).then((res) => {
+        listData.value = res.data;
     }).catch((err) => {
         console.log(err.data);
     });
