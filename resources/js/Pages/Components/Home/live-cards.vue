@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from "vue";
+import {Link} from "@inertiajs/vue3";
 
 const props = defineProps({
     banner: {
@@ -20,10 +21,10 @@ const mouse_Leaving = () => {
 </script>
 
 <template>
-    <div class="flex size-full justify-center duration-100 relative items-center cursor-pointer rounded-xl overflow-hidden"
+    <Link href="#" class="flex size-full justify-center duration-100 relative items-center cursor-pointer rounded-xl overflow-hidden"
          @mousemove="mouse_Moving" @mouseleave="mouse_Leaving"
          :style="`transform: perspective(1000px) rotateY(${pointer_X}deg) rotateX(${pointer_Y}deg)`">
         <img class="size-full" :src="banner.icon" :alt="banner.title">
         <div class="bg-gray-50/80 absolute p-2 rounded-xl w-60 text-center bottom-10 dark:bg-gray-900/80">{{banner.title}}</div>
-    </div>
+    </Link>
 </template>

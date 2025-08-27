@@ -23,11 +23,7 @@ const slider1Data = ref([
     "../../../../images/slider/slider%20(7).jpeg",
     "../../../../images/slider/slider%20(8).jpeg",
 ]);
-const liveCardData = ref([
-    "../../../../images/farm.jpg",
-    "../../../../images/fertilizer.jpg",
-    "../../../../images/slider/slider%20(7).jpeg",
-]);
+
 onMounted(async () => {
     if (useAuthStore().isAuthenticated && useAuthStore().Time + 600000 < Date.now()) {
         useAuthStore().logout();
