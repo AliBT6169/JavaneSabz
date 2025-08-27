@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BrandResource;
 use App\Http\Resources\Home\Blog\BlogShowResource;
 use App\Http\Resources\Home\Blog\IndexBlogResource;
+use App\Http\Resources\Home\IndexBannersResource;
 use App\Http\Resources\Home\IndexSettingResource;
 use App\Http\Resources\Home\NavigationSettingResource;
 use App\Http\Resources\Home\Product\IndexProductVariationsResource;
+use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\NavBarSetting;
@@ -35,6 +37,7 @@ class IndexController extends Controller
             })->where("sailed_quantity", '>10')->latest()->get()),
             "products" => ProductVariation::getSomeProduct(20),
             "brands" => BrandResource::collection(Brand::where('is_best', true)->get()),
+            "banners" => IndexBannersResource::collection(Banner::latest()->get()),
             "settings" => [
                 "settings" => IndexSettingResource::make(Setting::first()),
                 "NavSetting" => NavigationSettingResource::collection(NavBarSetting::where('is_active', true)->orderBy('queue', 'asc')->get()),

@@ -82,9 +82,7 @@ onMounted(async () => {
                 </div>
             </div>
             <div class="mt-6 flex justify-center flex-col items-center gap-2 mx-auto w-full lg:flex-row lg:h-[15rem]">
-                <live-cards :image-u-r-l="liveCardData[0]" title="مزرعه"></live-cards>
-                <live-cards :image-u-r-l="liveCardData[1]" title="مزرعه"></live-cards>
-                <live-cards :image-u-r-l="liveCardData[2]" title="مزرعه"></live-cards>
+                <live-cards v-for="item in indexData.banners.data" :banner="item"></live-cards>
             </div>
         </div>
         <!--   special product list-->
