@@ -54,14 +54,16 @@ const saveChanges = async () => {
                         formData.append('variation[' + index + '][quantity]', item.data.quantity);
                         formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
                         formData.append('variation[' + index + '][is_active]', item.data.is_active);
-                        formData.append('variation[' + index + '][is_special]', item.data.is_spacial);
+                        formData.append('variation[' + index + '][is_special]', item.data.is_special==='true'?1:0);
                         item.images.forEach((imageItem, imageIndex) => {
                             formData.append('variation[' + index + '][image][' + imageIndex + ']', imageItem)
                         });
                     }
                 });
+                console.log(formData);
                 await axios.post(route('admin.products.store'), formData).then((res) => {
                     toast.success('عملیات موفقیت آمیز بود')
+                    console.log(res.data)
                 }).catch((err) => {
                     toast.error(err.response.data.message)
                 })

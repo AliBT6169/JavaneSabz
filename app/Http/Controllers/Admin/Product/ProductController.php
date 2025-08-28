@@ -68,6 +68,8 @@ class ProductController extends Controller
                 'quantity' => $variation['quantity'],
                 'off_sale' => $variation['off_sale'] ?? 0,
                 'sale_price' => $salePrice,
+                'is_active' => $variation['is_active'],
+                'is_spacial' => $variation['is_special'],
             ]);
             if (isset($variation['image']['image0']))
                 foreach ($variation['image'] as $variationImage) {

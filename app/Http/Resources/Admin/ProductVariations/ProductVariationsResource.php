@@ -26,7 +26,7 @@ class ProductVariationsResource extends JsonResource
             'sale_price' => $this->sale_price,
             'sailed_quantity' => $this->sailed_quantity,
             'is_active' => $this->is_active,
-            'is_spacial' => $this->is_spacial,
+            'is_special' => $this->is_special,
             'images' => $this->gallery->count() != 0 ? GalleryResource::collection($this->gallery) : $this->product->primary_image
         ];
     }

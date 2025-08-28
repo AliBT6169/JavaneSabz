@@ -26,7 +26,7 @@ const variationData = ref({
     quantity: props.variation_data.quantity ?? '',
     off_sale: props.variation_data.off_sale ?? '',
     is_active: props.variation_data.is_active ?? 1,
-    is_spacial: props.variation_data.is_spacial ?? 0,
+    is_spacial: props.variation_data.is_special ?? 0,
 });
 const modal = ref('');
 const modal_status = ref(false);
@@ -147,9 +147,9 @@ const dataSender = () => {
                 </div>
                 <div class="!block pl-2 !w-fit">
                     <div class="space-y-0.5 text-sm">
-                        <div class="">ویژه:</div>
+                        <div class="px-2">ویژه:</div>
                         <div class="admin_inputs flex items-center">
-                            <input type="checkbox" id="is_spacial">
+                            <input type="checkbox" v-model="variationData.is_special" :id="'is_special'+component_index">
                         </div>
                     </div>
                 </div>
