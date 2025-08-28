@@ -144,6 +144,8 @@ class ProductController extends Controller
                     'weight' => $variation['weight'],
                     'price' => $variation['price'],
                     'quantity' => $variation['quantity'],
+                    'is_active' => $variation['is_active'],
+                    'is_special' => $variation['is_special'],
                     'off_sale' => $variation['off_sale'] ?? 0,
                     'sale_price' => $salePrice,
                 ]);
@@ -160,6 +162,8 @@ class ProductController extends Controller
                     'weight' => $variation['weight'],
                     'price' => $variation['price'],
                     'quantity' => $variation['quantity'],
+                    'is_active' => $variation['is_active'],
+                    'is_special' => $variation['is_special'],
                     'off_sale' => $variation['off_sale'] ?? 0,
                     'sale_price' => $salePrice,
                 ]);
