@@ -52,4 +52,9 @@ class Attribute extends Model
     {
         return $this->hasMany(Banner::class);
     }
+
+    public function SliderSettings(): HasMany
+    {
+        return $this->hasMany(SliderSettings::class);
+    }
 }

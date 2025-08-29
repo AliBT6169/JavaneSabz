@@ -66,7 +66,7 @@ onMounted(async () => {
             <product-slider1 :products="indexData.offSaleProducts.data" class="w-full"/>
         </div>
         <!--    liveCards-->
-        <div data-aos="fade-up" class="w-full mx-auto">
+        <div data-aos="fade-up" class="w-full mx-auto" v-if="indexData.banners.data.length>0">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">اتفاقات</span>
@@ -77,8 +77,8 @@ onMounted(async () => {
                     <span class="w-4/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <div v-if="indexData.banners.length>0" class="mt-6 flex justify-center flex-col items-center gap-2 mx-auto w-full lg:flex-row lg:h-[15rem]">
-                <live-cards v-for="item in indexData.banners.data" :banner="item"></live-cards>
+            <div class="mt-6 flex justify-center flex-col items-center gap-2 mx-auto w-full lg:flex-row lg:h-[15rem]">
+                <live-cards v-for="item in indexData.banners.data" :banner="item"/>
             </div>
         </div>
         <!--   special product list-->

@@ -48,40 +48,7 @@ const changeAttribute = async (id) => {
     });
 }
 
-const sendData = async () => {
-    return;
-    const attribute = ref([]);
-    selectedAttributes.value.map((item) => {
-        attribute.value.push({
-            id: item.id
-        });
-    });
-    const form = {
-        nav_id: props.itemId,
-        attributes: attribute.value,
-    }
-    const content = {
-        component: ToastWarning,
-        props: {
-            message: 'آیا مطمعن به ذخیره این تغییرات هستید؟'
-        },
-        listeners: {
-            set: async () => {
-                await axios.post(route('admin.navSetting.AttributeSet'), form, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'X-HTTP-Method-Override': 'PUT'
-                    }
-                }).then(res => {
-                    useToast().success(res.data);
-                }).catch(err => {
-                    useToast().error(err.response.data.message);
-                });
-            }
-        }
-    }
-    useToast().warning(content);
-}
+
 </script>
 
 <template>
@@ -104,7 +71,7 @@ const sendData = async () => {
             </div>
         </div>
         <div v-else class="">
-            <div v-if="attributes.length>0" class="flex justify-center gap-5">
+            <div v-if="attributes.length>0 , attribute!==null" class="flex justify-center gap-5">
                 <div class="p-5 space-y-4">
                     <AttributeItem :choosable="true" :selected="true" v-if="attribute"
                                    @selected="changeAttribute(attribute.id)" :Attribute="attribute"/>
@@ -112,7 +79,7 @@ const sendData = async () => {
                                    @selected="changeAttribute(item.id)" :Attribute="item"/>
                 </div>
             </div>
-            <div v-else class="text-center text-black text-lg font-bold">
+            <div v-else class="text-center text-black text-lg font-bold" @click="">
                 هنوز خصوصیتی ساخته نشده است.
             </div>
         </div>
