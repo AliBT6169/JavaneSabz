@@ -7,11 +7,13 @@ use App\Http\Requests\Admin\Settings\AdminSettingUpdateRequest;
 use App\Http\Resources\Admin\Banner\BannerSettingResource;
 use App\Http\Resources\Admin\Setting\AboutSettingResource;
 use App\Http\Resources\Admin\Setting\BestBrandsResource;
+use App\Http\Resources\Admin\Slider\AdminSliderSettingResource;
 use App\Models\AboutUsSetting;
 use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\NavBarSetting;
 use App\Models\Setting;
+use App\Models\SliderSettings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -25,6 +27,7 @@ class SettingController extends Controller
         $setting['NavSetting'] = NavBarSetting::orderBy('queue', 'asc')->get();
         $setting['BestBrandsSettings'] = BestBrandsResource::collection(Brand::orderBy('is_best', 'desc')->get());
         $setting['BannersSettings'] = BannerSettingResource::collection(Banner::latest()->get());
+        $setting['SliderSettings'] = AdminSliderSettingResource::collection(SliderSettings::latest()->get());
         return Inertia::render('Admin/pages/Settings/index', ['settings' => $setting]);
     }
 
