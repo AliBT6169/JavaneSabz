@@ -16,8 +16,8 @@ class AdminSliderSettingResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'image' => $this->image,
+            'name' => $this->attribute->name,
+            'icon' => $this->attribute->icon,
             'attribute_id' => $this->attribute_id,
             'status' => $this->status,
         ];

@@ -16,13 +16,16 @@ const props = defineProps({
         type: Object,
     }
 });
+const emit = defineEmits({
+    created: {}
+});
 const modal = ref();
 const modal_status = ref(false);
 const attributes = ref();
 const attribute = ref(null);
 onMounted(async () => {
     document.addEventListener('click', modalCloser);
-    axios.get(route('admin.sliders.getAttribute', props.itemId)).then(res => {
+    axios.get(route('admin.slider.getAttribute', props.itemId ?? 0)).then(res => {
         attribute.value = res.data.attribute;
         attributes.value = res.data.attributes;
     }).catch(err => {
@@ -40,11 +43,13 @@ onBeforeUnmount(() => {
 });
 
 const changeAttribute = async (id) => {
-    attributes.value.map((item, index) => {
-        if (item.id === id) {
-            attribute.value = item;
-            attributes.value.splice(index, 1);
-        }
+    await axios.patch(route('admin.slider.attributeToggle', {
+        slider_id: props.itemId ?? 0,
+        attribute_id: id
+    })).then(res => {
+        attribute.value = res.data.attribute;
+        attributes.value = res.data.attributes;
+        emit('created',res.data.slider);
     });
 }
 
@@ -63,7 +68,7 @@ const changeAttribute = async (id) => {
             <div
                 class="size-48 text-center space-y-2 cursor-pointer rounded-xl overflow-hidden border-4
                 border-transparent duration-300 relative flex justify-center">
-                <img :src="slider.image" alt="" class="size-full">
+                <img v-if="attribute" :src="attribute.image" alt="" class="size-full">
                 <div
                     class="w-1/2 absolute bottom-10 p-1 rounded-xl  text-center bg-gray-50/80 dark:bg-gray-900/50 text-sm">
                     {{ attribute !== null ? attribute.name : 'تنظیم نشده' }}
@@ -71,10 +76,9 @@ const changeAttribute = async (id) => {
             </div>
         </div>
         <div v-else class="">
-            <div v-if="attributes.length>0 , attribute!==null" class="flex justify-center gap-5">
+            <div v-if="attributes.length>0" class="flex justify-center gap-5">
                 <div class="p-5 space-y-4">
-                    <AttributeItem :choosable="true" :selected="true" v-if="attribute"
-                                   @selected="changeAttribute(attribute.id)" :Attribute="attribute"/>
+                    <AttributeItem :choosable="true" :selected="true" v-if="attribute" :Attribute="attribute"/>
                     <AttributeItem v-for="item in attributes" :choosable="true"
                                    @selected="changeAttribute(item.id)" :Attribute="item"/>
                 </div>

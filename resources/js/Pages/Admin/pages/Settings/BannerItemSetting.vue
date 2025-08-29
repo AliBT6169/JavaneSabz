@@ -71,7 +71,7 @@ const changeAttribute = async (id) => {
             </div>
         </div>
         <div v-else class="">
-            <div v-if="attributes.length>0 , attribute!==null" class="flex justify-center gap-5">
+            <div v-if="attributes.length>0 || attribute!==null" class="flex justify-center gap-5">
                 <div class="p-5 space-y-4">
                     <AttributeItem :choosable="true" :selected="true" v-if="attribute"
                                    @selected="changeAttribute(attribute.id)" :Attribute="attribute"/>

@@ -6,6 +6,7 @@ import AboutUsSetting from "@/Pages/Admin/pages/Settings/AboutUsSetting.vue";
 import NavSetting from "@/Pages/Admin/pages/Settings/NavSetting.vue";
 import BestBrands from "@/Pages/Admin/pages/Settings/bestBrands.vue";
 import BannersSetting from "@/Pages/Admin/pages/Settings/BannersSetting.vue";
+import SliderSettings from "@/Pages/Admin/pages/Settings/SliderSettings.vue";
 
 
 const props = defineProps({
@@ -55,6 +56,7 @@ const settingName = ref('AboutSetting');
                 <NavSetting :is_active="settingName==='navigationSetting'" :settings="settings.NavSetting"/>
                 <best-brands :is_active="settingName==='bestBrands'" :settings="settings.BestBrandsSettings.data"/>
                 <BannersSetting :is_active="settingName==='bannerSetting'" :settings="settings.BannersSettings.data"/>
+                <SliderSettings :is_active="settingName==='sliderSetting'" :settings="settings.SliderSettings.data"/>
             </div>
         </div>
     </Layout>

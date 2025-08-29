@@ -34,7 +34,7 @@ const pageCount = ref({
         <AdminPageShower PageName="محصولات" :PageCount="pageCount"/>
         <AdminInput v-if="productData.length>0" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>
-        <div v-if="productData.length>0" class="flex p-4 flex-wrap gap-10 justify-center items-center">
+        <div v-if="productData.length>0" class="flex p-4 flex-wrap gap-10 justify-center items-start">
             <Product v-for="item in productData" @deleted="productDeleted($event)" :product="item"/>
         </div>
         <div v-else class="text-center text-xl font-bold">محصولی موجود نیست!</div>

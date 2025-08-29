@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
 use App\Http\Controllers\Admin\Setting\AboutUsSettingController;
 use App\Http\Controllers\Admin\Setting\SettingController;
+use App\Http\Controllers\Admin\Setting\SliderSettingController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserMail\AdminUserMailController;
@@ -128,6 +129,11 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::controller(BannerController::class)->group(function () {
        Route::get('/banner/getAttribute/{id}', 'getAttribute')->name('banner.getAttribute');
        Route::patch('/banner/attributeToggle/{banner_id}/{attribute_id}', 'toggle')->name('banner.attributeToggle');
+    });
+
+    Route::controller(SliderSettingController::class)->group(function () {
+       Route::get('/slider/getAttribute/{id}', 'getAttribute')->name('slider.getAttribute');
+       Route::patch('/slider/attributeToggle/{slider_id}/{attribute_id}', 'toggle')->name('slider.attributeToggle');
     });
 });
 
