@@ -8,6 +8,7 @@ use App\Http\Resources\Admin\Slider\AdminSliderSettingResource;
 use App\Models\Attribute;
 use App\Models\SliderSettings;
 use Illuminate\Http\Request;
+use function Webmozart\Assert\Tests\StaticAnalysis\object;
 
 class SliderSettingController extends Controller
 {
@@ -26,20 +27,21 @@ class SliderSettingController extends Controller
 
     public function toggle(int $slider_id, int $attribute_id)
     {
+        $slider = null;
         if ($slider_id != 0)
-            SliderSettings::whereId($slider_id)->update(['attribute_id' => $attribute_id]);
+            $slider = SliderSettings::whereId($slider_id)->update(['attribute_id' => $attribute_id]);
         else{
-            $newSlider = SliderSettings::create([
+            $slider = SliderSettings::create([
                 'attribute_id' => $attribute_id,
             ]);
-            $slider_id = $newSlider->id;
+            $slider_id = $slider->id;
         }
         $attribute = AttributeResource::make(SliderSettings::whereId($slider_id)->first()->attribute);
         $attributes = AttributeResource::collection(Attribute::where('is_active', true)->whereNot('id', $attribute_id)->latest()->get());
         return response()->json([
             'attributes' => $attributes,
             'attribute' => $attribute,
-            'slider' => AdminSliderSettingResource::make($slider_id),
+            'slider' => AdminSliderSettingResource::make($slider),
         ]);
     }
 }

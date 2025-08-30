@@ -83,12 +83,12 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
              @touchstart="downed"
              :style="`transform: translateX(${translation}rem)`">
             <div class="slider-pages flex relative justify-center items-center" v-for="item in props.slider1Data">
-                <img loading="lazy" class="slider1 size-full select-none" :src="item" alt=""
+                <img loading="lazy" class="slider1 size-full select-none" :src="item.image" alt=""
                      @dragstart.prevent>
                 <!--        slider text-->
                 <p class="select-none  w-2/3 bottom-2 text-center text-sm text-black absolute border-2 rounded-2xl
                  bg-gray-50/50 text-current dark:bg-gray-800/50 md:p-3 lg:bottom-16"
-                > یمقدار نوشته برای تست کردن اسلایدر یمقدار</p>
+                >{{item.description}}</p>
             </div>
         </div>
         <!--        slider controllers-->

@@ -68,7 +68,7 @@ const changeAttribute = async (id) => {
             <div
                 class="size-48 text-center space-y-2 cursor-pointer rounded-xl overflow-hidden border-4
                 border-transparent duration-300 relative flex justify-center">
-                <img v-if="attribute" :src="attribute.image" alt="" class="size-full">
+                <img v-if="attribute" :src="attribute.icon" alt="" class="size-full">
                 <div
                     class="w-1/2 absolute bottom-10 p-1 rounded-xl  text-center bg-gray-50/80 dark:bg-gray-900/50 text-sm">
                     {{ attribute !== null ? attribute.name : 'تنظیم نشده' }}

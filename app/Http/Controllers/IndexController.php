@@ -7,6 +7,7 @@ use App\Http\Resources\Home\Blog\BlogShowResource;
 use App\Http\Resources\Home\Blog\IndexBlogResource;
 use App\Http\Resources\Home\IndexBannersResource;
 use App\Http\Resources\Home\IndexSettingResource;
+use App\Http\Resources\Home\IndexSliderResource;
 use App\Http\Resources\Home\NavigationSettingResource;
 use App\Http\Resources\Home\Product\IndexProductVariationsResource;
 use App\Models\Banner;
@@ -15,6 +16,7 @@ use App\Models\Brand;
 use App\Models\NavBarSetting;
 use App\Models\ProductVariation;
 use App\Models\Setting;
+use App\Models\SliderSettings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -38,6 +40,7 @@ class IndexController extends Controller
             "products" => ProductVariation::getSomeProduct(20),
             "brands" => BrandResource::collection(Brand::where('is_best', true)->get()),
             "banners" => Banner::first()->attribute != null ? IndexBannersResource::collection(Banner::latest()->get()) : '',
+            "slider" => SliderSettings::first() != null ? IndexSliderResource::collection(SliderSettings::latest()->get()) : '',
             "settings" => [
                 "settings" => IndexSettingResource::make(Setting::first()),
                 "NavSetting" => NavigationSettingResource::collection(NavBarSetting::where('is_active', true)->orderBy('queue', 'asc')->get()),
