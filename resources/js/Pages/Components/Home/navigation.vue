@@ -67,7 +67,7 @@ const showConnectModal = () => {
                         <div v-if="index!==navSettings.length-1" class="separate"></div>
                     </Link>
                     <!--                    products-list-->
-                    <div v-if="item.title==='محصولات'" class="header-item-lists">
+                    <Link :href="route('AllProductsShow')" v-if="item.title==='محصولات'" class="header-item-lists">
                         <div class="mega-tab-items relative" v-for="(navItem, index) in item.items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
                                 <div class="mega-tab-menu-items">
@@ -102,7 +102,7 @@ const showConnectModal = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
             <!--            connection svgs-->

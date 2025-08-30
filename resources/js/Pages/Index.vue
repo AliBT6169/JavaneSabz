@@ -13,16 +13,6 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["indexData"]);
 useIndexStore().setSetting(props.indexData.settings);
-const slider1Data = ref([
-    "../../../../images/slider/slider%20(1).jpeg",
-    "../../../../images/slider/slider%20(2).jpeg",
-    "../../../../images/slider/slider%20(3).jpeg",
-    "../../../../images/slider/slider%20(4).jpeg",
-    "../../../../images/slider/slider%20(5).jpeg",
-    "../../../../images/slider/slider%20(6).jpeg",
-    "../../../../images/slider/slider%20(7).jpeg",
-    "../../../../images/slider/slider%20(8).jpeg",
-]);
 console.log(props.indexData)
 
 onMounted(async () => {

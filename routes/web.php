@@ -25,6 +25,7 @@ Route::get('/درباره-' . AboutUsSetting::first()->store_name, function () {
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/محصول/' . '{id}-' . '{slug}', 'show')->name('ProductShow');
+    Route::get('/محصولات/', 'showAll')->name('AllProductsShow');
     Route::get('updateProductShow/{id}', 'getData')->name('getProductData');
     Route::get('/محصولات-جوانه-سبز', 'showAll')->name('products.showAll');
 });

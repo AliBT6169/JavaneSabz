@@ -57,7 +57,23 @@ class ProductController extends Controller
 
     public function showAll()
     {
+        $variations = ProductVariation::where('is_active', true)->whereHas('product', function ($query) {
+            $query->where('is_active', 1)->
+            whereHas('brand', function ($query) {
+                $query->where('is_active', 1);
+            })->
+            whereHas('category', function ($query) {
+                $query->where('is_active', true);
+            })->orderByDesc('sailed_quantity');
+        })->get();
+        $specials = $variations->filter(fn($variation)=>$variation->is_special==true);
+        $saleFulls = $variations->sortByDesc('sailed_quantity')->take(3);
 
+        return Inertia::render('Products', ['data' => [
+            "All" => ProductResource::collection($variations),
+            "specials" => ProductResource::collection($specials),
+            "saleFulls" => ProductResource::collection($saleFulls),
+        ]]);
     }
 
     /**
