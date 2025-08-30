@@ -26,6 +26,7 @@ class IndexProductVariationsResource extends JsonResource
             "value" => $this->value,
             "quantity" => $this->quantity,
             "price" => $this->sale_price,
+            "off_sale" => $this->off_sale,
             "image" => $this->gallery->count() != 0 ? $this->gallery[0]->media : $this->product->primary_image,
             "is_liked" => Auth::check() ? Wishlist::is_exist(Auth::user()->id, $this->id) : false,
         ];

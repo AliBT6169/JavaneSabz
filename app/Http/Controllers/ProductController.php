@@ -67,12 +67,13 @@ class ProductController extends Controller
                 $query->where('is_active', true);
             })->orderByDesc('sailed_quantity');
         })->get();
-        $specials = $variations->filter(fn($variation)=>$variation->is_special==true);
-        $saleFulls = $variations->sortByDesc('sailed_quantity')->take(3);
-
+        $specials = $variations->filter(fn($variation) => $variation->is_special == true);
+        $haveOffSale = $variations->filter(fn($variation) => $variation->off_sale > 1);
+        $saleFulls = $variations->sortByDesc('sailed_quantity')->take(10);
         return Inertia::render('Products', ['data' => [
             "All" => IndexProductVariationsResource::collection($variations),
             "specials" => IndexProductVariationsResource::collection($specials),
+            "havOffSale" => IndexProductVariationsResource::collection($haveOffSale),
             "saleFulls" => IndexProductVariationsResource::collection($saleFulls),
         ]]);
     }

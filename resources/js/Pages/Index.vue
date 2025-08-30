@@ -39,7 +39,7 @@ onMounted(async () => {
                     <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
                 </div>
             </div>
-            <Brands class="w-full" :brands-data="indexData.brands.data"></Brands>
+            <Brands class="w-full" :brands-data="indexData.brands.data"/>
         </div>
         <!--        product show-1-->
         <div data-aos="fade-up" class="w-full mx-auto !transform-none">

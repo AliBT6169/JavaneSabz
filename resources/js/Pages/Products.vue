@@ -12,6 +12,6 @@ console.log(props.data);
 
 <template>
     <IndexLyout>
-        محصولات
+
     </IndexLyout>
 </template>
