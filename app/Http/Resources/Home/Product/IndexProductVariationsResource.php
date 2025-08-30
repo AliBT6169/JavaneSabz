@@ -25,6 +25,7 @@ class IndexProductVariationsResource extends JsonResource
             "name" => $this->product->name,
             "value" => $this->value,
             "quantity" => $this->quantity,
+            "old_price" => $this->price,
             "price" => $this->sale_price,
             "off_sale" => $this->off_sale,
             "image" => $this->gallery->count() != 0 ? $this->gallery[0]->media : $this->product->primary_image,
