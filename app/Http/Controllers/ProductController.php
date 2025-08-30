@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Home\Product\IndexProductVariationsResource;
 use App\Http\Resources\Home\Product\ProductResource;
 use App\Models\Product;
 use App\Models\ProductVariation;
@@ -70,9 +71,9 @@ class ProductController extends Controller
         $saleFulls = $variations->sortByDesc('sailed_quantity')->take(3);
 
         return Inertia::render('Products', ['data' => [
-            "All" => ProductResource::collection($variations),
-            "specials" => ProductResource::collection($specials),
-            "saleFulls" => ProductResource::collection($saleFulls),
+            "All" => IndexProductVariationsResource::collection($variations),
+            "specials" => IndexProductVariationsResource::collection($specials),
+            "saleFulls" => IndexProductVariationsResource::collection($saleFulls),
         ]]);
     }
 
