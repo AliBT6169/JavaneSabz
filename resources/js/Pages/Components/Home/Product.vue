@@ -25,7 +25,7 @@ const productShow = async () => {
 
 <template>
     <div
-        class="relative w-60 group overflow-hidden border border-white rounded-lg shadow-sm hover:shadow-md
+        class="relative !w-60 group overflow-hidden border border-white rounded-lg shadow-sm hover:shadow-md
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 pb-6 space-y-3 hover3D-animation
          items-center dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700 md:text-base"
         :class="{'shadow-xl !shadow-red-500':product.is_liked}">
@@ -61,7 +61,7 @@ const productShow = async () => {
                 <svg-component name="show" class="size-5"/>
             </div>
             <span
-                class="flex justify-between w-full lg:w-fit lg:block">
+                class="flex justify-between items-center w-full lg:w-fit lg:block">
                 <div @click="useAuthStore().addToCart(product.id)"
                      class="flex items-center gap-1 px-3 py-1 duration-300 rounded-xl border border-gray-500/50 hover:bg-gray-500/20">
                     <div class="">سبد خرید</div>
@@ -91,7 +91,7 @@ const productShow = async () => {
                            class="size-6 hover:text-defaultColor duration-500"/>
         </div>
         <div class="absolute -top-3 right-0 py-5 rounded-b-full bg-red-600 text-slate-200 dark:bg-red-900"
-             v-if="props.special===true">
+             v-if="product.is_special===true">
             <p class="-rotate-90 mr-0.5">ویژه</p>
         </div>
 
