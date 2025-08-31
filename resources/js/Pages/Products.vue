@@ -56,7 +56,7 @@ const carouselConfig2 = {
                     <div class="w-4/5"></div>
                 </div>
             </div>
-            <Carousel v-bind="carouselConfig" class="!size-full">
+            <Carousel v-bind="carouselConfig" :wrap-around="true" class="!size-full">
                 <Slide v-for="item in data.specials.data">
                     <Product class="!w-60 h-full" :product="item" :special="true"/>
                 </Slide>
@@ -81,6 +81,24 @@ const carouselConfig2 = {
                     <Product :product="item"/>
                 </Slide>
             </Carousel>
+        </div>
+
+        <!--        all products-->
+        <div data-aos="fade-up" class="w-full mx-auto !transform-none space-y-10">
+            <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
+                <div class="flex gap-2">
+                    <span class="">همه</span>
+                    <span class="font-black text-defaultColor5">محصولات</span>
+
+                </div>
+                <div class="flex gap-2 h-2">
+                    <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>
+                    <span class="w-11/12 rounded-full bg-defaultColor5 h-full"></span>
+                </div>
+            </div>
+            <div class="flex gap-5 flex-wrap justify-center items-center">
+                <Product v-for="item in data.All.data" :product="item" />
+            </div>
         </div>
     </IndexLyout>
 </template>
