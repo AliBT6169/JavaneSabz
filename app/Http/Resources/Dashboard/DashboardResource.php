@@ -147,8 +147,10 @@ class DashboardResource extends JsonResource
             $wish_list_items [] = [
                 "product" => [
                     "id" => $item->productVariation->id,
+                    "slug" => $item->productVariation->product->slug,
                     "product_id" => $item->productVariation->product_id,
                     "name" => $item->productVariation->product->name,
+                    "value" => $item->productVariation->value,
                     "image" => $item->productVariation->product->primary_image,
                     "price" => $item->productVariation->sale_price,
                     "quantity" => $item->productVariation->quantity,

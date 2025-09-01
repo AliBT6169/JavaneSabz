@@ -34,8 +34,8 @@ const productShow = async () => {
         </Link>
         <!--        name-->
         <div class="flex px-4 justify-center w-full items-center">
-            <h3 class="w-28 text-center">{{
-                    product.name + (product.value === undefined ? '' : ' : ' + product.value)
+            <h3 class="w-28 text-center text-nowrap">{{
+                    product.name.substring(0,15) + (product.value === undefined ? '' : ' : ' + product.value)
                 }}</h3>
         </div>
         <!--        price & buy cart-->
