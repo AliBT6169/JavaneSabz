@@ -17,6 +17,7 @@ class indexCategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'slug' => $this->slug,
             'name' => $this->name,
             'icon' => $this->icon,
             'products' => $this->products->count() > 0 ? HomeProductResource::collection($this->products) : null,

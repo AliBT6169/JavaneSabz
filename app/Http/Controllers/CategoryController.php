@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Http\Resources\Home\Categories\indexCategoryResource;
+use App\Http\Resources\Home\Product\IndexProductVariationsResource;
+use App\Models\category;
+use App\Models\ProductVariation;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
@@ -36,7 +40,28 @@ class CategoryController extends Controller
      */
     public function show()
     {
+        return indexCategoryResource::collection(Category::where('is_active', 1)->get());
+    }
 
+    public function productShow(int $category_id, string $slug)
+    {
+        $category = Category::whereId($category_id)->where('is_active', true)->first();
+        if ($category) {
+            if ($category->slug != $slug) {
+                return Inertia::location(route('categories.show', ['id' => $category->id, 'slug' => $category->slug]));
+            }
+            $products = ProductVariation::whereHas('product',fn($query)=>$query->where('category_id', $category_id))->where('is_active', true)->get();
+            $specials = IndexProductVariationsResource::collection($products->filter(fn($product) => $product->is_special == true));
+            $haveOffSale = $products->filter(fn($product) => $product->off_sale > 1);
+            $saleFulls = $products->sortByDesc('sailed_quantity')->take(10);
+            return Inertia::render('Products', ['data' => [
+                "All" => IndexProductVariationsResource::collection($products),
+                "specials" => IndexProductVariationsResource::collection($specials),
+                "havOffSale" => IndexProductVariationsResource::collection($haveOffSale),
+                "saleFulls" => IndexProductVariationsResource::collection($saleFulls),
+            ]]);
+        } else
+            return Inertia::render('404');
     }
 
     /**

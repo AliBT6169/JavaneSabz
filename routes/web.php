@@ -42,7 +42,8 @@ Route::controller(AddressController::class)->group(function () {
 });
 
 Route::controller(CategoryController::class)->group(function () {
-    Route::get('/Categories', 'show')->name('categories.show');
+    Route::get('/دسته-بندی-محصولات-کشاورزی', 'show')->name('categories.show');
+    Route::get('/دسته-بندی/'. '{id}-' . '{slug}', 'productShow')->name('categories.products.show');
 });
 
 Route::controller(BrandController::class)->group(function () {

@@ -13,7 +13,6 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["indexData"]);
 useIndexStore().setSetting(props.indexData.settings);
-console.log(props.indexData)
 
 onMounted(async () => {
     if (useAuthStore().isAuthenticated && useAuthStore().Time + 600000 < Date.now()) {
@@ -28,7 +27,7 @@ onMounted(async () => {
         <intro/>
         <slider1 data-aos="fade-up" data-aos-delay="500" :slider1-data="indexData.slider.data"></slider1>
         <!--        brands-->
-        <div data-aos="fade-up" class="w-full mx-auto px-4">
+        <div data-aos="fade-up" v-if="indexData.brands.data.length>0" class="w-full mx-auto px-4">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">برندهای</span>

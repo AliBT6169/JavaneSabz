@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BrandResource;
+use App\Http\Resources\Home\Categories\indexCategoryResource;
 use App\Http\Resources\Home\Product\HomeProductResource;
 use App\Http\Resources\Home\Product\IndexProductVariationsResource;
 use App\Models\Attribute;
@@ -29,7 +30,7 @@ class AttributeController extends Controller
             ->first();
         return Inertia::render('Attribute', ['data' => [
             'brands' => BrandResource::collection($attribute->brands),
-            'categories' => BrandResource::collection($attribute->categories),
+            'categories' => indexCategoryResource::collection($attribute->categories),
             'products' => HomeProductResource::collection($attribute->products),
             'allProducts' => IndexProductVariationsResource::collection($attribute->product_variations),
         ]]);

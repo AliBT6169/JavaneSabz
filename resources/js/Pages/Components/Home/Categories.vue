@@ -2,7 +2,8 @@
 import {onMounted, ref} from "vue";
 import {Link} from "@inertiajs/vue3";
 
-const props = defineProps(["brandsData"]);
+const props = defineProps(["categoriesData"]);
+console.log(props.categoriesData)
 const dragging = ref(false);
 const slider = ref();
 const startX = ref();
@@ -10,7 +11,7 @@ document.addEventListener("mouseup", function (e) {
     dragging.value = false;
 });
 onMounted(() => {
-    slider.value = document.querySelector("#brands");
+    slider.value = document.querySelector("#categories");
 });
 const mousedowned = (e) => {
     dragging.value = true;
@@ -30,12 +31,13 @@ const mouseupd = (e) => {
 </script>
 
 <template>
-    <div id="brands" class="mx-auto overflow-x-scroll" @mousedown="mousedowned" @mousemove="mousmoving"
+    <div id="categories" class="mx-auto overflow-x-scroll" @mousedown="mousedowned" @mousemove="mousmoving"
          @mouseup="mouseupd">
         <div class="flex w-fit text-xs gap-4 mt-4 py-5">
-            <Link :href="route('brands.products.show',{id:item.id,slug:item.slug})" class="brand-list" v-for="item in brandsData">
+            <Link :href="route('categories.products.show',{id:item.id,slug:item.slug})" class="brand-list" v-for="item in categoriesData">
                 <img :src="item.icon" alt="" class="brands-image"
                      @dragstart.prevent>
+                <h3 class="text-sm p-1 bg-gray-600/30 absolute"></h3>
             </Link>
         </div>
     </div>
