@@ -89,7 +89,6 @@ const carouselConfig2 = {
                 <div class="flex gap-2">
                     <span class="">همه</span>
                     <span class="font-black text-defaultColor5">محصولات</span>
-
                 </div>
                 <div class="flex gap-2 h-2">
                     <span class="w-1/12 rounded-full bg-defaultColor5 h-full"></span>

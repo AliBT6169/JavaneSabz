@@ -45,6 +45,7 @@ Route::controller(CategoryController::class)->group(function () {
 });
 Route::controller(BrandController::class)->group(function () {
     Route::get('/برندهای-محصولات-کشاورزی', 'show')->name('brands.show');
+    Route::get('/برند/'. '{id}-' . '{slug}', 'productsShow')->name('brands.products.show');
 });
 
 Route::post('TextToAdmin', [CallToAdminController::class, 'store'])->name('textToAdmin');
