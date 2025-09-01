@@ -1,6 +1,7 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import {Link} from "@inertiajs/vue3";
 
 const props = defineProps(["slider1Data"]);
 const X = ref(0);
@@ -82,14 +83,15 @@ const timer = ref(setInterval(slider_show, interval.value, 'forward'));
              @mousemove="moved" @mousedown="downed" @touchmove="moved" @touchend="upd"
              @touchstart="downed"
              :style="`transform: translateX(${translation}rem)`">
-            <div class="slider-pages flex relative justify-center items-center" v-for="item in props.slider1Data">
+            <Link :href="route('attributes.sendToShow',{id:item.id,slug:item.slug})"
+                  class="slider-pages flex relative justify-center items-center" v-for="item in props.slider1Data">
                 <img loading="lazy" class="slider1 size-full select-none" :src="item.image" alt=""
                      @dragstart.prevent>
                 <!--        slider text-->
                 <p class="select-none  w-2/3 bottom-2 text-center text-sm text-black absolute border-2 rounded-2xl
                  bg-gray-50/50 text-current dark:bg-gray-800/50 md:p-3 lg:bottom-16"
-                >{{item.description}}</p>
-            </div>
+                >{{ item.description }}</p>
+            </Link>
         </div>
         <!--        slider controllers-->
 

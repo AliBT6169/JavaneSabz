@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Home\CallToAdmin\CallToAdminController;
@@ -43,10 +44,17 @@ Route::controller(AddressController::class)->group(function () {
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/Categories', 'show')->name('categories.show');
 });
+
 Route::controller(BrandController::class)->group(function () {
     Route::get('/برندهای-محصولات-کشاورزی', 'show')->name('brands.show');
     Route::get('/برند/'. '{id}-' . '{slug}', 'productsShow')->name('brands.products.show');
 });
+
+Route::controller(AttributeController::class)->group(function () {
+    Route::get('/attribute/'. '{id}-' . '{slug}', 'sendToShow')->name('attributes.sendToShow');
+    Route::get('/{name}/'. '{id}-' . '{slug}', 'show')->name('attributes.show');
+});
+
 
 Route::post('TextToAdmin', [CallToAdminController::class, 'store'])->name('textToAdmin');
 require __DIR__ . '/auth.php';

@@ -1,7 +1,7 @@
 <script setup>
 import IndexLyout from "@/Pages/IndexLyout.vue";
 import ProductSlider1 from "@/Pages/Components/Home/product-slider1.vue";
-import {Carousel, Slide, Pagination} from "vue3-carousel";
+import {Carousel, Slide} from "vue3-carousel";
 import Product from "@/Pages/Components/Home/Product.vue";
 
 const props = defineProps({
@@ -10,7 +10,6 @@ const props = defineProps({
         required: true
     }
 });
-console.log(props.data);
 const carouselConfig = {
     itemsToShow: Math.floor(window.innerWidth / 300),
     autoplay: 3000,
@@ -29,7 +28,7 @@ const carouselConfig2 = {
 <template>
     <IndexLyout>
         <!--        off sales-1-->
-        <div data-aos="fade-up" class="w-full mx-auto !transform-none">
+        <div data-aos="fade-up" v-if="data.havOffSale.data.length>0" class="w-full mx-auto !transform-none">
             <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>
@@ -45,7 +44,7 @@ const carouselConfig2 = {
         </div>
 
         <!--        specials-->
-        <div
+        <div v-if="data.specials.data.length>0"
             class="w-full bg-defaultColor5 p-4 dark:bg-defaultColor overflow-hidden rounded-xl border border-white/50
             select-none cursor-pointer shadow-inner shadow-gray-600">
             <div class="w-fit pb-4 pr-8 space-y-2">
@@ -64,7 +63,8 @@ const carouselConfig2 = {
         </div>
 
         <!--        sale full-->
-        <div data-aos="fade-up" class="w-full mx-auto !transform-none space-y-10">
+        <div v-if="data.saleFulls.data.length>0"
+            data-aos="fade-up" class="w-full mx-auto !transform-none space-y-10">
             <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>
@@ -84,7 +84,8 @@ const carouselConfig2 = {
         </div>
 
         <!--        all products-->
-        <div data-aos="fade-up" class="w-full mx-auto !transform-none space-y-10">
+        <div v-if="data.All.data.length>0"
+            data-aos="fade-up" class="w-full mx-auto !transform-none space-y-10">
             <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">همه</span>
@@ -98,6 +99,9 @@ const carouselConfig2 = {
             <div class="flex gap-5 flex-wrap justify-center items-center">
                 <Product v-for="item in data.All.data" :product="item" />
             </div>
+        </div>
+        <div v-else class="text-xl font-bold text-center">
+            هنوز محصولی موجود نیست!
         </div>
     </IndexLyout>
 </template>
