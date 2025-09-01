@@ -50,7 +50,7 @@ class BrandController extends Controller
             if ($brand->slug != $slug) {
                 return Inertia::location(route('brands.show', ['id' => $brand->id, 'slug' => $brand->slug]));
             }
-            $products = ProductVariation::where('brand_id', $brand_id)->where('is_active', true)->get();
+            $products = ProductVariation::whereHas('product',fn($query)=>$query->where('brand_id', $brand_id))->where('is_active', true)->get();
             $specials = IndexProductVariationsResource::collection($products->filter(fn($product) => $product->is_special == true));
             $haveOffSale = $products->filter(fn($product) => $product->off_sale > 1);
             $saleFulls = $products->sortByDesc('sailed_quantity')->take(10);

@@ -2,7 +2,7 @@
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {Link} from '@inertiajs/vue3';
 import ConnectModal from "@/Pages/Components/Home/connect-modal.vue";
 import {connectUsModalVisibility, modalSet} from "@/Pages/Components/Helper/Helper.js";
@@ -29,6 +29,7 @@ const Brand = ref(null);
 const Products = ref(null);
 const AboutUs = ref(null);
 const ConnectWithUs = ref(null);
+const brands = ref(null);
 navSettings.map(item => {
     if (item.title === 'برند ها')
         Brand.value = item;
@@ -39,6 +40,13 @@ navSettings.map(item => {
     if (item.title === 'تماس با ما')
         ConnectWithUs.value = item;
 });
+onMounted(() => {
+    axios.get(route('brands.show')).then((res) => {
+        brands.value = res.data.data;
+    }).catch(err => {
+        console.log(err);
+    });
+})
 const showConnectModal = () => {
     connectUsModalVisibility.value = !connectUsModalVisibility.value;
 }
@@ -82,7 +90,12 @@ const showConnectModal = () => {
                                                 {{ navItemBrand.name }}
                                             </p>
                                             <div class="" v-for="navItemBrandItems in navItemBrand.products">
-                                            <Link :href="route('ProductShow',{id:ItemVariations.id,slug:ItemVariations.slug})" class="block pr-2 mega-tab-menu-list-items" v-for="ItemVariations in navItemBrandItems.variations">{{ItemVariations.name + ' ' + ItemVariations.value}}</Link>
+                                                <Link
+                                                    :href="route('ProductShow',{id:ItemVariations.id,slug:ItemVariations.slug})"
+                                                    class="block pr-2 mega-tab-menu-list-items"
+                                                    v-for="ItemVariations in navItemBrandItems.variations">
+                                                    {{ ItemVariations.name + ' ' + ItemVariations.value }}
+                                                </Link>
                                             </div>
                                         </div>
                                         <div class=""
@@ -91,7 +104,12 @@ const showConnectModal = () => {
                                                 {{ navItemCategory.name }}
                                             </p>
                                             <div class="" v-for="navItemCategoryItems in navItemCategory.products">
-                                                <Link :href="route('ProductShow',{id:ItemVariations.id,slug:ItemVariations.slug})" class="block pr-2 mega-tab-menu-list-items" v-for="ItemVariations in navItemCategoryItems.variations">{{ItemVariations.name + ' ' + ItemVariations.value}}</Link>
+                                                <Link
+                                                    :href="route('ProductShow',{id:ItemVariations.id,slug:ItemVariations.slug})"
+                                                    class="block pr-2 mega-tab-menu-list-items"
+                                                    v-for="ItemVariations in navItemCategoryItems.variations">
+                                                    {{ ItemVariations.name + ' ' + ItemVariations.value }}
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -103,6 +121,16 @@ const showConnectModal = () => {
                             </div>
                         </div>
                     </Link>
+                    <!--                    brands-list-->
+                    <div v-if="item.title==='برند ها'" class="header-item-lists !right-0 w-80 p-3">
+                        <div class="grid grid-cols-2 gap-3 justify-items-center overflow-y-auto max-h-96">
+                            <Link v-for="item in brands" :href="route('brands.products.show',{id:item.id,slug:item.slug})"
+                                  class="h-12 w-fit min-w-32 border border-black overflow-hidden flex gap-3 items-center rounded-xl">
+                                <img :src="item.icon" alt="" class="size-12">
+                                <p class="font-bold text-sm text-black">{{item.name}}</p>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--            connection svgs-->
