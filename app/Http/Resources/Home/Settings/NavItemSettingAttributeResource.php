@@ -17,6 +17,8 @@ class NavItemSettingAttributeResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->attribute->id,
+            'slug' => $this->attribute->slug,
             'name' => $this->attribute->name,
             'icon' => $this->attribute->icon,
             'description' => $this->attribute->description,

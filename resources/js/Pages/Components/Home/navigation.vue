@@ -78,10 +78,10 @@ const showConnectModal = () => {
                     <Link :href="route('AllProductsShow')" v-if="item.title==='محصولات'" class="header-item-lists">
                         <div class="mega-tab-items relative" v-for="(navItem, index) in item.items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
-                                <div class="mega-tab-menu-items">
+                                <Link :href="route('attributes.sendToShow',{id:navItem.id,slug:navItem.slug})" class="mega-tab-menu-items">
                                     <img :src="navItem.icon" alt="" class=" size-8 rounded-full">
                                     <h2 class="">{{ navItem.name }}</h2>
-                                </div>
+                                </Link>
                                 <div class="mega-tab-menu-list" :style="'top: -' + index * 66 + 'px' ">
                                     <div class="text-nowrap w-fit flex flex-col flex-wrap h-full gap-x-8 gap-y-2 p-6">
                                         <div class=""

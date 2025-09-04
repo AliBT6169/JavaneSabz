@@ -21,7 +21,7 @@ const mouse_Leaving = () => {
 </script>
 
 <template>
-    <Link href="#" class="flex size-full justify-center duration-100 relative items-center cursor-pointer rounded-xl overflow-hidden"
+    <Link :href="route('attributes.sendToShow',{id:banner.id,slug:banner.slug})" class="flex size-full justify-center duration-100 relative items-center cursor-pointer rounded-xl overflow-hidden"
          @mousemove="mouse_Moving" @mouseleave="mouse_Leaving"
          :style="`transform: perspective(1000px) rotateY(${pointer_X}deg) rotateX(${pointer_Y}deg)`">
         <img class="size-full" :src="banner.icon" :alt="banner.title">
