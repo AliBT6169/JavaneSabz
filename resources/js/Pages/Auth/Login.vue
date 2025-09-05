@@ -5,7 +5,9 @@ import CheckBoxBT from "@/Pages/Components/Form/CheckBoxBT.vue";
 import ButtonBT2 from "@/Pages/Components/Form/ButtonBT2.vue";
 import {useToast} from "vue-toastification";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
+import {ref} from "vue";
 
+const formStatus = ref(0);
 defineProps({
     canResetPassword: {
         type: Boolean,
@@ -15,21 +17,52 @@ defineProps({
     },
 });
 
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
+const SendSMSForm = useForm({
+    mobile: '',
+});
+
+const RegisterForm = useForm({
+    mobile: '',
+    name: '',
+    full_name: '',
+    code: '',
+});
+
+const LoginForm = useForm({
+    mobile: '',
+    code: '',
 });
 
 const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-        onError: (err) =>{
-            const toast = useToast();
-            toast.error(Object.values(err)[0]);
-        },
-    });
-};
+    if (formStatus.value === 0)
+        axios.post(route('sendLoginSMSCode'), SendSMSForm).then((res) => {
+            console.log(res);
+            if (res.data.user_exists) {
+                formStatus.value = 1;
+                LoginForm.mobile = res.data.mobile;
+            } else {
+                formStatus.value = 2;
+                RegisterForm.mobile = res.data.mobile;
+            }
+
+
+        }).catch((err) => {
+            console.log(err.response.data);
+        });
+    else if (formStatus.value === 1)
+        axios.post(route('sendVerificationCode'), LoginForm).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err.response.data);
+        });
+    else if (formStatus.value === 2)
+        axios.post(route('sendVerificationCode'), RegisterForm).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err.response.data);
+        });
+
+}
 </script>
 
 <template>
@@ -45,53 +78,44 @@ const submit = () => {
                             <img :src="useIndexStore().Settings.settings.data.icon"
                                  class="w-28 scale-125" alt="">
                         </div>
-                        <span class="text-2xl font-black">ورود به حساب کاربری</span>
+                        <span class="text-2xl font-black">{{ formStatus < 2 ? 'ورود به' : 'ساخت ' }} حساب کاربری</span>
                     </div>
-                    <input-BT2
-                        Label="ایمیل:"
-                        type="email"
-                        v-model="form.email"
-                        required
-                    ></input-BT2>
-                    <input-BT2
-                        Label="رمز عبور:"
-                        type="password"
-                        v-model="form.password"
-                        required
-                    ></input-BT2>
+                    <input-BT2 v-if="formStatus===0"
+                               Label="شماره موبایل:"
+                               type="text"
+                               v-model="SendSMSForm.mobile"
+                               required
+                    />
+                    <input-BT2 v-if="formStatus===2"
+                               Label="نام کاربری:"
+                               type="text"
+                               v-model="RegisterForm.name"
+                               required
+                    />
+                    <input-BT2 v-if="formStatus===2"
+                               Label="نام و نام خانوادگی:"
+                               type="text"
+                               v-model="RegisterForm.full_name"
+                               required
+                    />
+                    <input-BT2 v-if="formStatus===1"
+                               Label="کد یکبار مصرف:"
+                               type="text"
+                               v-model="LoginForm.code"
+                               required
+                    />
+                    <input-BT2 v-if="formStatus===2"
+                               Label="کد یکبار مصرف:"
+                               type="text"
+                               v-model="RegisterForm.code"
+                               required
+                    />
                     <div class="px-5 lg:flex gap-5 lg:justify-between lg:items-center">
-                        <div class="grid gap-2">
-                            <label class="*:pl-2">
-                                <span class="duration-300 hover:text-defaultColor">من را به یاد داشته باش</span>
-                                <CheckBoxBT name="remember" v-model:checked="form.remember"/>
-                            </label>
-                            <Link
-                                v-if="canResetPassword"
-                                :href="route('password.request')"
-                                class="duration-300 underline hover:text-defaultColor"
-                            >
-                                فراموشی رمز عبور
-                            </Link>
-                        </div>
-                        <div class="flex justify-center pt-5 lg:justify-start">
-                            <Link href="/register">
-                                <div
-                                    class="ms-4 text-defaultColor7 duration-500 bg-blue-500 flex justify-center items-center
-                                     w-20 h-10 cursor-pointer shadow shadow-slate-800 rounded-lg
-                                           hover:saturate-200"
-                                    :class="{ 'opacity-25': form.processing }"
-                                >
-                                    ثبت نام
-                                </div>
-                            </Link>
-                            <ButtonBT2
-                                class="ms-4 text-defaultColor7"
-                                :class="{ 'opacity-25': form.processing }"
-                                :disabled="form.processing"
-                            >
-                                ورود
-                            </ButtonBT2>
-                        </div>
+                        <ButtonBT2
+                            class="ms-4 text-defaultColor7"
+                        >
+                            {{ formStatus === 0 ? 'دریافت کد یکبار مصرف' : 'ورود به حساب' }}
+                        </ButtonBT2>
                     </div>
                 </div>
             </form>

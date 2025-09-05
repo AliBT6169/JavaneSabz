@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\SMSController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CouponController;
@@ -42,6 +43,12 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
+
+    Route::controller(SMSController::class)->group(function () {
+        Route::post('get-auth-sms', 'sendAuthSMS')->name('sendLoginSMSCode');
+        Route::post('send-sms-code', 'codeValidation')->name('sendVerificationCode');
+
+    });
 });
 
 Route::middleware('auth')->group(function () {
