@@ -46,7 +46,7 @@ onMounted(() => {
     }).catch(err => {
         console.log(err);
     });
-})
+});
 const showConnectModal = () => {
     connectUsModalVisibility.value = !connectUsModalVisibility.value;
 }

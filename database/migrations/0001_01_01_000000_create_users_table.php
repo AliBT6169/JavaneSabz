@@ -15,12 +15,12 @@ return new class extends Migration {
             $table->string('name');
             $table->string('full_name')->nullable();
             $table->boolean('gender')->default(1);
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('cellphone')->unique();
             $table->unsignedInteger('buy_item_quantity')->default(0);
             $table->integer('status')->default(1);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->enum('provider', ['form', 'google', 'facebook'])->default('form');
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();

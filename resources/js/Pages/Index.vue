@@ -12,9 +12,9 @@ import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["indexData"]);
-useIndexStore().setSetting(props.indexData.settings);
 
 onMounted(async () => {
+    useIndexStore().setSetting(props.indexData.settings);
     if (useAuthStore().isAuthenticated && useAuthStore().Time + 600000 < Date.now()) {
         useAuthStore().logout();
         await axios.post(route('logout'));
@@ -25,7 +25,7 @@ onMounted(async () => {
 <template>
     <IndexLyout>
         <intro/>
-        <slider1 data-aos="fade-up" data-aos-delay="500" :slider1-data="indexData.slider.data"></slider1>
+        <slider1 v-if="indexData.slider.data" data-aos="fade-up" data-aos-delay="500" :slider1-data="indexData.slider.data"></slider1>
         <!--        brands-->
         <div data-aos="fade-up" v-if="indexData.brands.data.length>0" class="w-full mx-auto px-4">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">
@@ -41,7 +41,7 @@ onMounted(async () => {
             <Brands class="w-full" :brands-data="indexData.brands.data"/>
         </div>
         <!--        product show-1-->
-        <div data-aos="fade-up" class="w-full mx-auto !transform-none">
+        <div v-if="indexData.offSaleProducts.data.length>0" data-aos="fade-up" class="w-full mx-auto !transform-none">
             <div class="w-fit !static mx-auto flex flex-col gap-2 text-4xl md:m-0">
                 <div class="flex gap-2">
                     <span class="">محصولات</span>
@@ -68,7 +68,8 @@ onMounted(async () => {
                         <span class="w-4/12 rounded-full bg-defaultColor5 h-full"></span>
                     </div>
                 </div>
-                <div class="mt-6 flex justify-center flex-col items-center gap-2 mx-auto w-full lg:flex-row lg:h-[15rem]">
+                <div
+                    class="mt-6 flex justify-center flex-col items-center gap-2 mx-auto w-full lg:flex-row lg:h-[15rem]">
                     <live-cards v-for="item in indexData.banners.data" :banner="item"/>
                 </div>
             </div>
