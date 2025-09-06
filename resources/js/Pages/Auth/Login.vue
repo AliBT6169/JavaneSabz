@@ -44,23 +44,17 @@ const submit = () => {
                 formStatus.value = 2;
                 RegisterForm.mobile = res.data.mobile;
             }
-
-
         }).catch((err) => {
             console.log(err.response.data);
         });
     else if (formStatus.value === 1)
-        axios.post(route('sendVerificationCode'), LoginForm).then((res) => {
-            console.log(res);
-        }).catch((err) => {
-            console.log(err.response.data);
+        LoginForm.post(route('sendVerificationCode'),{
+            onError:(error) => {
+                console.log(error);
+            }
         });
     else if (formStatus.value === 2)
-        axios.post(route('sendVerificationCode'), RegisterForm).then((res) => {
-            console.log(res);
-        }).catch((err) => {
-            console.log(err.response.data);
-        });
+        RegisterForm.post(route('sendVerificationCode'));
 
 }
 </script>
@@ -71,7 +65,7 @@ const submit = () => {
         <div class="mx-auto flex flex-col gap-10 h-full justify-center items-center w-[20rem]
         sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
             <Head title="Log in"/>
-            <form class="w-full lg:w-1/2" @submit.prevent="submit">
+            <form  class="w-full lg:w-1/2" @submit.prevent="submit">
                 <div class="w-full bg-defaultColor5 bg-opacity-70 rounded-3xl text-defaultColor7 grid gap-5 pb-6">
                     <div class="flex flex-col items-center border-b-2 border-defaultColor">
                         <div class=" upComingAnimation">

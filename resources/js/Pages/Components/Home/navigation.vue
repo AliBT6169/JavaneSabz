@@ -167,7 +167,7 @@ const showConnectModal = () => {
                      class="bg-slate-700 bg-opacity-50 p-1 text-red-600 rounded-lg fill-none -mt-10 hover:fill-red-900">
                     <svg-component name="like" class="size-7"/>
                 </div>
-                <Link :href="route(Brand.link)" v-if="Brand!==null"
+                <Link href="#" v-if="Brand!==null"
                       class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
                     <svg-component :name="Brand.icon" class="size-7"/>
                 </Link>

@@ -8,33 +8,33 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 
 class SMSController extends Controller
 {
     public function sendAuthSMS(Request $request)
     {
         $code = rand(10000, 99999);
-        Cache::put($request->mobile, $code, 5);
-        $response = Http::post('http://payamak-service.ir/SendService.svc?wsdl',
-            [
-                'UserName' => 'mojtaba_70',
-                'Password' => '@mojtaba4220',
-                'From' => 'News',
-                'To' => $request->mobile,
-                'Message' => 'کد ورورد:' . $code . PHP_EOL . 'به جوانه سبز خوش آمدید',
-            ]);
+        Cache::put($request->mobile, $code, Date::now()->addMinutes(2));
+//        $response = Http::post('http://payamak-service.ir/SendService.svc?wsdl',
+//            [
+//                'UserName' => 'mojtaba_70',
+//                'Password' => '@mojtaba4220',
+//                'From' => 'News',
+//                'To' => $request->mobile,
+//                'Message' => 'کد ورورد:' . $code . PHP_EOL . 'به جوانه سبز خوش آمدید',
+//            ]);
         $user = User::where('cellphone', $request->mobile)->first();
         if ($user) {
             return response()->json([
                 'mobile' => $user->cellphone,
                 'user_exists' => true,
-                'response' => $response,
             ]);
         } else return response()->json([
             'mobile' => $request->mobile,
             'user_exists' => false,
-            'response' => $response,
         ]);
     }
 
@@ -42,13 +42,13 @@ class SMSController extends Controller
     {
         $code = Cache::get($request->mobile);
         if ($request->code != $code) {
-            return  response()->json(['code' => Cache::has($request->mobile)]);
+           return ValidationException::withMessages(['code' => 'کد وارد شده اشتباه است!']);
         }
         if (isset($request->name)) {
             $user = User::create([
                 'name' => $request->name,
                 'full_name' => $request->full_name,
-                'cell_phone' => $request->mobile
+                'cellphone' => $request->mobile
             ]);
 
 
@@ -59,7 +59,7 @@ class SMSController extends Controller
             return redirect(route('dashboard', absolute: false));
 
         } else {
-            $user = User::where('cell_phone', $request->mobile)->first();
+            $user = User::where('cellphone', $request->mobile)->first();
             event(new Registered($user));
             Auth::login($user);
             return redirect(route('dashboard', absolute: false));
