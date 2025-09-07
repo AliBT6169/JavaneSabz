@@ -36,7 +36,6 @@ const LoginForm = useForm({
 const submit = () => {
     if (formStatus.value === 0)
         axios.post(route('sendLoginSMSCode'), SendSMSForm).then((res) => {
-            console.log(res);
             if (res.data.user_exists) {
                 formStatus.value = 1;
                 LoginForm.mobile = res.data.mobile;
