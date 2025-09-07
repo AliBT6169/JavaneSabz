@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SendLoginMobileRequest;
+use App\Http\Requests\SendVerifyCodeRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -14,18 +16,10 @@ use Illuminate\Validation\ValidationException;
 
 class SMSController extends Controller
 {
-    public function sendAuthSMS(Request $request)
+    public function sendAuthSMS(SendLoginMobileRequest $request)
     {
         $code = rand(10000, 99999);
         Cache::put($request->mobile, $code, Date::now()->addMinutes(2));
-//        $response = Http::post('http://payamak-service.ir/SendService.svc?wsdl',
-//            [
-//                'UserName' => 'mojtaba_70',
-//                'Password' => '@mojtaba4220',
-//                'From' => 'News',
-//                'To' => $request->mobile,
-//                'Message' => 'کد ورورد:' . $code . PHP_EOL . 'به جوانه سبز خوش آمدید',
-//            ]);
         $user = User::where('cellphone', $request->mobile)->first();
         if ($user) {
             return response()->json([
@@ -38,11 +32,11 @@ class SMSController extends Controller
         ]);
     }
 
-    public function codeValidation(Request $request)
+    public function codeValidation(SendVerifyCodeRequest $request)
     {
         $code = Cache::get($request->mobile);
         if ($request->code != $code) {
-           return ValidationException::withMessages(['code' => 'کد وارد شده اشتباه است!']);
+           throw ValidationException::withMessages(['code' => 'کد وارد شده اشتباه است!']);
         }
         if (isset($request->name)) {
             $user = User::create([

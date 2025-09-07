@@ -45,16 +45,22 @@ const submit = () => {
                 RegisterForm.mobile = res.data.mobile;
             }
         }).catch((err) => {
-            console.log(err.response.data);
+            useToast().error(err.response.data.message)
         });
     else if (formStatus.value === 1)
-        LoginForm.post(route('sendVerificationCode'),{
-            onError:(error) => {
-                console.log(error);
+        LoginForm.post(route('sendVerificationCode'), {
+            onError: (error) => {
+                useToast().error(error.code);
             }
         });
     else if (formStatus.value === 2)
-        RegisterForm.post(route('sendVerificationCode'));
+        RegisterForm.post(route('sendVerificationCode'), {
+            onError: (error) => {
+                for (const errorKey in error) {
+                    useToast().error(error[errorKey])
+                }
+            }
+        });
 
 }
 </script>
@@ -65,7 +71,7 @@ const submit = () => {
         <div class="mx-auto flex flex-col gap-10 h-full justify-center items-center w-[20rem]
         sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
             <Head title="Log in"/>
-            <form  class="w-full lg:w-1/2" @submit.prevent="submit">
+            <form class="w-full lg:w-1/2" @submit.prevent="submit">
                 <div class="w-full bg-defaultColor5 bg-opacity-70 rounded-3xl text-defaultColor7 grid gap-5 pb-6">
                     <div class="flex flex-col items-center border-b-2 border-defaultColor">
                         <div class=" upComingAnimation">
@@ -84,13 +90,11 @@ const submit = () => {
                                Label="نام کاربری:"
                                type="text"
                                v-model="RegisterForm.name"
-                               required
                     />
                     <input-BT2 v-if="formStatus===2"
                                Label="نام و نام خانوادگی:"
                                type="text"
                                v-model="RegisterForm.full_name"
-                               required
                     />
                     <input-BT2 v-if="formStatus===1"
                                Label="کد یکبار مصرف:"
