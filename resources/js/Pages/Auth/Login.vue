@@ -114,6 +114,11 @@ const submit = () => {
                             {{ formStatus === 0 ? 'دریافت کد یکبار مصرف' : 'ورود به حساب' }}
                         </ButtonBT2>
                     </div>
+                    <div class="flex gap-3 items-center justify-center">
+                        <Link class="" :href="route('privacy-policy')">حریم خصوصی و امنیت</Link>
+                        <div class="h-8 w-[2px] bg-gray-800"></div>
+                        <Link class="" :href="route('terms-conditions')">شرایط و خدمات</Link>
+                    </div>
                 </div>
             </form>
         </div>

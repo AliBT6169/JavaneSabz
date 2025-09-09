@@ -9,6 +9,7 @@ use App\Models\DeliveryAmount;
 use App\Models\Order;
 use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BuyCartController extends Controller
 {
@@ -60,6 +61,7 @@ class BuyCartController extends Controller
         $VAT = ($total_amount * 9) / 100;
         $paying_amount = $paying_amount + $VAT;
         Order::Creator([
+            'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment + 10000,
             'total_amount' => (int)($total_amount),
             'delivery_amount' => $deliveryAmount['deliveryAmount'],
             'paying_amount' => (int)($paying_amount),

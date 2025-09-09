@@ -43,19 +43,26 @@ Route::controller(AddressController::class)->group(function () {
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/دسته-بندی-محصولات-کشاورزی', 'show')->name('categories.show');
-    Route::get('/دسته-بندی/'. '{id}-' . '{slug}', 'productShow')->name('categories.products.show');
+    Route::get('/دسته-بندی/' . '{id}-' . '{slug}', 'productShow')->name('categories.products.show');
 });
 
 Route::controller(BrandController::class)->group(function () {
     Route::get('/برندهای-محصولات-کشاورزی', 'show')->name('brands.show');
-    Route::get('/برند/'. '{id}-' . '{slug}', 'productsShow')->name('brands.products.show');
+    Route::get('/برند/' . '{id}-' . '{slug}', 'productsShow')->name('brands.products.show');
 });
 
 Route::controller(AttributeController::class)->group(function () {
-    Route::get('/attribute/'. '{id}-' . '{slug}', 'sendToShow')->name('attributes.sendToShow');
-    Route::get('/{name}/'. '{id}-' . '{slug}', 'show')->name('attributes.show');
+    Route::get('/attribute/' . '{id}-' . '{slug}', 'sendToShow')->name('attributes.sendToShow');
+    Route::get('/{name}/' . '{id}-' . '{slug}', 'show')->name('attributes.show');
 });
 
+Route::get('/حریم-خصوصی-و-امنیت', function () {
+    return Inertia::render('PrivacyPolicy');
+})->name('privacy-policy');
+
+Route::get('/شرایط-و-خدمات', function () {
+    return Inertia::render('TermsConditions');
+})->name('terms-conditions');
 
 Route::post('TextToAdmin', [CallToAdminController::class, 'store'])->name('textToAdmin');
 require __DIR__ . '/auth.php';
