@@ -23,7 +23,7 @@ class OrderCancellingRequest extends FormRequest
     {
         return [
             'order_id' => 'required|numeric|exists:orders,id',
-            'card_number' => 'string|regex:/^([0-9]{16}',
+            'card_number' => 'numeric|digits:16',
         ];
     }
 }

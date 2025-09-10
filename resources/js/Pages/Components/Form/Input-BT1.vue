@@ -11,9 +11,9 @@ const emit = defineEmits({
 </script>
 
 <template>
-    <div class="w-full h-fit text-sm justify-between items-center text-nowrap flex gap-2
+    <div class="w-full h-fit text-sm justify-between items-center text-nowrap md:flex gap-2
      text-white dark:text-black">
-        <label class="w-full" for="name">{{ props.labelText }}</label>
+        <label class="block text-center w-full" for="name">{{ props.labelText }}</label>
         <input autocomplete="off" id="name" :value="modelValue" type="text" @change="emit('update:modelValue',$event.target.value)"
                class="text-sm rounded-xl w-full bg-slate-200 dark:bg-gray-700
                 text-slate-800 dark:text-white"

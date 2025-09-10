@@ -7,11 +7,20 @@ import {ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
+import InputBT1 from "@/Pages/Components/Form/Input-BT1.vue";
 
 const props = defineProps(["Order"])
 const coupon_code = ref('');
 const cancelLoading = ref(false);
+const send_card_number = ref(false);
+const send_card_number_form = ref({
+    card_number: null,
+    order_id: props.Order.id
+});
 const orderCancellation = async () => {
+    if (props.Order.payment_status === 1 && !send_card_number.value)
+        return send_card_number.value = true;
     const content = {
         component: ToastWarning,
         props: {
@@ -20,7 +29,7 @@ const orderCancellation = async () => {
         listeners: {
             set: async () => {
                 cancelLoading.value = true;
-                await axios.patch(route('Order.Cancellation', {order_id: props.Order.id})).then(res => {
+                await axios.post(route('Order.Cancellation', send_card_number_form.value)).then(res => {
                     useToast().success(res.data.message);
                     props.Order.status = 4;
                 }).catch(err => {
@@ -37,15 +46,25 @@ const orderCancellation = async () => {
 <template>
     <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 no-scrollbar border-defaultColor h-96 overflow-y-scroll
       dark:border-darkColor1 sm:w-96 hover3D-animation hover:shadow-red-500 dark:bg-defaultColor7">
-        <button v-if="Order.status<=0" @click="orderCancellation"
-                class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500">
-            لغو سفارش
-        </button>
+        <div v-if="Order.status<=0">
+            <div v-if="send_card_number" class="space-y-1">
+                <InputBT1 v-model="send_card_number_form.card_number" class="" label-text="شماره کارت جهت بازگشت وجه:"/>
+                <button v-if="Order.status<=0" @click="orderCancellation"
+                        class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500">
+                    لغو سفارش
+                </button>
+            </div>
+            <button v-else @click="orderCancellation"
+                    class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500">
+                لغو سفارش
+            </button>
+        </div>
+
         <div v-if="Order.payment_status===1 && Order.status<3"
              class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
             <div class="flex gap-6 text-[8px] text-nowrap sm:text-sm">
-                <div class="">در حال تائید</div>
-                <div class="">در حال آماده سازی</div>
+                <div class="">در انتظار تائید</div>
+                <div class="">در انتظار آماده سازی</div>
                 <div class="">کالا ارسال شده</div>
             </div>
             <div class="flex justify-center items-center">

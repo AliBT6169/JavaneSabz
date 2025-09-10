@@ -110,6 +110,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/Comment/store', 'store')->name('Comment.store');
     });
 
-    Route::patch('Order/Cancellation/{order_id}', [OrderController::class, 'Cancellation'])->name('Order.Cancellation');
+    Route::post('Order/Cancellation', [OrderController::class, 'Cancellation'])->name('Order.Cancellation');
 });
 

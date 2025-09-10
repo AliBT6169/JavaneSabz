@@ -218,7 +218,7 @@ return [
         "learnstandard_id" => "مهارت",
         "coupon_code" => "کد تخفیف",
         "user_name" => "نام کاربری",
-
+        "card_number"=> 'شماره کارت',
         "roleName" => "نام مقام",
 
 
