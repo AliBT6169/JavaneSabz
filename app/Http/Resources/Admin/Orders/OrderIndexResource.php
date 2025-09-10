@@ -38,7 +38,7 @@ class OrderIndexResource extends JsonResource
                 'city_id' => $this->address->city->id,
                 'address' => $this->address->address,
             ] : '',
-            'status' => $this->payment_status == 0 ? -1 : $this->status,
+            'status' => $this->status,
             'payment_status' => $this->payment_status,
             'created_at' => Jalalian::fromDateTime($this->created_at)->format('l, d F Y H:i:s'),
         ];
