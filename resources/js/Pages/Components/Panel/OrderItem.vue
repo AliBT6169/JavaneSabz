@@ -5,15 +5,43 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
+import {useToast} from "vue-toastification";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 const props = defineProps(["Order"])
 const coupon_code = ref('');
+const cancelLoading = ref(false);
+const orderCancellation = async () => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا از لغو این سفارش اطمینان دارید؟'
+        },
+        listeners: {
+            set: async () => {
+                cancelLoading.value = true;
+                await axios.patch(route('Order.Cancellation', {order_id: props.Order.id})).then(res => {
+                    useToast().success(res.data.message);
+                    props.Order.status = 4;
+                }).catch(err => {
+                    useToast().error(err.response.data.message);
+                });
+            }
+        }
+    }
+    await useToast().warning(content);
+    cancelLoading.value = false;
+}
 </script>
 
 <template>
     <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 no-scrollbar border-defaultColor h-96 overflow-y-scroll
       dark:border-darkColor1 sm:w-96 hover3D-animation hover:shadow-red-500 dark:bg-defaultColor7">
-        <div v-if="Order.status>=0 &&Order.status<=3"
+        <button v-if="Order.status<=0" @click="orderCancellation"
+                class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500">
+            لغو سفارش
+        </button>
+        <div v-if="Order.payment_status===1 && Order.status<3"
              class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
             <div class="flex gap-6 text-[8px] text-nowrap sm:text-sm">
                 <div class="">در حال تائید</div>

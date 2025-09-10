@@ -17,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\Dashboard\BuyCartController;
 use App\Http\Controllers\User\Dashboard\DashboardController;
 use App\Http\Controllers\User\Dashboard\WishListController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\TransactionController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -108,5 +109,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(CommentController::class)->group(function () {
         Route::post('/Comment/store', 'store')->name('Comment.store');
     });
+
+    Route::patch('Order/Cancellation/{order_id}', [OrderController::class, 'Cancellation'])->name('Order.Cancellation');
 });
 
