@@ -14,6 +14,11 @@ const props = defineProps(["Order"])
 const coupon_code = ref('');
 const cancelLoading = ref(false);
 const send_card_number = ref(false);
+const order_return_description = ref(false);
+const order_return_form = ref({
+    order_id: props.Order.id,
+    description: "",
+});
 const send_card_number_form = ref({
     card_number: null,
     order_id: props.Order.id
@@ -21,6 +26,7 @@ const send_card_number_form = ref({
 const orderCancellation = async () => {
     if (props.Order.payment_status === 1 && !send_card_number.value)
         return send_card_number.value = true;
+    cancelLoading.value = true;
     const content = {
         component: ToastWarning,
         props: {
@@ -28,10 +34,31 @@ const orderCancellation = async () => {
         },
         listeners: {
             set: async () => {
-                cancelLoading.value = true;
                 await axios.post(route('Order.Cancellation', send_card_number_form.value)).then(res => {
                     useToast().success(res.data.message);
                     props.Order.status = 4;
+                }).catch(err => {
+                    useToast().error(err.response.data.message);
+                });
+            }
+        }
+    }
+    await useToast().warning(content);
+    cancelLoading.value = false;
+}
+
+const return_order = async () => {
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا از درخواست مرجوع کردن این سفارش اطمینان دارید؟'
+        },
+        listeners: {
+            set: async () => {
+                cancelLoading.value = true;
+                await axios.post(route('Order.Restitution', order_return_form.value)).then(res => {
+                    useToast().success(res.data.message);
+                    order_return_description.value = false;
                 }).catch(err => {
                     useToast().error(err.response.data.message);
                 });
@@ -61,7 +88,17 @@ const orderCancellation = async () => {
                 <SvgComponent v-if="cancelLoading" name="spinner" class="animate-spin size-5 inline"/>
             </button>
         </div>
-
+        <button v-if="Order.status===2 && !order_return_description" @click="order_return_description = true"
+                class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500 disabled:opacity-30">مرجوع کردن
+        </button>
+        <div class="space-y-1" v-if="Order.status===2 && order_return_description">
+            <InputBT1 v-model="order_return_form.description" class="last:text-xs"
+                      :multi-line="true" label-text="علت مرجوعی:"/>
+            <button @click="return_order"
+                    class="px-3 py-1 mr-auto block rounded-lg border-4 border-red-500 disabled:opacity-30">مرجوع کردن
+                <SvgComponent v-if="cancelLoading" name="spinner" class="animate-spin size-5 inline"/>
+            </button>
+        </div>
         <div v-if="Order.payment_status===1 && Order.status<3"
              class="space-y-4 sticky bg-defaultColor5 py-4 -top-4 dark:bg-defaultColor7">
             <div class="flex gap-6 text-[8px] text-nowrap sm:text-sm">

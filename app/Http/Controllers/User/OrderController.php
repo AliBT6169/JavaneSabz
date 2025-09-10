@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\OrderCancellingRequest;
+use App\Http\Requests\User\RestitutionOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -54,6 +56,20 @@ class OrderController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'سفارش شما لغو شد و مبلغ پرداخت شده طی 72 ساعت کاری آینده به حسابتان عودت داده میشود'
+        ]);
+    }
+
+    public function Restitution(RestitutionOrderRequest $request)
+    {
+        $user = Auth::user();
+        $order = Order::whereId($request->order_id)->where('user_id', $user->id)->first();
+        if ($order === null)
+            abort(400, 'سفارش مورد نظر وجود ندارد');
+        if ($order->status !== 2 || $order->updated_at->addDay(2) > now())
+            abort(400, 'امکان ارجاع این سفارش وجود ندارد!');
+        return response()->json([
+            'status' => 200,
+            'message' => 'درخواست مرجوعیت سفارش ارسال شد'
         ]);
     }
 }

@@ -111,5 +111,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::post('Order/Cancellation', [OrderController::class, 'Cancellation'])->name('Order.Cancellation');
+    Route::post('Order/Restitution', [OrderController::class, 'Restitution'])->name('Order.Restitution');
 });
 
