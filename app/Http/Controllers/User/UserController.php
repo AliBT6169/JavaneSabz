@@ -40,8 +40,7 @@ class UserController extends Controller
                 Rule::unique('users')->ignore(Auth::id()),],
             'full_name' => ['required', 'max:30'],
             'email' => [
-                'required',
-                'email',
+                'nullable',
                 Rule::unique('users')->ignore(Auth::id()),
             ],
             'image' => ['required', function ($attribute, $value, $fail) {
