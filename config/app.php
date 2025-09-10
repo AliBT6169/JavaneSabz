@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -131,4 +131,5 @@ return [
         'Faker' => Ybazli\Faker\Facades\Faker::class,
     ])->toArray(),
 
+    \App\Providers\RepositoriesServiceProvider::class,
 ];
