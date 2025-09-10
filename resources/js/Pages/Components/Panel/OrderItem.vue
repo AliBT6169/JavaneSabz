@@ -49,14 +49,16 @@ const orderCancellation = async () => {
         <div v-if="Order.status<=0">
             <div v-if="send_card_number" class="space-y-1">
                 <InputBT1 v-model="send_card_number_form.card_number" class="" label-text="شماره کارت جهت بازگشت وجه:"/>
-                <button v-if="Order.status<=0" @click="orderCancellation"
-                        class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500">
+                <button v-if="Order.status<=0" @click="orderCancellation" :disabled="cancelLoading"
+                        class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500 disabled:opacity-30">
                     لغو سفارش
+                    <SvgComponent v-if="cancelLoading" name="spinner" class="animate-spin size-5 inline"/>
                 </button>
             </div>
-            <button v-else @click="orderCancellation"
-                    class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500">
+            <button v-else @click="orderCancellation" :disabled="cancelLoading"
+                    class="px-3 py-1 m-auto block rounded-lg border-4 border-red-500 disabled:opacity-30">
                 لغو سفارش
+                <SvgComponent v-if="cancelLoading" name="spinner" class="animate-spin size-5 inline"/>
             </button>
         </div>
 

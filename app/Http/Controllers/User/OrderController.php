@@ -39,7 +39,7 @@ class OrderController extends Controller
             'password' => '#E2@Q',
             'to' => $user->cellphone,
             'from' => '50002710003905',
-            'text' => 'سفارش شما با کد :' . $order->coede . 'با موفقیت لغو شد' . PHP_EOL . PHP_EOL . 'طی 72 ساعت کاری آینده مبلغ به حساب شما عودت داده می گردد.' . PHP_EOL .
+            'text' => 'سفارش شما با کد :' . $order->code . 'با موفقیت لغو شد' . PHP_EOL . PHP_EOL . 'طی 72 ساعت کاری آینده مبلغ به حساب شما عودت داده می گردد.' . PHP_EOL .
                 'لغو: 11',
         ]);
         Http::post('https://rest.payamak-panel.com/api/SendSMS/SendSMS', [
@@ -48,7 +48,7 @@ class OrderController extends Controller
             'to' => '09012553051',
             'from' => '50002710003905',
             'text' => 'کاربر' . $user->full_name . 'سفارش خود را با کد سفارش  ' . $order->code . '  بعد از پرداخت وجه لغو نمود ' . PHP_EOL .
-                ' مبلغ جهت عودت وجه ' . ($order->paying_amount - $order->VAT) . ' تومان میباشد.' . PHP_EOL .
+                ' مبلغ جهت عودت وجه ' . number_format($order->paying_amount - $order->VAT) . ' تومان میباشد.' . PHP_EOL .
                 'شماره کارت کاربر: ' . $request->card_number . ' ' . PHP_EOL . ' لطفا تا 72 ساعت کاری آینده مبلغ مذکور را به حساب کاربر عودت دهید',
         ]);
         return response()->json([
