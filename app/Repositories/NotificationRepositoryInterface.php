@@ -11,7 +11,10 @@ interface NotificationRepositoryInterface
     public function find(int $id);
 
     public function seen(int $id);
+
     public function getSeen(int $id);
+
+    public function getUnseens();
 
     public function create(array $data): Notification;
 

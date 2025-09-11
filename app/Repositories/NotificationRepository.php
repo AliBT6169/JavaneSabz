@@ -62,4 +62,9 @@ class NotificationRepository implements NotificationRepositoryInterface
             return false;
         return $notification->delete();
     }
+
+    public function getUnseens()
+    {
+        return $this->model::where('seen', false)->get();
+    }
 }

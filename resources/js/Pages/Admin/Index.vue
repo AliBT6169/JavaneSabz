@@ -13,6 +13,7 @@ import AdminUserTableItems from "@/Pages/Admin/pages/Users/AdminUserTableItems.v
 const props = defineProps({
     dashboardData: Object,
 });
+console.log(props.dashboardData);
 const waitOrders = ref(props.dashboardData.waitOrders.data);
 const niceSaleProducts = ref(props.dashboardData.niceSaleProducts.data);
 const noQuantityProducts = ref(props.dashboardData.noQuantityProducts.data);

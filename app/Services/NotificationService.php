@@ -48,4 +48,9 @@ class NotificationService
     {
         return $this->notificationRepo->delete($id);
     }
+
+    public function getUnseens()
+    {
+        return $this->notificationRepo->getUnseens();
+    }
 }

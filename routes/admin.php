@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Setting\SliderSettingController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserMail\AdminUserMailController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -134,6 +135,10 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::controller(SliderSettingController::class)->group(function () {
        Route::get('/slider/getAttribute/{id}', 'getAttribute')->name('slider.getAttribute');
        Route::patch('/slider/attributeToggle/{slider_id}/{attribute_id}', 'toggle')->name('slider.attributeToggle');
+    });
+
+    Route::controller(NotificationController::class)->group(function () {
+        Route::get('/notification/index', 'index')->name('notifications.index');
     });
 });
 
