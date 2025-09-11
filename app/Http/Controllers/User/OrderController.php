@@ -75,9 +75,15 @@ class OrderController extends Controller
             abort(400, 'سفارش مورد نظر وجود ندارد');
         if ($order->status !== 2 || $order->updated_at->addDay(2) > now())
             abort(400, 'امکان ارجاع این سفارش وجود ندارد!');
+
+        $notification = [
+            'title' => 'درخواست ارجاع',
+            'body' => 'کاربر ' . $user->full_name . 'برای سفارش : ' . $order->code . 'درخواست مرجوع کردن کالا به علت: ' . PHP_EOL . $request->description . PHP_EOL . 'را دارد. لطفا رسیدگی شود.' . PHP_EOL . 'شماره  کاربر جهت پیگیری: ' . $user->cellphone
+        ];
+        $this->notificationService->createNotification($notification);
         return response()->json([
             'status' => 200,
-            'message' => 'درخواست مرجوعیت سفارش ارسال شد'
+            'message' => 'درخواست مرجوعیت سفارش ارسال شد میتوانید از راه های تماس با پشتیبانی ما درخواست خود را پیگیری کنید!'
         ]);
     }
 }
