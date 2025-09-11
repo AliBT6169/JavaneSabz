@@ -16,7 +16,17 @@ class NotificationService
 
     public function getAllNotifications()
     {
-        return $this->notificationRepo>all();
+        return $this->notificationRepo->all();
+    }
+
+    public function isSeen(int $id)
+    {
+        return $this->notificationRepo->seen($id);
+    }
+
+    public function getSeen(int $id)
+    {
+        return $this->notificationRepo->getSeen($id);
     }
 
     public function getNotification(int $id)

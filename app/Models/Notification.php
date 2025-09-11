@@ -12,6 +12,7 @@ class Notification extends Model
         'id',
         'title',
         'body',
+        'seen',
         'created_at',
         'updated_at',
     ];

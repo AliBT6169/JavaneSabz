@@ -23,6 +23,25 @@ class NotificationRepository implements NotificationRepositoryInterface
         return $this::find($id);
     }
 
+    public function seen(int $id): bool
+    {
+        $notification = $this->model::find($id);
+        if (!$notification) {
+            return false;
+        }
+        return $notification->seen;
+    }
+
+    public function getSeen(int $id): bool
+    {
+        $notification = $this->model::find($id);
+        if (!$notification) {
+            return false;
+        }
+        $notification->seen = true;
+        return $notification->seen;
+    }
+
     public function create(array $data): Notification
     {
         return $this->model::create($data);

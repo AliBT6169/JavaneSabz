@@ -10,6 +10,9 @@ interface NotificationRepositoryInterface
 
     public function find(int $id);
 
+    public function seen(int $id);
+    public function getSeen(int $id);
+
     public function create(array $data): Notification;
 
     public function update(int $id, array $data): bool;
