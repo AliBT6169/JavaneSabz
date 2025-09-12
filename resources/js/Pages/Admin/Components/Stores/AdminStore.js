@@ -5,8 +5,12 @@ export const useAdminStore = defineStore('admin', {
         SideBar: true,
         Page: 'AdminDashboard',
         PageIndexTop: 16,
+        Notifications: {}
     }),
     actions: {
+        setNotifications(notifications) {
+            this.Notifications = notifications;
+        },
         sideBarSelector(name, index) {
             this.Page = name;
             this.PageIndexTop = (index - 1) * 80 + 16;
@@ -15,6 +19,7 @@ export const useAdminStore = defineStore('admin', {
             this.SideBar = true;
             this.Page = 'AdminDashboard';
             this.PageIndexTop = 16;
+            this.Notifications = {};
         }
     },
     persist: true,

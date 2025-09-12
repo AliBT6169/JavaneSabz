@@ -19,6 +19,11 @@ class NotificationService
         return $this->notificationRepo->all();
     }
 
+    public function getWithPagination(int $perPage = 10)
+    {
+        return $this->notificationRepo->getWithPaginate($perPage);
+    }
+
     public function isSeen(int $id)
     {
         return $this->notificationRepo->seen($id);

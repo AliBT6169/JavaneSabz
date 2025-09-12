@@ -18,6 +18,11 @@ class NotificationRepository implements NotificationRepositoryInterface
         return $this->model::all();
     }
 
+    public function getWithPaginate(int $perPage = 10)
+    {
+        return $this->model::latest()->paginate($perPage);
+    }
+
     public function find(int $id): ?Notification
     {
         return $this::find($id);

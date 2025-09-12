@@ -17,7 +17,10 @@ import MailModal from "@/Pages/Admin/pages/UserMails/MailModal.vue";
                 <svg-component name="admin-menu" class="size-7 sm:size-10"/>
             </div>
             <MailModal/>
-            <svg-component name="bell" class="size-7 sm:size-10"/>
+            <Link :href="route('admin.notifications.index')" class="relative cursor-pointer">
+                <svg-component name="bell" class="size-7 sm:size-10"/>
+                <div class="absolute size-5 -bottom-1 -left-1 rounded-full bg-red-500 text-center text-xs py-1" v-if="useAdminStore().Notifications.length>0">{{ useAdminStore().Notifications.length}}</div>
+            </Link>
         </div>
         <!--        leftSide-->
         <div class="flex items-center gap-2">

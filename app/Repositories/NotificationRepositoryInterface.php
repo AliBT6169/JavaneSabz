@@ -8,6 +8,8 @@ interface NotificationRepositoryInterface
 {
     public function all();
 
+    public function getWithPaginate(int $perPage);
+
     public function find(int $id);
 
     public function seen(int $id);

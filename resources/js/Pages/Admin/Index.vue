@@ -9,17 +9,18 @@ import AdminCommentItem from "@/Pages/Admin/pages/Comments/AdminCommentItem.vue"
 import AdminTransactionItem from "@/Pages/Admin/Components/Transaction/AdminTransactionItem.vue";
 import AdminUserTable from "@/Pages/Admin/pages/Users/AdminUserTable.vue";
 import AdminUserTableItems from "@/Pages/Admin/pages/Users/AdminUserTableItems.vue";
+import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 
 const props = defineProps({
     dashboardData: Object,
 });
-console.log(props.dashboardData);
 const waitOrders = ref(props.dashboardData.waitOrders.data);
 const niceSaleProducts = ref(props.dashboardData.niceSaleProducts.data);
 const noQuantityProducts = ref(props.dashboardData.noQuantityProducts.data);
 const newComments = ref(props.dashboardData.newComments.data);
 const newTransactions = ref(props.dashboardData.newTransactions.data);
 const mostBuyerUsers = ref(props.dashboardData.mostBuyerUsers.data);
+useAdminStore().setNotifications(props.dashboardData.unSeenNotifications.data)
 </script>
 
 <template>
