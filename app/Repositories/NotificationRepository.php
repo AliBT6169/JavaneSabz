@@ -43,7 +43,9 @@ class NotificationRepository implements NotificationRepositoryInterface
         if (!$notification) {
             return false;
         }
-        $notification->seen = true;
+        $notification->update([
+            'seen' => true
+        ]);
         return $notification->seen;
     }
 
@@ -68,8 +70,8 @@ class NotificationRepository implements NotificationRepositoryInterface
         return $notification->delete();
     }
 
-    public function getUnseens()
+    public function getUnseensCount(): int
     {
-        return $this->model::where('seen', false)->get();
+        return $this->model::where('seen', false)->get()->count();
     }
 }

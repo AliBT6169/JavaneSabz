@@ -139,6 +139,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
 
     Route::controller(NotificationController::class)->group(function () {
         Route::get('/notification/index', 'index')->name('notifications.index');
+        Route::post('/notification/seen', 'seen')->name('notifications.seen');
     });
 });
 

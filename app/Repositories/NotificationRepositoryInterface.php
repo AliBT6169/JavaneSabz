@@ -16,7 +16,7 @@ interface NotificationRepositoryInterface
 
     public function getSeen(int $id);
 
-    public function getUnseens();
+    public function getUnseensCount(): int;
 
     public function create(array $data): Notification;
 

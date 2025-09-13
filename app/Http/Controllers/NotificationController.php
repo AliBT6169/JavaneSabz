@@ -7,6 +7,7 @@ use App\Http\Resources\Admin\NotificationResource;
 use App\Http\Resources\Dashboard\DashboardResource;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class NotificationController extends Controller
@@ -37,7 +38,20 @@ class NotificationController extends Controller
 
     public function getUnseens()
     {
-        return NotificationResource::collection($this->notificationService->getUnseens());
+        return NotificationResource::collection($this->notificationService->getUnseensCount());
+    }
+
+    public function seen(Request $request)
+    {
+        $data = array();
+        foreach ($request->all() as $value) {
+            $data[] = $value;
+        }
+        $seen = $this->notificationService->getSeen($data);
+        return response()->json([
+            'status' => 200,
+            'unSeen' => $seen
+        ]);
     }
 
 }

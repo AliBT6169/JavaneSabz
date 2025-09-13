@@ -33,7 +33,7 @@ class AdminController extends Controller
         $dashboardData['newComments'] = AdminCommentsIndexResource::collection(Comment::orderBy("created_at", "desc")->take(5)->get());
         $dashboardData['newTransactions'] = TransactionIndexResource::collection(Transaction::orderBy("created_at", "desc")->take(5)->get());
         $dashboardData['mostBuyerUsers'] = UserResource::collection(User::orderBy("buy_item_quantity", "desc")->take(5)->get());
-        $dashboardData['unSeenNotifications'] = NotificationResource::collection($this->notificationService->getUnseens());
+        $dashboardData['unSeenNotifications'] = $this->notificationService->getUnseensCount();
         return Inertia::render('Admin/Index', ['dashboardData' => $dashboardData]);
     }
 }

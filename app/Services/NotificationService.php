@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Repositories\NotificationRepository;
 use App\Repositories\NotificationRepositoryInterface;
+use Illuminate\Support\Facades\Log;
+use function Webmozart\Assert\Tests\StaticAnalysis\integer;
 
 class NotificationService
 {
@@ -29,9 +31,15 @@ class NotificationService
         return $this->notificationRepo->seen($id);
     }
 
-    public function getSeen(int $id)
+    public function getSeen(array $ides)
     {
-        return $this->notificationRepo->getSeen($id);
+        if (is_array($ides)) {
+            foreach ($ides as $id) {
+                $this->notificationRepo->getSeen($id);
+            }
+            return $this->notificationRepo->getUnseensCount();
+        }
+        return false;
     }
 
     public function getNotification(int $id)
@@ -54,8 +62,8 @@ class NotificationService
         return $this->notificationRepo->delete($id);
     }
 
-    public function getUnseens()
+    public function getUnseensCount()
     {
-        return $this->notificationRepo->getUnseens();
+        return $this->notificationRepo->getUnseensCount();
     }
 }
