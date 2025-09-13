@@ -43,6 +43,9 @@ class NotificationController extends Controller
 
     public function seen(Request $request)
     {
+        $validated = $request->validate([
+            '*' => 'numeric|exists:notifications,id'
+        ]);
         $data = array();
         foreach ($request->all() as $value) {
             $data[] = $value;

@@ -15,7 +15,7 @@ const props = defineProps(["indexData"]);
 
 onMounted(async () => {
     useIndexStore().setSetting(props.indexData.settings);
-    if (useAuthStore().isAuthenticated && useAuthStore().Time + 600000 < Date.now()) {
+    if (useAuthStore().isAuthenticated && useAuthStore().Time + 1200000 < Date.now()) {
         useAuthStore().logout();
         await axios.post(route('logout'));
     }
