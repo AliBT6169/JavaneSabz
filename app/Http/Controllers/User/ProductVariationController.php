@@ -8,6 +8,7 @@ use App\Models\Rate;
 use App\Services\RateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ProductVariationController extends Controller
 {
@@ -28,7 +29,7 @@ class ProductVariationController extends Controller
             'rateable_id' => $request->id,
             'rateable_type' => 'App\Models\ProductVariation',
         ]);
-        $this->rate->create($data);
+        $this->rateService->create($data[0]);
         $ratesAverage = Rate::where('rateable_id', $request->id)->average('rate');
         return response([
             'rate' => $ratesAverage,

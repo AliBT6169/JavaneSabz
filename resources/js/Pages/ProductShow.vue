@@ -10,6 +10,8 @@ import {ref} from "vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import Comments from "@/Pages/Components/Home/Comments.vue";
 import IndexLyout from "@/Pages/IndexLyout.vue";
+import StarRating from 'vue-star-rating';
+import {useToast} from "vue-toastification";
 
 const carouselConfig = {
     itemsToShow: 1,
@@ -19,13 +21,26 @@ const carouselConfig = {
     wrapAround: true,
     breakpointMode: 'carousel',
 }
+const rating = ref(false);
 const props = defineProps(["productData"]);
 useIndexStore().setProductData(props.productData);
-console.log(props.productData);
 const product = ref(useIndexStore().ProductShowData);
 const likeUnLike = async () => {
     const res = await ref(useAuthStore().likeOrUnLike(product.value.data.id, product.value.data.is_liked));
     product.value.data.is_liked = await res.value;
+}
+const setRating = async (value) => {
+    await axios.post(route('product.rate.store'),{
+        id: product.value.data.id,
+        rate: value,
+    }).then((res) => {
+        console.log(res)
+        useToast().success('امتیاز شما برای این محصول با موفقیت ثبت شد!')
+    }).catch((err) => {
+        console.log(err);
+    })
+    rating.value = false;
+
 }
 </script>
 
@@ -96,13 +111,28 @@ const likeUnLike = async () => {
                                 {{ product.data.value }}
                             </div>
                             <!--                        rate-->
-                            <div
-                                class="text-yellow-500 productShowItems">
-                                <strong class="text-defaultColor dark:text-defaultColor5">امتیاز: </strong>
-                                <div class="flex *:size-4 *:stroke-1 *:stroke-yellow-50 md:*:size-6">
-                                    <svg-component name="star" class="text-yellow-50"/>
-                                    <svg-component v-for="item in 4" name="star" class=""/>
+                            <div class="max-w-40">
+                                <div v-if="!rating" class="">
+                                    <star-rating :increment="0.01"
+                                                 :max-rating="5"
+                                                 rtl="rtl"
+                                                 inactive-color="currentColor"
+                                                 active-color="#eab308"
+                                                 read-only="true"
+                                                 :rating="product.data.rate"
+                                                 :star-size="20">
+                                    </star-rating>
+                                    <div class="p-2 rounded-xl border-2 border-current text-xs text-center" @click="rating = true">امتیاز دهی</div>
                                 </div>
+                                <star-rating v-else
+                                             :increment="1"
+                                             :max-rating="5"
+                                             rtl="rtl"
+                                             inactive-color="currentColor"
+                                             active-color="#eab308"
+                                             @update:rating="setRating($event)"
+                                             :star-size="20">
+                                </star-rating>
                             </div>
                         </div>
                         <!--                    category & brand-->
@@ -170,7 +200,8 @@ const likeUnLike = async () => {
                 <!--            comments-->
                 <!--                    same Products-->
                 <div class="rounded-t-xl border border-current">
-                    <div class="w-full text-center py-2 bg-defaultColor/80 text-defaultColor5 rounded-t-xl">محصولات مشابه:
+                    <div class="w-full text-center py-2 bg-defaultColor/80 text-defaultColor5 rounded-t-xl">محصولات
+                        مشابه:
                     </div>
                     <div class="p-5 overflow-x-scroll">
                         <div class="w-fit flex gap-8 items-center">

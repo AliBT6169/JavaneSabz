@@ -3,13 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\Rate;
-use Illuminate\Database\Eloquent\Model;
 
 class RateRepository implements RateRepositoryInterface
 {
     protected $rate;
 
-    public function __construct(RateRepository $repo)
+    public function __construct(Rate $repo)
     {
         $this->rate = $repo;
     }

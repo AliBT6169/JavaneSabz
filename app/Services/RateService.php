@@ -3,13 +3,13 @@
 namespace App\Services;
 
 use App\Models\Rate;
-use App\Repositories\RateRepository;
+use App\Repositories\RateRepositoryInterface;
 
 class RateService
 {
     protected $rateRepository;
 
-    public function __construct(RateRepository $rateRepository)
+    public function __construct(RateRepositoryInterface $rateRepository)
     {
         $this->rateRepository = $rateRepository;
     }
