@@ -21,6 +21,7 @@ const carouselConfig = {
 }
 const props = defineProps(["productData"]);
 useIndexStore().setProductData(props.productData);
+console.log(props.productData);
 const product = ref(useIndexStore().ProductShowData);
 const likeUnLike = async () => {
     const res = await ref(useAuthStore().likeOrUnLike(product.value.data.id, product.value.data.is_liked));

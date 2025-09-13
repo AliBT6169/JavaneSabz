@@ -5,6 +5,7 @@ namespace App\Http\Resources\Home\Product;
 use App\Http\Resources\Gallery\GalleryResource;
 use App\Http\Resources\Home\Comment\ProductCommentsResource;
 use App\Models\ProductVariation;
+use App\Models\Rate;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -39,7 +40,7 @@ class ProductResource extends JsonResource
             'sale_price' => $this->sale_price,
             'comments' => ProductCommentsResource::collection($this->comments->where('approved', 1)),
             "is_liked" => Auth::check() ? Wishlist::is_exist(Auth::user()->id, $this->id) : false,
-            'rate' => '',
+            'rate' => Rate::where('rateable_id', $this->id)->where('rateable_type', ProductVariation::class)->average('rate'),
             'sameProducts' => ProductVariation::getSomeProduct(10, [
                 'brand_id' => $this->product->brand->id,
                 'category_id' => $this->product->category->id,

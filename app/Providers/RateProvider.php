@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\RateRepository;
+use App\Repositories\RateRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RateProvider extends ServiceProvider
@@ -11,7 +13,7 @@ class RateProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(RateRepositoryInterface::class, RateRepository::class);
     }
 
     /**

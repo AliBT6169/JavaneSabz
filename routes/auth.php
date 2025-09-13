@@ -18,6 +18,7 @@ use App\Http\Controllers\User\Dashboard\BuyCartController;
 use App\Http\Controllers\User\Dashboard\DashboardController;
 use App\Http\Controllers\User\Dashboard\WishListController;
 use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\User\ProductVariationController;
 use App\Http\Controllers\User\TransactionController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -112,5 +113,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('Order/Cancellation', [OrderController::class, 'Cancellation'])->name('Order.Cancellation');
     Route::post('Order/Restitution', [OrderController::class, 'Restitution'])->name('Order.Restitution');
+    Route::controller(ProductVariationController::class)->group(function () {
+        Route::post('product/Rate/store', 'getRate')->name('product.rate.store');
+    });
 });
 

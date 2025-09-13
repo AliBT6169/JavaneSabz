@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedTinyInteger('rate');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('rateable_id')->constrained()->cascadeOnDelete();
+            $table->unsignedInteger('rateable_id');
             $table->string('rateable_type');
             $table->timestamps();
         });

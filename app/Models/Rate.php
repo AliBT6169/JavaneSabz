@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Rate extends Model
 {
@@ -13,4 +15,14 @@ class Rate extends Model
         'rateable_type',
         'user_id',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function rateable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 }

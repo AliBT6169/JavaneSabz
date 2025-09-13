@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Rate;
+use Illuminate\Database\Eloquent\Model;
 
 class RateRepository implements RateRepositoryInterface
 {

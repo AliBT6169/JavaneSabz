@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Rate;
+use Illuminate\Database\Eloquent\Model;
 
 interface RateRepositoryInterface
 {
@@ -15,6 +16,5 @@ interface RateRepositoryInterface
     public function updateRate(int $id, array $data): bool;
 
     public function deleteRate(int $id): bool;
-
 
 }

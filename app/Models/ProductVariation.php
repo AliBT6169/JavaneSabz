@@ -40,9 +40,14 @@ class ProductVariation extends Model
         return $this->morphMany(Gallery::class, 'gallery');
     }
 
-    public function buy_cart(): HasOne
+    public function rates(): MorphMany
     {
-        return $this->hasOne(BuyCart::class);
+        return $this->morphMany(Rate::class, 'rateable');
+    }
+
+    public function buy_carts(): HasMany
+    {
+        return $this->hasMany(BuyCart::class);
     }
 
     public function product(): BelongsTo
