@@ -11,6 +11,8 @@ interface RateRepositoryInterface
 
     public function find(int $id): ?Rate;
 
+    public function absoluteFind(array $data): ?Rate;
+
     public function createRate(array $data): ?Rate;
 
     public function updateRate(int $id, array $data): bool;

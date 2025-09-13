@@ -23,6 +23,13 @@ class RateRepository implements RateRepositoryInterface
         return $this->rate::find($id);
     }
 
+    public function absoluteFind(array $data): ?Rate
+    {
+        return $this->rate::where('rateable_id', $data['rateable_id'] ?? null)
+            ->where('rateable_type', $data['rateable_type'] ?? null)
+            ->where('user_id', $data['user_id'] ?? null)->first();
+    }
+
     public function createRate(array $data): ?Rate
     {
         return $this->rate::create($data);

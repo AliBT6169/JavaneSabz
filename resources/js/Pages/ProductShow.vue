@@ -34,10 +34,9 @@ const setRating = async (value) => {
         id: product.value.data.id,
         rate: value,
     }).then((res) => {
-        console.log(res)
+        useIndexStore().ProductShowData.data.rate = res.data.rate;
         useToast().success('امتیاز شما برای این محصول با موفقیت ثبت شد!')
     }).catch((err) => {
-        console.log(err);
     })
     rating.value = false;
 

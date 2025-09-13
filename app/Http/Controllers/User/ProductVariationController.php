@@ -29,7 +29,11 @@ class ProductVariationController extends Controller
             'rateable_id' => $request->id,
             'rateable_type' => 'App\Models\ProductVariation',
         ]);
-        $this->rateService->create($data[0]);
+        $rate = $this->rateService->absoluteFind($data[0]);
+        if ($rate == null)
+            $this->rateService->create($data[0]);
+        else
+            $this->rateService->update($rate->id, $data[0]);
         $ratesAverage = Rate::where('rateable_id', $request->id)->average('rate');
         return response([
             'rate' => $ratesAverage,

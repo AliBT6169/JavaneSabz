@@ -14,6 +14,16 @@ class RateService
         $this->rateRepository = $rateRepository;
     }
 
+    public function find(int $id)
+    {
+        return $this->find($id);
+    }
+
+    public function absoluteFind(array $data): ?Rate
+    {
+        return $this->rateRepository->absoluteFind($data);
+    }
+
     public function all()
     {
         return $this->rateRepository->all();
