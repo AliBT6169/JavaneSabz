@@ -66,7 +66,7 @@ const submit = () => {
 
 <template>
     <div class="w-screen h-screen bg-cover bg-center"
-         style="background-image: url('../../../../images/slider/slider%20(6).jpeg');">
+         style="background-image: url('../../../../images/default/login_back.jpg');">
         <div class="mx-auto flex flex-col gap-10 h-full justify-center items-center w-[20rem]
         sm:w-[30rem] md:w-[40rem] lg:w-[60rem] xl:w-[80rem]">
             <Head title="Log in"/>

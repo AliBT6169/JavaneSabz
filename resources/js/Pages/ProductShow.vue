@@ -12,6 +12,7 @@ import Comments from "@/Pages/Components/Home/Comments.vue";
 import IndexLyout from "@/Pages/IndexLyout.vue";
 import StarRating from 'vue-star-rating';
 import {useToast} from "vue-toastification";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 const carouselConfig = {
     itemsToShow: 1,
@@ -30,13 +31,28 @@ const likeUnLike = async () => {
     product.value.data.is_liked = await res.value;
 }
 const setRating = async (value) => {
-    await axios.post(route('product.rate.store'),{
+    await axios.post(route('product.rate.store'), {
         id: product.value.data.id,
         rate: value,
     }).then((res) => {
         useIndexStore().ProductShowData.data.rate = res.data.rate;
         useToast().success('امتیاز شما برای این محصول با موفقیت ثبت شد!')
     }).catch((err) => {
+        if (err.status === 401) {
+            const toast = {
+                component: ToastWarning,
+                props: {
+                    message: 'لطفا اول وارد حساب کاربری خود شوید'
+                },
+                listeners: {
+                    set: () => {
+                        window.location.href = '/login';
+                    }
+                }
+            }
+            useToast().error(toast);
+        }
+        console.log(err)
     })
     rating.value = false;
 
@@ -121,7 +137,9 @@ const setRating = async (value) => {
                                                  :rating="product.data.rate"
                                                  :star-size="20">
                                     </star-rating>
-                                    <div class="p-2 rounded-xl border-2 border-current text-xs text-center" @click="rating = true">امتیاز دهی</div>
+                                    <div class="p-2 rounded-xl border-2 border-current text-xs text-center"
+                                         @click="rating = true">امتیاز دهی
+                                    </div>
                                 </div>
                                 <star-rating v-else
                                              :increment="1"

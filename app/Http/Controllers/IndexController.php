@@ -39,7 +39,7 @@ class IndexController extends Controller
             })->orderBy('sailed_quantity', 'desc')->get()),
             "products" => ProductVariation::getSomeProduct(20),
             "brands" => BrandResource::collection(Brand::where('is_best', true)->get()),
-            "banners" => Banner::first()->attribute != null ? IndexBannersResource::collection(Banner::latest()->get()) : '',
+            "banners" => IndexBannersResource::collection(Banner::where('attribute_id', '!=', null)->latest()->get()),
             "slider" => SliderSettings::first() != null ? IndexSliderResource::collection(SliderSettings::latest()->get()) : '',
             "settings" => [
                 "settings" => IndexSettingResource::make(Setting::first()),
