@@ -8,6 +8,7 @@ const props = defineProps({
     info: Object,
 });
 const setting = useIndexStore().Settings;
+console.log(setting.settings.data.address)
 </script>
 <template>
     <IndexLyout>
@@ -51,19 +52,19 @@ const setting = useIndexStore().Settings;
                 <div class="flex w-full flex-col items-center gap-2 ">
                     <div class="text-xl font-black">پل های ارتباطی:</div>
                     <div class="flex justify-center gap-2">
-                        <a :href="'t.me:'+setting.telegram" class="">
+                        <a :href="'t.me:'+setting.settings.data.telegram" class="">
                             <svg-component name="telegram"
                                            class="size-11 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
-                        <a :href="'wa.me:'+setting.whatsapp" class="">
+                        <a :href="'wa.me:'+setting.settings.data.whatsapp" class="">
                             <svg-component name="whatsapp"
                                            class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
-                        <a :href="'instagram.com/'+setting.instagram" class="">
+                        <a :href="'instagram.com/'+setting.settings.data.instagram" class="">
                             <svg-component name="instagram"
                                            class="size-11 cursor-pointer duration-300 hover:-translate-y-1 -mt-0.5"></svg-component>
                         </a>
-                        <a :href="'tel:'+setting.phone" class="">
+                        <a :href="'tel:'+setting.settings.data.phone" class="">
                             <svg-component name="tell"
                                            class="size-10 cursor-pointer duration-300 hover:-translate-y-1"></svg-component>
                         </a>
@@ -71,7 +72,7 @@ const setting = useIndexStore().Settings;
                 </div>
                 <div class="flex w-full flex-col justify-center items-center">
                     <span class="font-black text-xl">نشانی:</span>
-                    <span class="w-60">{{ setting.address }}</span>
+                    <span class="w-60">{{ setting.settings.data.address }}</span>
                 </div>
                 <div class="flex flex-col w-full items-center justify-center gap2">
                     <div class="font-bold text-xl">موقعیت نقشه:</div>
