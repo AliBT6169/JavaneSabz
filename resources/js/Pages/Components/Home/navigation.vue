@@ -13,7 +13,11 @@ const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const navSettings = useIndexStore().Settings.NavSetting.data;
+const navSettings = ref(useIndexStore().Settings.NavSetting.data);
+onMounted(() => {
+    navSettings.value = useIndexStore().Settings.NavSetting.data;
+
+})
 const props = defineProps({
     settings: {
         type: Object,
@@ -30,7 +34,7 @@ const Products = ref(null);
 const AboutUs = ref(null);
 const ConnectWithUs = ref(null);
 const brands = ref(null);
-navSettings.map(item => {
+navSettings.value.map(item => {
     if (item.title === 'برند ها')
         Brand.value = item;
     if (item.title === 'محصولات')
@@ -78,7 +82,8 @@ const showConnectModal = () => {
                     <Link :href="route('AllProductsShow')" v-if="item.title==='محصولات'" class="header-item-lists">
                         <div class="mega-tab-items relative" v-for="(navItem, index) in item.items">
                             <div class="relative overflow-hidden p-4 hover:overflow-visible">
-                                <Link :href="route('attributes.sendToShow',{id:navItem.id,slug:navItem.slug})" class="mega-tab-menu-items">
+                                <Link :href="route('attributes.sendToShow',{id:navItem.id,slug:navItem.slug})"
+                                      class="mega-tab-menu-items">
                                     <img :src="navItem.icon" alt="" class=" size-8 rounded-full">
                                     <h2 class="">{{ navItem.name }}</h2>
                                 </Link>
@@ -124,10 +129,11 @@ const showConnectModal = () => {
                     <!--                    brands-list-->
                     <div v-if="item.title==='برند ها'" class="header-item-lists !right-0 w-80 p-3">
                         <div class="grid grid-cols-2 gap-3 justify-items-center overflow-y-auto max-h-96">
-                            <Link v-for="item in brands" :href="route('brands.products.show',{id:item.id,slug:item.slug})"
+                            <Link v-for="item in brands"
+                                  :href="route('brands.products.show',{id:item.id,slug:item.slug})"
                                   class="h-12 w-fit min-w-32 border border-black overflow-hidden flex gap-3 items-center rounded-xl">
                                 <img :src="item.icon" alt="" class="size-12">
-                                <p class="font-bold text-sm text-black">{{item.name}}</p>
+                                <p class="font-bold text-sm text-black">{{ item.name }}</p>
                             </Link>
                         </div>
                     </div>

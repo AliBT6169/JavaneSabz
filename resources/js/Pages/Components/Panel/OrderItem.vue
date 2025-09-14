@@ -63,6 +63,8 @@ const return_order = async () => {
                     cancelLoading.value = false;
                 }).catch(err => {
                     useToast().error(err.response.data.message);
+                    order_return_description.value = false;
+                    cancelLoading.value = false;
                 });
             }
         }

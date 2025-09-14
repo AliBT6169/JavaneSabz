@@ -73,7 +73,9 @@ class OrderController extends Controller
         $order = Order::whereId($request->order_id)->where('user_id', $user->id)->first();
         if ($order === null)
             abort(400, 'سفارش مورد نظر وجود ندارد');
-        if ($order->status !== 2 || $order->updated_at->addDay(2) > now())
+        Log::info(now());
+        Log::info($order->updated_at->addDay(2));
+        if ($order->status !== 2 || $order->updated_at->addDay(2) < now())
             abort(400, 'امکان ارجاع این سفارش وجود ندارد!');
 
         $notification = [
