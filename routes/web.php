@@ -19,7 +19,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/وبلاگ/' . '{id}-' . '{slug}', 'blogShow')->name('blogs.show');
 });
 
-Route::get('/درباره-' . AboutUsSetting::first()->store_name, function () {
+Route::get('/درباره-جوانه سبز' , function () {
     $info = AboutUsSetting::first();
     return Inertia::render('About-Us', ['info' => $info]);
 })->name('about-us');
