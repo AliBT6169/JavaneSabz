@@ -29,27 +29,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(adminSeeder::class);
-        $this->call(provinceSeeder::class);
-        $this->call(citySeeder::class);
-        $this->call(DeliveryAmountSeeder::class);
-        $this->call(NavigationSettingSeeder::class);
         User::factory(100)->create()->unique;
         Setting::factory(1)->create();
         AboutUsSetting::factory(1)->create();
         Banner::factory(3)->create();
-//        User Gallery
-//        Gallery::factory(1)->create();
-//        Product Gallery
-//        Gallery::factory(100)->create();
-//        Brand::factory(10)->create()->unique;
-//        Category::factory(10)->create()->unique();
-//        Product::factory(200)->create()->unique();
-//        Attribute::factory(10)->create()->unique();
-//        ProductVariation::factory(200)->create()->unique;
         Address::factory(100)->create();
         Coupon::factory(1)->create();
-//        Order::factory(10)->create();
-//        OrderItem::factory(100)->create();
-//        Transaction::factory(10)->create();
+        $this->call(NavigationSettingSeeder::class);
+        $this->call(DeliveryAmountSeeder::class);
+        $this->call(citySeeder::class);
+        $this->call(provinceSeeder::class);
     }
 }
