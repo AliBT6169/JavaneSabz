@@ -15,7 +15,7 @@ class IndexSettingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'address'=>$this->address,
+            'address'=>$this->address??'',
             'phone'=>$this->phone,
             'icon'=>$this->icon,
             'email'=>$this->email,
