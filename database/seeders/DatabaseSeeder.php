@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         Coupon::factory(1)->create();
         $this->call(NavigationSettingSeeder::class);
         $this->call(DeliveryAmountSeeder::class);
-        $this->call(citySeeder::class);
         $this->call(provinceSeeder::class);
+        $this->call(citySeeder::class);
     }
 }
