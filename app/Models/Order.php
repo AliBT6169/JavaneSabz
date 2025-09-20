@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class Order extends Model
 {
@@ -46,7 +47,7 @@ class Order extends Model
         $Order = self::create([
             'user_id' => Auth::id(),
             'status' => $request['status'] ?? 0,
-            'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment + 10000,
+            'code' => $request['code'],
             'total_amount' => $request['total_amount'],
             'VAT' => $request['VAT'] ?? 0,
             'delivery_amount' => $request['delivery_amount'] ?? 0,

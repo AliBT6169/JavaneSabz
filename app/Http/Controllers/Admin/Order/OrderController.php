@@ -72,7 +72,7 @@ class OrderController extends Controller
         $VAT = $payingAmount * 15 / 100;
         $payingAmount += $VAT;
         $order = Order::create([
-            'code' => Order::latest()->first()->id??1000 + 167,
+            'code' => ((Order::latest()->first()->code ?? 10000) + 167),
             'user_id' => $request->user,
             'status' => $status,
             'total_amount' => $totalAmount,

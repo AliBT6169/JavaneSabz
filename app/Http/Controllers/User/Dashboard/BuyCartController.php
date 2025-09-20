@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class BuyCartController extends Controller
 {
@@ -61,7 +62,7 @@ class BuyCartController extends Controller
         $VAT = ($total_amount * 9) / 100;
         $paying_amount = $paying_amount + $VAT;
         Order::Creator([
-            'code' => Order::latest()->first()->id??1000 + 167,
+            'code' => (Order::latest()->first()->code?? 10000) + 167,
             'total_amount' => (int)($total_amount),
             'delivery_amount' => $deliveryAmount['deliveryAmount'],
             'paying_amount' => (int)($paying_amount),
