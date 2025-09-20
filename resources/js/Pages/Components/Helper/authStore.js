@@ -70,7 +70,7 @@ export const useAuthStore = defineStore('auth', {
                 }).catch(error => {
                     console.log(error);
                 });
-            } else toast.warning('لطفا اول وارد حساب کاربری خود شوید')
+            } else window.location.href = '/login';
         },
         async likeOrUnLike(product_id, like) {
             const res = ref(like);
@@ -92,7 +92,7 @@ export const useAuthStore = defineStore('auth', {
 
                 }
             } else
-                toast.warning('لطفا اول وارد حساب کاربری خود شوید');
+                window.location.href = '/login';
             return res.value;
         },
         async informationUpdate(form) {
