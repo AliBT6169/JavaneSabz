@@ -33,7 +33,7 @@ class BuyCartController extends Controller
     public function deleteItemFromCart(int $ProductId)
     {
         BuyCart::whereId($ProductId)->delete();
-        return response()->json('محصول با موفقیت حذف شد!',200);
+        return response()->json('محصول با موفقیت حذف شد!', 200);
     }
 
     public function completeCart()
@@ -61,7 +61,7 @@ class BuyCartController extends Controller
         $VAT = ($total_amount * 9) / 100;
         $paying_amount = $paying_amount + $VAT;
         Order::Creator([
-            'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment + 10000,
+            'code' => Order::latest()->first()->id??1000 + 167,
             'total_amount' => (int)($total_amount),
             'delivery_amount' => $deliveryAmount['deliveryAmount'],
             'paying_amount' => (int)($paying_amount),

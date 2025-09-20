@@ -72,7 +72,7 @@ class OrderController extends Controller
         $VAT = $payingAmount * 15 / 100;
         $payingAmount += $VAT;
         $order = Order::create([
-            'code' => DB::select('SHOW TABLE STATUS LIKE "orders"')[0]->Auto_increment + 10000,
+            'code' => Order::latest()->first()->id??1000 + 167,
             'user_id' => $request->user,
             'status' => $status,
             'total_amount' => $totalAmount,
