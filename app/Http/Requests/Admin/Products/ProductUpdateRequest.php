@@ -26,7 +26,7 @@ class ProductUpdateRequest extends FormRequest
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:50',
             'brand' => 'required|exists:brands,id',
-            'category' => 'required|exists:Categories,id',
+            'category' => 'required|exists:categories,id',
             'description' => 'required|string',
             'is_active' => 'required|boolean',
             'variation.*.size' => 'required|string|max:50',

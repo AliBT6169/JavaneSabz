@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.9",
         "morilog/jalali": "^3.4",
         "tightenco/ziggy": "^2.0",
-        "ybazli/faker": "^1.0"
+        "ybazli/faker": "^1.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
