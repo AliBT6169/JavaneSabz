@@ -9,24 +9,30 @@ use App\Http\Resources\Admin\Orders\OrderIndexResource;
 use App\Http\Resources\Admin\ProductVariations\ProductVariationsResource;
 use App\Http\Resources\Admin\Transactions\TransactionIndexResource;
 use App\Http\Resources\Admin\UserResource;
+use App\Http\Resources\Dashboard\DashboardResource;
 use App\Models\Comment;
 use App\Models\Order;
 use App\Models\ProductVariation;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Services\NotificationService;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AdminController extends Controller
 {
     protected $notificationService;
+
     public function __construct(NotificationService $notificationService)
     {
         $this->notificationService = $notificationService;
     }
+
     public function index()
     {
+
         $dashboardData = [];
+        $dashboardData['selfData'] = DashboardResource::make(Auth::user());
         $dashboardData['waitOrders'] = OrderIndexResource::collection(Order::where("status", 0)->where('payment_status', 1)->latest()->get());
         $dashboardData['niceSaleProducts'] = ProductVariationsResource::collection(ProductVariation::orderBy("sailed_quantity", "desc")->take(5)->get());
         $dashboardData['noQuantityProducts'] = ProductVariationsResource::collection(ProductVariation::where('quantity', 0)->get());

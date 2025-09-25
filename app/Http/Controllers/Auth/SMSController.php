@@ -42,7 +42,7 @@ class SMSController extends Controller
 //
 //        ]);
         $url = 'https://console.melipayamak.com/api/send/simple/757ea766af2446918fa2bb00086b42a8';
-        $data = array('from' => '50002710003905', 'to' => $request->mobile, 'text' => $message);
+        $data = array('from' => '30008810668877', 'to' => $request->mobile, 'text' => $message);
         $data_string = json_encode($data);
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -86,14 +86,16 @@ class SMSController extends Controller
             event(new Registered($user));
 
             Auth::login($user);
-
-            return redirect(route('dashboard', absolute: false));
+                return redirect(route('dashboard', absolute: false));
 
         } else {
             $user = User::where('cellphone', $request->mobile)->first();
             event(new Registered($user));
             Auth::login($user);
-            return redirect(route('dashboard', absolute: false));
+            if ($user->is_admin == 1)
+                return redirect(route('admin.AdminDashboard'));
+            else
+                return redirect(route('dashboard', absolute: false));
         }
     }
 }
