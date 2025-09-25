@@ -20,10 +20,12 @@ const likeUnLike = async () => {
     const res = await ref(useAuthStore().likeOrUnLike(props.productData.id, props.productData.is_liked));
     props.productData.is_liked = await res.value;
 }
+
+const showAllDescription = ref(false);
 </script>
 
 <template>
-        <div class="!p-5 size-5/6 bg-defaultColor2 rounded-xl dark:bg-defaultColor7 md:size-3/4 md:p-3">
+    <div class="!p-5 size-5/6 bg-defaultColor2 rounded-xl dark:bg-defaultColor7 md:size-3/4 md:p-3">
 
         <div class="size-full overflow-scroll no-scrollbar space-y-6 lg:flex lg:space-y-0 gap-4 *:w-full">
             <!--                rightSide-->
@@ -135,9 +137,16 @@ const likeUnLike = async () => {
                         اطلاعات محصول
                     </div>
                     <div class="p-4 text-wrap">
-                        {{ productData.description }}
+                        <p class="max-h-[120px] transition-all duration-500 overflow-hidden"
+                           :class="{'!max-h-[1000px]':showAllDescription}">
+                            {{ productData.description + (showAllDescription ? '...' : '') }}
+                        </p>
                     </div>
                 </div>
+                <p class="cursor-pointer text-end" @click="showAllDescription=!showAllDescription">
+                    {{ showAllDescription ? 'نمایش کمتر' : 'نمایش بیشتر' }}
+                    <SvgComponent name="d-arrow-left" class="inline size-5 duration-300 -rotate-90" :class="{'!rotate-90':showAllDescription}"/>
+                </p>
             </div>
         </div>
     </div>

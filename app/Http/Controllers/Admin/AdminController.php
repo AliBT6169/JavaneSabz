@@ -30,7 +30,6 @@ class AdminController extends Controller
 
     public function index()
     {
-
         $dashboardData = [];
         $dashboardData['selfData'] = DashboardResource::make(Auth::user());
         $dashboardData['waitOrders'] = OrderIndexResource::collection(Order::where("status", 0)->where('payment_status', 1)->latest()->get());

@@ -21,7 +21,7 @@ const noQuantityProducts = ref(props.dashboardData.noQuantityProducts.data);
 const newComments = ref(props.dashboardData.newComments.data);
 const newTransactions = ref(props.dashboardData.newTransactions.data);
 const mostBuyerUsers = ref(props.dashboardData.mostBuyerUsers.data);
-useAuthStore().setUser(props.dashboardData.selfData)
+useAuthStore().setUser(props.dashboardData.selfData.data)
 useAdminStore().setNotifications(props.dashboardData.unSeenNotifications)
 </script>
 

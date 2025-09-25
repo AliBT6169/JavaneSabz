@@ -57,6 +57,8 @@ const setRating = async (value) => {
     rating.value = false;
 
 }
+
+const showAllDescription = ref(false);
 </script>
 
 <template>
@@ -191,15 +193,21 @@ const setRating = async (value) => {
                         </div>
                     </div>
                     <!--                leftSide-->
-                    <div class="space-y-6">
-                        <div class="rounded-xl border border-defaultColor lg:mt-[4.5rem]">
-                            <div class="productShowItems justify-center rounded-b-none py-2">
-                                اطلاعات محصول
-                            </div>
-                            <div class="p-4">
-                                {{ product.data.description }}
-                            </div>
+                    <div class="space-y-6"><div class="rounded-xl border border-defaultColor lg:mt-[4.5rem]">
+                        <div class="productShowItems justify-center rounded-b-none py-2">
+                            اطلاعات محصول
                         </div>
+                        <div class="p-4 text-wrap">
+                            <p class="max-h-[114px] transition-all duration-500 overflow-hidden"
+                               :class="{'!max-h-[1000px]':showAllDescription}">
+                                {{ product.data.description}}
+                            </p>
+                        </div>
+                    </div>
+                        <p class="cursor-pointer text-end" @click="showAllDescription=!showAllDescription">
+                            {{ showAllDescription ? 'نمایش کمتر' : 'نمایش بیشتر' }}
+                            <SvgComponent name="d-arrow-left" class="inline size-5 duration-300 -rotate-90" :class="{'!rotate-90':showAllDescription}"/>
+                        </p>
                         <div class="productShowItems flex gap-6 justify-between py-4 *:w-full">
                             <h3 class="">
                                 <svg-component name="esalat"
