@@ -15,7 +15,7 @@ const indexSettings = useIndexStore().Settings.settings.data;
     <div class="mx-auto flex flex-col gap-10 items-center w-[20rem]
         sm:w-[30rem] md:w-[48rem] lg:w-[60rem] xl:w-[80rem]">
         <div
-            class="hidden fixed bottom-10 rounded-full py-2 px-2.5 animate-bounce bg-defaultColor5 border-4 border-white left-20
+            class="hidden fixed z-50 bottom-10 rounded-full py-2 px-2.5 animate-bounce bg-defaultColor5 border-4 border-white left-20
             lg:left-40 2xl:left-72 cursor-pointer md:block"
             @click="modalSet('BuyCart')">
             <span class="absolute top-8 left-8 size-4 text-xs flex justify-center items-center rounded-full bg-red-500">{{
