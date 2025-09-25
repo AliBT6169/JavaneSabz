@@ -23,7 +23,7 @@ class AttributeStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:50|unique:attributes,name',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|max:2048',
             'description' => 'required|string|max:1000',
             'is_active' => 'required|boolean',
             'brand.*' => 'numeric|nullable',

@@ -23,7 +23,7 @@ class BrandStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:50|unique:brands',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|max:2048',
             'is_active' => 'required|boolean',
         ];
     }
