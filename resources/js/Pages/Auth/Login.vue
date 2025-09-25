@@ -1,11 +1,10 @@
 <script setup>
 import {Head, Link, useForm} from '@inertiajs/vue3';
-import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
-import CheckBoxBT from "@/Pages/Components/Form/CheckBoxBT.vue";
 import ButtonBT2 from "@/Pages/Components/Form/ButtonBT2.vue";
 import {useToast} from "vue-toastification";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import {ref} from "vue";
+import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
 
 const formStatus = ref(0);
 defineProps({
@@ -86,7 +85,7 @@ const submit = () => {
                                required
                     />
                     <input-BT2 v-if="formStatus===2"
-                               Label="نام کاربری:"
+                               Label="نام کاربری(انگلیسی):"
                                type="text"
                                v-model="RegisterForm.name"
                     />

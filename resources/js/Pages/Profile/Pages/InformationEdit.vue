@@ -56,9 +56,9 @@ const onFileChange = (event) => {
                     </label>
                 </div>
                 <div class="grid gap-8 place-content-center text-gray-700 dark:text-gray-300 lg:grid-cols-2 lg:text-lg">
-                    <panel-input label="نام کاربری :" :value="form.name"
+                    <panel-input label="نام کاربری : (انگلیسی)" :value="form.name"
                                  @updateValue="(item)=>form.name=item"
-                                 placeholder-text="نام کاربری خود را وارد کنید:"/>
+                                 placeholder-text="نام کاربری خود را به صورت انگلیسی وارد کنید:"/>
                     <panel-input label="نام و نام خانوادگی :" :value="form.full_name"
                                  @updateValue="(item)=>form.full_name=item"
                                  placeholder-text="نام و نام خانوادگی خود را وارد کنید:"/>

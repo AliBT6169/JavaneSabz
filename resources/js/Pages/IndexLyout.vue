@@ -16,9 +16,9 @@ const indexSettings = useIndexStore().Settings.settings.data;
         sm:w-[30rem] md:w-[48rem] lg:w-[60rem] xl:w-[80rem]">
         <div
             class="hidden fixed z-50 bottom-10 rounded-full py-2 px-2.5 animate-bounce bg-defaultColor5 border-4 border-white left-20
-            lg:left-40 2xl:left-72 cursor-pointer md:block"
+            lg:left-40 2xl:left-72 cursor-pointer md:block dark:bg-defaultColor dark:border-black"
             @click="modalSet('BuyCart')">
-            <span class="absolute top-8 left-8 size-4 text-xs flex justify-center items-center rounded-full bg-red-500">{{
+            <span class="absolute top-8 left-8 size-4 text-xs flex justify-center items-center rounded-full bg-red-500 dark:bg-red-700">{{
                     useAuthStore().Products ? useAuthStore().Products.length : ''
                 }}</span>
             <p class="mt-1 text-sm">سبد خرید</p>
