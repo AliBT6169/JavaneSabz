@@ -25,12 +25,12 @@ const productShow = async () => {
 
 <template>
     <div
-        class="relative !w-60 group overflow-hidden border border-white rounded-lg shadow-sm hover:shadow-md
+        class="relative !w-44 text-sm group overflow-hidden border border-white rounded-lg shadow-sm hover:shadow-md
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 pb-6 space-y-3 hover3D-animation
          items-center dark:bg-defaultColor7 dark:shadow-defaultColor dark:border-gray-700 md:text-base"
         :class="{'shadow-xl !shadow-red-500':product.is_liked}">
         <Link class="block" :href="route('ProductShow',{id:product.id,slug:product.slug})">
-            <img loading="lazy" :src="product.image" alt="" @dragstart.prevent class="w-60 h-40">
+            <img loading="lazy" :src="product.image" alt="" @dragstart.prevent class="w-full h-40">
         </Link>
         <!--        name-->
         <div class="flex px-4 justify-center w-full items-center">
@@ -64,17 +64,17 @@ const productShow = async () => {
                 class="flex justify-between items-center w-full lg:w-fit lg:block">
                 <div @click="useAuthStore().addToCart(product.id)"
                      class="flex items-center gap-1 px-3 py-1 duration-300 rounded-xl border border-gray-500/50 hover:bg-gray-500/20">
-                    <div class="">سبد خرید</div>
-                    <svg-component name="cart" class="size-7"/>
+                    <div class="text-xs md:text-sm text-nowrap">سبد خرید</div>
+                    <svg-component name="cart" class="size-5"/>
 
                 </div>
                 <svg-component :title="product.is_liked?'حذف از علاقه مندی':'افزودن به علاقه مندی'" name="like"
                                @click="likeUnLike"
-                               class="size-7 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7
+                               class="size-6 hover:fill-red-500 fill-transparent text-red-500 duration-500 dark:fill-defaultColor7
                                dark:hover:fill-red-900 dark:text-red-900 lg:hidden"
                                :class="{'!fill-red-500':product.is_liked}"/>
             <svg-component title="مشاهده محصول" name="show" @click="productShow"
-                           class="size-7 hover:text-defaultColor duration-500 lg:hidden"/>
+                           class="size-6 hover:text-defaultColor duration-500 lg:hidden"/>
             </span>
         </div>
         <!--        like & show-->
