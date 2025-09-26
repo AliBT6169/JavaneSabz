@@ -39,6 +39,7 @@ class UserController extends Controller
             'full_name' => $request->full_name,
             'name' => $request->user_name,
             'email' => $request->email,
+            'is_admin' => $request->is_admin,
             'password' => Hash::make($request->password),
             'cellphone' => $request->cellphone,
             'gender' => $request->gender,
@@ -46,9 +47,9 @@ class UserController extends Controller
 //        save user address section
         if ($request->city != '' || $request->address != '' || $request->post_code != '') {
             $address_validate = $request->validate([
-                'address' => 'required|string',
-                'city' => 'required|numeric',
-                'post_code' => 'required|numeric|digits:10',
+                'address' => 'nullable|string',
+                'city' => 'nullable|numeric',
+                'post_code' => 'nullable|numeric|digits:10',
             ]);
             $address = Address::create([
                 'addressable_id' => $user->id,
@@ -97,15 +98,16 @@ class UserController extends Controller
             'full_name' => $request->full_name,
             'name' => $request->user_name,
             'email' => $request->email,
+            'is_admin' => $request->is_admin,
             'cellphone' => $request->cellphone,
             'gender' => $request->gender,
         ]);
 //        user address update
-        if ($request->city != '' || $request->address != '' || $request->post_code != '') {
+        if ($request->city != '' && $request->address != '' && $request->post_code != '') {
             $address_validate = $request->validate([
-                'address' => 'required|string',
-                'city' => 'required|numeric',
-                'post_code' => 'required|numeric|digits:10',
+                'address' => 'nullable|string',
+                'city' => 'nullable|numeric',
+                'post_code' => 'nullable|numeric|digits:10',
             ]);
             $address = Address::where('addressable_id', $request->id)->where('addressable_type', User::class)->first();
             if ($address) {

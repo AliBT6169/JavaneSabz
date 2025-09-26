@@ -16,6 +16,7 @@ const form = new ref({
     image: '',
     gender: 1,
     email: '',
+    is_admin: 0,
     password: '',
     password_confirmation: '',
     cellphone: '',
@@ -94,18 +95,34 @@ const saveChanges = async () => {
                 </div>
                 <div class="">
                     <AdminInput name="کد پستی" v-model="form.post_code"/>
-                    <div class="w-full">
-                        <div class="text-sm px-3">جنسیت :</div>
-                        <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2
+                    <div class="w-full flex gap-5 *:w-full">
+                        <div class="">
+                            <div class="text-sm px-3">مقام :</div>
+                            <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2
                 focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4">
-                            <label for="man">آقا</label>
-                            <input checked @change="form.gender=1" type="radio" id="man"
-                                   name="gender"
-                                   class="text-adminColor2 cursor-pointer  focus:ring-0 dark:text-adminColor3">
-                            <label for="woman">خانم</label>
-                            <input @change="form.gender=0" type="radio" id="woman"
-                                   name="gender"
-                                   class="text-adminColor2 cursor-pointer focus:ring-0 dark:text-adminColor3">
+                                <label for="admin">مدیر</label>
+                                <input :checked="form.is_admin === 1" @change="form.is_admin=1" type="radio" id="admin"
+                                       name="is_admin"
+                                       class="text-adminColor2 cursor-pointer  focus:ring-0 dark:text-adminColor3">
+                                <label for="user">کاربر</label>
+                                <input :checked="form.is_admin === 0" @change="form.is_admin=0" type="radio" id="user"
+                                       name="is_admin"
+                                       class="text-adminColor2 cursor-pointer focus:ring-0 dark:text-adminColor3">
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="text-sm px-3">جنسیت :</div>
+                            <div class="flex items-center gap-4 p-3 bg-adminColor1 rounded-lg border-adminColor2 border-2 placeholder-adminColor2 focus:ring-adminColor2
+                focus:border-adminColor2 dark:bg-gray-600 dark:placeholder-adminColor4">
+                                <label for="man">آقا</label>
+                                <input checked @change="form.gender=1" type="radio" id="man"
+                                       name="gender"
+                                       class="text-adminColor2 cursor-pointer  focus:ring-0 dark:text-adminColor3">
+                                <label for="woman">خانم</label>
+                                <input @change="form.gender=0" type="radio" id="woman"
+                                       name="gender"
+                                       class="text-adminColor2 cursor-pointer focus:ring-0 dark:text-adminColor3">
+                            </div>
                         </div>
                     </div>
                 </div>
