@@ -19,6 +19,12 @@ class SMSController extends Controller
 {
     public function sendAuthSMS(SendLoginMobileRequest $request)
     {
+        $userCheck = User::where('cellphone', $request->mobile)->first();
+        if ($userCheck && $userCheck->is_admin) {
+            return response()->json([
+                'status' => 50,
+            ]);
+        }
         if (Cache::get($request->mobile . 'ban'))
             throw ValidationException::withMessages(['mobile' => 'تلاش های شما بیش از حد مجاز شد لطفا بعد از 20 دقیقه دوباره اقدام فرمایید!']);
         if (Cache::get($request->mobile . 'try')) {
@@ -33,29 +39,14 @@ class SMSController extends Controller
         $code = rand(10000, 99999);
         $message = $code . ' ' . '  :کد ورورد شما' . PHP_EOL . 'به سامانه جوانه سبز خوش آمدید' . PHP_EOL . 'لغو=11';
         Cache::put($request->mobile, $code, Date::now()->addMinutes(2));
-//        Http::post('https://console.melipayamak.com/api/send/shared/757ea766af2446918fa2bb00086b42a8', [
-//            'username' => '19114303905',
-//            'password' => '#E2@Q',
-//            'to' => $request->mobile,
-//            'from' => '50002710003905',
-//            'text' => $message,
-//
-//        ]);
-        $url = 'https://console.melipayamak.com/api/send/simple/757ea766af2446918fa2bb00086b42a8';
-        $data = array('from' => '30008810668877', 'to' => $request->mobile, 'text' => $message);
-        $data_string = json_encode($data);
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
-            array('Content-Type: application/json',
-                'Content-Length: ' . strlen($data_string))
-        );
-        $result = curl_exec($ch);
-        curl_close($ch);
+        $result = Http::post('https://console.melipayamak.com/api/send/shared/757ea766af2446918fa2bb00086b42a8', [
+            'username' => '19114303905',
+            'password' => '#E2@Q',
+            'to' => $request->mobile,
+            'from' => '30008810668877',
+            'text' => $message,
+        ]);
+//        30008810668877
         Log::info($result);
         $user = User::where('cellphone', $request->mobile)->first();
         if ($user) {

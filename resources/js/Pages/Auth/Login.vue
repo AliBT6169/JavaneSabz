@@ -5,6 +5,7 @@ import {useToast} from "vue-toastification";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import {ref} from "vue";
 import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
+import login from "@/Pages/Auth/Login.vue";
 
 const formStatus = ref(0);
 defineProps({
@@ -35,6 +36,8 @@ const LoginForm = useForm({
 const submit = () => {
     if (formStatus.value === 0)
         axios.post(route('sendLoginSMSCode'), SendSMSForm).then((res) => {
+            if (res.data.status === 50)
+                window.location.href = 'adminLogin';
             if (res.data.user_exists) {
                 formStatus.value = 1;
                 LoginForm.mobile = res.data.mobile;

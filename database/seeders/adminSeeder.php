@@ -26,7 +26,7 @@ class adminSeeder extends Seeder
             'cellphone' => '09012553051',
             'status' => rand(0, 1),
             'email_verified_at' => now(),
-            'password' => Hash::make('12345678'),
+            'password' => '12345678',
             'remember_token' => Str::random(10),
         ]);
         Address::create([
@@ -45,7 +45,7 @@ class adminSeeder extends Seeder
             'cellphone' => '09394001870',
             'status' => rand(0, 1),
             'email_verified_at' => now(),
-            'password' => Hash::make('12345678'),
+            'password' => '12345678',
             'remember_token' => Str::random(10),
         ]);
         Address::create([
