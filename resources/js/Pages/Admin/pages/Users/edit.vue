@@ -17,6 +17,7 @@ const form = new ref({
     id: props.user.data.id,
     full_name: props.user.data.full_name ?? '',
     is_admin: props.user.data.is_admin ?? '',
+    baned: props.user.data.baned ?? '',
     user_name: props.user.data.user_name ?? '',
     image: props.user.data.user_image ?? '',
     gender: props.user.data.gender ?? '',
@@ -93,7 +94,19 @@ const changeData = async () => {
                     <AdminInput name="ایمیل" v-model="form.email"/>
                 </div>
                 <div class="">
+                    <div class="w-full items-center flex gap-5 *:w-full">
                     <AdminInput name="کد پستی" v-model="form.post_code"/>
+                        <div class="flex admin_inputs mt-4 items-center h-14 gap-5 *:*:mx-2">
+                            <div class="*:cursor-pointer">
+                                <label for="baned">بلاک</label>
+                                <input type="radio" id="baned" name="ban" :checked="form.baned===1" @click="form.baned = 1" class="">
+                            </div>
+                            <div class="*:cursor-pointer">
+                                <label for="not_baned">آزاد</label>
+                                <input type="radio" id="not_baned" name="ban" :checked="form.baned===0" @click="form.baned = 0" class="">
+                            </div>
+                        </div>
+                    </div>
                     <div class="w-full flex gap-5 *:w-full">
                         <div class="">
                             <div class="text-sm px-3">مقام :</div>

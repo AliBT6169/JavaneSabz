@@ -29,6 +29,7 @@ class UserUpdateRequest extends FormRequest
             'post_code' => 'nullable|numeric|digits:10',
             'gender' => 'boolean',
             'is_admin' => 'boolean',
+            'baned' => 'boolean',
             'address' => 'nullable|string',
         ];
     }

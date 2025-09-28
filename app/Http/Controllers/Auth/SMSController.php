@@ -25,6 +25,9 @@ class SMSController extends Controller
                 'status' => 50,
             ]);
         }
+        if ($userCheck && $userCheck->baned)
+            throw ValidationException::withMessages(['message' => 'شما اجازه ورود ندارید!!!']);
+
         if (Cache::get($request->mobile . 'ban'))
             throw ValidationException::withMessages(['mobile' => 'تلاش های شما بیش از حد مجاز شد لطفا بعد از 20 دقیقه دوباره اقدام فرمایید!']);
         if (Cache::get($request->mobile . 'try')) {

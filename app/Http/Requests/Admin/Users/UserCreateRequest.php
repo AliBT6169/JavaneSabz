@@ -25,12 +25,11 @@ class UserCreateRequest extends FormRequest
             'full_name' => 'required|string|max:50|unique:users,full_name',
             'user_name' => 'required|string|max:50|unique:users,name',
             'email' => 'nullable|string|email|unique:users,email',
-            'password' => 'required|string|min:8',
-            'password_confirmation' => 'required|string|min:8',
             'cellphone' => ['required', 'numeric', 'digits:11', 'regex:/^(\+98|0)?9\d{9}$/', 'unique:users,cellphone'],
             'post_code' => 'nullable|numeric|digits:10|unique:addresses,postcode',
             'gender' => 'boolean',
             'is_admin' => 'boolean',
+            'baned' => 'boolean',
             'address' => 'nullable|string',
         ];
     }

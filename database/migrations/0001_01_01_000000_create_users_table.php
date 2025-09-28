@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->string('password')->nullable();
             $table->enum('provider', ['form', 'google', 'facebook'])->default('form');
             $table->boolean('is_admin')->default(false);
+            $table->boolean('baned')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

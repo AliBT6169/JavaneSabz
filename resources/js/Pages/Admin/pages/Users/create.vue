@@ -17,6 +17,7 @@ const form = new ref({
     gender: 1,
     email: '',
     is_admin: 0,
+    baned: 0,
     password: '',
     password_confirmation: '',
     cellphone: '',
@@ -90,11 +91,19 @@ const saveChanges = async () => {
                     <AdminInput name="ایمیل" v-model="form.email"/>
                 </div>
                 <div class="">
-                    <AdminInput type="password" name="رمز عبور" v-model="form.password"/>
-                    <AdminInput type="password" name="تایید رمز عبور" v-model="form.password_confirmation"/>
-                </div>
-                <div class="">
-                    <AdminInput name="کد پستی" v-model="form.post_code"/>
+                    <div class="w-full items-center flex gap-5 *:w-full">
+                        <AdminInput name="کد پستی" v-model="form.post_code"/>
+                        <div class="flex admin_inputs mt-4 items-center h-14 gap-5 *:*:mx-2">
+                            <div class="*:cursor-pointer">
+                            <label for="baned">بلاک</label>
+                            <input type="radio" id="baned" name="ban" :checked="form.baned===1" @click="form.baned = 1" class="">
+                            </div>
+                            <div class="*:cursor-pointer">
+                            <label for="not_baned">آزاد</label>
+                            <input type="radio" id="not_baned" name="ban" :checked="form.baned===0" @click="form.baned = 0" class="">
+                            </div>
+                        </div>
+                    </div>
                     <div class="w-full flex gap-5 *:w-full">
                         <div class="">
                             <div class="text-sm px-3">مقام :</div>

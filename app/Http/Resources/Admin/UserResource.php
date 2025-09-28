@@ -22,6 +22,7 @@ class UserResource extends JsonResource
             'user_name' => $this->name,
             'user_image' => $this->gallery->media ?? '',
             'is_admin' => $this->is_admin,
+            'baned' => $this->baned,
             'gender' => $this->gender,
             'cellphone' => $this->cellphone,
             'email' => $this->email,

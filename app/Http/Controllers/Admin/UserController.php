@@ -40,7 +40,7 @@ class UserController extends Controller
             'name' => $request->user_name,
             'email' => $request->email,
             'is_admin' => $request->is_admin,
-            'password' => Hash::make($request->password),
+            'baned' => $request->baned,
             'cellphone' => $request->cellphone,
             'gender' => $request->gender,
         ]);
@@ -99,6 +99,7 @@ class UserController extends Controller
             'name' => $request->user_name,
             'email' => $request->email,
             'is_admin' => $request->is_admin,
+            'baned' => $request->baned,
             'cellphone' => $request->cellphone,
             'gender' => $request->gender,
         ]);
