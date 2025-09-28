@@ -7,6 +7,7 @@ import NavSetting from "@/Pages/Admin/pages/Settings/NavSetting.vue";
 import BestBrands from "@/Pages/Admin/pages/Settings/bestBrands.vue";
 import BannersSetting from "@/Pages/Admin/pages/Settings/BannersSetting.vue";
 import SliderSettings from "@/Pages/Admin/pages/Settings/SliderSettings.vue";
+import PasswoarsChange from "@/Pages/Admin/pages/Settings/PasswoarsChange.vue";
 
 
 const props = defineProps({
@@ -49,6 +50,10 @@ const settingName = ref('AboutSetting');
                      class="adminSettingSidebarItem">
                     تنظیمات بنر ها
                 </div>
+                <div @click="settingName = 'PasswordChange'"
+                     class="adminSettingSidebarItem">
+                    تغییر رمز عبور
+                </div>
             </div>
             <div class="w-full relative flex justify-center">
                 <AboutSetting :is_active="settingName==='AboutSetting'" :settings="settings.AboutSetting.data"/>
@@ -57,6 +62,7 @@ const settingName = ref('AboutSetting');
                 <best-brands :is_active="settingName==='bestBrands'" :settings="settings.BestBrandsSettings.data"/>
                 <BannersSetting :is_active="settingName==='bannerSetting'" :settings="settings.BannersSettings.data"/>
                 <SliderSettings :is_active="settingName==='sliderSetting'" :settings="settings.SliderSettings.data"/>
+                <PasswoarsChange :is_active="settingName==='PasswordChange'"/>
             </div>
         </div>
     </Layout>

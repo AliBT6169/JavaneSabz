@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ProductVariation\ProductVariationController;
 use App\Http\Controllers\Admin\Setting\AboutUsSettingController;
+use App\Http\Controllers\Admin\Setting\AdminPasswordChangeController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Setting\SliderSettingController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
@@ -140,6 +141,11 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::controller(NotificationController::class)->group(function () {
         Route::get('/notification/index', 'index')->name('notifications.index');
         Route::post('/notification/seen', 'seen')->name('notifications.seen');
+    });
+
+    Route::controller(AdminPasswordChangeController::class)->group(function () {
+        Route::get('/PassChange/sendVerification', 'sendVerification')->name('passwordChange.sendVerification');
+        Route::post('/PassChange/verifyAndChange', 'verifyAndChange')->name('passwordChange.verifyAndChange');
     });
 });
 
