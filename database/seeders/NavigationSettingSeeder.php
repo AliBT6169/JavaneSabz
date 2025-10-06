@@ -26,8 +26,8 @@ class NavigationSettingSeeder extends Seeder
             'queue' => 1,
         ]);
         NavBarSetting::create([
-            'title' => 'برند ها',
-            'icon' => 'indexBrands',
+            'title' => 'دسته بندی ها',
+            'icon' => 'indexCategories',
             'queue' => 2,
         ]);
         NavBarSetting::create([

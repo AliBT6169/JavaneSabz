@@ -34,6 +34,7 @@ const Products = ref(null);
 const AboutUs = ref(null);
 const ConnectWithUs = ref(null);
 const brands = ref(null);
+const categories = ref(null);
 navSettings.value.map(item => {
     if (item.title === 'برند ها')
         Brand.value = item;
@@ -47,6 +48,11 @@ navSettings.value.map(item => {
 onMounted(() => {
     axios.get(route('brands.show')).then((res) => {
         brands.value = res.data.data;
+    }).catch(err => {
+        console.log(err);
+    });
+    axios.get(route('categories.show')).then((res) => {
+        categories.value = res.data.data;
     }).catch(err => {
         console.log(err);
     });
@@ -127,13 +133,13 @@ const showConnectModal = () => {
                         </div>
                     </Link>
                     <!--                    brands-list-->
-                    <div v-if="item.title==='برند ها'" class="header-item-lists !right-0 w-80 p-3">
+                    <div v-if="item.title==='دسته بندی ها'" class="header-item-lists !right-0 w-80 p-3">
                         <div class="grid grid-cols-2 gap-3 justify-items-center overflow-y-auto max-h-96">
-                            <Link v-for="item in brands"
-                                  :href="route('brands.products.show',{id:item.id,slug:item.slug})"
+                            <Link v-for="item in categories"
+                                  :href="route('categories.products.show',{id:item.id,slug:item.slug})"
                                   class="h-12 w-fit min-w-32 border border-black overflow-hidden flex gap-3 items-center rounded-xl">
                                 <img :src="item.icon" alt="" class="size-12">
-                                <p class="font-bold text-sm text-black">{{ item.name }}</p>
+                                <p class="font-bold text-sm text-black dark:text-white">{{ item.name }}</p>
                             </Link>
                         </div>
                     </div>

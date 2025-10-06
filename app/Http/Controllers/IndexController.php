@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Admin\Categories\CategoryResource;
 use App\Http\Resources\BrandResource;
 use App\Http\Resources\Home\Blog\BlogShowResource;
 use App\Http\Resources\Home\Blog\IndexBlogResource;
@@ -13,6 +14,7 @@ use App\Http\Resources\Home\Product\IndexProductVariationsResource;
 use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\NavBarSetting;
 use App\Models\ProductVariation;
 use App\Models\Setting;
@@ -39,6 +41,7 @@ class IndexController extends Controller
             })->orderBy('sailed_quantity', 'desc')->get()),
             "products" => ProductVariation::getSomeProduct(20),
             "brands" => BrandResource::collection(Brand::where('is_best', true)->get()),
+            "categories" => CategoryResource::collection(Category::where('is_active', true)->get()),
             "banners" => IndexBannersResource::collection(Banner::where('attribute_id', '!=', null)->latest()->get()),
             "slider" => SliderSettings::first() != null ? IndexSliderResource::collection(SliderSettings::latest()->get()) : '',
             "settings" => [
