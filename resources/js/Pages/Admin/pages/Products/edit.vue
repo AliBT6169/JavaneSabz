@@ -11,6 +11,7 @@ import {useToast} from "vue-toastification";
 import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
+import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
 
 const props = defineProps({
     Product: null,
@@ -136,8 +137,7 @@ const VariationDelete = (index) => {
                 </div>
                 <div class="!block !space-y-0">
                     <div class="pr-3">توضیحات :</div>
-                    <textarea name="" id="" @input="(e)=>form.description = e.target.value"
-                              class="admin_inputs">{{form.description}}</textarea>
+                    <ckeditor :config="{language: 'fa'}" v-model="form.description"></ckeditor>
                 </div>
                 <div class="flex !justify-center flex-wrap gap-5 !space-y-0">
                     <product-variation-modal v-for="(item, index) in VariationsData"

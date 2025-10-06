@@ -198,9 +198,8 @@ const showAllDescription = ref(false);
                             اطلاعات محصول
                         </div>
                         <div class="p-4 text-wrap">
-                            <p class="max-h-[114px] transition-all duration-500 overflow-hidden"
-                               :class="{'!max-h-[1000px]':showAllDescription}">
-                                {{ product.data.description}}
+                            <p v-html="product.data.description" class="max-h-[114px] transition-all duration-500 overflow-hidden"
+                               :class="{'!max-h-[5000px]':showAllDescription}">
                             </p>
                         </div>
                     </div>
