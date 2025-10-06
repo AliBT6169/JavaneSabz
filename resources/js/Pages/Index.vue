@@ -15,7 +15,8 @@ const props = defineProps(["indexData"]);
 
 onMounted(async () => {
     useIndexStore().setSetting(props.indexData.settings);
-    if (useAuthStore().isAuthenticated && useAuthStore().Time + 1200000 < Date.now()) {
+    console.log(!useAuthStore().user.is_admin)
+    if (!useAuthStore().user.is_admin && useAuthStore().isAuthenticated && useAuthStore().Time + 1200000 < Date.now()) {
         useAuthStore().logout();
         await axios.post(route('logout'));
     }
@@ -25,7 +26,8 @@ onMounted(async () => {
 <template>
     <IndexLyout>
         <intro/>
-        <slider1 v-if="indexData.slider.data" data-aos="fade-up" data-aos-delay="500" :slider1-data="indexData.slider.data"></slider1>
+        <slider1 v-if="indexData.slider.data" data-aos="fade-up" data-aos-delay="500"
+                 :slider1-data="indexData.slider.data"></slider1>
         <!--        brands-->
         <div data-aos="fade-up" v-if="indexData.brands.data.length>0" class="w-full mx-auto px-4">
             <div class="w-fit mx-auto flex flex-col gap-2 text-4xl md:m-0">

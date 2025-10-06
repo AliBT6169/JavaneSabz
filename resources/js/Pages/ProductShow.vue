@@ -128,7 +128,7 @@ const showAllDescription = ref(false);
                                 {{ product.data.value }}
                             </div>
                             <!--                        rate-->
-                            <div class="max-w-40">
+                            <div class="max-w-40 overflow-x-clip relative">
                                 <div v-if="!rating" class="">
                                     <star-rating :increment="0.01"
                                                  :max-rating="5"
