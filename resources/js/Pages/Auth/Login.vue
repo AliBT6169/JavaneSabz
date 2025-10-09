@@ -35,16 +35,20 @@ const LoginForm = useForm({
 const timer = ref(0);
 
 const timerHandle = () => {
-    clearInterval(interval);
-    timer.value = 120;
-    interval.value = setInterval(() => {
-        if (timer.value > 0) {
-            timer.value -= 1;
-        } else {
-            clearInterval(interval.value);
-        }
-    }, 1000);
-};
+        clearInterval(interval);
+        timer.value = 120;
+        interval.value = setInterval(() => {
+                if (timer.value > 0) {
+                    timer.value -= 1;
+                }
+                if (timer.value <= 0) {
+                    clearInterval(interval.value);
+                    interval.value = null;
+                }
+            }, 1000
+        );
+    }
+;
 const submit = (resend = false) => {
     if (formStatus.value === 0 || resend)
         axios.post(route('sendLoginSMSCode'), SendSMSForm).then((res) => {
@@ -57,6 +61,7 @@ const submit = (resend = false) => {
                 formStatus.value = 2;
                 RegisterForm.mobile = res.data.mobile;
             }
+
             timerHandle();
         }).catch((err) => {
             useToast().error(err.response.data.message)
