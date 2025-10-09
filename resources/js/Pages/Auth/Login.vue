@@ -16,7 +16,7 @@ defineProps({
         type: String,
     },
 });
-
+const interval = ref(null);
 const SendSMSForm = useForm({
     mobile: '',
 });
@@ -32,9 +32,21 @@ const LoginForm = useForm({
     mobile: '',
     code: '',
 });
+const timer = ref(0);
 
-const submit = () => {
-    if (formStatus.value === 0)
+const timerHandle = () => {
+    clearInterval(interval);
+    timer.value = 120;
+    interval.value = setInterval(() => {
+        if (timer.value > 0) {
+            timer.value -= 1;
+        } else {
+            clearInterval(interval.value);
+        }
+    }, 1000);
+};
+const submit = (resend = false) => {
+    if (formStatus.value === 0 || resend)
         axios.post(route('sendLoginSMSCode'), SendSMSForm).then((res) => {
             if (res.data.status === 50)
                 window.location.href = 'adminLogin';
@@ -45,6 +57,7 @@ const submit = () => {
                 formStatus.value = 2;
                 RegisterForm.mobile = res.data.mobile;
             }
+            timerHandle();
         }).catch((err) => {
             useToast().error(err.response.data.message)
         });
@@ -63,6 +76,10 @@ const submit = () => {
             }
         });
 
+}
+
+const resendCode = () => {
+    submit(true);
 }
 </script>
 
@@ -109,7 +126,12 @@ const submit = () => {
                                v-model="RegisterForm.code"
                                required
                     />
-                    <div class="px-5 lg:flex gap-5 lg:justify-between lg:items-center">
+                    <div class="px-5 lg:flex gap-5 lg:justify-between lg:items-center *:cursor-pointer">
+                        <div v-if="formStatus >0" class="space-y-1 text-blue-800">
+                            <div v-if="timer>0" class="">{{ timer }} تا ارسال مجدد کد</div>
+                            <div v-else class="" @click="resendCode">ارسال مجدد کد تایید</div>
+                            <div @click="formStatus = 0" class="underline">ویرایش شماره</div>
+                        </div>
                         <ButtonBT2
                             class="ms-4 text-defaultColor7"
                         >

@@ -31,13 +31,15 @@ class SMSController extends Controller
         if (Cache::get($request->mobile . 'ban'))
             throw ValidationException::withMessages(['mobile' => 'تلاش های شما بیش از حد مجاز شد لطفا بعد از 20 دقیقه دوباره اقدام فرمایید!']);
         if (Cache::get($request->mobile . 'try')) {
-            if (Cache::get($request->mobile . 'try') > 2) {
-                Cache::put($request->mobile . 'ban', true, Date::now()->addMinutes(1));
-                throw ValidationException::withMessages(['mobile' => 'تلاش های شما بیش از حد مجاز شد لطفا بعد از 20 دقیقه دوباره اقدام فرمایید!']);
-            }
-            Cache::put($request->mobile . 'try', Cache::get($request->mobile . 'try') + 1, Date::now()->addMinutes(2));
+            throw ValidationException::withMessages(['mobile' => 'لطفا برای ارسال مجدد کد 2 دقیقه صبر کنید']);
+
+//            if (Cache::get($request->mobile . 'try') > 2) {
+//                Cache::put($request->mobile . 'ban', true, Date::now()->addMinutes(1));
+//                throw ValidationException::withMessages(['mobile' => 'تلاش های شما بیش از حد مجاز شد لطفا بعد از 20 دقیقه دوباره اقدام فرمایید!']);
+//            }
+//            Cache::put($request->mobile . 'try', Cache::get($request->mobile . 'try') + 1, Date::now()->addMinutes(2));
         } else {
-            Cache::put($request->mobile . 'try', 1, Date::now()->addMinutes(10));
+            Cache::put($request->mobile . 'try', 1, Date::now()->addMinutes(2));
         }
         $code = rand(10000, 99999);
         $message = $code . ' ' . '  :کد ورورد شما' . PHP_EOL . 'به سامانه جوانه سبز خوش آمدید' . PHP_EOL . 'لغو=11';
@@ -50,7 +52,7 @@ class SMSController extends Controller
             'text' => $message,
         ]);
 //        30008810668877
-        Log::info($result);
+//        Log::info($result);
         $user = User::where('cellphone', $request->mobile)->first();
         if ($user) {
             return response()->json([
