@@ -35,7 +35,8 @@ const LoginForm = useForm({
 const timer = ref(0);
 
 const timerHandle = () => {
-        clearInterval(interval);
+        clearInterval(interval.value);
+        interval.value = null;
         timer.value = 120;
         interval.value = setInterval(() => {
                 if (timer.value > 0) {
@@ -61,7 +62,6 @@ const submit = (resend = false) => {
                 formStatus.value = 2;
                 RegisterForm.mobile = res.data.mobile;
             }
-
             timerHandle();
         }).catch((err) => {
             useToast().error(err.response.data.message)
