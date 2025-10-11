@@ -22,7 +22,7 @@ class ProductStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required|image|max:2048',
+            'image' => 'required|image|max:5120',
             'name' => 'required|string|max:50|unique:products,name',
             'brand' => 'required|exists:brands,id',
             'category' => 'required|exists:categories,id',
@@ -35,7 +35,7 @@ class ProductStoreRequest extends FormRequest
             'variation.*.price' => 'required|numeric',
             'variation.*.is_active' => 'required|boolean',
             'variation.*.is_special' => 'required|boolean',
-            'variation.*.image.*' => 'required|image|max:2048',
+            'variation.*.image.*' => 'required|image|max:5120',
         ];
     }
 }

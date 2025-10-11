@@ -26,7 +26,7 @@ const variationData = ref({
     quantity: props.variation_data.quantity ?? '',
     off_sale: props.variation_data.off_sale ?? '',
     is_active: props.variation_data.is_active ?? 1,
-    is_special: props.variation_data.is_special!== 0,
+    is_special: props.variation_data.is_special !== 0,
 });
 console.log(variationData.value)
 const modal = ref('');
@@ -101,7 +101,11 @@ const dataSender = () => {
                         @click.stop.prevent="variationData.passedImages.splice(index,1)"
                         name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
                     group-hover:right-16"/>
-                    <input type="file" :id="'variation-image' + index" accept="*image/*"
+                    <input type="file" :id="'variation-image' + index"
+                           accept="
+    .jpg,.jpeg,.png,.gif,.webp,.svg,.bmp,.tif,.tiff,
+    .ico,.heic,.heif,.avif,.jfif,.pjpeg,.pjp,
+    .raw,.arw,.cr2,.cr3,.nef,.orf,.raf,.rw2,.sr2,.dng"
                            class="invisible absolute"
                            @input="changeImage($event ,index),variationData.passedImages.splice(index,1)">
                     <img

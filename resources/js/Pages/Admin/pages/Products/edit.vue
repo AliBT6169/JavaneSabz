@@ -115,7 +115,12 @@ const VariationDelete = (index) => {
         <form @submit.prevent="saveChanges" class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
-                <input type="file" id="image" accept="*image/*" class="invisible absolute" @change="onFileChange">
+                <input type="file" id="image"
+                       accept="
+    .jpg,.jpeg,.png,.gif,.webp,.svg,.bmp,.tif,.tiff,
+    .ico,.heic,.heif,.avif,.jfif,.pjpeg,.pjp,
+    .raw,.arw,.cr2,.cr3,.nef,.orf,.raf,.rw2,.sr2,.dng"
+                       class="invisible absolute" @change="onFileChange">
                 <img :src="productImage === ''?'/images/default/product.png':productImage"
                      class="size-full"
                      alt="">
