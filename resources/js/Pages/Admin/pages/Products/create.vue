@@ -11,6 +11,7 @@ import {useToast} from "vue-toastification";
 import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
+import heic2any from "heic2any";
 
 const VariationsData = ref([]);
 const productImage = ref('');
@@ -21,9 +22,10 @@ const form = ref({
     description: '',
     is_active: 1,
 })
-const onFileChange = (event) => {
-    const file = event.target.files[0];
-    productImage.value = event.target.files[0];
+const onFileChange = async (event) => {
+
+    const file = await checkIfItsHEIC(event.target.files[0]);
+    productImage.value = file;
     if (file) {
         const reader = new FileReader();
         reader.onloadend = (e) => {
@@ -34,6 +36,18 @@ const onFileChange = (event) => {
     } else {
         productImage.value = '';
     }
+}
+
+const checkIfItsHEIC = async (file) => {
+
+    if (!file) return file;
+    if (file.type === "image/heic") {
+        file = await heic2any({
+            blob: file,
+            toType: "image/jpeg",
+        });
+    }
+    return file;
 }
 const saveChanges = async () => {
     const content = {

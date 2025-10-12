@@ -23,6 +23,7 @@
         "@mayasabha/ckeditor4-vue3": "^1.0.9",
         "@vueuse/core": "^12.3.0",
         "aos": "^2.3.4",
+        "heic2any": "^0.0.4",
         "pinia": "^2.3.1",
         "pinia-plugin-persistedstate": "^4.2.0",
         "vue-star-rating": "^2.1.0",

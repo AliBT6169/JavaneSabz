@@ -4,6 +4,7 @@ import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
+import heic2any from "heic2any";
 
 const props = defineProps({
     variation_data: null,
@@ -50,8 +51,8 @@ onMounted(() => {
 onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
-const addImage = (event) => {
-    const file = event.target.files[0];
+const addImage = async (event) => {
+    const file = await checkIfItsHEIC(event.target.files[0]);
     if (file) {
         const reader = new FileReader();
         reader.onloadend = (e) => {
@@ -65,8 +66,8 @@ const addImage = (event) => {
         images.append('image' + count, event.target.files[0]);
     }
 }
-const changeImage = (event, index) => {
-    const file = event.target.files[0];
+const changeImage = async (event, index) => {
+    const file = await checkIfItsHEIC(event.target.files[0]);
     if (file) {
         const reader = new FileReader();
         reader.onloadend = (e) => {
@@ -76,6 +77,18 @@ const changeImage = (event, index) => {
         reader.readAsDataURL(file);
     }
 };
+
+const checkIfItsHEIC = async (file) => {
+
+    if (!file) return file;
+    if (file.type === "image/heic") {
+        file = await heic2any({
+            blob: file,
+            toType: "image/jpeg",
+        });
+    }
+    return file;
+}
 const dataSender = () => {
     emit('dataSend', {
         'images': images,

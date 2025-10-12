@@ -12,6 +12,7 @@ import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
 import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
+import heic2any from "heic2any";
 
 const props = defineProps({
     Product: null,
@@ -26,8 +27,8 @@ const form = ref({
     description: props.Product.data.description,
     is_active: props.Product.data.is_active,
 });
-const onFileChange = (event) => {
-    const file = event.target.files[0];
+const onFileChange = async (event) => {
+    const file = await checkIfItsHEIC(event.target.files[0]);
     productImage.value = event.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -39,6 +40,18 @@ const onFileChange = (event) => {
     } else {
         productImage.value = '';
     }
+}
+
+const checkIfItsHEIC = async (file) => {
+
+    if (!file) return file;
+    if (file.type === "image/heic") {
+        file = await heic2any({
+            blob: file,
+            toType: "image/jpeg",
+        });
+    }
+    return file;
 }
 const saveChanges = async () => {
     const content = {
