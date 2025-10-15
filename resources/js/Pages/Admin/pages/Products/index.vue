@@ -32,6 +32,7 @@ const pageCount = ref({
 <template>
     <Layout>
         <AdminPageShower PageName="محصولات" :PageCount="pageCount"/>
+        <Pagination :links="products.links" :meta="products.meta" create-link="admin.products.create"/>
         <AdminInput v-if="productData.length>0" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>
         <div v-if="productData.length>0" class="flex p-4 flex-wrap gap-10 justify-center items-start">
@@ -39,6 +40,5 @@ const pageCount = ref({
         </div>
         <div v-else class="text-center text-xl font-bold">محصولی موجود نیست!</div>
         <AdminCreateButton table-name="products"/>
-        <Pagination :links="products.links" :meta="products.meta" create-link="admin.products.create"/>
     </Layout>
 </template>
