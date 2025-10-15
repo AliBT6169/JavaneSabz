@@ -5,6 +5,7 @@ import {onMounted, ref} from "vue";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import axios from "axios";
 import AddressSelectOptionBt from "@/Pages/Components/Form/addressSelectOptionBT.vue";
+import heic2any from "heic2any";
 
 const store = useAuthStore();
 const userInfo = ref(useAuthStore().user);
@@ -25,9 +26,9 @@ const submitForm = async (form) => {
     await store.informationUpdate(form);
 }
 const imagePreview = ref(form.value.image);
-
-const onFileChange = (event) => {
-    const file = event.target.files[0];
+const onFileChange = async (event) => {
+    const file = await checkIfItsHEIC(event.target.files[0]);
+    form.value.image = file;
     if (file) {
         const reader = new FileReader();
         reader.onloadend = (e) => {
@@ -39,6 +40,20 @@ const onFileChange = (event) => {
         imagePreview.value = null;
     }
 }
+
+const checkIfItsHEIC = async (file) => {
+    if (!file) return file;
+    const converted = ref(file);
+    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+        converted.value = await heic2any({
+            blob: file,
+            toType: "image/jpeg",
+        });
+    }
+    return new File([converted.value], file.name.replace(/\.[^/.]+$/, ".jpg"), {
+        type: "image/jpeg",
+    });
+}
 </script>
 
 <template>
@@ -48,7 +63,7 @@ const onFileChange = (event) => {
                 <div class="m-auto sm:w-60">
                     <label for="profile-picture" class="size-60 overflow-clip">
                         <input type="file" name="profile_picture" class="invisible" id="profile-picture"
-                               @input="(e)=>form.image = e.target.files[0]" @change="onFileChange" accept="*image/*">
+                               @change="onFileChange" accept="*image/*">
                         <img :src="imagePreview"
                              class="ring-2 mx-auto cursor-pointer rounded-full duration-300 size-32 ring-offset-8 ring-offset-defaultColor5
                      ring-defaultColor dark:ring-defaultColor5 dark:ring-offset-defaultColor hover:scale-95"

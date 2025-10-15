@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from "vue";
+import heic2any from "heic2any";
 
 const props = defineProps({
     modelValue: '',
@@ -11,11 +12,11 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const showingImage = ref(props.modelValue === '' ? '/images/default/product.png' : props.modelValue);
-const onFileChange = (event) => {
-    const file = event.target.files[0];
+const onFileChange = async (event) => {
+    const file = await checkIfItsHEIC(event.target.files[0]);
     if (file) {
         const formData = new FormData();
-        formData.append('image', event.target.files[0]);
+        formData.append('image', file);
         formData.append('key', props.myKey);
         emit('update:modelValue', formData)
         const reader = new FileReader();
@@ -27,6 +28,20 @@ const onFileChange = (event) => {
     } else {
         showingImage.value = '';
     }
+}
+
+const checkIfItsHEIC = async (file) => {
+    if (!file) return file;
+    const converted = ref(file);
+    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+        converted.value = await heic2any({
+            blob: file,
+            toType: "image/jpeg",
+        });
+    }
+    return new File([converted.value], file.name.replace(/\.[^/.]+$/, ".jpg"), {
+        type: "image/jpeg",
+    });
 }
 </script>
 

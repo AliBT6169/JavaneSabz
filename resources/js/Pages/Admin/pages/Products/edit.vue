@@ -27,9 +27,11 @@ const form = ref({
     description: props.Product.data.description,
     is_active: props.Product.data.is_active,
 });
+const imageToSend = ref(props.Product.data.image);
 const onFileChange = async (event) => {
     const file = await checkIfItsHEIC(event.target.files[0]);
     productImage.value = event.target.files[0];
+    imageToSend.value = file;
     if (file) {
         const reader = new FileReader();
         reader.onloadend = (e) => {
@@ -43,15 +45,17 @@ const onFileChange = async (event) => {
 }
 
 const checkIfItsHEIC = async (file) => {
-
     if (!file) return file;
-    if (file.type === "image/heic") {
-        file = await heic2any({
+    const converted = ref(file);
+    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+        converted.value = await heic2any({
             blob: file,
             toType: "image/jpeg",
         });
     }
-    return file;
+    return new File([converted.value], file.name.replace(/\.[^/.]+$/, ".jpg"), {
+        type: "image/jpeg",
+    });
 }
 const saveChanges = async () => {
     const content = {
@@ -64,7 +68,7 @@ const saveChanges = async () => {
                 const formData = new FormData();
                 toFormData(form.value, formData);
                 if (document.querySelector('#image').files[0] != null)
-                    formData.append('image', document.querySelector('#image').files[0]);
+                    formData.append('image', imageToSend.value);
                 const filteredData = VariationsData.value.filter(item => item.data !== undefined)
                 filteredData.map((item, index) => {
                     if (item.data !== undefined) {

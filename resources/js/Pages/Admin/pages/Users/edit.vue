@@ -8,6 +8,7 @@ import {Link} from "@inertiajs/vue3";
 import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios from "axios";
+import heic2any from "heic2any";
 
 const props = defineProps({
     user: null,
@@ -27,9 +28,10 @@ const form = new ref({
     city: props.user.data.address.city_id ?? '',
     address: props.user.data.address.address ?? '',
 });
-console.log(form.value.is_admin)
-const onFileChange = (event) => {
-    const file = event.target.files[0];
+const image = ref(null);
+const onFileChange = async (event) => {
+    const file = await checkIfItsHEIC(event.target.files[0]);
+    image.value = file;
     if (file) {
         const reader = new FileReader();
         reader.onloadend = (e) => {
@@ -40,6 +42,21 @@ const onFileChange = (event) => {
     } else {
         form.value.image = '';
     }
+}
+
+
+const checkIfItsHEIC = async (file) => {
+    if (!file) return file;
+    const converted = ref(file);
+    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+        converted.value = await heic2any({
+            blob: file,
+            toType: "image/jpeg",
+        });
+    }
+    return new File([converted.value], file.name.replace(/\.[^/.]+$/, ".jpg"), {
+        type: "image/jpeg",
+    });
 }
 const changeData = async () => {
     const content = {
@@ -53,8 +70,8 @@ const changeData = async () => {
                 Object.entries(form.value).forEach(([key, value]) => {
                     formData.append(key, value);
                 });
-                formData.append('image', document.querySelector('#image').files[0]);
-                await axios.post(route('admin.users.update'),formData,{
+                formData.append('image', image.value);
+                await axios.post(route('admin.users.update'), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'X-HTTP-Method-Override': 'PUT'
@@ -95,15 +112,17 @@ const changeData = async () => {
                 </div>
                 <div class="">
                     <div class="w-full items-center flex gap-5 *:w-full">
-                    <AdminInput name="کد پستی" v-model="form.post_code"/>
+                        <AdminInput name="کد پستی" v-model="form.post_code"/>
                         <div class="flex admin_inputs mt-4 items-center h-14 gap-5 *:*:mx-2">
                             <div class="*:cursor-pointer">
                                 <label for="baned">بلاک</label>
-                                <input type="radio" id="baned" name="ban" :checked="form.baned===1" @click="form.baned = 1" class="">
+                                <input type="radio" id="baned" name="ban" :checked="form.baned===1"
+                                       @click="form.baned = 1" class="">
                             </div>
                             <div class="*:cursor-pointer">
                                 <label for="not_baned">آزاد</label>
-                                <input type="radio" id="not_baned" name="ban" :checked="form.baned===0" @click="form.baned = 0" class="">
+                                <input type="radio" id="not_baned" name="ban" :checked="form.baned===0"
+                                       @click="form.baned = 0" class="">
                             </div>
                         </div>
                     </div>

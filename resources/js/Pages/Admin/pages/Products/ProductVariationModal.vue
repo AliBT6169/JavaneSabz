@@ -1,7 +1,6 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
-import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
 import heic2any from "heic2any";
@@ -29,7 +28,6 @@ const variationData = ref({
     is_active: props.variation_data.is_active ?? 1,
     is_special: props.variation_data.is_special !== 0,
 });
-console.log(variationData.value)
 const modal = ref('');
 const modal_status = ref(false);
 const modalCloser = (e) => {
@@ -45,7 +43,7 @@ onMounted(() => {
             'images': images,
             'data': variationData.value,
         });
-    }, 500)
+    }, 500);
 });
 
 onBeforeUnmount(() => {
@@ -60,10 +58,9 @@ const addImage = async (event) => {
         };
         reader.readAsDataURL(file);
         let count = 0;
-        for (let pair of images.entries()) {
-            count++;
-        }
-        images.append('image' + count, event.target.files[0]);
+        count++;
+        images.append('image' + images.keys().toArray().length, file);
+        console.log(images);
     }
 }
 const changeImage = async (event, index) => {
@@ -72,22 +69,25 @@ const changeImage = async (event, index) => {
         const reader = new FileReader();
         reader.onloadend = (e) => {
             VariationImages.value[index] = e.target.result;
-            images.set('image' + index, event.target.files[0])
+            images.set('image' + index, event.target.files[0]);
         };
         reader.readAsDataURL(file);
     }
 };
 
-const checkIfItsHEIC = async (file) => {
 
+const checkIfItsHEIC = async (file) => {
     if (!file) return file;
-    if (file.type === "image/heic") {
-        file = await heic2any({
+    const converted = ref(file);
+    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+        converted.value = await heic2any({
             blob: file,
             toType: "image/jpeg",
         });
     }
-    return file;
+    return new File([converted.value], file.name.replace(/\.[^/.]+$/, ".jpg"), {
+        type: "image/jpeg",
+    });
 }
 const dataSender = () => {
     emit('dataSend', {
