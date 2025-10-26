@@ -37,15 +37,16 @@ class BrandController extends Controller
     public function store(BrandStoreRequest $request)
     {
         $image = $request->file('image');
-        $lastId = DB::select('SHOW TABLE STATUS LIKE "brands"')[0]->Auto_increment;
-        $URL = '/images/brands/' . $lastId . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/brands/'), $lastId . '.' . $image->getClientOriginalExtension());
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
+        $URL = '/images/brands/' . $fileName;
+        $image->move(public_path('images/brands/'), $fileName);
         Brand::create([
             'name' => $request->name,
             'slug' => $request->name,
             'icon' => $URL,
             'is_active' => $request->is_active,
         ]);
+        logger($fileName);
         return response()->json(['message' => 'success'], 200);
     }
 
@@ -60,12 +61,15 @@ class BrandController extends Controller
         $brand = Brand::whereId($request->id)->first();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            unlink(public_path('images/brands/' . $brand->id . '.' . $image->getClientOriginalExtension()));
-            $image->move(public_path('images/brands/'), $brand->id . '.' . $image->getClientOriginalExtension());
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            if (File::exists(public_path($brand->icon)))
+                unlink(public_path($brand->icon));
+            $image->move(public_path('images/brands/'), $fileName);
         }
         $brand->update([
             'name' => $request->name,
             'slug' => $request->name,
+            'icon' => $request->hasFile('image') ? '/images/brands/' . $fileName : $brand->icon,
             'is_active' => $request->is_active,
         ]);
         return response()->json(['message' => 'success'], 200);

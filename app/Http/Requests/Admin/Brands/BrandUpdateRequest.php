@@ -36,7 +36,7 @@ class BrandUpdateRequest extends FormRequest
                 } else {
                     $fail('فیلد تصویر باید شامل تصویر باشد');
                 }
-            },'max:2048'],
+            },'max:10240'],
             'is_active' => 'required|boolean',
         ];
     }

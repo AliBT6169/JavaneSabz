@@ -104,8 +104,8 @@ const dataSender = () => {
          :class="{'fixed z-50 top-20 size-5/6 py-6 overflow-scroll':modal_status}">
         <form :class="{'hidden':!modal_status}" class="w-full">
             <div class="flex gap-5 flex-wrap justify-center">
-                <!--                passed image section-->
-                <label v-if="typeof variationData.passedImages !=='string'"
+                <!--                passed images section-->
+                <label v-if="typeof variationData.passedImages !=='string'" @click.stop
                        v-for="(item, index) in variationData.passedImages" :key="index"
                        :for="'variation-image' + index"
                        class="relative cursor-pointer m-auto duration-300 size-40 rounded-xl border-4 border-adminColor2
@@ -115,10 +115,7 @@ const dataSender = () => {
                         name="delete" class="bg-black/50 duration-300 p-1 rounded-lg absolute size-7 top-[66px] -right-20
                     group-hover:right-16"/>
                     <input type="file" :id="'variation-image' + index"
-                           accept="
-    .jpg,.jpeg,.png,.gif,.webp,.svg,.bmp,.tif,.tiff,
-    .ico,.heic,.heif,.avif,.jfif,.pjpeg,.pjp,
-    .raw,.arw,.cr2,.cr3,.nef,.orf,.raf,.rw2,.sr2,.dng"
+                           accept=".image/*"
                            class="invisible absolute"
                            @input="changeImage($event ,index),variationData.passedImages.splice(index,1)">
                     <img
