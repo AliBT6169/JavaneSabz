@@ -73,7 +73,7 @@ class ProductController extends Controller
             ]);
             foreach ($variation['image'] as $variationImage) {
                 $variationImageName = time() . $imageCount . '.' . $variationImage->getClientOriginalExtension();
-                Gallery::updateImage(ProductVariation::class, $productVariation->id, $variationImage, '/products/variations/', $variationImageName);
+                Gallery::updateImage(ProductVariation::class, $productVariation->id, $variationImage, '/images/products/variations/', $variationImageName);
                 $imageCount++;
             }
         }
@@ -205,15 +205,14 @@ class ProductController extends Controller
     public function destroy(int $id)
     {
         $product = Product::whereId($id)->first();
-        File::deleteDirectory(public_path('images/products/' . $product->id));
+        if (File::exists(public_path($product->primary_image)))
+            unlink(public_path($product->primary_image));
         foreach ($product->product_variations as $variation) {
-            if ($variation->gallery() && File::isDirectory(public_path('images/productVariations/' . $variation->id))) {
-                File::deleteDirectory(public_path('images/productVariations/' . $variation->id));
-            }
+            Gallery::deleteMedia($variation->id, ProductVariation::class);
             $variation->delete();
         }
         $product->delete();
-        return response()->json(['message' => 'success'], 200);
+        return response()->noContent();
     }
 
     public function show()
