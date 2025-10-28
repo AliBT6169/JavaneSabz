@@ -43,20 +43,20 @@ class ProductController extends Controller
         if ($request->variation == '')
             abort(400, 'ساخت حداقل یک سایز از این محصول نیاز است!');
         $image = $request->file('image');
-        $ProductId = DB::select('SHOW TABLE STATUS LIKE "products"')[0]->Auto_increment;
-        $primaryImageURL = '/images/products/' . $ProductId;
-        $path = $image->move(public_path($primaryImageURL), $ProductId . '.' . $image->getClientOriginalExtension());
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $primaryImageURL = '/images/products/' . $imageName;
+        $path = $image->move(public_path('images/products/'), $imageName);
 
         $product = Product::create([
             'name' => $request->name,
             'brand_id' => $request->brand,
             'category_id' => $request->category,
             'slug' => $request->name,
-            'primary_image' => $primaryImageURL . '/' . $ProductId . '.' . $image->getClientOriginalExtension(),
+            'primary_image' => $primaryImageURL,
             'description' => $request->description,
             'is_active' => $request->is_active,
         ]);
-
+        $imageCount = 0;
         foreach ($request->variation as $variation) {
             if ($variation['off_sale'] != null)
                 $salePrice = $variation['price'] - ($variation['off_sale'] * $variation['price']) / 100;
@@ -71,10 +71,11 @@ class ProductController extends Controller
                 'is_active' => $variation['is_active'],
                 'is_special' => $variation['is_special'],
             ]);
-            if (isset($variation['image']['image0']))
-                foreach ($variation['image'] as $variationImage) {
-                    Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
-                }
+            foreach ($variation['image'] as $variationImage) {
+                $variationImageName = time() . $imageCount . '.' . $variationImage->getClientOriginalExtension();
+                Gallery::updateImage(ProductVariation::class, $productVariation->id, $variationImage, '/products/variations/', $variationImageName);
+                $imageCount++;
+            }
         }
 
         return response()->json([

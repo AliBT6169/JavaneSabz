@@ -73,10 +73,11 @@ const saveChanges = async () => {
                         formData.append('variation[' + index + '][off_sale]', item.data.off_sale);
                         formData.append('variation[' + index + '][is_active]', item.data.is_active);
                         formData.append('variation[' + index + '][is_special]', item.data.is_special === true ? 1 : 0);
-                        item.images.forEach((imageItem, imageIndex) => {
-                            formData.append('variation[' + index + '][image][' + imageIndex + ']', imageItem)
+                        let counter = 0;
+                        item.images.forEach((imageItem) => {
+                            formData.append('variation[' + index + '][image][' + counter + ']', imageItem)
+                            counter++;
                         });
-                        console.log(formData);
                     }
                 });
                 await axios.post(route('admin.products.store'), formData).then((res) => {

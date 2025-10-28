@@ -60,7 +60,6 @@ const addImage = async (event) => {
         let count = 0;
         count++;
         images.append('image' + images.keys().toArray().length, file);
-        console.log(images);
     }
 }
 const changeImage = async (event, index) => {

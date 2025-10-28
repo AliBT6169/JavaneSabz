@@ -46,7 +46,6 @@ class BrandController extends Controller
             'icon' => $URL,
             'is_active' => $request->is_active,
         ]);
-        logger($fileName);
         return response()->json(['message' => 'success'], 200);
     }
 

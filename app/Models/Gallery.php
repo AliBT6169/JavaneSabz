@@ -29,37 +29,16 @@ class Gallery extends Model
         return $this->morphTo();
     }
 
-    public static function updateImage($type, UploadedFile $image, $id = 0)
+    public static function updateImage(string $type, int $id, UploadedFile $file,string $imagePath,string $fileName): void
     {
-        if ($type == User::class) {
-            $user = Auth::user();
-            if ($id != 0) {
-                $user = User::whereId($id)->first();
-            } else {
-                $id = Auth::id();
-            }
-            if ($user->gallery != null)
-                if (File::exists($user->gallery->media))
-                    unlink(($user->gallery->media));
-            $URL = '/images/users/' . $id . '/' . $image->getClientOriginalName();
-            $path = $image->move(public_path('images/users/' . $id . '/'), $image->getClientOriginalName());
-            if (self::where('gallery_id', $id)->where('gallery_type', $type)->exists())
-                self::where('gallery_id', $id)->update(['media' => $URL]);
-            else
-                self::create([
-                    'gallery_id' => $id,
-                    'gallery_type' => $type,
-                    'media' => $URL
-                ]);
-        } elseif ($type == ProductVariation::class) {
-            $before_images = self::where('gallery_id', $id)->where('gallery_type', $type)->get();
-            $URL = '/images/productVariations/' . $id . '/' . $before_images->count() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/productVariations/' . $id . '/'), $before_images->count() . '.' . $image->getClientOriginalExtension());
-            self::create([
-                'gallery_id' => $id,
-                'gallery_type' => $type,
-                'media' => $URL
-            ]);
-        }
+        $media = self::where('gallery_id', $id)->where('gallery_type', $type)->first();
+        if ($media && File::exists($media->media))
+            unlink($media->media);
+        $file->move(public_path($imagePath), $fileName);
+        self::updateOrCreate([
+            'gallery_id' => $id,
+            'gallery_type' => $type,
+            'media' => $imagePath . $fileName
+        ]);
     }
 }
