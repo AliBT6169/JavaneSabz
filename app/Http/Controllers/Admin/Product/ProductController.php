@@ -95,23 +95,23 @@ class ProductController extends Controller
 //        check if have eny variations
         if ($request->variation == '')
             abort(400, 'داشتن حد اقل یک سایز ضروری است!');
-
-
 //        product updating
-        $product = Product::whereId($request->id)->first();
-        $ImageURL = 'images/products/' . $product->id;
-        $image = null;
-        if ($request->image != null) {
-            $image = $request->file('image');
-            unlink(public_path($product->primary_image));
-            $image->move(public_path($ImageURL), $product->id . '.' . $image->getClientOriginalExtension());
+        $product = Product::whereId($request->id)->with('product_variations')->first();
+        $imagePath = $product->primary_image;
+        if (isset($request->image)) {
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            if (File::exists(public_path($imagePath)))
+                unlink(public_path($imagePath));
+            $request->image->move(public_path('images/products/'), $imageName);
+            $imagePath = '/images/products/' . $imageName;
         }
+
         $product->update([
             'name' => $request->name,
             'brand_id' => $request->brand,
             'category_id' => $request->category,
             'is_active' => $request->is_active,
-            'primary_image' => $image != null ? '/' . $ImageURL . '/' . $product->id . '.' . $image->getClientOriginalExtension() : $product->primary_image,
+            'primary_image' => $imagePath,
             'slug' => $request->name,
             'description' => $request->description,
         ]);
@@ -123,78 +123,79 @@ class ProductController extends Controller
             foreach ($request->variation as $request_variation) {
                 if ($variation->id == $request_variation['id']) {
                     $deleted_variation = false;
+                    break;
                 }
             }
             if ($deleted_variation) {
-                if ($variation->gallery() && File::exists(public_path('images/productVariations/' . $variation->id))) {
-                    File::deleteDirectory(public_path('images/productVariations/' . $variation->id));
-                }
+                Gallery::deleteMedia($variation->id, ProductVariation::class);
                 $variation->delete();
             }
         }
 
-
 //        updating existing variation and add new variations
-        foreach ($request->variation as $variation) {
-            if ($variation['id'] == -1) {
+        foreach ($request->variation as $requestVariation) {
+            if ($requestVariation['id'] == -1) {
 //                new variations
-                $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
+                $salePrice = $requestVariation['price'] - (($requestVariation['off_sale'] ?? 0) * $requestVariation['price'] / 100);
                 $productVariation = ProductVariation::create([
-                    'product_id' => $request->id,
-                    'value' => $variation['size'],
-                    'weight' => $variation['weight'],
-                    'price' => $variation['price'],
-                    'quantity' => $variation['quantity'],
-                    'is_active' => $variation['is_active'],
-                    'is_special' => $variation['is_special'],
-                    'off_sale' => $variation['off_sale'] ?? 0,
+                    'product_id' => $product->id,
+                    'value' => $requestVariation['size'],
+                    'weight' => $requestVariation['weight'],
+                    'price' => $requestVariation['price'],
+                    'quantity' => $requestVariation['quantity'],
+                    'is_active' => $requestVariation['is_active'],
+                    'is_special' => $requestVariation['is_special'],
+                    'off_sale' => $requestVariation['off_sale'] ?? 0,
                     'sale_price' => $salePrice,
                 ]);
-                if (isset($variation['image']['image0']))
-                    foreach ($variation['image'] as $variationImage) {
-                        Gallery::updateImage(ProductVariation::class, $variationImage, $productVariation->id);
-                    }
+                if (isset($requestVariation['image']['image0']))
+                    $imageCount = 0;
+                foreach ($requestVariation['image'] as $variationImage) {
+                    $requestVariationImageName = time() . $imageCount . '.' . $requestVariation['image']['image0']->getClientOriginalExtension();
+                    Gallery::updateImage(ProductVariation::class, $productVariation->id, $variationImage, '/images/products/variations/', $requestVariationImageName);
+                    $imageCount++;
+                }
             } else {
 //                old variations
-                $oldVariation = ProductVariation::whereId($variation['id'])->first();
-                $salePrice = $variation['price'] - (($variation['off_sale'] ?? 0) * $variation['price'] / 100);
+                $oldVariation = ProductVariation::whereId($requestVariation['id'])->first();
+                $salePrice = $requestVariation['price'] - (($requestVariation['off_sale'] ?? 0) * $requestVariation['price'] / 100);
                 $oldVariation->update([
-                    'value' => $variation['size'],
-                    'weight' => $variation['weight'],
-                    'price' => $variation['price'],
-                    'quantity' => $variation['quantity'],
-                    'is_active' => $variation['is_active'],
-                    'is_special' => $variation['is_special'],
-                    'off_sale' => $variation['off_sale'] ?? 0,
+                    'value' => $requestVariation['size'],
+                    'weight' => $requestVariation['weight'],
+                    'price' => $requestVariation['price'],
+                    'quantity' => $requestVariation['quantity'],
+                    'is_active' => $requestVariation['is_active'],
+                    'is_special' => $requestVariation['is_special'],
+                    'off_sale' => $requestVariation['off_sale'] ?? 0,
                     'sale_price' => $salePrice,
                 ]);
 //                deleting passed image when admin deleted
                 $passedImage = $oldVariation->gallery;
                 if ($passedImage != null) {
-                    if (isset($variation['passed_image']))
+                    if (isset($requestVariation['passed_image']))
                         foreach ($passedImage as $variationImage) {
                             $deleted = true;
-                            foreach ($variation['passed_image'] as $variationPassedImage) {
-                                if ($variationImage->id == $variationPassedImage['id'])
+                            foreach ($requestVariation['passed_image'] as $requestVariationPassedImage) {
+                                if ($variationImage->id == $requestVariationPassedImage['id']) {
                                     $deleted = false;
+                                    break;
+                                }
                             }
+                            logger($deleted);
                             if ($deleted) {
-                                unlink(public_path($variationImage->media));
-                                $variationImage->delete();
+                                Gallery::deleteWithId($variationImage->id);
                             }
                         }
-                    else {
-                        foreach ($passedImage as $variationImage) {
-                            $variationImage->delete();
-                        }
-                        File::deleteDirectory(public_path('images/productVariations/' . $oldVariation->id));
-                    }
+                    else Gallery::deleteMedia($oldVariation->id, ProductVariation::class);
                 }
 
 //                add new images
-                if (isset($variation['image']['image0'])) {
-                    foreach ($variation['image'] as $variationImage) {
-                        Gallery::updateImage(ProductVariation::class, $variationImage, $oldVariation->id);
+                if (isset($requestVariation['image']['image0'])) {
+                    $counter = 0;
+                    foreach ($requestVariation['image'] as $variationImage) {
+                        $imageName = time() . $counter . '.' . $variationImage->getClientOriginalExtension();
+                        Gallery::updateImage(ProductVariation::class, $oldVariation->id, $variationImage, '/images/products/variations/', $imageName);
+                        $counter++;
                     }
                 }
             }
