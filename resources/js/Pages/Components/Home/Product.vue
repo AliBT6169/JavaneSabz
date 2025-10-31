@@ -6,24 +6,37 @@ import {Link} from '@inertiajs/vue3'
 import {ref} from "vue";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import ProductShowModal from "@/Pages/Components/Home/ProductShowModal.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps(["product", "special"]);
 const productModal = ref(false);
 const productModalData = ref();
+const loading = ref(false);
 const likeUnLike = async () => {
+    loading.value = true;
     const res = await ref(useAuthStore().likeOrUnLike(props.product.id, props.product.is_liked));
     props.product.is_liked = await res.value;
+    loading.value = false;
 }
 const productShow = async () => {
+    loading.value = true;
     const data = ref(await useIndexStore().productShow(props.product.id));
     if (data.value.status === 200) {
         productModal.value = true;
         productModalData.value = data.value.data
     }
+    loading.value = false;
+}
+
+const addToByCart = async (id) => {
+    loading.value = true;
+    await useAuthStore().addToCart(id)
+    loading.value = false;
 }
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div
         class="relative !w-44 text-sm group overflow-hidden border border-white rounded-lg shadow-sm hover:shadow-md
         hover:shadow-slate-500 duration-500 cursor-pointer bg-defaultColor6 pb-6 space-y-3 hover3D-animation
@@ -35,7 +48,7 @@ const productShow = async () => {
         <!--        name-->
         <div class="flex px-4 justify-center w-full items-center">
             <h3 class="w-28 text-center text-nowrap">{{
-                    product.name.substring(0,15) + (product.value === undefined ? '' : ' : ' + product.value)
+                    product.name.substring(0, 15) + (product.value === undefined ? '' : ' : ' + product.value)
                 }}</h3>
         </div>
         <!--        price & buy cart-->
@@ -47,8 +60,13 @@ const productShow = async () => {
                         }}
                     </div>
                     <div class="flex gap-1 items-center">
-                        <div class="text-sm text-gray-500 line-through">{{ product.old_price.toLocaleString('en-US') }}</div>
-                        <div class="text-red-500 p-0.5 font-bold border border-red-500/50 bg-red-500/20 rounded-lg">{{ product.off_sale + '%'}}</div>
+                        <div class="text-sm text-gray-500 line-through">{{
+                                product.old_price.toLocaleString('en-US')
+                            }}
+                        </div>
+                        <div class="text-red-500 p-0.5 font-bold border border-red-500/50 bg-red-500/20 rounded-lg">
+                            {{ product.off_sale + '%' }}
+                        </div>
                     </div>
                 </div>
                 <div v-else class="">{{
@@ -62,7 +80,7 @@ const productShow = async () => {
             </div>
             <span
                 class="flex justify-between items-center w-full lg:w-fit lg:block">
-                <div @click="useAuthStore().addToCart(product.id)"
+                <div @click="addToByCart(product.id)"
                      class="flex items-center gap-1 px-3 py-1 duration-300 rounded-xl border border-gray-500/50 hover:bg-gray-500/20">
                     <div class="text-xs md:text-sm text-nowrap">سبد خرید</div>
                     <svg-component name="cart" class="size-5"/>
