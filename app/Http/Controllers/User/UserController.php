@@ -64,9 +64,8 @@ class UserController extends Controller
         ]);
 //        image section
         if ($request->hasFile('image')) {
-            if (Auth::user()->gallery != null)
-                unlink(public_path(Auth::user()->gallery->media));
-            Gallery::updateImage(User::class, $validatedData['image'], Auth::id());
+            $imageName = time() . $request->file('image')->getClientOriginalName();
+            Gallery::updateImage(User::class,Auth::id(), $request->file('image'), 'images/users/', $imageName);
         }
 //        user update section
         User::updateUser($validatedData);

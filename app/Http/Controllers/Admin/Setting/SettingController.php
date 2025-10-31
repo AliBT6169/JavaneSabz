@@ -15,6 +15,7 @@ use App\Models\NavBarSetting;
 use App\Models\Setting;
 use App\Models\SliderSettings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class SettingController extends Controller
@@ -34,14 +35,14 @@ class SettingController extends Controller
     public function update(AdminSettingUpdateRequest $request)
     {
         $setting = Setting::first();
-        $URL = '';
+        $URL = $setting->icon;
         if ($request->hasFile('icon')) {
-            if ($setting->icon !== '/images/default/logo.png') {
+            if ($setting->icon !== '/images/default/logo.png' && File::exists(public_path($URL)))
                 unlink(public_path($setting->icon));
-            }
             $icon = $request->file('icon');
-            $URL = '/images/logo/' . 'logo.' . $icon->getClientOriginalExtension();
-            $icon->move(public_path('/images/logo/'), 'logo.' . $icon->getClientOriginalExtension());
+            $iconName = time() . '.' . $icon->getClientOriginalExtension();
+            $URL = '/images/logo/' . $iconName;
+            $icon->move(public_path('/images/logo/'),$iconName);
         } else {
             $URL = $setting->icon;
         }

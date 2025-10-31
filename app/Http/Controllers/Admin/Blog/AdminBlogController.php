@@ -10,6 +10,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
@@ -28,9 +29,10 @@ class AdminBlogController extends Controller
     public function store(BlogStoreRequest $request)
     {
         $image = $request->file('icon');
-        $lastId = DB::select('SHOW TABLE STATUS LIKE "blogs"')[0]->Auto_increment;
-        $URL = '/images/blogs/' . $lastId . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/blogs/'), $lastId . '.' . $image->getClientOriginalExtension());
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $URL = '/images/blogs/';
+        $image->move(public_path('images/blogs/'), $imageName);
+        $URL = $URL . $imageName;
         $blog = Blog::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
@@ -55,14 +57,19 @@ class AdminBlogController extends Controller
     public function update(BlogUpdateRequest $request)
     {
         $blog = Blog::whereId($request->id)->first();
+        $URL = '/images/blogs/';
         if ($request->hasFile('icon')) {
             $image = $request->file('icon');
-            unlink(public_path('images/blogs/' . $blog->id . '.' . $image->getClientOriginalExtension()));
-            $image->move(public_path('images/blogs/'), $blog->id . '.' . $image->getClientOriginalExtension());
+            if (File::exists(public_path($blog->icon)))
+                unlink(public_path($blog->icon));
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/blogs/'), $imageName);
+            $URL = $URL . $imageName;
         }
         $blog->update([
             'title' => $request->title,
             'slug' => $request->title,
+            'icon' => $URL,
             'description' => $request->description,
             'status' => $request->status,
         ]);
@@ -77,6 +84,8 @@ class AdminBlogController extends Controller
     {
         $blog = Blog::whereId($id)->first();
         if ($blog) {
+            if (File::exists(public_path($blog->icon)))
+                unlink(public_path($blog->icon));
             $blog->delete();
             return response()->json('عملیات حذف وبلاگ موفقیت آمیز بود');
         }

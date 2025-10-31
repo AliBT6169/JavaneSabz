@@ -181,7 +181,6 @@ class ProductController extends Controller
                                     break;
                                 }
                             }
-                            logger($deleted);
                             if ($deleted) {
                                 Gallery::deleteWithId($variationImage->id);
                             }

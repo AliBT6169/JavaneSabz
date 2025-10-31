@@ -58,17 +58,19 @@ class BrandController extends Controller
     public function update(BrandUpdateRequest $request)
     {
         $brand = Brand::whereId($request->id)->first();
+        $url = $brand->icon;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
             if (File::exists(public_path($brand->icon)))
                 unlink(public_path($brand->icon));
             $image->move(public_path('images/brands/'), $fileName);
+            $url = '/images/brands/' . $fileName;
         }
         $brand->update([
             'name' => $request->name,
             'slug' => $request->name,
-            'icon' => $request->hasFile('image') ? '/images/brands/' . $fileName : $brand->icon,
+            'icon' => $url,
             'is_active' => $request->is_active,
         ]);
         return response()->json(['message' => 'success'], 200);

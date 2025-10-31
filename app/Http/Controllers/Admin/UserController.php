@@ -64,19 +64,16 @@ class UserController extends Controller
             $validatedImage = $request->validate([
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-            Gallery::updateImage(User::class, $request->image, $user->id);
+            $imageName = time() . $request->file('image')->getClientOriginalName();
+            Gallery::updateImage(User::class, $user->id, $request->file('image'), 'images/users/', $imageName);
         }
-
         return UserResource::make($user);
     }
 
     public function destroy($id)
     {
         $user = User::whereId($id)->first();
-        if ($user->gallery != null) {
-            File::deleteDirectory(public_path('/images/users/' . $user->id));
-            $user->gallery->delete();
-        }
+        Gallery::deleteMedia($user->id, User::class);
         $user->delete();
         return [
             'status' => 200,
@@ -132,9 +129,8 @@ class UserController extends Controller
             $validatedImage = $request->validate([
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-            if ($user->gallery != null)
-                unlink(public_path($user->gallery->media));
-            Gallery::updateImage(User::class, $request->image, $request->id);
+            $imageName = time() . $request->file('image')->getClientOriginalName();
+            Gallery::updateImage(User::class, $user->id, $request->file('image'), 'images/users/', $imageName);
         }
         return 'done';
     }

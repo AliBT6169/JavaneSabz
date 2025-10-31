@@ -30,13 +30,13 @@ class AttributeController extends Controller
     public function store(AttributeStoreRequest $request)
     {
         $image = $request->file('image');
-        $lastId = DB::select('SHOW TABLE STATUS LIKE "attributes"')[0]->Auto_increment;
-        $URL = '/images/attributes/' . $lastId . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/attributes/'), $lastId . '.' . $image->getClientOriginalExtension());
+        $URL = '/images/attributes/';
+        $iconName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/attributes/'), $iconName);
         $attribute = Attribute::create([
             'name' => $request->name,
             'slug' => $request->name,
-            'icon' => $URL,
+            'icon' => $URL . $iconName,
             'description' => $request->description,
             'is_active' => $request->is_active
         ]);
@@ -84,14 +84,15 @@ class AttributeController extends Controller
     public function update(AttributeUpdateRequest $request)
     {
         $attribute = Attribute::whereId($request->id)->first();
-        $URL = '';
+        $URL = $attribute->icon;
         if ($request->hasFile('image')) {
-            unlink(public_path($attribute->icon));
+            if (File::exists(public_path($attribute->icon)))
+                unlink(public_path($attribute->icon));
             $image = $request->file('image');
-            $URL = '/images/attributes/' . $request->id . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/attributes/'), $request->id . '.' . $image->getClientOriginalExtension());
-        } else {
-            $URL = $attribute->icon;
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $URL = '/images/attributes/';
+            $image->move(public_path($URL), $imageName);
+            $URL = $URL . $imageName;
         }
         $attribute->update([
             'name' => $request->name,

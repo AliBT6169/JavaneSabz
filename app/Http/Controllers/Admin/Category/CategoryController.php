@@ -28,9 +28,10 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         $image = $request->file('image');
-        $lastId = DB::select('SHOW TABLE STATUS LIKE "categories"')[0]->Auto_increment;
-        $URL = '/images/categories/' . $lastId . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/categories/'), $lastId . '.' . $image->getClientOriginalExtension());
+        $URL = '/images/categories/';
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/categories/'), $imageName);
+        $URL = $URL . $imageName;
         Category::create([
             'name' => $request->name,
             'slug' => $request->name,
@@ -63,13 +64,16 @@ class CategoryController extends Controller
         $URL = $categories->icon;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            unlink(public_path($categories->icon));
-            $image->move(public_path('images/categories/'), $categories->id . '.' . $image->getClientOriginalExtension());
-            $URL = public_path() . '/images/categories/' . $categories->id . '.' . $image->getClientOriginalExtension();
+            if (File::exists(public_path($categories->icon)))
+                unlink(public_path($categories->icon));
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/categories/'), $imageName);
+            $URL = '/images/categories/' . $imageName;
         }
         $categories->update([
             'name' => $request->name,
             'slug' => $request->name,
+            'icon' => $URL,
             'description' => $request->description,
             'is_active' => $request->is_active,
         ]);

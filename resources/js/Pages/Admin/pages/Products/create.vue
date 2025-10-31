@@ -12,9 +12,11 @@ import AdminDataList from "@/Pages/Admin/Components/AdminDataList.vue";
 import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariationModal.vue";
 import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
 import heic2any from "heic2any";
+import SvgComponent from "@/Pages/Components/svg-component.vue";
 
 const VariationsData = ref([]);
 const productImage = ref('');
+const loading = ref(false);
 const form = ref({
     name: '',
     brand: '',
@@ -60,6 +62,7 @@ const saveChanges = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const formData = new FormData();
                 toFormData(form.value, formData);
                 if (document.querySelector('#image').files[0] != null)
@@ -81,8 +84,10 @@ const saveChanges = async () => {
                     }
                 });
                 await axios.post(route('admin.products.store'), formData).then((res) => {
+                    loading.value = false;
                     toast.success('عملیات موفقیت آمیز بود')
                 }).catch((err) => {
+                    loading.value = false;
                     toast.error(err.response.data.message)
                 })
             }
@@ -99,6 +104,9 @@ const VariationDataChanged = (index, value) => {
 
 <template>
     <Layout>
+        <div class="fixed hidden items-center justify-center w-screen h-screen left-0 top-0 z-50 bg-gray-900/20" :class="{'!flex':loading}">
+            <SvgComponent name="spinner" class="size-1/2 animate-spin"/>
+        </div>
         <form @submit.prevent="saveChanges" class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">
