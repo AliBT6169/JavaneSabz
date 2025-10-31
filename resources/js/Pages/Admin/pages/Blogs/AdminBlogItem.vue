@@ -3,6 +3,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     blog: {
@@ -13,6 +14,7 @@ const props = defineProps({
 const emit = defineEmits({
     deleted: {}
 });
+const loading = ref(false);
 const deleteBlog = () => {
     const content = {
         component: ToastWarning,
@@ -21,10 +23,13 @@ const deleteBlog = () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 axios.delete(route('admin.blogs.destroy', props.blog.id)).then(res => {
+                    loading.value = false;
                     emit("deleted");
                     useToast().success(res.data);
                 }).catch((err) => {
+                    loading.value = false;
                     useToast().error(err.response.data.message);
                     console.error(err);
                 });
@@ -36,6 +41,7 @@ const deleteBlog = () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="w-full relative group space-y-2  rounded-xl overflow-hidden border-4 border-adminColor2 md:size-60">
         <img :src="blog.icon" alt="" class="size-full">
         <div class="w-full bottom-5 absolute space-y-0.5">

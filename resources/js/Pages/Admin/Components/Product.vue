@@ -4,10 +4,12 @@ import {Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     product: null,
 });
+const loading = ref(false);
 const emit = defineEmits(['deleted']);
 const is_active = ref(Boolean(props.product.is_active));
 const ActiveDeActive = async () => {
@@ -15,7 +17,6 @@ const ActiveDeActive = async () => {
         useToast().success(res.data.message);
         is_active.value = !is_active.value;
     }).catch((err) => {
-        console.log(err.data);
     });
 }
 const deleter = async () => {
@@ -26,11 +27,13 @@ const deleter = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.delete(route('admin.products.destroy', {id: props.product.id})).then((res) => {
+                    loading.value = false;
                     useToast().success('محصول با موفقیت حذف شد.');
                     emit('deleted', props.product.id);
                 }).catch((err) => {
-                    console.log(err);
+                    loading.value = false;
                 });
             }
         }
@@ -41,11 +44,12 @@ const deleter = async () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="pb-2 w-60 rounded-xl relative overflow-hidden border border-current space-y-4 cursor-pointer">
-                <div @click="deleter"
-                     class="absolute p-1 rounded-xl left-1 duration-300 top-1 hover:text-red-500 bg-white/30 dark:bg-gray-800/30">
-                    <svg-component name="delete" class="size-6"/>
-                </div>
+        <div @click="deleter"
+             class="absolute p-1 rounded-xl left-1 duration-300 top-1 hover:text-red-500 bg-white/30 dark:bg-gray-800/30">
+            <svg-component name="delete" class="size-6"/>
+        </div>
         <img :src="product.image" class="!mt-0 w-60 h-40 border" alt="">
         <div
             class="px-2 text-nowrap space-y-2 *:flex *:justify-between *:products-center *:gap-4 *:border-t *:border-current *:rounded-t-xl">

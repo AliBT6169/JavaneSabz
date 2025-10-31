@@ -11,7 +11,6 @@ const props = defineProps({
     blogs: Array,
 });
 const blogDeleted = (id) => {
-    console.log(id)
     props.blogs.data = props.blogs.data.filter((blog) => blog.id !== id);
 }
 const pageCount = ref({

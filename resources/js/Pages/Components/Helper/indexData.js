@@ -34,9 +34,7 @@ export const useIndexStore = defineStore('index', {
         async updateProductData() {
             await axios.get(route('getProductData', this.ProductShowData.data.id)).then((res) => {
                 this.ProductShowData = res.data;
-                console.log(this.ProductShowData)
             }).catch((err) => {
-                console.log(err)
             })
         },
     },

@@ -2,11 +2,13 @@
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const mailModalStatus = ref(false);
 const mailModal = ref();
 const mails = ref([]);
 const mailSeen = ref(false);
+const loading = ref(false);
 const closeMailModal = (e) => {
     if (!mailModal.value.contains(e.target) && mailModalStatus.value) {
         mailModalStatus.value = false;
@@ -14,9 +16,12 @@ const closeMailModal = (e) => {
 }
 
 onMounted(async () => {
+    loading.value = true;
     await axios.get(route('admin.getUsersNotSeenMails')).then(res => {
+        loading.value = false;
         mails.value = res.data;
     }).catch(err => {
+        loading.value = false;
 
     });
     document.addEventListener("click", closeMailModal);
@@ -26,11 +31,14 @@ onBeforeUnmount(() => {
     document.removeEventListener("click", closeMailModal);
 });
 const mailSVGClick = async () => {
+                loading.value = true;
     mailModalStatus.value = !mailModalStatus.value;
     if (!mailSeen.value) {
         await axios.get(route('admin.seenAllMails')).then(res => {
+                    loading.value = false;
 
         }).catch(err => {
+                    loading.value = false;
 
         });
         mailSeen.value = true;
@@ -39,6 +47,7 @@ const mailSVGClick = async () => {
 </script>
 
 <template>
+        <LoadingComponent :loading="loading"/>
     <div ref="mailModal" class="relative cursor">
         <div
             :class="{'relative before:absolute before:size-4 before:z-50 before:bg-red-500 before:rounded-full before:bottom-0 before:left-0':!mailSeen&&mails.length>0}">

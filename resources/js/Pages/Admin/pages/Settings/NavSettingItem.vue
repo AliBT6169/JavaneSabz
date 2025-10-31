@@ -5,36 +5,45 @@ import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActi
 import {ref} from "vue";
 import {useToast} from "vue-toastification";
 import NavItemSelectionModal from "@/Pages/Admin/pages/Settings/NavItemSelectionModal.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     setting: Object,
     myKey: '',
 });
+const loading = ref(false);
 const emit = defineEmits({
     move: Number,
 });
 const is_active = ref(props.setting.is_active);
 const is_activeChanged = async () => {
+    loading.value = true;
     await axios.patch(route('admin.navSetting.toggle', props.setting.id)).then(res => {
+        loading.value = false;
         useToast().success(res.data);
     }).catch(err => {
+        loading.value = false;
         useToast().error(err.response.data.message);
     });
 }
 const queueChanged = async (e) => {
+    loading.value = true;
     await axios.patch(route('admin.navSetting.queueToggle'), {
         id: props.setting.id,
         state: e,
     }).then(res => {
+        loading.value = false;
         emit('move', res.data.data)
         useToast().success(res.data.message);
     }).catch(err => {
+        loading.value = false;
         useToast().error(err.response.data.message);
     });
 }
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="border-2 border-adminColor2 p-2 rounded-xl space-y-1">
         <div :class="{'flex gap-2 items-center justify-center':setting.title==='محصولات'}">
             <div class="size-6 text-center border-2 border-current rounded-full m-auto"
@@ -58,6 +67,7 @@ const queueChanged = async (e) => {
                                class="cursor-pointer size-5 duration-300 hover:text-adminColor2 hover:scale-110"/>
             </div>
         </div>
-        <AdminActiveDeActiveInput class="text-nowrap" v-model="is_active" :my-key="myKey" @update:modelValue="is_activeChanged"/>
+        <AdminActiveDeActiveInput class="text-nowrap" v-model="is_active" :my-key="myKey"
+                                  @update:modelValue="is_activeChanged"/>
     </div>
 </template>

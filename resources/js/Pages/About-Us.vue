@@ -8,7 +8,6 @@ const props = defineProps({
     info: Object,
 });
 const setting = useIndexStore().Settings;
-console.log(setting.settings.data.address)
 </script>
 <template>
     <IndexLyout>

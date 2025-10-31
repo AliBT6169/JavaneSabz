@@ -28,7 +28,6 @@ const sendText = () => {
                 await axios.post(route('textToAdmin'), form.value).then(res => {
                     useToast().success(res.data)
                 }).catch(err => {
-                    console.log(err)
                     useToast().error(err.response.data.message)
                 });
             }

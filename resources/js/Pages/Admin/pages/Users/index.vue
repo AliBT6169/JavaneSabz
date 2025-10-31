@@ -8,14 +8,18 @@ import AdminUserTableItems from "@/Pages/Admin/pages/Users/AdminUserTableItems.v
 import axios from "axios";
 import {ref} from "vue";
 import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps(["userData"]);
+const loading = ref(false);
 
 const searchKeyWordChanged = (e) => {
+    loading.value = true;
     axios.get(route("admin.users.search", {name: e === '' ? '~' : e})).then((res) => {
+        loading.value = false;
         props.userData.data = res.data;
     }).catch((err) => {
-        console.log(err);
+        loading.value = false;
     });
 }
 const pageCount = ref({
@@ -26,6 +30,7 @@ const pageCount = ref({
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <AdminPageShower PageName="کاربران" :PageCount="pageCount"/>
         <AdminInput v-if="userData.data.length>0" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>

@@ -14,6 +14,7 @@ import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActi
 import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
 import heic2any from "heic2any";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     Product: null,
@@ -31,6 +32,7 @@ const form = ref({
 });
 const imageToSend = ref(props.Product.data.image);
 const onFileChange = async (event) => {
+    loading.value = true;
     const file = await checkIfItsHEIC(event.target.files[0]);
     productImage.value = event.target.files[0];
     imageToSend.value = file;
@@ -44,6 +46,7 @@ const onFileChange = async (event) => {
     } else {
         productImage.value = '';
     }
+    loading.value = false;
 }
 
 const checkIfItsHEIC = async (file) => {
@@ -134,9 +137,7 @@ const VariationDelete = (index) => {
 
 <template>
     <Layout>
-        <div class="fixed hidden items-center justify-center w-screen h-screen left-0 top-0 z-50 bg-gray-900/20" :class="{'!flex':loading}">
-            <SvgComponent name="spinner" class="size-1/5 animate-spin"/>
-        </div>
+        <LoadingComponent :loading="loading"/>
         <form @submit.prevent="saveChanges" class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">

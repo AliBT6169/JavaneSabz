@@ -1,22 +1,27 @@
 <script setup>
 
 import {ref} from "vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     settings: Object,
     is_active: Boolean,
 });
+const loading = ref(false);
 const bestBrands = ref(props.settings);
 const toggleBrand = async (id) => {
+    loading.value = true;
     await axios.patch(route("admin.brands.bestBrandToggle", id)).then((response) => {
+        loading.value = false;
         bestBrands.value = response.data;
     }).catch((error) => {
-        console.log(error);
+        loading.value = false;
     });
 }
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div :class="{'opacity-0 top-[-1000px] invisible':!is_active}"
          class="adminSettingPagesDesign">
         <div class="flex gap-5 items-center justify-center flex-wrap">

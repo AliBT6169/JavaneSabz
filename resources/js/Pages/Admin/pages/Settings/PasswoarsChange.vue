@@ -4,6 +4,7 @@ import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     is_active: Boolean,
@@ -28,7 +29,6 @@ const sendRequest = async () => {
     });
 }
 const sendData = () => {
-    loading.value = true;
     const content = {
         component: ToastWarning,
         props: {
@@ -36,6 +36,7 @@ const sendData = () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.post(route('admin.passwordChange.verifyAndChange', form.value))
                     .then(res => {
                         loading.value = false;
@@ -62,6 +63,7 @@ const sendData = () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div :class="{'opacity-0 top-[-1000px] invisible':!is_active}"
          class="adminSettingPagesDesign">
         <AdminButton class="m-auto block translate-y-60 opacity-0 invisible duration-300"

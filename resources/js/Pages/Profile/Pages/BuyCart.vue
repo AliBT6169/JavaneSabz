@@ -5,14 +5,18 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";
 import {Link} from "@inertiajs/vue3";
 import CartComplete from "@/Pages/Components/Panel/CartComplete.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
+const loading = ref(false);
 const cartCompleteModal = ref(false);
 const Products = ref(useAuthStore().Products);
 const goToPayPage = async () => {
+    loading.value = true;
     if (await useAuthStore().orderMaker()) {
         Products.value = useAuthStore().Products
         cartCompleteModal.value = true;
     }
+    loading.value = false;
 }
 const completeCart = () => {
     useAuthStore().orderMaker();
@@ -21,6 +25,7 @@ const completeCart = () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="mb-4 px-4 py-2 rounded-lg bg-defaultColor2 border grid gap-2 text-white sm:flex
          sm:items-center sm:justify-between sm:rounded-full">
         <div class="flex justify-between">

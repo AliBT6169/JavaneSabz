@@ -15,7 +15,6 @@ const props = defineProps(["indexData"]);
 
 onMounted(async () => {
     useIndexStore().setSetting(props.indexData.settings);
-    console.log(!useAuthStore().user.is_admin)
     if (!useAuthStore().user.is_admin && useAuthStore().isAuthenticated && useAuthStore().Time + 1200000 < Date.now()) {
         useAuthStore().logout();
         await axios.post(route('logout'));

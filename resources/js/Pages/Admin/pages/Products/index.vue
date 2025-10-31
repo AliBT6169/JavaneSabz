@@ -5,22 +5,25 @@ import Product from "@/Pages/Admin/Components/Product.vue";
 import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import {ref} from "vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
-import {Link} from "@inertiajs/vue3";
 import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
 import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     products: null,
 });
 const productData = ref(props.products.data);
+const loading = ref(false);
 const productDeleted = (id) => {
     productData.value = productData.value.filter((item) => item.id !== id);
 }
 const searchKeyWordChanged = (e) => {
+    loading.value = true;
     axios.get(route("admin.products.search", {name: e === '' ? '~' : e})).then((res) => {
+        loading.value = false;
         productData.value = res.data;
     }).catch((err) => {
-        console.log(err);
+        loading.value = false;
     })
 }
 const pageCount = ref({
@@ -31,6 +34,7 @@ const pageCount = ref({
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <AdminPageShower PageName="محصولات" :PageCount="pageCount"/>
         <Pagination :links="products.links" :meta="products.meta" create-link="admin.products.create"/>
         <AdminInput v-if="productData.length>0" class="!m-auto md:w-1/2" name="جستجو"

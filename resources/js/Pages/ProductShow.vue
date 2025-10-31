@@ -52,7 +52,6 @@ const setRating = async (value) => {
             }
             useToast().error(toast);
         }
-        console.log(err)
     })
     rating.value = false;
 
@@ -193,19 +192,22 @@ const showAllDescription = ref(false);
                         </div>
                     </div>
                     <!--                leftSide-->
-                    <div class="space-y-6"><div class="rounded-xl border border-defaultColor lg:mt-[4.5rem]">
-                        <div class="productShowItems justify-center rounded-b-none py-2">
-                            اطلاعات محصول
+                    <div class="space-y-6">
+                        <div class="rounded-xl border border-defaultColor lg:mt-[4.5rem]">
+                            <div class="productShowItems justify-center rounded-b-none py-2">
+                                اطلاعات محصول
+                            </div>
+                            <div class="p-4 text-wrap">
+                                <p v-html="product.data.description"
+                                   class="max-h-[114px] transition-all duration-500 overflow-hidden"
+                                   :class="{'!max-h-[5000px]':showAllDescription}">
+                                </p>
+                            </div>
                         </div>
-                        <div class="p-4 text-wrap">
-                            <p v-html="product.data.description" class="max-h-[114px] transition-all duration-500 overflow-hidden"
-                               :class="{'!max-h-[5000px]':showAllDescription}">
-                            </p>
-                        </div>
-                    </div>
                         <p class="cursor-pointer text-end" @click="showAllDescription=!showAllDescription">
                             {{ showAllDescription ? 'نمایش کمتر' : 'نمایش بیشتر' }}
-                            <SvgComponent name="d-arrow-left" class="inline size-5 duration-300 -rotate-90" :class="{'!rotate-90':showAllDescription}"/>
+                            <SvgComponent name="d-arrow-left" class="inline size-5 duration-300 -rotate-90"
+                                          :class="{'!rotate-90':showAllDescription}"/>
                         </p>
                         <div class="productShowItems flex gap-6 justify-between py-4 *:w-full">
                             <h3 class="">

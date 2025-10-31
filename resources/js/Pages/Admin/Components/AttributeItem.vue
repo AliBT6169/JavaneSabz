@@ -4,6 +4,7 @@ import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {Link} from "@inertiajs/vue3";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     Attribute: {
@@ -20,6 +21,7 @@ const attributeSelector = ref(null);
 const emit = defineEmits('deleted', 'selected');
 
 const is_active = ref(props.Attribute.is_active);
+const loading = ref(false);
 
 const toggle = async () => {
     const content = {
@@ -33,7 +35,6 @@ const toggle = async () => {
                     useToast().success(res.data);
                     is_active.value = !is_active.value;
                 }).catch(err => {
-                    console.log(err);
                 })
             }
         }
@@ -49,12 +50,14 @@ const deleter = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.delete(route('admin.attributes.destroy', props.Attribute.id)).then((res) => {
+                    loading.value = false;
                     useToast().success('خصوصیت با موفقیت حذف شد.');
                     emit('deleted', props.Attribute.id);
                 }).catch((err) => {
+                    loading.value = false;
                     useToast().error(err.response.data.message);
-                    console.log(err);
                 });
             }
         }
@@ -72,6 +75,7 @@ const selector = () => {
 </script>
 
 <template>
+        <LoadingComponent :loading="loading"/>
     <div
         class="text-center border-2 border-black rounded-xl p-2 lg:space-y-6"
         :class="{'relative cursor-pointer':choosable}" @click.prevent.stop="selector">

@@ -4,6 +4,7 @@ import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import AdminActiveDeActiveInput from "@/Pages/Admin/Components/AdminActiveDeActiveInput.vue";
 import heic2any from "heic2any";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     variation_data: null,
@@ -16,6 +17,7 @@ const emit = defineEmits({
 
 const images = new FormData();
 const VariationImages = ref([]);
+const loading = ref(false);
 
 const variationData = ref({
     id: props.variation_data.id ?? -1,
@@ -50,6 +52,7 @@ onBeforeUnmount(() => {
     document.removeEventListener('click', modalCloser);
 });
 const addImage = async (event) => {
+    loading.value = true;
     const file = await checkIfItsHEIC(event.target.files[0]);
     if (file) {
         const reader = new FileReader();
@@ -61,8 +64,10 @@ const addImage = async (event) => {
         count++;
         images.append('image' + images.keys().toArray().length, file);
     }
+    loading.value = false;
 }
 const changeImage = async (event, index) => {
+    loading.value = true;
     const file = await checkIfItsHEIC(event.target.files[0]);
     if (file) {
         const reader = new FileReader();
@@ -72,6 +77,7 @@ const changeImage = async (event, index) => {
         };
         reader.readAsDataURL(file);
     }
+    loading.value = false;
 };
 
 
@@ -98,6 +104,7 @@ const dataSender = () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
          :class="{'fixed z-50 top-20 size-5/6 py-6 overflow-scroll':modal_status}">

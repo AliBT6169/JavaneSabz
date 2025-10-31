@@ -1,5 +1,7 @@
 <script setup>
 import {useToast} from "vue-toastification";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
+import {ref} from "vue";
 
 const props = defineProps({
     product: {
@@ -7,16 +9,24 @@ const props = defineProps({
         required: true
     }
 });
+const loading = ref(false);
 
 const changeQuantity = async (e) => {
     if (e === '+') {
+        loading.value = true;
         await axios.get(route('admin.productVariation.Increment', props.product.id)).then(res => {
+            loading.value = false;
             props.product.quantity++;
+        }).catch(err => {
+            loading.value = false;
         });
     } else {
+        loading.value = true;
         await axios.get(route('admin.productVariation.Decrement', props.product.id)).then(res => {
+            loading.value = false;
             props.product.quantity--;
         }).catch(err => {
+            loading.value = false;
             useToast().error(err.response.data.message);
         });
     }
@@ -24,6 +34,7 @@ const changeQuantity = async (e) => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="border-2 border-adminColor2 rounded-xl space-y-2 w-40 md:w-60">
         <img :src="typeof product.images === 'string'?product.images:product.images[0].image" alt=""
              class="size-40 md:size-60 rounded-xl">

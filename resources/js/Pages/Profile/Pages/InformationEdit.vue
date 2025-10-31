@@ -6,9 +6,11 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import axios from "axios";
 import AddressSelectOptionBt from "@/Pages/Components/Form/addressSelectOptionBT.vue";
 import heic2any from "heic2any";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const store = useAuthStore();
 const userInfo = ref(useAuthStore().user);
+const loading = ref(false);
 
 const form = ref({
     id: userInfo.value.id,
@@ -23,10 +25,13 @@ const form = ref({
     post_code: userInfo.value.user_post_code,
 });
 const submitForm = async (form) => {
+    loading.value = true;
     await store.informationUpdate(form);
+    loading.value = false;
 }
 const imagePreview = ref(form.value.image);
 const onFileChange = async (event) => {
+    loading.value = true;
     const file = await checkIfItsHEIC(event.target.files[0]);
     form.value.image = file;
     if (file) {
@@ -39,6 +44,7 @@ const onFileChange = async (event) => {
     } else {
         imagePreview.value = null;
     }
+    loading.value = false;
 }
 
 const checkIfItsHEIC = async (file) => {
@@ -57,6 +63,7 @@ const checkIfItsHEIC = async (file) => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="Sidebar p-4">
         <form action="" @submit.prevent="submitForm(form)" class="">
             <div class="*:mb-5">

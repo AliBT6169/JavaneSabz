@@ -7,6 +7,7 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminPictureInput from "@/Pages/Admin/Components/AdminPictureInput.vue";
 import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     settings: Object,
@@ -25,6 +26,7 @@ const form = ref({
     whatsapp: props.settings.whatsapp ?? '',
     eta: props.settings.eta ?? '',
 });
+const loading = ref(false);
 const icon = ref(props.settings.icon);
 
 const sendData = () => {
@@ -35,6 +37,7 @@ const sendData = () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const formData = ref(new FormData());
                 formData.value = toFormData(form.value);
                 if (typeof icon.value !== 'string')
@@ -47,8 +50,10 @@ const sendData = () => {
                         "X-HTTP-Method-Override": "PUT",
                     }
                 }).then(res => {
+                    loading.value = false;
                     useToast().success(res.data);
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message);
                 });
             }
@@ -59,6 +64,7 @@ const sendData = () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div :class="{'opacity-0 top-[-1000px] invisible':!is_active}"
          class="adminSettingPagesDesign">
         <form @submit.prevent="sendData" class="pb-20">

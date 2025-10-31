@@ -7,6 +7,7 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminPictureInput from "@/Pages/Admin/Components/AdminPictureInput.vue";
 import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     settings: Object,
@@ -19,6 +20,7 @@ const form = ref({
 });
 const owner_image = ref(props.settings.owner_image);
 const store_image = ref(props.settings.store_image);
+const loading = ref(false);
 
 const sendData = () => {
     const content = {
@@ -28,6 +30,7 @@ const sendData = () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const formData = ref(new FormData());
                 formData.value = toFormData(form.value);
                 if (typeof owner_image.value !== 'string')
@@ -38,15 +41,16 @@ const sendData = () => {
                     formData.value.append("store_image", store_image.value.get('image'));
                 else
                     formData.value.append("store_image", store_image.value);
-                console.log(formData.value);
                 await axios.post(route('admin.aboutUsSetting.update'), formData.value, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         "X-HTTP-Method-Override": "PUT",
                     }
                 }).then(res => {
+                    loading.value = false;
                     useToast().success(res.data)
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message);
                 });
             }
@@ -57,6 +61,7 @@ const sendData = () => {
 </script>
 
 <template>
+        <LoadingComponent :loading="loading"/>
     <div :class="{'opacity-0 top-[-1000px] invisible':!is_active}"
          class="adminSettingPagesDesign">
         <form @submit.prevent="sendData" class="pb-20">

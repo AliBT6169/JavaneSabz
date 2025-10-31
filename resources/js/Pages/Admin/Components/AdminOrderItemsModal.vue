@@ -49,7 +49,6 @@ onMounted(() => {
         });
         filteredProducts.value = Products.value;
     }).catch(err => {
-        console.log(err);
     });
 });
 onBeforeUnmount(() => {

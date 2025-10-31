@@ -3,7 +3,6 @@ import {onMounted, ref} from "vue";
 import {Link} from "@inertiajs/vue3";
 
 const props = defineProps(["categoriesData"]);
-console.log(props.categoriesData)
 const dragging = ref(false);
 const slider = ref();
 const startX = ref();

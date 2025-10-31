@@ -11,6 +11,7 @@ import AdminAddress from "@/Pages/Admin/Components/Admin-Address.vue";
 import SelectOrderUserModal from "@/Pages/Admin/pages/Order/SelectOrderUserModal.vue";
 import {deliveryAmountHelper} from "@/Pages/Admin/Components/Helpers/deliveryAmountHelper.js";
 import AdminCheckBoxInput from "@/Pages/Admin/Components/adminCheckBoxInput.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const form = ref({
     status: -1,
@@ -22,6 +23,7 @@ const form = ref({
     user: null,
 });
 const total_amount = ref(0);
+const loading = ref(false);
 const VAT = ref(0);
 const delivery_amount = ref(0);
 const coupon_amount = ref(0);
@@ -59,6 +61,7 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const filteredProducts = ref(products.value.map(({
                                                                      images,
                                                                      name,
@@ -74,11 +77,11 @@ const sendData = async () => {
                                                                  }) => rest));
                 const data = ref(form.value);
                 data.value.items = filteredProducts.value;
-                console.log(data.value)
                 await axios.post(route('admin.orders.store'), data.value).then(res => {
-                    console.log(res.data)
+                    loading.value = false;
                     useToast().success(res.data);
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message)
                 });
             }
@@ -92,6 +95,7 @@ const sendData = async () => {
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <form @submit.prevent="sendData">
             <div
                 class="space-y-6 py-4 *:w-full *:h-fit md:space-y-0 md:flex md:flex-wrap md:items-center md:justify-center md:gap-5 *:md:w-[45%]">

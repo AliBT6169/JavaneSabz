@@ -5,15 +5,20 @@ import {ref} from "vue";
 import AdminCommentItem from "@/Pages/Admin/pages/Comments/AdminCommentItem.vue";
 import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     commentsData: Array,
 });
 const filteredData = ref(props.commentsData.data);
+const loading = ref(false);
 const filterData = async (e) => {
+    loading.value = true;
     await axios.get(route("admin.comments.search", {text: e === '' ? '***' : e})).then(res => {
+        loading.value = false;
         filteredData.value = res.data;
     }).catch(err => {
+        loading.value = false;
 
     });
 }
@@ -25,6 +30,7 @@ const pageCount = ref({
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <AdminPageShower PageName="نظرات" :PageCount="pageCount"/>
         <AdminInput v-if="filteredData.length>0" @update:modelValue="filterData($event)" name="جستجو"/>
         <div v-if="filteredData.length>0" class="flex flex-wrap gap-5 justify-center lg:block lg:space-y-5">

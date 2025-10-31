@@ -9,7 +9,6 @@ import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
 const props = defineProps({
     notifications: []
 });
-console.log(props.notifications);
 const pageCount = ref({
     currentPage: props.notifications.meta.current_page,
     from: props.notifications.meta.last_page,
@@ -23,7 +22,6 @@ onMounted(() => {
     axios.post(route("admin.notifications.seen"),ides.value).then(res => {
         useAdminStore().Notifications = res.data.unSeen;
     }).catch(err => {
-        console.log(err);
     });
 });
 </script>

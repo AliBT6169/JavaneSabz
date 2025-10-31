@@ -10,11 +10,12 @@ import {Link} from "@inertiajs/vue3";
 import {toFormData} from "axios";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     brandData: null
 });
-console.log(props.brandData)
+const loading = ref(false);
 const picture = ref(props.brandData.data.icon);
 const form = ref({
     id: props.brandData.data.id,
@@ -30,21 +31,23 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const formData = new FormData();
                 toFormData(form.value, formData);
                 if (typeof picture.value !== "string")
                     formData.append('image', picture.value.get('image'));
                 else
                     formData.append('image', picture.value);
-                console.log(formData)
                 await axios.post(route('admin.brands.update'), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'X-HTTP-Method-Override': 'PUT'
                     }
                 }).then(res => {
+                    loading.value = false;
                     useToast().success('عملیات موفقی آمیز بود');
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message)
                 });
             }
@@ -58,6 +61,7 @@ const sendData = async () => {
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <form @submit.prevent="sendData">
             <admin-picture-input v-model="picture"/>
             <div class="space-y-6">

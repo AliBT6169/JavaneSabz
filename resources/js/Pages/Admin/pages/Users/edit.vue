@@ -9,6 +9,7 @@ import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios from "axios";
 import heic2any from "heic2any";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     user: null,
@@ -29,7 +30,9 @@ const form = new ref({
     address: props.user.data.address.address ?? '',
 });
 const image = ref(null);
+const loading = ref(false);
 const onFileChange = async (event) => {
+    loading.value = true;
     const file = await checkIfItsHEIC(event.target.files[0]);
     image.value = file;
     if (file) {
@@ -42,6 +45,7 @@ const onFileChange = async (event) => {
     } else {
         form.value.image = '';
     }
+    loading.value = false;
 }
 
 
@@ -66,6 +70,7 @@ const changeData = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const formData = new FormData();
                 Object.entries(form.value).forEach(([key, value]) => {
                     formData.append(key, value);
@@ -77,8 +82,10 @@ const changeData = async () => {
                         'X-HTTP-Method-Override': 'PUT'
                     }
                 }).then((res) => {
+                    loading.value = false;
                     toast.success('عملیات موفقیت آمیز بود')
                 }).catch((err) => {
+                    loading.value = false;
                     toast.error(err.response.data.message)
                 })
             }
@@ -91,6 +98,7 @@ const changeData = async () => {
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <form @submit.prevent="changeData" class="pb-20">
             <label for="image" class="mb-4 cursor-pointer m-auto duration-300 size-40 rounded-full border-4 border-adminColor2
              dark:border-adminColor3 hover:scale-95 block overflow-hidden">

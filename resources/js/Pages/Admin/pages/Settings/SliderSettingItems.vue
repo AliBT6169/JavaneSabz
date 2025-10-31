@@ -2,6 +2,7 @@
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import axios from "axios";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     modelName: {
@@ -20,16 +21,19 @@ const emit = defineEmits({
     created: {}
 });
 const modal = ref();
+const loading = ref(false);
 const modal_status = ref(false);
 const attributes = ref();
 const attribute = ref(null);
 onMounted(async () => {
+    loading.value = true;
     document.addEventListener('click', modalCloser);
     axios.get(route('admin.slider.getAttribute', props.itemId ?? 0)).then(res => {
+        loading.value = false;
         attribute.value = res.data.attribute;
         attributes.value = res.data.attributes;
     }).catch(err => {
-        console.log(err);
+        loading.value = false;
     });
 });
 
@@ -43,13 +47,18 @@ onBeforeUnmount(() => {
 });
 
 const changeAttribute = async (id) => {
+    loading.value = true;
     await axios.patch(route('admin.slider.attributeToggle', {
         slider_id: props.itemId ?? 0,
         attribute_id: id
     })).then(res => {
+        loading.value = false;
         attribute.value = res.data.attribute;
         attributes.value = res.data.attributes;
-        emit('created',res.data.slider);
+        emit('created', res.data.slider);
+    }).catch(err => {
+        loading.value = false;
+
     });
 }
 
@@ -57,6 +66,7 @@ const changeAttribute = async (id) => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div
         class="w-48 flex !justify-center bg-adminColor2 duration-500 transition-all overflow-hidden rounded-xl
          border-2 border-current dark:bg-adminColor3"

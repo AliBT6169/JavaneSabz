@@ -4,6 +4,7 @@ import axios from "axios";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
 import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     modelName: {
@@ -15,16 +16,19 @@ const props = defineProps({
     },
 });
 const modal = ref();
+const loading = ref(false);
 const modal_status = ref(false);
 const attributes = ref();
 const selectedAttributes = ref();
 onMounted(async () => {
+    loading.value = true;
     document.addEventListener('click', modalCloser);
     axios.get(route('admin.navSetting.getAttributes', props.itemId)).then(res => {
+        loading.value = false;
         attributes.value = res.data.Attributes;
         selectedAttributes.value = res.data.selectedAttributes;
     }).catch(err => {
-        console.log(err);
+        loading.value = false;
     });
 });
 
@@ -74,14 +78,17 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.post(route('admin.navSetting.AttributeSet'), form, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'X-HTTP-Method-Override': 'PUT'
                     }
                 }).then(res => {
+                    loading.value = false;
                     useToast().success(res.data);
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message);
                 });
             }
@@ -92,6 +99,7 @@ const sendData = async () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div
         class="w-[5.5rem] flex !justify-center bg-adminColor2 duration-500 transition-all overflow-hidden rounded-xl
          border-2 border-current dark:bg-adminColor3"

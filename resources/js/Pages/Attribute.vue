@@ -9,7 +9,6 @@ import Categories from "@/Pages/Components/Home/Categories.vue";
 const props = defineProps({
     data: {type: Object},
 });
-console.log(props.data)
 
 
 </script>

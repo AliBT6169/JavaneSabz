@@ -12,11 +12,13 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
 import AttributeConnectionItem from "@/Pages/Admin/Components/AttributeConnectionItem.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     attributeData: null,
 });
 const picture = ref(props.attributeData.data.icon);
+const loading = ref(false);
 const form = ref({
     id: props.attributeData.data.id,
     name: props.attributeData.data.name,
@@ -44,6 +46,7 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const formData = new FormData();
                 toFormData(form.value, formData);
                 if (typeof picture.value !== 'string')
@@ -68,8 +71,10 @@ const sendData = async () => {
                         'X-HTTP-Method-Override': 'PUT'
                     }
                 }).then(res => {
+                    loading.value = false;
                     useToast().success('عملیات بروزرسانی خصوصیت موفقیت آمیز بود');
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message)
                 });
             }
@@ -83,6 +88,7 @@ const sendData = async () => {
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <form @submit.prevent="sendData">
             <admin-picture-input v-model="picture"/>
             <div class="space-y-6">

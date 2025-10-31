@@ -12,8 +12,10 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import AdminTextArea from "@/Pages/Admin/Components/AdminTextArea.vue";
 import AttributeConnectionItem from "@/Pages/Admin/Components/AttributeConnectionItem.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const picture = ref('');
+const loading = ref(false);
 const form = ref({
     name: '',
     description: '',
@@ -34,6 +36,7 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const formData = new FormData();
                 toFormData(form.value, formData);
                 if (picture.value !== '')
@@ -53,8 +56,10 @@ const sendData = async () => {
                     formData.append('product_variation[' + index + ']', item);
                 });
                 await axios.post(route('admin.attributes.store'), formData).then(res => {
+                    loading.value = false;
                     useToast().success('عملیات ذخیره خصوصیت موفقیت آمیز بود');
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message)
                 });
             }
@@ -68,6 +73,7 @@ const sendData = async () => {
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <form @submit.prevent="sendData">
             <admin-picture-input v-model="picture"/>
             <div class="space-y-6">

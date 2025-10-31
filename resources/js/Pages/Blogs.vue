@@ -6,7 +6,6 @@ import BlogItem from "@/Pages/Components/Home/BlogItem.vue";
 const props = defineProps({
     blogs: Array,
 });
-console.log(props.blogs.data)
 </script>
 
 <template>

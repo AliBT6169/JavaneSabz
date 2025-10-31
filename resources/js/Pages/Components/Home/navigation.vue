@@ -49,12 +49,10 @@ onMounted(() => {
     axios.get(route('brands.show')).then((res) => {
         brands.value = res.data.data;
     }).catch(err => {
-        console.log(err);
     });
     axios.get(route('categories.show')).then((res) => {
         categories.value = res.data.data;
     }).catch(err => {
-        console.log(err);
     });
 });
 const showConnectModal = () => {

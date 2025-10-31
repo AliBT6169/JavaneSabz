@@ -9,6 +9,7 @@ import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
 import InputBT1 from "@/Pages/Components/Form/Input-BT1.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps(["Order"])
 const coupon_code = ref('');
@@ -19,6 +20,7 @@ const order_return_form = ref({
     order_id: props.Order.id,
     description: "",
 });
+const loading = ref(false);
 const send_card_number_form = ref({
     card_number: null,
     order_id: props.Order.id
@@ -34,10 +36,13 @@ const orderCancellation = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.post(route('Order.Cancellation', send_card_number_form.value)).then(res => {
+                    loading.value = false;
                     useToast().success(res.data.message);
                     props.Order.status = 4;
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message);
                 });
             }
@@ -48,7 +53,6 @@ const orderCancellation = async () => {
 }
 
 const return_order = async () => {
-
     cancelLoading.value = true;
     const content = {
         component: ToastWarning,
@@ -74,6 +78,7 @@ const return_order = async () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="space-y-2 duration-500 shadow-md shadow-gray-500 w-60 p-4 rounded-xl border-2 no-scrollbar border-defaultColor h-96 overflow-y-scroll
       dark:border-darkColor1 sm:w-96 hover3D-animation hover:shadow-red-500 dark:bg-defaultColor7">
         <div v-if="Order.status<=0">

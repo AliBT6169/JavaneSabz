@@ -5,7 +5,6 @@ import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 import {ref} from "vue";
 
 const Transactions = ref(useAuthStore().Transactions);
-console.log(Transactions.value)
 </script>
 
 <template>

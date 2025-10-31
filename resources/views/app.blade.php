@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{URL('/logo/logo.png')}}">
+    <link rel="icon" href="{{URL('images/default/logo.png')}}">
     <title class="ml-10">جوانه سبز</title>
     <!-- Scripts -->
     @routes

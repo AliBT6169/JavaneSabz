@@ -1,11 +1,9 @@
 <script setup>
 import Layout from "@/Pages/Admin/Components/Layout.vue";
 import AdminOrderItem from "@/Pages/Admin/Components/AdminOrderItem.vue";
-import {Link} from "@inertiajs/vue3";
 import Pagination from "@/Pages/Admin/Components/Pagination.vue";
 import AdminPageShower from "@/Pages/Admin/Components/AdminPageShower.vue";
 import {ref} from "vue";
-import CategoryItem from "@/Pages/Admin/Components/CategoryItem.vue";
 import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
 
 const props = defineProps({

@@ -2,6 +2,7 @@
 import {Link} from "@inertiajs/vue3";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     order: {
@@ -9,6 +10,7 @@ const props = defineProps({
     }
 });
 
+const loading = ref(false);
 const disable = async () => {
     const content = {
         component: ToastWarning,
@@ -17,11 +19,13 @@ const disable = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.patch(route('admin.orders.disable', props.order.id)).then(res => {
+                    loading.value = false;
                     useToast().success(res.data);
                     props.order.status = 4;
                 }).catch(err => {
-                    console.log(err);
+                    loading.value = false;
                 });
             }
         }
@@ -31,6 +35,7 @@ const disable = async () => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div
         class="p-2 rounded-xl border-2 border-gray-500 space-y-2 w-60 bg-adminColor1 *:flex *:justify-between *:items-center *:border-b *:border-gray-500 *:pb-1 dark:bg-adminColor4">
         <div class="!justify-center">
@@ -77,7 +82,8 @@ const disable = async () => {
         </div>
         <div class="">
             <Link :href="route('admin.orders.edit',order)"
-                  class="border-2 px-2 rounded-lg border-gray-400 bg-adminColor2" :class="{'w-full text-center':order.status===4}">عملیات
+                  class="border-2 px-2 rounded-lg border-gray-400 bg-adminColor2"
+                  :class="{'w-full text-center':order.status===4}">عملیات
             </Link>
             <div v-if="order.status!==4" class="border-2 px-2 rounded-lg border-gray-400 bg-red-500 cursor-pointer"
                  @click="disable">لغو سفارش

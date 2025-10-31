@@ -1,6 +1,7 @@
 <script setup>
 import {onBeforeUnmount, onMounted, ref} from "vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     modelValue: {
@@ -14,18 +15,21 @@ const modal_status = ref(false);
 const users = ref();
 const searchKeyword = ref("");
 const filteredUsers = ref();
+const loading = ref(false);
 const modalCloser = (e) => {
     if (!modal.value.contains(e.target) && modal_status.value) {
         modal_status.value = false;
     }
 }
 onMounted(() => {
+    loading.value = true;
     document.addEventListener('click', modalCloser);
     axios.get(route('admin.users.showAll')).then(res => {
+        loading.value = false;
         users.value = res.data;
         filteredUsers.value = res.data;
     }).catch(err => {
-        console.log(err);
+        loading.value = false;
     });
 });
 onBeforeUnmount(() => {
@@ -37,6 +41,7 @@ const filterChanged = (e) => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div class="size-40 flex !justify-center bg-adminColor2 duration-500 overflow-hidden rounded-xl border"
          ref="modal"
          :class="{'fixed z-50 top-20 left-7 !size-5/6 py-6 overflow-scroll':modal_status}">

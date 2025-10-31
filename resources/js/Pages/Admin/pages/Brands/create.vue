@@ -10,12 +10,14 @@ import {Link} from "@inertiajs/vue3";
 import {toFormData} from "axios";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const picture = ref('');
 const form = ref({
     name: '',
     is_active: 1
 });
+const loading = ref(false);
 
 const sendData = async () => {
     const content = {
@@ -25,6 +27,7 @@ const sendData = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 const formData = new FormData();
                 toFormData(form.value, formData);
                 if (picture.value !== '')
@@ -32,8 +35,10 @@ const sendData = async () => {
                 else
                     formData.append('image', picture.value);
                 await axios.post(route('admin.brands.store'), formData).then(res => {
+                    loading.value = false;
                     useToast().success('عملیات موفقی آمیز بود');
                 }).catch(err => {
+                    loading.value = false;
                     useToast().error(err.response.data.message)
                 });
             }
@@ -47,6 +52,7 @@ const sendData = async () => {
 
 <template>
     <Layout>
+        <LoadingComponent :loading="loading"/>
         <form @submit.prevent="sendData">
             <admin-picture-input v-model="picture"/>
             <div class="space-y-6">

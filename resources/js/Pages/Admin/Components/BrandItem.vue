@@ -4,6 +4,7 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import {Link} from "@inertiajs/vue3";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     brandData: {
@@ -11,6 +12,7 @@ const props = defineProps({
     }
 });
 const emit = defineEmits(['deleted']);
+const loading = ref(false);
 const is_active = ref(props.brandData.is_active);
 const toggle = async () => {
     const content = {
@@ -20,11 +22,13 @@ const toggle = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.patch(route('admin.brands.toggle', {id: props.brandData.id})).then(res => {
+                    loading.value = false;
                     useToast().success(res.data.message);
                     is_active.value = !is_active.value;
                 }).catch(err => {
-                    console.log(err);
+                    loading.value = false;
                 })
             }
         }
@@ -40,12 +44,14 @@ const deleter = async () => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.delete(route('admin.brands.destroy', {id: props.brandData.id})).then((res) => {
+                    loading.value = false;
                     useToast().success('برند با موفقیت حذف شد.');
                     emit('deleted', props.brandData.id);
                 }).catch((err) => {
+                    loading.value = false;
                     useToast().error(err.response.data.message);
-                    console.log(err);
                 });
             }
         }
@@ -56,6 +62,7 @@ const deleter = async () => {
 </script>
 
 <template>
+        <LoadingComponent :loading="loading"/>
 
     <div
         class="text-center overflow-hidden space-y-2 border-2 cursor-pointer border-black rounded-xl p-2">

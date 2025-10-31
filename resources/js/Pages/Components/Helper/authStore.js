@@ -68,7 +68,6 @@ export const useAuthStore = defineStore('auth', {
                     }
                     toast.success(response.data.method === 'increment' ? 'مجودی محصول در سبد اضافه شد' : 'محصول به سبد اضافه شد');
                 }).catch(error => {
-                    console.log(error);
                 });
             } else window.location.href = '/login';
         },
@@ -80,14 +79,12 @@ export const useAuthStore = defineStore('auth', {
                         this.WishList = response.data === 1 ? this.WishList.filter(wishList => wishList.product.id !== product_id) : this.WishList;
                         res.value = false;
                     }).catch(error => {
-                        console.log(error.response.data.message);
                     })
                 } else {
                     await axios.post(route('wishlist.store', [product_id, this.user.id])).then(response => {
                         this.WishList.push({product: response.data});
                         res.value = true;
                     }).catch(error => {
-                        console.log(error.response.data.message);
                     });
 
                 }
@@ -132,17 +129,13 @@ export const useAuthStore = defineStore('auth', {
                     return true;
                 }
             }).catch(err => {
-                console.log(err);
             });
             return result;
         },
         async coupon_checker(coupon_code, order_id = -1) {
-            console.log()
             axios.post(route('CouponChecker'), {'id': order_id, 'coupon_code': coupon_code}).then((res) => {
-                console.log(res)
                 this.Orders.splice(0, this.Orders.length, ...res.data);
             }).catch((err) => {
-                console.log(err.response.data.message)
                 this.toastMessage('error', err.response.data.message)
             })
         },

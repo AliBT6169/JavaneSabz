@@ -3,10 +3,12 @@ import {ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     comment: Object,
 });
+const loading = ref(false);
 
 const form = ref({
     id: props.comment.id,
@@ -20,11 +22,13 @@ const changeStatus = (e) => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.patch(route('admin.comments.change_status'), form.value).then(res => {
+                    loading.value = false;
                     form.value.status = Number(e.target.value);
                     useToast().success('عملیات موفقیت آمیز بود');
                 }).catch(err => {
-                    console.log(err)
+                    loading.value = false;
                 });
             }
         }
@@ -36,7 +40,9 @@ const commentVisibility = ref(false);
 </script>
 
 <template>
-    <div class="w-72 rounded-xl overflow-hidden border-2 p-2 border-adminColor1 duration-300 lg:w-full" :class="{'space-y-5':commentVisibility}">
+    <LoadingComponent :loading="loading"/>
+    <div class="w-72 rounded-xl overflow-hidden border-2 p-2 border-adminColor1 duration-300 lg:w-full"
+         :class="{'space-y-5':commentVisibility}">
         <div
             class="space-y-5 justify-between items-center lg:*:flex lg:*:gap-2 *:items-center *:text-center *:m-auto *:w-fit lg:flex lg:space-y-0 lg:*:w-60">
             <div class="">
@@ -76,7 +82,8 @@ const commentVisibility = ref(false);
                 </div>
             </div>
         </div>
-        <div class="duration-300 h-40 lg:h-20 overflow-y-scroll no-scrollbar" :class="{'!h-0 invisible opacity-0':!commentVisibility}">
+        <div class="duration-300 h-40 lg:h-20 overflow-y-scroll no-scrollbar"
+             :class="{'!h-0 invisible opacity-0':!commentVisibility}">
             <div class="text-center">
                 {{ comment.comment }}
             </div>

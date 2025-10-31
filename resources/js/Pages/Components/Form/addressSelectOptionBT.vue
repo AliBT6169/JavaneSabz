@@ -22,7 +22,6 @@ onMounted(async () => {
         cities.value = res.data.cities;
         emit("update:modelValue", res.data.city.id);
     }).catch(err => {
-        console.log(err)
     });
 })
 
@@ -30,7 +29,6 @@ const setProvince = async (province_id) => {
     await axios.get(route('getCities', province_id)).then((res) => {
         cities.value = res.data;
     }).catch((err) => {
-        console.log(err);
     });
 }
 </script>

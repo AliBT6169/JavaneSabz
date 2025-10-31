@@ -4,7 +4,6 @@ import {ref} from "vue";
 import PanelCommentItem from "@/Pages/Components/Panel/PanelCommentItem.vue";
 
 const comments = ref(useAuthStore().user.comments);
-console.log(comments.value);
 </script>
 
 <template>

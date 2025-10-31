@@ -6,11 +6,13 @@ import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios from "axios";
 import {useToast} from "vue-toastification";
 import {ref} from "vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     user: Object,
 });
 const userDeleted = ref(false);
+const loading = ref(false);
 const userDelete = async (id) => {
     const content = {
         component: ToastWarning,
@@ -19,12 +21,15 @@ const userDelete = async (id) => {
         },
         listeners: {
             set: async () => {
+                loading.value = true;
                 await axios.delete(route('admin.users.destroy', {'id': id})).then((res) => {
+                    loading.value = false;
                     if (res.data.status === 200) {
                         useToast().success('کاربر با موفقیت حذف شد');
                         userDeleted.value = true;
                     }
                 }).catch((err) => {
+                    loading.value = false;
                 })
             }
         }
@@ -35,6 +40,7 @@ const userDelete = async (id) => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <tr v-if="!userDeleted" class="h-12 cursor-pointer hover:!bg-adminColor2 duration-500 *:text-center">
         <td class="hidden md:table-cell w-[5%] p-2"><img class="size-12 rounded-full" :src="user.image" alt=""></td>
         <td class="">{{ user.full_name === '' ? 'خالی' : user.full_name }}</td>

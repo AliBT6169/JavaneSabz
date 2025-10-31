@@ -4,6 +4,7 @@ import axios from "axios";
 import AttributeItem from "@/Pages/Admin/Components/AttributeItem.vue";
 import {useToast} from "vue-toastification";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
 
 const props = defineProps({
     modelName: {
@@ -22,13 +23,16 @@ const modal = ref();
 const modal_status = ref(false);
 const attributes = ref();
 const attribute = ref(null);
+const loading = ref(false);
 onMounted(async () => {
+    loading.value = true;
     document.addEventListener('click', modalCloser);
     axios.get(route('admin.banner.getAttribute', props.itemId)).then(res => {
+        loading.value = false;
         attribute.value = res.data.attribute;
         attributes.value = res.data.attributes;
     }).catch(err => {
-        console.log(err);
+        loading.value = false;
     });
 });
 
@@ -42,9 +46,14 @@ onBeforeUnmount(() => {
 });
 
 const changeAttribute = async (id) => {
+    loading.value = true;
     await axios.patch(route('admin.banner.attributeToggle', {banner_id: props.itemId, attribute_id: id})).then(res => {
+        loading.value = false;
         attribute.value = res.data.attribute;
         attributes.value = res.data.attributes;
+    }).catch(err => {
+        loading.value = false;
+
     });
 }
 
@@ -52,6 +61,7 @@ const changeAttribute = async (id) => {
 </script>
 
 <template>
+    <LoadingComponent :loading="loading"/>
     <div
         class="w-48 flex !justify-center bg-adminColor2 duration-500 transition-all overflow-hidden rounded-xl
          border-2 border-current dark:bg-adminColor3"

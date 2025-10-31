@@ -15,7 +15,6 @@ onMounted(async () => {
     await axios.get(props.route).then((res) => {
         listData.value = res.data;
     }).catch((err) => {
-        console.log(err.data);
     });
     if (props.default_value !== 0) {
         dataSender(props.default_value);
