@@ -50,8 +50,8 @@ const timerHandle = () => {
         );
     }
 ;
-const submit = (resend = false) => {
-    if (formStatus.value === 0 || resend)
+const submit = () => {
+    if (formStatus.value === 0)
         axios.post(route('sendLoginSMSCode'), SendSMSForm).then((res) => {
             if (res.data.status === 50)
                 window.location.href = 'adminLogin';
@@ -84,7 +84,20 @@ const submit = (resend = false) => {
 }
 
 const resendCode = () => {
-    submit(true);
+    axios.post(route('sendLoginSMSCode'), SendSMSForm).then((res) => {
+        if (res.data.status === 50)
+            window.location.href = 'adminLogin';
+        if (res.data.user_exists) {
+            formStatus.value = 1;
+            LoginForm.mobile = res.data.mobile;
+        } else {
+            formStatus.value = 2;
+            RegisterForm.mobile = res.data.mobile;
+        }
+        timerHandle();
+    }).catch((err) => {
+        useToast().error(err.response.data.message)
+    });
 }
 </script>
 
