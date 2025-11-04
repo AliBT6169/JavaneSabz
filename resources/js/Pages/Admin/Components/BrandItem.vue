@@ -65,7 +65,7 @@ const deleter = async () => {
         <LoadingComponent :loading="loading"/>
 
     <div
-        class="text-center overflow-hidden space-y-2 border-2 cursor-pointer border-black rounded-xl p-2">
+        class="text-center overflow-hidden space-y-2 border-2 cursor-pointer min-w-40 border-black rounded-xl p-2">
         <div class="size-32 m-auto">
             <img :src="brandData.icon" alt=""
                  class="rounded-full border-2 border-adminColor1 h-full">

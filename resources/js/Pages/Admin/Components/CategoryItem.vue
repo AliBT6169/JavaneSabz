@@ -65,7 +65,7 @@ const deleter = async () => {
         <LoadingComponent :loading="loading"/>
 
     <div
-        class="text-center w-60 h-96 border-2 border-black rounded-xl p-2 lg:space-y-6 *:m-auto *:w-full">
+        class="text-center w-60 h-96 overflow-y-auto border-2 border-black rounded-xl p-2 lg:space-y-6 *:m-auto *:w-full">
         <div class="space-y-2">
             <img :src="categoryData.icon" alt=""
                  class="rounded-full duration-300 border-2 border-adminColor1 size-28 m-auto">
@@ -73,9 +73,6 @@ const deleter = async () => {
                 class="">
                 <div class="">{{ categoryData.name }}</div>
                 <div class="">{{ categoryData.productsQuantity }}</div>
-            </div>
-            <div class="w-full lg:hidden"><span class="">توضیحات :</span>
-                {{ categoryData.description }}
             </div>
             <div class="flex gap-2 cursor-pointer items-center lg:block lg:space-y-2">
                 <div class="py-1 w-full rounded-lg border border-black lg:px-10"
@@ -91,6 +88,9 @@ const deleter = async () => {
                      class="p-1 rounded-xl bg-gray-800/30 duration-300 hover:text-red-500 dark:bg-white/30 lg:w-full">
                     <svg-component name="delete" class="size-6 lg:m-auto"/>
                 </div>
+            </div>
+            <div class="w-full lg:hidden"><span class="">توضیحات :</span>
+                {{ categoryData.description }}
             </div>
         </div>
         <div :title="categoryData.description" class="w-full hidden lg:block truncate"><span class="">توضیحات :</span>

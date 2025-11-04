@@ -1,9 +1,7 @@
 <script setup>
 
 import Layout from "@/Pages/Admin/Components/Layout.vue";
-import SvgComponent from "@/Pages/Components/svg-component.vue";
 import BrandItem from "@/Pages/Admin/Components/BrandItem.vue";
-import {Link} from "@inertiajs/vue3";
 import {ref} from "vue";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import AdminCreateButton from "@/Pages/Admin/Components/AdminCreateButton.vue";
@@ -34,7 +32,7 @@ const pageCount = ref({
         <AdminPageShower PageName="برند ها" :PageCount="pageCount"/>
         <AdminInput v-if="filteredBrands.length>0" v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>
-        <div v-if="filteredBrands.length>0" class="grid grid-cols-3 gap-5 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
+        <div v-if="filteredBrands.length>0" class="grid grid-cols-1 gap-5 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
             <BrandItem v-for="item in filteredBrands" @deleted="brandDeleted($event)" :brand-data="item"/>
         </div>
         <div v-else class="text-center text-xl font-bold">هنوز برندی نساختید!</div>
