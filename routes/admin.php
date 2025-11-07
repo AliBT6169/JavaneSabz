@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Setting\AboutUsSettingController;
 use App\Http\Controllers\Admin\Setting\AdminPasswordChangeController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Setting\SliderSettingController;
+use App\Http\Controllers\Admin\SMSController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserMail\AdminUserMailController;
@@ -129,18 +130,24 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     });
 
     Route::controller(BannerController::class)->group(function () {
-       Route::get('/banner/getAttribute/{id}', 'getAttribute')->name('banner.getAttribute');
-       Route::patch('/banner/attributeToggle/{banner_id}/{attribute_id}', 'toggle')->name('banner.attributeToggle');
+        Route::get('/banner/getAttribute/{id}', 'getAttribute')->name('banner.getAttribute');
+        Route::patch('/banner/attributeToggle/{banner_id}/{attribute_id}', 'toggle')->name('banner.attributeToggle');
     });
 
     Route::controller(SliderSettingController::class)->group(function () {
-       Route::get('/slider/getAttribute/{id}', 'getAttribute')->name('slider.getAttribute');
-       Route::patch('/slider/attributeToggle/{slider_id}/{attribute_id}', 'toggle')->name('slider.attributeToggle');
+        Route::get('/slider/getAttribute/{id}', 'getAttribute')->name('slider.getAttribute');
+        Route::patch('/slider/attributeToggle/{slider_id}/{attribute_id}', 'toggle')->name('slider.attributeToggle');
     });
 
     Route::controller(NotificationController::class)->group(function () {
         Route::get('/notification/index', 'index')->name('notifications.index');
         Route::post('/notification/seen', 'seen')->name('notifications.seen');
+    });
+
+    Route::controller(SMSController::class)->group(function () {
+        Route::get('/sms/index', 'index')->name('sms.index');
+        Route::get('/sms/create', 'create')->name('sms.create');
+        Route::post('/sms/store', 'store')->name('sms.store');
     });
 
     Route::controller(AdminPasswordChangeController::class)->group(function () {

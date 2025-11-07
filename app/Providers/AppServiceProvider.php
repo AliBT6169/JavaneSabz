@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Interfaces\smsRepositoryInterface;
 use App\Repositories\NotificationRepository;
 use App\Repositories\NotificationRepositoryInterface;
 use App\Repositories\RateRepository;
 use App\Repositories\RateRepositoryInterface;
+use App\Repositories\SMSRepository;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,8 +20,8 @@ class AppServiceProvider extends ServiceProvider
     {
 
         $this->app->bind(NotificationRepositoryInterface::class, NotificationRepository::class);
-
         $this->app->bind(RateRepositoryInterface::class, RateRepository::class);
+        $this->app->bind(smsRepositoryInterface::class, SMSRepository::class);
     }
 
     /**
