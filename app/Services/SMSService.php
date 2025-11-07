@@ -34,7 +34,7 @@ class SMSService
                 'text' => $finalMessage,
             ]);
         }
-        return $this->repo->store($message);
+        return $this->repo->store($finalMessage);
     }
 
     public function index(): Collection

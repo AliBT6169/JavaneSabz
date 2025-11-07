@@ -28,7 +28,7 @@ const loading = ref(false);
                 <p class="">ایجاد پیام جدید</p>
                 <SvgComponent name="mail" class="size-4"/>
             </Link>
-            <div class="flex justify-center gap-5 items-center">
+            <div class="space-y-2">
                 <SMSCardComponent v-for="(item, index) in messages.data" :key="index" :sms="item"/>
             </div>
         </div>
