@@ -4,8 +4,7 @@ const props = defineProps({
     sms: {
         type: Object,
     }
-});
-console.log(props.sms);
+})
 </script>
 
 <template>
