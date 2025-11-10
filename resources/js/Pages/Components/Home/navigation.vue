@@ -2,7 +2,7 @@
 
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import {useDark, useToggle} from "@vueuse/core";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import {Link} from '@inertiajs/vue3';
 import ConnectModal from "@/Pages/Components/Home/connect-modal.vue";
 import {connectUsModalVisibility, modalSet} from "@/Pages/Components/Helper/Helper.js";
@@ -13,11 +13,21 @@ const magic_mobile_nav = ref(false);
 const info_mobile_nav = ref(false);
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const navSettings = ref(useIndexStore().Settings.NavSetting.data);
-onMounted(() => {
-    navSettings.value = useIndexStore().Settings.NavSetting.data;
+const navSettings = ref(useIndexStore().Settings?.NavSetting?.data);
+watch(() => useIndexStore().Settings,
+    (value) => {
+        value.NavSetting?.data.map(item => {
+            if (item.title === 'برند ها')
+                Brand.value = item;
+            if (item.title === 'محصولات')
+                Products.value = item;
+            if (item.title === 'درباره ما')
+                AboutUs.value = item;
+            if (item.title === 'تماس با ما')
+                ConnectWithUs.value = item;
+        });
 
-})
+    });
 const props = defineProps({
     settings: {
         type: Object,
@@ -35,16 +45,7 @@ const AboutUs = ref(null);
 const ConnectWithUs = ref(null);
 const brands = ref(null);
 const categories = ref(null);
-navSettings.value.map(item => {
-    if (item.title === 'برند ها')
-        Brand.value = item;
-    if (item.title === 'محصولات')
-        Products.value = item;
-    if (item.title === 'درباره ما')
-        AboutUs.value = item;
-    if (item.title === 'تماس با ما')
-        ConnectWithUs.value = item;
-});
+
 onMounted(() => {
     axios.get(route('brands.show')).then((res) => {
         brands.value = res.data.data;
@@ -146,17 +147,17 @@ const showConnectModal = () => {
             <!--            connection svgs-->
             <div class="flex gap-2 text-defaultColor4 items-center lg:gap-4">
                 <!--                telegram-->
-                <a :href="'t.me:'+settings.telegram"
+                <a :href="'t.me:'+settings?.telegram"
                    class="header-connection-svg after:left-[-14px] hover:after:content-['تلگرام']">
                     <svg-component name="telegram" title="جوانه سبز در تلگرام" class="size-8"/>
                 </a>
                 <!--                instagram-->
-                <a :href="'https://instagram.com/'+settings.instagram"
+                <a :href="'https://instagram.com/'+settings?.instagram"
                    class="header-connection-svg after:left-[-29px] hover:after:content-['اینستاگرام']">
                     <svg-component name="instagram" title="جوانه سبز در اینستاگرام" class="size-8"/>
                 </a>
                 <!--                whatsapp-->
-                <a :href="'https://wa.me/'+settings.whatsapp"
+                <a :href="'https://wa.me/'+settings?.whatsapp"
                    class="header-connection-svg after:left-[-19px] hover:after:content-['واتساپ']">
                     <svg-component name="whatsapp" title="جوانه سبز در واتساپ" class="size-7"/>
                 </a>
@@ -190,7 +191,7 @@ const showConnectModal = () => {
         <!--        home-->
         <Link href="/">
             <div class="cursor-pointer flex justify-center items-center duration-500 -mt-10 hover:-translate-y-2">
-                <img :src="settings.icon" title="خانه" class="size-20 sm:size-32" alt="">
+                <img :src="settings?.icon" title="خانه" class="size-20 sm:size-32" alt="">
             </div>
         </Link>
         <!--        products-->

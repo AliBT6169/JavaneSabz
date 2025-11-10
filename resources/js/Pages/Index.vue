@@ -2,7 +2,7 @@
 
 import Slider1 from "@/Pages/Components/Home/Slider1.vue";
 import Brands from "@/Pages/Components/Home/Brands.vue";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import Product from "@/Pages/Components/Home/Product.vue";
 import ProductSlider1 from "@/Pages/Components/Home/product-slider1.vue";
 import LiveCards from "@/Pages/Components/Home/live-cards.vue";
@@ -12,10 +12,9 @@ import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["indexData"]);
-
+useIndexStore().setSetting(props.indexData?.settings);
 onMounted(async () => {
-    useIndexStore().setSetting(props.indexData.settings);
-    if (!useAuthStore().user.is_admin && useAuthStore().isAuthenticated && useAuthStore().Time + 1200000 < Date.now()) {
+    if (!useAuthStore().user?.is_admin && useAuthStore().isAuthenticated && useAuthStore().Time + 1200000 < Date.now()) {
         useAuthStore().logout();
         await axios.post(route('logout'));
     }

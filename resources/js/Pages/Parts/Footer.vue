@@ -14,11 +14,11 @@ const props = defineProps({
             <div class="flex flex-col gap-2 h-full">
                 <div
                     class="flex duration-300 items-center cursor-pointer gap-2 border-b-2 border-defaultColor5">
-                    <img :src="settings.icon" alt="جوانه سبز" class="size-20">
+                    <img :src="settings?.icon" alt="جوانه سبز" class="size-20">
                     <h3 class="text-2xl font-black text-defaultColor5">جوانه سبز</h3>
                 </div>
                 <p class="w-60">
-                    {{ settings.about }}
+                    {{ settings?.about }}
                     <span class="text-defaultColor5">
                         (مجتبی قربانی)
                     </span>
@@ -38,7 +38,7 @@ const props = defineProps({
                 </Link>
                 <div
                     class="flex duration-300 items-center cursor-pointer gap-2 hover:-translate-x-2 hover:text-defaultColor5">
-                    <a rel="stylesheet" :href="'tel:'+settings.phone">
+                    <a rel="stylesheet" :href="'tel:'+settings?.phone">
                         <svg-component name="tell" title="09123456789" class="size-5"></svg-component>
                     </a>
                     <h3 class="">تماس با ما</h3>
@@ -50,16 +50,16 @@ const props = defineProps({
                         <h3 class="">پل های ارتباطی :</h3>
                     </div>
                     <div class="flex gap-2">
-                        <a :href="'https://t.me/'+settings.telegram">
+                        <a :href="'https://t.me/'+settings?.telegram">
                             <svg-component name="telegram" class="footer-connection-svg size-[30px]"/>
                         </a>
-                        <a :href="'https://instagram.com//'+settings.instagram">
+                        <a :href="'https://instagram.com//'+settings?.instagram">
                             <svg-component name="instagram" class="footer-connection-svg size-[30px]"/>
                         </a>
-                        <a :href="'https://wa.me/'+settings.whatsapp">
+                        <a :href="'https://wa.me/'+settings?.whatsapp">
                             <svg-component name="whatsapp" class="footer-connection-svg size-7"/>
                         </a>
-                        <a :href="'tell:'+settings.phone">
+                        <a :href="'tell:'+settings?.phone">
                             <svg-component name="tell" class="footer-connection-svg size-[30px]"/>
                         </a>
                     </div>

@@ -8,6 +8,7 @@ import {Modal, ModalComponent, modalSet} from "@/Pages/Components/Helper/Helper.
 import {useSearchStore} from "@/Pages/Components/Helper/searchStore.js";
 import SearchResultBox from "@/Pages/Components/searchResultBox.vue";
 import {useAdminStore} from "@/Pages/Admin/Components/Stores/AdminStore.js";
+import {ref} from "vue";
 
 const props = defineProps({
     settings: {
@@ -15,6 +16,7 @@ const props = defineProps({
         required: true
     }
 });
+const settingsRef = ref(props.settings);
 const authUser = useAuthStore();
 
 </script>
@@ -33,7 +35,7 @@ const authUser = useAuthStore();
             <!--            icon-->
             <div class="flex w-full items-center gap-1 justify-center">
                 <Link href="/" class="">
-                    <img :src="settings.icon" class="w-24 h10" alt="">
+                    <img :src="settingsRef?.icon" class="w-24 h10" alt="">
                 </Link>
                 <div class="w-2 h-8 border-gray-300 border-r-2"></div>
                 <div class="flex gap-1 flex-col">
@@ -124,7 +126,7 @@ const authUser = useAuthStore();
                     </div>
                 </div>
                 <!--            dark and light mode-->
-                <DarkLight></DarkLight>
+                <DarkLight/>
             </div>
         </div>
     </header>
