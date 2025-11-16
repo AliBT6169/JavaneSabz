@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Interfaces;
+
+use App\Models\Equipment;
+use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
+
+interface EquipmentRepositoryInterface
+{
+    public function create(array $values): ?Equipment;
+
+    public function update(int $id, array $values): bool;
+
+    public function delete(int $id): bool;
+
+    public function getAll(): ?Collection;
+
+    public function find(int $id): ?Equipment;
+
+    public function findByName(string $name): ?Equipment;
+
+    public function products(int $id): ?Collection;
+
+    public function attachProduct(int $equipment_id, int $product_id): bool;
+    public function attachProducts(int $equipment_id, array $product_ids): bool;
+
+    public function detachProduct(int $equipment_id, int $product_id): bool;
+    public function detachProducts(int $equipment_id, array $product_ids): bool;
+    public function syncProducts(int $equipment_id, array $product_ids): bool;
+
+    public function equipmentsHasProduct(): ?Collection;
+    public function equipmentsDontHasProduct(): ?Collection;
+
+    public function checkItsHaveProducts(int $equipment_id): bool;
+}

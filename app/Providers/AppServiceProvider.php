@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Interfaces\EquipmentRepositoryInterface;
 use App\Interfaces\smsRepositoryInterface;
+use App\Repositories\EquipmentRepository;
 use App\Repositories\NotificationRepository;
 use App\Repositories\NotificationRepositoryInterface;
 use App\Repositories\RateRepository;
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(NotificationRepositoryInterface::class, NotificationRepository::class);
         $this->app->bind(RateRepositoryInterface::class, RateRepository::class);
         $this->app->bind(smsRepositoryInterface::class, SMSRepository::class);
+        $this->app->bind(EquipmentRepositoryInterface::class, EquipmentRepository::class);
     }
 
     /**

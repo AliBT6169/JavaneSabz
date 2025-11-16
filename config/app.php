@@ -126,6 +126,7 @@ return [
     ],
     'providers' => ServiceProvider::defaultProviders()->merge([
         Ybazli\Faker\FakerServiceProvider::class,
+        \App\Providers\Services\AppServiceProvider::class,
     ])->toArray(),
     'aliases' => Facade::defaultAliases()->merge([
         'Faker' => Ybazli\Faker\Facades\Faker::class,
