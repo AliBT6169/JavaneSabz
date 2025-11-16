@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Product extends Model
 {
     use HasFactory;
+
+    protected $with = ['Equipments'];
 
     protected $table = 'products';
     protected $fillable = [
@@ -53,5 +56,10 @@ class Product extends Model
     public function attributes(): MorphToMany
     {
         return $this->morphToMany(Attribute::class, 'attributable');
+    }
+
+    public function Equipments(): BelongsToMany
+    {
+        return $this->belongsToMany(Equipment::class, 'product_equipments', 'product_id', 'equipment_id');
     }
 }
