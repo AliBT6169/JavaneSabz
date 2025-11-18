@@ -3,7 +3,7 @@ import {Head, Link, useForm} from '@inertiajs/vue3';
 import ButtonBT2 from "@/Pages/Components/Form/ButtonBT2.vue";
 import {useToast} from "vue-toastification";
 import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import InputBT2 from "@/Pages/Components/Form/Input-BT2.vue";
 import login from "@/Pages/Auth/Login.vue";
 
@@ -20,7 +20,19 @@ const interval = ref(null);
 const SendSMSForm = useForm({
     mobile: '',
 });
-
+onMounted(async () => {
+    if ('OTPCredential' in window) {
+        try {
+            const content = await navigator.credentials.get({
+                otp: {transport: ['sms']}
+            });
+            LoginForm.code = content.code;
+            RegisterForm.code = content.code;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+})
 const RegisterForm = useForm({
     mobile: '',
     name: '',
