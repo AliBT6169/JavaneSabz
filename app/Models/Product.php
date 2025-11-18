@@ -15,7 +15,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $with = ['Equipments'];
+//    protected $with = ['Equipments'];
 
     protected $table = 'products';
     protected $fillable = [
