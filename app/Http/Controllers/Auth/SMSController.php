@@ -37,7 +37,8 @@ class SMSController extends Controller
             Cache::put($request->mobile . 'try', 1, Date::now()->addMinutes(2));
         }
         $code = rand(10000, 99999);
-        $message = $code . ' ' . '  :کد ورورد شما' . PHP_EOL . 'به سامانه جوانه سبز خوش آمدید' . PHP_EOL . '@javane-sabz.com #' . $code . PHP_EOL . 'لغو=11';
+        $message = $code . ' ' . '  :کد ورورد شما' . PHP_EOL . 'به سامانه جوانه سبز خوش آمدید' . PHP_EOL . 'لغو=11';
+//        $message = $code . ' ' . '  :کد ورورد شما' . PHP_EOL . 'به سامانه جوانه سبز خوش آمدید' . PHP_EOL . '@javane-sabz.com #' . $code . PHP_EOL . 'لغو=11';
         Cache::put($request->mobile, $code, Date::now()->addMinutes(2));
         $result = Http::post('https://rest.payamak-panel.com/api/SendSMS/SendSMS', [
             'username' => '19114303905',
