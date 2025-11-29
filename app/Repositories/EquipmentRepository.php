@@ -2,6 +2,9 @@
 
 namespace App\Repositories;
 
+use App\DTOs\Products\EquipmentWithDTO;
+use App\DTOs\Site\CollectionWithPaginationDTO;
+use App\DTOs\Site\PaginationDTO;
 use App\Interfaces\EquipmentRepositoryInterface;
 use App\Models\Equipment;
 use App\Models\Product;
@@ -16,14 +19,30 @@ class EquipmentRepository implements EquipmentRepositoryInterface
         $this->model = $model;
     }
 
-    public function create(array $values): ?Equipment
+    public function getIcon(int $id): ?string
     {
-        return $this->model::create($values);
+        return $this->model::find($id)?->icon;
     }
 
-    public function update(int $id, array $values): bool
+    public function create(EquipmentWithDTO $values): ?EquipmentWithDTO
     {
-        return $this->model::whereId($id)->update($values);
+        $equipment = $this->model::create([
+            'name' => $values->name,
+            'slug' => $values->slug,
+            'description' => $values->description,
+            'icon' => $values->iconPath,
+        ]);
+        return new EquipmentWithDTO($equipment->id, $equipment->name, $equipment->slug, $equipment->icon, $equipment->description);
+    }
+
+    public function update(int $id, EquipmentWithDTO $equipmentDTO): bool
+    {
+        return $this->model::whereId($id)->update([
+            'name' => $equipmentDTO->name,
+            'slug' => $equipmentDTO->slug,
+            'description' => $equipmentDTO->description,
+            'icon' => $equipmentDTO->iconPath,
+        ]);
     }
 
     public function delete(int $id): bool
@@ -34,6 +53,17 @@ class EquipmentRepository implements EquipmentRepositoryInterface
     public function getAll(): ?Collection
     {
         return $this->model::all();
+    }
+
+    /**
+     * this methode returns a paginated equipments with array of equipment dto & pagination dto
+     * @return null|CollectionWithPaginationDTO
+     */
+    public function getWithPaginate(): ?CollectionWithPaginationDTO
+    {
+        $data = $this->model::paginate(10);
+        if ($data->isEmpty()) return null;
+        return EquipmentWithDTO::makeCollectionFromRepository($data);
     }
 
     public function find(int $id): ?Equipment

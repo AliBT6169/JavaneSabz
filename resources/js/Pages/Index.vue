@@ -12,6 +12,8 @@ import {useIndexStore} from "@/Pages/Components/Helper/indexData.js";
 import {useAuthStore} from "@/Pages/Components/Helper/authStore.js";
 
 const props = defineProps(["indexData"]);
+if (!props.indexData?.isAuth)
+    useAuthStore().$reset();
 useIndexStore().setSetting(props.indexData?.settings);
 onMounted(async () => {
     if (!useAuthStore().user?.is_admin && useAuthStore().isAuthenticated && useAuthStore().Time + 1200000 < Date.now()) {

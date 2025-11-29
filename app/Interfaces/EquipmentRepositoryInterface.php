@@ -2,15 +2,16 @@
 
 namespace App\Interfaces;
 
+use App\DTOs\Products\EquipmentWithDTO;
 use App\Models\Equipment;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
 
 interface EquipmentRepositoryInterface
 {
-    public function create(array $values): ?Equipment;
+    public function create(EquipmentWithDTO $values): ?EquipmentWithDTO;
 
-    public function update(int $id, array $values): bool;
+    public function update(int $id, EquipmentWithDTO $equipmentDTO): bool;
 
     public function delete(int $id): bool;
 

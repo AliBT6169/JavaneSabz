@@ -20,6 +20,7 @@ use App\Models\ProductVariation;
 use App\Models\Setting;
 use App\Models\SliderSettings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class IndexController extends Controller
@@ -44,6 +45,7 @@ class IndexController extends Controller
             "categories" => CategoryResource::collection(Category::where('is_active', true)->get()),
             "banners" => IndexBannersResource::collection(Banner::where('attribute_id', '!=', null)->latest()->get()),
             "slider" => SliderSettings::first() != null ? IndexSliderResource::collection(SliderSettings::latest()->get()) : '',
+            "isAuth" => Auth::check(),
             "settings" => [
                 "settings" => IndexSettingResource::make(Setting::first()),
                 "NavSetting" => NavigationSettingResource::collection(NavBarSetting::where('is_active', true)->orderBy('queue', 'asc')->get()),

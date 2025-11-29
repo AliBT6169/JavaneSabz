@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Comments\AdminCommentController;
 use App\Http\Controllers\Admin\Delivery\DeliveryController;
+use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\NavSettingController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
@@ -154,6 +155,17 @@ Route::middleware(AdminMiddleware::class)->group(function () {
         Route::get('/PassChange/sendVerification', 'sendVerification')->name('passwordChange.sendVerification');
         Route::post('/PassChange/verifyAndChange', 'verifyAndChange')->name('passwordChange.verifyAndChange');
     });
+
+    Route::prefix('equipments')
+        ->name('equipments.')
+        ->controller(EquipmentController::class)
+        ->group(function () {
+           Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/{id}/edit', 'edit')->name('edit');
+            Route::put('/{id}/update', 'update')->name('update');
+        });
 });
 
 
