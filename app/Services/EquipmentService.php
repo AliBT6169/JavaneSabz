@@ -29,7 +29,7 @@ class EquipmentService
         if ($equipmentDTO->icon == null)
             return $this->equipmentRepository->create($equipmentDTO);
         else {
-            $imageName = uniqid() . $equipmentDTO->icon->getClientOriginalExtension();
+            $imageName = uniqid() . '.' . $equipmentDTO->icon->getClientOriginalExtension();
             $path = 'images/equipments/' . $imageName;
             File::ensureDirectoryExists(public_path('images/equipments/'));
             $equipmentDTO->icon->move(public_path('images/equipments'), $imageName);

@@ -32,7 +32,7 @@ class EquipmentRepository implements EquipmentRepositoryInterface
             'description' => $values->description,
             'icon' => $values->iconPath,
         ]);
-        return new EquipmentWithDTO($equipment->id, $equipment->name, $equipment->slug, $equipment->icon, $equipment->description);
+        return new EquipmentWithDTO($equipment->id, $equipment->name, $equipment->slug, null, $equipment->description,  $equipment->icon);
     }
 
     public function update(int $id, EquipmentWithDTO $equipmentDTO): bool

@@ -18,6 +18,6 @@ class Equipment extends Model
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'product_equipments','equipment_id', 'product_id');
+        return $this->belongsToMany(Product::class, 'product_equipment','equipment_id', 'product_id');
     }
 }

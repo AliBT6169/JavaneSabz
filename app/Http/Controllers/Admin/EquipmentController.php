@@ -11,6 +11,7 @@ use App\Repositories\EquipmentRepository;
 use App\Services\EquipmentService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class EquipmentController extends Controller
 {
@@ -23,12 +24,12 @@ class EquipmentController extends Controller
     {
         $equipments = $this->equipmentService->getWithPagination();
         if ($equipments == null) return Inertia::render('Admin/pages/Equipments/Index', []);
-        return Inertia::render('Equipment/Index', ['equipments' => EquipmentResource::collection($equipments->items), 'pagination' => $equipments->paginationDTO]);
+        return Inertia::render('Admin/pages/Equipments/Index', ['equipments' => $equipments->items, 'pagination' => $equipments->paginationDTO]);
     }
 
-    public function create()
+    public function create(): Response
     {
-
+        return Inertia::render('Admin/pages/Equipments/Create');
     }
 
     public function store(EquipmentStoreRequest $request)

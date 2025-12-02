@@ -23,9 +23,22 @@ class EquipmentWithDTO
         //
     }
 
+
+    /**
+     * @param array{
+     *     id: ?int|null,
+     *     name: string,
+     *     slug: ?string|null,
+     *     icon: ?UploadedFile|string|null,
+     *     description: ?string|null,
+     *     iconPath: ?string|null
+     * } $validatedData
+     * @return self
+     */
     public static function fromEquipmentController(array $validatedData): self
     {
-        return new self($validatedData['id'], $validatedData['name'], $validatedData['slug'], $validatedData['icon'], $validatedData['description']);
+//        rigth there . transform icon data
+        return new self($validatedData['id'] ?? null, $validatedData['name'], $validatedData['slug'] ?? $validatedData['name'], $validatedData['icon'] ?? null, $validatedData['description'] ?? null);
     }
 
     /**
@@ -36,7 +49,13 @@ class EquipmentWithDTO
     {
         $equipmentDTOs = [];
         foreach ($equipments->items() as $equipment) {
-            $equipmentDTOs[] = new self($equipment->id, $equipment->name, $equipment->slug, $equipment->icon, $equipment->description);
+            $equipmentDTOs[] = new self(
+                id: $equipment->id,
+                name: $equipment->name,
+                slug: $equipment->slug,
+                icon: null,
+                description: $equipment->description,
+                iconPath: $equipment->icon);
         }
         return new CollectionWithPaginationDTO($equipmentDTOs, new PaginationDTO($equipments));
     }

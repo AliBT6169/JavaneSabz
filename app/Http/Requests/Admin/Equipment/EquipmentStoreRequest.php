@@ -23,8 +23,8 @@ class EquipmentStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:equipments',
-            'slug' => 'required|unique:equipments',
-            'icon' => 'nullable|image',
+            'slug' => 'unique:equipments',
+            'icon' => 'image',
             'description' => 'nullable|string',
         ];
     }

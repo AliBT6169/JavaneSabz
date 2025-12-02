@@ -31,7 +31,7 @@ const pageCount = ref({
 <template>
     <Layout>
         <AdminPageShower PageName="برند ها" :PageCount="pageCount"/>
-        <Pagination :links="brands.links" :meta="brands.meta" create-link="admin.products.create"/>
+        <Pagination :links="brands.links" :meta="brands.meta" create-link="admin.brands.create"/>
         <AdminInput v-if="filteredBrands.length>0" v-model="searchKeyWord" class="!m-auto md:w-1/2" name="جستجو"
                     @update:modelValue="searchKeyWordChanged($event)"/>
         <div v-if="filteredBrands.length>0" class="grid grid-cols-1 gap-5 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
