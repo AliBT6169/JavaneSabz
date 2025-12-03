@@ -16,7 +16,7 @@ const props = defineProps<{
 const emits = defineEmits<{
     (e: 'delete', id: number): void;
 }>();
-const imagePath = ref<string>(props.equipment.iconPath ? '/' + props.equipment.iconPath : '/images/default/logo.png');
+const imagePath = ref<string>(props.equipment.iconPath ? props.equipment.iconPath : '/images/default/logo.png');
 </script>
 
 <template>

@@ -8,6 +8,9 @@ import AdminIndexSearch from "@/Pages/Admin/Components/AdminIndexSearch.vue";
 import {ref} from "vue";
 import axios from "axios";
 import {router} from "@inertiajs/vue3";
+import {useToast} from "vue-toastification";
+import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
+import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 
 const props = defineProps<{
     equipments?: [EquipmentInterface];
@@ -35,25 +38,42 @@ export interface paginationInterface {
 
 const equipmentsHolder = ref<EquipmentInterface[]>(props.equipments);
 const paginationHolder = ref<paginationInterface>(props.pagination);
+const loading = ref<boolean>(false);
 const search = (word: string) => {
     if (word !== '')
         router.get(route('admin.equipments.search', {word: word}));
     else {
         router.get(route('admin.equipments.index'));
     }
-
 }
+
 const deleteEquipment = (id: number) => {
-    axios.delete(route('admin.equipments.destroy', {id: id})).then(res => {
-        equipmentsHolder.value = equipmentsHolder.value.filter(equipment => equipment.id !== id);
-    }).catch(err => {
-        console.log(err);
-    });
+    const content = {
+        component: ToastWarning,
+        props: {
+            message: 'آیا مطمعن به ویرایش این جزئیات هستید؟'
+        },
+        listeners: {
+            set: () => {
+                loading.value = true;
+                axios.delete(route('admin.equipments.destroy', {id: id})).then(res => {
+                    loading.value = false;
+                    equipmentsHolder.value = equipmentsHolder.value.filter(equipment => equipment.id !== id);
+                }).catch(err => {
+                    loading.value = false;
+                    console.log(err);
+                });
+            }
+        }
+    }
+    const toast = useToast();
+    toast.warning(content);
 }
 </script>
 
 <template>
     <Layout>
+        <loading-component :loading="loading"/>
         <div class="text-center text-lg font-bold">صفحه مشخصات:</div>
         <AdminIndexSearch @update:modelValue="search($event)"/>
         <div v-if="equipments" class="space-y-5">

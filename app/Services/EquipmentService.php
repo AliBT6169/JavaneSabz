@@ -30,7 +30,7 @@ class EquipmentService
             return $this->equipmentRepository->create($equipmentDTO);
         else {
             $imageName = uniqid() . '.' . $equipmentDTO->icon->getClientOriginalExtension();
-            $path = 'images/equipments/' . $imageName;
+            $path = '/images/equipments/' . $imageName;
             File::ensureDirectoryExists(public_path('images/equipments/'));
             $equipmentDTO->icon->move(public_path('images/equipments'), $imageName);
             $equipmentDTO->iconPath = $path;
@@ -43,8 +43,8 @@ class EquipmentService
         if ($equipmentDTO->icon == null)
             return $this->equipmentRepository->update($equipmentDTO->id, $equipmentDTO);
         else {
-            $imageName = uniqid() . $equipmentDTO->icon->getClientOriginalExtension();
-            $path = 'images/equipments/' . $imageName;
+            $imageName = uniqid() . '.' . $equipmentDTO->icon->getClientOriginalExtension();
+            $path = '/images/equipments/' . $imageName;
             $oldImagePath = $this->equipmentRepository->getIcon($equipmentDTO->id);
             if (isset($oldImagePath) && File::exists(public_path($oldImagePath)))
                 File::delete(public_path($oldImagePath));
@@ -61,7 +61,15 @@ class EquipmentService
 
     public function destroy(int $id): bool
     {
+        $image = $this->equipmentRepository->getIcon($id);
+        if ($image && File::exists(public_path($image)))
+            unlink(public_path($image));
         return $this->equipmentRepository->delete($id);
+    }
+
+    public function find(int $id): EquipmentWithDTO
+    {
+        return $this->equipmentRepository->find($id);
     }
 
 }

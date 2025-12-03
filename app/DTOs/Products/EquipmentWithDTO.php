@@ -4,6 +4,7 @@ namespace App\DTOs\Products;
 
 use App\DTOs\Site\CollectionWithPaginationDTO;
 use App\DTOs\Site\PaginationDTO;
+use App\Models\Equipment;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -37,8 +38,8 @@ class EquipmentWithDTO
      */
     public static function fromEquipmentController(array $validatedData): self
     {
-//        rigth there . transform icon data
-        return new self($validatedData['id'] ?? null, $validatedData['name'], $validatedData['slug'] ?? $validatedData['name'], $validatedData['icon'] ?? null, $validatedData['description'] ?? null);
+//        right there . transform icon data
+        return new self($validatedData['id'] ?? null, $validatedData['name'], $validatedData['slug'] ?? $validatedData['name'], $validatedData['icon'] ?? null, $validatedData['description'] ?? null, $validatedData['iconPath'] ?? null);
     }
 
     /**
@@ -58,5 +59,17 @@ class EquipmentWithDTO
                 iconPath: $equipment->icon);
         }
         return new CollectionWithPaginationDTO($equipmentDTOs, new PaginationDTO($equipments));
+    }
+
+    public static function makeWithModel(Equipment $model): EquipmentWithDTO
+    {
+        return new EquipmentWithDTO(
+            id: $model->id,
+            name: $model->name,
+            slug: $model->slug,
+            icon: null,
+            description: $model->description,
+            iconPath: $model->icon,
+        );
     }
 }

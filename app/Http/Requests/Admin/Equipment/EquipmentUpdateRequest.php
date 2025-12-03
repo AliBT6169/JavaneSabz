@@ -25,9 +25,10 @@ class EquipmentUpdateRequest extends FormRequest
         return [
             'id' => 'required|exists:equipments',
             'name' => ['required', 'string', 'max:50', Rule::unique('equipments')->ignore($this->request->get('id'))],
-            'slug' => ['required', 'string', 'max:50', Rule::unique('equipments')->ignore($this->request->get('id'))],
-            'icon' => 'nullable|image',
+            'slug' => ['string', 'max:50', Rule::unique('equipments')->ignore($this->request->get('id'))],
+            'icon' => 'image',
             'description' => 'nullable|string',
+            'iconPath' => 'nullable|string',
         ];
     }
 }

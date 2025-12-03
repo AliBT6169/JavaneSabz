@@ -30,7 +30,7 @@ class EquipmentRepository implements EquipmentRepositoryInterface
             'description' => $values->description,
             'icon' => $values->iconPath,
         ]);
-        return new EquipmentWithDTO($equipment->id, $equipment->name, $equipment->slug, null, $equipment->description,  $equipment->icon);
+        return new EquipmentWithDTO($equipment->id, $equipment->name, $equipment->slug, null, $equipment->description, $equipment->icon);
     }
 
     public function update(int $id, EquipmentWithDTO $equipmentDTO): bool
@@ -64,9 +64,9 @@ class EquipmentRepository implements EquipmentRepositoryInterface
         return EquipmentWithDTO::makeCollectionFromRepository($data);
     }
 
-    public function find(int $id): ?Equipment
+    public function find(int $id): ?EquipmentWithDTO
     {
-        return $this->model::find($id);
+        return EquipmentWithDTO::makeWithModel($this->model::find($id));
     }
 
     public function findByName(string $name): ?CollectionWithPaginationDTO

@@ -41,9 +41,9 @@ class EquipmentController extends Controller
             abort(500, 'مشکلی به وجود آمده است!');
     }
 
-    public function edit()
+    public function edit(int $id): Response
     {
-
+        return Inertia::render('Admin/pages/Equipments/Edit', ['equipment' => $this->equipmentService->find($id)]);
     }
 
     public function update(EquipmentUpdateRequest $request)

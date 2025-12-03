@@ -18,7 +18,7 @@ interface EquipmentRepositoryInterface
 
     public function getAll(): ?Collection;
 
-    public function find(int $id): ?Equipment;
+    public function find(int $id): ?EquipmentWithDTO;
 
     public function findByName(string $name): ?CollectionWithPaginationDTO;
 
