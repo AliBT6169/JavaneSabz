@@ -3,6 +3,7 @@
 namespace App\Interfaces;
 
 use App\DTOs\Products\EquipmentWithDTO;
+use App\DTOs\Site\CollectionWithPaginationDTO;
 use App\Models\Equipment;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
@@ -19,7 +20,7 @@ interface EquipmentRepositoryInterface
 
     public function find(int $id): ?Equipment;
 
-    public function findByName(string $name): ?Equipment;
+    public function findByName(string $name): ?CollectionWithPaginationDTO;
 
     public function products(int $id): ?Collection;
 

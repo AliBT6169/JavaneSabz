@@ -4,10 +4,8 @@ namespace App\Repositories;
 
 use App\DTOs\Products\EquipmentWithDTO;
 use App\DTOs\Site\CollectionWithPaginationDTO;
-use App\DTOs\Site\PaginationDTO;
 use App\Interfaces\EquipmentRepositoryInterface;
 use App\Models\Equipment;
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
 
 class EquipmentRepository implements EquipmentRepositoryInterface
@@ -71,9 +69,11 @@ class EquipmentRepository implements EquipmentRepositoryInterface
         return $this->model::find($id);
     }
 
-    public function findByName(string $name): ?Equipment
+    public function findByName(string $name): ?CollectionWithPaginationDTO
     {
-        return $this->model::where('name', $name)->first();
+        $data = $this->model::where('name', 'Like', '%' . $name . '%')->paginate(10);
+        if ($data->isEmpty()) return null;
+        return EquipmentWithDTO::makeCollectionFromRepository($data);
     }
 
     public function products(int $id): ?Collection

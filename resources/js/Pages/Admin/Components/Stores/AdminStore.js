@@ -5,7 +5,8 @@ export const useAdminStore = defineStore('admin', {
         SideBar: true,
         Page: 'AdminDashboard',
         PageIndexTop: 16,
-        Notifications: {}
+        Notifications: {},
+        searchWord: ''
     }),
     actions: {
         setNotifications(notifications) {

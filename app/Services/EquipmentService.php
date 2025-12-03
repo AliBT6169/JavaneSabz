@@ -54,4 +54,14 @@ class EquipmentService
         }
     }
 
+    public function search(string $text): ?CollectionWithPaginationDTO
+    {
+        return $this->equipmentRepository->findByName($text);
+    }
+
+    public function destroy(int $id): bool
+    {
+        return $this->equipmentRepository->delete($id);
+    }
+
 }

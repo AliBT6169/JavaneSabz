@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Equipment\EquipmentUpdateRequest;
 use App\Http\Resources\Admin\Equipments\EquipmentResource;
 use App\Repositories\EquipmentRepository;
 use App\Services\EquipmentService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -51,5 +52,21 @@ class EquipmentController extends Controller
             return response()->noContent();
         else
             abort(500, 'مشکلی به وجود آمده است!');
+    }
+
+    public function search(string $word): Response
+    {
+        $equipments = $this->equipmentService->search($word);
+        if ($equipments == null) return Inertia::render('Admin/pages/Equipments/Index', []);
+        return Inertia::render('Admin/pages/Equipments/Index', ['equipments' => $equipments->items, 'pagination' => $equipments->paginationDTO]);
+    }
+
+    public function destroy(int $id): \Illuminate\Http\Response
+    {
+        $status = $this->equipmentService->destroy($id);
+        if ($status)
+            return response()->noContent();
+        else
+            abort(500, 'مشکلی پیش اومده!!!');
     }
 }
