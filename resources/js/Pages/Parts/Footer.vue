@@ -19,9 +19,6 @@ const props = defineProps({
                 </div>
                 <p class="w-60">
                     {{ settings?.about }}
-                    <span class="text-defaultColor5">
-                        (مجتبی قربانی)
-                    </span>
                 </p>
             </div>
             <div class="flex flex-col gap-2 h-full">
