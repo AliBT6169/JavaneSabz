@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Home\Categories\indexCategoryResource;
 use App\Http\Resources\Home\Product\IndexProductVariationsResource;
-use App\Models\category;
+use App\Models\Category;
 use App\Models\ProductVariation;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
