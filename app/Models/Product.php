@@ -15,7 +15,6 @@ class Product extends Model
 {
     use HasFactory;
 
-//    protected $with = ['Equipments'];
 
     protected $table = 'products';
     protected $fillable = [
@@ -40,7 +39,7 @@ class Product extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Category::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function product_variations(): HasMany
