@@ -18,7 +18,7 @@ class EquipmentController extends Controller
 {
     public function __construct(protected EquipmentService $equipmentService)
     {
-
+        //
     }
 
     public function index()
@@ -26,6 +26,11 @@ class EquipmentController extends Controller
         $equipments = $this->equipmentService->getWithPagination();
         if ($equipments == null) return Inertia::render('Admin/pages/Equipments/Index', []);
         return Inertia::render('Admin/pages/Equipments/Index', ['equipments' => $equipments->items, 'pagination' => $equipments->paginationDTO]);
+    }
+
+    public function getAll(): JsonResponse
+    {
+        return response()->json(['equipments' => $this->equipmentService->getAll()]);
     }
 
     public function create(): Response

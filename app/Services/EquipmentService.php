@@ -24,6 +24,14 @@ class EquipmentService
         return $this->equipmentRepository->getWithPaginate();
     }
 
+    /**
+     * @return list<EquipmentWithDTO>
+     */
+    public function getAll(): array
+    {
+        return $this->equipmentRepository->getAll();
+    }
+
     public function create(EquipmentWithDTO $equipmentDTO): EquipmentWithDTO
     {
         if ($equipmentDTO->icon == null)

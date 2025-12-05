@@ -16,7 +16,10 @@ interface EquipmentRepositoryInterface
 
     public function delete(int $id): bool;
 
-    public function getAll(): ?Collection;
+    /**
+     * @return list<EquipmentWithDTO>
+     */
+    public function getAll(): array;
 
     public function find(int $id): ?EquipmentWithDTO;
 

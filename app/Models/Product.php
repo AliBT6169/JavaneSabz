@@ -60,6 +60,6 @@ class Product extends Model
 
     public function Equipments(): BelongsToMany
     {
-        return $this->belongsToMany(Equipment::class, 'product_equipments', 'product_id', 'equipment_id');
+        return $this->belongsToMany(Equipment::class, 'product_equipment', 'product_id', 'equipment_id');
     }
 }

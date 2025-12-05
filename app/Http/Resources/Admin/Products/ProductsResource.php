@@ -21,6 +21,7 @@ class ProductsResource extends JsonResource
             'brand' => $this->brand->name,
             'category' => $this->category->name,
             'description' => $this->description,
+            'equipments' => $this->Equipments,
             'variations' => ProductVariationsResource::collection($this->product_variations),
             'image' => $this->primary_image,
             'is_active' => $this->is_active,

@@ -28,6 +28,8 @@ class ProductUpdateRequest extends FormRequest
             'brand' => 'required|exists:brands,id',
             'category' => 'required|exists:categories,id',
             'description' => 'required|string',
+            'equipments' => 'array',
+            'equipments.*' => 'exists:equipments,id',
             'is_active' => 'required|boolean',
             'variation.*.size' => 'required|string|max:50',
             'variation.*.weight' => 'required|numeric',

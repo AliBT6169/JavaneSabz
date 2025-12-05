@@ -4,7 +4,7 @@ import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import {Link} from "@inertiajs/vue3";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios, {toFormData} from "axios";
 import {useToast} from "vue-toastification";
@@ -15,12 +15,15 @@ import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
 import heic2any from "heic2any";
 import SvgComponent from "@/Pages/Components/svg-component.vue";
 import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
+import Multiselect from "vue-multiselect";
 
 const props = defineProps({
     Product: null,
 });
 const VariationsData = ref(props.Product.data.variations);
 const loading = ref(false);
+const equipments = ref([]);
+const equipmentSelected = ref(props.Product.data.equipments ?? []);
 const productImage = ref(props.Product.data.image);
 const form = ref({
     id: props.Product.data.id,
@@ -62,6 +65,14 @@ const checkIfItsHEIC = async (file) => {
         type: "image/jpeg",
     });
 }
+onMounted(async () => {
+    await axios.get(route('admin.equipments.getAll')).then(res => {
+        console.log(res.data.equipments);
+        equipments.value = res.data.equipments;
+    }).catch(err => {
+        console.log(err);
+    });
+});
 const saveChanges = async () => {
     const content = {
         component: ToastWarning,
@@ -76,6 +87,9 @@ const saveChanges = async () => {
                 if (document.querySelector('#image').files[0] != null)
                     formData.append('image', imageToSend.value);
                 const filteredData = VariationsData.value.filter(item => item.data !== undefined)
+                for (let i = 0; i < equipmentSelected.value.length; i++) {
+                    formData.append('equipments[' + i + ']', equipmentSelected.value[i].id);
+                }
                 filteredData.map((item, index) => {
                     if (item.data !== undefined) {
                         formData.append('variation[' + index + '][id]', item.data.id ?? -1);
@@ -96,6 +110,7 @@ const saveChanges = async () => {
                         });
                     }
                 });
+                console.log(formData);
                 await axios.post(route('admin.products.update'), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -166,6 +181,18 @@ const VariationDelete = (index) => {
                     <AdminDataList @selected="form.brand=$event" :default_value="form.brand" label="برند"
                                    :route="route('admin.brands.show')"/>
                 </div>
+                <div class="">
+                    <Multiselect
+                        deselect-label="برای حذف کلیک کنید"
+                        select-label="برای انتخاب کلیک کنید"
+                        :options="equipments"
+                        v-model="equipmentSelected"
+                        :multiple="true"
+                        placeholder="جزئیات محصول را انتخاب کنید"
+                        track-by="id"
+                        label="name"/>
+                    <div class="w-full"></div>
+                </div>
                 <div class="!block !space-y-0">
                     <div class="pr-3">توضیحات :</div>
                     <ckeditor :config="{language: 'fa'}" v-model="form.description"></ckeditor>
@@ -189,3 +216,14 @@ const VariationDelete = (index) => {
         </form>
     </Layout>
 </template>
+
+<style scoped>
+:deep(.multiselect__option) {
+    @apply bg-adminColor2/50;
+}
+
+:deep(.multiselect__element) {
+    @apply bg-adminColor1;
+}
+</style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

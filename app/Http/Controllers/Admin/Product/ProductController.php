@@ -56,6 +56,13 @@ class ProductController extends Controller
             'description' => $request->description,
             'is_active' => $request->is_active,
         ]);
+        if (isset($request['equipments'])) {
+            $equipments = [];
+            foreach ($request->get('equipments') as $equipment) {
+                $equipments[] = $equipment;
+            }
+        }
+        $product->Equipments()->sync($equipments);
         $imageCount = 0;
         foreach ($request->variation as $variation) {
             if ($variation['off_sale'] != null)
@@ -71,11 +78,12 @@ class ProductController extends Controller
                 'is_active' => $variation['is_active'],
                 'is_special' => $variation['is_special'],
             ]);
-            foreach ($variation['image'] as $variationImage) {
-                $variationImageName = time() . $imageCount . '.' . $variationImage->getClientOriginalExtension();
-                Gallery::updateImage(ProductVariation::class, $productVariation->id, $variationImage, '/images/products/variations/', $variationImageName);
-                $imageCount++;
-            }
+            if (isset($variation['image']))
+                foreach ($variation['image'] as $variationImage) {
+                    $variationImageName = time() . $imageCount . '.' . $variationImage->getClientOriginalExtension();
+                    Gallery::updateImage(ProductVariation::class, $productVariation->id, $variationImage, '/images/products/variations/', $variationImageName);
+                    $imageCount++;
+                }
         }
 
         return response()->json([
@@ -105,7 +113,14 @@ class ProductController extends Controller
             $request->image->move(public_path('images/products/'), $imageName);
             $imagePath = '/images/products/' . $imageName;
         }
-
+        $equipments = [];
+        if (isset($request['equipments'])) {
+            $equipments = [];
+            foreach ($request->get('equipments') as $equipment) {
+                $equipments[] = $equipment;
+            }
+        }
+        $product->Equipments()->sync($equipments);
         $product->update([
             'name' => $request->name,
             'brand_id' => $request->brand,

@@ -4,7 +4,7 @@ import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import {Link} from "@inertiajs/vue3";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
 import Layout from "@/Pages/Admin/Components/Layout.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios, {toFormData} from "axios";
 import {useToast} from "vue-toastification";
@@ -13,10 +13,22 @@ import ProductVariationModal from "@/Pages/Admin/pages/Products/ProductVariation
 import {component as ckeditor} from '@mayasabha/ckeditor4-vue3';
 import heic2any from "heic2any";
 import LoadingComponent from "@/Pages/Components/Home/LoadingComponent.vue";
+import Multiselect from "vue-multiselect";
 
 const VariationsData = ref([]);
 const productImage = ref('');
+const equipments = ref([]);
 const loading = ref(false);
+const equipmentSelected = ref([]);
+
+onMounted(async () => {
+    await axios.get(route('admin.equipments.getAll')).then(res => {
+        console.log(res.data.equipments);
+        equipments.value = res.data.equipments;
+    }).catch(err => {
+        console.log(err);
+    });
+})
 const form = ref({
     name: '',
     brand: '',
@@ -24,6 +36,7 @@ const form = ref({
     description: '',
     is_active: 1,
 });
+
 const fileToSend = ref('');
 const onFileChange = async (event) => {
     loading.value = true;
@@ -69,6 +82,9 @@ const saveChanges = async () => {
                 toFormData(form.value, formData);
                 if (document.querySelector('#image').files[0] != null)
                     formData.append('image', fileToSend.value);
+                for (let i = 0; i < equipmentSelected.value.length; i++) {
+                    formData.append('equipments[' + i + ']', equipmentSelected.value[i].id);
+                }
                 VariationsData.value.map((item, index) => {
                     if (item.data !== undefined) {
                         formData.append('variation[' + index + '][size]', item.data.size);
@@ -108,7 +124,8 @@ const VariationDataChanged = (index, value) => {
     <Layout>
         <LoadingComponent :loading="loading"/>
         <form @submit.prevent="saveChanges" class="pb-20">
-            <label for="image" class="mb-4 cursor-pointer w-full flex justify-center items-center duration-300 hover:scale-95 overflow-hidden">
+            <label for="image"
+                   class="mb-4 cursor-pointer w-60 m-auto flex justify-center items-center duration-300 hover:scale-95 overflow-hidden">
                 <input type="file" id="image"
                        accept="
     .jpg,.jpeg,.png,.gif,.webp,.svg,.bmp,.tif,.tiff,
@@ -148,6 +165,18 @@ const VariationDataChanged = (index, value) => {
                     <AdminDataList @selected="form.brand=$event" key="category" label="برند"
                                    :route="route('admin.brands.show')"/>
                 </div>
+                <div class="">
+                    <Multiselect
+                        deselect-label="برای حذف کلیک کنید"
+                        select-label="برای انتخاب کلیک کنید"
+                        :options="equipments"
+                        v-model="equipmentSelected"
+                        :multiple="true"
+                        placeholder="جزئیات محصول را انتخاب کنید"
+                        track-by="id"
+                        label="name"/>
+                    <div class="w-full"></div>
+                </div>
                 <div class="!block !space-y-0">
                     <div class="pr-3">توضیحات :</div>
                     <ckeditor :config="{language: 'fa'}" v-model="form.description"></ckeditor>
@@ -170,3 +199,13 @@ const VariationDataChanged = (index, value) => {
         </form>
     </Layout>
 </template>
+<style scoped>
+:deep(.multiselect__option) {
+    @apply bg-adminColor2/50;
+}
+
+:deep(.multiselect__element) {
+    @apply bg-adminColor1;
+}
+</style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

@@ -28,6 +28,8 @@ class ProductStoreRequest extends FormRequest
             'category' => 'required|exists:categories,id',
             'description' => 'required|string',
             'is_active' => 'required|boolean',
+            'equipments' => 'array',
+            'equipments.*' => 'exists:equipments,id',
             'variation.*.size' => 'required|string|max:50',
             'variation.*.weight' => 'required|numeric',
             'variation.*.quantity' => 'required|numeric|min:1',

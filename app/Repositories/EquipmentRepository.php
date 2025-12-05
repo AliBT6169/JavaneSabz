@@ -48,9 +48,17 @@ class EquipmentRepository implements EquipmentRepositoryInterface
         return $this->model::whereId($id)->delete();
     }
 
-    public function getAll(): ?Collection
+    /**
+     * @return list<EquipmentWithDTO>
+     */
+    public function getAll(): array
     {
-        return $this->model::all();
+        $data = $this->model::all();
+        $dataList = [];
+        foreach ($data as $d) {
+            $dataList[] = EquipmentWithDTO::makeWithModel($d);
+        }
+        return $dataList;
     }
 
     /**
