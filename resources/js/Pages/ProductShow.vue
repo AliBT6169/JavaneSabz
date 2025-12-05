@@ -193,6 +193,16 @@ const showAllDescription = ref(false);
                     </div>
                     <!--                leftSide-->
                     <div class="space-y-6">
+                        <div class="flex flex-wrap gap-5">
+                            <div v-for="(item, index) in productData.data.equipments" :key="'equipment_'+index"
+                                 class="p-2 rounded-md border border-defaultColor5 flex group gap-2 items-center relative">
+                                <div class="">{{
+                                        item.name
+                                    }}</div>
+                                <img :src="item.icon" class="size-7 rounded-md">
+                                <div class="absolute w-30 text-xs -top-96 rounded-md p-2 bg-white dark:bg-black duration-500 group-hover:top-20 right-2 opacity-0 group-hover:opacity-100 border">{{ item.description}}</div>
+                            </div>
+                        </div>
                         <div class="rounded-xl border border-defaultColor lg:mt-[4.5rem]">
                             <div class="productShowItems justify-center rounded-b-none py-2">
                                 اطلاعات محصول
