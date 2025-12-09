@@ -11,7 +11,7 @@ const props = defineProps({
 const siteDomain = ref();
 onMounted(() => {
     const siteLocation = window.location.hostname.split(".");
-    siteLocation.value = siteLocation.pop();
+    siteDomain.value = siteLocation.pop();
 })
 </script>
 
@@ -87,9 +87,12 @@ onMounted(() => {
             </div>
             <div class="flex flex-col gap-2 h-full">
                 <div class="flex border-b-2 border-defaultColor5 justify-center items-center">
-                    اعتماد
+                    <div class="size-20 flex items-center">
+                    </div>
+                    <p class="text-xl translate-x-10 font-black">اعتماد</p>
                 </div>
                 <div class="">
+
                     <a v-if="siteDomain === 'com'" referrerpolicy='origin' target='_blank'
                        href='https://trustseal.enamad.ir/?id=684132&Code=Wt5jPY4YRGXtd0eqqvH07xKke2ZQkncZ'><img
                         referrerpolicy='origin'
