@@ -98,6 +98,12 @@ onMounted(() => {
                         referrerpolicy='origin'
                         src='https://trustseal.enamad.ir/logo.aspx?id=684132&Code=Wt5jPY4YRGXtd0eqqvH07xKke2ZQkncZ'
                         alt='' style='cursor:pointer' code='Wt5jPY4YRGXtd0eqqvH07xKke2ZQkncZ'></a>
+
+                    <a v-else referrerpolicy='origin' target='_blank'
+                       href='https://trustseal.enamad.ir/?id=686725&Code=1stzOUDUUtzTIfIzsaXxeSKkT18cPmlb'><img
+                        referrerpolicy='origin'
+                        src='https://trustseal.enamad.ir/logo.aspx?id=686725&Code=1stzOUDUUtzTIfIzsaXxeSKkT18cPmlb'
+                        alt='' style='cursor:pointer' code='1stzOUDUUtzTIfIzsaXxeSKkT18cPmlb'></a>
                 </div>
             </div>
         </div>
