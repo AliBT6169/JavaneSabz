@@ -52,7 +52,7 @@ onMounted(() => {
                 <div class="flex flex-col gap-3">
                     <div
                         class="flex duration-300 items-center gap-2">
-                        <svg-component name="connection" class="size-5"></svg-component>
+                        <svg-component name="connection" class="size-5"/>
                         <h3 class="">پل های ارتباطی :</h3>
                     </div>
                     <div class="flex gap-2">
