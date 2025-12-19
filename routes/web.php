@@ -66,7 +66,7 @@ Route::get('/شرایط-و-خدمات', function () {
 })->name('terms-conditions');
 
 Route::prefix('pay/')->name('pay.')->controller(PaymentSepController::class)->group(function () {
-    Route::Post('/', 'SepIndex')->name('index');
+    Route::get('/', 'SepIndex')->name('index');
 });
 
 Route::post('TextToAdmin', [CallToAdminController::class, 'store'])->name('textToAdmin');
