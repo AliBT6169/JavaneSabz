@@ -6,7 +6,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Home\CallToAdmin\CallToAdminController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\PaymentSepController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Models\AboutUsSetting;
@@ -65,8 +65,8 @@ Route::get('/شرایط-و-خدمات', function () {
     return Inertia::render('TermsConditions');
 })->name('terms-conditions');
 
-Route::prefix('pay/')->name('pay.')->controller(PaymentSepController::class)->group(function () {
-    Route::Post('/', 'SepIndex')->name('index');
+Route::prefix('pay/')->name('pay.')->controller(PaymentController::class)->group(function () {
+    Route::get('/Zibal', 'ZibalCallBack')->name('ZibalCallBack');
 });
 
 Route::post('TextToAdmin', [CallToAdminController::class, 'store'])->name('textToAdmin');

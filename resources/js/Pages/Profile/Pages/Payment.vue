@@ -33,7 +33,10 @@ switch (props.transaction_data[0].status) {
                 <svg-component name="tick" class="size-20 text-green-500"/>
             </div>
             <div v-if="transaction_data[0].status===1" class="">
-                تراکنش نامعلوم
+                <div class="">
+                    <p class="">تراکنش نامعلوم</p>
+                    <p class="text-sm font-medium">تراکش نامعلوم لطفا با پشتیبانی تماس حاصل فرمایید</p>
+                </div>
                 <svg-component name="info" class="size-20 text-yellow-500"/>
             </div>
             <div v-if="transaction_data[0].status===0" class="">

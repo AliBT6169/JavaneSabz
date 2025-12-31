@@ -18,8 +18,7 @@ class Transaction extends Model
         'id',
         'user_id',
         'order_id',
-        'ref_id',
-        'token',
+        'track_id',
         'gateway_name',
         'status',
         'created_at',
@@ -40,9 +39,9 @@ class Transaction extends Model
         $data = self::create([
             'user_id' => $request['id'] ?? Auth::id(),
             'order_id' => $request['order_id'],
-            'gateway_name' => $request['gateway_name'] ?? 'zarinpal',
+            'gateway_name' => $request['gateway_name'] ?? 'zibal',
             'status' => $request['status'] ?? 0,
-            'ref_id' => $request['refId'] ?? null,
+            'track_id' => $request['trackId'] ?? null,
         ]);
         return $data;
     }

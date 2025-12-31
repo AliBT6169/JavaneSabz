@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class TransactionController extends Controller
@@ -24,42 +25,30 @@ class TransactionController extends Controller
             ])]);
             return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data, 'message' => $quantityCheck['message']]);
         }
-        $transaction_data = null;
-        $message = null;
-        switch (rand(0, 2)) {
-            case 2:
-                $transaction_data = [
-                    'order_id' => $order_id,
-                    'status' => 2,
-                ];
-                Auth::user()->update([
-                   'buy_item_quantity'=> DB::raw('buy_item_quantity +' . Order::whereId($order_id)->first()->orderItems->count())
-                ]);
-                ProductVariation::productQuantityDecrement($order_id);
-                ProductVariation::sailedQuantityIncrement($order_id);
-                Order::whereId($order_id)->update([
-                    'payment_status' => 1,
-                    'status' => 0
-                ]);
-                $message = 'تراکنش موفقیت آمیز بود';
-                break;
-            case 1:
-                $transaction_data = [
-                    'order_id' => $order_id,
-                    'status' => 1,
-                ];
-                $message = 'تراکش نامعلوم';
-                break;
-            case 0:
-                $transaction_data = [
-                    'order_id' => $order_id,
-                    'status' => 0,
-                ];
-                $message = 'تراکنش ناموفق بود';
-                break;
-        }
-        $data = DashboardResource::getTransactions([Transaction::Creator($transaction_data)]);
+        $amount = Order::find($order_id)->paying_amount;
+        $response = Http::post('https://gateway.zibal.ir/v1/request', [
+            'merchant' => '694f605e71bbfa002964ac4b',
+            'amount' => $amount * 10,
+            'callbackUrl' => route('pay.ZibalCallBack'),
+            'orderId' => $order_id,
+        ]);
+        logger($response);
+        Transaction::query()->create([
+            'user_id' => Auth::id(),
+            'order_id' => $order_id,
+            'track_id' => $response['trackId'],
+            'gateway_name' => 'zibal',
+            'status' => 1,
+        ]);
+        return Inertia::render('ContinueToPayment', ['payment_amount' => $amount, 'order_id' => $order_id]);
+    }
 
-        return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data, 'message' => $message]);
+    public function ZibalPayPage(int $orderId)
+    {
+        $order = Order::query()->find($orderId);
+        if (!$order) abort(404);
+        $transaction = Transaction::query()->where('order_id', $orderId)->latest()->first();
+        if (!$transaction) abort(404);
+        return redirect()->away('https://gateway.zibal.ir/start/' . $transaction->track_id);
     }
 }

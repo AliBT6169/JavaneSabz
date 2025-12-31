@@ -112,6 +112,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(TransactionController::class)->group(function () {
         Route::get('/Payment/{order_id}', 'paymentPage')->name('paymentPage');
+        Route::get('/pay/zibal/{order_id}', 'ZibalPayPage')->name('ZibalPayPage');
     });
     Route::controller(CommentController::class)->group(function () {
         Route::post('/Comment/store', 'store')->name('Comment.store');

@@ -14,9 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->string('ref_id')->nullable();
-            $table->string('token')->nullable();
-            $table->enum('gateway_name', ['zarinpal', 'pay']);
+            $table->string('track_id')->nullable();
+            $table->string('gateway_name');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
