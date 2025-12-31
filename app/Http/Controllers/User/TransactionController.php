@@ -26,13 +26,14 @@ class TransactionController extends Controller
             return Inertia::render('Profile/Pages/Payment', ['transaction_data' => $data, 'message' => $quantityCheck['message']]);
         }
         $amount = Order::find($order_id)->paying_amount;
+        if (Auth::user()->is_admin)
+            $amount = 1000;
         $response = Http::post('https://gateway.zibal.ir/v1/request', [
             'merchant' => '694f605e71bbfa002964ac4b',
             'amount' => $amount * 10,
             'callbackUrl' => route('pay.ZibalCallBack'),
             'orderId' => $order_id,
         ]);
-        logger($response);
         Transaction::query()->create([
             'user_id' => Auth::id(),
             'order_id' => $order_id,
