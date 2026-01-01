@@ -182,6 +182,10 @@ const showConnectModal = () => {
                       class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
                     <svg-component :name="Brand.icon" class="size-7"/>
                 </Link>
+                <Link :href="route('blogs')"
+                      class="bg-slate-700 bg-opacity-50 p-1 text-blue-600 rounded-lg">
+                    <svg-component name="blog" class="size-7"/>
+                </Link>
             </div>
         </div>
         <!--        buyCart-->
@@ -199,16 +203,16 @@ const showConnectModal = () => {
             <svg-component name="strawberry" title="محصولات" class="size-[70%] sm:size-10"/>
         </Link>
         <!--        aboutUs & connectWithUs-->
-        <div class="home_mobile_navigation_items relative" @click.stop="info_mobile_nav=!info_mobile_nav">
+        <div class="home_mobile_navigation_items relative" @click.stop="info_mobile_nav = !info_mobile_nav">
             <svg-component name="about" class="size-[70%] sm:size-10"/>
             <div
-                :class="['absolute w-fit flex gap-3 p-4 items-center -right-11 top-10 duration-500 ease-out opacity-0 text-black' , {'opacity-100 !-top-20': info_mobile_nav}]">
-                <Link v-if="AboutUs!==null" :href="route('about-us')">
+                :class="['absolute w-fit flex gap-3 p-4 items-center -right-11 top-10 duration-500 ease-out opacity-0 text-black' , {'!opacity-100 !-top-20': info_mobile_nav}]">
+                <Link :href="route('about-us')">
                     <div class="bg-slate-700 bg-opacity-50 p-1 text-gray-200 rounded-lg fill-none hover:fill-red-900">
                         <svg-component name="about" class="size-7"/>
                     </div>
                 </Link>
-                <div v-if="ConnectWithUs!==null" class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg"
+                <div class="bg-slate-700 bg-opacity-50 p-1 text-defaultColor rounded-lg"
                      @click.stop="connectUsModalVisibility=!connectUsModalVisibility">
                     <svg-component name="tell" class="size-7"/>
                 </div>
