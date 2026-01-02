@@ -40,13 +40,16 @@ class SMSController extends Controller
         $message = $code . ' ' . '  :کد ورورد شما' . PHP_EOL . 'به سامانه جوانه سبز خوش آمدید' . PHP_EOL . 'لغو=11';
 //        $message = $code . ' ' . '  :کد ورورد شما' . PHP_EOL . 'به سامانه جوانه سبز خوش آمدید' . PHP_EOL . '@javane-sabz.com #' . $code . PHP_EOL . 'لغو=11';
         Cache::put($request->mobile, $code, Date::now()->addMinutes(2));
-        $result = Http::post('https://rest.payamak-panel.com/api/SendSMS/SendSMS', [
+        $defaultURL = 'https://rest.payamak-panel.com/api/SendSMS/SendSMS';
+        $result = Http::post('https://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber', [
             'username' => '19114303905',
             'password' => 'e769de5a-6382-414e-bbbf-35cbf68139df',
             'to' => $request->mobile,
             'from' => '30008810668877',
-            'text' => $message,
+            'bodyId' => '371860',
+            'text' => $code . ';' . $code,
         ]);
+        logger($result);
         $user = User::where('cellphone', $request->mobile)->first();
         if ($user) {
             return response()->json([
