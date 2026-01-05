@@ -57,4 +57,14 @@ class Attribute extends Model
     {
         return $this->hasMany(SliderSettings::class);
     }
+
+    public static function booted()
+    {
+        static::deleting(function ($model) {
+            if (count($model->banner) > 0)
+                $model->banner->each(function ($banner) {
+                    $banner->delete();
+                });
+        });
+    }
 }
