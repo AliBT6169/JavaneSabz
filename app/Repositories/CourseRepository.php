@@ -11,8 +11,12 @@ class CourseRepository
         //
     }
 
-    public function create()
+    public function create(string $subject, string $title, string $content): Course
     {
-
+        return $this->model::query()->create([
+            'subject' => $subject,
+            'title' => $title,
+            'content' => $content,
+        ]);
     }
 }

@@ -59,7 +59,11 @@ import {router} from "@inertiajs/vue3";
                              :href="route('admin.blogs.index')" name="blogs.index">
                 بلاگ
             </AdminSidbarItem>
-            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('settings.index',13)" icon="settings"
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('courses.index',13)" icon="courses"
+                             :href="route('admin.courses.index')" name="courses.index">
+                آموزش
+            </AdminSidbarItem>
+            <AdminSidbarItem @mousedown="useAdminStore().sideBarSelector('settings.index',14)" icon="settings"
                              :href="route('admin.settings.index')" name="settings.index">
                 تنظیمات
             </AdminSidbarItem>

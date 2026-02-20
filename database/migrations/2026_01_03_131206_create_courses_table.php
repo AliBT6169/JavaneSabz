@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('subject');
             $table->longText('content');
-            $table->unsignedBigInteger('views');
+            $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
         });
     }

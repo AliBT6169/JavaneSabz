@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\SMSController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserMail\AdminUserMailController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -164,6 +165,20 @@ Route::middleware(AdminMiddleware::class)->group(function () {
             Route::get('/getAll', 'getAll')->name('getAll');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
+            Route::get('/{id}/edit', 'edit')->name('edit');
+            Route::put('/update', 'update')->name('update');
+            Route::get('search/{word}', 'search')->name('search');
+            Route::delete('delete/{id}', 'destroy')->name('destroy');
+        });
+
+    Route::prefix('courses')
+        ->name('courses.')
+        ->controller(CourseController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/addMedia', 'addMedia')->name('addMedia');
             Route::get('/{id}/edit', 'edit')->name('edit');
             Route::put('/update', 'update')->name('update');
             Route::get('search/{word}', 'search')->name('search');
