@@ -5,9 +5,10 @@ namespace App\Services;
 use App\Models\Course;
 use App\Models\Gallery;
 use App\Repositories\CourseRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Symfony\Component\DomCrawler\Crawler;
-use function Webmozart\Assert\Tests\StaticAnalysis\uuid;
 
 class CourseService
 {
@@ -47,7 +48,18 @@ class CourseService
 
     public function createCourse(array $data): bool
     {
-        $course = $this->repository->create($data['subject'], $data['title'], $data['content']);
+        if (!isset($data['avatar']))
+            return false;
+        File::ensureDirectoryExists(public_path('images/course'));
+        $fileName = uniqid() . '.' . $data['avatar']->getClientOriginalExtension();
+        $url = 'images/course/' . $fileName;
+        $data['avatar']->move(public_path('images/course'), $fileName);
+        $course = $this->repository->create(
+            subject: $data['subject'],
+            title: $data['title'],
+            avatarUrl: $url,
+            content: $data['content']
+        );
         $crawler = new Crawler($data['content']);
         $videoUrls = $crawler->filter('video')->each(function (Crawler $node) {
             return $node->attr('src');
@@ -61,5 +73,15 @@ class CourseService
             $gallery->update(['gallery_id' => $course->id]);
         }
         return true;
+    }
+
+    public function getWithPagination(int $count): LengthAwarePaginator
+    {
+        return $this->repository->getWithPagination($count);
+    }
+
+    public function delete(int $courseId): bool
+    {
+        return $this->repository->delete($courseId);
     }
 }

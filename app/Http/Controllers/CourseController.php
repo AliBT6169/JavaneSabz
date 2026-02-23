@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Course\CourseStoreRequest;
 use App\Http\Requests\Course\AddMediaToCourseRequest;
+use App\Http\Resources\Admin\Courses\CourseResource;
 use App\Models\Course;
 use App\Services\CourseService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -20,7 +22,8 @@ class CourseController extends Controller
 
     public function index(): Response
     {
-        return Inertia::render('Admin/pages/Courses/index', []);
+        $courses = CourseResource::collection($this->courseService->getWithPagination(5));
+        return Inertia::render('Admin/pages/Courses/index', ['courses' => $courses]);
     }
 
     public function create(): Response
@@ -46,6 +49,13 @@ class CourseController extends Controller
     public function publicPages()
     {
 
+    }
+
+    public function destroy(int $id): \Illuminate\Http\Response
+    {
+        if ($this->courseService->delete($id))
+            return response()->noContent();
+        else abort(500);
     }
 
     public function addMedia(AddMediaToCourseRequest $request)

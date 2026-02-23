@@ -8,11 +8,12 @@ import {Link, router} from "@inertiajs/vue3";
 import AdminButton from "@/Pages/Admin/Components/Admin-Button.vue";
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import {useToast} from "vue-toastification";
-import axios from "axios";
+import axios, {toFormData} from "axios";
 import AdminInput from "@/Pages/Admin/Components/AdminInput.vue";
+import AdminPictureInput from "@/Pages/Admin/Components/AdminPictureInput.vue";
 
 const loading = ref<boolean>(false);
-const contentData = ref<string>('');
+const picture = ref('');
 const form = ref<{
     subject: string;
     title: string;
@@ -31,7 +32,12 @@ const saveData = () => {
         listeners: {
             set: async () => {
                 loading.value = true;
-                await axios.post(route('admin.courses.store'), form.value).then(res => {
+                const formData = toFormData(form.value);
+                if (picture.value !== '')
+                    formData.append('avatar', picture.value.get('image'));
+                else
+                    formData.append('avatar', picture.value);
+                await axios.post(route('admin.courses.store'), formData).then(res => {
                     loading.value = false;
                     useToast().success(res.data);
                     router.get(route('admin.courses.index'));
@@ -51,6 +57,7 @@ const saveData = () => {
 <template>
     <Layout>
         <loading-component :loading="loading"/>
+        <admin-picture-input v-model="picture"/>
         <div
             class="space-y-6 py-4 *:w-full *:h-fit md:space-y-0 md:flex md:flex-wrap md:items-center md:justify-center md:gap-5 *:md:w-[45%]">
             <admin-input v-model="form.subject" name="موضوع"/>

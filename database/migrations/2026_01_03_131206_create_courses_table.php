@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('avatar');
             $table->string('subject');
             $table->longText('content');
             $table->unsignedBigInteger('views')->default(0);
@@ -25,6 +26,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
+//        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::dropIfExists('courses');
+//        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 };
