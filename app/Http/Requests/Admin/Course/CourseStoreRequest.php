@@ -25,7 +25,7 @@ class CourseStoreRequest extends FormRequest
             'title' => 'required|string|max:255',
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg,heic|max:10240',
             'subject' => 'required|string|max:255',
-            'content' => 'required|string|max:10000',
+            'content' => 'required|string|max:100000',
         ];
     }
 }

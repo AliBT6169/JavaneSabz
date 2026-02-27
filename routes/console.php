@@ -7,4 +7,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-\Illuminate\Support\Facades\Schedule::command('app:course-media-cleaner')->everyMinute();
+\Illuminate\Support\Facades\Schedule::command('app:course-media-cleaner')->everyFiveMinutes();
