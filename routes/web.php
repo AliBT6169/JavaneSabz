@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\Home\CallToAdmin\CallToAdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PaymentController;
@@ -68,6 +69,14 @@ Route::get('/شرایط-و-خدمات', function () {
 Route::prefix('pay/')->name('pay.')->controller(PaymentController::class)->group(function () {
     Route::get('/Zibal', 'ZibalCallBack')->name('ZibalCallBack');
 });
+
+Route::prefix('courses')
+    ->name('courses.')
+    ->controller(CourseController::class)
+    ->group(function () {
+       Route::get('/show/{id}', 'show')->name('show');
+       Route::get('/increaseView{id}', 'increaseView')->name('increaseView');
+    });
 
 Route::post('TextToAdmin', [CallToAdminController::class, 'store'])->name('textToAdmin');
 require __DIR__ . '/auth.php';

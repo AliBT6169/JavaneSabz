@@ -47,7 +47,7 @@ const emits = defineEmits<{
 
         <div class="w-full sm:w-auto flex shrink-0">
             <button
-                @click="emits('delete', course.id)"
+                @click.stop="emits('delete', course.id)"
                 class="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-red-50 hover:bg-red-500 text-red-600 hover:text-white rounded-xl transition-all duration-200 font-semibold text-sm focus:ring-4 focus:ring-red-100 outline-none"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">

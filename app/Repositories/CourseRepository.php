@@ -22,6 +22,19 @@ class CourseRepository
         ]);
     }
 
+    public function findById(int $id): ?Course
+    {
+        return $this->model::query()->find($id) ?? null;
+    }
+
+    public function increaseView(int $id): bool
+    {
+        $course = $this->findById($id);
+        if ($course && $course->update(['views' => $course->views + 1]))
+            return true;
+        return false;
+    }
+
     public function getWithPagination(int $count): LengthAwarePaginator
     {
         return $this->model::query()->latest()->paginate($count);

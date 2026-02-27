@@ -26,7 +26,7 @@ class Course extends Model
     {
         static::deleting(function ($course) {
             if (count($course->Galleries) > 0)
-                $course->Galleries->delete();
+                $course->Galleries()->delete();
             if (File::exists(public_path($course->avatar)))
                 File::delete(public_path($course->avatar));
         });

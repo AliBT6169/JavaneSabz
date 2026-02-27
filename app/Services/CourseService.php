@@ -17,6 +17,11 @@ class CourseService
         //
     }
 
+    public function findById(int $id): ?Course
+    {
+        return $this->repository->findById($id);
+    }
+
     public function addMedia(array $mediaData): string
     {
         $file = $mediaData['file'];
@@ -44,6 +49,11 @@ class CourseService
             Cache::put('course_media', $allMediaCaches);
         }
         return $publicPath;
+    }
+
+    public function increaseView(int $id): bool
+    {
+        return $this->repository->increaseView($id);
     }
 
     public function createCourse(array $data): bool

@@ -41,9 +41,12 @@ class CourseController extends Controller
         else abort(500);
     }
 
-    public function show(Course $course)
+    public function show(int $id): Response
     {
-
+        $course = $this->courseService->findById($id);
+        if (!$course)
+            abort(404);
+        return Inertia::render('CourseShow', ['course' => CourseResource::make($course)]);
     }
 
     public function publicPages()
@@ -56,6 +59,14 @@ class CourseController extends Controller
         if ($this->courseService->delete($id))
             return response()->noContent();
         else abort(500);
+    }
+
+    public function increaseView(int $id): \Illuminate\Http\Response
+    {
+        if ($this->courseService->increaseView($id))
+            return response()->noContent();
+        else abort(500);
+
     }
 
     public function addMedia(AddMediaToCourseRequest $request)

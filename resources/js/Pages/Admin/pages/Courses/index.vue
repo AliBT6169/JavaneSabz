@@ -8,6 +8,7 @@ import CourseAdminItem from "@/Pages/Admin/Components/Courses/CourseAdminItem.vu
 import ToastWarning from "@/Pages/Admin/Components/ToastWarning.vue";
 import axios from "axios";
 import {useToast} from "vue-toastification";
+import {router} from "@inertiajs/vue3";
 
 const props = defineProps<{
     courses: {
@@ -55,6 +56,9 @@ const deleteCourse = (id: number) => {
     const toast = useToast();
     toast.warning(content);
 }
+const showPage = (id: number) => {
+    router.get(route('courses.show',{id: id}));
+}
 </script>
 
 <template>
@@ -62,7 +66,8 @@ const deleteCourse = (id: number) => {
         <LoadingComponent :loading="loading"/>
         <AdminCreateButton table-name="courses"/>
         <div class="space-y-5">
-            <CourseAdminItem v-for="item in coursesData" @delete="deleteCourse($event)" :course="item"/>
+            <CourseAdminItem @click="showPage(item.id)" v-for="item in coursesData" @delete="deleteCourse($event)"
+                             :course="item"/>
         </div>
     </Layout>
 </template>
